@@ -1276,6 +1276,30 @@ blocks as **caches**: per-frame outputs, not inputs.
 also a feature - every non-render consumer keeps the engine's own values, which **buys aim/view
 decoupling for free**.
 
+## CAM-015 — Proxy a published module contract instead of injecting {#cam-015}
+
+**Problem:** the usual choices are a native injector into a closed binary, or forking a whole engine.
+An engine that splits its renderer into a **separate DLL behind a documented C contract** offers a third
+route that is cheaper and safer than either.
+
+**Use when:** the target exports a single well-known entry point for a subsystem - `GetRefAPI`,
+`GetGameAPI` and their relatives in the id Tech family - and a reference implementation of that contract
+is available to read.
+
+**Recipe:** rename the original module and ship a shim under its name that loads it, forwards the entry
+point, and wraps **only** the one function you need. For stereo on a Quake 2 derivative that is
+`RenderFrame`, called twice with two `refdef_t` values. **Check the contract's `API_VERSION` first** -
+interface drift is the only real gate, and it is a static question.
+
+**Proof:** dump the module's exports. A single symbol matching the published contract is the whole
+finding: the licensee forked the engine and did not restructure it.
+
+**Trip hazard:** not every game in a modular family ships the modules. Medal of Honor: Allied Assault is
+id Tech 3 with the renderer **inside the executable** and only an allocator shim beside it, so there is
+nothing to proxy and the route is a source port instead. The export table settles which case you are in
+before any other work. And a shim is **reversible by renaming a file**, which is worth preserving - do
+not let it grow into a fork by accident.
+
 ## STR-009 — Drive per-eye adaptive state from one shared value {#str-009}
 
 **Problem:** an adaptive process runs independently per eye, so the two eyes disagree about the world

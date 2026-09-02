@@ -362,6 +362,27 @@ A useful cross-check: two of these projects landed in the same band (0.21–0.40
 real change an order of magnitude up). Matching *bands* across targets is evidence the method transferred.
 Matching *numbers* would be evidence you copied a constant you hadn't earned.
 
+## Sweep every install location before ranking candidates {#sweep-install-locations}
+
+A candidate survey is only as complete as the directories it looked in, and an unswept drive is
+[a negative claim from a partial index](06-debugging-methodology.md#negative-claims-exhaustive) wearing
+a shortlist's clothes. `[LIVE]`
+
+One survey's open questions recorded *"non-Steam installs not checked"* as a known limitation. When the
+second drive was finally swept, **two targets landed in the top four immediately** - and it also held a
+game already being modded by this fleet. Storefront-diverse installs are the norm, not the exception:
+GOG, Epic, standalone installers and old retail discs all land outside the default library.
+
+**And DRM status is a ranking input, not a footnote.** A DRM-free install makes static analysis work at
+all, which can be the difference between a tractable target and an intractable one - so record it beside
+the engine, not in prose.
+
+**One heuristic to calibrate before trusting it:** a "thin import table means packed or wrapped" rule
+**assumes an executable**. A game *module* legitimately imports almost nothing, because it links against
+the engine's exports rather than the OS - so the check fires on exactly the DLLs you most want to read.
+Scope that heuristic to executables, or it produces confident false positives on every well-structured
+engine.
+
 ## Hard-fail the preconditions; do not document them {#hard-fail-preconditions}
 
 Two process failures, each of which cost a wasted headset trip, and each fixed by a check rather than a

@@ -105,6 +105,8 @@ that the observation and the cause are usually in different chapters.
 | A discovery routine fails and says nothing useful | [11](11-re-anchoring-and-discovery.md#two-part-signature) — log the evidence on the failure path |
 | Is this a second camera or a mirrored object? | [17](17-teardown-fc2vr-native-stereo.md#instance-format-expressiveness) — ask what the instance format can express |
 | Head tilt does not tilt the stereo baseline | [12](12-torso-calculations-and-ergonomics.md#body-model-sequencing) — roll drives the eye axis, not the shoulder bar |
+| Where is this engine's camera, and can I pass a second one? | [17](17-teardown-fc2vr-native-stereo.md#camera-delivery) — global, parameter, or parameter across a module boundary |
+| Can I avoid injecting into this game at all? | [CAM-015](pattern-catalog.md#cam-015) — proxy a published module contract if it exports one |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

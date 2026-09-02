@@ -336,7 +336,7 @@ right and silently leaves all of that on the first eye's values.
 The cost is that you are **borrowing a live engine's camera mid-frame and must give it back exactly**.
 Every hard problem below comes from that one fact.
 
-### …and that cost is not universal. Check how the camera reaches the renderer first
+### …and that cost is not universal. Check how the camera reaches the renderer first {#camera-delivery}
 
 SS2VR made the correction that reframes this whole chapter: **rung 1 is a spectrum, not a yes/no.** What
 decides where a target sits is not only *can you call the world render twice*, but **how the camera gets
@@ -346,6 +346,7 @@ in**:
 |---|---|---|
 | **A global you overwrite** (FEAR, Far Cry 2) | Borrow it, restore it exactly, and freeze everything that observes it | **All of them** — R1 restore, R2 contamination, R4 validator |
 | **A parameter / by-value argument** (KEX, CryEngine) | Build a second camera and pass it | **None of that family** — there is no shared state to corrupt |
+| **A parameter across a documented module boundary** (id Tech 2 / Quake 2) | Build a second `refdef_t` and call `RenderFrame` twice | **None of that family**, and the contract is GPL - see [the id Tech family](00-engine-profiles.md#id-tech-family) |
 
 *(SS2VR: KEX's camera is a parameter, not a global — `Kex_RenderFrame` builds it on its own stack and
 passes it by pointer. PreyVR: `CreateGeneralPassRenderingInfo(const CCamera&, …)` takes an arbitrary

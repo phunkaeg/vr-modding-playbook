@@ -154,6 +154,85 @@ Same four letters, same role. Three things follow that a decompiler will not tel
 the render thread has already done by the time the hook fires - which is a question about *this engine
 family*, and survives the version gap far better than any offset does.
 
+### The id Tech family, and why it is the friendliest target class here {#id-tech-family}
+
+The playbook carried **scattered single mentions** of id Tech before this - JKXR, DOOM-3-BFG-VR,
+thedarkmodvr, all filed as source ports - and **nothing at all on id Tech 2**. That was a gap, because
+the family has a property no other engine here shares. `[SOURCE]`
+
+**The engine is split into replaceable DLLs behind published C contracts, and the reference
+implementation is GPL.** Measured from the shipping binaries of Soldier of Fortune (Raven's Quake 2
+fork):
+
+```
+ref_gl.dll          exports exactly ONE symbol:  GetRefAPI
+base/gamex86.dll    exports exactly ONE symbol:  GetGameAPI
+base/player.dll     exports:  GetPlayerClientAPI, GetPlayerServerAPI
+```
+
+Those are Quake 2's module contracts **verbatim**, and id's own header says why there is only one:
+
+```c
+// this is the only function actually exported at the linker level
+typedef refexport_t (*GetRefAPI_t) (refimport_t);
+```
+
+**A licensee forked the engine and did not restructure it.** So the renderer is a drop-in DLL whose
+interface you can read the source of - `source code\Quake-2\ref_gl\` on this machine.
+
+### The camera is an argument, and that removes a whole bug family
+
+`client/ref.h`:
+
+```c
+typedef struct {
+    int   x, y, width, height;
+    float fov_x, fov_y;
+    float vieworg[3];
+    float viewangles[3];
+    ...
+} refdef_t;
+
+void (*RenderFrame) (refdef_t *fd);
+```
+
+**The entire camera is passed per call.** There is no shared camera global to borrow, restore, or freeze
+observers of - which puts Quake 2 in
+[the parameter row](17-teardown-fc2vr-native-stereo.md#camera-delivery) of the camera-delivery table, in
+its purest form. Stereo is *"call `RenderFrame` twice with two `refdef_t`s"*, and
+[every bug in the FC2VR revision series](17-teardown-fc2vr-native-stereo.md) exists only because that
+engine mutates shared state. Here there is nothing to mutate.
+
+Note the symmetry with [UE3](11-re-anchoring-and-discovery.md#camera-as-out-param), which is the same
+observation from the other side: UE3 gives you **no field to write**, and Quake 2 gives you **no field to
+corrupt.** Both are answered by finding the function that carries the view.
+
+### The route: proxy the module, do not replace it
+
+A shim `ref_gl.dll` that loads the renamed original, forwards `GetRefAPI`, and wraps **only**
+`RenderFrame` to call it twice. That converts *"reverse-engineer a licensee's renderer"* into *"find one
+function-pointer slot in a struct whose definition is on disk"* - and it is **reversible by renaming a
+file**, which no injector is.
+
+**The gate is interface drift.** `ref.h` carries an `API_VERSION`, and the only real unknown is how far
+the licensee moved from it. That is cheap to settle statically, and DRM-free installs make static
+analysis actually work.
+
+### The counter-case, from the same survey: not every id Tech game is modular
+
+Medal of Honor: Allied Assault is id Tech 3 and **has no equivalent seam**. `system86.dll` exports only
+`MemoryFree/Info/Malloc/Trace/Used` - an allocator shim, not the engine - and the renderer lives inside
+the monolithic executable. **There is no module to proxy**, so the route is a source port
+([mode 4](18-beyond-the-native-injector.md)) via a community rebuild, not injection.
+
+Its `gamex86.dll` does export 56 C++ mangled symbols including `??0str@@QAE@ABV0@@Z` - **Ritual's `str`
+class, confirming the FAKK2 lineage from the shipping binary rather than from documentation.** A mangled
+name is a lineage fingerprint: it survives stripping of everything else and names the source tree to
+read.
+
+**So check for the module split before assuming the family gives you one.** Two games, same engine
+generation, opposite answers - and the export table settles it in seconds.
+
 ### Two rules, and the second is not optional
 
 **A licensee's engine is not your engine.** Every one of these games ships a *forked* build. UE3 10897 is

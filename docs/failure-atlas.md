@@ -242,6 +242,9 @@ legacy failure ID and should name this atlas when interpreted.
 | **FAIL-STR-043** | Tilting the head does not tilt the stereo baseline | Drive the interocular axis from HMD roll, separately from the torso rule that ignores it | Head roll suppressed for the shoulder bar and suppressed for the eye baseline too | [12](12-torso-calculations-and-ergonomics.md#body-model-sequencing) |
 | **FAIL-PACK-014** | A headset trip tests the wrong build or hangs on a missed precondition | Hard-fail both in the launcher: staleness gate exits non-zero, foreground is checked not documented | A documented precondition and a default build directory that differs from the CMake preset | [08](08-project-process.md#hard-fail-preconditions) |
 | **FAIL-META-012** | Another project's address corpus does not apply and it is discovered late | Read a documented patch site's expected bytes from your own executable first | Build identity assumed rather than verified against the sibling's own evidence | [08](08-project-process.md#sibling-build-identity) |
+| **FAIL-META-013** | A candidate shortlist misses strong targets | Sweep every install location - GOG, Epic, standalone, retail - before ranking, and record DRM status beside the engine | A survey scoped to one storefront, treated as complete | [08](08-project-process.md#sweep-install-locations) |
+| **FAIL-RE-021** | A packing heuristic flags a game module that is not packed | Scope thin-import-table checks to EXECUTABLES | A game module legitimately imports almost nothing, because it links against the engine's exports | [08](08-project-process.md#sweep-install-locations) |
+| **FAIL-META-014** | An engine family is assumed modular and the target turns out monolithic | Dump the exports: a single contract symbol means modular, an allocator shim means the renderer is in the executable | Family lineage read as a guarantee about one build | [00](00-engine-profiles.md#id-tech-family) |
 
 ## How to add a failure
 
