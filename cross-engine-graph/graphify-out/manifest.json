@@ -1,0 +1,530 @@
+{
+  "bioshockvr/ACTIVE_BASELINE.md": {
+    "mtime": 1784771986.7508347,
+    "seen": 1787793941.9905863,
+    "ast_hash": "6a7b6b965df80746d4a05bf1527defae",
+    "semantic_hash": "6a7b6b965df80746d4a05bf1527defae"
+  },
+  "bioshockvr/ADDRESS_REGISTRY.md": {
+    "mtime": 1784771986.7720792,
+    "seen": 1787793941.9905863,
+    "ast_hash": "d3a9eddc99e6966df93fd49a96bccb83",
+    "semantic_hash": "d3a9eddc99e6966df93fd49a96bccb83"
+  },
+  "bioshockvr/BUILD_HISTORY.md": {
+    "mtime": 1784771986.7941012,
+    "seen": 1787793941.9905863,
+    "ast_hash": "2b8b5bb66330fb4d00526f993d681c36",
+    "semantic_hash": "2b8b5bb66330fb4d00526f993d681c36"
+  },
+  "bioshockvr/BioShock_Bulk_Files_And_Catalog.md": {
+    "mtime": 1784771988.2287514,
+    "seen": 1787793941.9905863,
+    "ast_hash": "69c1cceb299c1419118726454f78ec6c",
+    "semantic_hash": "69c1cceb299c1419118726454f78ec6c"
+  },
+  "bioshockvr/BioShock_Materials_And_Shaders.md": {
+    "mtime": 1784771988.2502663,
+    "seen": 1787793941.9905863,
+    "ast_hash": "519051a2da4075b891db0b11b9803021",
+    "semantic_hash": "519051a2da4075b891db0b11b9803021"
+  },
+  "bioshockvr/BioShock_Reading_Textures.md": {
+    "mtime": 1784771988.273973,
+    "seen": 1787793941.9905863,
+    "ast_hash": "81b5bdbe15c7383e4e9459c5b2c91b05",
+    "semantic_hash": "81b5bdbe15c7383e4e9459c5b2c91b05"
+  },
+  "bioshockvr/BioShock_Texture_Lightmap_Format.md": {
+    "mtime": 1784771988.2959907,
+    "seen": 1787793941.9905863,
+    "ast_hash": "fe500fa6a4de92ffcd3302223a26ed69",
+    "semantic_hash": "fe500fa6a4de92ffcd3302223a26ed69"
+  },
+  "bioshockvr/CODE_ARCHITECTURE.md": {
+    "mtime": 1784771986.8151999,
+    "seen": 1787793941.9905863,
+    "ast_hash": "34ed5e4487a1e211945cd052b64ea957",
+    "semantic_hash": "34ed5e4487a1e211945cd052b64ea957"
+  },
+  "bioshockvr/COMPATIBILITY.md": {
+    "mtime": 1784771986.835878,
+    "seen": 1787793941.9905863,
+    "ast_hash": "14a4fcec97e12ac16c01abeb401b5dc2",
+    "semantic_hash": "14a4fcec97e12ac16c01abeb401b5dc2"
+  },
+  "bioshockvr/CURRENT_STATE.md": {
+    "mtime": 1784771986.9325643,
+    "seen": 1787793941.9905863,
+    "ast_hash": "9206e6c2843b42b5bc9222c6158dd93d",
+    "semantic_hash": "9206e6c2843b42b5bc9222c6158dd93d"
+  },
+  "bioshockvr/DECISION_LOG.md": {
+    "mtime": 1784771986.9600856,
+    "seen": 1787793941.9905863,
+    "ast_hash": "a4136c6193a6b4153d356b78996ccbf6",
+    "semantic_hash": "a4136c6193a6b4153d356b78996ccbf6"
+  },
+  "bioshockvr/FAILURE_REGISTRY.md": {
+    "mtime": 1784771987.0104244,
+    "seen": 1787793941.9905863,
+    "ast_hash": "6bc76dfc2a980f1ac8716df87bda1e19",
+    "semantic_hash": "6bc76dfc2a980f1ac8716df87bda1e19"
+  },
+  "bioshockvr/HYPOTHESES.md": {
+    "mtime": 1784771987.1136596,
+    "seen": 1787793941.9905863,
+    "ast_hash": "55bc08d119bee28d0f16e4726c92554d",
+    "semantic_hash": "55bc08d119bee28d0f16e4726c92554d"
+  },
+  "bioshockvr/INSTALLATION.md": {
+    "mtime": 1784771987.1685252,
+    "seen": 1787793941.9905863,
+    "ast_hash": "57dd4471c44c4c18e7185dc3ccac971e",
+    "semantic_hash": "57dd4471c44c4c18e7185dc3ccac971e"
+  },
+  "bioshockvr/PROJECT_PHASES.md": {
+    "mtime": 1784771987.317583,
+    "seen": 1787793941.9905863,
+    "ast_hash": "a2c8c89c121ae889533cfe3fc4854416",
+    "semantic_hash": "a2c8c89c121ae889533cfe3fc4854416"
+  },
+  "bioshockvr/RE_FINDINGS.md": {
+    "mtime": 1784771987.3647904,
+    "seen": 1787793941.9905863,
+    "ast_hash": "9711d7953fcdce7fa3b6b0bdfa9b3a40",
+    "semantic_hash": "9711d7953fcdce7fa3b6b0bdfa9b3a40"
+  },
+  "bioshockvr/reference-stereo-fix-analysis.md": {
+    "mtime": 1784771987.3407166,
+    "seen": 1787793941.9905863,
+    "ast_hash": "093bad57984fd90bba19b0695cbb4e12",
+    "semantic_hash": "093bad57984fd90bba19b0695cbb4e12"
+  },
+  "bioshockvr/uevr-prior-art.md": {
+    "mtime": 1784771987.4371414,
+    "seen": 1787793941.9905863,
+    "ast_hash": "36702a14f265e9f4995dfcf238268139",
+    "semantic_hash": "36702a14f265e9f4995dfcf238268139"
+  },
+  "bioshockvr/unrealport-reference-findings.md": {
+    "mtime": 1784771987.4606855,
+    "seen": 1787793941.9905863,
+    "ast_hash": "b415ed3287984d91659510b53f824b1c",
+    "semantic_hash": "b415ed3287984d91659510b53f824b1c"
+  },
+  "bioshockvr/vr-presentation-6dof-spec.md": {
+    "mtime": 1784771987.514812,
+    "seen": 1787793941.9905863,
+    "ast_hash": "2545a4b50d3a0df7dd0d58b7d2f6a102",
+    "semantic_hash": "2545a4b50d3a0df7dd0d58b7d2f6a102"
+  },
+  "somavr/ADDRESS_REGISTRY.md": {
+    "mtime": 1784771987.5792072,
+    "seen": 1787793941.9905863,
+    "ast_hash": "4b2e78d002c86e0038f7f1d34ca1a84e",
+    "semantic_hash": "4b2e78d002c86e0038f7f1d34ca1a84e"
+  },
+  "somavr/ARCHITECTURE.md": {
+    "mtime": 1784771987.603719,
+    "seen": 1787793941.9905863,
+    "ast_hash": "7a7730acea37aa7e0c1274d3d1d49bad",
+    "semantic_hash": "7a7730acea37aa7e0c1274d3d1d49bad"
+  },
+  "somavr/AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md": {
+    "mtime": 1784771987.6291213,
+    "seen": 1787793941.9905863,
+    "ast_hash": "9eb3e0dacb593b3b97c7c3307b69a0c2",
+    "semantic_hash": "9eb3e0dacb593b3b97c7c3307b69a0c2"
+  },
+  "somavr/BUILD_HISTORY.md": {
+    "mtime": 1784771987.6586392,
+    "seen": 1787793941.9905863,
+    "ast_hash": "cf24848f27af2f183c7f7412c8a79b02",
+    "semantic_hash": "cf24848f27af2f183c7f7412c8a79b02"
+  },
+  "ss2vr/BUILD_HISTORY.md": {
+    "mtime": 1784771985.056744,
+    "seen": 1787793941.9905863,
+    "ast_hash": "7b9e28da6541315ca5ff2b9ec36056b9",
+    "semantic_hash": "7b9e28da6541315ca5ff2b9ec36056b9"
+  },
+  "ss2vr/CLAUDE_DARKENGINE_FINDS.md": {
+    "mtime": 1784771985.077403,
+    "seen": 1787793941.9905863,
+    "ast_hash": "3ab14be8ef5a51eb2706e809f3457728",
+    "semantic_hash": "3ab14be8ef5a51eb2706e809f3457728"
+  },
+  "ss2vr/CONVENTIONS.md": {
+    "mtime": 1784771985.1216366,
+    "seen": 1787793941.9905863,
+    "ast_hash": "4684e48c2818ee22d90129346e950250",
+    "semantic_hash": "4684e48c2818ee22d90129346e950250"
+  },
+  "ss2vr/CULLING_FRUSTUM.md": {
+    "mtime": 1784771985.1451561,
+    "seen": 1787793941.9905863,
+    "ast_hash": "578f52a7584d7cb6a2ae5f54736c059e",
+    "semantic_hash": "578f52a7584d7cb6a2ae5f54736c059e"
+  },
+  "ss2vr/CURRENT_STATE.md": {
+    "mtime": 1784771985.1668422,
+    "seen": 1787793941.9905863,
+    "ast_hash": "49097ce38d0e6f4abde23b43b76417bf",
+    "semantic_hash": "49097ce38d0e6f4abde23b43b76417bf"
+  },
+  "ss2vr/DARK_ENGINE_SOURCE_NOTES.md": {
+    "mtime": 1784771985.2130675,
+    "seen": 1787793941.9905863,
+    "ast_hash": "2025f98a046dea3399cc5f812bb42cf0",
+    "semantic_hash": "2025f98a046dea3399cc5f812bb42cf0"
+  },
+  "ss2vr/DECISION_LOG.md": {
+    "mtime": 1784771985.234256,
+    "seen": 1787793941.9905863,
+    "ast_hash": "0abb86c731bc719753862ce0bbb9918a",
+    "semantic_hash": "0abb86c731bc719753862ce0bbb9918a"
+  },
+  "ss2vr/ENEMY_HEALTH_BRACKET_RE.md": {
+    "mtime": 1784771985.2572699,
+    "seen": 1787793941.9905863,
+    "ast_hash": "809d3d399e07bc5268ceba3d659b8709",
+    "semantic_hash": "809d3d399e07bc5268ceba3d659b8709"
+  },
+  "ss2vr/FAILURE_REGISTRY.md": {
+    "mtime": 1784771985.276975,
+    "seen": 1787793941.9905863,
+    "ast_hash": "f1b7d9e8043732fa15a763d26f7e18db",
+    "semantic_hash": "f1b7d9e8043732fa15a763d26f7e18db"
+  },
+  "ss2vr/FEATURE_ROADMAP.md": {
+    "mtime": 1784771985.3004856,
+    "seen": 1787793941.9905863,
+    "ast_hash": "8b1dfc766117601bd4ea91615e961f03",
+    "semantic_hash": "8b1dfc766117601bd4ea91615e961f03"
+  },
+  "ss2vr/FROB_TARGET_LIBRARY.md": {
+    "mtime": 1784771985.3913918,
+    "seen": 1787793941.9905863,
+    "ast_hash": "f9574a6a3deff90ef8700b59eef3628a",
+    "semantic_hash": "f9574a6a3deff90ef8700b59eef3628a"
+  },
+  "ss2vr/GAMEPIG_ICEBREAKER.md": {
+    "mtime": 1784771985.4360197,
+    "seen": 1787793941.9905863,
+    "ast_hash": "8769a22992fa0378ebd962b81ebc3d58",
+    "semantic_hash": "8769a22992fa0378ebd962b81ebc3d58"
+  },
+  "ss2vr/GAMEPIG_RE.md": {
+    "mtime": 1784771985.460354,
+    "seen": 1787793941.9905863,
+    "ast_hash": "cf7f7b03ea6070b83d9334720444cce9",
+    "semantic_hash": "cf7f7b03ea6070b83d9334720444cce9"
+  },
+  "ss2vr/GAME_EVENT_EFFECTS.md": {
+    "mtime": 1784771985.4815793,
+    "seen": 1787793941.9905863,
+    "ast_hash": "6b601a73dbe4b09ed6b6b815ff199571",
+    "semantic_hash": "6b601a73dbe4b09ed6b6b815ff199571"
+  },
+  "ss2vr/GHIDRA_ANNOTATION_BACKLOG.md": {
+    "mtime": 1784771985.5020905,
+    "seen": 1787793941.9905863,
+    "ast_hash": "83cfb6f708ffaae8d4971edfad6b804e",
+    "semantic_hash": "83cfb6f708ffaae8d4971edfad6b804e"
+  },
+  "ss2vr/HAND_COLLISION_RESEARCH.md": {
+    "mtime": 1784771985.5440464,
+    "seen": 1787793941.9905863,
+    "ast_hash": "caeca7e9c4eac41524c92758330e12ac",
+    "semantic_hash": "caeca7e9c4eac41524c92758330e12ac"
+  },
+  "ss2vr/HUD_OVERLAY_ASSEMBLY.md": {
+    "mtime": 1784771985.564665,
+    "seen": 1787793941.9905863,
+    "ast_hash": "ad0fa4a3ccb55a844e634959d15126c1",
+    "semantic_hash": "ad0fa4a3ccb55a844e634959d15126c1"
+  },
+  "ss2vr/HUD_PARALLAX_PARKED.md": {
+    "mtime": 1784771985.584174,
+    "seen": 1787793941.9905863,
+    "ast_hash": "185e951f25168685bdbe164e008270ff",
+    "semantic_hash": "185e951f25168685bdbe164e008270ff"
+  },
+  "ss2vr/HYPOTHESES.md": {
+    "mtime": 1784771985.6041863,
+    "seen": 1787793941.9905863,
+    "ast_hash": "1f91d37445127dbd6d630793e629d01d",
+    "semantic_hash": "1f91d37445127dbd6d630793e629d01d"
+  },
+  "ss2vr/HYPOTHESES_ARCHIVE.md": {
+    "mtime": 1784771985.6239898,
+    "seen": 1787793941.9905863,
+    "ast_hash": "8e2c158e8eab481d25dd55dfb7f43982",
+    "semantic_hash": "8e2c158e8eab481d25dd55dfb7f43982"
+  },
+  "ss2vr/INTERACTION_SQUIRREL_REPORT.md": {
+    "mtime": 1784771985.6675065,
+    "seen": 1787793941.9905863,
+    "ast_hash": "afa36838c68a4773aa07dfe55316726f",
+    "semantic_hash": "afa36838c68a4773aa07dfe55316726f"
+  },
+  "ss2vr/LGMD_VHOT_HEADER_FIX.md": {
+    "mtime": 1784771985.7084918,
+    "seen": 1787793941.9905863,
+    "ast_hash": "30570e6dab92f1ad1565112950f700ab",
+    "semantic_hash": "30570e6dab92f1ad1565112950f700ab"
+  },
+  "ss2vr/LGMM_CAL_INVESTIGATION.md": {
+    "mtime": 1784771985.7280257,
+    "seen": 1787793941.9905863,
+    "ast_hash": "cf11bb26dfda45d3addeec84cec0c4a1",
+    "semantic_hash": "cf11bb26dfda45d3addeec84cec0c4a1"
+  },
+  "ss2vr/MELEE_AUDIO_RE.md": {
+    "mtime": 1784771985.7661803,
+    "seen": 1787793941.9905863,
+    "ast_hash": "aaf983adac0cca78368871e10a04524d",
+    "semantic_hash": "aaf983adac0cca78368871e10a04524d"
+  },
+  "ss2vr/MELEE_DAMAGE_RE.md": {
+    "mtime": 1784771985.7866883,
+    "seen": 1787793941.9905863,
+    "ast_hash": "f3f726fb13997ae14ec8ea7a6ef8770f",
+    "semantic_hash": "f3f726fb13997ae14ec8ea7a6ef8770f"
+  },
+  "ss2vr/MELEE_SCALING_HANDOVER.md": {
+    "mtime": 1784771985.806703,
+    "seen": 1787793941.9905863,
+    "ast_hash": "88ef3d85bf4afafff6f4a9d6ed215110",
+    "semantic_hash": "88ef3d85bf4afafff6f4a9d6ed215110"
+  },
+  "ss2vr/MELEE_VR_REPORT.md": {
+    "mtime": 1784771985.8293262,
+    "seen": 1787793941.9905863,
+    "ast_hash": "7ca5a5323c288b20377f55d617e90cc3",
+    "semantic_hash": "7ca5a5323c288b20377f55d617e90cc3"
+  },
+  "ss2vr/MELEE_VR_SPEC.md": {
+    "mtime": 1784771985.8508387,
+    "seen": 1787793941.9905863,
+    "ast_hash": "50132e8f8944adb9cf01b27fee5a6824",
+    "semantic_hash": "50132e8f8944adb9cf01b27fee5a6824"
+  },
+  "ss2vr/MENU_OPTIONS_BIND_TEST_SPEC.md": {
+    "mtime": 1784771985.8713639,
+    "seen": 1787793941.9905863,
+    "ast_hash": "cdd0c72490b9006270edb7ff874100ea",
+    "semantic_hash": "cdd0c72490b9006270edb7ff874100ea"
+  },
+  "ss2vr/MENU_VR_REPORT.md": {
+    "mtime": 1784771985.8949914,
+    "seen": 1787793941.9905863,
+    "ast_hash": "1ad5d26774006d1705833c8888e393dd",
+    "semantic_hash": "1ad5d26774006d1705833c8888e393dd"
+  },
+  "ss2vr/OVERLAY_PANEL_INDEX_MAP.md": {
+    "mtime": 1784771985.9175153,
+    "seen": 1787793941.9905863,
+    "ast_hash": "f230d9f0bd9c1c461ba6f7ef019f2a77",
+    "semantic_hash": "f230d9f0bd9c1c461ba6f7ef019f2a77"
+  },
+  "ss2vr/PROJECT_PHASES.md": {
+    "mtime": 1784771986.0108461,
+    "seen": 1787793941.9905863,
+    "ast_hash": "b9e0ce28ebd76ed67562b4a9b65971b4",
+    "semantic_hash": "b9e0ce28ebd76ed67562b4a9b65971b4"
+  },
+  "ss2vr/RESOLUTION_COMPAT.md": {
+    "mtime": 1784771986.036463,
+    "seen": 1787793941.9905863,
+    "ast_hash": "4e8cdc14ac13ef0e87b15bc2f22dbac8",
+    "semantic_hash": "4e8cdc14ac13ef0e87b15bc2f22dbac8"
+  },
+  "ss2vr/RE_FINDINGS.md": {
+    "mtime": 1784771986.057009,
+    "seen": 1787793941.9905863,
+    "ast_hash": "eb1c26698f978851d2392c5594b02257",
+    "semantic_hash": "eb1c26698f978851d2392c5594b02257"
+  },
+  "ss2vr/ROOMSCALE_CROUCH_RESEARCH.md": {
+    "mtime": 1784771986.080913,
+    "seen": 1787793941.9905863,
+    "ast_hash": "1d9498b3c535dfc8b138d20217654fa0",
+    "semantic_hash": "1d9498b3c535dfc8b138d20217654fa0"
+  },
+  "ss2vr/SHOCK2QUEST_REFERENCE.md": {
+    "mtime": 1784771986.103431,
+    "seen": 1787793941.9905863,
+    "ast_hash": "db3ac1c3309179000a8fdbc18096432a",
+    "semantic_hash": "db3ac1c3309179000a8fdbc18096432a"
+  },
+  "ss2vr/SQUIRREL_WORLD_PHYSICS.md": {
+    "mtime": 1784771986.1271055,
+    "seen": 1787793941.9905863,
+    "ast_hash": "eb14be7b12205af70439820b2aebc14b",
+    "semantic_hash": "eb14be7b12205af70439820b2aebc14b"
+  },
+  "ss2vr/SS2_ASSET_TOOL_COMPARISON.md": {
+    "mtime": 1784771986.1496184,
+    "seen": 1787793941.9905863,
+    "ast_hash": "131646d2ea4674c41f3fb381e9a84f59",
+    "semantic_hash": "131646d2ea4674c41f3fb381e9a84f59"
+  },
+  "ss2vr/TELEPORT_LOCOMOTION_RE.md": {
+    "mtime": 1784771986.1712284,
+    "seen": 1787793941.9905863,
+    "ast_hash": "b341482a244308436ac592d822074db2",
+    "semantic_hash": "b341482a244308436ac592d822074db2"
+  },
+  "ss2vr/TEST_CHECKLISTS.md": {
+    "mtime": 1784771986.197253,
+    "seen": 1787793941.9905863,
+    "ast_hash": "15ed9c9735b75971071270896b702dd5",
+    "semantic_hash": "15ed9c9735b75971071270896b702dd5"
+  },
+  "ss2vr/TEST_PLAN_2026-07.md": {
+    "mtime": 1784771986.2210088,
+    "seen": 1787793941.9905863,
+    "ast_hash": "c6d1fbd684db3828225a1f5ca60d39c9",
+    "semantic_hash": "c6d1fbd684db3828225a1f5ca60d39c9"
+  },
+  "ss2vr/UEVR_STEREO_LESSONS.md": {
+    "mtime": 1784771986.2480376,
+    "seen": 1787793941.9905863,
+    "ast_hash": "17a29d91a3af21a05e8cb48ca340aaf1",
+    "semantic_hash": "17a29d91a3af21a05e8cb48ca340aaf1"
+  },
+  "ss2vr/VR_ACTION_PANEL_TEST.md": {
+    "mtime": 1784771986.291341,
+    "seen": 1787793941.9905863,
+    "ast_hash": "164ad294933427c5af7c22d08ee5e0a1",
+    "semantic_hash": "164ad294933427c5af7c22d08ee5e0a1"
+  },
+  "ss2vr/VR_BODY_HOLSTERS.md": {
+    "mtime": 1784771986.311355,
+    "seen": 1787793941.9905863,
+    "ast_hash": "eda4fe7435f977bcd33e7a2de5d26f7e",
+    "semantic_hash": "eda4fe7435f977bcd33e7a2de5d26f7e"
+  },
+  "ss2vr/VR_CLIMBING_RE.md": {
+    "mtime": 1784771986.3319466,
+    "seen": 1787793941.9905863,
+    "ast_hash": "5a6314c58d9517097bc5dfe32aebbb10",
+    "semantic_hash": "5a6314c58d9517097bc5dfe32aebbb10"
+  },
+  "ss2vr/VR_FINDINGS_INDEX.md": {
+    "mtime": 1784771986.3549597,
+    "seen": 1787793941.9905863,
+    "ast_hash": "06cc276bea30bb685a8baa4fc937d381",
+    "semantic_hash": "06cc276bea30bb685a8baa4fc937d381"
+  },
+  "ss2vr/VR_HIGHLIGHTS_REPORT.md": {
+    "mtime": 1784771986.3786552,
+    "seen": 1787793941.9905863,
+    "ast_hash": "804207883a2edc912ccf70fe235efcec",
+    "semantic_hash": "804207883a2edc912ccf70fe235efcec"
+  },
+  "ss2vr/VR_LATENCY_RECOVERY_PLAN.md": {
+    "mtime": 1784771986.40017,
+    "seen": 1787793941.9905863,
+    "ast_hash": "fc9c0b8f0d2f8c9cfdf4ecc71eea9111",
+    "semantic_hash": "fc9c0b8f0d2f8c9cfdf4ecc71eea9111"
+  },
+  "ss2vr/VR_MANUAL_RELOADS.md": {
+    "mtime": 1784771986.425333,
+    "seen": 1787793941.9905863,
+    "ast_hash": "d62407a7c13e39566c30306b71dc190a",
+    "semantic_hash": "d62407a7c13e39566c30306b71dc190a"
+  },
+  "ss2vr/VR_POST_PROCESS_DESIGN.md": {
+    "mtime": 1784771986.448844,
+    "seen": 1787793941.9905863,
+    "ast_hash": "7e4edb36c1fc46e6b8909e65bb984161",
+    "semantic_hash": "7e4edb36c1fc46e6b8909e65bb984161"
+  },
+  "ss2vr/VR_SETTINGS_PANEL_SPEC.md": {
+    "mtime": 1784771986.4720109,
+    "seen": 1787793941.9905863,
+    "ast_hash": "626d2577d4d8c033410760dbd003f5f7",
+    "semantic_hash": "626d2577d4d8c033410760dbd003f5f7"
+  },
+  "ss2vr/VR_TWO_HANDED_WEAPONS.md": {
+    "mtime": 1784771986.4925382,
+    "seen": 1787793941.9905863,
+    "ast_hash": "137c2e148bc7a85cc509f2ea3126075b",
+    "semantic_hash": "137c2e148bc7a85cc509f2ea3126075b"
+  },
+  "ss2vr/VR_VIEW_EFFECTS.md": {
+    "mtime": 1784771986.5141284,
+    "seen": 1787793941.9905863,
+    "ast_hash": "ddc3b0c9e1c2e179de75920bad0c7384",
+    "semantic_hash": "ddc3b0c9e1c2e179de75920bad0c7384"
+  },
+  "ss2vr/VR_WEAPON_MESH_PIPELINE.md": {
+    "mtime": 1784771986.535151,
+    "seen": 1787793941.9905863,
+    "ast_hash": "8def78224e8ad8fd9855e07c6915b5d3",
+    "semantic_hash": "8def78224e8ad8fd9855e07c6915b5d3"
+  },
+  "ss2vr/VR_WRIST_KEYPAD_SPEC.md": {
+    "mtime": 1784771986.555164,
+    "seen": 1787793941.9905863,
+    "ast_hash": "7a11fe61f236dae91d4c3e6bd4f5fdb4",
+    "semantic_hash": "7a11fe61f236dae91d4c3e6bd4f5fdb4"
+  },
+  "ss2vr/WEAPON_CAMERAOBJ_HMD_BLEED_HANDOFF.md": {
+    "mtime": 1784771986.5778296,
+    "seen": 1787793941.9905863,
+    "ast_hash": "230b3fa5440c30c69b2cd356dd11b8f9",
+    "semantic_hash": "230b3fa5440c30c69b2cd356dd11b8f9"
+  },
+  "ss2vr/WEAPON_MODEL_REPORT.md": {
+    "mtime": 1784771986.600339,
+    "seen": 1787793941.9905863,
+    "ast_hash": "faf4503f566140babd27a701c43706e8",
+    "semantic_hash": "faf4503f566140babd27a701c43706e8"
+  },
+  "ss2vr/WEAPON_MODEL_SPEC.md": {
+    "mtime": 1784771986.6219387,
+    "seen": 1787793941.9905863,
+    "ast_hash": "fe672e0c7fa36eaa44ea3bf3ece8802c",
+    "semantic_hash": "fe672e0c7fa36eaa44ea3bf3ece8802c"
+  },
+  "ss2vr/WEAPON_SPREAD_RECOIL_REPORT.md": {
+    "mtime": 1784771986.64546,
+    "seen": 1787793941.9905863,
+    "ast_hash": "7e7af6076f6d887c5c4f1d0095681bc5",
+    "semantic_hash": "7e7af6076f6d887c5c4f1d0095681bc5"
+  },
+  "ss2vr/WEAPON_VR_AIM_SPEC.md": {
+    "mtime": 1784771986.6686063,
+    "seen": 1787793941.9905863,
+    "ast_hash": "29aa6b9623266793fce55def7980a7e6",
+    "semantic_hash": "29aa6b9623266793fce55def7980a7e6"
+  },
+  "ss2vr/WEAPON_VR_HANDOVER.md": {
+    "mtime": 1784771986.6906347,
+    "seen": 1787793941.9905863,
+    "ast_hash": "4e16dbceb1b010b5f671f5ea551b95a8",
+    "semantic_hash": "4e16dbceb1b010b5f671f5ea551b95a8"
+  },
+  "ss2vr/phase1-usage.md": {
+    "mtime": 1784771985.9626646,
+    "seen": 1787793941.9905863,
+    "ast_hash": "e5f1406cabc5faf2d11f177e1d631c5b",
+    "semantic_hash": "e5f1406cabc5faf2d11f177e1d631c5b"
+  },
+  "ss2vr/phase2-ui.md": {
+    "mtime": 1784771985.9893084,
+    "seen": 1787793941.9905863,
+    "ast_hash": "7878ef34eff3694997f9c1e7c73c6c62",
+    "semantic_hash": "7878ef34eff3694997f9c1e7c73c6c62"
+  },
+  "ss2vr/vr-mod-reference-survey.md": {
+    "mtime": 1784771986.2703226,
+    "seen": 1787793941.9905863,
+    "ast_hash": "a103c713dd9b4b387e50b0825ff17f71",
+    "semantic_hash": "a103c713dd9b4b387e50b0825ff17f71"
+  }
+}

@@ -1,0 +1,4825 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "ss2vr_stereo_rendering_optimization",
+        "label": "Stereo Rendering & Latency Optimization",
+        "nodes": [
+          "ss2vr_uevr_stereo_lessons",
+          "ss2vr_dll",
+          "ss2vr_vr_findings_index"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "ss2vr/UEVR_STEREO_LESSONS.md"
+      },
+      {
+        "id": "artifact_triage_flow",
+        "label": "Artifact Triage and Diagnostic Flow",
+        "nodes": [
+          "0_3_67_shadowmaskab",
+          "0_3_71_artifactprobe",
+          "0_3_86_compactc10apply"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "bioshockvr/DECISION_LOG.md"
+      },
+      {
+        "id": "gamepig_minigame_framework",
+        "label": "Game-Pig Minigame Framework",
+        "nodes": [
+          "ss2vr_gamepig_re",
+          "ss2vr_gamepig_icebreaker",
+          "kex_setconfigraw"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9
+      },
+      {
+        "id": "ps_null_diagnostic_flow",
+        "label": "PS-Null Diagnostic Flow",
+        "nodes": [
+          "bioshockvr_build_history_0_3_76_psnulldepthskip",
+          "bioshockvr_build_history_0_3_78_psnullmonodepth",
+          "bioshockvr_build_history_0_3_83_fallbackdepthab"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "bioshockvr/BUILD_HISTORY.md"
+      },
+      {
+        "id": "somavr_core_loop",
+        "label": "SOMAVR Core Rendering Flow",
+        "nodes": [
+          "somavr_hpl_camera_bridge",
+          "somavr_openxr_runtime",
+          "somavr_hpl_player_state"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "somavr/ARCHITECTURE.md"
+      },
+      {
+        "id": "squirrel_migration_strategy",
+        "label": "DLL to Squirrel Logic Migration",
+        "nodes": [
+          "ss2vr_hypotheses_archive_hfa1",
+          "ss2vr_interaction_squirrel_report",
+          "ss2vr_ss2vr_interact_nut"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "ss2vr/INTERACTION_SQUIRREL_REPORT.md"
+      },
+      {
+        "id": "ss2vr_interaction_flow",
+        "label": "SS2VR Interaction & Selection Flow",
+        "nodes": [
+          "ss2vr_interact_nut",
+          "ss2vr_vr_highlights_report",
+          "ss2vr_dll"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "ss2vr/VR_HIGHLIGHTS_REPORT.md"
+      },
+      {
+        "id": "viewmodel_tracking_system",
+        "label": "Viewmodel Tracking System",
+        "nodes": [
+          "ashockplayer",
+          "ahands",
+          "weaponviewmodelcontrollerpose",
+          "openxr_runtime"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "bioshockvr/BUILD_HISTORY.md"
+      },
+      {
+        "id": "weapon_interaction_flow",
+        "label": "Weapon Interaction and Aim Flow",
+        "nodes": [
+          "ss2vr_phase1_usage_weapon_viewmodel_pose_bridge",
+          "ss2vr_phase1_usage_weapon_melee_v1_7",
+          "ss2vr_phase1_usage_pistol_muzzle_eject_follow",
+          "ss2vr_phase1_usage_two_hand_weapon_support"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "ss2vr/phase1-usage.md"
+      },
+      {
+        "id": "melee_system_re",
+        "label": "Melee System Reverse Engineering",
+        "nodes": [
+          "ss2vr_melee_audio_re",
+          "ss2vr_melee_damage_re",
+          "ss2vr_ss2vr_melee_scaling_nut"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+      },
+      {
+        "id": "native_stereo_evolution",
+        "label": "Native Stereo Implementation Path",
+        "nodes": [
+          "0_3_57_matrixstereoproof",
+          "0_3_58_nativevs_pcenter",
+          "0_3_61_screendatapcenter",
+          "0_3_103_vrfov_eye"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "bioshockvr/DECISION_LOG.md"
+      },
+      {
+        "id": "screen_space_srv_fallback_evolution",
+        "label": "Screen-Space SRV Fallback Evolution",
+        "nodes": [
+          "bioshockvr_build_history_0_3_98_srvfamily",
+          "bioshockvr_build_history_0_3_100_exactsrv"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "bioshockvr/BUILD_HISTORY.md"
+      },
+      {
+        "id": "squirrel_interaction_framework",
+        "label": "Squirrel Interaction Framework",
+        "nodes": [
+          "ss2vr_weapon_probe_nut",
+          "ss2vr_phys_nut",
+          "ss2vr_interact_nut"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "ss2vr/BUILD_HISTORY.md"
+      },
+      {
+        "id": "ss2vr_weapon_handoff_system",
+        "label": "SS2VR Weapon Handoff & Viewmodel System",
+        "nodes": [
+          "ss2vr_weapon_probe_nut",
+          "ss2vr_dll",
+          "ss2vr_weapon_handoff_probe_kpf"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "ss2vr/TEST_CHECKLISTS.md"
+      },
+      {
+        "id": "ui_separation_strategy",
+        "label": "UI Separation and Rendering Strategy",
+        "nodes": [
+          "ss2vr_phase2_ui_ui_tee_texture",
+          "ss2vr_phase2_ui_native_shock_overlay_system",
+          "ss2vr_phase1_usage_right_arm_ammo_hud"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "ss2vr/phase2-ui.md"
+      },
+      {
+        "id": "vr_ui_implementation_routes",
+        "label": "VR UI Implementation Routes",
+        "nodes": [
+          "vr_panel_split_strategy",
+          "d3d11_draw_classification",
+          "shkovrly_cpp_goverlayrects"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+      },
+      {
+        "id": "weapon_vr_system",
+        "label": "Weapon VR Interaction & Visuals",
+        "nodes": [
+          "ss2vr_weapon_cameraobj_hmd_bleed_handoff",
+          "ss2vr_weapon_model_spec",
+          "ss2vr_weapon_spread_recoil_report",
+          "ss2vr_vr_two_handed_weapons",
+          "ss2vr_vr_manual_reloads"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95
+      },
+      {
+        "id": "bulk_data_system",
+        "label": "BioShock Bulk Data System",
+        "nodes": [
+          "catalog_bdc",
+          "blk_files",
+          "utexture_object"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "bioshockvr/BioShock_Bulk_Files_And_Catalog.md"
+      },
+      {
+        "id": "culling_fix_strategy",
+        "label": "VR Culling Fix Strategy",
+        "nodes": [
+          "ss2vr_culling_frustum",
+          "ss2vr_dll_v3_13",
+          "kex_scenetraversalbegin_setcullcamera"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/CULLING_FRUSTUM.md"
+      },
+      {
+        "id": "engine_object_hierarchy",
+        "label": "Engine Object Hierarchy",
+        "nodes": [
+          "ashockplayer",
+          "ahands"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "bioshockvr/DECISION_LOG.md"
+      },
+      {
+        "id": "flataim_evolution_path",
+        "label": "FlatAim Aim/Roll Fix Evolution",
+        "nodes": [
+          "ss2vr_decision_log_retire_flataim_inverse_cos",
+          "ss2vr_decision_log_flataim_v0_17_bounded_anti_roll",
+          "ss2vr_decision_log_flataim_v0_18_rig_aimpoint",
+          "ss2vr_decision_log_flataim_v0_19_screen_axis",
+          "ss2vr_decision_log_flataim_v0_20_proxy",
+          "ss2vr_decision_log_flataim_v0_22_screen_up",
+          "ss2vr_decision_log_flataim_v0_28_dark_matrix",
+          "ss2vr_decision_log_flataim_view_frame_aim"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/DECISION_LOG.md"
+      },
+      {
+        "id": "lgmd_runtime_safety_failures",
+        "label": "LGMD Runtime Safety & Loader Crashes",
+        "nodes": [
+          "ss2vr_failure_registry_psi_amp_ctd",
+          "ss2vr_failure_registry_shotgun_joint_name_mangle",
+          "ss2vr_failure_registry_stock_melee_override_ctd",
+          "ss2vr_failure_registry_lgmd_loader_int3",
+          "ss2vr_decision_log_lgmd_modify_existing_stubs",
+          "ss2vr_decision_log_stock_rig_preservation"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/FAILURE_REGISTRY.md"
+      },
+      {
+        "id": "melee_system_v3",
+        "label": "Melee System v3 (Swing Quality + Haptics)",
+        "nodes": [
+          "ss2vr_melee_tip_collision",
+          "ss2vr_melee_scaling_nut",
+          "ss2vr_haptic_bridge"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+      },
+      {
+        "id": "native_hud_system",
+        "label": "Native Shock Overlay System",
+        "nodes": [
+          "shkovcst_h_overlay_slots",
+          "shkovrly_h_soverlayfunc",
+          "shkovrly_cpp_goverlayrects",
+          "shockoverlaydoframe",
+          "shockoverlaydrawbuffers"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+      },
+      {
+        "id": "stereo_rendering_pipeline",
+        "label": "Stereo Rendering Pipeline",
+        "nodes": [
+          "d3d11_hooks",
+          "openxr_integration",
+          "stereo_world_mutation",
+          "temporal_stereo_bridge"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "bioshockvr/CURRENT_STATE.md"
+      },
+      {
+        "id": "ui_hologram_subsystem",
+        "label": "Right-Arm UI Hologram Subsystem",
+        "nodes": [
+          "ss2vr_decision_log_right_arm_hud_quad",
+          "ss2vr_decision_log_right_arm_hud_native_rect",
+          "ss2vr_decision_log_v1_42_inventory_visibility",
+          "ss2vr_failure_registry_command_bridge_null_base"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/DECISION_LOG.md"
+      },
+      {
+        "id": "viewmodel_pinning_flow",
+        "label": "Viewmodel Pinning Flow",
+        "nodes": [
+          "ss2vr_dll_pose_bridge",
+          "ss2vr_aim_config_var",
+          "nd_shock_gun_viewmodel_on_frame_update"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md"
+      },
+      {
+        "id": "weapon_aim_takeover_flow",
+        "label": "Weapon Aim Takeover Flow",
+        "nodes": [
+          "ss2vr_dll_pose_bridge",
+          "ss2vr_aim_config_var",
+          "ss2vr_weapon_probe_ss2vr_shoot_aim_script",
+          "ss2vr_weapon_probe_ss2vr_redirect_projectile_aim"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md"
+      },
+      {
+        "id": "vr_ui_holographics",
+        "label": "VR Holographic UI Systems",
+        "nodes": [
+          "ss2vr_vr_settings_panel_spec",
+          "ss2vr_vr_wrist_keypad_spec",
+          "ss2vr_vr_view_effects"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8
+      },
+      {
+        "id": "vr_ui_selection_system",
+        "label": "VR UI & Selection System",
+        "nodes": [
+          "ss2vr_selection_bracket",
+          "ss2vr_flataim_sidequest",
+          "ss2vr_ghidra_annotation"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "ss2vr/DECISION_LOG.md"
+      },
+      {
+        "id": "weapon_vr_handoff_flow",
+        "label": "Weapon VR Handoff Flow",
+        "nodes": [
+          "h3_weapon_aim_sink",
+          "h13_ae_squirrel_weapon_handoff",
+          "h19_lgmd_face_deletion"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "ss2vr/HYPOTHESES.md"
+      },
+      {
+        "id": "asset_authoring_pipeline",
+        "label": "Asset Authoring Pipeline",
+        "nodes": [
+          "funkmaxexport",
+          "ss2vr_ss2_asset_tool_comparison_md",
+          "ss2vr_shock2quest_reference_md"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "ss2vr/SS2_ASSET_TOOL_COMPARISON.md"
+      },
+      {
+        "id": "asset_format_re",
+        "label": "Dark Engine Asset Format Research",
+        "nodes": [
+          "ss2vr_lgmd_vhot_header_fix",
+          "ss2vr_lgmm_cal_investigation"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "ss2vr/LGMM_CAL_INVESTIGATION.md"
+      },
+      {
+        "id": "bioshock_stereo_strategy",
+        "label": "BioShock Stereo Reconstruction Strategy",
+        "nodes": [
+          "bioshockvr_reference_stereo_fix_analysis",
+          "bioshockvr_vr_presentation_6dof_spec",
+          "bioshockvr_uevr_prior_art"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "bioshockvr/reference-stereo-fix-analysis.md"
+      },
+      {
+        "id": "camera_and_culling_authority",
+        "label": "Camera and Culling Authority",
+        "nodes": [
+          "ss2vr_phase1_usage_renderview_override",
+          "ss2vr_phase2_ui_hmd_aim_hook",
+          "ss2vr_phase1_usage_snap_turn_v2"
+        ],
+        "relation": "implement",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "ss2vr/phase2-ui.md"
+      },
+      {
+        "id": "vr_locomotion_suite",
+        "label": "VR Locomotion Suite",
+        "nodes": [
+          "ss2vr_blink_nut",
+          "ss2vr_roomscale_crouch_research_md",
+          "ss2vr_teleport_locomotion_re_md"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "ss2vr/PROJECT_PHASES.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "ss2vr_weapon_handoff_probe_kpf",
+      "label": "ss2vr_weapon_handoff_probe.kpf",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ss2vr_weapon_handoff_probe.kpf",
+      "rationale": "Mod package containing the Squirrel scripts and squirrel.ini for weapon takeover.",
+      "source_file": "ss2vr/WEAPON_VR_HANDOVER.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_lgmd_vhot_header_fix",
+      "label": "LGMD vhot crash header fix",
+      "author": null,
+      "captured_at": null,
+      "community": 103,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "lgmd vhot crash header fix",
+      "rationale": "Root cause analysis of CTD when using custom models with vhots; identified byte 69 (subobjects) as the culprit.",
+      "source_file": "ss2vr/LGMD_VHOT_HEADER_FIX.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_lgmm_cal_investigation",
+      "label": "LGMM / CAL Investigation",
+      "author": null,
+      "captured_at": null,
+      "community": 105,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "lgmm / cal investigation",
+      "rationale": "Investigation into skinned mesh formats (LGMM) and high-detail remastered payloads (LGPMNM).",
+      "source_file": "ss2vr/LGMM_CAL_INVESTIGATION.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_melee_audio_re",
+      "label": "Melee Sound FX RE",
+      "author": null,
+      "captured_at": null,
+      "community": 106,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "melee sound fx re",
+      "rationale": "Reverse engineering of Dark engine melee sound schema selection via tag queries.",
+      "source_file": "ss2vr/MELEE_AUDIO_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_pistol_manual_reload",
+      "label": "Pistol Manual Unload/Reload Gesture",
+      "author": null,
+      "captured_at": null,
+      "community": 109,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "pistol manual unload/reload gesture",
+      "rationale": "Phase 5.12.1 two-stage reload handling via left grip gestures.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_pistol_muzzle_eject_follow",
+      "label": "Pistol Muzzle/Eject Follow",
+      "author": null,
+      "captured_at": null,
+      "community": 110,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "pistol muzzle/eject follow",
+      "rationale": "Patches SpawnMuzzleFlash and SpawnEjects to follow right-controller pose.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_right_arm_ammo_hud",
+      "label": "Right-Arm Ammo HUD Hologram",
+      "author": null,
+      "captured_at": null,
+      "community": 111,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "right-arm ammo hud hologram",
+      "rationale": "Phase 2.8 hologram using native Shock overlay rect kOverlayAmmo.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_snap_turn_v2",
+      "label": "Snap-Turn v2",
+      "author": null,
+      "captured_at": null,
+      "community": 112,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "snap-turn v2",
+      "rationale": "Reintroduces snap turns through KEX mouse-accumulator/body path.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_two_hand_weapon_support",
+      "label": "Two-Hand Weapon Support-Grip",
+      "author": null,
+      "captured_at": null,
+      "community": 113,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "two-hand weapon support-grip",
+      "rationale": "Phase 3.6 support handling for weapons based on left controller proximity to support point.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_viewmodel_world_depth_probe",
+      "label": "Viewmodel/World-Depth Probe",
+      "author": null,
+      "captured_at": null,
+      "community": 114,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "viewmodel/world-depth probe",
+      "rationale": "D3D11 depth diagnostics for Phase 4.2.2; hooks ClearDepthStencilView and OMSetRenderTargets.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_flataim_dll",
+      "label": "FlatAim.dll",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "flataim.dll",
+      "rationale": null,
+      "source_file": "ss2vr/HYPOTHESES_ARCHIVE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_ss2fa_nut",
+      "label": "ss2fa.nut",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ss2fa.nut",
+      "rationale": "Squirrel script for FlatAim logic, including projectile redirect and semantic selection.",
+      "source_file": "ss2vr/HYPOTHESES_ARCHIVE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_ss2vr_interact_nut",
+      "label": "ss2vr_interact.nut",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ss2vr_interact.nut",
+      "rationale": "Squirrel script implementing the 3D world-ray selection and frob logic.",
+      "source_file": "ss2vr/INTERACTION_SQUIRREL_REPORT.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_interaction_squirrel_report",
+      "label": "Left-Hand Interaction Squirrel Report",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "left-hand interaction squirrel report",
+      "rationale": "Analysis of migrating left-hand interaction from DLL to Squirrel to fix aim-misalignment.",
+      "source_file": "ss2vr/INTERACTION_SQUIRREL_REPORT.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_hypotheses_archive_hfa1",
+      "label": "HFA1: FlatAim no-visible-aim failure",
+      "author": null,
+      "captured_at": null,
+      "community": 12,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "hfa1: flataim no-visible-aim failure",
+      "rationale": "Hypothesis that FlatAim failure was a DLL-to-Squirrel bridge issue rather than a hotkey failure.",
+      "source_file": "ss2vr/HYPOTHESES_ARCHIVE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_weapon_probe_ss2vr_weapon_probe_handler",
+      "label": "SS2VR Weapon Probe Handler",
+      "author": null,
+      "captured_at": null,
+      "community": 126,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ss2vr weapon probe handler",
+      "rationale": "Squirrel script that finds WeaponHandler.m_viewmodelObject and forces its CameraObj pose.",
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "stereoworldpereyeshadowmask",
+      "label": "StereoWorldPerEyeShadowMask",
+      "author": null,
+      "captured_at": null,
+      "community": 128,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "stereoworldpereyeshadowmask",
+      "rationale": "Feature that regenerates screen-space shadow/attenuation masks per eye to fix mono-shadow artifacts.",
+      "source_file": "bioshockvr/ACTIVE_BASELINE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "blk_files",
+      "label": "BioShock .blk Files",
+      "author": null,
+      "captured_at": null,
+      "community": 14,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "bioshock .blk files",
+      "rationale": "Flat concatenation of raw payload blocks (mostly texture mips) with 32 KB alignment.",
+      "source_file": "bioshockvr/BioShock_Bulk_Files_And_Catalog.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bsp_lightmaps",
+      "label": "BSP Lightmaps",
+      "author": null,
+      "captured_at": null,
+      "community": 14,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "bsp lightmaps",
+      "rationale": "Ordinary DXT UTextures in LightMaps_BSP group; tied to surfaces via FLightMapIndex and FLightMapTexture.",
+      "source_file": "bioshockvr/BioShock_Texture_Lightmap_Format.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "catalog_bdc",
+      "label": "Catalog.bdc",
+      "author": null,
+      "captured_at": null,
+      "community": 14,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "catalog.bdc",
+      "rationale": "The index file for BioShock's external bulk-data system; maps (object, package) to (offset, size) in .blk files.",
+      "source_file": "bioshockvr/BioShock_Bulk_Files_And_Catalog.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "utexture_object",
+      "label": "UTexture Object",
+      "author": null,
+      "captured_at": null,
+      "community": 14,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "utexture object",
+      "rationale": "UE2 object containing format and a mip table; mips can be inline or externalized (Num == 0).",
+      "source_file": "bioshockvr/BioShock_Reading_Textures.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_75_artifactids",
+      "label": "Build 0.3.75-artifactids",
+      "author": null,
+      "captured_at": null,
+      "community": 18,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.75-artifactids",
+      "rationale": "Added PSSetShader and CreatePixelShader hooks for metadata tracking; artifact probing captures VS/PS identity.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_76_psnulldepthskip",
+      "label": "Build 0.3.76-psnulldepthskip",
+      "author": null,
+      "captured_at": null,
+      "community": 18,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.76-psnulldepthskip",
+      "rationale": "Added StereoWorldSkipPsNullDepthOnly to skip PS-null HDR world draws for private-eye replay.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_78_psnullmonodepth",
+      "label": "Build 0.3.78-psnullmonodepth",
+      "author": null,
+      "captured_at": null,
+      "community": 18,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.78-psnullmonodepth",
+      "rationale": "Added StereoWorldPsNullDepthMonoFallback to keep PS-null depth mono when color may be mono.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_80_stereotoggle",
+      "label": "Build 0.3.80-stereotoggle",
+      "author": null,
+      "captured_at": null,
+      "community": 19,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.80-stereotoggle",
+      "rationale": "Added Ctrl+F9 runtime toggle for stereo comparison.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_85_fallbackfitprobe",
+      "label": "Build 0.3.85-fallbackfitprobe",
+      "author": null,
+      "captured_at": null,
+      "community": 19,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.85-fallbackfitprobe",
+      "rationale": "Added compactWvpFitScan to artifact rows to collect fit evidence for vs0=320 rows.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_87_dumpsync",
+      "label": "Build 0.3.87-dumpsync",
+      "author": null,
+      "captured_at": null,
+      "community": 19,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.87-dumpsync",
+      "rationale": "Added OpenXRRuntime::ArmEyeBlitDebugDump to synchronize D3D artifact probes with OpenXR BMP dumps.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "weaponviewmodelcontrollerpose",
+      "label": "WeaponViewmodelControllerPose",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "weaponviewmodelcontrollerpose",
+      "rationale": "Logic for overriding viewmodel WVP matrices with tracked controller poses.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_100_exactsrv",
+      "label": "Build 0.3.100-exactsrv",
+      "author": null,
+      "captured_at": null,
+      "community": 25,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.100-exactsrv",
+      "rationale": "Added StereoWorldScreenSpaceSrvFallbackExactIndex for targeted fallback of specific index counts.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_98_srvfamily",
+      "label": "Build 0.3.98-srvfamily",
+      "author": null,
+      "captured_at": null,
+      "community": 25,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.98-srvfamily",
+      "rationale": "Added family-specific screen-space SRV fallbacks (IndexedPrimitive, LayerModel, Bsp, Material).",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_160_inputshadow320",
+      "label": "Build 0.3.160-inputshadow320",
+      "author": null,
+      "captured_at": null,
+      "community": 26,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.160-inputshadow320",
+      "rationale": "Promoted centered frusta; added compact 320-byte shadow producer support; added snap turn via XInput pulse.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_code_architecture",
+      "label": "BioShockVR Code Architecture",
+      "author": null,
+      "captured_at": null,
+      "community": 26,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "bioshockvr code architecture",
+      "rationale": "Defines the modular refactor of D3D11Hooks.cpp into specialized modules (StereoProjection, StereoReplay, etc.).",
+      "source_file": "bioshockvr/CODE_ARCHITECTURE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_89_depthpairdump",
+      "label": "Build 0.3.89-depthpairdump",
+      "author": null,
+      "captured_at": null,
+      "community": 27,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.89-depthpairdump",
+      "rationale": "Added BMP decoding for depth formats; writes private_eye_depth_hotkey BMPs.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_91_wvpcandidates",
+      "label": "Build 0.3.91-wvpcandidates",
+      "author": null,
+      "captured_at": null,
+      "community": 27,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.91-wvpcandidates",
+      "rationale": "Added StereoWorldMatrixWvpCandidateApply to evaluate alternate WVP starts (c9, c10, c40) for failed affine plans.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "material_objects",
+      "label": "BioShock Material Objects",
+      "author": null,
+      "captured_at": null,
+      "community": 30,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "bioshock material objects",
+      "rationale": "Standard UE2 tagged-property objects describing surface properties (diffuse, specular, etc.).",
+      "source_file": "bioshockvr/BioShock_Materials_And_Shaders.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "shader_factories",
+      "label": "BioShock Shader Factories",
+      "author": null,
+      "captured_at": null,
+      "community": 30,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "bioshock shader factories",
+      "rationale": "HLSL source programs (e.g., MaterialFactory_Shader) that shade surfaces based on material parameters.",
+      "source_file": "bioshockvr/BioShock_Materials_And_Shaders.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_ss2vr_melee_scaling_nut",
+      "label": "ss2vr_melee_scaling.nut",
+      "author": null,
+      "captured_at": null,
+      "community": 37,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ss2vr_melee_scaling.nut",
+      "rationale": "Isolated Squirrel module for computing scaled melee damage based on player stats and weapon type.",
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_melee_damage_re",
+      "label": "Melee Damage RE",
+      "author": null,
+      "captured_at": null,
+      "community": 37,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "melee damage re",
+      "rationale": "Comprehensive RE of melee damage, parry mechanics, and AI stagger/stun systems.",
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_renderview_override",
+      "label": "RenderView Override",
+      "author": null,
+      "captured_at": null,
+      "community": 40,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "renderview override",
+      "rationale": "Rewrites RenderView camera matrices in Map/Unmap upload path for head-tracking.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase2_ui_hmd_aim_hook",
+      "label": "HMD Aim Hook",
+      "author": null,
+      "captured_at": null,
+      "community": 40,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "hmd aim hook",
+      "rationale": "Hooks FUN_1405126e0 to feed HMD yaw/pitch into Dark player facing before culling.",
+      "source_file": "ss2vr/phase2-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_weapon_carrier_probe",
+      "label": "Weapon Carrier-Probe Update",
+      "author": null,
+      "captured_at": null,
+      "community": 41,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "weapon carrier-probe update",
+      "rationale": "Diagnostic-only test for trace vector yaw/pitch vs KEX view and moving-object velocity.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_vr_mod_reference_survey_gtfo",
+      "label": "GTFO VR Reference",
+      "author": null,
+      "captured_at": null,
+      "community": 41,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "gtfo vr reference",
+      "rationale": "Reference for scoped fire/trace overrides and muzzle alignment correction.",
+      "source_file": "ss2vr/vr-mod-reference-survey.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase2_ui_native_shock_overlay_system",
+      "label": "Native Shock Overlay System",
+      "author": null,
+      "captured_at": null,
+      "community": 42,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "native shock overlay system",
+      "rationale": "Identifies 30 named overlays (kOverlayInv, etc.) and gOverlayRects table for panel separation.",
+      "source_file": "ss2vr/phase2-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase2_ui_ui_tee_texture",
+      "label": "UI Tee Texture",
+      "author": null,
+      "captured_at": null,
+      "community": 42,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "ui tee texture",
+      "rationale": "Phase 2A: Duplicates orthographic UI/menu draws into a transparent SS2VR-owned texture.",
+      "source_file": "ss2vr/phase2-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_weapon_vr_aim_spec_weapon_aim_spec",
+      "label": "Weapon Aim + Model Pinning Spec",
+      "author": null,
+      "captured_at": null,
+      "community": 46,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "weapon aim + model pinning spec",
+      "rationale": null,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_weapon_vr_handover_weapon_handover",
+      "label": "Weapon Aim & First-Person Model Handover",
+      "author": null,
+      "captured_at": null,
+      "community": 46,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "weapon aim & first-person model handover",
+      "rationale": null,
+      "source_file": "ss2vr/WEAPON_VR_HANDOVER.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_active_baseline",
+      "label": "Active Baseline",
+      "author": null,
+      "captured_at": null,
+      "community": 51,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "active baseline",
+      "rationale": null,
+      "source_file": "bioshockvr/ACTIVE_BASELINE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_address_registry",
+      "label": "Address Registry",
+      "author": null,
+      "captured_at": null,
+      "community": 52,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "address registry",
+      "rationale": null,
+      "source_file": "bioshockvr/ADDRESS_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history",
+      "label": "Build History",
+      "author": null,
+      "captured_at": null,
+      "community": 53,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "build history",
+      "rationale": null,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_103_vrfov_eye",
+      "label": "Build 0.3.103-vrfov-eye",
+      "author": null,
+      "captured_at": null,
+      "community": 54,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.103-vrfov-eye",
+      "rationale": "Added OpenXR eye swapchain extent query and StereoWorldPrivateEyeTargetOpenXRSize for full-frame VR.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_105_frustumlock",
+      "label": "Build 0.3.105-frustumlock",
+      "author": null,
+      "captured_at": null,
+      "community": 55,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.105-frustumlock",
+      "rationale": "Implemented StereoWorldMonoFallbackFrustumRemap and HeadAimMouseInjection.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_168_shadowlifecycle",
+      "label": "Build 0.3.168-shadowlifecycle",
+      "author": null,
+      "captured_at": null,
+      "community": 56,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.168-shadowlifecycle",
+      "rationale": "Added tracked-resource lifecycle logs and unique target-sized PS SRV BMP dumps for shadow autopsy.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_81_priorarthints",
+      "label": "Build 0.3.81-priorarthints",
+      "author": null,
+      "captured_at": null,
+      "community": 57,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.81-priorarthints",
+      "rationale": "Added priorArtShaderHints to artifact rows based on BioShock/UE3 3D Vision fixes.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_build_history_0_3_83_fallbackdepthab",
+      "label": "Build 0.3.83-fallbackdepthab",
+      "author": null,
+      "captured_at": null,
+      "community": 58,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "build 0.3.83-fallbackdepthab",
+      "rationale": "Added StereoWorldPrivateEyeClearMode and StereoWorldMonoFallbackDepthMode for diagnostic A/B testing.",
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "bioshockvr_compatibility_report",
+      "label": "BioShockVR Compatibility Report",
+      "author": null,
+      "captured_at": null,
+      "community": 59,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "bioshockvr compatibility report",
+      "rationale": "Line-oriented schema for recording Windows build, DXGI adapters, and OpenXR runtime evidence.",
+      "source_file": "bioshockvr/COMPATIBILITY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "openxr_runtime",
+      "label": "OpenXR Runtime",
+      "author": null,
+      "captured_at": null,
+      "community": 7,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "openxr runtime",
+      "rationale": "The underlying VR runtime (e.g., Virtual Desktop, Oculus) providing HMD poses and swapchains.",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "nd_shock_gun_viewmodel_on_frame_update",
+      "label": "NDShockGunViewmodel.OnFrameUpdate",
+      "author": null,
+      "captured_at": null,
+      "community": 8,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ndshockgunviewmodel.onframeupdate",
+      "rationale": "Target for Squirrel class patching to drive the viewmodel rig from controller pose.",
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "nd_shoot_trigger_script",
+      "label": "NDShootTriggerScript",
+      "author": null,
+      "captured_at": null,
+      "community": 8,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ndshoottriggerscript",
+      "rationale": "Base Squirrel script on projectiles that sends the 'ShootWeapon' message.",
+      "source_file": "ss2vr/WEAPON_VR_HANDOVER.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_dll_pose_bridge",
+      "label": "DLL Pose Bridge",
+      "author": null,
+      "captured_at": null,
+      "community": 8,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "dll pose bridge",
+      "rationale": "C++ component in the DLL that publishes controller data to KEX config vars.",
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_weapon_probe_ss2vr_redirect_projectile_aim",
+      "label": "SS2VRRedirectProjectileAim",
+      "author": null,
+      "captured_at": null,
+      "community": 8,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ss2vrredirectprojectileaim",
+      "rationale": "Function that performs the actual projectile teleportation and velocity overwrite.",
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_weapon_probe_ss2vr_shoot_aim_script",
+      "label": "SS2VRShootAimScript",
+      "author": null,
+      "captured_at": null,
+      "community": 8,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "ss2vrshootaimscript",
+      "rationale": "Squirrel script attached to projectile archetypes to redirect aim along the controller ray.",
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_aim_config_var",
+      "label": "ss2vr_aim Config Variable",
+      "author": null,
+      "captured_at": null,
+      "community": 8,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "ss2vr_aim config variable",
+      "rationale": "Space-separated string bridge for publishing controller pose from DLL to Squirrel.",
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_weapon_melee_v1_7",
+      "label": "Weapon/Melee v1.7",
+      "author": null,
+      "captured_at": null,
+      "community": 9,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "weapon/melee v1.7",
+      "rationale": "Adds Squirrel projectile aim redirect and rigid melee visual follow.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase1_usage_weapon_viewmodel_pose_bridge",
+      "label": "Weapon Viewmodel Pose Bridge",
+      "author": null,
+      "captured_at": null,
+      "community": 9,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "weapon viewmodel pose bridge",
+      "rationale": "Publishes right-hand pose data to KEX config var ss2vr_aim via FUN_1408d2c20.",
+      "source_file": "ss2vr/phase1-usage.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase2_ui_cursor_injection",
+      "label": "Cursor Injection",
+      "author": null,
+      "captured_at": null,
+      "community": 9,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "cursor injection",
+      "rationale": "Hooks FUN_1408db1d0 to inject controller-derived coordinates into KEX mouse path.",
+      "source_file": "ss2vr/phase2-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase2_ui_interaction_router",
+      "label": "Interaction Router",
+      "author": null,
+      "captured_at": null,
+      "community": 9,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "interaction router",
+      "rationale": "Unified ray system for UI (virtual mouse) and World (frob/use/attack) interaction.",
+      "source_file": "ss2vr/phase2-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_phase2_ui_squirrel_interaction_spike",
+      "label": "Squirrel Interaction Spike",
+      "author": null,
+      "captured_at": null,
+      "community": 9,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "squirrel interaction spike",
+      "rationale": "Alternate left-hand world path using ND.FullRayTest and ss2vr_interact.nut.",
+      "source_file": "ss2vr/phase2-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_vr_mod_reference_survey_jkxr",
+      "label": "JKXR Reference",
+      "author": null,
+      "captured_at": null,
+      "community": 9,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "jkxr reference",
+      "rationale": "Reference for central vr_client_info_t state and per-weapon adjustment records.",
+      "source_file": "ss2vr/vr-mod-reference-survey.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "ss2vr_blink_nut",
+      "label": "ss2vr_blink.nut",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vr_blink.nut",
+      "rationale": "Squirrel module for VR blink locomotion.",
+      "source_file": "ss2vr/TELEPORT_LOCOMOTION_RE.md"
+    },
+    {
+      "id": "ss2vr_dll_v1_48",
+      "label": "SS2VR DLL v1.48",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vr dll v1.48",
+      "rationale": "Regression fix for hand roll signs after FreeAim pose test.",
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "ss2vr_effects_nut",
+      "label": "ss2vr_effects.nut",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vr_effects.nut",
+      "rationale": "Monitors player state (HP, hazards) and triggers visual effects/recenter.",
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "ss2vr_haptic_bridge",
+      "label": "ss2vr_haptic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vr_haptic",
+      "rationale": "DLL bridge for controller vibration feedback.",
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "id": "ss2vr_interact_nut",
+      "label": "ss2vr_interact.nut",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vr_interact.nut",
+      "rationale": "Handles semantic interaction, frob scanning, and VR selection brackets.",
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "ss2vr_melee_read_skill",
+      "label": "SS2VRMeleeScaleReadSkill",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vrmeleescalereadskill",
+      "rationale": "Wires live weapon-category skill levels from BaseWeaponDesc.",
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "id": "ss2vr_melee_scaling_nut",
+      "label": "ss2vr_melee_scaling.nut",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vr_melee_scaling.nut",
+      "rationale": "Module for skill-based and speed-gated damage scaling.",
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "id": "ss2vr_melee_tip_collision",
+      "label": "SS2VRMeleeTipCollision",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vrmeleetipcollision",
+      "rationale": "Per-frame tip speed tracker and damage gate logic.",
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "id": "ss2vr_weapon_probe_nut",
+      "label": "ss2vr_weapon_probe.nut",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ss2vr_weapon_probe.nut",
+      "rationale": "Core Squirrel script for weapon handling, projectile aim, and pose management.",
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "dark_frob_system",
+      "label": "Dark Engine Frob System",
+      "community": 0,
+      "file_type": "concept",
+      "norm_label": "dark engine frob system",
+      "rationale": "Source-confirmed architecture for world selection and activation.",
+      "source_file": "ss2vr/CLAUDE_DARKENGINE_FINDS.md"
+    },
+    {
+      "id": "dark_pick_system",
+      "label": "Dark Engine Picking System",
+      "community": 0,
+      "file_type": "concept",
+      "norm_label": "dark engine picking system",
+      "rationale": "2D screen-space bounding box containment test with fudge margins.",
+      "source_file": "ss2vr/CLAUDE_DARKENGINE_FINDS.md"
+    },
+    {
+      "id": "ss2vr_conventions",
+      "label": "SS2 Aim / Facing Conventions",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "ss2 aim / facing conventions",
+      "source_file": "ss2vr/CONVENTIONS.md"
+    },
+    {
+      "id": "ss2vr_melee_damage_re_md",
+      "label": "MELEE_DAMAGE_RE.md",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "melee_damage_re.md",
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "id": "ss2vr_re_findings_md",
+      "label": "RE_FINDINGS.md",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "re_findings.md",
+      "source_file": "ss2vr/RE_FINDINGS.md"
+    },
+    {
+      "id": "ss2vr_teleport_locomotion_re_md",
+      "label": "TELEPORT_LOCOMOTION_RE.md",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "teleport_locomotion_re.md",
+      "source_file": "ss2vr/TELEPORT_LOCOMOTION_RE.md"
+    },
+    {
+      "id": "ss2vr_vr_body_holsters",
+      "label": "SS2VR - Body Holsters",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "ss2vr - body holsters",
+      "source_file": "ss2vr/VR_BODY_HOLSTERS.md"
+    },
+    {
+      "id": "ss2vr_vr_highlights_report",
+      "label": "VR Object Highlights (Selection Brackets)",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "vr object highlights (selection brackets)",
+      "source_file": "ss2vr/VR_HIGHLIGHTS_REPORT.md"
+    },
+    {
+      "id": "ss2vr_vr_manual_reloads",
+      "label": "SS2VR - Manual Reloads",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "ss2vr - manual reloads",
+      "source_file": "ss2vr/VR_MANUAL_RELOADS.md"
+    },
+    {
+      "id": "ss2vr_vr_two_handed_weapons",
+      "label": "SS2VR - Two-Handed Long Weapons",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "ss2vr - two-handed long weapons",
+      "source_file": "ss2vr/VR_TWO_HANDED_WEAPONS.md"
+    },
+    {
+      "id": "ss2vr_weapon_cameraobj_hmd_bleed_handoff",
+      "label": "Weapon CameraObj HMD-Bleed Handoff",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "weapon cameraobj hmd-bleed handoff",
+      "source_file": "ss2vr/WEAPON_CAMERAOBJ_HMD_BLEED_HANDOFF.md"
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_freelook_branding",
+      "label": "FlatAim sidequest is player-facing Freelook mode",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim sidequest is player-facing freelook mode",
+      "rationale": "User wants the mode presented as Freelook, not FlatAim; public config should not expose gameplay reach or scale.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 661
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_v0_17_bounded_anti_roll",
+      "label": "FlatAim v0.17 uses bounded anti-roll",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim v0.17 uses bounded anti-roll",
+      "rationale": "v0.16 live testing matched bounded-hybrid prediction; new term targets remaining mid-pitch roll without reintroducing v0.15 singularity.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 21
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_v0_18_rig_aimpoint",
+      "label": "FlatAim visible weapon pivots to rig-level aimPoint",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim visible weapon pivots to rig-level aimpoint",
+      "rationale": "v0.17 live testing reported no meaningful improvement, falsifying bounded final-Bank cancellation as the active fix.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 41
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_v0_19_screen_axis",
+      "label": "FlatAim stops treating rig-level aimPoint as the roll fix",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim stops treating rig-level aimpoint as the roll fix",
+      "rationale": "User reported v0.18 still felt similar; source review showed ND.PointRig only linearly adds Euler channels rather than true screen-space look-at.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 59
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_v0_20_proxy",
+      "label": "FlatAim exits final CameraObj Euler tuning",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim exits final cameraobj euler tuning",
+      "rationale": "v0.19 mode 6 failed at vertical pitch; staying in final CameraObj Euler channels is now a low-value path.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 97
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_v0_21_teleport_order",
+      "label": "FlatAim world proxy uses Object.Teleport facing order",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim world proxy uses object.teleport facing order",
+      "rationale": "v0.20 behavior showed yaw was fixed to world north; ND PointRig.GetPhysicsVector confirms world-object convention (roll, pitch, yaw).",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 119
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_v0_22_screen_up",
+      "label": "FlatAim v0.22 proxy uses screen-up look-at",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim v0.22 proxy uses screen-up look-at",
+      "rationale": "v0.21 confirmed plain (roll=0,pitch,yaw) still turned pitched horizontal aim into Roll; proxy needs a roll reference.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 161
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_v0_28_dark_matrix",
+      "label": "FlatAim v0.28 adopts Dark matrix heading convention",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim v0.28 adopts dark matrix heading convention",
+      "rationale": "Dark source evidence says mx_mat2rad reads heading as atan2(y, x), while FlatAim used atan2(x, y).",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 441
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_view_frame_aim",
+      "label": "FlatAim proves view-frame aim and native-velocity projectile anchoring",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "flataim proves view-frame aim and native-velocity projectile anchoring",
+      "rationale": "Applying screen-space input in the wrong frame caused roll/pole issues; view-frame tangent offsets avoid pinching.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 533
+    },
+    {
+      "id": "ss2vr_decision_log_retire_flataim_inverse_cos",
+      "label": "Retire FlatAim inverse-cos Bank cancellation",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "retire flataim inverse-cos bank cancellation",
+      "rationale": "v0.15 proved mode 4 was active and then failed loudly with pitch inversion and >360-degree gun roll at camPitch=89.98.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 1
+    },
+    {
+      "id": "ss2vr_failure_registry_flataim_kpf_root",
+      "label": "Failure: Packing FlatAim KPF with an extra mod/ archive root",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "failure: packing flataim kpf with an extra mod/ archive root",
+      "rationale": "Extra root directory prevented KEX from finding squirrel.ini; modinfo.json and sq_scripts must be at root.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 151
+    },
+    {
+      "id": "0_3_103_vrfov_eye",
+      "label": "0.3.103-vrfov-eye",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "0.3.103-vrfov-eye",
+      "rationale": "Makes private eye targets OpenXR-sized and applies P_center^-1 * T_eye * P_openxr_eye_fov for final projection.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_67_shadowmaskab",
+      "label": "0.3.67-shadowmaskab",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "0.3.67-shadowmaskab",
+      "rationale": "Binds a cached 1x1 white SRV for PS slot 2 during private eye replays to diagnose black boulder shading.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_71_artifactprobe",
+      "label": "0.3.71-artifactprobe",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "0.3.71-artifactprobe",
+      "rationale": "Adds Ctrl+F10 triggered draw/resource manifest and StereoWorldScreenSpaceSrvFallback=1 for target-sized SRVs.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_86_compactc10apply",
+      "label": "0.3.86-compactc10apply",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "0.3.86-compactc10apply",
+      "rationale": "Enables worldViewProjCompact_c10 selector for vs0=320 rows to fix flat props/suitcases.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "bioshockvr_failure_registry",
+      "label": "BioShockVR Failure Registry",
+      "community": 10,
+      "file_type": "document",
+      "norm_label": "bioshockvr failure registry",
+      "source_file": "bioshockvr/FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "ss2vr_feature_roadmap",
+      "label": "Feature Roadmap",
+      "community": 100,
+      "file_type": "document",
+      "norm_label": "feature roadmap",
+      "source_file": "ss2vr/FEATURE_ROADMAP.md"
+    },
+    {
+      "id": "ss2vr_frob_target_library",
+      "label": "Frob Target Library",
+      "community": 101,
+      "file_type": "document",
+      "norm_label": "frob target library",
+      "source_file": "ss2vr/FROB_TARGET_LIBRARY.md"
+    },
+    {
+      "id": "ss2vr_hand_collision_research",
+      "label": "Hand Collision Research",
+      "community": 102,
+      "file_type": "document",
+      "norm_label": "hand collision research",
+      "source_file": "ss2vr/HAND_COLLISION_RESEARCH.md"
+    },
+    {
+      "id": "ss2vr_lgmd_vhot_safety",
+      "label": "LGMD Vhot Safety",
+      "community": 104,
+      "file_type": "concept",
+      "norm_label": "lgmd vhot safety",
+      "rationale": "Identified that LGMD vhot safety is header-count correctness (byte 68), not the specific vhot ID value, resolving AR15 crashes.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_one_face_stub",
+      "label": "One-Face Hand Stub",
+      "community": 107,
+      "file_type": "code",
+      "norm_label": "one-face hand stub",
+      "rationale": "Permit one-face animated hand stubs for specific weapon overrides (atek, ar15, lasehand) to preserve rig contract while hiding geometry.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_overlay_panel_index_map_md",
+      "label": "OVERLAY_PANEL_INDEX_MAP.md",
+      "community": 108,
+      "file_type": "document",
+      "norm_label": "overlay_panel_index_map.md",
+      "source_file": "ss2vr/OVERLAY_PANEL_INDEX_MAP.md"
+    },
+    {
+      "id": "d3d11_draw_classification",
+      "label": "D3D11 Draw Classification",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "d3d11 draw classification",
+      "rationale": "Route #2: Detecting UI draws via VS50/PS51 shader signatures to bucket elements into VR layers.",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "shkovrly_cpp_goverlayrects",
+      "label": "gOverlayRects Table",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "goverlayrects table",
+      "rationale": "Global array of screen rectangles for every panel; identified at RVA 0x011E4850 in AE.",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "shockoverlaydoframe",
+      "label": "ShockOverlayDoFrame()",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "shockoverlaydoframe()",
+      "rationale": "Compositing path for opaque panels drawing directly to the shared screen canvas.",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "shockoverlaydrawbuffers",
+      "label": "ShockOverlayDrawBuffers()",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "shockoverlaydrawbuffers()",
+      "rationale": "Compositing path for translucent panels using dedicated per-panel bitmaps (gOverlayTlucHandles).",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "vr_panel_split_strategy",
+      "label": "VR Panel Split Strategy",
+      "community": 11,
+      "file_type": "concept",
+      "norm_label": "vr panel split strategy",
+      "rationale": "Strategy to separate 2D HUD elements into holographic VR panels using engine rects or draw-call classification.",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "ss2vr_project_phases_md",
+      "label": "PROJECT_PHASES.md",
+      "community": 115,
+      "file_type": "document",
+      "norm_label": "project_phases.md",
+      "source_file": "ss2vr/PROJECT_PHASES.md"
+    },
+    {
+      "id": "ss2vr_resolution_compat_md",
+      "label": "RESOLUTION_COMPAT.md",
+      "community": 116,
+      "file_type": "document",
+      "norm_label": "resolution_compat.md",
+      "source_file": "ss2vr/RESOLUTION_COMPAT.md"
+    },
+    {
+      "id": "ss2vr_roomscale_crouch_research_md",
+      "label": "ROOMSCALE_CROUCH_RESEARCH.md",
+      "community": 117,
+      "file_type": "document",
+      "norm_label": "roomscale_crouch_research.md",
+      "source_file": "ss2vr/ROOMSCALE_CROUCH_RESEARCH.md"
+    },
+    {
+      "id": "ss2vr_save_patcher",
+      "label": "SS2VR Save Patcher",
+      "community": 118,
+      "file_type": "code",
+      "norm_label": "ss2vr save patcher",
+      "rationale": "Python tool to inject SS2VR mod dependencies into existing save files.",
+      "source_file": "ss2vr/TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "ss2vr_shock2quest_reference_md",
+      "label": "SHOCK2QUEST_REFERENCE.md",
+      "community": 119,
+      "file_type": "document",
+      "norm_label": "shock2quest_reference.md",
+      "source_file": "ss2vr/SHOCK2QUEST_REFERENCE.md"
+    },
+    {
+      "id": "ss2vr_test_checklists",
+      "label": "Test Checklists \u2014 SS2VR",
+      "community": 120,
+      "file_type": "document",
+      "norm_label": "test checklists \u2014 ss2vr",
+      "source_file": "ss2vr/TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "ss2vr_vr_action_panel_test",
+      "label": "VR Action Panel \u2014 Test Switches",
+      "community": 121,
+      "file_type": "document",
+      "norm_label": "vr action panel \u2014 test switches",
+      "source_file": "ss2vr/VR_ACTION_PANEL_TEST.md"
+    },
+    {
+      "id": "ss2vr_vr_findings_index",
+      "label": "SS2VR Findings Index",
+      "community": 122,
+      "file_type": "document",
+      "norm_label": "ss2vr findings index",
+      "source_file": "ss2vr/VR_FINDINGS_INDEX.md"
+    },
+    {
+      "id": "ss2vr_vr_latency_recovery_plan",
+      "label": "VR Latency Recovery Plan",
+      "community": 123,
+      "file_type": "document",
+      "norm_label": "vr latency recovery plan",
+      "source_file": "ss2vr/VR_LATENCY_RECOVERY_PLAN.md"
+    },
+    {
+      "id": "ss2vr_vr_settings_panel_spec",
+      "label": "OpenXR Holographic VR Settings Panel Spec",
+      "community": 124,
+      "file_type": "document",
+      "norm_label": "openxr holographic vr settings panel spec",
+      "source_file": "ss2vr/VR_SETTINGS_PANEL_SPEC.md"
+    },
+    {
+      "id": "ss2vr_vr_wrist_keypad_spec",
+      "label": "VR Wrist Keypad Spec",
+      "community": 125,
+      "file_type": "document",
+      "norm_label": "vr wrist keypad spec",
+      "source_file": "ss2vr/VR_WRIST_KEYPAD_SPEC.md"
+    },
+    {
+      "id": "ss2vr_weapon_spread_recoil_report",
+      "label": "Skill Spread & Recoil in VR Findings",
+      "community": 127,
+      "file_type": "document",
+      "norm_label": "skill spread & recoil in vr findings",
+      "source_file": "ss2vr/WEAPON_SPREAD_RECOIL_REPORT.md"
+    },
+    {
+      "id": "virtual_desktop_xr",
+      "label": "VirtualDesktopXR",
+      "community": 129,
+      "file_type": "concept",
+      "norm_label": "virtualdesktopxr",
+      "rationale": "The OpenXR runtime confirmed to be compatible and active in user logs.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "0_3_34_sustainedwide",
+      "label": "0.3.34-sustainedwide",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "0.3.34-sustainedwide",
+      "rationale": "Clamps finite out-of-range scales only when StereoWorldWideProof=1 to allow wide-proof cloned-buffer mutation to survive HMD motion.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_35_directdraw",
+      "label": "0.3.35-directdraw",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "0.3.35-directdraw",
+      "rationale": "Guarded same-frame direct world draw-replay proof; replays DrawIndexed twice with forced eye 0 and eye 1 cloned cbuffers.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_36_stalefallback",
+      "label": "0.3.36-stalefallback",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "0.3.36-stalefallback",
+      "rationale": "Clears temporal eye readiness on stereoCandidate=0 to prevent frozen HMD images when fresh stereo candidates are missing.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "openxr_temporal_stereo_bridge",
+      "label": "OpenXR Temporal Stereo Bridge",
+      "community": 13,
+      "file_type": "concept",
+      "norm_label": "openxr temporal stereo bridge",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "kex_setconfigraw",
+      "label": "KexSetConfigRaw",
+      "community": 15,
+      "file_type": "code",
+      "norm_label": "kexsetconfigraw",
+      "rationale": "Hooked to provide a reverse channel from Squirrel to DLL for triggering effects.",
+      "source_location": "0x8D2C20"
+    },
+    {
+      "id": "ss2vr_game_event_effects",
+      "label": "Game-Event-Driven VR Effects",
+      "community": 15,
+      "file_type": "document",
+      "norm_label": "game-event-driven vr effects",
+      "source_file": "ss2vr/GAME_EVENT_EFFECTS.md"
+    },
+    {
+      "id": "ss2vr_gamepig_icebreaker",
+      "label": "ICEBREAKER Game-Pig Game",
+      "community": 15,
+      "file_type": "document",
+      "norm_label": "icebreaker game-pig game",
+      "source_file": "ss2vr/GAMEPIG_ICEBREAKER.md"
+    },
+    {
+      "id": "ss2vr_gamepig_re",
+      "label": "Game-Pig RE",
+      "community": 15,
+      "file_type": "document",
+      "norm_label": "game-pig re",
+      "source_file": "ss2vr/GAMEPIG_RE.md"
+    },
+    {
+      "id": "0_3_41_eyeblitproof",
+      "label": "0.3.41-eyeblitproof",
+      "community": 16,
+      "file_type": "code",
+      "norm_label": "0.3.41-eyeblitproof",
+      "rationale": "Adds OpenXREyeBlitProof=1 to submit a fullscreen-triangle solid source to XR swapchains, de-risking the presentation path.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_52_depthreproject",
+      "label": "0.3.52-depthreproject",
+      "community": 16,
+      "file_type": "code",
+      "norm_label": "0.3.52-depthreproject",
+      "rationale": "Adds depth-weighted per-eye reprojection in the OpenXR fullscreen-triangle blit using sampleable private depth copies.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "private_hdr_eye_targets",
+      "label": "Private HDR Eye Targets",
+      "community": 16,
+      "file_type": "concept",
+      "norm_label": "private hdr eye targets",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_57_matrixstereoproof",
+      "label": "0.3.57-matrixstereoproof",
+      "community": 17,
+      "file_type": "code",
+      "norm_label": "0.3.57-matrixstereoproof",
+      "rationale": "Native geometry proof replaying HDR world draws with cloned VS0 WVP matrix deltas.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_58_nativevs_pcenter",
+      "label": "0.3.58-nativevs-pcenter",
+      "community": 17,
+      "file_type": "code",
+      "norm_label": "0.3.58-nativevs-pcenter",
+      "rationale": "Replaces flat post-projection shift with P_center^-1 * T_eye * P_center eye-translation proof.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_61_screendatapcenter",
+      "label": "0.3.61-screendatapcenter",
+      "community": 17,
+      "file_type": "code",
+      "norm_label": "0.3.61-screendatapcenter",
+      "rationale": "Derives P_center from VS screenDataToCamera plus WVP depth relation to reduce affine residuals.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "ahands",
+      "label": "AHands",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "ahands",
+      "rationale": "The native engine object representing the player's hands/viewmodel.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "ashockplayer",
+      "label": "AShockPlayer",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "ashockplayer",
+      "rationale": "The native BioShock engine player object, used as a root for camera and actor census.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "d3d11_hooks",
+      "label": "D3D11 Hooks",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "d3d11 hooks",
+      "rationale": "The primary interception layer for BioShock's rendering pipeline.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "layer_model_batch_fun_10f77db0",
+      "label": "Layer/Model Batch (FUN_10f77db0)",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "layer/model batch (fun_10f77db0)",
+      "rationale": "A high-confidence world-stereo candidate family identified via stack tracing.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "material_batch_fun_10f76e30",
+      "label": "Material Batch (FUN_10f76e30)",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "material batch (fun_10f76e30)",
+      "rationale": "A high-confidence world-stereo candidate family identified via stack tracing.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "stereo_world_mutation",
+      "label": "Stereo World Mutation",
+      "community": 2,
+      "file_type": "concept",
+      "norm_label": "stereo world mutation",
+      "rationale": "The strategy of cloning and mutating constant buffers to achieve per-eye stereo rendering.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "bioshockvr_re_findings",
+      "label": "Reverse Engineering Findings",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "reverse engineering findings",
+      "source_file": "bioshockvr/RE_FINDINGS.md"
+    },
+    {
+      "id": "ss2vr_dll_v3_13",
+      "label": "SS2VR DLL v3.13",
+      "community": 20,
+      "file_type": "code",
+      "norm_label": "ss2vr dll v3.13",
+      "rationale": "Implements entry-bias for SceneTraversalBegin_SetCullCamera to fix VR peeking/leaning culling.",
+      "source_file": "ss2vr/CULLING_FRUSTUM.md"
+    },
+    {
+      "id": "kex_scenetraversalbegin_setcullcamera",
+      "label": "SceneTraversalBegin_SetCullCamera (0x45C150)",
+      "community": 20,
+      "file_type": "concept",
+      "norm_label": "scenetraversalbegin_setcullcamera (0x45c150)",
+      "rationale": "Sole writer of cull camera globals; targeted for eye-offset bias.",
+      "source_file": "ss2vr/CULLING_FRUSTUM.md"
+    },
+    {
+      "id": "ss2vr_culling_frustum",
+      "label": "KEX/Dark Culling Frustum in VR",
+      "community": 20,
+      "file_type": "document",
+      "norm_label": "kex/dark culling frustum in vr",
+      "source_file": "ss2vr/CULLING_FRUSTUM.md"
+    },
+    {
+      "id": "ss2vr_selection_bracket",
+      "label": "VR Selection Bracket",
+      "community": 21,
+      "file_type": "code",
+      "norm_label": "vr selection bracket",
+      "rationale": "Must be mono/pre-eye to avoid doubling in headset; uses predicted head pose for stability.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_decision_log",
+      "label": "SS2VR Decision Log",
+      "community": 21,
+      "file_type": "document",
+      "norm_label": "ss2vr decision log",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_ghidra_annotation",
+      "label": "Ghidra Annotation Backlog",
+      "community": 21,
+      "file_type": "document",
+      "norm_label": "ghidra annotation backlog",
+      "rationale": "Decision to mirror proven RE findings back into Ghidra to prevent rediscovering function roles and improve decompilation over time.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_enemy_health_bracket_re_aggro_visibility",
+      "label": "Aggro/attacked bracket visibility",
+      "community": 22,
+      "file_type": "concept",
+      "norm_label": "aggro/attacked bracket visibility",
+      "rationale": "Native brackets are aim-hover only; SS2VR adds aggro/damage-based latching via Squirrel FOV pass.",
+      "source_file": "ss2vr/ENEMY_HEALTH_BRACKET_RE.md",
+      "source_location": 81
+    },
+    {
+      "id": "ss2vr_enemy_health_bracket_re_hpbar_mechanics",
+      "label": "Native ENEMY HEALTH BAR mechanics",
+      "community": 22,
+      "file_type": "concept",
+      "norm_label": "native enemy health bar mechanics",
+      "rationale": "Texture switch-out (red/yellow/green) based on HP thirds; fill is a clip-rect from the left edge.",
+      "source_file": "ss2vr/ENEMY_HEALTH_BRACKET_RE.md",
+      "source_location": 21
+    },
+    {
+      "id": "ss2vr_enemy_health_bracket_re_rt35",
+      "label": "Native HUD/target overlay render target (RT 35)",
+      "community": 22,
+      "file_type": "concept",
+      "norm_label": "native hud/target overlay render target (rt 35)",
+      "rationale": "Universal 2D-UI shader used for all 23 draws including health bars, brackets, and crosshair.",
+      "source_file": "ss2vr/ENEMY_HEALTH_BRACKET_RE.md",
+      "source_location": 13
+    },
+    {
+      "id": "ss2vr_funkmaxexport",
+      "label": "FunkMaxExport",
+      "community": 23,
+      "file_type": "code",
+      "norm_label": "funkmaxexport",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_lgpmnm_import",
+      "label": "LGPMNM Import Wrapper",
+      "community": 23,
+      "file_type": "code",
+      "norm_label": "lgpmnm import wrapper",
+      "rationale": "Treat short PMNM wrappers as LGPMNM import payloads to support high-detail held meshes like rapier_h.bin.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_lgmd_custom_export",
+      "label": "LGMD Custom Export",
+      "community": 23,
+      "file_type": "concept",
+      "norm_label": "lgmd custom export",
+      "rationale": "Promoted Max-authored material aux metadata (alpha/emission) for custom LGMD exports to narrow the gap with imported material preservation.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "arm_hologram_render",
+      "label": "Arm Hologram Render",
+      "community": 24,
+      "file_type": "code",
+      "norm_label": "arm hologram render",
+      "rationale": "Renders a holographic copy of the UI texture onto the player's arm with depth occlusion and parallax shadows.",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "shkovcst_h_overlay_slots",
+      "label": "Shock Overlay Slots",
+      "community": 24,
+      "file_type": "code",
+      "norm_label": "shock overlay slots",
+      "rationale": "Defines 50 overlay slots (kOverlayInv=0 to kOverlayMouseMode=49) used for the table-driven HUD system.",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "bioshockvr_reference_stereo_fix_analysis",
+      "label": "Reference Stereo Fix Analysis",
+      "community": 28,
+      "file_type": "document",
+      "norm_label": "reference stereo fix analysis",
+      "rationale": "Summarizes prior-art evidence from 3DMigoto and geo-11 fixes for BioShock to inform VR implementation without adopting their wrappers.",
+      "source_file": "bioshockvr/reference-stereo-fix-analysis.md"
+    },
+    {
+      "id": "bioshockvr_vr_presentation_6dof_spec",
+      "label": "VR Presentation + 6DoF Implementation Spec",
+      "community": 28,
+      "file_type": "document",
+      "norm_label": "vr presentation + 6dof implementation spec",
+      "rationale": "Technical specification for implementing portrait rendering, HMD rotation via mouse injection, and translation via matrix T_eye.",
+      "source_file": "bioshockvr/vr-presentation-6dof-spec.md"
+    },
+    {
+      "id": "kex_playerturntilt_precullcamera",
+      "label": "Kex_PlayerTurnTilt_PreCullCamera",
+      "community": 29,
+      "file_type": "code",
+      "norm_label": "kex_playerturntilt_precullcamera",
+      "rationale": "Core camera hook for VR orientation and visual inertia.",
+      "source_location": "0x5126E0"
+    },
+    {
+      "id": "ss2vr_ghidra_annotation_backlog",
+      "label": "Ghidra Annotation Backlog",
+      "community": 29,
+      "file_type": "document",
+      "norm_label": "ghidra annotation backlog",
+      "source_file": "ss2vr/GHIDRA_ANNOTATION_BACKLOG.md"
+    },
+    {
+      "id": "ss2vr_decision_log_lgmd_modify_existing_stubs",
+      "label": "Deleted animated weapon subobjects must be stubbed",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "deleted animated weapon subobjects must be stubbed",
+      "rationale": "KEX loader can INT3 on parser-clean LGMDs that retain animated zero-face hand subobjects.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 881
+    },
+    {
+      "id": "ss2vr_decision_log_stock_rig_preservation",
+      "label": "Stock animated weapon overrides must keep expected rig subobject records",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "stock animated weapon overrides must keep expected rig subobject records",
+      "rationale": "KPF v1.86 crashed on pistol/AR/laser; AR crash dump tied failure to model-loader/conversion path for pruned overrides.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 905
+    },
+    {
+      "id": "ss2vr_decision_log_v1_90_atek_lock",
+      "label": "Lock accepted v1.90 ATEK pistol by exact digest",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "lock accepted v1.90 atek pistol by exact digest",
+      "rationale": "User confirmed v1.90 works and removes visible left hand; proves repaired one-face ATEK structure is safe for this exact path.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 937
+    },
+    {
+      "id": "ss2vr_failure_registry_lgmd_loader_int3",
+      "label": "Crash RE: equip-time hang \u2014 game's LGMD model-loader assert",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "crash re: equip-time hang \u2014 game's lgmd model-loader assert",
+      "rationale": "Loader hit a model with an invalid element type (structural malformation) due to empty animated subobjects.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 1
+    },
+    {
+      "id": "ss2vr_failure_registry_psi_amp_ctd",
+      "label": "Incident: psi-amp CTD \u2014 null joint-angle array",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "incident: psi-amp ctd \u2014 null joint-angle array",
+      "rationale": "Export declared animated sub-object without joint-count metadata, causing null deref in model render walker.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 1
+    },
+    {
+      "id": "ss2vr_failure_registry_shotgun_joint_name_mangle",
+      "label": "Resolved: shotgun CTD on equip \u2014 mangled joint name",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "resolved: shotgun ctd on equip \u2014 mangled joint name",
+      "rationale": "Export replaced '.' with '_' in @00sli.0, causing engine pump-slide rig parse to deref garbage.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 125
+    },
+    {
+      "id": "ss2vr_failure_registry_stock_melee_override_ctd",
+      "label": "Failure: stock-name MELEE viewmodel override CTDs",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "failure: stock-name melee viewmodel override ctds",
+      "rationale": "Stock melee viewmodels are multi-subobject animated rigs; static overrides cause AV when the equip path walks the missing rig.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 141
+    },
+    {
+      "id": "openxr_integration",
+      "label": "OpenXR Integration",
+      "community": 31,
+      "file_type": "code",
+      "norm_label": "openxr integration",
+      "rationale": "The subsystem managing HMD sessions, swapchains, and frame submission.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "temporal_stereo_bridge",
+      "label": "Temporal Stereo Bridge",
+      "community": 31,
+      "file_type": "concept",
+      "norm_label": "temporal stereo bridge",
+      "rationale": "A proof-of-concept routing left/right frames to HMD eyes using frame-parity caching.",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "somavr_hpl_camera_bridge",
+      "label": "HPL Camera Bridge",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": "hpl camera bridge",
+      "rationale": "Orchestrates player-camera interception and room-scale query orchestration.",
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "id": "somavr_openxr_runtime",
+      "label": "OpenXR Runtime",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": "openxr runtime",
+      "rationale": "Manages OpenXR session state, frame pacing, and view snapshots.",
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "id": "ss2vr_build_history",
+      "label": "SS2VR Build History",
+      "community": 33,
+      "file_type": "document",
+      "norm_label": "ss2vr build history",
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "ss2vr_current_state",
+      "label": "SS2VR Current State",
+      "community": 33,
+      "file_type": "document",
+      "norm_label": "ss2vr current state",
+      "source_file": "ss2vr/CURRENT_STATE.md"
+    },
+    {
+      "id": "ss2vr_decision_log_lgmm_wrench_reference",
+      "label": "Treat LGMM wrench import as reference",
+      "community": 34,
+      "file_type": "rationale",
+      "norm_label": "treat lgmm wrench import as reference",
+      "rationale": "User testing showed raw wrench_h import crumpled the arm; AI mesh conversion needs .CAL for joint offsets.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 741
+    },
+    {
+      "id": "ss2vr_decision_log_vr_wrench_static_lgmd",
+      "label": "Treat VR wrench as an authored static LGMD viewmodel",
+      "community": 34,
+      "file_type": "rationale",
+      "norm_label": "treat vr wrench as an authored static lgmd viewmodel",
+      "rationale": "Pipe Wrench's legacy limb route is complex; a complete static LGMD is the simpler equivalent for SS2VR.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 789
+    },
+    {
+      "id": "ss2vr_pose_bridge",
+      "label": "Controller Pose Bridge",
+      "community": 35,
+      "file_type": "code",
+      "norm_label": "controller pose bridge",
+      "rationale": "Uses a full-basis frame (origin, forward, right, up) to solve view-frame aiming and HMD-bleed issues.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_flataim_sidequest",
+      "label": "FlatAim Sidequest",
+      "community": 35,
+      "file_type": "concept",
+      "norm_label": "flataim sidequest",
+      "rationale": "A 2D free-aim mod sharing conventions with SS2VR but remaining a separate product.",
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "ss2vr_melee_compute_damage",
+      "label": "SS2VRMeleeComputeDamage",
+      "community": 36,
+      "file_type": "code",
+      "norm_label": "ss2vrmeleecomputedamage",
+      "rationale": "Full formula implementation for report-faithful damage scaling.",
+      "source_file": "ss2vr/MELEE_SCALING_HANDOVER.md"
+    },
+    {
+      "id": "ss2vr_melee_scaling_handover_md",
+      "label": "MELEE_SCALING_HANDOVER.md",
+      "community": 36,
+      "file_type": "document",
+      "norm_label": "melee_scaling_handover.md",
+      "source_file": "ss2vr/MELEE_SCALING_HANDOVER.md"
+    },
+    {
+      "id": "ss2vr_melee_vr_report_md",
+      "label": "MELEE_VR_REPORT.md",
+      "community": 38,
+      "file_type": "document",
+      "norm_label": "melee_vr_report.md",
+      "source_file": "ss2vr/MELEE_VR_REPORT.md"
+    },
+    {
+      "id": "ss2vr_melee_vr_spec_md",
+      "label": "MELEE_VR_SPEC.md",
+      "community": 38,
+      "file_type": "document",
+      "norm_label": "melee_vr_spec.md",
+      "source_file": "ss2vr/MELEE_VR_SPEC.md"
+    },
+    {
+      "id": "ss2vr_menu_options_bind_test_spec_md",
+      "label": "MENU_OPTIONS_BIND_TEST_SPEC.md",
+      "community": 39,
+      "file_type": "document",
+      "norm_label": "menu_options_bind_test_spec.md",
+      "source_file": "ss2vr/MENU_OPTIONS_BIND_TEST_SPEC.md"
+    },
+    {
+      "id": "ss2vr_menu_vr_report_md",
+      "label": "MENU_VR_REPORT.md",
+      "community": 39,
+      "file_type": "document",
+      "norm_label": "menu_vr_report.md",
+      "source_file": "ss2vr/MENU_VR_REPORT.md"
+    },
+    {
+      "id": "b1_3_stereo_rendering",
+      "label": "B1.3 - Native Per-Eye World Rendering",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "b1.3 - native per-eye world rendering",
+      "rationale": "The core goal of rendering the game world twice (once per eye) using native engine calls or replayed draws.",
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "id": "b2_1_native_camera",
+      "label": "B2.1 - Native Camera Hook",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "b2.1 - native camera hook",
+      "rationale": "Explores using engine symbols (ACamera, FPlayerSceneNode) to control the viewpoint.",
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "id": "b3_1_wrench_pickup",
+      "label": "B3.1 - Wrench Pickup vs Equipped Viewmodel",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "b3.1 - wrench pickup vs equipped viewmodel",
+      "rationale": "Distinguishes between world-space objects (512-byte VS) and foreground viewmodels (544/576-byte VS).",
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "id": "b4_1_hud_lane",
+      "label": "B4.1 - HUD/UI LDR Lane",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "b4.1 - hud/ui ldr lane",
+      "rationale": "Identifies HUD as a separate final LDR pass after HDR world composition.",
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "id": "bioshockvr_hypotheses",
+      "label": "BioShockVR Hypotheses",
+      "community": 4,
+      "file_type": "document",
+      "norm_label": "bioshockvr hypotheses",
+      "rationale": "Central document tracking technical findings, evidence, and validation status for VR injection features.",
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "id": "renderdoc_crash_32bit",
+      "label": "RenderDoc 32-bit Address Space Exhaustion",
+      "community": 4,
+      "file_type": "rationale",
+      "norm_label": "renderdoc 32-bit address space exhaustion",
+      "rationale": "Confirmed cause of crashes during equipped-wrench captures due to 32-bit memory fragmentation.",
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "id": "ss2vr_phys_nut",
+      "label": "ss2vr_phys.nut",
+      "community": 43,
+      "file_type": "code",
+      "norm_label": "ss2vr_phys.nut",
+      "rationale": "Handles physics interactions, gravity glove, and object grabbing.",
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "ss2vr_squirrel_world_physics_md",
+      "label": "SQUIRREL_WORLD_PHYSICS.md",
+      "community": 43,
+      "file_type": "document",
+      "norm_label": "squirrel_world_physics.md",
+      "source_file": "ss2vr/SQUIRREL_WORLD_PHYSICS.md"
+    },
+    {
+      "id": "ss2vr_vr_post_process_design",
+      "label": "VR Post-Process Pass Design",
+      "community": 44,
+      "file_type": "document",
+      "norm_label": "vr post-process pass design",
+      "source_file": "ss2vr/VR_POST_PROCESS_DESIGN.md"
+    },
+    {
+      "id": "ss2vr_vr_view_effects",
+      "label": "VR View Effects",
+      "community": 44,
+      "file_type": "document",
+      "norm_label": "vr view effects",
+      "source_file": "ss2vr/VR_VIEW_EFFECTS.md"
+    },
+    {
+      "id": "ss2vr_weapon_model_report",
+      "label": "Weapon Model: Scale Fix + Wrench Arm Bone System",
+      "community": 45,
+      "file_type": "document",
+      "norm_label": "weapon model: scale fix + wrench arm bone system",
+      "source_file": "ss2vr/WEAPON_MODEL_REPORT.md"
+    },
+    {
+      "id": "ss2vr_weapon_model_spec",
+      "label": "Weapon Scale Fix + Rigid Melee (VR) Spec",
+      "community": 45,
+      "file_type": "document",
+      "norm_label": "weapon scale fix + rigid melee (vr) spec",
+      "source_file": "ss2vr/WEAPON_MODEL_SPEC.md"
+    },
+    {
+      "id": "0_3_39_eyetargetscout",
+      "label": "0.3.39-eyetargetscout",
+      "community": 47,
+      "file_type": "code",
+      "norm_label": "0.3.39-eyetargetscout",
+      "rationale": "Allocates private left/right color and depth targets with matching descriptors for HDR scene/depth path.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_45_calibratedstereo",
+      "label": "0.3.45-calibratedstereo",
+      "community": 48,
+      "file_type": "code",
+      "norm_label": "0.3.45-calibratedstereo",
+      "rationale": "Derives projection shift from IPD/convergence; applies VS projection and PS reconstruction row changes as a matched pair.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "0_3_63_vscompanions",
+      "label": "0.3.63-vscompanions",
+      "community": 49,
+      "file_type": "code",
+      "norm_label": "0.3.63-vscompanions",
+      "rationale": "Adds VS companion-constant gates for vertexClipPlane and localEyePos to fix clipping and shading artifacts.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "somavr_hpl_player_state",
+      "label": "HPL Player State",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "hpl player state",
+      "rationale": "Discovers native player/camera/body objects and provides immutable snapshots to other modules.",
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "id": "bioshockvr_uevr_prior_art",
+      "label": "UEVR Prior Art Notes",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "uevr prior art notes",
+      "rationale": "Architectural analysis of UEVR for UE4/5 to derive transferable patterns for BioShock's UE2.5-derived engine.",
+      "source_file": "bioshockvr/uevr-prior-art.md"
+    },
+    {
+      "id": "somavr_address_registry",
+      "label": "SOMA Address Registry",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "soma address registry",
+      "rationale": "Centralized registry of confirmed and candidate memory addresses, function signatures, and object offsets for SOMA (HPL3 engine).",
+      "source_file": "somavr/ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "somavr_architecture",
+      "label": "SOMAVR Architecture",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "somavr architecture",
+      "rationale": "Defines code ownership, dependency directions, and growth rules for the SOMAVR injected DLL.",
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "id": "somavr_authored_states_and_visible_hands_re",
+      "label": "Authored-State Compatibility And Visible Hands RE",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "authored-state compatibility and visible hands re",
+      "rationale": "Reverse engineering of SOMA's player states and skeletal animation system to support tracked VR hands and authored sequences.",
+      "source_file": "somavr/AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md"
+    },
+    {
+      "id": "somavr_build_history",
+      "label": "SOMAVR Build History",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "somavr build history",
+      "rationale": "Chronological log of feature implementations, bug fixes, and research outcomes for the SOMAVR project.",
+      "source_file": "somavr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "ashockplayercontroller_updatefocus",
+      "label": "AShockPlayerController::UpdateFocus",
+      "community": 50,
+      "file_type": "code",
+      "norm_label": "ashockplayercontroller::updatefocus",
+      "rationale": "Identified as the highest-value independent B4.5/B4.6 ownership seam for world-interaction selection.",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "funkmaxexport",
+      "label": "FunkMaxExport",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "funkmaxexport",
+      "rationale": "3ds Max + Python tool for LGMD asset authoring and weapon trimming.",
+      "source_file": "ss2vr/SS2_ASSET_TOOL_COMPARISON.md"
+    },
+    {
+      "id": "h13_ae_squirrel_weapon_handoff",
+      "label": "H13: AE Squirrel Weapon Handoff",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "h13: ae squirrel weapon handoff",
+      "rationale": "Confirmed route using Squirrel scripts to control viewmodel CameraObj and redirect projectiles.",
+      "source_file": "ss2vr/HYPOTHESES.md"
+    },
+    {
+      "id": "h19_lgmd_face_deletion",
+      "label": "H19: LGMD Face Deletion",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "h19: lgmd face deletion",
+      "rationale": "Technique for trimming viewmodel forearms by deleting faces in LGMD binary files while preserving animations.",
+      "source_file": "ss2vr/HYPOTHESES.md"
+    },
+    {
+      "id": "h3_weapon_aim_sink",
+      "label": "H3: Weapon Aim Sink",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "h3: weapon aim sink",
+      "rationale": "Hypothesis regarding the downstream location of weapon/projectile direction commands for VR aiming.",
+      "source_file": "ss2vr/HYPOTHESES.md"
+    },
+    {
+      "id": "ss2vr_ss2_asset_tool_comparison_md",
+      "label": "SS2_ASSET_TOOL_COMPARISON.md",
+      "community": 6,
+      "file_type": "document",
+      "norm_label": "ss2_asset_tool_comparison.md",
+      "source_file": "ss2vr/SS2_ASSET_TOOL_COMPARISON.md"
+    },
+    {
+      "id": "ss2vr_vr_weapon_mesh_pipeline",
+      "label": "VR Weapon Mesh Pipeline",
+      "community": 6,
+      "file_type": "document",
+      "norm_label": "vr weapon mesh pipeline",
+      "source_file": "ss2vr/VR_WEAPON_MESH_PIPELINE.md"
+    },
+    {
+      "id": "bioshockvr_current_state",
+      "label": "CURRENT_STATE.md",
+      "community": 60,
+      "file_type": "document",
+      "norm_label": "current_state.md",
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "bioshockvr_decision_log",
+      "label": "DECISION_LOG.md",
+      "community": 61,
+      "file_type": "document",
+      "norm_label": "decision_log.md",
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "bioshockvr_installation",
+      "label": "BioShockVR Installation",
+      "community": 62,
+      "file_type": "document",
+      "norm_label": "bioshockvr installation",
+      "source_file": "bioshockvr/INSTALLATION.md"
+    },
+    {
+      "id": "bioshockvr_project_phases",
+      "label": "BioShockVR Project Phases",
+      "community": 63,
+      "file_type": "document",
+      "norm_label": "bioshockvr project phases",
+      "source_file": "bioshockvr/PROJECT_PHASES.md"
+    },
+    {
+      "id": "bioshockvr_unrealport_reference_findings",
+      "label": "UnrealPort Reference Findings",
+      "community": 64,
+      "file_type": "document",
+      "norm_label": "unrealport reference findings",
+      "rationale": "Static analysis of UE1/2/3 content export tools to identify legacy sky/view vocabulary and coordinate conventions.",
+      "source_file": "bioshockvr/unrealport-reference-findings.md"
+    },
+    {
+      "id": "funk_max_export",
+      "label": "FunkMaxExport",
+      "community": 65,
+      "file_type": "code",
+      "norm_label": "funkmaxexport",
+      "rationale": "3ds Max script for exporting LGMD models compatible with KEX.",
+      "source_file": "ss2vr/TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "hud_parallax_depth",
+      "label": "HUD Per-Eye Parallax Depth",
+      "community": 66,
+      "file_type": "code",
+      "norm_label": "hud per-eye parallax depth",
+      "rationale": "Parked feature providing stereo depth to 2D UI via dual OpenXR quad layers and UV offsets.",
+      "source_file": "ss2vr/HUD_PARALLAX_PARKED.md"
+    },
+    {
+      "id": "iphysics_setvelocity",
+      "label": "IPhysics::SetVelocity",
+      "community": 67,
+      "file_type": "code",
+      "norm_label": "iphysics::setvelocity",
+      "rationale": "Native primitive for setting linear velocity on physics bodies.",
+      "source_location": "vtable[+0x40]"
+    },
+    {
+      "id": "shkovrly_h_soverlayfunc",
+      "label": "sOverlayFunc Descriptor",
+      "community": 68,
+      "file_type": "code",
+      "norm_label": "soverlayfunc descriptor",
+      "rationale": "Per-panel descriptor registering draw/init functions, bitmaps, transparency tests, and flags.",
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "ss2vr_claude_darkengine_finds",
+      "label": "Claude DarkEngine Finds",
+      "community": 69,
+      "file_type": "document",
+      "norm_label": "claude darkengine finds",
+      "source_file": "ss2vr/CLAUDE_DARKENGINE_FINDS.md"
+    },
+    {
+      "id": "kex_engine",
+      "label": "KEX Engine",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "kex engine",
+      "rationale": "The underlying engine for System Shock 2 Remastered.",
+      "source_file": "ss2vr/VR_FINDINGS_INDEX.md"
+    },
+    {
+      "id": "ss2vr_dll",
+      "label": "ss2vr.dll",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "ss2vr.dll",
+      "rationale": "The primary C++ injection DLL containing OpenXR integration and engine hooks.",
+      "source_file": "ss2vr/VR_FINDINGS_INDEX.md"
+    },
+    {
+      "id": "ss2vr_test_plan_2026_07",
+      "label": "SS2VR Test Plan \u2014 v3.03 to v3.10",
+      "community": 7,
+      "file_type": "document",
+      "norm_label": "ss2vr test plan \u2014 v3.03 to v3.10",
+      "source_file": "ss2vr/TEST_PLAN_2026-07.md"
+    },
+    {
+      "id": "ss2vr_uevr_stereo_lessons",
+      "label": "UEVR Stereo Lessons for SS2VR",
+      "community": 7,
+      "file_type": "document",
+      "norm_label": "uevr stereo lessons for ss2vr",
+      "source_file": "ss2vr/UEVR_STEREO_LESSONS.md"
+    },
+    {
+      "id": "ss2vr_vr_climbing_re",
+      "label": "VR Hand-over-Hand Climbing RE",
+      "community": 7,
+      "file_type": "document",
+      "norm_label": "vr hand-over-hand climbing re",
+      "source_file": "ss2vr/VR_CLIMBING_RE.md"
+    },
+    {
+      "id": "ss2vr_dark_engine_source_notes",
+      "label": "Dark Engine Source Notes",
+      "community": 70,
+      "file_type": "document",
+      "norm_label": "dark engine source notes",
+      "source_file": "ss2vr/DARK_ENGINE_SOURCE_NOTES.md"
+    },
+    {
+      "id": "ss2vr_decision_log_append_static_peel",
+      "label": "Add append-static path for stock animated weapon hand meshes",
+      "community": 71,
+      "file_type": "rationale",
+      "norm_label": "add append-static path for stock animated weapon hand meshes",
+      "rationale": "LGMD Custom rebuilt shotgun internals in a crashy shape; adding hand as separate static child is safer for rig contract.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 1021
+    },
+    {
+      "id": "ss2vr_decision_log_cameraobj_remap_orientation",
+      "label": "CameraObj native-frame remap is orientation-only",
+      "community": 72,
+      "file_type": "rationale",
+      "norm_label": "cameraobj native-frame remap is orientation-only",
+      "rationale": "Applying remap to translation changed effective apparent scale/depth, causing clipping and size mismatch.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 141
+    },
+    {
+      "id": "ss2vr_decision_log_flataim_melee_plyrarm",
+      "label": "FlatAim Wrench/melee follows the melee viewmodel route",
+      "community": 73,
+      "file_type": "rationale",
+      "norm_label": "flataim wrench/melee follows the melee viewmodel route",
+      "rationale": "AE chooses CreateShockMeleeViewmodel for weapons with InvLimbModel; driving PlyrArm is the practical Squirrel surface.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 593
+    },
+    {
+      "id": "ss2vr_decision_log_hazard_meter_squirrel",
+      "label": "Detect radiation/toxin through Squirrel properties",
+      "community": 74,
+      "file_type": "rationale",
+      "norm_label": "detect radiation/toxin through squirrel properties",
+      "rationale": "Original Shock source shows native hazard HUD uses RadLevel/RadAmb/Toxin on player object; avoids hooking native hazard code.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 465
+    },
+    {
+      "id": "ss2vr_decision_log_high_vhot_metadata",
+      "label": "Reserve high vhot IDs for SS2VR weapon metadata",
+      "community": 75,
+      "file_type": "rationale",
+      "norm_label": "reserve high vhot ids for ss2vr weapon metadata",
+      "rationale": "AE reads low vhots for muzzle flash; high-numbered vhots avoid collision and store stable model-local positions.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 957
+    },
+    {
+      "id": "ss2vr_decision_log_hitpoints_polling_fx",
+      "label": "First real game-event FX binding uses Squirrel HitPoints polling",
+      "community": 76,
+      "file_type": "rationale",
+      "norm_label": "first real game-event fx binding uses squirrel hitpoints polling",
+      "rationale": "Avoids another reverse-engineered damage RVA while using proven DLL config-setter hook and GPU effect director.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 285
+    },
+    {
+      "id": "ss2vr_decision_log_menu_pointer_gate",
+      "label": "Gate Route-B menu pointer on native menu draw frames",
+      "community": 77,
+      "file_type": "rationale",
+      "norm_label": "gate route-b menu pointer on native menu draw frames",
+      "rationale": "Earlier tests fired during gameplay because RmlUi menus are not represented by gameUiActive_.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 225
+    },
+    {
+      "id": "ss2vr_decision_log_nemyax_parity_exporter",
+      "label": "Add Nemyax-parity full-prune exporter",
+      "community": 78,
+      "file_type": "rationale",
+      "norm_label": "add nemyax-parity full-prune exporter",
+      "rationale": "Original full-prune failure may have been confounded by leaf-only node rebuild rather than subobject removal alone.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 977
+    },
+    {
+      "id": "ss2vr_decision_log_physical_reload_transient",
+      "label": "Physical reload visuals should be transient objects",
+      "community": 79,
+      "file_type": "rationale",
+      "norm_label": "physical reload visuals should be transient objects",
+      "rationale": "Current evidence supports writing CameraObj and JointPos, not arbitrary runtime subobject ownership changes.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 765
+    },
+    {
+      "id": "ss2vr_decision_log_pistol_muzzle_flash",
+      "label": "Pistol muzzle flash follows via flash-object CameraObj",
+      "community": 80,
+      "file_type": "rationale",
+      "norm_label": "pistol muzzle flash follows via flash-object cameraobj",
+      "rationale": "User reports pistol flash stays at native position while laser follows; AE source shows flash objects have their own CameraObj.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 261
+    },
+    {
+      "id": "ss2vr_decision_log_right_arm_hud_native_rect",
+      "label": "Right-arm ammo HUD should use native overlay rects",
+      "community": 81,
+      "file_type": "rationale",
+      "norm_label": "right-arm ammo hud should use native overlay rects",
+      "rationale": "Percentage lower-right slice is unstable in inventory mode; native overlay rects are the proven engine seam for layout.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 351
+    },
+    {
+      "id": "ss2vr_decision_log_right_arm_hud_quad",
+      "label": "Right-arm ammo HUD should be a separate cropped quad",
+      "community": 82,
+      "file_type": "rationale",
+      "norm_label": "right-arm ammo hud should be a separate cropped quad",
+      "rationale": "User wants a small right-arm hologram behind the weapon, not the full HUD or left-hand wrist panel.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 331
+    },
+    {
+      "id": "ss2vr_decision_log_snap_turn_v2",
+      "label": "Snap-turn v2 uses accumulator/body transport",
+      "community": 83,
+      "file_type": "rationale",
+      "norm_label": "snap-turn v2 uses accumulator/body transport",
+      "rationale": "Earlier direct-yaw paths produced wrong-way turns and flash frames; smooth-turn work proved KEX accumulator is the stable route.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 205
+    },
+    {
+      "id": "ss2vr_decision_log_v1_42_inventory_visibility",
+      "label": "v1.42 restores inventory visibility",
+      "community": 84,
+      "file_type": "rationale",
+      "norm_label": "v1.42 restores inventory visibility",
+      "rationale": "User testing showed right-arm HUD experiment blanked inventory and left-stick movement failed.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 489
+    },
+    {
+      "id": "ss2vr_decision_log_weapon_scale_split",
+      "label": "Separate tracked and fallback weapon viewmodel scale",
+      "community": 85,
+      "file_type": "rationale",
+      "norm_label": "separate tracked and fallback weapon viewmodel scale",
+      "rationale": "Live testing showed 0.65 scale feels too small in tracked pose after native-KEX-frame remap, while 1.0 makes fallback pose huge.",
+      "source_file": "ss2vr/DECISION_LOG.md",
+      "source_location": 81
+    },
+    {
+      "id": "ss2vr_failure_registry",
+      "label": "Failure Registry",
+      "community": 86,
+      "file_type": "document",
+      "norm_label": "failure registry",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "ss2vr_failure_registry_command_bridge_null_base",
+      "label": "Resolved: command-bridge buttons dead \u2014 null g_kexBase",
+      "community": 87,
+      "file_type": "rationale",
+      "norm_label": "resolved: command-bridge buttons dead \u2014 null g_kexbase",
+      "rationale": "g_kexBase was null when suppress_bridge_echo=false, causing CallKexSetConfigRawNoThrow to silently drop commands.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 81
+    },
+    {
+      "id": "ss2vr_failure_registry_desktop_refresh_rate",
+      "label": "Failure: Chased a framerate regression \u2014 Windows desktop refresh",
+      "community": 88,
+      "file_type": "rationale",
+      "norm_label": "failure: chased a framerate regression \u2014 windows desktop refresh",
+      "rationale": "Desktop refresh rate reset to 50 Hz, capping the VR pipeline via vsync; not a code regression.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 61
+    },
+    {
+      "id": "ss2vr_failure_registry_echo_suppressor_trampoline",
+      "label": "Failure: Echo suppressor wrote suppressed vars via trampoline",
+      "community": 89,
+      "file_type": "rationale",
+      "norm_label": "failure: echo suppressor wrote suppressed vars via trampoline",
+      "rationale": "Trampoline bypasses DLL's own Hook_SetConfigRaw, so selection/frob vars never reached the DLL consumer.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 41
+    },
+    {
+      "id": "ss2vr_failure_registry_info_discarded",
+      "label": "Trap: an Info-level diagnostic is silently discarded",
+      "community": 90,
+      "file_type": "rationale",
+      "norm_label": "trap: an info-level diagnostic is silently discarded",
+      "rationale": "Diagnostic produced zero lines because live ini runs log_level=warn, filtering out LogLevel::Info.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 25
+    },
+    {
+      "id": "ss2vr_failure_registry_kpf_backslashes",
+      "label": "Failure: Packing AE KPF entries with Windows backslashes",
+      "community": 91,
+      "file_type": "rationale",
+      "norm_label": "failure: packing ae kpf entries with windows backslashes",
+      "rationale": "KPF entries with backslashes are not found by KEX; entries must use forward slashes for scripts to load.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 101
+    },
+    {
+      "id": "ss2vr_failure_registry_native_jump_mantle",
+      "label": "Failure: +jump / +crouchhold console verbs are no-ops",
+      "community": 92,
+      "file_type": "rationale",
+      "norm_label": "failure: +jump / +crouchhold console verbs are no-ops",
+      "rationale": "Bind-action strings have no static xrefs; fixed by calling native SetPosture and jump bind handlers directly.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 101
+    },
+    {
+      "id": "ss2vr_failure_registry_openxr_layer_limit",
+      "label": "Resolved: VR froze on block \u2014 OpenXR 16-layer limit",
+      "community": 93,
+      "file_type": "rationale",
+      "norm_label": "resolved: vr froze on block \u2014 openxr 16-layer limit",
+      "rationale": "Crossing the 16-layer guarantee caused XR_ERROR_LAYER_LIMIT_EXCEEDED, freezing the HMD.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 51
+    },
+    {
+      "id": "ss2vr_failure_registry_pausing_debugger_crash",
+      "label": "Lesson: NEVER use a pausing debugger on the LIVE VR game",
+      "community": 94,
+      "file_type": "rationale",
+      "norm_label": "lesson: never use a pausing debugger on the live vr game",
+      "rationale": "Pausing the process causes the VR compositor to time out and kill the app; use non-pausing Frida hooks instead.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 75
+    },
+    {
+      "id": "ss2vr_failure_registry_squirrel_keyword_cascade",
+      "label": "Lesson: Squirrel KEYWORD used as table member fails compile",
+      "community": 95,
+      "file_type": "rationale",
+      "norm_label": "lesson: squirrel keyword used as table member fails compile",
+      "rationale": "Using 'base' as a member name caused a parse error that failed the entire file compile, breaking all shared helpers.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 45
+    },
+    {
+      "id": "ss2vr_failure_registry_static_re_runtime_state",
+      "label": "Resolved: parry enemy-pipe read \u2014 static-RE recipes failed",
+      "community": 96,
+      "file_type": "rationale",
+      "norm_label": "resolved: parry enemy-pipe read \u2014 static-re recipes failed",
+      "rationale": "Four static-RE recipes failed because runtime state (globals, joint remaps) was never checked; fixed via Frida memory probes.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 63
+    },
+    {
+      "id": "ss2vr_failure_registry_truncating_writes",
+      "label": "Hazard class: truncating writes to files we do not own",
+      "community": 97,
+      "file_type": "rationale",
+      "norm_label": "hazard class: truncating writes to files we do not own",
+      "rationale": "Non-atomic truncating writes destroyed kexengine.cfg and user KPFs; fixed by building into temp and atomically replacing.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 7
+    },
+    {
+      "id": "ss2vr_failure_registry_viewmodel_passthrough_modpath",
+      "label": "Failure: Weapon-mesh Matrix flicker \u2014 mod not in mod_path",
+      "community": 98,
+      "file_type": "rationale",
+      "norm_label": "failure: weapon-mesh matrix flicker \u2014 mod not in mod_path",
+      "rationale": "Fix was installed in a mod folder but not listed in cam_user.cfg mod_path, so stock sshock2ee viewmodel.nut won.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 25
+    },
+    {
+      "id": "ss2vr_failure_registry_visual_inertia_flicker",
+      "label": "Resolved: Weapon weighted-raw flicker \u2014 dtSec==0 ticks",
+      "community": 99,
+      "file_type": "rationale",
+      "norm_label": "resolved: weapon weighted-raw flicker \u2014 dtsec==0 ticks",
+      "rationale": "Spring block skipped on frames where GetTickCount64 delta was 0, causing weapon to snap to raw pose.",
+      "source_file": "ss2vr/FAILURE_REGISTRY.md",
+      "source_location": 161
+    }
+  ],
+  "links": [
+    {
+      "source": "ss2vr_uevr_stereo_lessons",
+      "target": "ss2vr_dll",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Analysis of UEVR's stereo modes used to diagnose and fix SS2VR's eye-lag/stereo-pair-slip.",
+      "source_file": "ss2vr/UEVR_STEREO_LESSONS.md"
+    },
+    {
+      "source": "ss2vr_vr_body_holsters",
+      "target": "ss2vr_weapon_handoff_probe_kpf",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Holster/Quick-item proxy models are implemented via the KPF Squirrel scripts.",
+      "source_file": "ss2vr/VR_BODY_HOLSTERS.md"
+    },
+    {
+      "source": "ss2vr_vr_climbing_re",
+      "target": "kex_engine",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Reverse engineering of native Dark/KEX climbing physics for VR implementation.",
+      "source_file": "ss2vr/VR_CLIMBING_RE.md"
+    },
+    {
+      "source": "ss2vr_vr_highlights_report",
+      "target": "ss2vr_interact_nut",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Squirrel interaction handler provides object bounds/position for the DLL-rendered 3D brackets.",
+      "source_file": "ss2vr/VR_HIGHLIGHTS_REPORT.md"
+    },
+    {
+      "source": "0_3_36_stalefallback",
+      "target": "openxr_temporal_stereo_bridge",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_41_eyeblitproof",
+      "target": "private_hdr_eye_targets",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "d3d11_hooks",
+      "target": "stereo_world_mutation",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "source": "openxr_integration",
+      "target": "temporal_stereo_bridge",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "source": "somavr_hpl_camera_bridge",
+      "target": "somavr_openxr_runtime",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "source": "ss2vr_dll",
+      "target": "openxr_runtime",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/VR_ACTION_PANEL_TEST.md"
+    },
+    {
+      "source": "ss2vr_dll",
+      "target": "kex_engine",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/VR_FINDINGS_INDEX.md"
+    },
+    {
+      "source": "ss2vr_dll_pose_bridge",
+      "target": "ss2vr_aim_config_var",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_dll_v3_13",
+      "target": "kex_scenetraversalbegin_setcullcamera",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/CULLING_FRUSTUM.md"
+    },
+    {
+      "source": "ss2vr_funkmaxexport",
+      "target": "ss2vr_lgpmnm_import",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_gamepig_icebreaker",
+      "target": "kex_setconfigraw",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/GAMEPIG_ICEBREAKER.md"
+    },
+    {
+      "source": "ss2vr_melee_scaling_nut",
+      "target": "ss2vr_melee_read_skill",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "source": "ss2vr_melee_tip_collision",
+      "target": "ss2vr_haptic_bridge",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "source": "ss2vr_phase2_ui_interaction_router",
+      "target": "ss2vr_phase2_ui_cursor_injection",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/phase2-ui.md"
+    },
+    {
+      "source": "ss2vr_weapon_probe_nut",
+      "target": "ss2vr_melee_tip_collision",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "source": "ss2vr_weapon_probe_ss2vr_shoot_aim_script",
+      "target": "ss2vr_weapon_probe_ss2vr_redirect_projectile_aim",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_hypotheses",
+      "target": "renderdoc_crash_32bit",
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "source": "bioshockvr_hypotheses",
+      "target": "b1_3_stereo_rendering",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "source": "bioshockvr_hypotheses",
+      "target": "b2_1_native_camera",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "source": "bioshockvr_hypotheses",
+      "target": "b3_1_wrench_pickup",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "source": "bioshockvr_hypotheses",
+      "target": "b4_1_hud_lane",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/HYPOTHESES.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_v0_17_bounded_anti_roll",
+      "target": "ss2vr_decision_log_flataim_v0_18_rig_aimpoint",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_v0_18_rig_aimpoint",
+      "target": "ss2vr_decision_log_flataim_v0_19_screen_axis",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_v0_19_screen_axis",
+      "target": "ss2vr_decision_log_flataim_v0_20_proxy",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_v0_20_proxy",
+      "target": "ss2vr_decision_log_flataim_v0_21_teleport_order",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_v0_21_teleport_order",
+      "target": "ss2vr_decision_log_flataim_v0_22_screen_up",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_v0_22_screen_up",
+      "target": "ss2vr_decision_log_flataim_v0_28_dark_matrix",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_v0_28_dark_matrix",
+      "target": "ss2vr_decision_log_flataim_view_frame_aim",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_view_frame_aim",
+      "target": "ss2vr_decision_log_flataim_freelook_branding",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_lgmd_modify_existing_stubs",
+      "target": "ss2vr_decision_log_stock_rig_preservation",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_lgmm_wrench_reference",
+      "target": "ss2vr_decision_log_vr_wrench_static_lgmd",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_retire_flataim_inverse_cos",
+      "target": "ss2vr_decision_log_flataim_v0_17_bounded_anti_roll",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_stock_rig_preservation",
+      "target": "ss2vr_decision_log_v1_90_atek_lock",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_decision_log_v1_90_atek_lock",
+      "target": "ss2vr_failure_registry_lgmd_loader_int3",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_enemy_health_bracket_re_hpbar_mechanics",
+      "target": "ss2vr_enemy_health_bracket_re_aggro_visibility",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/ENEMY_HEALTH_BRACKET_RE.md"
+    },
+    {
+      "source": "ss2vr_enemy_health_bracket_re_rt35",
+      "target": "ss2vr_enemy_health_bracket_re_hpbar_mechanics",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/ENEMY_HEALTH_BRACKET_RE.md"
+    },
+    {
+      "source": "ss2vr_melee_vr_report_md",
+      "target": "ss2vr_melee_vr_spec_md",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_VR_REPORT.md"
+    },
+    {
+      "source": "ss2vr_phase2_ui_hmd_aim_hook",
+      "target": "ss2vr_phase1_usage_renderview_override",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/phase2-ui.md"
+    },
+    {
+      "source": "ss2vr_phase2_ui_interaction_router",
+      "target": "ss2vr_phase2_ui_squirrel_interaction_spike",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/phase2-ui.md"
+    },
+    {
+      "source": "ss2vr_phase2_ui_ui_tee_texture",
+      "target": "ss2vr_phase2_ui_native_shock_overlay_system",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/phase2-ui.md"
+    },
+    {
+      "source": "ss2vr_weapon_vr_aim_spec_weapon_aim_spec",
+      "target": "ss2vr_weapon_vr_handover_weapon_handover",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bsp_lightmaps",
+      "target": "utexture_object",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BioShock_Texture_Lightmap_Format.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "h19_lgmd_face_deletion",
+      "target": "funkmaxexport",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/HYPOTHESES.md"
+    },
+    {
+      "source": "ss2vr_funkmaxexport",
+      "target": "ss2vr_lgmd_custom_export",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_ss2vr_interact_nut",
+      "target": "ss2vr_interaction_squirrel_report",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/INTERACTION_SQUIRREL_REPORT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_ss2vr_melee_scaling_nut",
+      "target": "ss2vr_melee_damage_re",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "0_3_103_vrfov_eye",
+      "target": "0_3_86_compactc10apply",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_35_directdraw",
+      "target": "0_3_34_sustainedwide",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_36_stalefallback",
+      "target": "0_3_35_directdraw",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_52_depthreproject",
+      "target": "0_3_41_eyeblitproof",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_58_nativevs_pcenter",
+      "target": "0_3_57_matrixstereoproof",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_61_screendatapcenter",
+      "target": "0_3_58_nativevs_pcenter",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_71_artifactprobe",
+      "target": "0_3_67_shadowmaskab",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "0_3_86_compactc10apply",
+      "target": "0_3_71_artifactprobe",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "arm_hologram_render",
+      "target": "shkovcst_h_overlay_slots",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "source": "bioshockvr_build_history_0_3_100_exactsrv",
+      "target": "bioshockvr_build_history_0_3_98_srvfamily",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_build_history_0_3_76_psnulldepthskip",
+      "target": "bioshockvr_build_history_0_3_75_artifactids",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_build_history_0_3_78_psnullmonodepth",
+      "target": "bioshockvr_build_history_0_3_76_psnulldepthskip",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_build_history_0_3_85_fallbackfitprobe",
+      "target": "bioshockvr_build_history_0_3_80_stereotoggle",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_build_history_0_3_87_dumpsync",
+      "target": "bioshockvr_build_history_0_3_85_fallbackfitprobe",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_build_history_0_3_91_wvpcandidates",
+      "target": "bioshockvr_build_history_0_3_89_depthpairdump",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_code_architecture",
+      "target": "bioshockvr_build_history_0_3_160_inputshadow320",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/CODE_ARCHITECTURE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_re_findings",
+      "target": "ahands",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/RE_FINDINGS.md"
+    },
+    {
+      "source": "bioshockvr_re_findings",
+      "target": "ashockplayer",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/RE_FINDINGS.md"
+    },
+    {
+      "source": "catalog_bdc",
+      "target": "blk_files",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BioShock_Bulk_Files_And_Catalog.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "d3d11_hooks",
+      "target": "ashockplayer",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "source": "nd_shock_gun_viewmodel_on_frame_update",
+      "target": "ss2vr_aim_config_var",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "shockoverlaydoframe",
+      "target": "shkovrly_cpp_goverlayrects",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "source": "shockoverlaydrawbuffers",
+      "target": "shkovrly_cpp_goverlayrects",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "source": "somavr_architecture",
+      "target": "somavr_address_registry",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "source": "somavr_authored_states_and_visible_hands_re",
+      "target": "somavr_address_registry",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "somavr/AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md"
+    },
+    {
+      "source": "somavr_build_history",
+      "target": "somavr_authored_states_and_visible_hands_re",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "somavr/BUILD_HISTORY.md"
+    },
+    {
+      "source": "ss2vr_culling_frustum",
+      "target": "kex_scenetraversalbegin_setcullcamera",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/CULLING_FRUSTUM.md"
+    },
+    {
+      "source": "ss2vr_current_state",
+      "target": "ss2vr_build_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/CURRENT_STATE.md"
+    },
+    {
+      "source": "ss2vr_decision_log",
+      "target": "ss2vr_ghidra_annotation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_flataim_dll",
+      "target": "ss2vr_ss2fa_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/HYPOTHESES_ARCHIVE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_game_event_effects",
+      "target": "kex_setconfigraw",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/GAME_EVENT_EFFECTS.md"
+    },
+    {
+      "source": "ss2vr_gamepig_icebreaker",
+      "target": "ss2vr_gamepig_re",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/GAMEPIG_ICEBREAKER.md"
+    },
+    {
+      "source": "ss2vr_ghidra_annotation_backlog",
+      "target": "kex_playerturntilt_precullcamera",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/GHIDRA_ANNOTATION_BACKLOG.md"
+    },
+    {
+      "source": "ss2vr_melee_damage_re_md",
+      "target": "ss2vr_melee_scaling_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "source": "ss2vr_melee_damage_re_md",
+      "target": "ss2vr_weapon_probe_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "source": "ss2vr_melee_scaling_handover_md",
+      "target": "ss2vr_melee_compute_damage",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_SCALING_HANDOVER.md"
+    },
+    {
+      "source": "ss2vr_menu_vr_report_md",
+      "target": "ss2vr_menu_options_bind_test_spec_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MENU_VR_REPORT.md"
+    },
+    {
+      "source": "ss2vr_phase1_usage_weapon_viewmodel_pose_bridge",
+      "target": "ss2vr_phase1_usage_weapon_melee_v1_7",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/phase1-usage.md"
+    },
+    {
+      "source": "ss2vr_re_findings_md",
+      "target": "ss2vr_effects_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/RE_FINDINGS.md"
+    },
+    {
+      "source": "ss2vr_re_findings_md",
+      "target": "ss2vr_interact_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/RE_FINDINGS.md"
+    },
+    {
+      "source": "ss2vr_squirrel_world_physics_md",
+      "target": "ss2vr_phys_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/SQUIRREL_WORLD_PHYSICS.md"
+    },
+    {
+      "source": "ss2vr_ss2_asset_tool_comparison_md",
+      "target": "funkmaxexport",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/SS2_ASSET_TOOL_COMPARISON.md"
+    },
+    {
+      "source": "ss2vr_teleport_locomotion_re_md",
+      "target": "ss2vr_blink_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/TELEPORT_LOCOMOTION_RE.md"
+    },
+    {
+      "source": "ss2vr_test_plan_2026_07",
+      "target": "ss2vr_dll",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/TEST_PLAN_2026-07.md"
+    },
+    {
+      "source": "ss2vr_vr_manual_reloads",
+      "target": "ss2vr_weapon_probe_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/VR_MANUAL_RELOADS.md"
+    },
+    {
+      "source": "ss2vr_vr_two_handed_weapons",
+      "target": "ss2vr_weapon_probe_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/VR_TWO_HANDED_WEAPONS.md"
+    },
+    {
+      "source": "ss2vr_vr_view_effects",
+      "target": "ss2vr_vr_post_process_design",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/VR_VIEW_EFFECTS.md"
+    },
+    {
+      "source": "ss2vr_vr_weapon_mesh_pipeline",
+      "target": "funkmaxexport",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/VR_WEAPON_MESH_PIPELINE.md"
+    },
+    {
+      "source": "ss2vr_weapon_cameraobj_hmd_bleed_handoff",
+      "target": "ss2vr_weapon_probe_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_CAMERAOBJ_HMD_BLEED_HANDOFF.md"
+    },
+    {
+      "source": "ss2vr_weapon_handoff_probe_kpf",
+      "target": "ss2vr_interact_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "ss2vr_weapon_handoff_probe_kpf",
+      "target": "ss2vr_weapon_probe_nut",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "ss2vr_weapon_handoff_probe_kpf",
+      "target": "ss2vr_weapon_probe_ss2vr_shoot_aim_script",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_HANDOVER.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_weapon_model_spec",
+      "target": "ss2vr_weapon_model_report",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_MODEL_SPEC.md"
+    },
+    {
+      "source": "ss2vr_weapon_probe_nut",
+      "target": "ss2vr_conventions",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/CONVENTIONS.md"
+    },
+    {
+      "source": "ss2vr_weapon_probe_ss2vr_redirect_projectile_aim",
+      "target": "ss2vr_aim_config_var",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "stereo_world_mutation",
+      "target": "layer_model_batch_fun_10f77db0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "source": "stereo_world_mutation",
+      "target": "material_batch_fun_10f76e30",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "source": "utexture_object",
+      "target": "catalog_bdc",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BioShock_Reading_Textures.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "vr_panel_split_strategy",
+      "target": "d3d11_draw_classification",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "source": "ss2vr_failure_registry_psi_amp_ctd",
+      "target": "ss2vr_failure_registry_lgmd_loader_int3",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "ss2vr_failure_registry_shotgun_joint_name_mangle",
+      "target": "ss2vr_failure_registry_lgmd_loader_int3",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "ss2vr_failure_registry_stock_melee_override_ctd",
+      "target": "ss2vr_failure_registry_lgmd_loader_int3",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "ashockplayer",
+      "target": "ahands",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/ADDRESS_REGISTRY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_dll_v1_48",
+      "target": "ss2vr_weapon_probe_nut",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "source": "ss2vr_ss2vr_interact_nut",
+      "target": "ss2vr_flataim_dll",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/INTERACTION_SQUIRREL_SPIKE_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bioshockvr_uevr_prior_art",
+      "target": "somavr_architecture",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "bioshockvr/uevr-prior-art.md"
+    },
+    {
+      "source": "ss2vr_selection_bracket",
+      "target": "ss2vr_ghidra_annotation",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "h13_ae_squirrel_weapon_handoff",
+      "target": "funkmaxexport",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "ss2vr/HYPOTHESES.md"
+    },
+    {
+      "source": "ss2vr_blink_nut",
+      "target": "ss2vr_effects_nut",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "rationale": "Blink locomotion uses the head-locked fade quad managed by effects.",
+      "source_file": "ss2vr/TELEPORT_LOCOMOTION_RE.md"
+    },
+    {
+      "source": "ss2vr_effects_nut",
+      "target": "ss2vr_dll_v1_48",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "source": "bioshockvr_reference_stereo_fix_analysis",
+      "target": "bioshockvr_vr_presentation_6dof_spec",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "bioshockvr/reference-stereo-fix-analysis.md"
+    },
+    {
+      "source": "shader_factories",
+      "target": "material_objects",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "bioshockvr/BioShock_Materials_And_Shaders.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_vr_mod_reference_survey_gtfo",
+      "target": "ss2vr_phase1_usage_weapon_carrier_probe",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ss2vr/vr-mod-reference-survey.md"
+    },
+    {
+      "source": "ss2vr_vr_mod_reference_survey_jkxr",
+      "target": "ss2vr_phase1_usage_weapon_viewmodel_pose_bridge",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ss2vr/vr-mod-reference-survey.md"
+    },
+    {
+      "source": "h13_ae_squirrel_weapon_handoff",
+      "target": "h3_weapon_aim_sink",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "ss2vr/HYPOTHESES.md"
+    },
+    {
+      "source": "weaponviewmodelcontrollerpose",
+      "target": "ahands",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "bioshockvr/BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_interact_nut",
+      "target": "dark_pick_system",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "ss2vr/DARK_ENGINE_SOURCE_NOTES.md"
+    },
+    {
+      "source": "ss2vr_dll",
+      "target": "ss2vr_weapon_handoff_probe_kpf",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "rationale": "The DLL publishes data to cvars that the KPF Squirrel scripts consume for weapon/interaction logic.",
+      "source_file": "ss2vr/VR_FINDINGS_INDEX.md"
+    },
+    {
+      "source": "ss2vr_decision_log_flataim_freelook_branding",
+      "target": "ss2vr_failure_registry_flataim_kpf_root",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "source": "ss2vr_flataim_dll",
+      "target": "ss2vr_hypotheses_archive_hfa1",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/HYPOTHESES_ARCHIVE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_phase1_usage_weapon_viewmodel_pose_bridge",
+      "target": "ss2vr_phase2_ui_interaction_router",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/phase1-usage.md"
+    },
+    {
+      "source": "ss2vr_interact_nut",
+      "target": "dark_frob_system",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/CLAUDE_DARKENGINE_FINDS.md"
+    },
+    {
+      "source": "bioshockvr_failure_registry",
+      "target": "0_3_103_vrfov_eye",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "bioshockvr/FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "somavr_hpl_player_state",
+      "target": "somavr_address_registry",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "source": "vr_panel_split_strategy",
+      "target": "shkovrly_cpp_goverlayrects",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "source": "ss2vr_weapon_probe_ss2vr_shoot_aim_script",
+      "target": "nd_shoot_trigger_script",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ss2vr_pose_bridge",
+      "target": "ss2vr_flataim_sidequest",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "ss2vr_stereo_rendering_optimization",
+      "label": "Stereo Rendering & Latency Optimization",
+      "nodes": [
+        "ss2vr_uevr_stereo_lessons",
+        "ss2vr_dll",
+        "ss2vr_vr_findings_index"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "ss2vr/UEVR_STEREO_LESSONS.md"
+    },
+    {
+      "id": "artifact_triage_flow",
+      "label": "Artifact Triage and Diagnostic Flow",
+      "nodes": [
+        "0_3_67_shadowmaskab",
+        "0_3_71_artifactprobe",
+        "0_3_86_compactc10apply"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "gamepig_minigame_framework",
+      "label": "Game-Pig Minigame Framework",
+      "nodes": [
+        "ss2vr_gamepig_re",
+        "ss2vr_gamepig_icebreaker",
+        "kex_setconfigraw"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "id": "ps_null_diagnostic_flow",
+      "label": "PS-Null Diagnostic Flow",
+      "nodes": [
+        "bioshockvr_build_history_0_3_76_psnulldepthskip",
+        "bioshockvr_build_history_0_3_78_psnullmonodepth",
+        "bioshockvr_build_history_0_3_83_fallbackdepthab"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "bioshockvr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "somavr_core_loop",
+      "label": "SOMAVR Core Rendering Flow",
+      "nodes": [
+        "somavr_hpl_camera_bridge",
+        "somavr_openxr_runtime",
+        "somavr_hpl_player_state"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "somavr/ARCHITECTURE.md"
+    },
+    {
+      "id": "squirrel_migration_strategy",
+      "label": "DLL to Squirrel Logic Migration",
+      "nodes": [
+        "ss2vr_hypotheses_archive_hfa1",
+        "ss2vr_interaction_squirrel_report",
+        "ss2vr_ss2vr_interact_nut"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/INTERACTION_SQUIRREL_REPORT.md"
+    },
+    {
+      "id": "ss2vr_interaction_flow",
+      "label": "SS2VR Interaction & Selection Flow",
+      "nodes": [
+        "ss2vr_interact_nut",
+        "ss2vr_vr_highlights_report",
+        "ss2vr_dll"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/VR_HIGHLIGHTS_REPORT.md"
+    },
+    {
+      "id": "viewmodel_tracking_system",
+      "label": "Viewmodel Tracking System",
+      "nodes": [
+        "ashockplayer",
+        "ahands",
+        "weaponviewmodelcontrollerpose",
+        "openxr_runtime"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "bioshockvr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "weapon_interaction_flow",
+      "label": "Weapon Interaction and Aim Flow",
+      "nodes": [
+        "ss2vr_phase1_usage_weapon_viewmodel_pose_bridge",
+        "ss2vr_phase1_usage_weapon_melee_v1_7",
+        "ss2vr_phase1_usage_pistol_muzzle_eject_follow",
+        "ss2vr_phase1_usage_two_hand_weapon_support"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/phase1-usage.md"
+    },
+    {
+      "id": "melee_system_re",
+      "label": "Melee System Reverse Engineering",
+      "nodes": [
+        "ss2vr_melee_audio_re",
+        "ss2vr_melee_damage_re",
+        "ss2vr_ss2vr_melee_scaling_nut"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "id": "native_stereo_evolution",
+      "label": "Native Stereo Implementation Path",
+      "nodes": [
+        "0_3_57_matrixstereoproof",
+        "0_3_58_nativevs_pcenter",
+        "0_3_61_screendatapcenter",
+        "0_3_103_vrfov_eye"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "screen_space_srv_fallback_evolution",
+      "label": "Screen-Space SRV Fallback Evolution",
+      "nodes": [
+        "bioshockvr_build_history_0_3_98_srvfamily",
+        "bioshockvr_build_history_0_3_100_exactsrv"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "bioshockvr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "squirrel_interaction_framework",
+      "label": "Squirrel Interaction Framework",
+      "nodes": [
+        "ss2vr_weapon_probe_nut",
+        "ss2vr_phys_nut",
+        "ss2vr_interact_nut"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "ss2vr/BUILD_HISTORY.md"
+    },
+    {
+      "id": "ss2vr_weapon_handoff_system",
+      "label": "SS2VR Weapon Handoff & Viewmodel System",
+      "nodes": [
+        "ss2vr_weapon_probe_nut",
+        "ss2vr_dll",
+        "ss2vr_weapon_handoff_probe_kpf"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "ss2vr/TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "ui_separation_strategy",
+      "label": "UI Separation and Rendering Strategy",
+      "nodes": [
+        "ss2vr_phase2_ui_ui_tee_texture",
+        "ss2vr_phase2_ui_native_shock_overlay_system",
+        "ss2vr_phase1_usage_right_arm_ammo_hud"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "ss2vr/phase2-ui.md"
+    },
+    {
+      "id": "vr_ui_implementation_routes",
+      "label": "VR UI Implementation Routes",
+      "nodes": [
+        "vr_panel_split_strategy",
+        "d3d11_draw_classification",
+        "shkovrly_cpp_goverlayrects"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "weapon_vr_system",
+      "label": "Weapon VR Interaction & Visuals",
+      "nodes": [
+        "ss2vr_weapon_cameraobj_hmd_bleed_handoff",
+        "ss2vr_weapon_model_spec",
+        "ss2vr_weapon_spread_recoil_report",
+        "ss2vr_vr_two_handed_weapons",
+        "ss2vr_vr_manual_reloads"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95
+    },
+    {
+      "id": "bulk_data_system",
+      "label": "BioShock Bulk Data System",
+      "nodes": [
+        "catalog_bdc",
+        "blk_files",
+        "utexture_object"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/BioShock_Bulk_Files_And_Catalog.md"
+    },
+    {
+      "id": "culling_fix_strategy",
+      "label": "VR Culling Fix Strategy",
+      "nodes": [
+        "ss2vr_culling_frustum",
+        "ss2vr_dll_v3_13",
+        "kex_scenetraversalbegin_setcullcamera"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/CULLING_FRUSTUM.md"
+    },
+    {
+      "id": "engine_object_hierarchy",
+      "label": "Engine Object Hierarchy",
+      "nodes": [
+        "ashockplayer",
+        "ahands"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/DECISION_LOG.md"
+    },
+    {
+      "id": "flataim_evolution_path",
+      "label": "FlatAim Aim/Roll Fix Evolution",
+      "nodes": [
+        "ss2vr_decision_log_retire_flataim_inverse_cos",
+        "ss2vr_decision_log_flataim_v0_17_bounded_anti_roll",
+        "ss2vr_decision_log_flataim_v0_18_rig_aimpoint",
+        "ss2vr_decision_log_flataim_v0_19_screen_axis",
+        "ss2vr_decision_log_flataim_v0_20_proxy",
+        "ss2vr_decision_log_flataim_v0_22_screen_up",
+        "ss2vr_decision_log_flataim_v0_28_dark_matrix",
+        "ss2vr_decision_log_flataim_view_frame_aim"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "lgmd_runtime_safety_failures",
+      "label": "LGMD Runtime Safety & Loader Crashes",
+      "nodes": [
+        "ss2vr_failure_registry_psi_amp_ctd",
+        "ss2vr_failure_registry_shotgun_joint_name_mangle",
+        "ss2vr_failure_registry_stock_melee_override_ctd",
+        "ss2vr_failure_registry_lgmd_loader_int3",
+        "ss2vr_decision_log_lgmd_modify_existing_stubs",
+        "ss2vr_decision_log_stock_rig_preservation"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "melee_system_v3",
+      "label": "Melee System v3 (Swing Quality + Haptics)",
+      "nodes": [
+        "ss2vr_melee_tip_collision",
+        "ss2vr_melee_scaling_nut",
+        "ss2vr_haptic_bridge"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/MELEE_DAMAGE_RE.md"
+    },
+    {
+      "id": "native_hud_system",
+      "label": "Native Shock Overlay System",
+      "nodes": [
+        "shkovcst_h_overlay_slots",
+        "shkovrly_h_soverlayfunc",
+        "shkovrly_cpp_goverlayrects",
+        "shockoverlaydoframe",
+        "shockoverlaydrawbuffers"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/HUD_OVERLAY_ASSEMBLY.md"
+    },
+    {
+      "id": "stereo_rendering_pipeline",
+      "label": "Stereo Rendering Pipeline",
+      "nodes": [
+        "d3d11_hooks",
+        "openxr_integration",
+        "stereo_world_mutation",
+        "temporal_stereo_bridge"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "bioshockvr/CURRENT_STATE.md"
+    },
+    {
+      "id": "ui_hologram_subsystem",
+      "label": "Right-Arm UI Hologram Subsystem",
+      "nodes": [
+        "ss2vr_decision_log_right_arm_hud_quad",
+        "ss2vr_decision_log_right_arm_hud_native_rect",
+        "ss2vr_decision_log_v1_42_inventory_visibility",
+        "ss2vr_failure_registry_command_bridge_null_base"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "viewmodel_pinning_flow",
+      "label": "Viewmodel Pinning Flow",
+      "nodes": [
+        "ss2vr_dll_pose_bridge",
+        "ss2vr_aim_config_var",
+        "nd_shock_gun_viewmodel_on_frame_update"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md"
+    },
+    {
+      "id": "weapon_aim_takeover_flow",
+      "label": "Weapon Aim Takeover Flow",
+      "nodes": [
+        "ss2vr_dll_pose_bridge",
+        "ss2vr_aim_config_var",
+        "ss2vr_weapon_probe_ss2vr_shoot_aim_script",
+        "ss2vr_weapon_probe_ss2vr_redirect_projectile_aim"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ss2vr/WEAPON_VR_AIM_SPEC.md"
+    },
+    {
+      "id": "vr_ui_holographics",
+      "label": "VR Holographic UI Systems",
+      "nodes": [
+        "ss2vr_vr_settings_panel_spec",
+        "ss2vr_vr_wrist_keypad_spec",
+        "ss2vr_vr_view_effects"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8
+    },
+    {
+      "id": "vr_ui_selection_system",
+      "label": "VR UI & Selection System",
+      "nodes": [
+        "ss2vr_selection_bracket",
+        "ss2vr_flataim_sidequest",
+        "ss2vr_ghidra_annotation"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ss2vr/DECISION_LOG.md"
+    },
+    {
+      "id": "weapon_vr_handoff_flow",
+      "label": "Weapon VR Handoff Flow",
+      "nodes": [
+        "h3_weapon_aim_sink",
+        "h13_ae_squirrel_weapon_handoff",
+        "h19_lgmd_face_deletion"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ss2vr/HYPOTHESES.md"
+    },
+    {
+      "id": "asset_authoring_pipeline",
+      "label": "Asset Authoring Pipeline",
+      "nodes": [
+        "funkmaxexport",
+        "ss2vr_ss2_asset_tool_comparison_md",
+        "ss2vr_shock2quest_reference_md"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "ss2vr/SS2_ASSET_TOOL_COMPARISON.md"
+    },
+    {
+      "id": "asset_format_re",
+      "label": "Dark Engine Asset Format Research",
+      "nodes": [
+        "ss2vr_lgmd_vhot_header_fix",
+        "ss2vr_lgmm_cal_investigation"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "ss2vr/LGMM_CAL_INVESTIGATION.md"
+    },
+    {
+      "id": "bioshock_stereo_strategy",
+      "label": "BioShock Stereo Reconstruction Strategy",
+      "nodes": [
+        "bioshockvr_reference_stereo_fix_analysis",
+        "bioshockvr_vr_presentation_6dof_spec",
+        "bioshockvr_uevr_prior_art"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "bioshockvr/reference-stereo-fix-analysis.md"
+    },
+    {
+      "id": "camera_and_culling_authority",
+      "label": "Camera and Culling Authority",
+      "nodes": [
+        "ss2vr_phase1_usage_renderview_override",
+        "ss2vr_phase2_ui_hmd_aim_hook",
+        "ss2vr_phase1_usage_snap_turn_v2"
+      ],
+      "relation": "implement",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "ss2vr/phase2-ui.md"
+    },
+    {
+      "id": "vr_locomotion_suite",
+      "label": "VR Locomotion Suite",
+      "nodes": [
+        "ss2vr_blink_nut",
+        "ss2vr_roomscale_crouch_research_md",
+        "ss2vr_teleport_locomotion_re_md"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ss2vr/PROJECT_PHASES.md"
+    }
+  ]
+}

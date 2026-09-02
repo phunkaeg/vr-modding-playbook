@@ -1,0 +1,1186 @@
+{
+  "communities": {
+    "0": [
+      "bioshock1_bsm_class_layouts",
+      "bioshock1_bsm_class_rollup",
+      "bioshock1_bsm_container",
+      "bioshock1_bsm_dyn_props",
+      "bioshock1_bsm_light_actor",
+      "bioshock1_bsm_material_flattening",
+      "bioshock1_bsm_object_wire",
+      "bioshock1_bsm_type_safety_filter",
+      "bioshock1_bsm_ustaticmesh",
+      "bioshock_hd_exe",
+      "bioshock_remastered",
+      "bioshockvr_injector",
+      "fov_frustum_foundation_stereo_projection",
+      "phase1_usage_0_3_139",
+      "phase1_usage_0_3_153",
+      "phase1_usage_0_3_154",
+      "test_checklists_b1_1",
+      "test_checklists_b1_4_b1_3",
+      "troubleshooting_injection_fails",
+      "user_guide_first_run",
+      "vengeance_engine",
+      "xinput_bridge"
+    ],
+    "1": [
+      "aactor_recreate_actor_animation_members",
+      "aim_ik_target_tracker",
+      "aweapon_get_perfect_fire_start",
+      "awrench_tick_collision_phantom",
+      "bioshock_engine",
+      "bioshockhd_exe",
+      "bioshockvr_dll",
+      "bioshockvr_injector_exe",
+      "d3d11_create_device",
+      "fcamera_scene_node_constructor",
+      "fshadow_depth_test_pass11_upload_constants",
+      "idxgi_swapchain_present",
+      "openxr_integration",
+      "openxr_runtime",
+      "phase1_usage_0_3_140",
+      "re_findings_0_3_27_clonebind",
+      "re_findings_b3_1",
+      "re_findings_b3_1_rdoc_crash",
+      "stereo_world_artifact_probe",
+      "virtualdesktopxr"
+    ],
+    "2": [
+      "decision_log_0_3_10_layoutprobe",
+      "decision_log_0_3_11_drawlayout",
+      "decision_log_0_3_12_layoutwatch",
+      "decision_log_0_3_13_routeprofile",
+      "decision_log_0_3_14_routedigest",
+      "decision_log_0_3_15_routehits",
+      "decision_log_0_3_16_routecensus",
+      "decision_log_0_3_17_routescore",
+      "decision_log_0_3_18_routecallsite",
+      "decision_log_0_3_19_writestack",
+      "decision_log_0_3_20_routefamily",
+      "decision_log_0_3_21_familydigest",
+      "decision_log_0_3_22_familyprofile",
+      "decision_log_0_3_23_offsetconfirm",
+      "decision_log_0_3_24_windowguard",
+      "decision_log_0_3_25_pairpreflight",
+      "decision_log_0_3_26_eyedeltaplan",
+      "decision_log_0_3_27_clonebind",
+      "decision_log_0_3_9_hdrlanescout"
+    ],
+    "3": [
+      "decision_log_0_3_40_eyetargetbind",
+      "decision_log_0_3_41_eyeblitproof",
+      "decision_log_0_3_42_privatehdrblit",
+      "decision_log_0_3_43_sustainedprivatehdr",
+      "decision_log_0_3_44_privateproducer",
+      "decision_log_0_3_45_calibratedstereo",
+      "decision_log_0_3_46_stereoconvention",
+      "decision_log_0_3_47_localeye",
+      "decision_log_0_3_48_signflip",
+      "decision_log_0_3_49_splitsigns",
+      "decision_log_0_3_50_stablewide",
+      "decision_log_0_3_51_monoisolate",
+      "decision_log_0_3_52_depthreproject"
+    ],
+    "4": [
+      "decision_log_artifactprobe",
+      "decision_log_compact320",
+      "decision_log_depthdebug",
+      "decision_log_eyedump",
+      "decision_log_launchinject",
+      "decision_log_matrixstereoproof",
+      "decision_log_nativevs_isolate",
+      "decision_log_nativevs_pcenter",
+      "decision_log_pcenterfitprobe",
+      "decision_log_screendatapcenter",
+      "decision_log_shadowmaskab",
+      "decision_log_srvfilter",
+      "decision_log_vscompanions"
+    ],
+    "5": [
+      "decision_log_0_3_28_clonetrace",
+      "decision_log_0_3_29_numericproof",
+      "decision_log_0_3_30_temporalstereo",
+      "decision_log_0_3_31_poseproof",
+      "decision_log_0_3_32_wideview",
+      "decision_log_0_3_33_wideeye",
+      "decision_log_0_3_34_sustainedwide",
+      "decision_log_0_3_35_directdraw",
+      "decision_log_0_3_36_stalefallback",
+      "decision_log_0_3_37_xractivity",
+      "decision_log_0_3_38_sustainedproof",
+      "decision_log_0_3_39_eyetargetscout"
+    ],
+    "6": [
+      "decision_log_artifactids",
+      "decision_log_compact320gate",
+      "decision_log_compactc10apply",
+      "decision_log_compactpsnullskip",
+      "decision_log_compactscan",
+      "decision_log_fallbackdepthab",
+      "decision_log_priorarthints",
+      "decision_log_psnulldepthskip",
+      "decision_log_psnullmonodepth",
+      "decision_log_stereotoggle"
+    ],
+    "7": [
+      "bioshock_materials_and_shaders_material",
+      "bioshock_materials_and_shaders_materialfactory",
+      "bioshock_materials_and_shaders_mtb",
+      "bioshock_materials_and_shaders_renderedmaterial",
+      "bioshock_materials_and_shaders_shader",
+      "bioshock_materials_and_shaders_shaders_spk",
+      "bioshock_materials_and_shaders_shadertag"
+    ],
+    "8": [
+      "phase1_usage_stereo_world_numeric_proof",
+      "phase1_usage_stereo_world_probe",
+      "projection_pcenter_p_center",
+      "projection_pcenter_shadow_mask",
+      "reference_stereo_fix_bioshock_3d_fix_wip1",
+      "unrealport_reference_skyzoneinfo"
+    ],
+    "9": [
+      "bioshock_ahands",
+      "bioshock_aimiktargettracker",
+      "bioshock_uattackability",
+      "mod_0_3_169",
+      "openxr_input_module"
+    ],
+    "10": [
+      "bioshock_reading_textures_blk",
+      "bioshock_reading_textures_catalog_bdc",
+      "bioshock_reading_textures_utexture",
+      "bioshock_texture_lightmap_format_flightmapindex",
+      "bioshock_texture_lightmap_format_umodel"
+    ],
+    "11": [
+      "d3d11_create_device_and_swap_chain_hook",
+      "idxgi_swap_chain_resize_buffers_hook",
+      "part_a_portrait_render",
+      "part_d_frustum_hygiene",
+      "v0_3_104_portrait"
+    ],
+    "12": [
+      "bioshock_vr_0_3_32",
+      "bioshock_vr_0_3_33",
+      "bioshock_vr_0_3_34",
+      "openxr_temporal_bridge"
+    ],
+    "13": [
+      "bioshockvr_code_architecture_d3d11hooks",
+      "bioshockvr_code_architecture_stereoprojection",
+      "bioshockvr_code_architecture_stereoreplay",
+      "current_state_shadow_autopsy"
+    ],
+    "14": [
+      "build_0_3_35_directdraw",
+      "hypotheses_direct_draw_replay",
+      "layer_model_batch_fun_10f77db0",
+      "material_batch_fun_10f76e30"
+    ],
+    "15": [
+      "build_history_0_3_75_artifactids",
+      "build_history_0_3_76_psnulldepthskip",
+      "build_history_0_3_77_psnulllogonly",
+      "build_history_0_3_78_psnullmonodepth"
+    ],
+    "16": [
+      "decision_log_md",
+      "openxrinput_service",
+      "somavr",
+      "ss2vr"
+    ],
+    "17": [
+      "phase1_usage_bioshockvr_dll",
+      "phase1_usage_hook_install",
+      "phase1_usage_openxr_session",
+      "uevr_prior_art_uevr"
+    ],
+    "18": [
+      "stereo_world_direct_stereo_proof",
+      "stereo_world_eye_target_scout",
+      "stereo_world_numeric_proof",
+      "stereo_world_pose_proof"
+    ],
+    "19": [
+      "ahands",
+      "ashockplayer",
+      "bioshock_vr_0_3_186"
+    ],
+    "20": [
+      "ahands_vftable",
+      "aimiktargettracker",
+      "ashockplayer_vftable"
+    ],
+    "21": [
+      "awrench_vftable",
+      "stereoworldpereyeshadowmask",
+      "v0_3_187_shadowownership"
+    ],
+    "22": [
+      "bioshock_ashockplayer",
+      "bioshock_ashockplayercontroller",
+      "bioshock_fplayerscenenode"
+    ],
+    "23": [
+      "bioshock_bulk_files_and_catalog_bdc",
+      "bioshock_bulk_files_and_catalog_blk",
+      "bioshock_bulk_files_and_catalog_fstring"
+    ],
+    "24": [
+      "bioshock_vr_0_3_187",
+      "projection_pcenter",
+      "shadow_depth_test_ps"
+    ],
+    "25": [
+      "bs_rendersceneshadowcontexts",
+      "fshadowdepthtestpass11_uploadconstants",
+      "fshadowmaskscenecontext_render"
+    ],
+    "26": [
+      "build_0_2_0_loghooks",
+      "hypotheses_bioshock_remastered_world_geometry",
+      "renderdoc_bs2"
+    ],
+    "27": [
+      "decision_log_2026_06_27_dumpsync",
+      "openxr_runtime_armeyeblitdebugdump",
+      "pollstereoworldartifactprobehotkey"
+    ],
+    "28": [
+      "decision_log_blitcalibrate",
+      "decision_log_depthwindow",
+      "decision_log_linearizedepth"
+    ],
+    "29": [
+      "failure_registry_b1_3_b2_2_numeric_proof",
+      "failure_registry_b1_3_b2_2_temporal_stereo_bridge",
+      "hypotheses_b5_9_snap_turn_body_heading"
+    ],
+    "30": [
+      "hypotheses_b2_1_b2_2_private_replay",
+      "hypotheses_h_b3_2",
+      "hypotheses_h_b3_3"
+    ],
+    "31": [
+      "hypotheses_h_b2_6",
+      "hypotheses_h_b5_3",
+      "hypotheses_h_b5_4"
+    ],
+    "32": [
+      "hypotheses_wrench_pickup_vs_equipped",
+      "renderdoc_bs3",
+      "renderdoc_bs4_wrench"
+    ],
+    "33": [
+      "matrix_t_eye",
+      "part_c_hmd_translation",
+      "v0_3_122_native6dof"
+    ],
+    "34": [
+      "re_findings_awrench_process_collision_contacts",
+      "re_findings_awrench_tick_collision_phantom",
+      "re_findings_awrench_vftable"
+    ],
+    "35": [
+      "stereo_world_full_pass_mono_accumulation",
+      "stereo_world_matrix_stereo_proof",
+      "stereo_world_screen_space_srv_fallback"
+    ],
+    "36": [
+      "ahands_vtable",
+      "ashock_player_controller"
+    ],
+    "37": [
+      "ashockplayercontroller_updatefocus",
+      "decision_log_2026_07_17_focusprobe"
+    ],
+    "38": [
+      "bioshock1_bsm_bulk_data_loader",
+      "bioshock1_bsm_fmipmap"
+    ],
+    "39": [
+      "bioshock_awrench",
+      "mod_0_3_170"
+    ],
+    "40": [
+      "bioshockvr_code_architecture_handsaimik",
+      "bioshockvr_code_architecture_weaponviewmodelpose"
+    ],
+    "41": [
+      "build_0_3_144_hudquad",
+      "hypotheses_hud_ui_lane"
+    ],
+    "42": [
+      "build_0_3_1_openxr1160",
+      "hypotheses_openxr_bootstrap"
+    ],
+    "43": [
+      "camera_looking_fields",
+      "engine_camera_analyzer"
+    ],
+    "44": [
+      "cyan_shell_artifact",
+      "source_scissor_preservation"
+    ],
+    "45": [
+      "decision_log_2026_06_27_compactc10noskip",
+      "decision_log_2026_06_27_depthpairdump"
+    ],
+    "46": [
+      "decision_log_2026_07_01_bspexact",
+      "decision_log_2026_07_01_exactsrv"
+    ],
+    "47": [
+      "decision_log_2026_07_01_srvfamily",
+      "decision_log_2026_07_01_srvfamily_revert"
+    ],
+    "48": [
+      "decision_log_2026_07_19_rigid_foreground",
+      "failure_registry_b3_7_shadow_mask"
+    ],
+    "49": [
+      "depth_reprojection",
+      "stereo_world_mutation"
+    ],
+    "50": [
+      "failure_registry_b1_3_b2_2_eye_blit_proof",
+      "failure_registry_b1_3_b2_2_eye_target_scout"
+    ],
+    "51": [
+      "failure_registry_b1_3_b2_2_ps_null_mono_fallback",
+      "hypotheses_b3_7_projected_light_defect"
+    ],
+    "52": [
+      "game_bridge",
+      "openxr_smoke_test"
+    ],
+    "53": [
+      "head_pose_controls",
+      "openxr_local_space_reset"
+    ],
+    "54": [
+      "hypotheses_b1_3_b2_2_matrix_replay",
+      "hypotheses_b1_4_b2_1_b2_2_full_eye"
+    ],
+    "55": [
+      "hypotheses_b1_4",
+      "hypotheses_h_b1_8_b6_3"
+    ],
+    "56": [
+      "hypotheses_b1_7_b1_8",
+      "hypotheses_h_b1_7_shadow"
+    ],
+    "57": [
+      "hypotheses_b2_1_b2_2_scene_node",
+      "hypotheses_b2_1_engine_camera"
+    ],
+    "58": [
+      "hypotheses_b3_15_aimik_torso_model",
+      "hypotheses_b3_3_foreground_lighting_companions"
+    ],
+    "59": [
+      "hypotheses_h_b3_4",
+      "hypotheses_h_b3_5_b3_13"
+    ],
+    "60": [
+      "hypotheses_h_b5_2",
+      "hypotheses_h_b5_8"
+    ],
+    "61": [
+      "hypotheses_native_aimik_lifecycle",
+      "re_findings_ahands_chain"
+    ],
+    "62": [
+      "hypotheses_openxr_sized_targets",
+      "project_phases_b2"
+    ],
+    "63": [
+      "hypotheses_private_eye_targets",
+      "project_phases_b1"
+    ],
+    "64": [
+      "hypotheses_ps_null_holes",
+      "re_findings_shadow_pass"
+    ],
+    "65": [
+      "mono_subrect_remap",
+      "screen_space_srv_fallback"
+    ],
+    "66": [
+      "part_b_hmd_rotation",
+      "send_input_injection"
+    ],
+    "67": [
+      "phase2_ui_hud_pc_swf",
+      "phase2_ui_openxr_hud_quad"
+    ],
+    "68": [
+      "project_phases_b3",
+      "re_findings_wrench_pivot"
+    ],
+    "69": [
+      "re_findings_0_3_29_numericproof",
+      "re_findings_0_3_30_temporalstereo"
+    ],
+    "70": [
+      "re_findings_0_3_39_eyetargetscout",
+      "re_findings_0_3_40_eyetargetbind"
+    ],
+    "71": [
+      "re_findings_ashock_player_controller",
+      "re_findings_fplayer_scene_node"
+    ],
+    "72": [
+      "re_findings_ashockplayer_vftable",
+      "re_findings_int_aactorexec_move_smooth"
+    ],
+    "73": [
+      "re_findings_aweapon_exec_get_perfect_fire_start",
+      "re_findings_uattackability_exec_get_perfect_fire_start"
+    ],
+    "74": [
+      "re_findings_xinput_get_state",
+      "re_findings_xinput_set_state"
+    ],
+    "75": [
+      "aactor_move_smooth"
+    ],
+    "76": [
+      "active_baseline_md"
+    ],
+    "77": [
+      "address_registry_md"
+    ],
+    "78": [
+      "ashock_hud_vtable"
+    ],
+    "79": [
+      "ashock_player_controller_update_focus"
+    ],
+    "80": [
+      "ashockhud_renderhealthbars"
+    ],
+    "81": [
+      "awrench"
+    ],
+    "82": [
+      "awrench_tickcollisionphantom"
+    ],
+    "83": [
+      "bioshock1_bsm_ulevel"
+    ],
+    "84": [
+      "bioshock_vr_0_3_35"
+    ],
+    "85": [
+      "bioshock_vr_0_3_39"
+    ],
+    "86": [
+      "build_history_0_3_103_vrfov_eye"
+    ],
+    "87": [
+      "build_history_0_3_105_frustumlock"
+    ],
+    "88": [
+      "build_history_0_3_160_inputshadow320"
+    ],
+    "89": [
+      "build_history_0_3_80_stereotoggle"
+    ],
+    "90": [
+      "build_history_0_3_81_priorarthints"
+    ],
+    "91": [
+      "build_history_0_3_83_fallbackdepthab"
+    ],
+    "92": [
+      "build_history_0_3_85_fallbackfitprobe"
+    ],
+    "93": [
+      "build_history_0_3_87_dumpsync"
+    ],
+    "94": [
+      "build_history_0_3_89_depthpairdump"
+    ],
+    "95": [
+      "build_history_0_3_91_wvpcandidates"
+    ],
+    "96": [
+      "build_history_md"
+    ],
+    "97": [
+      "compact_wvp_lane"
+    ],
+    "98": [
+      "concept_calibrated_stereo"
+    ],
+    "99": [
+      "concept_private_hdr_producer"
+    ],
+    "100": [
+      "concept_stereo_world_discovery"
+    ],
+    "101": [
+      "current_state"
+    ],
+    "102": [
+      "decision_log"
+    ],
+    "103": [
+      "decision_log_2026_06_27_fallbackcolorpass"
+    ],
+    "104": [
+      "decision_log_2026_06_28_scale_srvrange"
+    ],
+    "105": [
+      "decision_log_2026_06_28_wvpcandidates"
+    ],
+    "106": [
+      "decision_log_2026_06_30_windowmatch"
+    ],
+    "107": [
+      "decision_log_2026_07_01_shaderpacket"
+    ],
+    "108": [
+      "decision_log_2026_07_02_vrfov_eye"
+    ],
+    "109": [
+      "decision_log_2026_07_10_unrealport"
+    ],
+    "110": [
+      "decision_log_2026_07_23_aimik_torso"
+    ],
+    "111": [
+      "draw_window_attribution"
+    ],
+    "112": [
+      "eye_resolution_scaling"
+    ],
+    "113": [
+      "failure_registry_b0_5_b1_3_3dmigoto_stacking"
+    ],
+    "114": [
+      "failure_registry_b1_3_b2_2_aspect_fill_zoom_trap"
+    ],
+    "115": [
+      "failure_registry_b1_3_b2_2_cbuffer_upload_wrapper"
+    ],
+    "116": [
+      "failure_registry_b1_3_b2_2_depth_reproject_aspect_naive"
+    ],
+    "117": [
+      "failure_registry_b1_3_b2_2_indexed_primitive_traffic"
+    ],
+    "118": [
+      "failure_registry_b2_2_yaw_normalization"
+    ],
+    "119": [
+      "failure_registry_b2_3_recenter_pitch_roll"
+    ],
+    "120": [
+      "failure_registry_b3_3_aimik_absolute"
+    ],
+    "121": [
+      "failure_registry_b3_3_aimik_allocation"
+    ],
+    "122": [
+      "failure_registry_b3_3_animation_suppression"
+    ],
+    "123": [
+      "failure_registry_b3_3_headbob_suppression"
+    ],
+    "124": [
+      "failure_registry_b5_11_local_origin"
+    ],
+    "125": [
+      "failure_registry_b5_12_physical_snapshots"
+    ],
+    "126": [
+      "failure_registry_b5_9_snap_turn"
+    ],
+    "127": [
+      "failure_registry_md"
+    ],
+    "128": [
+      "failure_registry_unrealport_scripts"
+    ],
+    "129": [
+      "future_hook_map_md"
+    ],
+    "130": [
+      "git_agent_brief_rules"
+    ],
+    "131": [
+      "hypotheses_b1_3_b2_2_centered"
+    ],
+    "132": [
+      "hypotheses_b1_3_b2_2_screendata"
+    ],
+    "133": [
+      "hypotheses_b2_11"
+    ],
+    "134": [
+      "hypotheses_b2_12_camera_modifier_identity"
+    ],
+    "135": [
+      "hypotheses_b2_1_b2_2_mono_compare"
+    ],
+    "136": [
+      "hypotheses_b2_1_clamp"
+    ],
+    "137": [
+      "hypotheses_b2_2_b2_3"
+    ],
+    "138": [
+      "hypotheses_b3_1"
+    ],
+    "139": [
+      "hypotheses_b3_7"
+    ],
+    "140": [
+      "hypotheses_b4_2"
+    ],
+    "141": [
+      "hypotheses_b4_5_b4_6"
+    ],
+    "142": [
+      "hypotheses_b7_openxr_velocity_swing"
+    ],
+    "143": [
+      "hypotheses_h_b1_9"
+    ],
+    "144": [
+      "hypotheses_h_b2_7_b2_8"
+    ],
+    "145": [
+      "hypotheses_h_b2_9_b2_10"
+    ],
+    "146": [
+      "hypotheses_h_b5_13"
+    ],
+    "147": [
+      "hypotheses_h_b5_9"
+    ],
+    "148": [
+      "hypotheses_h_b6_12"
+    ],
+    "149": [
+      "hypotheses_h_b6_1_b6_10"
+    ],
+    "150": [
+      "hypotheses_h_b6_2"
+    ],
+    "151": [
+      "hypotheses_temporal_openxr_cache"
+    ],
+    "152": [
+      "mod_0_3_168"
+    ],
+    "153": [
+      "native_arm_controller_aim_md"
+    ],
+    "154": [
+      "openxr_eye_blit_depth_reprojection"
+    ],
+    "155": [
+      "openxr_projection_contract"
+    ],
+    "156": [
+      "phase1_usage_0_3_136"
+    ],
+    "157": [
+      "phase1_usage_0_3_137"
+    ],
+    "158": [
+      "phase1_usage_0_3_138"
+    ],
+    "159": [
+      "phase1_usage_0_3_141"
+    ],
+    "160": [
+      "phase1_usage_0_3_142"
+    ],
+    "161": [
+      "phase1_usage_0_3_143"
+    ],
+    "162": [
+      "phase1_usage_0_3_144"
+    ],
+    "163": [
+      "phase1_usage_0_3_145"
+    ],
+    "164": [
+      "phase1_usage_0_3_146"
+    ],
+    "165": [
+      "phase1_usage_0_3_147"
+    ],
+    "166": [
+      "phase1_usage_0_3_148"
+    ],
+    "167": [
+      "phase1_usage_0_3_149"
+    ],
+    "168": [
+      "phase1_usage_0_3_150"
+    ],
+    "169": [
+      "phase1_usage_0_3_151"
+    ],
+    "170": [
+      "phase1_usage_0_3_152"
+    ],
+    "171": [
+      "phase1_usage_md"
+    ],
+    "172": [
+      "portrait_render_test"
+    ],
+    "173": [
+      "projection_fit_rows"
+    ],
+    "174": [
+      "projection_pcenter_world_scale"
+    ],
+    "175": [
+      "re_findings_0_3_18_routecallsite"
+    ],
+    "176": [
+      "re_findings_0_3_19_writestack"
+    ],
+    "177": [
+      "re_findings_0_3_20_routefamily"
+    ],
+    "178": [
+      "re_findings_0_3_21_familydigest"
+    ],
+    "179": [
+      "re_findings_0_3_22_familyprofile"
+    ],
+    "180": [
+      "re_findings_0_3_23_offsetconfirm"
+    ],
+    "181": [
+      "re_findings_0_3_24_windowguard"
+    ],
+    "182": [
+      "re_findings_0_3_25_pairpreflight"
+    ],
+    "183": [
+      "re_findings_0_3_26_eyedeltaplan"
+    ],
+    "184": [
+      "re_findings_0_3_28_clonetrace"
+    ],
+    "185": [
+      "re_findings_0_3_31_poseproof"
+    ],
+    "186": [
+      "re_findings_0_3_32_wideview"
+    ],
+    "187": [
+      "re_findings_0_3_33_wideeye"
+    ],
+    "188": [
+      "re_findings_0_3_34_sustainedwide"
+    ],
+    "189": [
+      "re_findings_0_3_35_directdraw"
+    ],
+    "190": [
+      "re_findings_0_3_41_eyeblitproof"
+    ],
+    "191": [
+      "re_findings_b0_3_d3d11"
+    ],
+    "192": [
+      "re_findings_b0_3_frida"
+    ],
+    "193": [
+      "re_findings_b0_3_ghidra"
+    ],
+    "194": [
+      "re_findings_b0_3_x32dbg"
+    ],
+    "195": [
+      "re_findings_b0_5_prior_art"
+    ],
+    "196": [
+      "re_findings_b1_2"
+    ],
+    "197": [
+      "re_findings_b1_3_b2_2_stereo_preflight"
+    ],
+    "198": [
+      "re_findings_b1_4"
+    ],
+    "199": [
+      "re_findings_b3_1_b4_1_electro_bolt"
+    ],
+    "200": [
+      "re_findings_bs3_rdc_eid_5477"
+    ],
+    "201": [
+      "re_findings_config_path"
+    ],
+    "202": [
+      "re_findings_xr_khr_composition_layer_depth"
+    ],
+    "203": [
+      "release_0_3_103_vrfov_eye"
+    ],
+    "204": [
+      "release_0_3_112_uevrlanes"
+    ],
+    "205": [
+      "release_0_3_115_viewrect"
+    ],
+    "206": [
+      "release_0_3_31_poseproof"
+    ],
+    "207": [
+      "render_view_provenance"
+    ],
+    "208": [
+      "test_checklists_b3_1"
+    ],
+    "209": [
+      "troubleshooting_no_image"
+    ],
+    "210": [
+      "user_guide_calibration"
+    ],
+    "211": [
+      "vr_presentation_6dof_spec"
+    ]
+  },
+  "cohesion": {
+    "0": 0.09090909090909091,
+    "1": 0.1,
+    "2": 0.10526315789473684,
+    "3": 0.15384615384615385,
+    "4": 0.15384615384615385,
+    "5": 0.16666666666666666,
+    "6": 0.2,
+    "7": 0.2857142857142857,
+    "8": 0.3333333333333333,
+    "9": 0.5,
+    "10": 0.4,
+    "11": 0.5,
+    "12": 0.5,
+    "13": 0.5,
+    "14": 0.5,
+    "15": 0.5,
+    "16": 0.5,
+    "17": 0.5,
+    "18": 0.5,
+    "19": 0.6666666666666666,
+    "20": 0.6666666666666666,
+    "21": 0.6666666666666666,
+    "22": 0.6666666666666666,
+    "23": 0.6666666666666666,
+    "24": 0.6666666666666666,
+    "25": 0.6666666666666666,
+    "26": 0.6666666666666666,
+    "27": 1.0,
+    "28": 0.6666666666666666,
+    "29": 0.6666666666666666,
+    "30": 0.6666666666666666,
+    "31": 0.6666666666666666,
+    "32": 0.6666666666666666,
+    "33": 0.6666666666666666,
+    "34": 0.6666666666666666,
+    "35": 0.6666666666666666,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0,
+    "200": 1.0,
+    "201": 1.0,
+    "202": 1.0,
+    "203": 1.0,
+    "204": 1.0,
+    "205": 1.0,
+    "206": 1.0,
+    "207": 1.0,
+    "208": 1.0,
+    "209": 1.0,
+    "210": 1.0,
+    "211": 1.0
+  },
+  "gods": [
+    {
+      "id": "bioshockvr_dll",
+      "label": "BioShockVR DLL",
+      "degree": 19
+    },
+    {
+      "id": "bioshockvr_injector",
+      "label": "BioShockVR Injector",
+      "degree": 7
+    },
+    {
+      "id": "vengeance_engine",
+      "label": "Vengeance Engine",
+      "degree": 5
+    },
+    {
+      "id": "mod_0_3_169",
+      "label": "BioShockVR 0.3.169",
+      "degree": 4
+    },
+    {
+      "id": "part_a_portrait_render",
+      "label": "Part A: Portrait Render Resolution",
+      "degree": 4
+    },
+    {
+      "id": "bioshock_materials_and_shaders_renderedmaterial",
+      "label": "RenderedMaterial",
+      "degree": 3
+    },
+    {
+      "id": "bioshock_materials_and_shaders_materialfactory",
+      "label": "Material Factory",
+      "degree": 3
+    },
+    {
+      "id": "bioshock_vr_0_3_33",
+      "label": "BioShockVR 0.3.33-wideeye",
+      "degree": 3
+    },
+    {
+      "id": "decision_log_0_3_46_stereoconvention",
+      "label": "Build 0.3.46-stereoconvention",
+      "degree": 3
+    },
+    {
+      "id": "build_0_3_35_directdraw",
+      "label": "Build 0.3.35-directdraw",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "s_shadow_mask",
+      "target": "stereo_world_probe",
+      "source_files": [
+        "projection-pcenter-findings.md",
+        "phase1-usage.md"
+      ],
+      "confidence": "AMBIGUOUS",
+      "relation": "semantically_similar_to",
+      "why": "ambiguous connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Native D3D11 Shadow Pass Architecture",
+      "target": "PS-Null Private Replay Artifacts",
+      "source_files": [
+        "RE_FINDINGS.md",
+        "HYPOTHESES.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "BioShockVR DLL",
+      "target": "BioshockHD.exe",
+      "source_files": [
+        "INSTALLATION.md",
+        "ADDRESS_REGISTRY.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `BioshockHD.exe` unexpectedly reaches hub `BioShockVR DLL`"
+    },
+    {
+      "source": "BioShockVR DLL",
+      "target": "AActor::RecreateActorAnimationMembers",
+      "source_files": [
+        "INSTALLATION.md",
+        "future-hook-map.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `AActor::RecreateActorAnimationMembers` unexpectedly reaches hub `BioShockVR DLL`"
+    },
+    {
+      "source": "BioShockVR DLL",
+      "target": "AWeapon::GetPerfectFireStart",
+      "source_files": [
+        "INSTALLATION.md",
+        "future-hook-map.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `AWeapon::GetPerfectFireStart` unexpectedly reaches hub `BioShockVR DLL`"
+    }
+  ],
+  "tokens": {
+    "input": 524005,
+    "output": 67062
+  }
+}

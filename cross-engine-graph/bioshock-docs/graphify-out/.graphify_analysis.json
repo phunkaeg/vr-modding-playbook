@@ -1,0 +1,1167 @@
+{
+  "communities": {
+    "0": [
+      "engine_findings_bioshock1_bsm_bsm_format",
+      "engine_findings_bioshock1_bsm_compactindex_object_ref",
+      "engine_findings_bioshock1_bsm_epic_licensee_version",
+      "engine_findings_bioshock1_bsm_fbspnode",
+      "engine_findings_bioshock1_bsm_fbspsurf",
+      "engine_findings_bioshock1_bsm_fleaf",
+      "engine_findings_bioshock1_bsm_fname_nameindex_number",
+      "engine_findings_bioshock1_bsm_fnameentry_qword_flags",
+      "engine_findings_bioshock1_bsm_fobjectexport",
+      "engine_findings_bioshock1_bsm_fobjectimport",
+      "engine_findings_bioshock1_bsm_fpackagefilesummary",
+      "engine_findings_bioshock1_bsm_fstring_reversed_convention",
+      "engine_findings_bioshock1_bsm_fvert",
+      "engine_findings_bioshock1_bsm_fzoneproperties",
+      "engine_findings_bioshock1_bsm_light_actor_quirks",
+      "engine_findings_bioshock1_bsm_objectflags",
+      "engine_findings_bioshock1_bsm_package_tag",
+      "engine_findings_bioshock1_bsm_serial_boundary_protection",
+      "engine_findings_bioshock1_bsm_state_frame",
+      "engine_findings_bioshock1_bsm_tagged_property_serialization",
+      "engine_findings_bioshock1_bsm_tlazyarray_bulk_data",
+      "engine_findings_bioshock1_bsm_umodel_bsp",
+      "engine_findings_bioshock1_bsm_upolys_fpoly",
+      "engine_findings_bioshock1_bsm_ustaticmesh",
+      "engine_findings_bioshock1_bsm_utexture_serialize",
+      "engine_findings_bioshock1_bsm_vengeance_object_header",
+      "engine_findings_bioshock1_bsm_zlib_chunk_compression",
+      "engine_findings_bioshock_bulk_files_and_catalog_blk_format",
+      "engine_findings_bioshock_bulk_files_and_catalog_catalog_bdc",
+      "engine_findings_bioshock_bulk_files_and_catalog_dynamicbulkfiletextures",
+      "engine_findings_bioshock_bulk_files_and_catalog_fname_number_text_rule",
+      "engine_findings_bioshock_bulk_files_and_catalog_texture_mip_splitting",
+      "engine_findings_bioshock_reading_textures_blocksize_formula",
+      "engine_findings_bioshock_reading_textures_etextureformat",
+      "engine_findings_bioshock_reading_textures_mip_tail_layout",
+      "engine_findings_bioshock_reading_textures_objheader",
+      "engine_findings_bioshock_reading_textures_utexture_object",
+      "engine_findings_bioshock_texture_lightmap_format_bsp_lightmap",
+      "engine_findings_bioshock_texture_lightmap_format_flightmapindex",
+      "engine_findings_bioshock_texture_lightmap_format_flightmaplight",
+      "engine_findings_bioshock_texture_lightmap_format_flightmaptexture",
+      "engine_findings_bioshock_texture_lightmap_format_lightmap_uv_math",
+      "engine_findings_bioshock_texture_lightmap_format_luminance_swizzle"
+    ],
+    "1": [
+      "decision_log_0_3_149_focusprobe",
+      "decision_log_0_3_166_rigid_foreground_calibration",
+      "decision_log_0_3_63_vscompanions",
+      "decision_log_0_3_64_coherencescout",
+      "decision_log_0_3_65_perfab",
+      "decision_log_0_3_66_compact320",
+      "decision_log_0_3_67_shadowmaskab",
+      "decision_log_0_3_68_launchinject",
+      "decision_log_0_3_69_eyedump",
+      "decision_log_0_3_70_dumphotkey",
+      "decision_log_0_3_71_artifactprobe",
+      "decision_log_0_3_72_srvfilter",
+      "decision_log_0_3_73_compact320gate",
+      "decision_log_0_3_74_compactscan",
+      "decision_log_0_3_75_artifactids",
+      "decision_log_0_3_76_psnulldepthskip",
+      "decision_log_0_3_77_psnulllogonly",
+      "decision_log_0_3_78_psnullmonodepth",
+      "decision_log_0_3_79_psnullstrict",
+      "decision_log_0_3_80_stereotoggle",
+      "decision_log_0_3_81_priorarthints",
+      "decision_log_0_3_82_compactpsnullskip",
+      "decision_log_0_3_83_fallbackdepthab",
+      "decision_log_0_3_84_compareguard",
+      "decision_log_0_3_85_fallbackfitprobe",
+      "decision_log_0_3_86_compactc10apply",
+      "decision_log_0_3_87_dumpsync",
+      "decision_log_0_3_88_compactc10noskip",
+      "decision_log_aimik_torso_frame",
+      "decision_log_centered_frusta_promotion",
+      "decision_log_compact_wvp_layout",
+      "decision_log_engine_findings_integration",
+      "decision_log_shadow_lifecycle_trace",
+      "decision_log_shadow_mask_producer",
+      "user_test_log_compact_psnull_skip_theory",
+      "user_test_log_compact_skip_falsified_red_herring",
+      "user_test_log_directional_light_negative_scale_guard_bug",
+      "user_test_log_floor_wrench_viewmodel_misclassification",
+      "user_test_log_grip_aimik_bundling_regression",
+      "user_test_log_neutral_shadow_mask_regression",
+      "user_test_log_shadow_mask_ps_null_false_positive",
+      "user_test_log_snap_turn_mouse_injection_failure"
+    ],
+    "2": [
+      "build_history_v0357_matrixstereoproof",
+      "build_history_v0358_nativevs_pcenter",
+      "build_history_v0359_nativevs_isolate",
+      "build_history_v0360_pcenterfitprobe",
+      "build_history_v0361_screendatapcenter",
+      "build_history_v0362_matrixappliedtrace",
+      "build_history_v0363_vscompanions",
+      "re_findings_calibrated_stereo_sign_convention",
+      "re_findings_clone_bind_proof",
+      "re_findings_compact_wvp_scan_c10",
+      "re_findings_depth_color_om_state_dump",
+      "re_findings_depth_reprojection_linearized",
+      "re_findings_direct_stereo_proof",
+      "re_findings_engine_findings_lightmap_bsm_docs",
+      "re_findings_engine_findings_materials_shaders_doc",
+      "re_findings_eye_target_scout_bind_present",
+      "re_findings_eyeblit_calibration_modes",
+      "re_findings_fullpass_mono_accumulation",
+      "re_findings_fun_11089a80_renderer_state_flush",
+      "re_findings_fun_110c2f30_cbuffer_upload_wrapper",
+      "re_findings_indexed_primitive_batch_fun_1107da30",
+      "re_findings_layer_model_batch_fun_10f77db0",
+      "re_findings_material_batch_fun_10f76e30",
+      "re_findings_numeric_proof",
+      "re_findings_pcenter_matrix_stereo_proof",
+      "re_findings_pose_wide_proof",
+      "re_findings_ps_null_depth_artifact_investigation",
+      "re_findings_reference_stereo_fix_wip_parse",
+      "re_findings_screen_space_srv_fallback_family_selectors",
+      "re_findings_screendatatocamera_offset_confirmation",
+      "re_findings_stereo_lane_route_discovery_pipeline",
+      "re_findings_temporal_stereo_bridge",
+      "re_findings_vrpivot_fov_eye_pivot",
+      "re_findings_vs_companion_constants",
+      "re_findings_writestack_route_family_classifier",
+      "re_findings_wvp_candidate_promotion"
+    ],
+    "3": [
+      "decision_log_0_3_32_wideview",
+      "decision_log_0_3_33_wideeye",
+      "decision_log_0_3_34_sustainedwide",
+      "decision_log_0_3_35_directdraw",
+      "decision_log_0_3_36_stalefallback",
+      "decision_log_0_3_37_xractivity",
+      "decision_log_0_3_38_sustainedproof",
+      "decision_log_0_3_39_eyetargetscout",
+      "decision_log_0_3_40_eyetargetbind",
+      "decision_log_0_3_41_eyeblitproof",
+      "decision_log_0_3_42_privatehdrblit",
+      "decision_log_0_3_43_sustainedprivatehdr",
+      "decision_log_0_3_44_privateproducer",
+      "decision_log_0_3_45_calibratedstereo",
+      "decision_log_0_3_46_stereoconvention",
+      "decision_log_0_3_47_localeye",
+      "decision_log_0_3_48_signflip",
+      "decision_log_0_3_49_splitsigns",
+      "decision_log_0_3_50_stablewide",
+      "decision_log_0_3_51_monoisolate",
+      "decision_log_0_3_52_depthreproject",
+      "decision_log_0_3_53_blitcalibrate",
+      "decision_log_0_3_54_depthwindow",
+      "decision_log_0_3_55_linearizedepth",
+      "decision_log_0_3_56_depthdebug",
+      "decision_log_0_3_57_matrixstereoproof",
+      "decision_log_0_3_58_nativevs_pcenter",
+      "decision_log_0_3_59_nativevs_isolate",
+      "decision_log_0_3_60_pcenterfitprobe",
+      "decision_log_0_3_61_screendatapcenter",
+      "decision_log_0_3_62_matrixappliedtrace",
+      "decision_log_p_center_projection",
+      "decision_log_screendatatocamera_constant"
+    ],
+    "4": [
+      "build_history_v03102_vrpivotfill",
+      "build_history_v03103_vrfoveye",
+      "build_history_v03104_portrait",
+      "build_history_v03107_shellattrib",
+      "build_history_v03108_shelltrace",
+      "build_history_v03109_shell_ordinal_bisection",
+      "build_history_v03112_uevrlanes",
+      "build_history_v03113_view_provenance_epoch_tracking",
+      "build_history_v03115_viewrect_rootcause",
+      "build_history_v03116_fullfov_monocompare",
+      "build_history_v03118_cameraanalyzer",
+      "build_history_v03119_cameraidentity",
+      "build_history_v03120_nativeorientation",
+      "build_history_v03121_orientationstability",
+      "build_history_v03122_native6dof",
+      "build_history_v03123_6dofaxisfix",
+      "build_history_v03124_horizontalbasis",
+      "build_history_v03125_recenterbasis3x",
+      "build_history_v03126_engine_camera_module_refactor",
+      "build_history_v03129_viewcompat",
+      "build_history_v03130_vrlifecycle",
+      "build_history_v03131_renderfastpath",
+      "build_history_v03157_calibration",
+      "build_history_v0393_attribution_isolate",
+      "build_history_v0395_lane_isolation_tools",
+      "re_findings_camera_projection_strings",
+      "re_findings_shell_live_probe_boundary",
+      "re_findings_unrealport_reference_review"
+    ],
+    "5": [
+      "code_architecture_d3d11hooks",
+      "code_architecture_god_file_refactor_rationale",
+      "code_architecture_hookconfig",
+      "code_architecture_openxrruntime",
+      "code_architecture_renderclassification",
+      "code_architecture_renderdiagnostics",
+      "code_architecture_renderstatetracker",
+      "code_architecture_stereomatrixbuffercache",
+      "code_architecture_stereoprojection",
+      "code_architecture_stereoreplay",
+      "current_state_bs4_wrench_capture",
+      "current_state_projected_light_gobo_defect",
+      "current_state_renderdoc_address_space_crash",
+      "current_state_reusable_matrix_buffer_cache",
+      "current_state_vr_primary_desktop_foreground_suppression",
+      "current_state_wrench_arm_shared_pivot_0_3_162",
+      "failure_registry_full_target_scissor_shell_bug",
+      "failure_registry_loose_pickup_prop_misclassification",
+      "failure_registry_neutral_cutout_diagnosis_ban",
+      "git_agent_brief_gitignore_policy",
+      "hypotheses_p_center_screendatatocamera_extraction",
+      "hypotheses_stereo_route_layer_model_batch",
+      "hypotheses_stereo_route_material_batch",
+      "hypotheses_uevr_prior_art",
+      "hypotheses_vengeance_engine_prior_art",
+      "hypotheses_wrench_pickup_vs_equipped_distinct_lanes",
+      "next_chat_handover_rendering_architecture_flow",
+      "test_checklists_b3_1_viewmodel_probe_checklist"
+    ],
+    "6": [
+      "address_registry_bs_rendersceneshadowcontexts",
+      "address_registry_constructd3d11renderpassbundle",
+      "address_registry_fobjectshadowdepthpass11_uploadconstants",
+      "address_registry_fshadowdepthstencilpass11_uploadconstants",
+      "address_registry_fshadowdepthtestpass11_uploadconstants",
+      "address_registry_fshadowmaskscenecontext_render",
+      "current_state_0_3_191_internald3dguard",
+      "current_state_0_3_192_layerrestore",
+      "current_state_0_3_193_motioncompguard",
+      "current_state_internal_d3d_call_guard",
+      "current_state_openxr_startup_visibility_handshake",
+      "current_state_shadow_ownership_redesign_0_3_187",
+      "current_state_virtual_desktop_fail_fast_crash",
+      "failure_registry_cached_shader_null_misinterpretation",
+      "failure_registry_live_dsv_shadow_mask_producer_ban",
+      "failure_registry_motion_compensation_layer_reenable_ban",
+      "failure_registry_openxr_internal_recursion_ban",
+      "failure_registry_ps_null_srv_stale_binding_trap",
+      "failure_registry_shadow_consumer_insufficient_evidence",
+      "failure_registry_shadow_test_first16_rows_insufficiency",
+      "failure_registry_stale_session_state_before_wait_ban",
+      "failure_registry_zero_layer_comfort_blackout_ban",
+      "hypotheses_center_depth_attenuation_mask",
+      "hypotheses_compact_320_byte_shadow_layout",
+      "project_phases_b1_7_per_eye_shadow_screen_effects",
+      "project_phases_b5_9_snap_turn",
+      "project_phases_tracker"
+    ],
+    "7": [
+      "build_history_0_3_100_exactsrv",
+      "build_history_0_3_101_bspexact",
+      "build_history_0_3_103_vrfov_eye",
+      "build_history_0_3_105_frustumlock",
+      "build_history_0_3_106_skyfarfog",
+      "build_history_0_3_68_launchinject",
+      "build_history_0_3_69_eyedump",
+      "build_history_0_3_70_dumphotkey",
+      "build_history_0_3_71_artifactprobe",
+      "build_history_0_3_72_srvfilter",
+      "build_history_0_3_87_dumpsync",
+      "build_history_0_3_98_srvfamily",
+      "build_history_0_3_99_shaderpacket",
+      "decision_log_add_draw_window_attribution",
+      "decision_log_ctrl_f9_projection_stable_compare",
+      "decision_log_direct_private_replay_shell_suppression",
+      "decision_log_disable_screen_space_srv_fallback",
+      "decision_log_force_portrait_render",
+      "decision_log_isolate_cyan_shell_by_lane",
+      "decision_log_lane_isolation_visually_unambiguous",
+      "decision_log_pivot_shader_triage_to_vr_presentation",
+      "decision_log_preserve_full_eye_disable_projection_fit",
+      "decision_log_preserve_source_viewport_scissor",
+      "decision_log_promote_view_rectangle_full_fov",
+      "decision_log_render_view_provenance_isolation",
+      "decision_log_shader_layout_lane_isolation",
+      "decision_log_shell_search_ordinal_bisection"
+    ],
+    "8": [
+      "engine_findings_bioshock1_bsm_class_rollup",
+      "engine_findings_bioshock1_bsm_dyn_props_sidecar",
+      "engine_findings_bioshock1_bsm_havok_rigidbody_gap",
+      "engine_findings_bioshock1_bsm_material_flattening",
+      "engine_findings_bioshock1_bsm_native_shells",
+      "engine_findings_bioshock1_bsm_rollup_txt",
+      "engine_findings_bioshock1_bsm_skeletalmesh_gap",
+      "engine_findings_bioshock1_bsm_type_safety_filter",
+      "engine_findings_bioshock1_bsm_uclass_preload_skip",
+      "engine_findings_bioshock1_bsm_ulevel",
+      "engine_findings_bioshock_materials_and_shaders_ematerialtype",
+      "engine_findings_bioshock_materials_and_shaders_fluidshader_shell",
+      "engine_findings_bioshock_materials_and_shaders_layeredshader_shell",
+      "engine_findings_bioshock_materials_and_shaders_literal_macro",
+      "engine_findings_bioshock_materials_and_shaders_maskmaterial_struct",
+      "engine_findings_bioshock_materials_and_shaders_material_class_tree",
+      "engine_findings_bioshock_materials_and_shaders_materialfactory_bitmapmaterial",
+      "engine_findings_bioshock_materials_and_shaders_materialfactory_shader",
+      "engine_findings_bioshock_materials_and_shaders_mtb_texture_binder",
+      "engine_findings_bioshock_materials_and_shaders_shader_material_class",
+      "engine_findings_bioshock_materials_and_shaders_shadercache_pcs",
+      "engine_findings_bioshock_materials_and_shaders_shadercache_pcs10",
+      "engine_findings_bioshock_materials_and_shaders_shaders_spk",
+      "engine_findings_bioshock_materials_and_shaders_shadertag"
+    ],
+    "9": [
+      "build_history_0_3_60_pcenterfitprobe",
+      "build_history_0_3_61_screendatapcenter",
+      "build_history_0_3_63_vscompanions",
+      "build_history_0_3_64_coherencescout",
+      "build_history_0_3_65_perfab",
+      "build_history_0_3_66_compact320",
+      "build_history_0_3_67_shadowmaskab",
+      "build_history_0_3_73_compact320gate",
+      "build_history_0_3_74_compactscan",
+      "build_history_0_3_75_artifactids",
+      "build_history_0_3_76_psnulldepthskip",
+      "build_history_0_3_77_psnulllogonly",
+      "build_history_0_3_78_psnullmonodepth",
+      "build_history_0_3_79_psnullstrict",
+      "build_history_0_3_80_stereotoggle",
+      "build_history_0_3_81_priorarthints",
+      "build_history_0_3_82_compactpsnullskip",
+      "build_history_0_3_88_compactc10noskip",
+      "build_history_0_3_89_depthpairdump",
+      "build_history_0_3_90_fallbackcolorpass",
+      "build_history_0_3_91_wvpcandidates",
+      "build_history_0_3_92_scale_srvrange"
+    ],
+    "10": [
+      "re_findings_3dmigoto_reference_package",
+      "re_findings_bs2_rdc",
+      "re_findings_bs3_rdc",
+      "re_findings_bs4_wrench_rdc",
+      "re_findings_cbuffer_lanes_576_832",
+      "re_findings_cyan_shell_defect",
+      "re_findings_fobjectshadowdepthpass11",
+      "re_findings_fshadowdepthstencilpass11",
+      "re_findings_fshadowdepthtestpass11",
+      "re_findings_fshadowmaskscenecontext",
+      "re_findings_localeyepos",
+      "re_findings_p_center",
+      "re_findings_renderdoc_allocation_crash",
+      "re_findings_screendatatocamera",
+      "re_findings_screentransform",
+      "re_findings_shadow_mask_producer_consumer",
+      "re_findings_shadowdepthtestpass11_uploadconstants",
+      "re_findings_source_scissor_defect",
+      "re_findings_stereo_world_matrix_replay",
+      "re_findings_ue3_fix_djrk",
+      "re_findings_worldviewproj",
+      "re_findings_wtozscaleandbias"
+    ],
+    "11": [
+      "address_registry_ashockplayercontroller_updatefocus",
+      "address_registry_ashockplayercontroller_vftable",
+      "address_registry_fplayerscenenode_vftable",
+      "code_architecture_compatibilityreport",
+      "code_architecture_engineintegration",
+      "code_architecture_headposecontrols",
+      "code_architecture_packaging",
+      "code_architecture_playercalibration",
+      "compatibility_host_report",
+      "compatibility_virtual_desktop_runtime",
+      "current_state_snap_turn_body_yaw_ownership",
+      "failure_registry_compatibility_from_inventory_alone_ban",
+      "failure_registry_dirty_build_packaging_ban",
+      "failure_registry_head_pose_yaw_bias_incomplete_snap",
+      "failure_registry_local_space_persistent_floor_ban",
+      "failure_registry_long_synthetic_stick_pulse_ban",
+      "failure_registry_recenter_pitch_roll_leveling_ban",
+      "hypotheses_snap_turn_native_yaw_owner",
+      "installation_calibration_script",
+      "installation_install_or_update_script",
+      "installation_profile_tool"
+    ],
+    "12": [
+      "build_history_v03137_shadowviewrect_scout",
+      "build_history_v03159_shadowmaskreplay",
+      "build_history_v03161_inputrecenter_shadowbind",
+      "build_history_v03162_inputlatch_sharedpivot",
+      "build_history_v03163_worldhorizon_shadowviewport",
+      "build_history_v03164_handscensus",
+      "build_history_v03165_idlesuppress_shadowresolve",
+      "build_history_v03166_idleposefreeze",
+      "build_history_v03173_shadowautopsy",
+      "build_history_v03174_shadowcontract",
+      "build_history_v03175_shadowownership_stalecenterdepth",
+      "build_history_v03176_foregroundownership",
+      "build_history_v03177_crashcontainment",
+      "build_history_v03187_shadowownership_producer",
+      "build_history_v03188_blackprojection",
+      "re_findings_grip_pivot_controller_absolute_position",
+      "re_findings_private_vs_center_depth_ownership_autopsy",
+      "re_findings_projected_light_mask_shadowdepthtestps_contract",
+      "re_findings_shadow_scout_live_probe",
+      "re_findings_shadowdepthtestps_uploadconstants_rva",
+      "re_findings_ss2vr_weapon_hmd_bleed_lesson"
+    ],
+    "13": [
+      "decision_log_0_3_100_exactsrv",
+      "decision_log_0_3_101_bspexact",
+      "decision_log_0_3_103_vrfov_eye",
+      "decision_log_0_3_89_depthpairdump",
+      "decision_log_0_3_90_fallbackcolorpass",
+      "decision_log_0_3_91_wvpcandidates",
+      "decision_log_0_3_92_scale_srvrange",
+      "decision_log_0_3_97_windowmatch",
+      "decision_log_0_3_98_srvfamily",
+      "decision_log_0_3_99_shaderpacket",
+      "decision_log_unrealport_reference",
+      "user_test_log_indexed_primitive_fallback_regression",
+      "user_test_log_shell_fix_confirmed",
+      "user_test_log_shell_multiview_merge_theory",
+      "user_test_log_shell_ordinal_band_misdiagnosis",
+      "user_test_log_shell_view_provenance_falsifies_multiview",
+      "user_test_log_shell_viewport_scissor_bug_root_cause",
+      "user_test_log_stale_onedrive_config_mismatch",
+      "user_test_log_startup_only_log_fragment_recurring",
+      "user_test_log_wvp_candidate_alternate_start_success",
+      "user_test_log_xinput_disconnect_device_flapping"
+    ],
+    "14": [
+      "build_history_v03143_reference_reticle",
+      "build_history_v03144_hudquad",
+      "build_history_v03145_depthperf",
+      "build_history_v03146_physicalcrouch",
+      "build_history_v03147_configprofiles",
+      "build_history_v03151_wrenchprobe",
+      "build_history_v03169_nativearmaim",
+      "build_history_v03170_wrenchguard",
+      "build_history_v03171_armshading",
+      "build_history_v03172_armhandshake",
+      "build_history_v03178_enginecensus",
+      "build_history_v03180_viewmodel_regression_recovery",
+      "build_history_v03183_gripyaw_shadowmask_ab_saga",
+      "build_history_v03184_vrprimaryfg",
+      "build_history_v03185_ownedsnap",
+      "build_history_v03186_bodysnap",
+      "re_findings_ashockplayer_ahands_field_offsets",
+      "re_findings_awrench_vftable_slot76",
+      "re_findings_hands_aimik_engine_census",
+      "re_findings_hud_crosshair_attribution"
+    ],
+    "15": [
+      "address_registry_aactor_movesmooth",
+      "address_registry_ahands_vftable",
+      "address_registry_aimiktargettracker_constructor",
+      "address_registry_ashockplayer_vftable",
+      "address_registry_awrench_processcollisioncontacts",
+      "address_registry_awrench_tickcollisionphantom",
+      "address_registry_awrench_vftable",
+      "address_registry_skeletoninstance_setanimationweight",
+      "code_architecture_handsaimik",
+      "code_architecture_handsanimationprobe",
+      "current_state_authored_idle_pose_freeze_0_3_166",
+      "current_state_engine_object_census_0_3_178",
+      "current_state_native_aimik_lifecycle",
+      "current_state_physical_wrench_swing_classifier",
+      "failure_registry_animation_stop_ban",
+      "failure_registry_attach_mode_aimik_placement_combo_regression",
+      "failure_registry_manual_aimik_allocation_ban",
+      "failure_registry_velocity_to_damage_ban",
+      "hypotheses_torso_space_aimik_target_model"
+    ],
+    "16": [
+      "decision_log_auto_build_after_decisive_triage",
+      "decision_log_bridge_flat_image_before_projection",
+      "decision_log_copy_ss2vr_structure",
+      "decision_log_default_capture_safe_mode",
+      "decision_log_prioritize_stereo_6dof_over_gamma",
+      "decision_log_promote_numeric_proof_temporal_bridge",
+      "decision_log_promote_openxr_smoke_confirmed",
+      "decision_log_promote_wide_proof_balanced_temporal_eye",
+      "decision_log_prove_openxr_before_stereo_or_hand_control",
+      "decision_log_public_vr_prior_art_not_source",
+      "decision_log_start_d3d11_proof_not_camera_patch",
+      "decision_log_stereo_world_preflight_before_mutation",
+      "decision_log_treat_0_3_32_log_config_missed_rerun",
+      "decision_log_treat_ui_weapon_world_separate_lanes",
+      "decision_log_use_api_vtable_hooks",
+      "decision_log_use_downloaded_stereo_fixes_as_reference",
+      "decision_log_use_frida_readonly_scout"
+    ],
+    "17": [
+      "re_findings_ahands",
+      "re_findings_aimiktargettracker",
+      "re_findings_ashockplayer",
+      "re_findings_ashockplayercontroller",
+      "re_findings_awrench",
+      "re_findings_awrench_processcollisioncontacts",
+      "re_findings_awrench_tickcollisionphantom",
+      "re_findings_execmovesmooth_worker",
+      "re_findings_fplayerscenenode",
+      "re_findings_getcombinedcameraanimationsfovscale",
+      "re_findings_headbob_modifier",
+      "re_findings_ltwojointsolver",
+      "re_findings_recreateactoranimationmembers",
+      "re_findings_scenenode_analyzer_hook",
+      "re_findings_scenenode_projection_builder",
+      "re_findings_skeletoninstance",
+      "re_findings_ugameeng_scenenode_builder"
+    ],
+    "18": [
+      "future_hook_map_fcamerascenenode_constructor",
+      "future_hook_map_ugameengine_scenenode_builder",
+      "phase1_usage_0_3_119_camera_identity_test",
+      "phase1_usage_openxr_eye_blit_private_present_proof",
+      "uevr_prior_art_analyzer_first_re",
+      "uevr_prior_art_engine_hook_target_classes",
+      "uevr_prior_art_pose_timing",
+      "uevr_prior_art_rendering_mode_taxonomy",
+      "uevr_prior_art_runtime_render_separation",
+      "uevr_prior_art_uevr_project",
+      "vr_presentation_6dof_spec_part_b_hmd_rotation_mouse_injection"
+    ],
+    "19": [
+      "fov_frustum_foundation_3dmigoto_layout",
+      "phase1_usage_0_3_144_isolated_hud_quad",
+      "phase2_ui_hud_depth_aware_lane_prior_art",
+      "phase2_ui_hudquad_composition_path",
+      "phase2_ui_reference_reticle",
+      "reference_stereo_fix_analysis_hud_crosshair_override",
+      "reference_stereo_fix_analysis_ue3_regex_fix_strategy",
+      "reference_stereo_fix_analysis_wip1_package",
+      "reference_stereo_fix_analysis_wip_vs_layout"
+    ],
+    "20": [
+      "decision_log_begin_native_yaw_pitch",
+      "decision_log_correct_native_6dof_signs",
+      "decision_log_extend_scene_node_view_6dof",
+      "decision_log_extract_headpose_controls",
+      "decision_log_optimize_matrix_replay_plumbing",
+      "decision_log_promote_camera_re_scene_node_analyzer",
+      "decision_log_reversible_vr_lifecycle_eye_resolution",
+      "decision_log_separate_camera_range_projection_compat"
+    ],
+    "21": [
+      "build_history_0_3_160_inputshadow320",
+      "build_history_0_3_167_gripplacement",
+      "build_history_0_3_168_shadowlifecycle",
+      "decision_log_compatibility_evidence_before_matrix",
+      "decision_log_identify_shadow_producer_before_replay",
+      "decision_log_match_shadow_consumers_resource_identity",
+      "decision_log_promote_confirmed_shadow_chain"
+    ],
+    "22": [
+      "decision_log_early_foreground_depth_pose_coherent",
+      "decision_log_neutral_mask_ab",
+      "decision_log_private_replay_neutral_projected_light_mask",
+      "decision_log_projected_light_shadow_mask_foreground_ownership",
+      "decision_log_promote_native_shadow_contract",
+      "decision_log_quarantine_per_eye_mask",
+      "decision_log_shadow_branch_explicit_eye_ownership"
+    ],
+    "23": [
+      "fov_frustum_foundation_family_profile_probe",
+      "fov_frustum_foundation_nativevs_pcenter",
+      "fov_frustum_foundation_pair_preflight",
+      "fov_frustum_foundation_wvp_mutation_rule",
+      "phase1_usage_0_3_122_native_6dof_axis_test",
+      "projection_pcenter_findings_nearfar_unit_correction",
+      "projection_pcenter_findings_vertexclipplane_fix"
+    ],
+    "24": [
+      "fov_frustum_foundation_screendata_pcenter",
+      "projection_pcenter_findings_confirmed_pcenter",
+      "projection_pcenter_findings_screendatatocamera_source",
+      "projection_pcenter_findings_worldscale_estimate",
+      "vr_presentation_6dof_spec_aspect_fov_rule",
+      "vr_presentation_6dof_spec_part_a_portrait_render",
+      "vr_presentation_6dof_spec_part_c_translation_lean"
+    ],
+    "25": [
+      "future_hook_map_ahands_vftable",
+      "future_hook_map_aimiktargettracker_tracktarget",
+      "native_arm_controller_aim_engine_owned_arm_ik",
+      "native_arm_controller_aim_foreground_lighting_ownership",
+      "native_arm_controller_aim_torso_shoulder_model",
+      "phase1_usage_0_3_169_native_arm_ik_aim_swing",
+      "phase1_usage_0_3_178_engine_object_census"
+    ],
+    "26": [
+      "index_bioshockvr_project_memory",
+      "index_current_state",
+      "index_failure_registry",
+      "index_hypotheses",
+      "index_next_chat_handover",
+      "index_project_phases",
+      "index_re_findings"
+    ],
+    "27": [
+      "current_state_eye_resolution_scale",
+      "hypotheses_direct_draw_replay_bridge",
+      "hypotheses_openxr_eye_extent_replaces_crop",
+      "hypotheses_private_per_eye_hdr_depth_targets",
+      "hypotheses_temporal_openxr_cache_freshness",
+      "test_checklists_b1_4_openxr_bootstrap_checklist"
+    ],
+    "28": [
+      "decision_log_arbitrate_physical_vr_sticks",
+      "decision_log_bridge_xinput_haptics",
+      "decision_log_build_controller_acquisition_first",
+      "decision_log_physical_crouch_native_duck",
+      "decision_log_route_controller_turn_gameplay_yaw",
+      "decision_log_xinput_native_analog_movement"
+    ],
+    "29": [
+      "build_history_v03132_openxrinput",
+      "build_history_v03133_controllerturn",
+      "build_history_v03134_xinput_movement_actions_haptics",
+      "build_history_v03140_inputsafety",
+      "build_history_v03155_handedness"
+    ],
+    "30": [
+      "build_history_v03189_layerisolation",
+      "build_history_v03190_statehandshake",
+      "build_history_v03191_internald3dguard",
+      "build_history_v03192_layerrestore",
+      "build_history_v03193_motioncompguard"
+    ],
+    "31": [
+      "config_profiles_calibration_profile",
+      "phase1_usage_0_3_157_standing_seated_calibration",
+      "troubleshooting_crouch_origin_calibration",
+      "user_guide_floor_aware_calibration",
+      "user_guide_normal_calibration"
+    ],
+    "32": [
+      "decision_log_first_frame_follow_visibility_state",
+      "decision_log_isolate_motion_compensation_layer",
+      "decision_log_isolate_openxr_internal_d3d",
+      "decision_log_restore_motion_compensation_after_crash_containment",
+      "decision_log_restore_motion_compensation_isolation"
+    ],
+    "33": [
+      "engine_findings_integration_bioshock_fstring_convention",
+      "engine_findings_integration_compactindex_package_parsing",
+      "engine_findings_integration_vengeance_engine",
+      "phase0_findings_target_executable",
+      "unrealport_reference_findings_uelib_extraction_pattern"
+    ],
+    "34": [
+      "fov_frustum_foundation_shadowmask_screen_space_issue",
+      "phase1_usage_0_3_159_per_eye_shadow_mask_test",
+      "phase1_usage_0_3_161_input_ownership_shared_recenter",
+      "projection_pcenter_findings_black_boulders_screenspace",
+      "troubleshooting_shadow_lighting_volumetric_artifacts"
+    ],
+    "35": [
+      "future_hook_map_ashockhud_vftable",
+      "phase0_findings_hdr_final_ldr_targets",
+      "phase2_ui_health_eve_meter_clusters",
+      "phase2_ui_hud_final_ldr_lane",
+      "phase2_ui_native_crosshair_draw"
+    ],
+    "36": [
+      "phase1_usage_capture_safe_default",
+      "phase1_usage_openxr_bootstrap_stereo_smoke",
+      "runbooks_b1_log_only_d3d11_proof_success_failure_criteria",
+      "troubleshooting_no_image_in_hmd",
+      "user_guide_test_discipline"
+    ],
+    "37": [
+      "re_findings_bioshockhd_exe",
+      "re_findings_bioshockvr_dll",
+      "re_findings_hookdraw",
+      "re_findings_hookpresent",
+      "re_findings_openxr_internal_d3d_guard"
+    ],
+    "38": [
+      "re_findings_motion_compensation_layer",
+      "re_findings_openxr_bootstrap",
+      "re_findings_openxr_game_bridge",
+      "re_findings_virtual_desktop_freed_object_crash",
+      "re_findings_virtualdesktopxr_runtime"
+    ],
+    "39": [
+      "user_test_log_cbuffer_bytewidth_mismatch",
+      "user_test_log_env_var_not_reaching_game_process",
+      "user_test_log_ini_fallback_config_shaderprobe",
+      "user_test_log_world_candidate_classifier_false_positive",
+      "user_test_log_worldstrict_classifier_fix"
+    ],
+    "40": [
+      "build_history_v03138_comfortblackout",
+      "build_history_v03139_releaseidentity",
+      "build_history_v03156_portable_packaging",
+      "build_history_v03158_compatreport"
+    ],
+    "41": [
+      "build_history_v03141_weaponaimprobe",
+      "build_history_v03142_viewmodelpose",
+      "build_history_v03154_viewmodelresilience",
+      "re_findings_updatefocus_native_worker"
+    ],
+    "42": [
+      "code_architecture_controllerinputrouter",
+      "code_architecture_openxrinput",
+      "code_architecture_xinputbridge",
+      "failure_registry_synthetic_controller_flap_ban"
+    ],
+    "43": [
+      "config_profiles_config_schema",
+      "config_profiles_profile_overlays",
+      "config_profiles_set_bioshockvr_profile_script",
+      "user_guide_profiles_and_hands"
+    ],
+    "44": [
+      "decision_log_authored_idle_pose_freeze",
+      "decision_log_hands_census_boundary",
+      "decision_log_semantic_animation_weights_aimik",
+      "decision_log_suppress_confirmed_arm_idle"
+    ],
+    "45": [
+      "decision_log_correct_foreground_lighting_companions",
+      "decision_log_handshake_suspended_launch",
+      "decision_log_native_arm_ik_swing_telemetry",
+      "decision_log_tolerate_zero_wrench_vtable"
+    ],
+    "46": [
+      "decision_log_grip_yaw_mount_correction",
+      "decision_log_move_snap_turn_head_pose",
+      "decision_log_probe_snap_turn_body_heading",
+      "decision_log_vr_primary_foreground_suppression_test"
+    ],
+    "47": [
+      "future_hook_map_ashockplayercontroller_view_state",
+      "future_hook_map_headbob_camera_animation_modifier",
+      "future_hook_map_updatefocus",
+      "phase1_usage_0_3_149_focus_ownership_probe"
+    ],
+    "48": [
+      "future_hook_map_aweapon_getperfectfirestart",
+      "future_hook_map_uattackability_getperfectfirestart",
+      "native_arm_controller_aim_controller_gameplay_aim",
+      "phase1_usage_0_3_141_weapon_fire_start_probe"
+    ],
+    "49": [
+      "projection_pcenter_findings_fallback_classification",
+      "projection_pcenter_findings_ps_reconstruction_location",
+      "reference_stereo_fix_analysis_older_bioshock_fix_pixel_layout",
+      "reference_stereo_fix_analysis_older_bioshock_fix_vertex_layout"
+    ],
+    "50": [
+      "address_registry_aweapon_getperfectfirestart",
+      "address_registry_uattackability_getperfectfirestart",
+      "failure_registry_weapon_origin_move_ban"
+    ],
+    "51": [
+      "build_history_v03148_roomscaleprobe",
+      "build_history_v03152_autorecenter",
+      "build_history_v03153_cameranimprobe"
+    ],
+    "52": [
+      "code_architecture_ui",
+      "current_state_hud_late_ldr_tee",
+      "current_state_reference_reticle"
+    ],
+    "53": [
+      "code_architecture_weaponviewmodellighting",
+      "code_architecture_weaponviewmodelpose",
+      "failure_registry_viewmodel_lighting_broadening_ban"
+    ],
+    "54": [
+      "console_commands_mouse_sensitivity_string_leads",
+      "console_commands_native_crouch_input_ownership",
+      "phase1_usage_0_3_146_physical_crouch"
+    ],
+    "55": [
+      "decision_log_compositor_depth_bounded_timing",
+      "decision_log_probe_wrench_collision_phantom",
+      "decision_log_prove_tracked_weapon_ownership"
+    ],
+    "56": [
+      "decision_log_engine_object_census",
+      "decision_log_recover_attach_mode_viewmodel",
+      "decision_log_restore_grip_placement"
+    ],
+    "57": [
+      "decision_log_hud_final_ldr_routing",
+      "decision_log_openxr_blackout_projection_layer",
+      "decision_log_shell_diagnosis_injected_process"
+    ],
+    "58": [
+      "engine_findings_integration_dyn_props",
+      "engine_findings_integration_umodel_bsp_serialization",
+      "engine_findings_integration_ustaticmesh_layout"
+    ],
+    "59": [
+      "engine_findings_integration_shader_cache_files",
+      "engine_findings_integration_shadertag_materialfactory",
+      "fov_frustum_foundation_shader_search_terms"
+    ],
+    "60": [
+      "engine_findings_integration_unrealport_crossref",
+      "unrealport_reference_findings_repository",
+      "unrealport_reference_findings_skyzoneinfo_vocabulary"
+    ],
+    "61": [
+      "fov_frustum_foundation_shadowtestpass11_layout",
+      "future_hook_map_fshadowdepthstencilpass11",
+      "future_hook_map_fshadowdepthtestpass11"
+    ],
+    "62": [
+      "future_hook_map_d3d11_dxgi_hooks",
+      "runbooks_b1_log_only_d3d11_proof_b1_proof",
+      "runbooks_readme_runbooks_placeholder"
+    ],
+    "63": [
+      "phase1_usage_0_3_130_vr_lifecycle_performance",
+      "troubleshooting_performance_poor",
+      "vr_presentation_6dof_spec_part_d_frustum_coherence"
+    ],
+    "64": [
+      "re_findings_ugamepadplayerinput_calculateinput",
+      "re_findings_xinputgetstate_import",
+      "re_findings_xinputsetstate_import"
+    ],
+    "65": [
+      "user_test_log_output_rotation_90_degree_bug",
+      "user_test_log_reversed_scene_basis_bug",
+      "user_test_log_stage_space_translation_bug"
+    ],
+    "66": [
+      "address_registry_ashockhud_vftable",
+      "failure_registry_ashockhud_renderhealthbars_not_main_hud"
+    ],
+    "67": [
+      "address_registry_bioshockhd_exe_image_base",
+      "address_registry_fun_10fb1c10"
+    ],
+    "68": [
+      "build_history_0_3_83_fallbackdepthab",
+      "build_history_0_3_84_compareguard"
+    ],
+    "69": [
+      "build_history_0_3_85_fallbackfitprobe",
+      "build_history_0_3_86_compactc10apply"
+    ],
+    "70": [
+      "current_state_downstream_foreground_basis_ownership_0_3_176",
+      "failure_registry_additive_camera_relative_delta_ban"
+    ],
+    "71": [
+      "decision_log_explicit_vr_activation_recenter",
+      "decision_log_latch_device_presence_shared_pivot"
+    ],
+    "72": [
+      "engine_findings_integration_catalog_bdc",
+      "engine_findings_integration_utexture_formats"
+    ],
+    "73": [
+      "fov_frustum_foundation_viewport_geometry_bug",
+      "phase1_usage_0_3_162_stable_controller_shared_pivot"
+    ],
+    "74": [
+      "future_hook_map_actor_movesmooth",
+      "phase1_usage_0_3_148_roomscale_ownership_probe"
+    ],
+    "75": [
+      "future_hook_map_awrench_tickcollisionphantom",
+      "native_arm_controller_aim_physical_wrench_swing"
+    ],
+    "76": [
+      "future_hook_map_fobjectshadowdepthpass11",
+      "future_hook_map_fshadowmaskscenecontext_render"
+    ],
+    "77": [
+      "phase1_usage_0_3_155_handedness_one_controller_fallback",
+      "troubleshooting_controller_sleep_role_change"
+    ],
+    "78": [
+      "phase1_usage_0_3_191_internal_d3d_isolation",
+      "phase1_usage_0_3_193_motion_compensation_containment"
+    ],
+    "79": [
+      "re_findings_aweapon_getperfectfirestart",
+      "re_findings_uattackability_getperfectfirestart"
+    ],
+    "80": [
+      "re_findings_bs5_electrobolt_hand_captures",
+      "re_findings_equipped_wrench_renderdoc_crash"
+    ],
+    "81": [
+      "user_test_log_camera_identity_classification_error",
+      "user_test_log_cameraidentity_corrected_boundary"
+    ],
+    "82": [
+      "user_test_log_renderdoc_capture_crash_wrench_equipped",
+      "user_test_log_renderdoc_va_exhaustion_root_cause"
+    ],
+    "83": [
+      "address_registry_cameraanimationmodifier_headbobcontextcontroller"
+    ],
+    "84": [
+      "address_registry_uflashmovie_vftable"
+    ],
+    "85": [
+      "build_history"
+    ],
+    "86": [
+      "build_history_0_3_97_windowmatch"
+    ],
+    "87": [
+      "code_architecture_controllerhandedness"
+    ],
+    "88": [
+      "conventions_evidence_labels"
+    ],
+    "89": [
+      "current_state_world_scale_65_units_per_meter"
+    ],
+    "90": [
+      "decision_log"
+    ],
+    "91": [
+      "decision_log_projected_light_ownership"
+    ],
+    "92": [
+      "decision_log_recenter_openxr_horizon"
+    ],
+    "93": [
+      "decision_log_resolve_controller_roles_centrally"
+    ],
+    "94": [
+      "failure_registry_mcp_cbuffer_numeric_values_untrustworthy"
+    ],
+    "95": [
+      "failure_registry_screenspace_srv_fallback_too_broad"
+    ],
+    "96": [
+      "failure_registry_shader_registration_not_camera_writer"
+    ],
+    "97": [
+      "next_chat_handover_graphify_navigation"
+    ],
+    "98": [
+      "re_findings_hud_ui_strings"
+    ],
+    "99": [
+      "re_findings_weapon_viewmodel_strings"
+    ],
+    "100": [
+      "troubleshooting_injection_fails"
+    ],
+    "101": [
+      "user_guide_first_run"
+    ]
+  },
+  "cohesion": {
+    "0": 0.053156146179401995,
+    "1": 0.0545876887340302,
+    "2": 0.06349206349206349,
+    "3": 0.06439393939393939,
+    "4": 0.07142857142857142,
+    "5": 0.082010582010582,
+    "6": 0.07977207977207977,
+    "7": 0.07407407407407407,
+    "8": 0.09782608695652174,
+    "9": 0.09090909090909091,
+    "10": 0.09523809523809523,
+    "11": 0.10476190476190476,
+    "12": 0.11428571428571428,
+    "13": 0.1,
+    "14": 0.11052631578947368,
+    "15": 0.14035087719298245,
+    "16": 0.11764705882352941,
+    "17": 0.125,
+    "18": 0.18181818181818182,
+    "19": 0.2222222222222222,
+    "20": 0.25,
+    "21": 0.3333333333333333,
+    "22": 0.2857142857142857,
+    "23": 0.2857142857142857,
+    "24": 0.2857142857142857,
+    "25": 0.2857142857142857,
+    "26": 0.2857142857142857,
+    "27": 0.4,
+    "28": 0.3333333333333333,
+    "29": 0.4,
+    "30": 0.5,
+    "31": 0.4,
+    "32": 0.4,
+    "33": 0.4,
+    "34": 0.4,
+    "35": 0.4,
+    "36": 0.4,
+    "37": 0.5,
+    "38": 0.4,
+    "39": 0.4,
+    "40": 0.5,
+    "41": 0.5,
+    "42": 0.5,
+    "43": 0.5,
+    "44": 0.5,
+    "45": 0.5,
+    "46": 0.5,
+    "47": 0.5,
+    "48": 0.5,
+    "49": 0.5,
+    "50": 0.6666666666666666,
+    "51": 0.6666666666666666,
+    "52": 0.6666666666666666,
+    "53": 0.6666666666666666,
+    "54": 0.6666666666666666,
+    "55": 0.6666666666666666,
+    "56": 0.6666666666666666,
+    "57": 0.6666666666666666,
+    "58": 0.6666666666666666,
+    "59": 0.6666666666666666,
+    "60": 1.0,
+    "61": 0.6666666666666666,
+    "62": 0.6666666666666666,
+    "63": 0.6666666666666666,
+    "64": 0.6666666666666666,
+    "65": 0.6666666666666666,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0
+  },
+  "gods": [
+    {
+      "id": "code_architecture_d3d11hooks",
+      "label": "D3D11Hooks module",
+      "degree": 9
+    },
+    {
+      "id": "index_bioshockvr_project_memory",
+      "label": "BioShockVR Project Memory Index",
+      "degree": 6
+    },
+    {
+      "id": "engine_findings_bioshock1_bsm_umodel_bsp",
+      "label": "UModel + BSP Serialization",
+      "degree": 6
+    },
+    {
+      "id": "engine_findings_bioshock1_bsm_class_rollup",
+      "label": "Class Rollup (Part D.2)",
+      "degree": 6
+    },
+    {
+      "id": "engine_findings_bioshock_bulk_files_and_catalog_catalog_bdc",
+      "label": "Catalog.bdc Index Format",
+      "degree": 6
+    },
+    {
+      "id": "address_registry_ahands_vftable",
+      "label": "AHands::vftable",
+      "degree": 5
+    },
+    {
+      "id": "address_registry_aimiktargettracker_constructor",
+      "label": "AimIKTargetTracker Constructor",
+      "degree": 5
+    },
+    {
+      "id": "current_state_snap_turn_body_yaw_ownership",
+      "label": "Snap-turn body/gameplay yaw ownership problem",
+      "degree": 5
+    },
+    {
+      "id": "current_state_bs4_wrench_capture",
+      "label": "BS4_wrench.rdc capture",
+      "degree": 5
+    },
+    {
+      "id": "hypotheses_center_depth_attenuation_mask",
+      "label": "Center-depth attenuation-mask hypothesis for the shadow/gobo defect",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Shadow-Mask Producer/Consumer Contract",
+      "target": "MaterialFactory_Shader.hlsl",
+      "source_files": [
+        "RE_FINDINGS.md",
+        "Engine Findings/BioShock_Materials_And_Shaders.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Shared wrench-root rigid-group pivot (0.3.162)",
+      "target": "Wrench pickup object and equipped viewmodel use distinct HDR sublanes",
+      "source_files": [
+        "CURRENT_STATE.md",
+        "HYPOTHESES.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Mono Screen-Space Shadow/Volumetric Buffer Mismatch",
+      "target": "Black Boulders: Mono s_shadowMask Screen-Space Sampling (EID 3176)",
+      "source_files": [
+        "fov-frustum-foundation.md",
+        "projection-pcenter-findings.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Phase B2.9/B5.5 - native gameplay-owned snap turn",
+      "target": "Snap-turn body/gameplay yaw ownership problem",
+      "source_files": [
+        "PROJECT_PHASES.md",
+        "CURRENT_STATE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "conceptually_related_to",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Phase B2.9/B5.5 - native gameplay-owned snap turn` unexpectedly reaches hub `Snap-turn body/gameplay yaw ownership problem`"
+    },
+    {
+      "source": "Add draw-window attribution and one-lane isolation before more global stereo tuning",
+      "target": "0.3.92-scale-srvrange: SRV fallback min/max index range + world scale 65000milli",
+      "source_files": [
+        "DECISION_LOG.md",
+        "BUILD_HISTORY.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    }
+  ]
+}

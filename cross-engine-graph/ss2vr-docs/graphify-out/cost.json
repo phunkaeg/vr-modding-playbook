@@ -1,0 +1,31 @@
+{
+  "runs": [
+    {
+      "pass": "1-corpus",
+      "date": "2026-08-06",
+      "files": 102,
+      "agents": 5,
+      "subagent_tokens": 1350713,
+      "note": "Claude Code subagent dispatch, Sonnet 5. 4 files >250KB only partially read (Read caps at 256KB)."
+    },
+    {
+      "pass": "2-paginated",
+      "date": "2026-08-06",
+      "files": 4,
+      "agents": 11,
+      "subagent_tokens": 1790624,
+      "note": "Explicit line ranges over USER_TEST_LOG/BUILD_HISTORY/DECISION_LOG/FAILURE_REGISTRY. One agent exceeded the 64k output cap and was re-run as 3; its tokens are not counted here."
+    },
+    {
+      "pass": "3-linking",
+      "date": "2026-08-06",
+      "files": 0,
+      "agents": 5,
+      "subagent_tokens": 891338,
+      "note": "Node-inventory only, no source reads. 370 edges proposed, 320 accepted (50 duplicates; 0 unknown ids, 0 same-file violations)."
+    }
+  ],
+  "total_input_tokens": 4032675,
+  "total_output_tokens": 0,
+  "accounting_note": "subagent_tokens are the COMBINED in+out totals reported by the Agent tool; they are recorded in the input column because graphify has no combined field. Rough cost at Sonnet 5 intro pricing: ~$12-13 for all three passes."
+}

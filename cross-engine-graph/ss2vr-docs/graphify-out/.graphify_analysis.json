@@ -1,0 +1,2110 @@
+{
+  "communities": {
+    "0": [
+      "conventions_heading_conventions",
+      "dark_engine_source_notes_weapon_projectiles",
+      "decision_log_flataim_above_sshock2ee_revert",
+      "decision_log_flataim_bridge_restore_clean_save",
+      "decision_log_flataim_clean_save_testing",
+      "decision_log_flataim_kpf_zip_format",
+      "decision_log_flataim_load_order_fix",
+      "decision_log_flataim_native_cursor_globals",
+      "decision_log_flataim_save_correct_last_load",
+      "decision_log_native_overlay_hud_source",
+      "decision_log_openxr_cylinder_hud",
+      "decision_log_save_patcher_bottom_insertion",
+      "decision_log_save_patcher_tool",
+      "decision_log_ui_panel_source_rect_crop",
+      "failure_registry_flataim_configsetraw_hook_during_saveload",
+      "failure_registry_flataim_kpf_tar_not_zip",
+      "failure_registry_flataim_old_debugview_save_repro",
+      "failure_registry_flataim_win32_size_fallback",
+      "failure_registry_kpf_windows_backslashes",
+      "feature_roadmap_laser_projectile_facing_item",
+      "feature_roadmap_muzzle_flash_item",
+      "ghidra_annotation_backlog_g_anshockoverlayorder",
+      "hud_overlay_assembly_overlay_table",
+      "hypotheses_archive_h25_ui_panel_split",
+      "hypotheses_h26_hud_cylinder_layer",
+      "hypotheses_h27_native_overlay_rects",
+      "phase1_usage_kpf_packaging_rule",
+      "phase2_ui_curved_hud_cylinder",
+      "test_checklists_curved_hud_cylinder_layer_spike",
+      "user_test_log_flataim_config_hook_crash_misdiagnosis",
+      "user_test_log_flataim_contaminated_debug_view_save",
+      "user_test_log_flataim_dynamic_canvas_sizing",
+      "user_test_log_flataim_edge_pan_view_follow",
+      "user_test_log_flataim_freelook_sidequest",
+      "user_test_log_flataim_kpf_tar_format_misdiagnosis",
+      "user_test_log_flataim_laser_bolt_facing_axis_fix",
+      "user_test_log_flataim_melee_orientation_mode_investigation",
+      "user_test_log_flataim_melee_viewmodel_orbit_bug",
+      "user_test_log_flataim_pickup_reach_regression",
+      "user_test_log_flataim_save_load_crash",
+      "user_test_log_flataim_squirrel_syntax_error_f5_block",
+      "user_test_log_flataim_ultrawide_overlay_canvas_bug",
+      "user_test_log_flataim_wrench_melee_viewmodel_implementation",
+      "user_test_log_kpf_archive_backslash_path_bug",
+      "user_test_log_save_patcher_load_order_bug",
+      "user_test_log_save_patcher_short_root_shape_fix"
+    ],
+    "1": [
+      "bioshockvr_lessons_eye_phase_attribution",
+      "bioshockvr_lessons_stale_image_submission",
+      "build_history_stereo_pair_eye_lag",
+      "build_history_v137_bracket_stereo_convergence_fix",
+      "build_history_v254_depth_probe_log_decoupled",
+      "build_history_v255_dbg_vm_copy_isolation",
+      "build_history_v300_stereo_audit",
+      "build_history_v301_pair_view_latch",
+      "build_history_v302_pair_view_latch_default_on",
+      "build_history_v361_stale_eye_parry_latch",
+      "current_state_archive_viewmodel_double_render",
+      "dark_engine_vr_modding_guide_vr_general_lessons",
+      "decision_log_native_dark_stereo_probe",
+      "decision_log_stereo_pair_predict_submit_frame",
+      "decision_log_wall_safety_capsule_clamp",
+      "failure_registry_flataim_raycylinder_selector_as_inventory",
+      "failure_registry_old_dark_stereo_byte_dead_end",
+      "handover_2026_08_03_locomotion_stutter",
+      "handover_2026_08_03_parry_latch_fix",
+      "handover_2026_08_03_stale_eye_submission",
+      "handover_2026_08_03_stereo_pair_slip",
+      "handover_2026_08_03_v3_61",
+      "hypotheses_archive_h18_native_dark_stereo",
+      "re_findings_native_dark_stereo_byte_dead_end",
+      "uevr_stereo_lessons_pose_latch_pattern",
+      "uevr_stereo_lessons_rendering_modes",
+      "uevr_stereo_lessons_ss2vr_afr_mapping",
+      "uevr_stereo_lessons_stereo_pair_slip",
+      "uevr_stereo_lessons_synchronized_sequential_mechanism",
+      "uevr_stereo_lessons_t1_5_pair_view_latch",
+      "user_test_log_flataim_native_looking_bracket_marker",
+      "user_test_log_flataim_ray_cylinder_selector_misdiagnosis",
+      "user_test_log_flataim_screen_projected_selection_fix",
+      "user_test_log_native_center_frob_suppression",
+      "user_test_log_native_dark_stereo_byte_probe",
+      "user_test_log_ss2vr_bracket_stereo_convergence_fix",
+      "user_test_log_ss2vr_bracket_triple_system_misdiagnosis",
+      "user_test_log_visual_inertia_matrix_flicker_investigation",
+      "vr_depth_and_collision_brief_hand_wall_clamp_iterations",
+      "vr_depth_and_collision_brief_p2_hand_weapon_passes_through_wall",
+      "vr_depth_and_collision_brief_stereo_pair_slip_flicker_trap",
+      "vr_depth_and_collision_brief_weapon_overshoot_clamp",
+      "vr_findings_index_right_eye_lag_re",
+      "vr_latency_recovery_plan_eye_lag_root_cause",
+      "vr_latency_recovery_plan_fix_gate_toggle_on_fill_success"
+    ],
+    "2": [
+      "build_history_bracket_overlay_rect_rearrange_spike",
+      "build_history_native_axis_direct_probe",
+      "build_history_v131_native_movement_bridge",
+      "build_history_v133_gravity_glove_pull_spike",
+      "current_state_health_bar_brackets",
+      "decision_log_default_off_diagnostic_gating",
+      "decision_log_hud_rect_write_spike",
+      "decision_log_native_movement_held_actions_first",
+      "decision_log_overlay_rect_band_transform",
+      "decision_log_overlay_rect_capture_guard",
+      "decision_log_phys_grab_whitelist_lane",
+      "enemy_health_bracket_re_native_healthbar_re",
+      "enemy_health_bracket_re_vr_healthbar_attach_brackets",
+      "failure_registry_overlay_rects_captured_before_usable",
+      "feature_roadmap_healthbar_item",
+      "squirrel_world_physics_grab_whitelist_filter",
+      "squirrel_world_physics_gravity_glove_pull_stage3",
+      "squirrel_world_physics_metadata_logger_stage0",
+      "test_checklists_gravity_glove_physics_pull_test",
+      "test_checklists_native_left_stick_movement_bridge",
+      "user_test_log_additive_left_hand_viewmodel_spike",
+      "user_test_log_curved_hud_panel",
+      "user_test_log_enemy_health_bar_native_correction",
+      "user_test_log_gravity_glove_yank_mechanism",
+      "user_test_log_headset_ui_invisible_fix",
+      "user_test_log_native_movement_bridge",
+      "user_test_log_native_ui_draw_scanner",
+      "user_test_log_overlay_rect_rearrange_spike",
+      "user_test_log_right_arm_hud_native_rect_fix",
+      "user_test_log_two_hand_weapon_pitch_inversion",
+      "user_test_log_ui_draw_range_slice_map",
+      "user_test_log_v1_37_multi_feature_test",
+      "user_test_log_v1_43_v1_44_test",
+      "vr_mod_reference_survey_csvr",
+      "vr_two_handed_weapons_option_a_lookat",
+      "vr_two_handed_weapons_option_b_two_point_solve",
+      "vr_two_handed_weapons_option_c_full_ik"
+    ],
+    "3": [
+      "build_history_v135_manual_reload_gesture",
+      "build_history_v136_two_stage_reload_gesture",
+      "build_history_v140_glove_hand_follow_catch",
+      "decision_log_doc_routing_re_findings",
+      "decision_log_fire_handler_priority",
+      "decision_log_glove_catch_hand_follow",
+      "decision_log_glove_pickup_only",
+      "decision_log_manual_reload_native_commands",
+      "decision_log_og_mod_data_semantic_reference",
+      "decision_log_quick_item_proxy_native_command",
+      "decision_log_staged_weapon_probes_off_default",
+      "decision_log_weapon_model_attachment_evidence",
+      "failure_registry_full_basis_cameraobj_incomplete_hmd_bleed_fix",
+      "failure_registry_original_mod_apis_as_ae_proof",
+      "phase1_usage_hmd_bleed_pitch_servo",
+      "shock2quest_reference_attachment_pattern",
+      "squirrel_world_physics_grab_throw_architecture",
+      "test_checklists_pistol_manual_reload_gesture",
+      "vr_body_holsters_hypospray_semantics_rationale",
+      "vr_body_holsters_inferred_body_frame",
+      "vr_body_holsters_physical_quick_item_hypospray_proxy",
+      "vr_body_holsters_slot_state_machine",
+      "vr_highlights_report_native_bracket_flat_screen_problem",
+      "vr_highlights_report_squirrel_dll_division_of_labor",
+      "vr_highlights_report_ss2vr_hl_bridge_variable",
+      "vr_manual_reloads_tier1_gesture_native_reload",
+      "vr_manual_reloads_tier2_visual_choreography",
+      "vr_manual_reloads_tier3_physical_reloads",
+      "weapon_cameraobj_hmd_bleed_handoff_gun_node_identification",
+      "weapon_cameraobj_hmd_bleed_handoff_nodesarray_override",
+      "weapon_cameraobj_hmd_bleed_handoff_root_cause",
+      "weapon_cameraobj_hmd_bleed_handoff_visual_proxy_rejected",
+      "weapon_model_spec_visual_inertia",
+      "weapon_model_spec_world_orient",
+      "weapon_vr_aim_spec_dll_squirrel_pose_bridge",
+      "weapon_vr_handover_dll_squirrel_bridge_existing",
+      "weapon_vr_handover_probe_build"
+    ],
+    "4": [
+      "build_history_hmd_authoritative_smooth_turn",
+      "build_history_v149_snap_turn_gain_correction",
+      "build_history_v150_snap_authoritative_display_yaw_diagnostic",
+      "build_history_v152_snap_v3_baseline_rotate",
+      "decision_log_direct_snap_object_direct_angles",
+      "decision_log_direct_snap_pre_snap_yaw",
+      "decision_log_object_direct_yaw_only",
+      "decision_log_observed_kex_yaw_display_baseline",
+      "decision_log_park_snap_test_smooth_direct_yaw",
+      "decision_log_smooth_turn_kex_accumulator",
+      "decision_log_smooth_turn_owned_yaw_target",
+      "decision_log_smooth_turn_ui_ray_conflict",
+      "decision_log_snap_turn_linear_gain",
+      "decision_log_snap_turn_pixel_gain_separate",
+      "decision_log_test_direct_yaw_snap",
+      "failure_registry_body_yaw_assist_feedback_loops",
+      "failure_registry_object_direct_pitch_write",
+      "failure_registry_object_direct_yaw_unstable_transport",
+      "failure_registry_recapture_baseline_during_smooth_turn",
+      "failure_registry_snap_turn_mouse_accumulator_write",
+      "overlay_panel_index_map_active_overlays_dump_method",
+      "overlay_panel_index_map_replicator_panel",
+      "overlay_panel_index_map_secure_crate_search_panel",
+      "overlay_panel_index_map_security_terminal_panel",
+      "user_test_log_freeaim_pose_overhaul_v1_47_test",
+      "user_test_log_hmd_authoritative_smooth_turn_sign_saga",
+      "user_test_log_snap_turn_pixel_gain_calibration",
+      "user_test_log_snap_turn_v1_49_retest",
+      "user_test_log_v2_88_headset_confirmations",
+      "user_test_log_weapon_roll_inversion_regression",
+      "user_test_log_weapon_rotational_hmd_parallax",
+      "user_test_log_weapon_viewmodel_hmd_positional_parallax"
+    ],
+    "5": [
+      "build_history_openxr_16_layer_budget_principle",
+      "build_history_v326_parry_debug_overlay",
+      "build_history_v328_overlay_three_colours",
+      "build_history_v330_overlay_live_tracking",
+      "build_history_v331_overlay_wrong_hand_fix",
+      "build_history_v334_green_from_wrench_vhots",
+      "build_history_v340_beam_billboard_fix",
+      "build_history_v341_enemy_pipe_joints_9_5",
+      "build_history_v343_red_wrong_arm_tip_dot",
+      "build_history_v344_green_vhot_wrong_space_fix",
+      "build_history_v345_openxr_layer_limit_freeze",
+      "build_history_v354_layer_priority_eviction",
+      "failure_registry_flataim_bounded_bank_cancel_midpitch",
+      "failure_registry_flataim_inverse_cos_bank_cancel",
+      "failure_registry_flataim_proxy_roll_sign_unconfirmed",
+      "failure_registry_flataim_screen_axis_decomposition",
+      "failure_registry_hmd_euler_compensation_controller_models",
+      "failure_registry_lgpmnm_vhot_wrong_coordinate_space",
+      "failure_registry_negating_quaternion_components",
+      "failure_registry_openxr_layer_limit_freeze",
+      "failure_registry_principle_rotation_needs_correct_frame_not_scalar_euler",
+      "failure_registry_screen_offsets_as_world_headingpitch",
+      "user_test_log_flataim_cameraobj_euler_scalar_misdiagnosis",
+      "user_test_log_flataim_dark_heading_convention_fix",
+      "user_test_log_flataim_laser_bolt_rotation_misdiagnosis",
+      "user_test_log_flataim_long_weapon_pivot_fix",
+      "user_test_log_flataim_weapon_roll_bug",
+      "user_test_log_flataim_world_space_weapon_proxy",
+      "user_test_log_physics_grab_held_object_facing_fix",
+      "user_test_log_rapier_lgpmnm_static_vhot_test",
+      "user_test_log_ss2vr_weapon_hmd_bleed_persistent_bug"
+    ],
+    "6": [
+      "address_registry_setcullcamera",
+      "build_history_kpf_laser_pistol_vhot",
+      "build_history_kpf_wall_clunk_latch",
+      "build_history_v303_cull_probe",
+      "build_history_v304_cull_from_eye",
+      "build_history_v305_menu_pointer_melee_audio",
+      "build_history_v306_resolution_compatibility",
+      "build_history_v309_icebreaker_cartridge",
+      "build_history_v310_action_panel_button_fixes",
+      "build_history_v311_test_feedback_batch",
+      "build_history_v312_command_bridge_g_kexbase_fix",
+      "build_history_v313_cull_peek_entry_bias",
+      "build_history_v314_icebreaker_beam_input",
+      "build_history_v315_test_wins_baked_in",
+      "culling_frustum_entry_bias_fix",
+      "culling_frustum_m1_edge_popping",
+      "culling_frustum_m2_peek_corner",
+      "dark_engine_vr_modding_guide_culling_entrybias",
+      "failure_registry_cull_from_eye_misdiagnosis",
+      "failure_registry_laser_pistol_offset_misdiagnosis",
+      "failure_registry_misdiagnosis_four_hybrids",
+      "failure_registry_principle_derived_field_not_ground_truth",
+      "failure_registry_renderview_rewrite_not_culling_fix",
+      "resolution_compat_aim_flat_offset_ref",
+      "resolution_compat_borderless_recommendation",
+      "resolution_compat_cursor_injection_width_height",
+      "resolution_compat_game_screen_size_bridge",
+      "resolution_compat_live_resize_unsupported",
+      "test_plan_2026_07_resolution_compatibility_test",
+      "weapon_model_report_laser_pistol_dual_viewmodel_finding"
+    ],
+    "7": [
+      "build_history_config_schema_gate_blindness_fix",
+      "build_history_lean_fix_body_origin_subtraction",
+      "build_history_melee_physical_contact_system",
+      "build_history_melee_static_lane_gesture_system",
+      "build_history_v171_frametime_logger_warn",
+      "build_history_v172_console_echo_suppressor",
+      "build_history_v240_arm_hud_depth_quad",
+      "build_history_v240_beam_hot_signal",
+      "build_history_v240_reticle_horizon_lock_gunaim_branch",
+      "build_history_v242_two_hand_aim_blend_discovery",
+      "build_history_v244_premultiplied_alpha_beam_fix",
+      "build_history_v263_left_status_hologram",
+      "build_history_v275_melee_hit_haptics",
+      "build_history_v276_melee_reticle_suppression",
+      "build_history_v286_smooth_turn_proactive_display",
+      "build_history_v286_snap_yaw_reconcile_servo",
+      "build_history_v287_cameraobj_race_regression",
+      "build_history_v287_live_ini_toggle_menu",
+      "build_history_v288_left_status_reveal_decouple",
+      "build_history_v288_snap_suppress_end_on_landing",
+      "build_history_v289_vr_settings_menu_live_toggles",
+      "build_history_v290_comfort_vignette",
+      "build_history_v316_desloppify_pass",
+      "build_history_wobble_fix_hand_frame_base_offsets",
+      "build_history_wrench_hmd_pitch_hand_frame_fix",
+      "docs_build_history"
+    ],
+    "8": [
+      "build_history_v153_app_space_weapon_pose",
+      "build_history_v217_skill_spread_recoil",
+      "decision_log_camera_getfacing_convention",
+      "decision_log_camobj_not_world_locked",
+      "decision_log_compensate_weapon_pose_hmd_6dof",
+      "decision_log_conventions_single_source",
+      "decision_log_flataim_pointrig_effects",
+      "decision_log_freeaim_view_frame_lesson",
+      "decision_log_two_handed_right_primary",
+      "decision_log_userfacing_config_hygiene",
+      "decision_log_vr_action_panel_diagnostic",
+      "decision_log_vr_tonal_effects_openxr_layer",
+      "failure_registry_flataim_camera_getfacing_x_heading",
+      "future_hook_map_doc",
+      "phase1_usage_doc",
+      "phase2_ui_doc",
+      "vr_post_process_design_doc",
+      "vr_two_handed_weapons_doc",
+      "vr_view_effects_doc",
+      "vr_weapon_mesh_pipeline_doc",
+      "weapon_cameraobj_hmd_bleed_handoff_doc",
+      "weapon_model_report_doc",
+      "weapon_model_spec_doc",
+      "weapon_spread_recoil_report_doc",
+      "weapon_vr_aim_spec_doc",
+      "weapon_vr_handover_doc"
+    ],
+    "9": [
+      "build_history_v159_self_identifying_builds",
+      "build_history_v160_known_keys_whitelist_bug",
+      "failure_registry_assuming_samepath_squirrel_loaded",
+      "failure_registry_command_bridge_dead_buttons",
+      "failure_registry_dark_culling_profile_wrong_config_system",
+      "failure_registry_echo_suppressor_trampoline_bypass",
+      "failure_registry_flataim_kpf_presence_not_proof_loaded",
+      "failure_registry_ini_whitelist_missing",
+      "failure_registry_inventory_cursor_width_clamp",
+      "failure_registry_mod_table_order_misread",
+      "failure_registry_ndshoottrigger_oncreate_assign",
+      "failure_registry_own_hook_as_prologue_mismatch",
+      "failure_registry_principle_config_write_verify_consumer",
+      "failure_registry_principle_diff_working_vs_broken_sibling",
+      "failure_registry_principle_presence_not_proof_of_load",
+      "failure_registry_principle_verify_build_identity_before_trusting_test",
+      "failure_registry_repeatedly_fixed_things_not_fixed",
+      "failure_registry_viewmodel_fix_not_in_modpath",
+      "failure_registry_visual_inertia_dtsec_zero_flicker",
+      "failure_registry_writing_transforms_before_identity_proven",
+      "feature_roadmap_action_panel_menu_item",
+      "user_test_log_mod_load_order_priority_regression",
+      "user_test_log_right_hand_aim_deferred_timer_fix",
+      "user_test_log_right_hand_aim_sealed_class_monkeypatch_misdiagnosis"
+    ],
+    "10": [
+      "build_history_menu_pointer_snap_blackout",
+      "build_history_pose_bridge_lockdown_diagnostics",
+      "build_history_v128_snap_v2_lhand_default_visible",
+      "decision_log_current_state_dashboard_split",
+      "decision_log_fine_tooth_cleanup_checkpoint",
+      "decision_log_flataim_bounded_anti_roll",
+      "decision_log_flataim_clamp_mode_lockstep",
+      "decision_log_flataim_mode4_screen_local",
+      "decision_log_flataim_mode6_screen_axis",
+      "decision_log_flataim_mode7_world_proxy",
+      "decision_log_flataim_retire_inverse_cos",
+      "decision_log_flataim_rig_aimpoint_mode5",
+      "decision_log_pose_bridge_paired_diagnostics",
+      "decision_log_pose_bridge_staged_validation",
+      "decision_log_scalar_euler_tuning_rejected",
+      "decision_log_snap_turn_blackout_layer",
+      "decision_log_snap_turn_v2_accumulator",
+      "docs_decision_log",
+      "test_checklists_pose_bridge_lockdown_diagnostic",
+      "weapon_spread_recoil_report_spread_resolved",
+      "weapon_vr_aim_spec_architecture_decision",
+      "weapon_vr_aim_spec_stage_a_projectile_redirect",
+      "weapon_vr_aim_spec_stage_b_rig_level_pin"
+    ],
+    "11": [
+      "build_history_lhand_material_ab_probe_saga",
+      "build_history_v151_lhand_flatlit_baseline_restore",
+      "build_history_v163_weapon_archetype_lighting_carrier",
+      "build_history_v164_v165_hand_frame_wobble_lighting_fix",
+      "decision_log_additive_viewmodels_left_hand",
+      "decision_log_direct_lgmd_face_compaction",
+      "decision_log_flataim_reticle_native_proof",
+      "decision_log_flatlit_hand_baseline",
+      "decision_log_funk_mesh_face_deletion_semantics",
+      "decision_log_funk_mesh_forearm_trim_confirmed",
+      "decision_log_lgmm_import_separate",
+      "decision_log_offhand_jointpos_suppression",
+      "decision_log_render_proof_vs_visible_pixels",
+      "decision_log_vr_body_lgmm_first",
+      "decision_log_vr_clean_mesh_sidequest",
+      "failure_registry_bsp_node_compaction_no_remap",
+      "failure_registry_deleted_subobject_nodes_corrupted_scene",
+      "failure_registry_lgmm_as_lgmd_import_failure",
+      "failure_registry_offhand_joint3_forced_default",
+      "user_test_log_funk_mesh_bsp_node_offset_hang",
+      "user_test_log_funk_mesh_stale_face_count_crash",
+      "user_test_log_funkmesh_modinfo_title_key_crash"
+    ],
+    "12": [
+      "address_registry_object_pick_candidate",
+      "claude_darkengine_finds_frob_system",
+      "claude_darkengine_finds_object_picking",
+      "current_state_frobinfo_world_action_gate",
+      "dark_engine_source_notes_pick_and_frob",
+      "dark_engine_vr_modding_guide_frob_interaction",
+      "enemy_health_bracket_re_aggro_visibility_squirrel",
+      "enemy_health_bracket_re_bracket_suppression",
+      "flataim_to_ss2vr_handoff_native_frob_picker_exclusion",
+      "frob_target_library_implementation",
+      "hypotheses_archive_h29_selection_beam_depth_clip",
+      "hypotheses_h4_world_selection",
+      "hypotheses_hfa1_flataim_sidequest",
+      "interaction_squirrel_report_frobinfo_gate",
+      "interaction_squirrel_report_verdict",
+      "interaction_squirrel_spike_spec_selection_ray",
+      "interaction_squirrel_spike_spec_test_matrix",
+      "re_findings_ss2_newdark_mod_data_reference",
+      "shock2quest_reference_frobinfo_flag_map",
+      "shock2quest_reference_property_layouts"
+    ],
+    "13": [
+      "address_registry_screenflash_system",
+      "build_history_v269_native_red_flash_suppress",
+      "build_history_v289_vr_settings_menu",
+      "build_history_v290_comfort_vignette_effect",
+      "build_history_v296_fade_to_black_replacement",
+      "build_history_v297_vignette_calibration_two_hand_gate",
+      "build_history_v298_comfort_vignette_visible_ar15_fix",
+      "build_history_v299_revert_ar15_clip_gate",
+      "build_history_v320_left_menu_button",
+      "game_event_effects_screen_flash_note",
+      "ghidra_annotation_backlog_confidence_labels",
+      "ghidra_annotation_backlog_process",
+      "ghidra_annotation_backlog_screenflashcompositor",
+      "ghidra_annotation_backlog_screenflashrenderer",
+      "re_findings_red_damage_flash_compositor",
+      "re_findings_timed_screen_fade",
+      "user_test_log_damage_glitch_fx_watcher",
+      "vr_view_effects_damage_glitch_trigger",
+      "vr_view_effects_native_red_flash_distinction"
+    ],
+    "14": [
+      "docs_frob_archetype_tree_raw",
+      "docs_frob_target_library",
+      "docs_git_agent_brief",
+      "docs_hud_overlay_assembly",
+      "docs_hypotheses_archive",
+      "docs_interaction_squirrel_report",
+      "docs_interaction_squirrel_spike_spec",
+      "docs_marketing_teaser_draft",
+      "docs_menu_options_bind_test_spec",
+      "docs_menu_vr_report",
+      "docs_phase2_ui",
+      "docs_project_phases",
+      "docs_squirrel_world_physics",
+      "docs_vr_action_panel_test",
+      "docs_vr_mod_reference_survey",
+      "docs_vr_settings_panel_spec",
+      "docs_vr_wrist_keypad_spec",
+      "maps_home",
+      "maps_interaction_frob_and_ui"
+    ],
+    "15": [
+      "active_baseline_camera_culling_baseline",
+      "bioshockvr_lessons_sequential_reentry_risk",
+      "bioshockvr_lessons_stereo_ladder",
+      "current_state_active_baseline_pointer",
+      "current_state_archive_hmd_roll_curve_issue",
+      "dark_engine_vr_modding_guide_follower_vs_authoritative",
+      "decision_log_authoritative_renderview_diagnostic",
+      "decision_log_late_renderview_residual_diagnostic",
+      "decision_log_latency_recovery_ladder",
+      "decision_log_one_camera_authority_baseline",
+      "decision_log_pitch_servo_deadzone_first",
+      "decision_log_signed_rotation_quaternion_calibration",
+      "decision_log_smooth_turn_accumulator_calibration",
+      "failure_registry_absolute_angles_playable_path",
+      "test_checklists_vr_latency_recovery_ladder",
+      "vr_latency_recovery_plan_direct_kex_camera_drive_audit",
+      "vr_latency_recovery_plan_late_residual_technique",
+      "vr_latency_recovery_plan_render_view_authoritative_mode"
+    ],
+    "16": [
+      "archive_cleanup_checkpoint_2026_06_04",
+      "archive_cleanup_checkpoint_2026_06_04_native_dark_stereo_probe",
+      "archive_cleanup_checkpoint_2026_06_04_snap_direct_yaw",
+      "docs_address_registry",
+      "docs_claude_darkengine_finds",
+      "docs_conventions",
+      "docs_dark_engine_source_notes",
+      "docs_failure_registry",
+      "docs_future_hook_map",
+      "docs_locomotion_dir_live_path",
+      "docs_re_findings",
+      "maps_how_to_use_this_vault",
+      "maps_native_input_and_movement",
+      "maps_native_input_and_movement_applycontrollerrelativemove",
+      "maps_native_input_and_movement_vanilla_controller_trap",
+      "maps_native_input_and_movement_virtual_gamepad",
+      "maps_reverse_engineering"
+    ],
+    "17": [
+      "docs_flataim_to_ss2vr_handoff",
+      "docs_framerate_cap_check_desktop_refresh",
+      "docs_game_event_effects",
+      "docs_vr_highlights_report",
+      "docs_vr_latency_recovery_plan",
+      "docs_vr_post_process_design",
+      "docs_vr_view_effects",
+      "failure_registry_framerate_regression_desktop_refresh",
+      "failure_registry_principle_check_environment_before_code_bisect",
+      "failure_registry_reinstall_clears_controller_state",
+      "maps_interaction_frob_and_ui_echo_suppressor",
+      "maps_interaction_frob_and_ui_squirrel_dll_cvar_bridge",
+      "maps_performance_and_vr_effects",
+      "maps_performance_and_vr_effects_desktop_refresh_rate_cap_bug",
+      "maps_performance_and_vr_effects_frametime_log",
+      "maps_performance_and_vr_effects_gpu_bound_hypothesis",
+      "maps_performance_and_vr_effects_stale_stereo_pair_hypothesis"
+    ],
+    "18": [
+      "docs_lgmm_cal_investigation",
+      "docs_melee_vr_report",
+      "docs_melee_vr_spec",
+      "docs_ss2_asset_tool_comparison",
+      "docs_vr_body_holsters",
+      "docs_vr_manual_reloads",
+      "docs_vr_two_handed_weapons",
+      "docs_vr_weapon_mesh_pipeline",
+      "docs_weapon_cameraobj_hmd_bleed_handoff",
+      "docs_weapon_model_report",
+      "docs_weapon_model_spec",
+      "docs_weapon_spread_recoil_report",
+      "docs_weapon_vr_aim_spec",
+      "docs_weapon_vr_handover",
+      "maps_asset_and_mesh_pipeline",
+      "maps_weapons_hands_and_melee",
+      "maps_weapons_hands_and_melee_wrench_pitch_coupling"
+    ],
+    "19": [
+      "build_history_native_crosshair_frob_suppression",
+      "build_history_pose_bridge_kex_camera_frame_remap",
+      "build_history_v127_cameraobj_translation_rollback",
+      "build_history_v137_regression_triage",
+      "build_history_v138_bracket_lag_inventory_suppression_fix",
+      "build_history_v142_inventory_movement_pose_glove_fixes",
+      "build_history_v143_cameraobj_translation_remap_ui_fix",
+      "build_history_v144_scale_safe_blend_default",
+      "build_history_v151_eye_center_pick_origin",
+      "build_history_v168_frob_target_library",
+      "decision_log_beam_clipping_separation",
+      "decision_log_cameraobj_frame_remap_orientation_only",
+      "decision_log_domain_separation_principle",
+      "decision_log_interaction_beam_depth_limit",
+      "decision_log_weapon_cameraobj_controller_local",
+      "user_test_log_per_eye_weapon_placement_fix"
+    ],
+    "20": [
+      "decision_log_flataim_domain_specific_fixes",
+      "decision_log_flataim_melee_native_relative_orientation",
+      "decision_log_flataim_melee_point_local_axes",
+      "decision_log_flataim_melee_preserve_native_orientation",
+      "decision_log_flataim_v022_screen_up_lookat",
+      "decision_log_flataim_v023_roll_sign_unproven",
+      "decision_log_flataim_v024_zero_dynamic_roll",
+      "decision_log_flataim_v025_captured_basis",
+      "decision_log_flataim_v026_hard_roll_kill",
+      "decision_log_flataim_v027_roll_downstream",
+      "decision_log_flataim_v028_dark_matrix_heading",
+      "decision_log_flataim_view_frame_aim_native_velocity",
+      "decision_log_rendered_object_frame_principle",
+      "decision_log_right_hand_aim_default_on",
+      "failure_registry_flataim_stored_basis_as_render_attachment",
+      "failure_registry_plyrarm_as_gun_proxy_facing"
+    ],
+    "21": [
+      "build_history_lgmd_lighting_extras_root_cause",
+      "build_history_lhand_lj_crash_hotfix",
+      "build_history_v187_stockrig_rollback",
+      "failure_registry_five_slot_multipass_ban",
+      "failure_registry_lgmd_faces_without_aux_compaction",
+      "failure_registry_lj_joint_metadata_standalone_crash",
+      "failure_registry_principle_structural_validation_gap",
+      "failure_registry_shotgun_vhot_rebuild_animated_identity",
+      "failure_registry_stale_header_vhot_count",
+      "failure_registry_stale_material_extras_wrong_control",
+      "user_test_log_emp_rifle_right_hand_merged_vhot_test",
+      "user_test_log_shotgun_animated_pump_vhot_crash",
+      "user_test_log_stale_lgmd_aux_range_bug",
+      "user_test_log_validate_lgmd_runtime_safety_tool",
+      "user_test_log_vr_grip_reload_vhot_authoring_workflow"
+    ],
+    "22": [
+      "decision_log_angular_pitch_bias_selection",
+      "decision_log_controller_frob_authority",
+      "decision_log_filter_low_ray_trace_hits",
+      "decision_log_kex_hover_candidate_bridge",
+      "decision_log_left_hand_world_frob_resolved",
+      "failure_registry_flataim_reticle_pixel_as_picker_pixel",
+      "user_test_log_camera_ray_cursor_fix",
+      "user_test_log_candidate_bounding_radius_size_cap",
+      "user_test_log_flataim_diagonal_selection_offset_bug",
+      "user_test_log_frob_reference_frame_mismatch_root_cause",
+      "user_test_log_known_keys_allowlist_bug",
+      "user_test_log_pick_camera_probe_residual_head_coupling",
+      "user_test_log_squirrel_world_space_frob_confirmed_working"
+    ],
+    "23": [
+      "decision_log_digest_allowlist_hand_stubs",
+      "decision_log_hand_subobject_pruning_test",
+      "decision_log_material_aux_metadata",
+      "decision_log_ss2vr_alias_naming",
+      "decision_log_stub_carry_metadata_edits",
+      "decision_log_sub_epsilon_vertex_skip",
+      "decision_log_v4_material_tail_repair",
+      "decision_log_vhot_name_override",
+      "decision_log_vhot_only_stub_carry",
+      "user_test_log_animated_hand_husk_crash_investigation",
+      "user_test_log_one_face_hand_stub_live_proof_ladder",
+      "user_test_log_stale_v4_material_extras_tail_bug",
+      "user_test_log_weapon_mesh_hand_removal_trim_package"
+    ],
+    "24": [
+      "address_registry_playerturntilt",
+      "address_registry_portal_culling_diagnostics",
+      "build_history_v156_idle_yaw_trim_servo",
+      "culling_frustum_clipalloc_pool_overflow",
+      "culling_frustum_m3_frontface_test_not_defect",
+      "failure_registry_closed_loop_runaway_yaw",
+      "failure_registry_portal_relax_frontface_nop",
+      "future_hook_map_portal_traversal_culling",
+      "future_hook_map_precull_camera_hook",
+      "phase0_findings_camera_culling_conclusion",
+      "re_findings_hmd_owned_kex_camera",
+      "re_findings_snap_yaw_reconcile_sign_chain"
+    ],
+    "25": [
+      "build_history_kpf_v184_cameraobj_ownership_claim",
+      "build_history_kpf_v185_inlined_viewmodel_passthrough",
+      "build_history_kpf_v186_cameraobj_direct_yield_diag",
+      "build_history_v245_aim_weight_spring",
+      "build_history_v248_weapon_weight_redesign",
+      "build_history_v249_visual_inertia_overwrite_fix",
+      "build_history_v250_visual_inertia_contract_fix",
+      "build_history_v251_visual_inertia_reset_fix",
+      "build_history_v252_cameraobj_yield_latch",
+      "build_history_v253_visual_inertia_safe_cap",
+      "build_history_v258_visual_inertia_dtsec_flicker_fix",
+      "failure_registry_30deg_visual_lag_invalid_weight_test"
+    ],
+    "26": [
+      "docs_active_baseline",
+      "docs_console_commands",
+      "docs_fov_frustum_foundation",
+      "docs_phase0_findings",
+      "docs_phase1_usage",
+      "runbooks_readme",
+      "runbooks_readme_ss2_build_test_handoff",
+      "runbooks_readme_ss2_ghidra_x64dbg_re",
+      "runbooks_readme_ss2_hook_safety_review",
+      "runbooks_readme_ss2_log_triage",
+      "runbooks_readme_ss2_renderdoc_d3d11",
+      "runbooks_readme_ss2_state_reload"
+    ],
+    "27": [
+      "active_baseline_motion_controls_baseline",
+      "address_registry_teleport_system",
+      "build_history_v157_sdl3_virtual_gamepad",
+      "dark_engine_vr_modding_guide_locomotion_climbing",
+      "teleport_locomotion_re_ladder_handling_options",
+      "user_test_log_vanilla_gamepad_analog_injector_misdiagnosis",
+      "vr_climbing_re_hand_delta_as_stick_insight",
+      "vr_climbing_re_mantling_state",
+      "vr_climbing_re_native_climb_state_machine",
+      "vr_climbing_re_option1_puppeteer_native_climb",
+      "vr_climbing_re_option2_direct_position_drive"
+    ],
+    "28": [
+      "ar15_vhot_integration_handoff_vhot_contract",
+      "build_history_funkmaxexport_v0620_vhotedit",
+      "decision_log_funk_mesh_forearm_trim",
+      "decision_log_high_vhot_ids_reserved",
+      "decision_log_lgmd_face_compaction_tier",
+      "decision_log_light_normal_flip",
+      "decision_log_low_contiguous_vhot_ids",
+      "decision_log_vhot_header_correctness",
+      "vr_mod_reference_survey_ror2vrmod",
+      "vr_two_handed_weapons_vhot_anchored_support",
+      "vr_weapon_mesh_pipeline_vhot_authoring_convention"
+    ],
+    "29": [
+      "archive_codex_proposal_pose_bridge_kiss",
+      "archive_codex_proposal_pose_bridge_kiss_hmd_roll_double_count",
+      "archive_codex_proposal_pose_bridge_kiss_kiss_target",
+      "archive_codex_proposal_pose_bridge_kiss_left_hand_pose_bridge",
+      "archive_codex_proposal_pose_bridge_kiss_weapon_pose_bridge",
+      "archive_current_test_run_2026_06_08",
+      "archive_current_test_run_2026_06_08_test2_weapon_pose_hmd_bleed",
+      "archive_index",
+      "docs_current_state",
+      "docs_hypotheses",
+      "docs_test_checklists"
+    ],
+    "30": [
+      "build_history_v294_two_hand_latch",
+      "build_history_v335_namefilter_regression_fix",
+      "build_history_v336_wrench_exclude_by_objid",
+      "build_history_v338_sticky_wrench_identity",
+      "build_history_v351_attribution_fix_63",
+      "build_history_v352_parry_latch_burst_fix",
+      "build_history_v353_data_loss_fixes",
+      "build_history_v354_parry_map_cache",
+      "failure_registry_principle_never_truncate_unowned_files",
+      "failure_registry_truncating_writes_hazard",
+      "vr_two_handed_weapons_hysteresis_engage"
+    ],
+    "31": [
+      "console_commands_control_binding_model",
+      "console_commands_fire_weapon_confirmed",
+      "failure_registry_bind_strings_as_callable_apis",
+      "future_hook_map_fire_weapon_action",
+      "hypotheses_h14_vr_melee_native_charge",
+      "hypotheses_h21_manual_reload_gesture",
+      "melee_damage_re_native_gesture_trigger",
+      "melee_vr_report_approach_a",
+      "melee_vr_spec_gesture_detection",
+      "vr_manual_reloads_manual_reload_system",
+      "vr_manual_reloads_reload_gun_command"
+    ],
+    "32": [
+      "address_registry_deferred_launch_queue",
+      "decision_log_conservative_structs_ghidra",
+      "decision_log_funk_custom_export_path",
+      "decision_log_funk_custom_general_lgmd",
+      "decision_log_funk_extract_preserve",
+      "decision_log_lh_tint_material_issue",
+      "failure_registry_funk_custom_for_animated_trims",
+      "user_test_log_funkmaxexport_v060_customgroup",
+      "user_test_log_left_hand_shaded_material_white_bug",
+      "user_test_log_renderdoc_blue_viewmodel_invis_pass"
+    ],
+    "33": [
+      "build_history_height_offset_m_parked_regression",
+      "build_history_psi_amp_ctd_resolved",
+      "build_history_v240_height_offset_parsefloat_reject_trap",
+      "build_history_v277_crouch_detector",
+      "build_history_v278_crouch_setposture_camera_comp",
+      "build_history_v279_crouch_headlocaly_fix",
+      "failure_registry_psi_amp_null_joint_array_ctd",
+      "roomscale_crouch_research_camera_compensation_lever",
+      "roomscale_crouch_research_headlocaly_signal",
+      "vr_weapon_mesh_pipeline_amp_joint_array_crash"
+    ],
+    "34": [
+      "build_history_kpf_regen_booth_fix",
+      "build_history_kpf_regen_booth_fx_probes",
+      "build_history_v134_two_hand_support_grip",
+      "build_history_v295_auto_recenter_respawn_load",
+      "build_history_v358_recenter_on_load_fix",
+      "dark_engine_vr_modding_guide_save_load_simtime",
+      "failure_registry_f11_recenter_full_baseline",
+      "failure_registry_principle_detector_state_survives_reset",
+      "failure_registry_recenter_load_never_fire",
+      "test_checklists_recenter_comfort_blackout"
+    ],
+    "35": [
+      "current_state_physical_contact_melee",
+      "dark_engine_vr_modding_guide_damage_stimuli",
+      "decision_log_hitscan_trace_end_rewrite",
+      "decision_log_melee_fail_closed",
+      "hand_collision_research_tipping",
+      "hand_collision_research_weapon_tip_knock",
+      "melee_audio_re_ss2vr_melee_claim",
+      "melee_audio_re_suppress_native_attack",
+      "melee_damage_re_tip_contact_trace",
+      "melee_vr_report_approach_b"
+    ],
+    "36": [
+      "decision_log_borrow_vr_mod_architecture",
+      "decision_log_squirrel_viewmodel_handoff_prototype",
+      "decision_log_unique_squirrel_handler",
+      "future_hook_map_cursor_injection_strategy",
+      "future_hook_map_object_pick_chain",
+      "phase2_ui_interaction_router",
+      "vr_mod_reference_survey_jkxr",
+      "vr_mod_reference_survey_transferable_approach",
+      "vr_settings_panel_spec_intersectuilayer_reuse",
+      "vr_wrist_keypad_spec_click_routing"
+    ],
+    "37": [
+      "decision_log_lgmd_append_static_path",
+      "decision_log_lgmd_hierarchy_safety_principle",
+      "decision_log_lgmd_mirror_static_workflow",
+      "decision_log_lgmd_safestub_subobjects",
+      "decision_log_nemyax_prune_diagnostic",
+      "decision_log_stock_weapon_rig_preservation",
+      "decision_log_v190_atek_pistol_digest_lock",
+      "failure_registry_append_static_stale_subobject_props",
+      "failure_registry_sfg_append_static_slot0",
+      "ss2_asset_tool_comparison_nemyax_blender_addon"
+    ],
+    "38": [
+      "failure_registry_pausing_debugger_crashes_vr",
+      "failure_registry_principle_never_pause_live_process_debugger",
+      "failure_registry_x64dbg_hardware_breakpoints",
+      "failure_registry_x64dbg_pause_hang_profiling",
+      "maps_native_input_and_movement_crouch_setposture",
+      "maps_native_input_and_movement_jump_action",
+      "maps_native_input_and_movement_jump_bind_handler",
+      "maps_native_input_and_movement_posture_apply",
+      "maps_native_input_and_movement_setmovementstate",
+      "maps_reverse_engineering_cheatengine_write_watch"
+    ],
+    "39": [
+      "address_registry_melee_damage_pipeline",
+      "build_history_v327_frida_probe_pipe_read",
+      "current_state_parry_feature",
+      "dark_engine_vr_modding_guide_re_methodology",
+      "dark_engine_vr_modding_guide_thief_specific",
+      "decision_log_ghidra_mirroring",
+      "failure_registry_parry_pipe_read_failure",
+      "failure_registry_principle_validate_static_re_live",
+      "gamepig_icebreaker_safety_model"
+    ],
+    "40": [
+      "build_history_cheatengine_mcp_bridge",
+      "build_history_native_crouch_setposture_primitive",
+      "build_history_native_jump_mantle_primitive",
+      "build_history_native_movement_axis_probe",
+      "decision_log_staged_controller_controls_probes",
+      "decision_log_staged_native_input_backend",
+      "failure_registry_shared_deadzone_jump_crouch",
+      "user_test_log_native_axis_direct_input_path",
+      "vr_findings_index_jump_mantle_crouch_lean_summary"
+    ],
+    "41": [
+      "build_history_funkmaxexport_husk_validation_safety",
+      "build_history_kpf_int3_crash_weapon_override_regression",
+      "build_history_kpf_v192_lasehand_oneface_baseline",
+      "decision_log_one_face_hand_husks_unsafe",
+      "decision_log_park_runtime_weapon_swaps",
+      "decision_log_stale_light_normal_ranges_unsafe",
+      "failure_registry_lgmd_loader_int3_not_dll",
+      "user_test_log_weapon_equip_int3_crash_zero_face_subobjects",
+      "vr_weapon_mesh_pipeline_zero_face_husk_crash"
+    ],
+    "42": [
+      "build_history_lgpmnm_high_detail_mesh_pipeline",
+      "decision_log_funkmax_button_renaming",
+      "decision_log_lgpmnm_readonly_until_confirmed",
+      "decision_log_lgpmnm_to_lgmd_export",
+      "decision_log_pmnm_import_payloads",
+      "failure_registry_funkmesh_on_lgpmnm_reference",
+      "failure_registry_missing_lgpmnm_magic_assumption",
+      "hypotheses_h33_lgmm_lgpmnm_import",
+      "lgmm_cal_investigation_lgpmnm_payload"
+    ],
+    "43": [
+      "build_history_v280_crouch_eye_height_tracking",
+      "current_state_roomscale_crouch",
+      "dark_engine_source_notes_camera_body_head_offset",
+      "dark_engine_vr_modding_guide_camera_body_head_offset",
+      "failure_registry_position_frame_body",
+      "roomscale_crouch_research_double_drop_problem",
+      "roomscale_crouch_research_path_b_approach",
+      "roomscale_crouch_research_posture_apply_function",
+      "roomscale_crouch_research_setposture_function"
+    ],
+    "44": [
+      "decision_log_flataim_calibration_split",
+      "decision_log_flataim_crosshair_kpf_override",
+      "decision_log_flataim_native_crosshair_restore",
+      "decision_log_flataim_semantic_selection",
+      "decision_log_offhand_anim_squirrel_override",
+      "decision_log_reuse_engine_owned_state_principle",
+      "failure_registry_flataim_conflating_cursor_projectile_picker_signs",
+      "failure_registry_flataim_opaque_crosshair_cover",
+      "failure_registry_flataim_semantic_publish_mutates_config"
+    ],
+    "45": [
+      "docs_user_test_log",
+      "user_test_log_debug_information_tracker_overlay_oracle",
+      "user_test_log_existing_save_patcher_root_shape_fix",
+      "user_test_log_frob_target_library",
+      "user_test_log_funk_direct_baked_pose_bug",
+      "user_test_log_funkmaxexport_lgmd_pipeline",
+      "user_test_log_funkmaxexport_lgpmnm_wrench_vhot_proof",
+      "user_test_log_left_hand_material_invisibility_investigation",
+      "user_test_log_left_hand_pose_loss_confound"
+    ],
+    "46": [
+      "failure_registry_callerrva_segment_traces_not_aim_sink",
+      "failure_registry_cameraobj_draw_flag_not_hide",
+      "failure_registry_jump_crouch_verbs_noop",
+      "failure_registry_opaque_lefthand_material_incomplete_fix",
+      "failure_registry_override1_flag_visible_aim_change",
+      "failure_registry_principle_success_flag_not_proof_of_effect",
+      "user_test_log_vr_effects_cpu_overlay_fps_tank",
+      "user_test_log_vr_view_effects_system",
+      "user_test_log_weapon_pose_bridge_config_setter_hook_collision"
+    ],
+    "47": [
+      "game_event_effects_damage_watcher",
+      "game_event_effects_effect_director",
+      "game_event_effects_hazard_meter",
+      "game_event_effects_hazard_watcher",
+      "game_event_effects_kexsetconfigraw",
+      "game_event_effects_setter_hook_bridge",
+      "game_event_effects_triggereffect",
+      "hypotheses_h17_vr_tonal_feedback",
+      "vr_view_effects_hazard_meter"
+    ],
+    "48": [
+      "ar15_vhot_crash_finding_stale_header_theory",
+      "ar15_vhot_crash_finding_vhot_builder_crash",
+      "hypotheses_h19_lgmd_face_deletion",
+      "lgmd_vhot_header_fix_builder_fn",
+      "lgmd_vhot_header_fix_byte68_bug",
+      "lgmd_vhot_header_fix_root_cause",
+      "user_test_log_ar15_custom_vhot_loader_crash_misdiagnosis",
+      "user_test_log_stale_header_count_confound"
+    ],
+    "49": [
+      "bioshockvr_lessons_flat_verification_testing",
+      "build_history_diagnostic_must_survive_warn_loglevel",
+      "build_history_v354_hook_hit_counters",
+      "build_history_v357_bump_scale_gate",
+      "failure_registry_info_level_discarded",
+      "failure_registry_keypress_diagnostics_unreachable",
+      "failure_registry_principle_diagnostic_reachable_for_target_user",
+      "flataim_to_ss2vr_handoff_console_echo_suppressor"
+    ],
+    "50": [
+      "build_history_kpf_left_hand_pose_loss_grace",
+      "build_history_v259_world_orient_rock_solid_hands",
+      "build_history_v260_left_hand_orientation_assignment",
+      "build_history_v262_left_hand_direct_pose_fix",
+      "build_history_v268_world_orient_max_scale_gate",
+      "build_history_v284_world_orient_ampersand_regression",
+      "build_history_v285_world_orient_left_exclude_strict",
+      "failure_registry_lefthand_freeze_actionpanel"
+    ],
+    "51": [
+      "dark_engine_source_notes_viewmodels",
+      "dark_engine_vr_modding_guide_lgmd_viewmodels",
+      "user_test_log_funkmaxexport_tool",
+      "user_test_log_lgmd_lgmm_lgpmnm_format_family",
+      "user_test_log_lgpmnm_embedded_high_detail_mesh_discovery",
+      "vr_weapon_mesh_pipeline_funkmaxexport_tool",
+      "vr_weapon_mesh_pipeline_lgmd_format",
+      "vr_weapon_mesh_pipeline_packed_normal_bug"
+    ],
+    "52": [
+      "decision_log_fail_closed_default_principle",
+      "decision_log_flataim_block_without_bridge",
+      "decision_log_flataim_confighook_optin",
+      "decision_log_flataim_heartbeat_gate",
+      "decision_log_lefthand_viewmodel_render_proof",
+      "decision_log_viewmodel_depth_probe",
+      "decision_log_weapon_camera_controller_local_roll_only",
+      "failure_registry_flataim_f5_without_bridge"
+    ],
+    "53": [
+      "decision_log_squirrel_scale_rigid_melee_before_ik",
+      "decision_log_v07_v08_interaction_options_probe",
+      "lgmm_cal_investigation_lgmm_format",
+      "lgmm_cal_investigation_meshbld_bridge",
+      "vr_weapon_mesh_pipeline_lgmm_format",
+      "weapon_model_report_rigid_reposition_recommendation",
+      "weapon_model_report_wrench_bone_rig_finding",
+      "weapon_model_spec_task2_rigid_melee"
+    ],
+    "54": [
+      "failure_registry_psiamp_cable_posed_vertices_transform",
+      "shock2quest_reference_project",
+      "shock2quest_reference_ss2_bin_obj_loader",
+      "ss2_asset_tool_comparison_animation_gap",
+      "ss2_asset_tool_comparison_funkmaxexport",
+      "user_test_log_melee_lgmd_vhot_candidate_audit",
+      "user_test_log_psi_amp_vhot_export_audit",
+      "vr_findings_index_modified_weapons_ctd_bug"
+    ],
+    "55": [
+      "build_history_v317_physical_parry",
+      "build_history_v318_pipe_segment_intercept",
+      "build_history_v319_joint_read_fix_mode2",
+      "build_history_v321_creature_joint_accessor",
+      "build_history_v323_creature_attachment_weapon_read",
+      "build_history_v325_mesh_joint_pipe_read",
+      "build_history_v349_parry_sweep_anti_tunnel"
+    ],
+    "56": [
+      "build_history_v355_parry_probe_measurement",
+      "build_history_v356_graduated_damage_mitigation",
+      "melee_damage_re_ai_block_maneuver",
+      "melee_damage_re_creature_joint_accessor",
+      "melee_damage_re_parry_system",
+      "melee_damage_re_pipe_intercept",
+      "melee_vr_spec_block_parry_design"
+    ],
+    "57": [
+      "decision_log_basis_mode1_trigger_hardening",
+      "decision_log_camobj_native_camera_frame",
+      "decision_log_v09_scale_melee_gesture",
+      "decision_log_v12_pose_signs_secondary_click",
+      "decision_log_v13_native_stage_filter",
+      "decision_log_v14_pose_correction",
+      "decision_log_v15_restore_player_relative_yaw"
+    ],
+    "58": [
+      "decision_log_current_state_dashboard_slim",
+      "decision_log_dark_engine_source_reference",
+      "decision_log_docs_scoped_to_purpose_principle",
+      "decision_log_nightdive_source_dump_triage",
+      "decision_log_phase_numbering_reconciliation",
+      "decision_log_staged_reload_holster_physics",
+      "decision_log_two_handed_weapon_design"
+    ],
+    "59": [
+      "decision_log_flataim_bracket_visual_split",
+      "decision_log_flataim_screen_projected_selection",
+      "decision_log_flataim_semantic_target_clear",
+      "decision_log_squirrel_highlight_stabilization",
+      "failure_registry_flataim_stale_hover_frob_globals",
+      "failure_registry_kex_objectundercursor_fallback_brackets",
+      "failure_registry_noisy_squirrel_targets_bracket"
+    ],
+    "60": [
+      "decision_log_ini_parser_by_section",
+      "decision_log_seh_pod_only_wrappers",
+      "decision_log_v06_confirmed_live",
+      "decision_log_v06_pose_bridge",
+      "decision_log_v16_squirrel_projectile_aim_stage_a",
+      "decision_log_v17_parallel_projectile_script",
+      "failure_registry_seh_with_destructor_cpp"
+    ],
+    "61": [
+      "decision_log_skill_spread_suppress_recoil",
+      "re_findings_skill_spread_recoil_mechanics",
+      "vr_findings_index_recoil_work_summary",
+      "vr_mod_reference_survey_gtfo_vr_plugin",
+      "weapon_spread_recoil_report_gunkick_formula",
+      "weapon_spread_recoil_report_recoil_native_read",
+      "weapon_spread_recoil_report_vr_safe_recoil_design"
+    ],
+    "62": [
+      "decision_log_viewmodel_depth_probe_broadening",
+      "decision_log_viewmodel_depth_seam_confirmed",
+      "vr_depth_and_collision_brief_depth_pass_discovery_method",
+      "vr_depth_and_collision_brief_runtime_pointer_match_classifier",
+      "vr_weapon_mesh_pipeline_left_hand_additive_viewmodel",
+      "weapon_model_spec_phase47_additive_left_hand",
+      "weapon_model_spec_viewmodel_depth_occlusion"
+    ],
+    "63": [
+      "hand_collision_research_wall_clamp",
+      "handover_2026_08_03_hand_pipeline",
+      "hypotheses_archive_h28_viewmodel_depth_occlusion",
+      "hypotheses_archive_h30_wall_safety_clamp",
+      "re_findings_viewmodel_world_depth_preservation",
+      "user_test_log_viewmodel_world_depth_occlusion",
+      "vr_depth_and_collision_brief_p1_viewmodel_draws_over_wall"
+    ],
+    "64": [
+      "build_history_digital_glitch_gpu_effect_expansion",
+      "build_history_v139_hazard_meters",
+      "build_history_v359_solid_block_damage_feedback",
+      "phase1_usage_hotkey_reference",
+      "vr_post_process_design_gpu_backend",
+      "vr_view_effects_keeper_set"
+    ],
+    "65": [
+      "build_history_frob_target_library_integration",
+      "build_history_v243_grab_scale_family_filter",
+      "claude_darkengine_finds_properties_table",
+      "frob_archetype_tree_raw_corpses_branch",
+      "frob_archetype_tree_raw_plot_items_branch",
+      "frob_target_library_allow_families"
+    ],
+    "66": [
+      "build_history_v129_muzzle_flash_follow",
+      "decision_log_cameraobj_native_frame_orientation_only",
+      "decision_log_flataim_melee_viewmodel_route",
+      "decision_log_muzzle_flash_flash_object_cameraobj",
+      "decision_log_reload_visuals_transient_objects",
+      "decision_log_vr_wrench_static_lgmd"
+    ],
+    "67": [
+      "build_history_v212_arm_hologram_depth_occlusion",
+      "hud_overlay_assembly_arm_hologram",
+      "hud_overlay_assembly_renderarmholo",
+      "hud_parallax_parked_eyetest",
+      "hud_parallax_parked_per_eye_quad",
+      "hud_parallax_parked_vdxr_issue"
+    ],
+    "68": [
+      "decision_log_flataim_proxy_facing_order",
+      "decision_log_flataim_proxy_roll_sign_test",
+      "decision_log_flataim_proxy_screenup_lookat",
+      "decision_log_flataim_proxy_zero_roll",
+      "failure_registry_flataim_proxy_teleport_facing_order",
+      "teleport_locomotion_re_object_teleport_squirrel_api"
+    ],
+    "69": [
+      "decision_log_healthbar_selected_object_hp",
+      "decision_log_selection_bracket_prototype",
+      "vr_findings_index_native_frob_brackets_summary",
+      "vr_highlights_report_bracket_visual_styling",
+      "vr_highlights_report_object_size_radius_sourcing",
+      "vr_highlights_report_selection_bracket_prototype"
+    ],
+    "70": [
+      "decision_log_marker_fresh_predicted_pose",
+      "decision_log_mono_pre_eye_marker",
+      "user_test_log_frob_collisionless_fixture_selection_saga",
+      "user_test_log_frob_prefer_native_cursor_projection_misdiagnosis",
+      "user_test_log_frob_vertical_cursor_miscalibration_misdiagnosis",
+      "user_test_log_selection_bracket_double_vision"
+    ],
+    "71": [
+      "decision_log_save_patcher_tooling",
+      "hypotheses_archive_h20_save_patcher",
+      "project_phases_existing_save_vr_mod_patcher",
+      "project_phases_mkdocs_documentation_site",
+      "project_phases_tracker_document",
+      "re_findings_ae_save_mod_loadout_table"
+    ],
+    "72": [
+      "failure_registry_fov_change_without_assao_update",
+      "fov_frustum_foundation_assao_params_cbuffer",
+      "fov_frustum_foundation_renderview_fov_terms",
+      "fov_frustum_foundation_root_cause_prior_crash",
+      "phase0_findings_renderview_cbuffer_seam",
+      "re_findings_renderview_assao_coupling"
+    ],
+    "73": [
+      "melee_audio_re_env_sound_schema",
+      "melee_damage_re_bash_model",
+      "melee_damage_re_damage_formula",
+      "melee_scaling_handover_damage_formula",
+      "test_plan_2026_07_melee_native_double_attack_suppress",
+      "vr_findings_index_melee_damage_summary"
+    ],
+    "74": [
+      "build_history_lhand_include_chain_crash_fix",
+      "decision_log_material_include_inline",
+      "failure_registry_lgpmnm_snapshot_duplicate_mesh",
+      "user_test_log_custom_mtl_include_chain_crash",
+      "user_test_log_static_wrench_lgpmnm_export_visual_fix_saga"
+    ],
+    "75": [
+      "build_history_v281_native_enemy_healthbar",
+      "build_history_v282_suppress_native_enemy_hud",
+      "build_history_v283_enemy_healthbar_art_fix",
+      "build_history_v288_snap_turn_durability",
+      "build_history_v291_healthbar_horizon_lock"
+    ],
+    "76": [
+      "build_history_v308_blink_teleport_locomotion",
+      "project_phases_teleport_locomotion_task",
+      "teleport_locomotion_re_blink_locomotion_design",
+      "teleport_locomotion_re_ss2vr_blink_nut_module",
+      "test_plan_2026_07_blink_teleport_locomotion_test"
+    ],
+    "77": [
+      "build_history_v339_parry_stagger_route1",
+      "build_history_v346_parry_stops_killing_hybrids",
+      "build_history_v347_native_block_recoil_route2",
+      "build_history_v348_native_stun_interrupt_route2b",
+      "build_history_v350_visual_pipe_bump"
+    ],
+    "78": [
+      "failure_registry_condump_spam_destroys_evidence",
+      "failure_registry_logger_emitted_line_cost",
+      "failure_registry_principle_instrumentation_changes_behavior",
+      "failure_registry_probe_load_bearing_prefilter_mutex",
+      "vr_findings_index_chug_fix"
+    ],
+    "79": [
+      "failure_registry_kex_mouse_readback_click_gate",
+      "menu_vr_report_gamepad_nav_emulation",
+      "menu_vr_report_rmlui_menu_system",
+      "menu_vr_report_route_a_rmlui_hook",
+      "menu_vr_report_route_c_get_mouse_coords"
+    ],
+    "80": [
+      "failure_registry_renderview_binding_not_always_scene",
+      "failure_registry_submit_backbuffer_as_projection_and_ui",
+      "hud_overlay_assembly_draw_classification",
+      "phase0_findings_renderdoc_ui_scene_split",
+      "phase2_ui_ui_tee_texture"
+    ],
+    "81": [
+      "hand_collision_research_dynamic_knock",
+      "hand_collision_research_physics_setvelocity_squirrel",
+      "hand_collision_research_setvelocity",
+      "hypotheses_h23_squirrel_physics_grab",
+      "squirrel_world_physics_mode_b_velocity_spring"
+    ],
+    "82": [
+      "overlay_panel_index_map_koverlay_system",
+      "overlay_panel_index_map_right_arm_hud_overlay",
+      "re_findings_vr_ui_panel_native_hud_assembly",
+      "test_checklists_right_arm_ammo_hologram_spike",
+      "vr_findings_index_hologram_summary"
+    ],
+    "83": [
+      "teleport_locomotion_re_psi_relocation_power",
+      "teleport_locomotion_re_teleportobject_primitive",
+      "vr_findings_index_enemy_health_bracket_summary",
+      "vr_findings_index_frobbing_two_selectors_summary",
+      "vr_findings_index_hub"
+    ],
+    "84": [
+      "test_checklists_vr_action_panel_diagnostic",
+      "test_plan_2026_07_right_arm_hologram_menu_test",
+      "vr_action_panel_test_action_button_data_model",
+      "vr_action_panel_test_bitmap_font_rendering",
+      "vr_action_panel_test_design"
+    ],
+    "85": [
+      "build_history_viewmodel_depth_visual_spike",
+      "decision_log_viewmodel_depth_visual_spike",
+      "test_checklists_viewmodel_world_depth_probe",
+      "test_checklists_viewmodel_world_depth_visual_spike"
+    ],
+    "86": [
+      "decision_log_flataim_cursor_globals_rejected",
+      "decision_log_flataim_native_cursor_attempt",
+      "decision_log_flataim_shockoverlay_crosshair",
+      "failure_registry_flataim_synthetic_win32_reticle"
+    ],
+    "87": [
+      "decision_log_lgmm_wrench_reference_only",
+      "decision_log_standalone_hand_static_unless_hierarchy",
+      "user_test_log_jointed_standalone_lgmd_crash",
+      "user_test_log_left_hand_include_chain_root_cause"
+    ],
+    "88": [
+      "failure_registry_flataim_kex_cursor_globals_not_crosshair",
+      "user_test_log_flataim_native_crosshair_cursor_globals_misdiagnosis",
+      "user_test_log_flataim_shockoverlay_reticle_origin_bias_fix",
+      "user_test_log_flataim_stale_startup_aim_fix"
+    ],
+    "89": [
+      "phase2_ui_native_shock_overlay_system",
+      "phase2_ui_right_arm_hud",
+      "vr_wrist_keypad_spec_slice_plan",
+      "vr_wrist_keypad_spec_wrist_panel_design"
+    ],
+    "90": [
+      "build_history_kpf_righthand_model_melee_gate",
+      "build_history_v292_ammo_reveal_melee_gate",
+      "build_history_v293_hud_panel_masks"
+    ],
+    "91": [
+      "build_history_pose_loss_fallback_black_menu",
+      "decision_log_pose_loss_fallback",
+      "decision_log_weapon_scale_tracked_fallback_split"
+    ],
+    "92": [
+      "build_history_v141_flataim_facing_order_fix",
+      "build_history_v147_freeaim_pose_basis_overhaul",
+      "build_history_v148_roll_sign_hotfix"
+    ],
+    "93": [
+      "console_commands_dead_ends",
+      "console_commands_native_debug_ui",
+      "failure_registry_look_cursor_gameplay_freecursor"
+    ],
+    "94": [
+      "decision_log_current_state_dashboard_principle",
+      "decision_log_docs_lean_archive_principle",
+      "decision_log_quiet_logs_active_diagnostics"
+    ],
+    "95": [
+      "decision_log_deliverable_tiers_tracker",
+      "decision_log_phase_id_convention",
+      "decision_log_weighted_percent_tracker"
+    ],
+    "96": [
+      "decision_log_flataim_edge_pan_native_mouselook",
+      "decision_log_flataim_pickup_reach_8units",
+      "decision_log_freelook_mode_naming"
+    ],
+    "97": [
+      "decision_log_right_arm_hud_cropped_quad",
+      "decision_log_right_arm_hud_native_rect",
+      "decision_log_v142_inventory_controller_fallback"
+    ],
+    "98": [
+      "failure_registry_legacy_bsp_toolchain_main_exporter",
+      "ss2_asset_tool_comparison_blender_newdark_toolkit",
+      "ss2_asset_tool_comparison_legacy_cli_chain"
+    ],
+    "99": [
+      "failure_registry_options_rml_generic_cvar_dashboard",
+      "menu_vr_report_options_rml_override",
+      "menu_vr_report_shock2_options_data_model"
+    ],
+    "100": [
+      "failure_registry_squirrel_reserved_word_base",
+      "melee_scaling_handover_compile_failure",
+      "melee_scaling_handover_reserved_word_bug"
+    ],
+    "101": [
+      "future_hook_map_weapon_attach_lever",
+      "weapon_vr_handover_shot_firing_lever",
+      "weapon_vr_handover_viewmodel_placement_lever"
+    ],
+    "102": [
+      "gamepig_re_icebreaker",
+      "gamepig_re_route_a_detour",
+      "gamepig_re_swinekeeper"
+    ],
+    "103": [
+      "hypotheses_h11_vanilla_options",
+      "menu_options_bind_test_spec_decision_rule",
+      "menu_options_bind_test_spec_question"
+    ],
+    "104": [
+      "hypotheses_h13_squirrel_weapon_layer",
+      "hypotheses_h31_viewmodel_pose_bleed",
+      "hypotheses_h9_weapon_model_attach"
+    ],
+    "105": [
+      "overlay_panel_index_map_action_button_panel",
+      "overlay_panel_index_map_hack_puzzle_panel",
+      "overlay_panel_index_map_keypad_panel"
+    ],
+    "106": [
+      "test_plan_2026_07_cull_from_eye_test",
+      "vr_depth_and_collision_brief_head_roomscale_radius_clamp",
+      "vr_depth_and_collision_brief_p3_head_leaves_capsule"
+    ],
+    "107": [
+      "active_baseline_spatial_scale_baseline",
+      "dark_engine_source_notes_scale"
+    ],
+    "108": [
+      "address_registry_ai_stun_system",
+      "dark_engine_vr_modding_guide_stun_request_poll"
+    ],
+    "109": [
+      "address_registry_creature_joint_accessors",
+      "dark_engine_vr_modding_guide_creature_joint_enum"
+    ],
+    "110": [
+      "address_registry_gamepig_minigames",
+      "gamepig_icebreaker_integration"
+    ],
+    "111": [
+      "address_registry_openal_listener",
+      "dark_engine_vr_modding_guide_audio_listener"
+    ],
+    "112": [
+      "build_history_hl_hp_spam_regression_fix",
+      "build_history_v156_same_frame_camera_conversion"
+    ],
+    "113": [
+      "build_history_v161_display_camera_conversion_prep",
+      "build_history_v162_frame_identification_probe"
+    ],
+    "114": [
+      "console_commands_doc",
+      "vr_manual_reloads_doc"
+    ],
+    "115": [
+      "decision_log_damage_fx_hitpoints_polling",
+      "decision_log_hazard_meter_squirrel_properties"
+    ],
+    "116": [
+      "decision_log_flataim_local_docs",
+      "decision_log_flataim_ss2vr_findings_import"
+    ],
+    "117": [
+      "decision_log_flataim_startup_state_clear",
+      "failure_registry_flataim_stale_aim_state_saveload"
+    ],
+    "118": [
+      "failure_registry_flataim_mode4_clamped_to_mode1",
+      "failure_registry_flataim_mode5_no_rigsubclass_proof"
+    ],
+    "119": [
+      "failure_registry_native_kex_vr_remnants_dead_end",
+      "phase0_findings_native_vr_dead_code"
+    ],
+    "120": [
+      "failure_registry_shotgun_slide_joint_name_mangled",
+      "failure_registry_stock_melee_viewmodel_override_ctd"
+    ],
+    "121": [
+      "feature_roadmap_two_hand_deny_item",
+      "vr_two_handed_weapons_candidate_weapons_table"
+    ],
+    "122": [
+      "frob_archetype_tree_raw_nd_support_tree",
+      "frob_target_library_deny_families"
+    ],
+    "123": [
+      "gamepig_re_gamepig_system",
+      "gamepig_re_overworld"
+    ],
+    "124": [
+      "gamepig_re_ggamecurrent",
+      "gamepig_re_shockmfdgamemousedispatch"
+    ],
+    "125": [
+      "ghidra_annotation_backlog_g_ashockoverlayrects",
+      "hud_overlay_assembly_goverlayrects"
+    ],
+    "126": [
+      "git_agent_brief_gitignore_policy",
+      "git_agent_brief_workflow_rules"
+    ],
+    "127": [
+      "menu_vr_report_route_b_os_cursor_warp",
+      "menu_vr_report_update_menu_pointer"
+    ],
+    "128": [
+      "re_findings_al_listener_setters",
+      "re_findings_openal_audio_backend"
+    ],
+    "129": [
+      "re_findings_controller_fire_input_bridge",
+      "re_findings_dynamic_weapon_fire_table"
+    ],
+    "130": [
+      "re_findings_regen_booth_fx",
+      "re_findings_resurrect_path"
+    ],
+    "131": [
+      "uevr_stereo_lessons_afw_alternate_frame_warping",
+      "uevr_stereo_lessons_depth_submission_extension"
+    ],
+    "132": [
+      "vr_action_panel_test_controller_anchored_panel",
+      "vr_action_panel_test_radial_menu_mode"
+    ],
+    "133": [
+      "vr_body_holsters_player_body_avatar_research",
+      "vr_body_holsters_playerpuppetcreate_service"
+    ],
+    "134": [
+      "vr_post_process_design_blitwitheffect",
+      "vr_post_process_design_scene_srv_seam"
+    ],
+    "135": [
+      "vr_settings_panel_spec_architecture",
+      "vr_settings_panel_spec_widget_table"
+    ],
+    "136": [
+      "weapon_model_report_scale_property_fix",
+      "weapon_model_spec_task1_weapon_scale"
+    ],
+    "137": [
+      "active_baseline_stereo_timing_baseline"
+    ],
+    "138": [
+      "active_baseline_ui_baseline"
+    ],
+    "139": [
+      "active_baseline_view_effects_baseline"
+    ],
+    "140": [
+      "active_baseline_weapon_baseline"
+    ],
+    "141": [
+      "ar15_vhot_integration_handoff_integration_plan"
+    ],
+    "142": [
+      "bioshockvr_lessons_memory_scanner_toolchain"
+    ],
+    "143": [
+      "bioshockvr_lessons_square_backbuffer"
+    ],
+    "144": [
+      "build_history_depth_wall_safety_spikes"
+    ],
+    "145": [
+      "build_history_fine_tooth_cleanup_checkpoint"
+    ],
+    "146": [
+      "build_history_right_arm_native_rect_hud"
+    ],
+    "147": [
+      "build_history_v126_tracked_fallback_scale_physics_grab"
+    ],
+    "148": [
+      "build_history_v130_damage_glitch_fx"
+    ],
+    "149": [
+      "build_history_v132_target_healthbar"
+    ],
+    "150": [
+      "build_history_v145_snap_interact_effects_response"
+    ],
+    "151": [
+      "build_history_v154_snap_tolerance_jelly_roll_instrumentation"
+    ],
+    "152": [
+      "build_history_v157_kex_reticle_identified"
+    ],
+    "153": [
+      "build_history_v157_same_frame_translation_default_on"
+    ],
+    "154": [
+      "build_history_v158_wobble_readback_probe_validity_flags"
+    ],
+    "155": [
+      "build_history_v166_orientation_readback_probe"
+    ],
+    "156": [
+      "build_history_v167_dll_v162_lhand_wobble_port"
+    ],
+    "157": [
+      "build_history_weapon_pose_parallax_pass"
+    ],
+    "158": [
+      "conventions_parity_map"
+    ],
+    "159": [
+      "dark_engine_source_notes_graphify_reference_graphs"
+    ],
+    "160": [
+      "dark_engine_source_notes_lighting_ai_visibility"
+    ],
+    "161": [
+      "dark_engine_vr_modding_guide_scripting_squirrel"
+    ],
+    "162": [
+      "dark_engine_vr_modding_guide_sim_not_renderer"
+    ],
+    "163": [
+      "decision_log_digital_glitch_modes_gpu"
+    ],
+    "164": [
+      "decision_log_log_only_carrier_id"
+    ],
+    "165": [
+      "decision_log_menu_nav_bridge_first"
+    ],
+    "166": [
+      "decision_log_menu_pointer_native_gate"
+    ],
+    "167": [
+      "decision_log_world_scale_single_conversion"
+    ],
+    "168": [
+      "failure_registry_cameraobj_hmd_appspace_rotation"
+    ],
+    "169": [
+      "failure_registry_emp_rifle_no_damage_hybrids_misdiagnosis"
+    ],
+    "170": [
+      "failure_registry_flataim_config_return_value_api"
+    ],
+    "171": [
+      "failure_registry_flataim_hidden_cursor_as_selection"
+    ],
+    "172": [
+      "failure_registry_flataim_kpf_extra_mod_root"
+    ],
+    "173": [
+      "failure_registry_flataim_mode2_rotating_weapon_misread"
+    ],
+    "174": [
+      "failure_registry_flataim_plain_worldobject_yawpitch_incomplete"
+    ],
+    "175": [
+      "failure_registry_fun_14051ee80_hitscan_sink"
+    ],
+    "176": [
+      "failure_registry_launch_args_player_ownership"
+    ],
+    "177": [
+      "failure_registry_openxr_auto_start_too_early"
+    ],
+    "178": [
+      "failure_registry_openxr_overlay_as_true_postprocess"
+    ],
+    "179": [
+      "failure_registry_pitch_pure_mousedelta_integration"
+    ],
+    "180": [
+      "failure_registry_posttrace_logging_as_aim_takeover"
+    ],
+    "181": [
+      "failure_registry_raw_segment_trace_as_final_interactable"
+    ],
+    "182": [
+      "failure_registry_recompute_unused_matrices_busywork"
+    ],
+    "183": [
+      "failure_registry_regen_booth_script_vs_archetype"
+    ],
+    "184": [
+      "failure_registry_remap_cameraobj_translation_kex_frame"
+    ],
+    "185": [
+      "failure_registry_retuning_projectile_aim_for_fx"
+    ],
+    "186": [
+      "failure_registry_save_header_size_prefix"
+    ],
+    "187": [
+      "failure_registry_sfg_child_transform_world"
+    ],
+    "188": [
+      "failure_registry_spawned_carrier_physics_fight"
+    ],
+    "189": [
+      "failure_registry_split_scale_position_eye_separation"
+    ],
+    "190": [
+      "failure_registry_squirrel_arbitrary_bone_ik"
+    ],
+    "191": [
+      "failure_registry_squirrel_overlay_brackets"
+    ],
+    "192": [
+      "failure_registry_ui_cursor_world_fov"
+    ],
+    "193": [
+      "failure_registry_vr_melee_gesture_before_native_confirm"
+    ],
+    "194": [
+      "feature_roadmap_beam_opacity_item"
+    ],
+    "195": [
+      "flataim_to_ss2vr_handoff_behind_test_cutoff"
+    ],
+    "196": [
+      "fov_frustum_foundation_doc"
+    ],
+    "197": [
+      "handover_2026_08_03_flat2vr_nightdive"
+    ],
+    "198": [
+      "hypotheses_archive_h3v_visual_inertia_flicker"
+    ],
+    "199": [
+      "index_doc"
+    ],
+    "200": [
+      "maps_native_input_and_movement_lean_actions"
+    ],
+    "201": [
+      "maps_native_input_and_movement_velocity_primitive"
+    ],
+    "202": [
+      "marketing_teaser_draft_script"
+    ],
+    "203": [
+      "phase0_findings_doc"
+    ],
+    "204": [
+      "phase1_usage_stereo_pair_locking"
+    ],
+    "205": [
+      "project_phases_dlss_fsr_upscaler_task"
+    ],
+    "206": [
+      "project_phases_roomscale_wall_safety_clamp_task"
+    ],
+    "207": [
+      "re_findings_first_person_weapon_model_takeover"
+    ],
+    "208": [
+      "re_findings_inventory_lower_buttons_cursor_path"
+    ],
+    "209": [
+      "re_findings_melee_event_motion_driven"
+    ],
+    "210": [
+      "re_findings_native_command_control_verbs"
+    ],
+    "211": [
+      "re_findings_native_frob_command_path"
+    ],
+    "212": [
+      "re_findings_projectile_movement_traces"
+    ],
+    "213": [
+      "re_findings_raw_segment_trace_vs_interactable"
+    ],
+    "214": [
+      "re_findings_weapon_arm_attachment_globals"
+    ],
+    "215": [
+      "resolution_compat_hand_panel_uv_risk"
+    ],
+    "216": [
+      "shock2quest_reference_ae_asset_layout"
+    ],
+    "217": [
+      "squirrel_world_physics_mode_a_kinematic_follow"
+    ],
+    "218": [
+      "squirrel_world_physics_mode_c_visual_only_held_object"
+    ],
+    "219": [
+      "test_checklists_left_hand_cropped_ui_panel_spike"
+    ],
+    "220": [
+      "test_checklists_native_centre_crosshair_suppression"
+    ],
+    "221": [
+      "test_checklists_native_draw_range_ui_panel_spike"
+    ],
+    "222": [
+      "test_checklists_two_hand_weapon_support_grip"
+    ],
+    "223": [
+      "test_plan_2026_07_gamepig_icebreaker_test"
+    ],
+    "224": [
+      "test_plan_2026_07_menu_both_hand_pointer"
+    ],
+    "225": [
+      "test_plan_2026_07_menu_horizon_locked_panel"
+    ],
+    "226": [
+      "uevr_stereo_lessons_uevr_project"
+    ],
+    "227": [
+      "vr_findings_index_parallax_mapping_negative_result"
+    ],
+    "228": [
+      "vr_findings_index_per_eye_quad_support"
+    ],
+    "229": [
+      "vr_manual_reloads_pose_zone_design"
+    ],
+    "230": [
+      "vr_mod_reference_survey_doc"
+    ],
+    "231": [
+      "vr_post_process_design_migration_plan"
+    ],
+    "232": [
+      "vr_post_process_design_state_save_restore"
+    ],
+    "233": [
+      "vr_settings_panel_spec_doc"
+    ],
+    "234": [
+      "vr_settings_panel_spec_persistence"
+    ],
+    "235": [
+      "vr_wrist_keypad_spec_doc"
+    ]
+  },
+  "cohesion": {
+    "0": 0.0463768115942029,
+    "1": 0.050505050505050504,
+    "2": 0.05555555555555555,
+    "3": 0.05555555555555555,
+    "4": 0.07459677419354839,
+    "5": 0.08387096774193549,
+    "6": 0.08045977011494253,
+    "7": 0.11384615384615385,
+    "8": 0.08923076923076922,
+    "9": 0.10507246376811594,
+    "10": 0.09881422924901186,
+    "11": 0.09523809523809523,
+    "12": 0.11578947368421053,
+    "13": 0.1111111111111111,
+    "14": 0.17543859649122806,
+    "15": 0.12418300653594772,
+    "16": 0.16176470588235295,
+    "17": 0.16911764705882354,
+    "18": 0.13970588235294118,
+    "19": 0.14166666666666666,
+    "20": 0.125,
+    "21": 0.2,
+    "22": 0.19230769230769232,
+    "23": 0.1794871794871795,
+    "24": 0.19696969696969696,
+    "25": 0.16666666666666666,
+    "26": 0.16666666666666666,
+    "27": 0.2,
+    "28": 0.23636363636363636,
+    "29": 0.32727272727272727,
+    "30": 0.2545454545454545,
+    "31": 0.2,
+    "32": 0.2,
+    "33": 0.2222222222222222,
+    "34": 0.24444444444444444,
+    "35": 0.2222222222222222,
+    "36": 0.2,
+    "37": 0.26666666666666666,
+    "38": 0.24444444444444444,
+    "39": 0.2777777777777778,
+    "40": 0.3055555555555556,
+    "41": 0.2777777777777778,
+    "42": 0.2777777777777778,
+    "43": 0.2222222222222222,
+    "44": 0.2222222222222222,
+    "45": 0.25,
+    "46": 0.2222222222222222,
+    "47": 0.2222222222222222,
+    "48": 0.32142857142857145,
+    "49": 0.2857142857142857,
+    "50": 0.2857142857142857,
+    "51": 0.25,
+    "52": 0.35714285714285715,
+    "53": 0.25,
+    "54": 0.25,
+    "55": 0.2857142857142857,
+    "56": 0.2857142857142857,
+    "57": 0.2857142857142857,
+    "58": 0.2857142857142857,
+    "59": 0.2857142857142857,
+    "60": 0.2857142857142857,
+    "61": 0.2857142857142857,
+    "62": 0.2857142857142857,
+    "63": 0.2857142857142857,
+    "64": 0.3333333333333333,
+    "65": 0.3333333333333333,
+    "66": 0.3333333333333333,
+    "67": 0.3333333333333333,
+    "68": 0.4,
+    "69": 0.3333333333333333,
+    "70": 0.3333333333333333,
+    "71": 0.3333333333333333,
+    "72": 0.4666666666666667,
+    "73": 0.3333333333333333,
+    "74": 0.4,
+    "75": 0.4,
+    "76": 0.7,
+    "77": 0.4,
+    "78": 0.5,
+    "79": 0.4,
+    "80": 0.4,
+    "81": 0.4,
+    "82": 0.4,
+    "83": 0.4,
+    "84": 0.4,
+    "85": 0.5,
+    "86": 0.5,
+    "87": 0.5,
+    "88": 0.5,
+    "89": 0.5,
+    "90": 0.6666666666666666,
+    "91": 0.6666666666666666,
+    "92": 0.6666666666666666,
+    "93": 0.6666666666666666,
+    "94": 0.6666666666666666,
+    "95": 0.6666666666666666,
+    "96": 0.6666666666666666,
+    "97": 0.6666666666666666,
+    "98": 0.6666666666666666,
+    "99": 0.6666666666666666,
+    "100": 1.0,
+    "101": 0.6666666666666666,
+    "102": 0.6666666666666666,
+    "103": 0.6666666666666666,
+    "104": 0.6666666666666666,
+    "105": 0.6666666666666666,
+    "106": 0.6666666666666666,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0,
+    "200": 1.0,
+    "201": 1.0,
+    "202": 1.0,
+    "203": 1.0,
+    "204": 1.0,
+    "205": 1.0,
+    "206": 1.0,
+    "207": 1.0,
+    "208": 1.0,
+    "209": 1.0,
+    "210": 1.0,
+    "211": 1.0,
+    "212": 1.0,
+    "213": 1.0,
+    "214": 1.0,
+    "215": 1.0,
+    "216": 1.0,
+    "217": 1.0,
+    "218": 1.0,
+    "219": 1.0,
+    "220": 1.0,
+    "221": 1.0,
+    "222": 1.0,
+    "223": 1.0,
+    "224": 1.0,
+    "225": 1.0,
+    "226": 1.0,
+    "227": 1.0,
+    "228": 1.0,
+    "229": 1.0,
+    "230": 1.0,
+    "231": 1.0,
+    "232": 1.0,
+    "233": 1.0,
+    "234": 1.0,
+    "235": 1.0
+  },
+  "gods": [
+    {
+      "id": "docs_build_history",
+      "label": "Build History",
+      "degree": 79
+    },
+    {
+      "id": "docs_user_test_log",
+      "label": "User Test Log",
+      "degree": 16
+    },
+    {
+      "id": "docs_failure_registry",
+      "label": "Failure Registry",
+      "degree": 13
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Deferred: HMD Roll Curves Back to Level",
+      "target": "HMD Roll Double-Count (camera-render + bridge clBank)",
+      "source_files": [
+        "CURRENT_STATE_ARCHIVE.md",
+        "archive/CODEX_PROPOSAL_pose_bridge_kiss.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; semantically similar concepts with no structural link; peripheral node `Deferred: HMD Roll Curves Back to Level` unexpectedly reaches hub `HMD Roll Double-Count (camera-render + bridge clBank)`"
+    },
+    {
+      "source": "DLL v3.59: Solid-Block Core + Tiered Damage Feedback",
+      "target": "#26 Physical Melee PARRY (v3.33+)",
+      "source_files": [
+        "BUILD_HISTORY.md",
+        "CURRENT_STATE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "#26 Physical Melee PARRY (v3.33+)",
+      "target": "Physical Parry via ApplyWeaponHit Veto",
+      "source_files": [
+        "CURRENT_STATE.md",
+        "MELEE_DAMAGE_RE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "What Thief Gives You That SS2 Didn't (sword block, ropes)",
+      "target": "#26 Physical Melee PARRY (v3.33+)",
+      "source_files": [
+        "DARK_ENGINE_VR_MODDING_GUIDE.md",
+        "CURRENT_STATE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link; peripheral node `What Thief Gives You That SS2 Didn't (sword block, ropes)` unexpectedly reaches hub `#26 Physical Melee PARRY (v3.33+)`"
+    },
+    {
+      "source": "ICEBREAKER Safety Model (signature guard, SEH, smoke mode)",
+      "target": "RE Methodology: Live Process Reads, Signature Guards",
+      "source_files": [
+        "GAMEPIG_ICEBREAKER.md",
+        "DARK_ENGINE_VR_MODDING_GUIDE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link; peripheral node `ICEBREAKER Safety Model (signature guard, SEH, smoke mode)` unexpectedly reaches hub `RE Methodology: Live Process Reads, Signature Guards`"
+    }
+  ],
+  "navigation_hubs": [
+    {
+      "id": "maps_home",
+      "label": "Home (start here)",
+      "degree": 64
+    },
+    {
+      "id": "runbooks_readme",
+      "label": "Documentation / Agent Memory Layout",
+      "degree": 20
+    },
+    {
+      "id": "maps_performance_and_vr_effects",
+      "label": "Performance and VR Effects (map)",
+      "degree": 18
+    },
+    {
+      "id": "maps_interaction_frob_and_ui",
+      "label": "Interaction, Frob and UI (map)",
+      "degree": 17
+    },
+    {
+      "id": "maps_weapons_hands_and_melee",
+      "label": "Weapons, Hands and Melee (map)",
+      "degree": 17
+    },
+    {
+      "id": "maps_native_input_and_movement",
+      "label": "Native Input and Movement (map)",
+      "degree": 14
+    },
+    {
+      "id": "vr_findings_index_hub",
+      "label": "SS2VR Findings Index Navigation Hub",
+      "degree": 13
+    }
+  ]
+}

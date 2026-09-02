@@ -1,0 +1,188 @@
+{
+  "ACTIVE_BASELINE.md": {
+    "mtime": 1784771986.7508347,
+    "seen": 1787801890.6839528,
+    "ast_hash": "6a7b6b965df80746d4a05bf1527defae",
+    "semantic_hash": "6a7b6b965df80746d4a05bf1527defae"
+  },
+  "ADDRESS_REGISTRY.md": {
+    "mtime": 1784771986.7720792,
+    "seen": 1787801890.6839528,
+    "ast_hash": "d3a9eddc99e6966df93fd49a96bccb83",
+    "semantic_hash": "d3a9eddc99e6966df93fd49a96bccb83"
+  },
+  "BUILD_HISTORY.md": {
+    "mtime": 1784771986.7941012,
+    "seen": 1787801890.6839528,
+    "ast_hash": "2b8b5bb66330fb4d00526f993d681c36",
+    "semantic_hash": "2b8b5bb66330fb4d00526f993d681c36"
+  },
+  "BioShock_Bulk_Files_And_Catalog.md": {
+    "mtime": 1784771988.2287514,
+    "seen": 1787801890.6839528,
+    "ast_hash": "69c1cceb299c1419118726454f78ec6c",
+    "semantic_hash": "69c1cceb299c1419118726454f78ec6c"
+  },
+  "BioShock_Materials_And_Shaders.md": {
+    "mtime": 1784771988.2502663,
+    "seen": 1787801890.6839528,
+    "ast_hash": "519051a2da4075b891db0b11b9803021",
+    "semantic_hash": "519051a2da4075b891db0b11b9803021"
+  },
+  "BioShock_Reading_Textures.md": {
+    "mtime": 1784771988.273973,
+    "seen": 1787801890.6839528,
+    "ast_hash": "81b5bdbe15c7383e4e9459c5b2c91b05",
+    "semantic_hash": "81b5bdbe15c7383e4e9459c5b2c91b05"
+  },
+  "BioShock_Texture_Lightmap_Format.md": {
+    "mtime": 1784771988.2959907,
+    "seen": 1787801890.6839528,
+    "ast_hash": "fe500fa6a4de92ffcd3302223a26ed69",
+    "semantic_hash": "fe500fa6a4de92ffcd3302223a26ed69"
+  },
+  "CODE_ARCHITECTURE.md": {
+    "mtime": 1784771986.8151999,
+    "seen": 1787801890.6839528,
+    "ast_hash": "34ed5e4487a1e211945cd052b64ea957",
+    "semantic_hash": "34ed5e4487a1e211945cd052b64ea957"
+  },
+  "CURRENT_STATE.md": {
+    "mtime": 1784771986.9325643,
+    "seen": 1787801890.6839528,
+    "ast_hash": "9206e6c2843b42b5bc9222c6158dd93d",
+    "semantic_hash": "9206e6c2843b42b5bc9222c6158dd93d"
+  },
+  "DECISION_LOG.md": {
+    "mtime": 1784771986.9600856,
+    "seen": 1787801890.6839528,
+    "ast_hash": "a4136c6193a6b4153d356b78996ccbf6",
+    "semantic_hash": "a4136c6193a6b4153d356b78996ccbf6"
+  },
+  "FAILURE_REGISTRY.md": {
+    "mtime": 1784771987.0104244,
+    "seen": 1787801890.6839528,
+    "ast_hash": "6bc76dfc2a980f1ac8716df87bda1e19",
+    "semantic_hash": "6bc76dfc2a980f1ac8716df87bda1e19"
+  },
+  "GIT_AGENT_BRIEF.md": {
+    "mtime": 1784771987.0871322,
+    "seen": 1787801890.6839528,
+    "ast_hash": "5d0c5f5a2e08773fb2c927e9865eb1d6",
+    "semantic_hash": "5d0c5f5a2e08773fb2c927e9865eb1d6"
+  },
+  "HYPOTHESES.md": {
+    "mtime": 1784771987.1136596,
+    "seen": 1787801890.6839528,
+    "ast_hash": "55bc08d119bee28d0f16e4726c92554d",
+    "semantic_hash": "55bc08d119bee28d0f16e4726c92554d"
+  },
+  "INSTALLATION.md": {
+    "mtime": 1784771987.1685252,
+    "seen": 1787801890.6839528,
+    "ast_hash": "57dd4471c44c4c18e7185dc3ccac971e",
+    "semantic_hash": "57dd4471c44c4c18e7185dc3ccac971e"
+  },
+  "PROJECT_PHASES.md": {
+    "mtime": 1784771987.317583,
+    "seen": 1787801890.6839528,
+    "ast_hash": "a2c8c89c121ae889533cfe3fc4854416",
+    "semantic_hash": "a2c8c89c121ae889533cfe3fc4854416"
+  },
+  "RE_FINDINGS.md": {
+    "mtime": 1784771987.3647904,
+    "seen": 1787801890.6839528,
+    "ast_hash": "9711d7953fcdce7fa3b6b0bdfa9b3a40",
+    "semantic_hash": "9711d7953fcdce7fa3b6b0bdfa9b3a40"
+  },
+  "TEST_CHECKLISTS.md": {
+    "mtime": 1784771987.38998,
+    "seen": 1787801890.6839528,
+    "ast_hash": "48cecb6d38405bd7c0122c2a331fdab7",
+    "semantic_hash": "48cecb6d38405bd7c0122c2a331fdab7"
+  },
+  "TROUBLESHOOTING.md": {
+    "mtime": 1784771987.4125006,
+    "seen": 1787801890.6839528,
+    "ast_hash": "dcbdc5668e14929d6b1ee4492ab5d9e5",
+    "semantic_hash": "dcbdc5668e14929d6b1ee4492ab5d9e5"
+  },
+  "USER_GUIDE.md": {
+    "mtime": 1784771987.483791,
+    "seen": 1787801890.6839528,
+    "ast_hash": "1832be4b5c5aeabcb50a4ac40991ae4e",
+    "semantic_hash": "1832be4b5c5aeabcb50a4ac40991ae4e"
+  },
+  "bioshock1-bsm.md": {
+    "mtime": 1784771988.2045484,
+    "seen": 1787801890.6839528,
+    "ast_hash": "609a60e8de98ef12a6ac5a638fc01520",
+    "semantic_hash": "609a60e8de98ef12a6ac5a638fc01520"
+  },
+  "engine-findings-integration.md": {
+    "mtime": 1784771986.9851854,
+    "seen": 1787801890.6839528,
+    "ast_hash": "ad1f00ade0585f944c691d759bbe774b",
+    "semantic_hash": "ad1f00ade0585f944c691d759bbe774b"
+  },
+  "fov-frustum-foundation.md": {
+    "mtime": 1784771987.0344427,
+    "seen": 1787801890.6839528,
+    "ast_hash": "cf60d33808ac1d7fb812ebd7a415adc2",
+    "semantic_hash": "cf60d33808ac1d7fb812ebd7a415adc2"
+  },
+  "future-hook-map.md": {
+    "mtime": 1784771987.0619664,
+    "seen": 1787801890.6839528,
+    "ast_hash": "a222856988c3af35aa088d62fbf5dd9c",
+    "semantic_hash": "a222856988c3af35aa088d62fbf5dd9c"
+  },
+  "native-arm-controller-aim.md": {
+    "mtime": 1784771987.1936488,
+    "seen": 1787801890.6839528,
+    "ast_hash": "51a8a6d3f00b786170b016eb9cef907a",
+    "semantic_hash": "51a8a6d3f00b786170b016eb9cef907a"
+  },
+  "phase1-usage.md": {
+    "mtime": 1784771987.2468717,
+    "seen": 1787801890.6839528,
+    "ast_hash": "f7e51c8bfc02e527156d4dc1d4ed176b",
+    "semantic_hash": "f7e51c8bfc02e527156d4dc1d4ed176b"
+  },
+  "phase2-ui.md": {
+    "mtime": 1784771987.2715507,
+    "seen": 1787801890.6839528,
+    "ast_hash": "85a82e95c679e107cc4cbca2d2c87781",
+    "semantic_hash": "85a82e95c679e107cc4cbca2d2c87781"
+  },
+  "projection-pcenter-findings.md": {
+    "mtime": 1784771987.294572,
+    "seen": 1787801890.6839528,
+    "ast_hash": "09c278cc4bf1e3b9f2ce4e2ebecac79f",
+    "semantic_hash": "09c278cc4bf1e3b9f2ce4e2ebecac79f"
+  },
+  "reference-stereo-fix-analysis.md": {
+    "mtime": 1784771987.3407166,
+    "seen": 1787801890.6839528,
+    "ast_hash": "093bad57984fd90bba19b0695cbb4e12",
+    "semantic_hash": "093bad57984fd90bba19b0695cbb4e12"
+  },
+  "uevr-prior-art.md": {
+    "mtime": 1784771987.4371414,
+    "seen": 1787801890.6839528,
+    "ast_hash": "36702a14f265e9f4995dfcf238268139",
+    "semantic_hash": "36702a14f265e9f4995dfcf238268139"
+  },
+  "unrealport-reference-findings.md": {
+    "mtime": 1784771987.4606855,
+    "seen": 1787801890.6839528,
+    "ast_hash": "b415ed3287984d91659510b53f824b1c",
+    "semantic_hash": "b415ed3287984d91659510b53f824b1c"
+  },
+  "vr-presentation-6dof-spec.md": {
+    "mtime": 1784771987.514812,
+    "seen": 1787801890.6839528,
+    "ast_hash": "2545a4b50d3a0df7dd0d58b7d2f6a102",
+    "semantic_hash": "2545a4b50d3a0df7dd0d58b7d2f6a102"
+  }
+}

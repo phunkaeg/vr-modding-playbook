@@ -1,0 +1,103 @@
+site_name: VR Modding Playbook
+site_description: A source-tracked, cross-engine playbook for converting flat games to VR.
+site_author: Evan Whiteside
+docs_dir: docs
+exclude_docs: |
+  generated/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Home: README.md
+  - Start here:
+    - "Start or unblock a port": start-new-port.md
+    - "Fleet bottleneck map": bottleneck-map.md
+    - "Copy-ready evidence templates": project-evidence-templates.md
+    - "Symptom index (something is broken)": symptom-index.md
+    - Pattern catalog: pattern-catalog.md
+    - Failure atlas: failure-atlas.md
+    - "Cross-project index (who solved what)": cross-project-index.md
+    - "Coverage dashboard (what is missing/stale)": coverage.md
+    - Glossary: glossary.md
+  - Port workflows:
+    - "RE-owned route (primary)": reverse-engineered-route.md
+    - Source-owned route: source-owned-route.md
+    - Shared VR engineering spine: shared-vr-spine.md
+  - Core VR systems:
+    - 00 · Engine profiles: 00-engine-profiles.md
+    - 01 · Camera & tracking: 01-camera-and-tracking.md
+    - 02 · Viewmodels & hands: 02-viewmodels-and-hands.md
+    - 03 · Input & locomotion: 03-input-and-locomotion.md
+    - 04 · UI & HUD: 04-ui-and-hud.md
+    - 05 · Assets & materials: 05-assets-and-materials.md
+    - 12 · Torso calculations & ergonomics: 12-torso-calculations-and-ergonomics.md
+    - 20 · Audio & haptics: 20-audio-and-haptics.md
+  - Engineering method:
+    - 06 · Debugging methodology: 06-debugging-methodology.md
+    - 07 · Engine integration & safety: 07-engine-integration-safety.md
+    - 08 · Project process: 08-project-process.md
+    - 11 · RE anchoring & discovery: 11-re-anchoring-and-discovery.md
+  - Rendering & APIs:
+    - 09 · D3D11 & OpenXR injection: 09-d3d11-openxr-injection.md
+    - 10 · Graphics APIs: 10-graphics-apis.md
+    - 14 · Render-pass hazard atlas: 14-render-pass-hazard-atlas.md
+    - "17 · Native stereo: FEAR VR & FC2VR": 17-teardown-fc2vr-native-stereo.md
+    - 19 · D3D12 & performance: 19-d3d12-and-performance.md
+  - Case studies:
+    - "13 · Independent BioShock VR mod": 13-teardown-bioshock-vr.md
+    - "15 · IL-2 1946 VR mod": 15-teardown-il2-1946-vr.md
+    - "16 · Virtua Cop 2 VR": 16-teardown-virtua-cop-2-vr.md
+    - "18 · Beyond the native injector": 18-beyond-the-native-injector.md
+  - "★ Cross-engine map": cross-engine-map.md
+  - Reference code:
+    - "A1 · Rotation, frames & angles": a1-rotation-and-frames.md
+    - "A2 · Motion controls & pose pipeline": a2-pose-pipeline.md
+    - "A3 · Stereo projection & validation": a3-stereo-projection.md
+    - "A4 · Hook safety": a4-hook-safety.md
+    - "A5 · Flat harness & noise-floor stats": a5-flat-harness-stats.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.snippets:
+      base_path: docs
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search

@@ -1,0 +1,146 @@
+{
+  "ADDRESS_REGISTRY.md": {
+    "mtime": 1784771987.5792072,
+    "seen": 1787797068.0993092,
+    "ast_hash": "4b2e78d002c86e0038f7f1d34ca1a84e",
+    "semantic_hash": "4b2e78d002c86e0038f7f1d34ca1a84e"
+  },
+  "ARCHITECTURE.md": {
+    "mtime": 1784771987.603719,
+    "seen": 1787797068.0993092,
+    "ast_hash": "7a7730acea37aa7e0c1274d3d1d49bad",
+    "semantic_hash": "7a7730acea37aa7e0c1274d3d1d49bad"
+  },
+  "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md": {
+    "mtime": 1784771987.6291213,
+    "seen": 1787797068.0993092,
+    "ast_hash": "9eb3e0dacb593b3b97c7c3307b69a0c2",
+    "semantic_hash": "9eb3e0dacb593b3b97c7c3307b69a0c2"
+  },
+  "BUILD_HISTORY.md": {
+    "mtime": 1784771987.6586392,
+    "seen": 1787797068.0993092,
+    "ast_hash": "cf24848f27af2f183c7f7412c8a79b02",
+    "semantic_hash": "cf24848f27af2f183c7f7412c8a79b02"
+  },
+  "COMFORT_AND_FOCUS_RE.md": {
+    "mtime": 1784771987.68151,
+    "seen": 1787797068.0993092,
+    "ast_hash": "f4969cc18358591b8457e1e53cc7b61d",
+    "semantic_hash": "f4969cc18358591b8457e1e53cc7b61d"
+  },
+  "CONTACT_HAPTICS_RE.md": {
+    "mtime": 1784771987.705019,
+    "seen": 1787797068.0993092,
+    "ast_hash": "8463f6b5fd97642014977e06988fa39c",
+    "semantic_hash": "8463f6b5fd97642014977e06988fa39c"
+  },
+  "CURRENT_STATE.md": {
+    "mtime": 1784771987.7270372,
+    "seen": 1787797068.0993092,
+    "ast_hash": "ca3a89ad5596e2bba4444c4afa3348d5",
+    "semantic_hash": "ca3a89ad5596e2bba4444c4afa3348d5"
+  },
+  "FEATURE_TRACEABILITY.md": {
+    "mtime": 1784771987.7490592,
+    "seen": 1787797068.0993092,
+    "ast_hash": "0ba57543d626546d2495aceb8c48aab2",
+    "semantic_hash": "0ba57543d626546d2495aceb8c48aab2"
+  },
+  "FUTURE_SYSTEMS_RE.md": {
+    "mtime": 1784771987.7951918,
+    "seen": 1787797068.0993092,
+    "ast_hash": "082aae0ab08a006990a83abffb30e0d2",
+    "semantic_hash": "082aae0ab08a006990a83abffb30e0d2"
+  },
+  "GHIDRA_SYNC.md": {
+    "mtime": 1784771987.8167093,
+    "seen": 1787797068.0993092,
+    "ast_hash": "49ffd2b149ea047fd5184a88c1c9d66a",
+    "semantic_hash": "49ffd2b149ea047fd5184a88c1c9d66a"
+  },
+  "HPL_OPENGL_NOTES.md": {
+    "mtime": 1784771987.835362,
+    "seen": 1787797068.0993092,
+    "ast_hash": "2452c1c766da65fe0ce30283e801ad16",
+    "semantic_hash": "2452c1c766da65fe0ce30283e801ad16"
+  },
+  "HYPOTHESES.md": {
+    "mtime": 1784771987.855874,
+    "seen": 1787797068.0993092,
+    "ast_hash": "051fd802c973c6386f1b2789b545b735",
+    "semantic_hash": "051fd802c973c6386f1b2789b545b735"
+  },
+  "NEXT_LIVE_EVIDENCE.md": {
+    "mtime": 1784771987.878299,
+    "seen": 1787797068.0993092,
+    "ast_hash": "07ea0aad1612d26829b1c7a2ebb3fa33",
+    "semantic_hash": "07ea0aad1612d26829b1c7a2ebb3fa33"
+  },
+  "RUNTIME_ANALYSIS_0.5.1.md": {
+    "mtime": 1784771987.9018164,
+    "seen": 1787797068.0993092,
+    "ast_hash": "d287aec88e33e99ffe6ec38c6457fcf7",
+    "semantic_hash": "d287aec88e33e99ffe6ec38c6457fcf7"
+  },
+  "RUNTIME_ANALYSIS_0.5.2.md": {
+    "mtime": 1784771987.924418,
+    "seen": 1787797068.0993092,
+    "ast_hash": "d64153372b395a116439f9bda9494ebf",
+    "semantic_hash": "d64153372b395a116439f9bda9494ebf"
+  },
+  "RUNTIME_ANALYSIS_0.5.4.md": {
+    "mtime": 1784771987.9746194,
+    "seen": 1787797068.0993092,
+    "ast_hash": "bf2bf5ae2a245770fa607157ab7f3eb1",
+    "semantic_hash": "bf2bf5ae2a245770fa607157ab7f3eb1"
+  },
+  "RUNTIME_ANALYSIS_0.5.5.md": {
+    "mtime": 1784771987.9986515,
+    "seen": 1787797068.0993092,
+    "ast_hash": "20d90902af091d74f2b93a20e10fa02f",
+    "semantic_hash": "20d90902af091d74f2b93a20e10fa02f"
+  },
+  "RUNTIME_ANALYSIS_0.5.6.md": {
+    "mtime": 1784771988.022001,
+    "seen": 1787797068.0993092,
+    "ast_hash": "4ea1b125d1c77f1137dfc754f33f8aa0",
+    "semantic_hash": "4ea1b125d1c77f1137dfc754f33f8aa0"
+  },
+  "SMOKE_TEST_MATRIX.md": {
+    "mtime": 1784771988.0449903,
+    "seen": 1787797068.0993092,
+    "ast_hash": "070af360ad092080e0806f1221b5c46b",
+    "semantic_hash": "070af360ad092080e0806f1221b5c46b"
+  },
+  "TEST_CHECKLISTS.md": {
+    "mtime": 1784771988.0711415,
+    "seen": 1787797068.0993092,
+    "ast_hash": "25f2145fec54d34237cd8f0f9cf5718a",
+    "semantic_hash": "25f2145fec54d34237cd8f0f9cf5718a"
+  },
+  "UEVR_LEARNINGS.md": {
+    "mtime": 1784771988.0936556,
+    "seen": 1787797068.0993092,
+    "ast_hash": "4e72b6dc6e291729f8ed9a2f83bf9699",
+    "semantic_hash": "4e72b6dc6e291729f8ed9a2f83bf9699"
+  },
+  "USER_GUIDE.md": {
+    "mtime": 1784771988.1158795,
+    "seen": 1787797068.0993092,
+    "ast_hash": "1e6046dc346560d6a991d32873a25f18",
+    "semantic_hash": "1e6046dc346560d6a991d32873a25f18"
+  },
+  "VR_COMPATIBILITY_RE.md": {
+    "mtime": 1784771988.1389022,
+    "seen": 1787797068.0993092,
+    "ast_hash": "4850b633d0f246af9427648a80c47640",
+    "semantic_hash": "4850b633d0f246af9427648a80c47640"
+  },
+  "future-hook-map.md": {
+    "mtime": 1784771987.7705715,
+    "seen": 1787797068.0993092,
+    "ast_hash": "fcb9a9b9bcee52e641ca264199ef9d41",
+    "semantic_hash": "fcb9a9b9bcee52e641ca264199ef9d41"
+  }
+}

@@ -1,0 +1,772 @@
+{
+  "communities": {
+    "0": [
+      "dark_frob_system",
+      "dark_pick_system",
+      "ss2vr_blink_nut",
+      "ss2vr_conventions",
+      "ss2vr_dll_v1_48",
+      "ss2vr_effects_nut",
+      "ss2vr_haptic_bridge",
+      "ss2vr_interact_nut",
+      "ss2vr_melee_damage_re_md",
+      "ss2vr_melee_read_skill",
+      "ss2vr_melee_scaling_nut",
+      "ss2vr_melee_tip_collision",
+      "ss2vr_re_findings_md",
+      "ss2vr_teleport_locomotion_re_md",
+      "ss2vr_vr_body_holsters",
+      "ss2vr_vr_highlights_report",
+      "ss2vr_vr_manual_reloads",
+      "ss2vr_vr_two_handed_weapons",
+      "ss2vr_weapon_cameraobj_hmd_bleed_handoff",
+      "ss2vr_weapon_handoff_probe_kpf",
+      "ss2vr_weapon_probe_nut"
+    ],
+    "1": [
+      "ss2vr_decision_log_flataim_freelook_branding",
+      "ss2vr_decision_log_flataim_v0_17_bounded_anti_roll",
+      "ss2vr_decision_log_flataim_v0_18_rig_aimpoint",
+      "ss2vr_decision_log_flataim_v0_19_screen_axis",
+      "ss2vr_decision_log_flataim_v0_20_proxy",
+      "ss2vr_decision_log_flataim_v0_21_teleport_order",
+      "ss2vr_decision_log_flataim_v0_22_screen_up",
+      "ss2vr_decision_log_flataim_v0_28_dark_matrix",
+      "ss2vr_decision_log_flataim_view_frame_aim",
+      "ss2vr_decision_log_retire_flataim_inverse_cos",
+      "ss2vr_failure_registry_flataim_kpf_root"
+    ],
+    "2": [
+      "ahands",
+      "ashockplayer",
+      "bioshockvr_re_findings",
+      "d3d11_hooks",
+      "layer_model_batch_fun_10f77db0",
+      "material_batch_fun_10f76e30",
+      "stereo_world_mutation",
+      "weaponviewmodelcontrollerpose"
+    ],
+    "3": [
+      "ss2vr_decision_log_lgmd_modify_existing_stubs",
+      "ss2vr_decision_log_stock_rig_preservation",
+      "ss2vr_decision_log_v1_90_atek_lock",
+      "ss2vr_failure_registry_lgmd_loader_int3",
+      "ss2vr_failure_registry_psi_amp_ctd",
+      "ss2vr_failure_registry_shotgun_joint_name_mangle",
+      "ss2vr_failure_registry_stock_melee_override_ctd"
+    ],
+    "4": [
+      "b1_3_stereo_rendering",
+      "b2_1_native_camera",
+      "b3_1_wrench_pickup",
+      "b4_1_hud_lane",
+      "bioshockvr_hypotheses",
+      "renderdoc_crash_32bit"
+    ],
+    "5": [
+      "bioshockvr_uevr_prior_art",
+      "somavr_address_registry",
+      "somavr_architecture",
+      "somavr_authored_states_and_visible_hands_re",
+      "somavr_build_history",
+      "somavr_hpl_player_state"
+    ],
+    "6": [
+      "funkmaxexport",
+      "h13_ae_squirrel_weapon_handoff",
+      "h19_lgmd_face_deletion",
+      "h3_weapon_aim_sink",
+      "ss2vr_ss2_asset_tool_comparison_md",
+      "ss2vr_vr_weapon_mesh_pipeline"
+    ],
+    "7": [
+      "kex_engine",
+      "openxr_runtime",
+      "ss2vr_dll",
+      "ss2vr_test_plan_2026_07",
+      "ss2vr_uevr_stereo_lessons",
+      "ss2vr_vr_climbing_re"
+    ],
+    "8": [
+      "nd_shock_gun_viewmodel_on_frame_update",
+      "nd_shoot_trigger_script",
+      "ss2vr_aim_config_var",
+      "ss2vr_dll_pose_bridge",
+      "ss2vr_weapon_probe_ss2vr_redirect_projectile_aim",
+      "ss2vr_weapon_probe_ss2vr_shoot_aim_script"
+    ],
+    "9": [
+      "ss2vr_phase1_usage_weapon_melee_v1_7",
+      "ss2vr_phase1_usage_weapon_viewmodel_pose_bridge",
+      "ss2vr_phase2_ui_cursor_injection",
+      "ss2vr_phase2_ui_interaction_router",
+      "ss2vr_phase2_ui_squirrel_interaction_spike",
+      "ss2vr_vr_mod_reference_survey_jkxr"
+    ],
+    "10": [
+      "0_3_103_vrfov_eye",
+      "0_3_67_shadowmaskab",
+      "0_3_71_artifactprobe",
+      "0_3_86_compactc10apply",
+      "bioshockvr_failure_registry"
+    ],
+    "11": [
+      "d3d11_draw_classification",
+      "shkovrly_cpp_goverlayrects",
+      "shockoverlaydoframe",
+      "shockoverlaydrawbuffers",
+      "vr_panel_split_strategy"
+    ],
+    "12": [
+      "ss2vr_flataim_dll",
+      "ss2vr_hypotheses_archive_hfa1",
+      "ss2vr_interaction_squirrel_report",
+      "ss2vr_ss2fa_nut",
+      "ss2vr_ss2vr_interact_nut"
+    ],
+    "13": [
+      "0_3_34_sustainedwide",
+      "0_3_35_directdraw",
+      "0_3_36_stalefallback",
+      "openxr_temporal_stereo_bridge"
+    ],
+    "14": [
+      "blk_files",
+      "bsp_lightmaps",
+      "catalog_bdc",
+      "utexture_object"
+    ],
+    "15": [
+      "kex_setconfigraw",
+      "ss2vr_game_event_effects",
+      "ss2vr_gamepig_icebreaker",
+      "ss2vr_gamepig_re"
+    ],
+    "16": [
+      "0_3_41_eyeblitproof",
+      "0_3_52_depthreproject",
+      "private_hdr_eye_targets"
+    ],
+    "17": [
+      "0_3_57_matrixstereoproof",
+      "0_3_58_nativevs_pcenter",
+      "0_3_61_screendatapcenter"
+    ],
+    "18": [
+      "bioshockvr_build_history_0_3_75_artifactids",
+      "bioshockvr_build_history_0_3_76_psnulldepthskip",
+      "bioshockvr_build_history_0_3_78_psnullmonodepth"
+    ],
+    "19": [
+      "bioshockvr_build_history_0_3_80_stereotoggle",
+      "bioshockvr_build_history_0_3_85_fallbackfitprobe",
+      "bioshockvr_build_history_0_3_87_dumpsync"
+    ],
+    "20": [
+      "kex_scenetraversalbegin_setcullcamera",
+      "ss2vr_culling_frustum",
+      "ss2vr_dll_v3_13"
+    ],
+    "21": [
+      "ss2vr_decision_log",
+      "ss2vr_ghidra_annotation",
+      "ss2vr_selection_bracket"
+    ],
+    "22": [
+      "ss2vr_enemy_health_bracket_re_aggro_visibility",
+      "ss2vr_enemy_health_bracket_re_hpbar_mechanics",
+      "ss2vr_enemy_health_bracket_re_rt35"
+    ],
+    "23": [
+      "ss2vr_funkmaxexport",
+      "ss2vr_lgmd_custom_export",
+      "ss2vr_lgpmnm_import"
+    ],
+    "24": [
+      "arm_hologram_render",
+      "shkovcst_h_overlay_slots"
+    ],
+    "25": [
+      "bioshockvr_build_history_0_3_100_exactsrv",
+      "bioshockvr_build_history_0_3_98_srvfamily"
+    ],
+    "26": [
+      "bioshockvr_build_history_0_3_160_inputshadow320",
+      "bioshockvr_code_architecture"
+    ],
+    "27": [
+      "bioshockvr_build_history_0_3_89_depthpairdump",
+      "bioshockvr_build_history_0_3_91_wvpcandidates"
+    ],
+    "28": [
+      "bioshockvr_reference_stereo_fix_analysis",
+      "bioshockvr_vr_presentation_6dof_spec"
+    ],
+    "29": [
+      "kex_playerturntilt_precullcamera",
+      "ss2vr_ghidra_annotation_backlog"
+    ],
+    "30": [
+      "material_objects",
+      "shader_factories"
+    ],
+    "31": [
+      "openxr_integration",
+      "temporal_stereo_bridge"
+    ],
+    "32": [
+      "somavr_hpl_camera_bridge",
+      "somavr_openxr_runtime"
+    ],
+    "33": [
+      "ss2vr_build_history",
+      "ss2vr_current_state"
+    ],
+    "34": [
+      "ss2vr_decision_log_lgmm_wrench_reference",
+      "ss2vr_decision_log_vr_wrench_static_lgmd"
+    ],
+    "35": [
+      "ss2vr_flataim_sidequest",
+      "ss2vr_pose_bridge"
+    ],
+    "36": [
+      "ss2vr_melee_compute_damage",
+      "ss2vr_melee_scaling_handover_md"
+    ],
+    "37": [
+      "ss2vr_melee_damage_re",
+      "ss2vr_ss2vr_melee_scaling_nut"
+    ],
+    "38": [
+      "ss2vr_melee_vr_report_md",
+      "ss2vr_melee_vr_spec_md"
+    ],
+    "39": [
+      "ss2vr_menu_options_bind_test_spec_md",
+      "ss2vr_menu_vr_report_md"
+    ],
+    "40": [
+      "ss2vr_phase1_usage_renderview_override",
+      "ss2vr_phase2_ui_hmd_aim_hook"
+    ],
+    "41": [
+      "ss2vr_phase1_usage_weapon_carrier_probe",
+      "ss2vr_vr_mod_reference_survey_gtfo"
+    ],
+    "42": [
+      "ss2vr_phase2_ui_native_shock_overlay_system",
+      "ss2vr_phase2_ui_ui_tee_texture"
+    ],
+    "43": [
+      "ss2vr_phys_nut",
+      "ss2vr_squirrel_world_physics_md"
+    ],
+    "44": [
+      "ss2vr_vr_post_process_design",
+      "ss2vr_vr_view_effects"
+    ],
+    "45": [
+      "ss2vr_weapon_model_report",
+      "ss2vr_weapon_model_spec"
+    ],
+    "46": [
+      "ss2vr_weapon_vr_aim_spec_weapon_aim_spec",
+      "ss2vr_weapon_vr_handover_weapon_handover"
+    ],
+    "47": [
+      "0_3_39_eyetargetscout"
+    ],
+    "48": [
+      "0_3_45_calibratedstereo"
+    ],
+    "49": [
+      "0_3_63_vscompanions"
+    ],
+    "50": [
+      "ashockplayercontroller_updatefocus"
+    ],
+    "51": [
+      "bioshockvr_active_baseline"
+    ],
+    "52": [
+      "bioshockvr_address_registry"
+    ],
+    "53": [
+      "bioshockvr_build_history"
+    ],
+    "54": [
+      "bioshockvr_build_history_0_3_103_vrfov_eye"
+    ],
+    "55": [
+      "bioshockvr_build_history_0_3_105_frustumlock"
+    ],
+    "56": [
+      "bioshockvr_build_history_0_3_168_shadowlifecycle"
+    ],
+    "57": [
+      "bioshockvr_build_history_0_3_81_priorarthints"
+    ],
+    "58": [
+      "bioshockvr_build_history_0_3_83_fallbackdepthab"
+    ],
+    "59": [
+      "bioshockvr_compatibility_report"
+    ],
+    "60": [
+      "bioshockvr_current_state"
+    ],
+    "61": [
+      "bioshockvr_decision_log"
+    ],
+    "62": [
+      "bioshockvr_installation"
+    ],
+    "63": [
+      "bioshockvr_project_phases"
+    ],
+    "64": [
+      "bioshockvr_unrealport_reference_findings"
+    ],
+    "65": [
+      "funk_max_export"
+    ],
+    "66": [
+      "hud_parallax_depth"
+    ],
+    "67": [
+      "iphysics_setvelocity"
+    ],
+    "68": [
+      "shkovrly_h_soverlayfunc"
+    ],
+    "69": [
+      "ss2vr_claude_darkengine_finds"
+    ],
+    "70": [
+      "ss2vr_dark_engine_source_notes"
+    ],
+    "71": [
+      "ss2vr_decision_log_append_static_peel"
+    ],
+    "72": [
+      "ss2vr_decision_log_cameraobj_remap_orientation"
+    ],
+    "73": [
+      "ss2vr_decision_log_flataim_melee_plyrarm"
+    ],
+    "74": [
+      "ss2vr_decision_log_hazard_meter_squirrel"
+    ],
+    "75": [
+      "ss2vr_decision_log_high_vhot_metadata"
+    ],
+    "76": [
+      "ss2vr_decision_log_hitpoints_polling_fx"
+    ],
+    "77": [
+      "ss2vr_decision_log_menu_pointer_gate"
+    ],
+    "78": [
+      "ss2vr_decision_log_nemyax_parity_exporter"
+    ],
+    "79": [
+      "ss2vr_decision_log_physical_reload_transient"
+    ],
+    "80": [
+      "ss2vr_decision_log_pistol_muzzle_flash"
+    ],
+    "81": [
+      "ss2vr_decision_log_right_arm_hud_native_rect"
+    ],
+    "82": [
+      "ss2vr_decision_log_right_arm_hud_quad"
+    ],
+    "83": [
+      "ss2vr_decision_log_snap_turn_v2"
+    ],
+    "84": [
+      "ss2vr_decision_log_v1_42_inventory_visibility"
+    ],
+    "85": [
+      "ss2vr_decision_log_weapon_scale_split"
+    ],
+    "86": [
+      "ss2vr_failure_registry"
+    ],
+    "87": [
+      "ss2vr_failure_registry_command_bridge_null_base"
+    ],
+    "88": [
+      "ss2vr_failure_registry_desktop_refresh_rate"
+    ],
+    "89": [
+      "ss2vr_failure_registry_echo_suppressor_trampoline"
+    ],
+    "90": [
+      "ss2vr_failure_registry_info_discarded"
+    ],
+    "91": [
+      "ss2vr_failure_registry_kpf_backslashes"
+    ],
+    "92": [
+      "ss2vr_failure_registry_native_jump_mantle"
+    ],
+    "93": [
+      "ss2vr_failure_registry_openxr_layer_limit"
+    ],
+    "94": [
+      "ss2vr_failure_registry_pausing_debugger_crash"
+    ],
+    "95": [
+      "ss2vr_failure_registry_squirrel_keyword_cascade"
+    ],
+    "96": [
+      "ss2vr_failure_registry_static_re_runtime_state"
+    ],
+    "97": [
+      "ss2vr_failure_registry_truncating_writes"
+    ],
+    "98": [
+      "ss2vr_failure_registry_viewmodel_passthrough_modpath"
+    ],
+    "99": [
+      "ss2vr_failure_registry_visual_inertia_flicker"
+    ],
+    "100": [
+      "ss2vr_feature_roadmap"
+    ],
+    "101": [
+      "ss2vr_frob_target_library"
+    ],
+    "102": [
+      "ss2vr_hand_collision_research"
+    ],
+    "103": [
+      "ss2vr_lgmd_vhot_header_fix"
+    ],
+    "104": [
+      "ss2vr_lgmd_vhot_safety"
+    ],
+    "105": [
+      "ss2vr_lgmm_cal_investigation"
+    ],
+    "106": [
+      "ss2vr_melee_audio_re"
+    ],
+    "107": [
+      "ss2vr_one_face_stub"
+    ],
+    "108": [
+      "ss2vr_overlay_panel_index_map_md"
+    ],
+    "109": [
+      "ss2vr_phase1_usage_pistol_manual_reload"
+    ],
+    "110": [
+      "ss2vr_phase1_usage_pistol_muzzle_eject_follow"
+    ],
+    "111": [
+      "ss2vr_phase1_usage_right_arm_ammo_hud"
+    ],
+    "112": [
+      "ss2vr_phase1_usage_snap_turn_v2"
+    ],
+    "113": [
+      "ss2vr_phase1_usage_two_hand_weapon_support"
+    ],
+    "114": [
+      "ss2vr_phase1_usage_viewmodel_world_depth_probe"
+    ],
+    "115": [
+      "ss2vr_project_phases_md"
+    ],
+    "116": [
+      "ss2vr_resolution_compat_md"
+    ],
+    "117": [
+      "ss2vr_roomscale_crouch_research_md"
+    ],
+    "118": [
+      "ss2vr_save_patcher"
+    ],
+    "119": [
+      "ss2vr_shock2quest_reference_md"
+    ],
+    "120": [
+      "ss2vr_test_checklists"
+    ],
+    "121": [
+      "ss2vr_vr_action_panel_test"
+    ],
+    "122": [
+      "ss2vr_vr_findings_index"
+    ],
+    "123": [
+      "ss2vr_vr_latency_recovery_plan"
+    ],
+    "124": [
+      "ss2vr_vr_settings_panel_spec"
+    ],
+    "125": [
+      "ss2vr_vr_wrist_keypad_spec"
+    ],
+    "126": [
+      "ss2vr_weapon_probe_ss2vr_weapon_probe_handler"
+    ],
+    "127": [
+      "ss2vr_weapon_spread_recoil_report"
+    ],
+    "128": [
+      "stereoworldpereyeshadowmask"
+    ],
+    "129": [
+      "virtual_desktop_xr"
+    ]
+  },
+  "cohesion": {
+    "0": 0.1,
+    "1": 0.18181818181818182,
+    "2": 0.2857142857142857,
+    "3": 0.2857142857142857,
+    "4": 0.3333333333333333,
+    "5": 0.3333333333333333,
+    "6": 0.3333333333333333,
+    "7": 0.3333333333333333,
+    "8": 0.3333333333333333,
+    "9": 0.3333333333333333,
+    "10": 0.4,
+    "11": 0.4,
+    "12": 0.4,
+    "13": 0.5,
+    "14": 0.5,
+    "15": 0.5,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
+    "18": 0.6666666666666666,
+    "19": 0.6666666666666666,
+    "20": 0.6666666666666666,
+    "21": 0.6666666666666666,
+    "22": 0.6666666666666666,
+    "23": 0.6666666666666666,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0
+  },
+  "gods": [
+    {
+      "id": "ss2vr_weapon_probe_nut",
+      "label": "ss2vr_weapon_probe.nut",
+      "degree": 8
+    },
+    {
+      "id": "bioshockvr_hypotheses",
+      "label": "BioShockVR Hypotheses",
+      "degree": 5
+    },
+    {
+      "id": "ss2vr_interact_nut",
+      "label": "ss2vr_interact.nut",
+      "degree": 5
+    },
+    {
+      "id": "ss2vr_weapon_handoff_probe_kpf",
+      "label": "ss2vr_weapon_handoff_probe.kpf",
+      "degree": 5
+    },
+    {
+      "id": "ss2vr_dll",
+      "label": "ss2vr.dll",
+      "degree": 5
+    },
+    {
+      "id": "ss2vr_failure_registry_lgmd_loader_int3",
+      "label": "Crash RE: equip-time hang \u2014 game's LGMD model-loader assert",
+      "degree": 4
+    },
+    {
+      "id": "funkmaxexport",
+      "label": "FunkMaxExport",
+      "degree": 4
+    },
+    {
+      "id": "stereo_world_mutation",
+      "label": "Stereo World Mutation",
+      "degree": 3
+    },
+    {
+      "id": "ashockplayer",
+      "label": "AShockPlayer",
+      "degree": 3
+    },
+    {
+      "id": "ahands",
+      "label": "AHands",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "UEVR Prior Art Notes",
+      "target": "SOMAVR Architecture",
+      "source_files": [
+        "bioshockvr/uevr-prior-art.md",
+        "somavr/ARCHITECTURE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "ss2vr_interact.nut",
+      "target": "Dark Engine Picking System",
+      "source_files": [
+        "ss2vr/BUILD_HISTORY.md",
+        "ss2vr/CLAUDE_DARKENGINE_FINDS.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; semantically similar concepts with no structural link; peripheral node `Dark Engine Picking System` unexpectedly reaches hub `ss2vr_interact.nut`"
+    },
+    {
+      "source": "ss2vr_interact.nut",
+      "target": "Dark Engine Frob System",
+      "source_files": [
+        "ss2vr/BUILD_HISTORY.md",
+        "ss2vr/CLAUDE_DARKENGINE_FINDS.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; peripheral node `Dark Engine Frob System` unexpectedly reaches hub `ss2vr_interact.nut`"
+    },
+    {
+      "source": "ss2vr.dll",
+      "target": "ss2vr_weapon_handoff_probe.kpf",
+      "source_files": [
+        "ss2vr/VR_FINDINGS_INDEX.md",
+        "ss2vr/WEAPON_VR_HANDOVER.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "SS2VRShootAimScript",
+      "target": "NDShootTriggerScript",
+      "source_files": [
+        "ss2vr/WEAPON_VR_AIM_SPEC.md",
+        "ss2vr/WEAPON_VR_HANDOVER.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; semantically similar concepts with no structural link"
+    }
+  ],
+  "tokens": {
+    "input": 1093011,
+    "output": 42307
+  }
+}

@@ -1,0 +1,1083 @@
+{
+  "communities": {
+    "0": [
+      "somavr_0_68_1",
+      "somavr_0_68_2",
+      "somavr_0_69_0",
+      "somavr_0_70_0",
+      "somavr_0_71_0",
+      "somavr_0_72_0",
+      "somavr_0_73_0",
+      "somavr_0_74_0",
+      "somavr_0_75_0",
+      "somavr_0_76_0",
+      "somavr_0_77_0",
+      "somavr_0_77_1",
+      "somavr_0_77_2",
+      "somavr_0_78_0",
+      "somavr_0_78_1",
+      "somavr_0_79_0",
+      "somavr_0_80_0",
+      "somavr_0_80_1",
+      "somavr_0_81_0"
+    ],
+    "1": [
+      "authored_states_and_visible_hands_re",
+      "feature_authored_camera",
+      "feature_authored_state_compatibility",
+      "feature_physical_manipulation",
+      "feature_traceability_feature_xr_bootstrap",
+      "feature_traceability_feature_xr_gl_submission",
+      "feature_traceability_hud_layer",
+      "feature_visible_hands",
+      "hplgrabbridge",
+      "hplhudbridge",
+      "hplinputbridge",
+      "openxrglbridge",
+      "openxrhelpers",
+      "openxrruntime",
+      "script_player_player_types_hps"
+    ],
+    "2": [
+      "gdi32_swapbuffers",
+      "ghidra_sync_md",
+      "gl_uniform_matrix_4fv",
+      "hpl3_cmeshentity_setvisible",
+      "hpl3_cnode3d_setmatrix",
+      "hpl3_scripts",
+      "j_l_wrist",
+      "j_r_wrist",
+      "j_root",
+      "player_hands_0",
+      "soma_no_steam_exe",
+      "soma_nosteam_exe",
+      "somavr_bridge",
+      "somavr_dll",
+      "somavr_injector_exe"
+    ],
+    "3": [
+      "build_history_0_32_0_viewport_depth",
+      "ccamera_getfrustum",
+      "cfrustum_setupperspectiveproj",
+      "concept_afr_stereo",
+      "graphify_affected",
+      "hpl_camera_bridge",
+      "hpl_input_bridge",
+      "hpl_player_state",
+      "hypotheses_s11_frustum_tracking_audio",
+      "hypotheses_s14_shadow_jitter",
+      "openxr_gl_bridge",
+      "openxr_runtime",
+      "runtime_analysis_0_5_1",
+      "runtime_analysis_0_5_2"
+    ],
+    "4": [
+      "hpl3_guiset_render",
+      "hpl_hud_bridge",
+      "ik_boundary",
+      "iphysicsbody_getlocalmatrix",
+      "iphysicsjoint_getpindir",
+      "openxr_gl_bridge_begin_hud_capture",
+      "player_state_interact_grab_hps",
+      "player_state_interact_slide_hps",
+      "soma_cluxplayer_on_analog_input",
+      "soma_cluxplayer_onanaloginput",
+      "soma_cluxplayerhelper_update",
+      "soma_vr_mod",
+      "somavr_confirmed",
+      "three_point_torso_ergonomics"
+    ],
+    "5": [
+      "feature_traceability_feature_recenter",
+      "feature_traceability_feature_vr_mode_control",
+      "feature_traceability_post_effect_policy",
+      "feature_traceability_shadow_stability",
+      "hplcamerabridge",
+      "hplcameramath",
+      "hplcompatibilityprobe",
+      "openglhooks"
+    ],
+    "6": [
+      "contact_haptics_re_hpl3_cphysicsworldnewton_update",
+      "contact_haptics_re_hpl3_csurfacedata_onimpact",
+      "contact_haptics_re_hpl3_csurfacedata_onslide",
+      "contact_haptics_re_hplcontacthapticsbridge",
+      "current_state_hpl3_ccamera_getfrustum",
+      "current_state_somavr_dll"
+    ],
+    "7": [
+      "c_camera_get_frustum",
+      "c_frustum_setup_perspective_proj",
+      "hypotheses_s3_camera_uniform_stacks",
+      "hypotheses_s4_hmd_orientation",
+      "hypotheses_s5_alternating_eye_renders"
+    ],
+    "8": [
+      "future_systems_re_live_usability",
+      "hpl3_engine_runmainloop",
+      "hpl3_postposteffects_phase",
+      "hpl3_scene_renderviewport",
+      "hpl_dual_render_control"
+    ],
+    "9": [
+      "build_history_0_20_0_depth_reticle",
+      "hpl_interaction_bridge",
+      "hypotheses_s22_native_picker",
+      "soma_get_closest_entity"
+    ],
+    "10": [
+      "architecture_hplgrabbridge",
+      "architecture_hplplayerstate",
+      "architecture_openglhooks"
+    ],
+    "11": [
+      "build_history_0_19_0_comfort_focus",
+      "cluxplayer_setcameraposadd",
+      "hpl_comfort_bridge"
+    ],
+    "12": [
+      "build_history_0_21_0_semantic_reticle",
+      "hpl_crosshair_bridge",
+      "luxplayer_global_setcrosshairstate"
+    ],
+    "13": [
+      "build_history_0_31_0_tools_hud",
+      "cluxmap_destroyentity",
+      "soma_getgamehudimgui"
+    ],
+    "14": [
+      "feature_traceability_feature_injection",
+      "src_dll_dllmain",
+      "src_injector_main"
+    ],
+    "15": [
+      "feature_traceability_feature_roomscale_body_reconciliation",
+      "hplnativelocomotion",
+      "hplroomscalereconciliationmath"
+    ],
+    "16": [
+      "hpl_grab_bridge",
+      "hypotheses_s12_controller_translation",
+      "hypotheses_s13_native_torque"
+    ],
+    "17": [
+      "hypotheses_s16_deferred_reconstruction_mono",
+      "runtime_analysis_0_5_4",
+      "runtime_analysis_0_5_5"
+    ],
+    "18": [
+      "test_checklists_0_45_0_continuous_dual_render",
+      "test_checklists_0_51_0_comfort_vignette",
+      "test_checklists_0_59_0_live_usability"
+    ],
+    "19": [
+      "test_checklists_0_63_0_diegetic_terminals",
+      "test_checklists_0_67_0_native_manipulation_overlay",
+      "test_checklists_0_75_0_terminal_dirty_rects"
+    ],
+    "20": [
+      "test_checklists_0_80_1_hmd_shoulder_rig",
+      "test_checklists_0_81_0_stable_hands_ui",
+      "test_checklists_0_82_0_torso_ergonomics"
+    ],
+    "21": [
+      "address_registry_0x1400bcd90",
+      "architecture_hplhandsbridge"
+    ],
+    "22": [
+      "address_registry_0x1401f1480",
+      "architecture_hplpereyeviewhistory"
+    ],
+    "23": [
+      "address_registry_0x140213970",
+      "architecture_hplhudbridge"
+    ],
+    "24": [
+      "address_registry_0x14032f0e0",
+      "address_registry_0x1405548b0"
+    ],
+    "25": [
+      "build_history",
+      "somavr_0_82_0"
+    ],
+    "26": [
+      "build_history_0_23_0_controller_flashlight",
+      "hpl_flashlight_math"
+    ],
+    "27": [
+      "build_history_0_24_0_roomscale_safety",
+      "concept_roomscale_safety"
+    ],
+    "28": [
+      "build_history_0_27_0_gameplay_coherence",
+      "soma_checklineofsight"
+    ],
+    "29": [
+      "build_history_0_29_0_presentation_optics",
+      "hpl_presentation_bridge"
+    ],
+    "30": [
+      "current_state_hpl3_cfrustum_setupperspectiveproj",
+      "current_state_hpl_cameramath"
+    ],
+    "31": [
+      "feature_traceability_feature_clean_shutdown",
+      "hpllifecycle"
+    ],
+    "32": [
+      "feature_traceability_feature_controller_haptics",
+      "hplgameplayhapticsbridge"
+    ],
+    "33": [
+      "feature_traceability_feature_diegetic_gui_pointer",
+      "hplterminalbridge"
+    ],
+    "34": [
+      "feature_traceability_feature_dual_render",
+      "hpldualrendercontrol"
+    ],
+    "35": [
+      "feature_traceability_feature_dual_render_temporal_probe",
+      "hpltemporalmutationmath"
+    ],
+    "36": [
+      "feature_traceability_feature_grab_contact_haptics",
+      "hplcontacthapticsbridge"
+    ],
+    "37": [
+      "feature_traceability_feature_interaction_ray",
+      "hplinteractionmath"
+    ],
+    "38": [
+      "feature_traceability_feature_inventory_presentation",
+      "hplusermodulebridge"
+    ],
+    "39": [
+      "feature_traceability_feature_locomotion",
+      "hplphysicalcrouchmath"
+    ],
+    "40": [
+      "feature_traceability_feature_menu_pointer",
+      "hplmenubridge"
+    ],
+    "41": [
+      "feature_traceability_feature_per_eye_image_trail",
+      "hplpereyeposteffect"
+    ],
+    "42": [
+      "feature_traceability_feature_per_eye_ssao_history",
+      "hplssaotemporalhistory"
+    ],
+    "43": [
+      "feature_traceability_feature_per_eye_view_history",
+      "hplpereyeviewhistory"
+    ],
+    "44": [
+      "feature_traceability_feature_physics_hands",
+      "hplgrabmath"
+    ],
+    "45": [
+      "feature_traceability_feature_scripted_presentation",
+      "hplpresentationbridge"
+    ],
+    "46": [
+      "feature_traceability_feature_ssao_frame_owner",
+      "hplssaoframeowner"
+    ],
+    "47": [
+      "feature_traceability_feature_tone_mapping_frame_owner",
+      "hpltonemappingframe"
+    ],
+    "48": [
+      "feature_traceability_feature_vr_control_panel",
+      "hplstatuspanelbridge"
+    ],
+    "49": [
+      "feature_traceability_feature_xr_input",
+      "openxrinput"
+    ],
+    "50": [
+      "feature_traceability_md",
+      "graphify_update"
+    ],
+    "51": [
+      "hands_human_ent",
+      "player_hands_handler_hps"
+    ],
+    "52": [
+      "hpl3_cphysicsworldnewton_update",
+      "hpl3_csurfacedata_onimpact"
+    ],
+    "53": [
+      "hpl3_icharacterbody_addyaw",
+      "hpl3_icharacterbody_move"
+    ],
+    "54": [
+      "hpl3_iluxentity_setmatrix",
+      "hpl_hands_bridge"
+    ],
+    "55": [
+      "hpl3_node3d_applypostanimtransform",
+      "hpl3_node3d_setposttransform"
+    ],
+    "56": [
+      "hypotheses_s19_vertical_projection_asymmetry",
+      "runtime_analysis_0_5_6"
+    ],
+    "57": [
+      "hypotheses_s21_global_crosshair_callback",
+      "lux_player_global_set_crosshair_state"
+    ],
+    "58": [
+      "hypotheses_s6_openxr_locomotion",
+      "i_character_body_move"
+    ],
+    "59": [
+      "test_checklists_0_77_0_persistent_arms",
+      "test_checklists_0_79_0_hands_terminal_menu"
+    ],
+    "60": [
+      "test_checklists_afrstereo",
+      "test_checklists_dual_render_probe"
+    ],
+    "61": [
+      "test_checklists_audiopost",
+      "test_checklists_spatial_audio"
+    ],
+    "62": [
+      "test_checklists_depth_reticle",
+      "test_checklists_semantic_reticle"
+    ],
+    "63": [
+      "test_checklists_depth_submission",
+      "test_checklists_viewport_ownership"
+    ],
+    "64": [
+      "test_checklists_diegetic_terminal_pointer",
+      "test_checklists_subtitles_menus"
+    ],
+    "65": [
+      "test_checklists_fullcenter",
+      "test_checklists_rotationfix"
+    ],
+    "66": [
+      "test_checklists_grab_rotation_throw",
+      "test_checklists_two_hand_tools"
+    ],
+    "67": [
+      "test_checklists_native_locomotion",
+      "test_checklists_physics_input"
+    ],
+    "68": [
+      "address_registry_0x1400b3700"
+    ],
+    "69": [
+      "address_registry_0x140109b30"
+    ],
+    "70": [
+      "address_registry_0x140154fb0"
+    ],
+    "71": [
+      "address_registry_0x1402cb5a0"
+    ],
+    "72": [
+      "address_registry_soma_nosteam"
+    ],
+    "73": [
+      "architecture_openxrruntime"
+    ],
+    "74": [
+      "build_history_0_22_0_physical_manipulation"
+    ],
+    "75": [
+      "build_history_0_25_0_volume_spectator_telemetry"
+    ],
+    "76": [
+      "build_history_0_26_0_gpu_depth_probe"
+    ],
+    "77": [
+      "build_history_0_28_0_authored_comfort"
+    ],
+    "78": [
+      "build_history_0_30_0_screen_effects"
+    ],
+    "79": [
+      "build_history_md"
+    ],
+    "80": [
+      "comfort_vignette"
+    ],
+    "81": [
+      "current_state_hpl3_cnode3d_setmatrix"
+    ],
+    "82": [
+      "current_state_hpl3_posteffect_renderone"
+    ],
+    "83": [
+      "current_state_hpl_hudbridge"
+    ],
+    "84": [
+      "current_state_hpl_playerstate"
+    ],
+    "85": [
+      "current_state_openxr_input"
+    ],
+    "86": [
+      "feature_traceability_audio_listener"
+    ],
+    "87": [
+      "feature_traceability_authored_physical_interactions"
+    ],
+    "88": [
+      "feature_traceability_comfort_policy"
+    ],
+    "89": [
+      "feature_traceability_desktop_spectator"
+    ],
+    "90": [
+      "feature_traceability_feature_afr_stereo"
+    ],
+    "91": [
+      "feature_traceability_feature_comfort_vignette"
+    ],
+    "92": [
+      "feature_traceability_feature_controller_accessibility"
+    ],
+    "93": [
+      "feature_traceability_feature_fixed_foveation"
+    ],
+    "94": [
+      "feature_traceability_feature_head_tracking"
+    ],
+    "95": [
+      "feature_traceability_feature_interaction_reticle"
+    ],
+    "96": [
+      "feature_traceability_feature_paused_menu_layer"
+    ],
+    "97": [
+      "feature_traceability_feature_per_eye_cpu_telemetry"
+    ],
+    "98": [
+      "feature_traceability_feature_roomscale_safety"
+    ],
+    "99": [
+      "feature_traceability_feature_terminal_overlay"
+    ],
+    "100": [
+      "feature_traceability_feature_tracking_resilience"
+    ],
+    "101": [
+      "feature_traceability_feature_viewport_ownership"
+    ],
+    "102": [
+      "feature_traceability_feature_xr_depth_capability"
+    ],
+    "103": [
+      "feature_traceability_feature_xr_interaction_profile_diagnostics"
+    ],
+    "104": [
+      "feature_traceability_feature_xr_reference_space"
+    ],
+    "105": [
+      "feature_traceability_feature_xr_resource_recreation"
+    ],
+    "106": [
+      "feature_traceability_flashlight_alignment"
+    ],
+    "107": [
+      "feature_traceability_loading_video"
+    ],
+    "108": [
+      "feature_traceability_post_effect_resources"
+    ],
+    "109": [
+      "feature_traceability_reflection_stability"
+    ],
+    "110": [
+      "feature_traceability_registry"
+    ],
+    "111": [
+      "feature_traceability_screen_material_convergence"
+    ],
+    "112": [
+      "feature_traceability_subtitle_presentation"
+    ],
+    "113": [
+      "feature_traceability_telemetry"
+    ],
+    "114": [
+      "feature_traceability_terminal_layer_diagnostics"
+    ],
+    "115": [
+      "feature_traceability_viewmodel"
+    ],
+    "116": [
+      "future_systems_re_evidence_capture_plan"
+    ],
+    "117": [
+      "future_systems_re_md"
+    ],
+    "118": [
+      "graphify_explain"
+    ],
+    "119": [
+      "graphify_query"
+    ],
+    "120": [
+      "graphify_tree"
+    ],
+    "121": [
+      "hpl3_characterbody_setfeetposition"
+    ],
+    "122": [
+      "hpl3_checklineofsight"
+    ],
+    "123": [
+      "hpl3_cluxinputhandler_setrumble"
+    ],
+    "124": [
+      "hpl3_engine"
+    ],
+    "125": [
+      "hpl3_entity3d_setvisible"
+    ],
+    "126": [
+      "hpl3_imguimanager_updateinput"
+    ],
+    "127": [
+      "hpl3_node3d_getlocalmatrix"
+    ],
+    "128": [
+      "hpl3_node3d_getparent"
+    ],
+    "129": [
+      "hpl3_node3d_setmatrix"
+    ],
+    "130": [
+      "hpl3_pidcontrollervec3_output"
+    ],
+    "131": [
+      "hpl3_rendererdeferred_renderssao"
+    ],
+    "132": [
+      "hpl_opengl_notes_md"
+    ],
+    "133": [
+      "hplcomfortbridge"
+    ],
+    "134": [
+      "hplcontacthapticsmath"
+    ],
+    "135": [
+      "hplcrosshairbridge"
+    ],
+    "136": [
+      "hpldualrenderdiagnostics"
+    ],
+    "137": [
+      "hpldualrendermath"
+    ],
+    "138": [
+      "hplgameplayhapticsmath"
+    ],
+    "139": [
+      "hplhudmath"
+    ],
+    "140": [
+      "hplinteractionbridge"
+    ],
+    "141": [
+      "hplmenumath"
+    ],
+    "142": [
+      "hplpereyeposteffectmath"
+    ],
+    "143": [
+      "hplpereyeviewhistorymath"
+    ],
+    "144": [
+      "hplplayerstate"
+    ],
+    "145": [
+      "hplssaotemporalmath"
+    ],
+    "146": [
+      "hpltonemappingframemath"
+    ],
+    "147": [
+      "hpltwohandmath"
+    ],
+    "148": [
+      "hypotheses_s12_safe_dual_rendering"
+    ],
+    "149": [
+      "hypotheses_s1_openxr_opengl"
+    ],
+    "150": [
+      "hypotheses_s21_semantic_camera"
+    ],
+    "151": [
+      "hypotheses_s2_main_camera_path"
+    ],
+    "152": [
+      "hypotheses_s7_soma_hands"
+    ],
+    "153": [
+      "hypotheses_s8_gui_set_pass"
+    ],
+    "154": [
+      "hypotheses_s9_temporal_optical_effects"
+    ],
+    "155": [
+      "next_live_evidence"
+    ],
+    "156": [
+      "openxrcomfortvignettemath"
+    ],
+    "157": [
+      "openxrdepthmath"
+    ],
+    "158": [
+      "openxrstatuspanelmath"
+    ],
+    "159": [
+      "player_state_interact_read_hps"
+    ],
+    "160": [
+      "smoke_test_matrix"
+    ],
+    "161": [
+      "soma_cluxplayer_helper_update"
+    ],
+    "162": [
+      "soma_cluxprop_attachtosocket"
+    ],
+    "163": [
+      "soma_getplayer"
+    ],
+    "164": [
+      "soma_iluxentity_setactive"
+    ],
+    "165": [
+      "soma_iluxentity_setmatrix"
+    ],
+    "166": [
+      "terminal_overlay"
+    ],
+    "167": [
+      "test_checklists_0_39_0_vr_control_panel"
+    ],
+    "168": [
+      "test_checklists_0_71_0_native_semantic_input"
+    ],
+    "169": [
+      "test_checklists_authored_comfort"
+    ],
+    "170": [
+      "test_checklists_compatprobe"
+    ],
+    "171": [
+      "test_checklists_controller_flashlight"
+    ],
+    "172": [
+      "test_checklists_controller_hands"
+    ],
+    "173": [
+      "test_checklists_gameplay_actions"
+    ],
+    "174": [
+      "test_checklists_gameplay_coherence"
+    ],
+    "175": [
+      "test_checklists_gpu_depth_capability"
+    ],
+    "176": [
+      "test_checklists_hands_identity"
+    ],
+    "177": [
+      "test_checklists_head_volume_spectator"
+    ],
+    "178": [
+      "test_checklists_hplcamera"
+    ],
+    "179": [
+      "test_checklists_hud_layer"
+    ],
+    "180": [
+      "test_checklists_input_foundation"
+    ],
+    "181": [
+      "test_checklists_native_comfort"
+    ],
+    "182": [
+      "test_checklists_native_interaction"
+    ],
+    "183": [
+      "test_checklists_onekey"
+    ],
+    "184": [
+      "test_checklists_physical_manipulation"
+    ],
+    "185": [
+      "test_checklists_poselatch"
+    ],
+    "186": [
+      "test_checklists_post_effect_resource_ownership"
+    ],
+    "187": [
+      "test_checklists_presentation_optics"
+    ],
+    "188": [
+      "test_checklists_recenter"
+    ],
+    "189": [
+      "test_checklists_reconstruct"
+    ],
+    "190": [
+      "test_checklists_reference_space"
+    ],
+    "191": [
+      "test_checklists_render_state_policy"
+    ],
+    "192": [
+      "test_checklists_renderdiag"
+    ],
+    "193": [
+      "test_checklists_roomscale_safety"
+    ],
+    "194": [
+      "test_checklists_runtime_resilience"
+    ],
+    "195": [
+      "test_checklists_screen_materials"
+    ],
+    "196": [
+      "test_checklists_shadowjitter"
+    ],
+    "197": [
+      "test_checklists_stability"
+    ],
+    "198": [
+      "test_checklists_tools_imgui"
+    ],
+    "199": [
+      "test_checklists_tracking_recovery"
+    ]
+  },
+  "cohesion": {
+    "0": 0.10526315789473684,
+    "1": 0.13333333333333333,
+    "2": 0.13333333333333333,
+    "3": 0.14285714285714285,
+    "4": 0.14285714285714285,
+    "5": 0.2857142857142857,
+    "6": 0.3333333333333333,
+    "7": 0.5,
+    "8": 0.4,
+    "9": 0.5,
+    "10": 0.6666666666666666,
+    "11": 0.6666666666666666,
+    "12": 0.6666666666666666,
+    "13": 0.6666666666666666,
+    "14": 0.6666666666666666,
+    "15": 0.6666666666666666,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
+    "18": 0.6666666666666666,
+    "19": 0.6666666666666666,
+    "20": 0.6666666666666666,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0
+  },
+  "gods": [
+    {
+      "id": "soma_vr_mod",
+      "label": "SOMAVR Mod",
+      "degree": 7
+    },
+    {
+      "id": "somavr_dll",
+      "label": "somavr.dll",
+      "degree": 6
+    },
+    {
+      "id": "authored_states_and_visible_hands_re",
+      "label": "Authored-State Compatibility And Visible Hands RE",
+      "degree": 5
+    },
+    {
+      "id": "somavr_bridge",
+      "label": "SOMAVR Bridge",
+      "degree": 5
+    },
+    {
+      "id": "openxrruntime",
+      "label": "OpenXRRuntime",
+      "degree": 5
+    },
+    {
+      "id": "hpl_camera_bridge",
+      "label": "HPLCameraBridge",
+      "degree": 5
+    },
+    {
+      "id": "player_hands_0",
+      "label": "PlayerHands_0",
+      "degree": 4
+    },
+    {
+      "id": "openxr_runtime",
+      "label": "OpenXRRuntime",
+      "degree": 4
+    },
+    {
+      "id": "hplcameramath",
+      "label": "HPLCameraMath",
+      "degree": 4
+    },
+    {
+      "id": "hpl3_scene_renderviewport",
+      "label": "HPL3_Scene_RenderViewport",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "HPLPerEyeViewHistory",
+      "target": "HPL3_Renderer_RenderPostPostEffects",
+      "source_files": [
+        "ARCHITECTURE.md",
+        "ADDRESS_REGISTRY.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "somavr.dll",
+      "target": "OpenXRRuntime",
+      "source_files": [
+        "TEST_CHECKLISTS.md",
+        "COMFORT_AND_FOCUS_RE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "HPLInputBridge",
+      "target": "HPLPlayerState",
+      "source_files": [
+        "COMFORT_AND_FOCUS_RE.md",
+        "BUILD_HISTORY.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "somavr.dll",
+      "target": "HPLContactHapticsBridge",
+      "source_files": [
+        "CURRENT_STATE.md",
+        "CONTACT_HAPTICS_RE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "somavr.dll",
+      "target": "OpenGLHooks",
+      "source_files": [
+        "TEST_CHECKLISTS.md",
+        "FEATURE_TRACEABILITY.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 251908,
+    "output": 48720
+  }
+}

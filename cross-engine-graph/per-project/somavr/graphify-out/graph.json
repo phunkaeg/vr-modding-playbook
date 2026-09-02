@@ -1,0 +1,5680 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "camera_tracking_audio_sync",
+        "label": "Camera Tracking and Audio Listener Synchronization",
+        "nodes": [
+          "hypotheses_s4_hmd_orientation",
+          "hypotheses_s11_frustum_tracking_audio",
+          "hpl_camera_bridge"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85
+      },
+      {
+        "id": "hpl3_render_pipeline",
+        "label": "HPL3 Render Pipeline",
+        "nodes": [
+          "address_registry_0x1401f1480",
+          "address_registry_0x140213970",
+          "address_registry_0x1402cb5a0"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "ADDRESS_REGISTRY.md"
+      },
+      {
+        "id": "input_phase_safety_sync",
+        "label": "Input-Phase Safety Sync",
+        "nodes": [
+          "soma_cluxplayer_onanaloginput",
+          "soma_cluxplayerhelper_update",
+          "soma_getplayer"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "GHIDRA_SYNC.md"
+      },
+      {
+        "id": "arm_ik_evolution",
+        "label": "Evolution of Arm IK and Ergonomics",
+        "nodes": [
+          "test_checklists_0_82_0_torso_ergonomics",
+          "test_checklists_0_81_0_stable_hands_ui",
+          "test_checklists_0_80_1_hmd_shoulder_rig",
+          "test_checklists_0_77_0_persistent_arms"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "TEST_CHECKLISTS.md"
+      },
+      {
+        "id": "bilateral_arm_chain_sync",
+        "label": "Bilateral Arm Chain Sync",
+        "nodes": [
+          "hpl3_node3d_setposttransform",
+          "hpl3_node3d_applypostanimtransform",
+          "hpl3_node3d_getparent"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "GHIDRA_SYNC.md"
+      },
+      {
+        "id": "comfort_and_safety_systems",
+        "label": "VR Comfort and Safety Features",
+        "nodes": [
+          "test_checklists_native_comfort",
+          "test_checklists_authored_comfort",
+          "test_checklists_roomscale_safety",
+          "test_checklists_gameplay_coherence",
+          "test_checklists_presentation_optics"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "TEST_CHECKLISTS.md"
+      },
+      {
+        "id": "hpl_engine_bridges",
+        "label": "HPL Engine Bridges",
+        "nodes": [
+          "hplcamerabridge",
+          "hplinputbridge",
+          "hplinteractionbridge",
+          "hplhudbridge",
+          "hplterminalbridge",
+          "hplgrabbridge"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "FEATURE_TRACEABILITY.md"
+      },
+      {
+        "id": "interaction_physics_flow",
+        "label": "Interaction and Physics Manipulation Flow",
+        "nodes": [
+          "hypotheses_s13_native_torque",
+          "hypotheses_s12_controller_translation",
+          "hpl_grab_bridge"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9
+      },
+      {
+        "id": "rendering_and_comfort_features",
+        "label": "Rendering and Comfort Feature Set",
+        "nodes": [
+          "test_checklists_0_59_0_live_usability",
+          "test_checklists_0_51_0_comfort_vignette",
+          "test_checklists_0_45_0_continuous_dual_render"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "TEST_CHECKLISTS.md"
+      },
+      {
+        "id": "rendering_stability_chain",
+        "label": "Rendering Stability and Artifact Correction",
+        "nodes": [
+          "test_checklists_shadowjitter",
+          "test_checklists_reconstruct",
+          "test_checklists_stability",
+          "test_checklists_fullcenter",
+          "test_checklists_rotationfix"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "TEST_CHECKLISTS.md"
+      },
+      {
+        "id": "somavr_input_flow",
+        "label": "SOMAVR Input Flow",
+        "nodes": [
+          "architecture_openglhooks",
+          "architecture_hplplayerstate",
+          "architecture_openxrruntime"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "ARCHITECTURE.md"
+      },
+      {
+        "id": "terminal_interaction_evolution",
+        "label": "Evolution of Terminal and UI Systems",
+        "nodes": [
+          "test_checklists_0_75_0_terminal_dirty_rects",
+          "test_checklists_0_67_0_native_manipulation_overlay",
+          "test_checklists_0_63_0_diegetic_terminals"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "TEST_CHECKLISTS.md"
+      },
+      {
+        "id": "vr_interaction_flow",
+        "label": "VR Interaction and Reticle Flow",
+        "nodes": [
+          "hpl_interaction_bridge",
+          "hpl_crosshair_bridge",
+          "hpl_flashlight_math"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "BUILD_HISTORY.md"
+      },
+      {
+        "id": "camera_pose_composition",
+        "label": "Camera Pose Composition",
+        "nodes": [
+          "hpl_camera_bridge",
+          "openxr_runtime",
+          "hpl_player_state"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "VR_COMPATIBILITY_RE.md"
+      },
+      {
+        "id": "gui_capture_pipeline",
+        "label": "GUI Capture Pipeline",
+        "nodes": [
+          "hpl3_guiset_render",
+          "hpl_hud_bridge",
+          "hpl3_imguimanager_updateinput"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "FUTURE_SYSTEMS_RE.md"
+      },
+      {
+        "id": "interaction_evolution",
+        "label": "Evolution of VR Interaction Systems",
+        "nodes": [
+          "test_checklists_native_interaction",
+          "test_checklists_depth_reticle",
+          "test_checklists_semantic_reticle",
+          "test_checklists_physical_manipulation",
+          "test_checklists_diegetic_terminal_pointer"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "TEST_CHECKLISTS.md"
+      },
+      {
+        "id": "render_frame_ownership",
+        "label": "Render and Frame Ownership",
+        "nodes": [
+          "hpl3_engine_runmainloop",
+          "hpl3_scene_renderviewport",
+          "hpl3_guiset_render"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "GHIDRA_SYNC.md"
+      },
+      {
+        "id": "stereo_rendering_pipeline",
+        "label": "Stereo Rendering and Projection Pipeline",
+        "nodes": [
+          "hypotheses_s5_alternating_eye_renders",
+          "hypotheses_s16_deferred_reconstruction_mono",
+          "hypotheses_s19_vertical_projection_asymmetry",
+          "hypotheses_s12_safe_dual_rendering"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95
+      },
+      {
+        "id": "graphify_toolset",
+        "label": "Graphify CLI Tools",
+        "nodes": [
+          "graphify_update",
+          "graphify_query",
+          "graphify_explain",
+          "graphify_affected",
+          "graphify_tree"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "FEATURE_TRACEABILITY.md"
+      },
+      {
+        "id": "hpl3_physics_contact_flow",
+        "label": "HPL3 Physics Contact Flow",
+        "nodes": [
+          "contact_haptics_re_hpl3_cphysicsworldnewton_update",
+          "contact_haptics_re_hpl3_csurfacedata_onimpact",
+          "contact_haptics_re_hpl3_csurfacedata_onslide"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CONTACT_HAPTICS_RE.md"
+      },
+      {
+        "id": "interaction_scripts",
+        "label": "SOMA Interaction Scripts",
+        "nodes": [
+          "player_state_interact_slide_hps",
+          "player_state_interact_grab_hps",
+          "player_state_interact_read_hps"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "FUTURE_SYSTEMS_RE.md"
+      },
+      {
+        "id": "locomotion_system_flow",
+        "label": "Locomotion System Flow",
+        "nodes": [
+          "hpl3_icharacterbody_move",
+          "hpl3_icharacterbody_addyaw",
+          "hpl3_characterbody_setfeetposition"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "FUTURE_SYSTEMS_RE.md"
+      },
+      {
+        "id": "somavr_feature_set",
+        "label": "SOMAVR Core Features",
+        "nodes": [
+          "feature_authored_state_compatibility",
+          "feature_visible_hands",
+          "feature_authored_camera",
+          "feature_physical_manipulation"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md"
+      },
+      {
+        "id": "stereo_rendering_logic",
+        "label": "Stereo Rendering Logic",
+        "nodes": [
+          "hpl3_scene_renderviewport",
+          "hpl_dual_render_control",
+          "hpl3_postposteffects_phase"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "FUTURE_SYSTEMS_RE.md"
+      },
+      {
+        "id": "xr_frame_loop",
+        "label": "OpenXR Frame Loop",
+        "nodes": [
+          "openxr_runtime",
+          "openxr_gl_bridge",
+          "gdi32_swapbuffers"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "UEVR_LEARNINGS.md"
+      },
+      {
+        "id": "rendering_pipeline_features",
+        "label": "Rendering Pipeline Features",
+        "nodes": [
+          "feature_traceability_feature_xr_gl_submission",
+          "feature_traceability_feature_dual_render",
+          "feature_traceability_feature_afr_stereo",
+          "feature_traceability_feature_xr_depth_capability",
+          "feature_traceability_feature_fixed_foveation"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "FEATURE_TRACEABILITY.md"
+      },
+      {
+        "id": "somavr_core_bridges",
+        "label": "SOMAVR Core Bridges",
+        "nodes": [
+          "contact_haptics_re_hplcontacthapticsbridge",
+          "current_state_hpl_hudbridge",
+          "current_state_hpl_playerstate"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "CURRENT_STATE.md"
+      },
+      {
+        "id": "comfort_and_motion_control",
+        "label": "Comfort and Motion Control System",
+        "nodes": [
+          "hpl_comfort_bridge",
+          "hpl_input_bridge",
+          "openxr_runtime"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "COMFORT_AND_FOCUS_RE.md"
+      },
+      {
+        "id": "hpl3_engine_integration",
+        "label": "HPL3 Engine Integration Points",
+        "nodes": [
+          "soma_nosteam_exe",
+          "hpl3_cnode3d_setmatrix",
+          "hpl3_cmeshentity_setvisible",
+          "player_hands_handler_hps"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md"
+      },
+      {
+        "id": "per_eye_temporal_stability",
+        "label": "Per-Eye Temporal Stability",
+        "nodes": [
+          "feature_traceability_feature_per_eye_view_history",
+          "feature_traceability_feature_per_eye_ssao_history",
+          "feature_traceability_feature_tone_mapping_frame_owner",
+          "feature_traceability_feature_ssao_frame_owner"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "FEATURE_TRACEABILITY.md"
+      },
+      {
+        "id": "physical_interaction_system",
+        "label": "Physical Interaction System",
+        "nodes": [
+          "feature_visible_hands",
+          "feature_traceability_authored_physical_interactions",
+          "feature_physical_manipulation",
+          "feature_traceability_viewmodel"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "FEATURE_TRACEABILITY.md"
+      },
+      {
+        "id": "vr_rendering_core",
+        "label": "VR Rendering Core Subsystem",
+        "nodes": [
+          "feature_traceability_hud_layer",
+          "feature_traceability_shadow_stability",
+          "feature_traceability_reflection_stability",
+          "feature_traceability_post_effect_policy"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "FEATURE_TRACEABILITY.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "authored_states_and_visible_hands_re",
+      "label": "Authored-State Compatibility And Visible Hands RE",
+      "author": null,
+      "captured_at": "2026-07-22",
+      "community": 1,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "authored-state compatibility and visible hands re",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_68_1",
+      "label": "SOMAVR 0.68.1-input-phase-safety",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.68.1-input-phase-safety",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_68_2",
+      "label": "SOMAVR 0.68.2-native-phase-recovery",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.68.2-native-phase-recovery",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_69_0",
+      "label": "SOMAVR 0.69.0-authored-hands-probe",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.69.0-authored-hands-probe",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_70_0",
+      "label": "SOMAVR 0.70.0-input-terminal-recovery",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.70.0-input-terminal-recovery",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_71_0",
+      "label": "SOMAVR 0.71.0-native-semantic-input",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.71.0-native-semantic-input",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_72_0",
+      "label": "SOMAVR 0.72.0-terminal-layer-dump",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.72.0-terminal-layer-dump",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_73_0",
+      "label": "SOMAVR 0.73.0-terminal-retention-grab-move",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.73.0-terminal-retention-grab-move",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_74_0",
+      "label": "SOMAVR 0.74.0-native-terminal-wrist-re",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.74.0-native-terminal-wrist-re",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_75_0",
+      "label": "SOMAVR 0.75.0-terminal-dirtyrect-wrist-candidate",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.75.0-terminal-dirtyrect-wrist-candidate",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_76_0",
+      "label": "SOMAVR 0.76.0-fullscale-wrist-position",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.76.0-fullscale-wrist-position",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_77_0",
+      "label": "SOMAVR 0.77.0-arm-ik-authored-interactions",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.77.0-arm-ik-authored-interactions",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_77_1",
+      "label": "SOMAVR 0.77.1-hand-seed-terminal-fallback",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.77.1-hand-seed-terminal-fallback",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_77_2",
+      "label": "SOMAVR 0.77.2-hand-identity-recovery",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.77.2-hand-identity-recovery",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_78_0",
+      "label": "SOMAVR 0.78.0-arm-pose-shutdown-safety",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.78.0-arm-pose-shutdown-safety",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_78_1",
+      "label": "SOMAVR 0.78.1-startup-pause-gate",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.78.1-startup-pause-gate",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_79_0",
+      "label": "SOMAVR 0.79.0-hands-terminal-menu",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.79.0-hands-terminal-menu",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_80_0",
+      "label": "SOMAVR 0.80.0-body-anchored-hands",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.80.0-body-anchored-hands",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_80_1",
+      "label": "SOMAVR 0.80.1-hmd-shoulder-rig",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.80.1-hmd-shoulder-rig",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_81_0",
+      "label": "SOMAVR 0.81.0-stable-hands-ui",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.81.0-stable-hands-ui",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "script_player_player_types_hps",
+      "label": "script/player/Player_Types.hps",
+      "author": null,
+      "captured_at": null,
+      "community": 1,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "script/player/player_types.hps",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "feature_authored_camera",
+      "label": "FEATURE.AUTHORED_CAMERA",
+      "author": null,
+      "captured_at": null,
+      "community": 1,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "feature.authored_camera",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "feature_authored_state_compatibility",
+      "label": "FEATURE.AUTHORED_STATE_COMPATIBILITY",
+      "author": null,
+      "captured_at": null,
+      "community": 1,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "feature.authored_state_compatibility",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "feature_physical_manipulation",
+      "label": "FEATURE.PHYSICAL_MANIPULATION",
+      "author": null,
+      "captured_at": null,
+      "community": 1,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "feature.physical_manipulation",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "feature_visible_hands",
+      "label": "FEATURE.VISIBLE_HANDS",
+      "author": null,
+      "captured_at": null,
+      "community": 1,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "feature.visible_hands",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "hpl3_cmeshentity_setvisible",
+      "label": "cMeshEntity::SetVisible",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "cmeshentity::setvisible",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "hpl3_cnode3d_setmatrix",
+      "label": "cNode3D::SetMatrix",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "cnode3d::setmatrix",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "hpl3_scripts",
+      "label": "HPL3 Scripts",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "hpl3 scripts",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "soma_nosteam_exe",
+      "label": "Soma_NoSteam.exe",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "soma_nosteam.exe",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_bridge",
+      "label": "SOMAVR Bridge",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr bridge",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "player_hands_0",
+      "label": "PlayerHands_0",
+      "author": null,
+      "captured_at": null,
+      "community": 2,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "playerhands_0",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "somavr_0_82_0",
+      "label": "SOMAVR 0.82.0-torso-ergonomics",
+      "author": null,
+      "captured_at": null,
+      "community": 25,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "somavr 0.82.0-torso-ergonomics",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "build_history",
+      "label": "Build History",
+      "author": null,
+      "captured_at": null,
+      "community": 25,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "build history",
+      "rationale": null,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "hands_human_ent",
+      "label": "hands_human.ent",
+      "author": null,
+      "captured_at": null,
+      "community": 51,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "hands_human.ent",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "player_hands_handler_hps",
+      "label": "PlayerHandsHandler.hps",
+      "author": null,
+      "captured_at": null,
+      "community": 51,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "playerhandshandler.hps",
+      "rationale": null,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "hplgrabbridge",
+      "label": "HPLGrabBridge",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "hplgrabbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplhudbridge",
+      "label": "HPLHudBridge",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "hplhudbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplinputbridge",
+      "label": "HPLInputBridge",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "hplinputbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "openxrglbridge",
+      "label": "OpenXRGLBridge",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "openxrglbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "openxrhelpers",
+      "label": "OpenXRHelpers",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "openxrhelpers",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "openxrruntime",
+      "label": "OpenXRRuntime",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "openxrruntime",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_xr_bootstrap",
+      "label": "FEATURE.XR_BOOTSTRAP",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "feature.xr_bootstrap",
+      "rationale": "OpenXR loader, instance, system, session state, delayed recovery",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_xr_gl_submission",
+      "label": "FEATURE.XR_GL_SUBMISSION",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "feature.xr_gl_submission",
+      "rationale": "OpenGL swapchains, FBOs, xrEndFrame",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_hud_layer",
+      "label": "FEATURE.HUD_LAYER",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "feature.hud_layer",
+      "rationale": "Same-frame additive transparent capture using VIEW-space quad or XR_KHR_composition_layer_cylinder.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "architecture_hplgrabbridge",
+      "label": "HPLGrabBridge",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "hplgrabbridge",
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "architecture_hplplayerstate",
+      "label": "HPLPlayerState",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "hplplayerstate",
+      "rationale": "Owns native player discovery and camera-ownership snapshots.",
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "architecture_openglhooks",
+      "label": "OpenGLHooks",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "openglhooks",
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "feature_traceability_feature_tracking_resilience",
+      "label": "FEATURE.TRACKING_RESILIENCE",
+      "community": 100,
+      "file_type": "concept",
+      "norm_label": "feature.tracking_resilience",
+      "rationale": "pose-age bound, last-valid eye cache, zero-layer loss path, recovery blackout",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_viewport_ownership",
+      "label": "FEATURE.VIEWPORT_OWNERSHIP",
+      "community": 101,
+      "file_type": "concept",
+      "norm_label": "feature.viewport_ownership",
+      "rationale": "0x140298630, 0x140297f20, 0x140297500, viewport camera/world/renderer/post/FBO/settings fields",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_xr_depth_capability",
+      "label": "FEATURE.XR_DEPTH_CAPABILITY",
+      "community": 102,
+      "file_type": "concept",
+      "norm_label": "feature.xr_depth_capability",
+      "rationale": "XR_KHR_composition_layer_depth, D24/D32F/depth-stencil negotiation, same-format per-eye caches and swapchains, standard OpenGL depth range, HPL near/far divided by world units per meter",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_xr_interaction_profile_diagnostics",
+      "label": "FEATURE.XR_INTERACTION_PROFILE_DIAGNOSTICS",
+      "community": 103,
+      "file_type": "concept",
+      "norm_label": "feature.xr_interaction_profile_diagnostics",
+      "rationale": "XR_TYPE_EVENT_DATA_INTERACTION_PROFILE_CHANGED, per-hand xrGetCurrentInteractionProfile, path resolution, session reset and summary",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_xr_reference_space",
+      "label": "FEATURE.XR_REFERENCE_SPACE",
+      "community": 104,
+      "file_type": "concept",
+      "norm_label": "feature.xr_reference_space",
+      "rationale": "XR_REFERENCE_SPACE_TYPE_LOCAL, optional STAGE, runtime fallback",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_xr_resource_recreation",
+      "label": "FEATURE.XR_RESOURCE_RECREATION",
+      "community": 105,
+      "file_type": "concept",
+      "norm_label": "feature.xr_resource_recreation",
+      "rationale": "bound HDC/HGLRC identity, periodic xrEnumerateViewConfigurationViews, transactional frame-resource rebuild",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_flashlight_alignment",
+      "label": "FEATURE.FLASHLIGHT_ALIGNMENT",
+      "community": 106,
+      "file_type": "concept",
+      "norm_label": "feature.flashlight_alignment",
+      "rationale": "Dominant aim pose and UpdateFlashLightLOS override.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_loading_video",
+      "label": "FEATURE.LOADING_VIDEO",
+      "community": 107,
+      "file_type": "concept",
+      "norm_label": "feature.loading_video",
+      "rationale": "AFR cache invalidation and zero-layer blackout during map load.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_post_effect_resources",
+      "label": "FEATURE.POST_EFFECT_RESOURCES",
+      "community": 108,
+      "file_type": "concept",
+      "norm_label": "feature.post_effect_resources",
+      "rationale": "Classification of shared versus eye-distinct GL texture resources.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_reflection_stability",
+      "label": "FEATURE.REFLECTION_STABILITY",
+      "community": 109,
+      "file_type": "concept",
+      "norm_label": "feature.reflection_stability",
+      "rationale": "Fully centered projection for program 985 redirect.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "cluxplayer_setcameraposadd",
+      "label": "cLuxPlayer::SetCameraPosAdd",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "cluxplayer::setcameraposadd",
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": "0x140159360"
+    },
+    {
+      "id": "hpl_comfort_bridge",
+      "label": "HPLComfortBridge",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "hplcomfortbridge",
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "id": "build_history_0_19_0_comfort_focus",
+      "label": "0.19.0-comfort-focus",
+      "community": 11,
+      "file_type": "document",
+      "norm_label": "0.19.0-comfort-focus",
+      "rationale": "Added hook at cLuxPlayer::SetCameraPosAdd to zero Bob, Shake, and Sway channels.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "feature_traceability_registry",
+      "label": "Feature Traceability Registry",
+      "community": 110,
+      "file_type": "document",
+      "norm_label": "feature traceability registry",
+      "rationale": "Canonical index for SOMAVR features and stable FEATURE.* IDs.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_screen_material_convergence",
+      "label": "FEATURE.SCREEN_MATERIAL_CONVERGENCE",
+      "community": 111,
+      "file_type": "concept",
+      "norm_label": "feature.screen_material_convergence",
+      "rationale": "Convergence of Screen Particle identity at 1.5m.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_subtitle_presentation",
+      "label": "FEATURE.SUBTITLE_PRESENTATION",
+      "community": 112,
+      "file_type": "concept",
+      "norm_label": "feature.subtitle_presentation",
+      "rationale": "Native game HUD draw with cLuxVoiceHandler offsets.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_telemetry",
+      "label": "FEATURE.TELEMETRY",
+      "community": 113,
+      "file_type": "concept",
+      "norm_label": "feature.telemetry",
+      "rationale": "Correlation of residual stereo latency and manipulation-session evidence.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_terminal_layer_diagnostics",
+      "label": "FEATURE.TERMINAL_LAYER_DIAGNOSTICS",
+      "community": 114,
+      "file_type": "concept",
+      "norm_label": "feature.terminal_layer_diagnostics",
+      "rationale": "Pre-compositor HUD capture FBO and per-draw zero-intersection scissor bypass.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_viewmodel",
+      "label": "FEATURE.VIEWMODEL",
+      "community": 115,
+      "file_type": "concept",
+      "norm_label": "feature.viewmodel",
+      "rationale": "Interaction-owner world grip pose and support squeeze for HudObjects.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "future_systems_re_evidence_capture_plan",
+      "label": "0.60.0 Evidence Capture Plan",
+      "community": 116,
+      "file_type": "document",
+      "norm_label": "0.60.0 evidence capture plan",
+      "rationale": "Maps the instrumentation of uncertain live boundaries including eye-cache, controller transforms, and ImGui ownership.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "future_systems_re_md",
+      "label": "FUTURE_SYSTEMS_RE.md",
+      "community": 117,
+      "file_type": "document",
+      "norm_label": "future_systems_re.md",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "graphify_explain",
+      "label": "graphify explain",
+      "community": 118,
+      "file_type": "code",
+      "norm_label": "graphify explain",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "graphify_query",
+      "label": "graphify query",
+      "community": 119,
+      "file_type": "code",
+      "norm_label": "graphify query",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl_crosshair_bridge",
+      "label": "HPLCrosshairBridge",
+      "community": 12,
+      "file_type": "code",
+      "norm_label": "hplcrosshairbridge",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "luxplayer_global_setcrosshairstate",
+      "label": "LuxPlayer::_Global_SetCrosshairState",
+      "community": 12,
+      "file_type": "code",
+      "norm_label": "luxplayer::_global_setcrosshairstate",
+      "source_file": "COMFORT_AND_FOCUS_RE.md",
+      "source_location": "0x140484ea0"
+    },
+    {
+      "id": "build_history_0_21_0_semantic_reticle",
+      "label": "0.21.0-semantic-reticle",
+      "community": 12,
+      "file_type": "document",
+      "norm_label": "0.21.0-semantic-reticle",
+      "rationale": "Added HPLCrosshairBridge to recognize LuxPlayer::_Global_SetCrosshairState.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "graphify_tree",
+      "label": "graphify tree",
+      "community": 120,
+      "file_type": "code",
+      "norm_label": "graphify tree",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl3_characterbody_setfeetposition",
+      "label": "HPL3_CharacterBody_SetFeetPosition (0x140237920)",
+      "community": 121,
+      "file_type": "code",
+      "norm_label": "hpl3_characterbody_setfeetposition (0x140237920)",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_checklineofsight",
+      "label": "SOMA_CheckLineOfSight (0x1400cd710)",
+      "community": 122,
+      "file_type": "code",
+      "norm_label": "soma_checklineofsight (0x1400cd710)",
+      "rationale": "Boundary used for room-scale safety and head volume sampling.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_cluxinputhandler_setrumble",
+      "label": "SOMA_cLuxInputHandler_SetRumble (0x140109b30)",
+      "community": 123,
+      "file_type": "code",
+      "norm_label": "soma_cluxinputhandler_setrumble (0x140109b30)",
+      "rationale": "Native gameplay haptics wrapper for damage and scripted effects.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_engine",
+      "label": "HPL3 Engine",
+      "community": 124,
+      "file_type": "code",
+      "norm_label": "hpl3 engine",
+      "rationale": "The underlying game engine for SOMA, targeted by the mod for semantic extraction and interaction injection.",
+      "source_file": null
+    },
+    {
+      "id": "hpl3_entity3d_setvisible",
+      "label": "HPL3_Entity3D_SetVisible",
+      "community": 125,
+      "file_type": "code",
+      "norm_label": "hpl3_entity3d_setvisible",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1402cb5a0"
+    },
+    {
+      "id": "hpl3_imguimanager_updateinput",
+      "label": "SOMA_ImGuiManager_UpdateInput (0x1400f7f10)",
+      "community": 126,
+      "file_type": "code",
+      "norm_label": "soma_imguimanager_updateinput (0x1400f7f10)",
+      "rationale": "Boundary for sending world GUI coordinates from controller-derived input.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_node3d_getlocalmatrix",
+      "label": "HPL3_Node3D_GetLocalMatrix",
+      "community": 127,
+      "file_type": "code",
+      "norm_label": "hpl3_node3d_getlocalmatrix",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x14051a310"
+    },
+    {
+      "id": "hpl3_node3d_getparent",
+      "label": "HPL3_Node3D_GetParent",
+      "community": 128,
+      "file_type": "code",
+      "norm_label": "hpl3_node3d_getparent",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x14023f610"
+    },
+    {
+      "id": "hpl3_node3d_setmatrix",
+      "label": "HPL3_Node3D_SetMatrix",
+      "community": 129,
+      "file_type": "code",
+      "norm_label": "hpl3_node3d_setmatrix",
+      "rationale": "Renamed after decompilation confirmed local copy to node +0x44 followed by world update.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x14023fee0"
+    },
+    {
+      "id": "cluxmap_destroyentity",
+      "label": "cLuxMap::DestroyEntity",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "cluxmap::destroyentity",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "soma_getgamehudimgui",
+      "label": "SOMA_GetGameHudImGui",
+      "community": 13,
+      "file_type": "code",
+      "norm_label": "soma_getgamehudimgui",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_31_0_tools_hud",
+      "label": "0.31.0-tools-hud",
+      "community": 13,
+      "file_type": "document",
+      "norm_label": "0.31.0-tools-hud",
+      "rationale": "Extended Lux entity identity hook to HudObject and added cLuxMap::DestroyEntity lifecycle hook.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "hpl3_pidcontrollervec3_output",
+      "label": "HPL3_PidControllerVec3_Output",
+      "community": 130,
+      "file_type": "code",
+      "norm_label": "hpl3_pidcontrollervec3_output",
+      "rationale": "Exact vector PID output; handles Grab force/torque and Slide joint-follow ownership.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x140238750"
+    },
+    {
+      "id": "hpl3_rendererdeferred_renderssao",
+      "label": "HPL3_RendererDeferred_RenderSSAO",
+      "community": 131,
+      "file_type": "code",
+      "norm_label": "hpl3_rendererdeferred_renderssao",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1403f2b50"
+    },
+    {
+      "id": "hpl_opengl_notes_md",
+      "label": "HPL OpenGL Notes",
+      "community": 132,
+      "file_type": "document",
+      "norm_label": "hpl opengl notes",
+      "source_file": "HPL_OPENGL_NOTES.md"
+    },
+    {
+      "id": "hplcomfortbridge",
+      "label": "HPLComfortBridge",
+      "community": 133,
+      "file_type": "code",
+      "norm_label": "hplcomfortbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplcontacthapticsmath",
+      "label": "HPLContactHapticsMath",
+      "community": 134,
+      "file_type": "code",
+      "norm_label": "hplcontacthapticsmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplcrosshairbridge",
+      "label": "HPLCrosshairBridge",
+      "community": 135,
+      "file_type": "code",
+      "norm_label": "hplcrosshairbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpldualrenderdiagnostics",
+      "label": "HPLDualRenderDiagnostics",
+      "community": 136,
+      "file_type": "code",
+      "norm_label": "hpldualrenderdiagnostics",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpldualrendermath",
+      "label": "HPLDualRenderMath",
+      "community": 137,
+      "file_type": "code",
+      "norm_label": "hpldualrendermath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplgameplayhapticsmath",
+      "label": "HPLGameplayHapticsMath",
+      "community": 138,
+      "file_type": "code",
+      "norm_label": "hplgameplayhapticsmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplhudmath",
+      "label": "HPLHudMath",
+      "community": 139,
+      "file_type": "code",
+      "norm_label": "hplhudmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "src_dll_dllmain",
+      "label": "src/dll/DllMain.cpp",
+      "community": 14,
+      "file_type": "code",
+      "norm_label": "src/dll/dllmain.cpp",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "src_injector_main",
+      "label": "src/injector/main.cpp",
+      "community": 14,
+      "file_type": "code",
+      "norm_label": "src/injector/main.cpp",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_injection",
+      "label": "FEATURE.INJECTION",
+      "community": 14,
+      "file_type": "concept",
+      "norm_label": "feature.injection",
+      "rationale": "Remote LoadLibraryW, early DLL initialization",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplinteractionbridge",
+      "label": "HPLInteractionBridge",
+      "community": 140,
+      "file_type": "code",
+      "norm_label": "hplinteractionbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplmenumath",
+      "label": "HPLMenuMath",
+      "community": 141,
+      "file_type": "code",
+      "norm_label": "hplmenumath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplpereyeposteffectmath",
+      "label": "HPLPerEyePostEffectMath",
+      "community": 142,
+      "file_type": "code",
+      "norm_label": "hplpereyeposteffectmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplpereyeviewhistorymath",
+      "label": "HPLPerEyeViewHistoryMath",
+      "community": 143,
+      "file_type": "code",
+      "norm_label": "hplpereyeviewhistorymath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplplayerstate",
+      "label": "HPLPlayerState",
+      "community": 144,
+      "file_type": "code",
+      "norm_label": "hplplayerstate",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplssaotemporalmath",
+      "label": "HPLSSAOTemporalMath",
+      "community": 145,
+      "file_type": "code",
+      "norm_label": "hplssaotemporalmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpltonemappingframemath",
+      "label": "HPLToneMappingFrameMath",
+      "community": 146,
+      "file_type": "code",
+      "norm_label": "hpltonemappingframemath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpltwohandmath",
+      "label": "HPLTwoHandMath",
+      "community": 147,
+      "file_type": "code",
+      "norm_label": "hpltwohandmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hypotheses_s12_safe_dual_rendering",
+      "label": "S12 - Safe dual rendering must remain below renderer frame ownership",
+      "community": 148,
+      "file_type": "concept",
+      "norm_label": "s12 - safe dual rendering must remain below renderer frame ownership",
+      "rationale": "Hypothesis that scene/post work can execute once per eye after viewport callbacks.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s1_openxr_opengl",
+      "label": "S1 - OpenXR can bind directly to SOMA's live OpenGL context",
+      "community": 149,
+      "file_type": "concept",
+      "norm_label": "s1 - openxr can bind directly to soma's live opengl context",
+      "rationale": "Confirmed hypothesis that SOMAVR can create an OpenXR session using XR_KHR_opengl_enable.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hplnativelocomotion",
+      "label": "HPLNativeLocomotion",
+      "community": 15,
+      "file_type": "code",
+      "norm_label": "hplnativelocomotion",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplroomscalereconciliationmath",
+      "label": "HPLRoomscaleReconciliationMath",
+      "community": 15,
+      "file_type": "code",
+      "norm_label": "hplroomscalereconciliationmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_roomscale_body_reconciliation",
+      "label": "FEATURE.ROOMSCALE_BODY_RECONCILIATION",
+      "community": 15,
+      "file_type": "concept",
+      "norm_label": "feature.roomscale_body_reconciliation",
+      "rationale": "0x140237920, 0x140237970, body size +0x134, sustained-displacement hysteresis, sampled capsule sweep, neutral-pose compensation",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hypotheses_s21_semantic_camera",
+      "label": "S21 - Semantic camera-add filtering removes VR motion",
+      "community": 150,
+      "file_type": "concept",
+      "norm_label": "s21 - semantic camera-add filtering removes vr motion",
+      "rationale": "Hypothesis that zeroing native camera-add Bob, Shake, and Sway removes artificial head motion.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s2_main_camera_path",
+      "label": "S2 - Main camera path is shader-uniform/native-camera",
+      "community": 151,
+      "file_type": "concept",
+      "norm_label": "s2 - main camera path is shader-uniform/native-camera",
+      "rationale": "Hypothesis that HPL3 computes camera/projection in engine code and uploads via GLSL uniforms.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s7_soma_hands",
+      "label": "S7 - SOMA's hands can become controller-owned",
+      "community": 152,
+      "file_type": "concept",
+      "norm_label": "s7 - soma's hands can become controller-owned",
+      "rationale": "Hypothesis that existing hand meshes can be retained while replacing camera-follow with controller pose.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s8_gui_set_pass",
+      "label": "S8 - Final GUI-set pass is the right HUD extraction boundary",
+      "community": 153,
+      "file_type": "concept",
+      "norm_label": "s8 - final gui-set pass is the right hud extraction boundary",
+      "rationale": "Hypothesis that GameHudSet identity during 0x1402981e0 captures HUD without scene contamination.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s9_temporal_optical_effects",
+      "label": "S9 - Temporal and optical screen effects require explicit VR policy",
+      "community": 154,
+      "file_type": "concept",
+      "norm_label": "s9 - temporal and optical screen effects require explicit vr policy",
+      "rationale": "Hypothesis that image trail and lens distortion are unstable in stereo unless attenuated.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "next_live_evidence",
+      "label": "Next Live Evidence",
+      "community": 155,
+      "file_type": "document",
+      "norm_label": "next live evidence",
+      "source_file": "NEXT_LIVE_EVIDENCE.md"
+    },
+    {
+      "id": "openxrcomfortvignettemath",
+      "label": "OpenXRComfortVignetteMath",
+      "community": 156,
+      "file_type": "code",
+      "norm_label": "openxrcomfortvignettemath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "openxrdepthmath",
+      "label": "OpenXRDepthMath",
+      "community": 157,
+      "file_type": "code",
+      "norm_label": "openxrdepthmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "openxrstatuspanelmath",
+      "label": "OpenXRStatusPanelMath",
+      "community": 158,
+      "file_type": "code",
+      "norm_label": "openxrstatuspanelmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "player_state_interact_read_hps",
+      "label": "PlayerState_Interact_Read.hps",
+      "community": 159,
+      "file_type": "code",
+      "norm_label": "playerstate_interact_read.hps",
+      "rationale": "Authored script governing readable object presentation and scaling.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl_grab_bridge",
+      "label": "HPLGrabBridge",
+      "community": 16,
+      "file_type": "code",
+      "norm_label": "hplgrabbridge",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s12_controller_translation",
+      "label": "S12 - Controller translation can steer SOMA's native Grab PID safely",
+      "community": 16,
+      "file_type": "concept",
+      "norm_label": "s12 - controller translation can steer soma's native grab pid safely",
+      "rationale": "Hypothesis that adding camera-relative displacement to Grab position error produces physical translation.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s13_native_torque",
+      "label": "S13 - Native torque and impulse boundaries support physical VR manipulation",
+      "community": 16,
+      "file_type": "concept",
+      "norm_label": "s13 - native torque and impulse boundaries support physical vr manipulation",
+      "rationale": "Hypothesis that controller orientation can steer SOMA's Grab torque target.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "smoke_test_matrix",
+      "label": "SOMAVR Smoke Test Matrix",
+      "community": 160,
+      "file_type": "document",
+      "norm_label": "somavr smoke test matrix",
+      "source_file": "SMOKE_TEST_MATRIX.md"
+    },
+    {
+      "id": "soma_cluxplayer_helper_update",
+      "label": "SOMA_cLuxPlayerHelper_Update",
+      "community": 161,
+      "file_type": "code",
+      "norm_label": "soma_cluxplayerhelper_update",
+      "rationale": "Identified as the future native action-injection phase for input.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "soma_cluxprop_attachtosocket",
+      "label": "SOMA_cLuxProp_AttachToSocket",
+      "community": 162,
+      "file_type": "code",
+      "norm_label": "soma_cluxprop_attachtosocket",
+      "rationale": "Allocates attachment state at cLuxProp+0x740 and resolves named socket from parent mesh.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1400be8f0"
+    },
+    {
+      "id": "soma_getplayer",
+      "label": "SOMA_GetPlayer",
+      "community": 163,
+      "file_type": "code",
+      "norm_label": "soma_getplayer",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1400cc860"
+    },
+    {
+      "id": "soma_iluxentity_setactive",
+      "label": "SOMA_iLuxEntity_SetActive",
+      "community": 164,
+      "file_type": "code",
+      "norm_label": "soma_iluxentity_setactive",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1400b3700"
+    },
+    {
+      "id": "soma_iluxentity_setmatrix",
+      "label": "SOMA_iLuxEntity_SetMatrix",
+      "community": 165,
+      "file_type": "code",
+      "norm_label": "soma_iluxentity_setmatrix",
+      "rationale": "Shared Lux entity SetMatrix target; handles HudObject boundary and PlayerHands tracked-grip root substitution.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1400bcd90"
+    },
+    {
+      "id": "terminal_overlay",
+      "label": "Terminal Overlay",
+      "community": 166,
+      "file_type": "concept",
+      "norm_label": "terminal overlay",
+      "rationale": "High-resolution head-locked panel for interacting with in-game terminals.",
+      "source_file": "USER_GUIDE.md"
+    },
+    {
+      "id": "test_checklists_0_39_0_vr_control_panel",
+      "label": "0.39.0 VR Control Panel",
+      "community": 167,
+      "file_type": "document",
+      "norm_label": "0.39.0 vr control panel",
+      "rationale": "Tests the in-game VR configuration and status panel.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 1055
+    },
+    {
+      "id": "test_checklists_0_71_0_native_semantic_input",
+      "label": "0.71.0 Native Semantic Input",
+      "community": 168,
+      "file_type": "document",
+      "norm_label": "0.71.0 native semantic input",
+      "rationale": "Validates the transition to native semantic input for locomotion and manipulation.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 295
+    },
+    {
+      "id": "test_checklists_authored_comfort",
+      "label": "0.28.0 Authored Comfort",
+      "community": 169,
+      "file_type": "document",
+      "norm_label": "0.28.0 authored comfort",
+      "rationale": "Defines test procedures for camera roll suppression and state-transition blackouts.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "hypotheses_s16_deferred_reconstruction_mono",
+      "label": "S16 - Deferred reconstruction remains mono-centered under asymmetric eye FOV",
+      "community": 17,
+      "file_type": "concept",
+      "norm_label": "s16 - deferred reconstruction remains mono-centered under asymmetric eye fov",
+      "rationale": "Confirmed hypothesis that deferred shadows use mono-centered projection data.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "runtime_analysis_0_5_4",
+      "label": "Runtime Analysis 0.5.4",
+      "community": 17,
+      "file_type": "document",
+      "norm_label": "runtime analysis 0.5.4",
+      "source_file": "RUNTIME_ANALYSIS_0.5.4.md"
+    },
+    {
+      "id": "runtime_analysis_0_5_5",
+      "label": "Runtime Analysis 0.5.5",
+      "community": 17,
+      "file_type": "document",
+      "norm_label": "runtime analysis 0.5.5",
+      "source_file": "RUNTIME_ANALYSIS_0.5.5.md"
+    },
+    {
+      "id": "test_checklists_compatprobe",
+      "label": "0.5.1 Compatibility Probe Test",
+      "community": 170,
+      "file_type": "document",
+      "norm_label": "0.5.1 compatibility probe test",
+      "rationale": "Defines test procedures for render stage and audio listener observation.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_controller_flashlight",
+      "label": "0.23.0 Controller Flashlight",
+      "community": 171,
+      "file_type": "document",
+      "norm_label": "0.23.0 controller flashlight",
+      "rationale": "Defines test procedures for controller-aimed flashlight behavior.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_controller_hands",
+      "label": "0.16.0 Controller Hands, Pause Safety, And Menu Pointer",
+      "community": 172,
+      "file_type": "document",
+      "norm_label": "0.16.0 controller hands, pause safety, and menu pointer",
+      "rationale": "Defines test procedures for controller-tracked hand models and menu interaction.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_gameplay_actions",
+      "label": "0.7.1 Controller, Gameplay Actions, And Player-State Prototype",
+      "community": 173,
+      "file_type": "document",
+      "norm_label": "0.7.1 controller, gameplay actions, and player-state prototype",
+      "rationale": "Defines test procedures for initial controller input mapping and player state probing.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_gameplay_coherence",
+      "label": "0.27.0 Gameplay Coherence",
+      "community": 174,
+      "file_type": "document",
+      "norm_label": "0.27.0 gameplay coherence",
+      "rationale": "Defines test procedures for controller flashlight rays and dynamic room-scale safety.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_gpu_depth_capability",
+      "label": "0.26.0 GPU And Depth Capability",
+      "community": 175,
+      "file_type": "document",
+      "norm_label": "0.26.0 gpu and depth capability",
+      "rationale": "Defines test procedures for per-eye GPU timing and depth extension capability.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_hands_identity",
+      "label": "0.13.0 Player Hands Identity And Root-Pose Probe",
+      "community": 176,
+      "file_type": "document",
+      "norm_label": "0.13.0 player hands identity and root-pose probe",
+      "rationale": "Defines test procedures for identifying and probing native hand entities.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_head_volume_spectator",
+      "label": "0.25.0 Head Volume, Spectator, And CPU Telemetry",
+      "community": 177,
+      "file_type": "document",
+      "norm_label": "0.25.0 head volume, spectator, and cpu telemetry",
+      "rationale": "Defines test procedures for desktop mirroring and room-scale collision probes.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_hplcamera",
+      "label": "0.4.0 Native HPL Camera Test",
+      "community": 178,
+      "file_type": "document",
+      "norm_label": "0.4.0 native hpl camera test",
+      "rationale": "Defines test procedures for initial HMD orientation tracking.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_hud_layer",
+      "label": "0.15.0 Gameplay HUD OpenXR Quad",
+      "community": 179,
+      "file_type": "document",
+      "norm_label": "0.15.0 gameplay hud openxr quad",
+      "rationale": "Defines test procedures for capturing flat HUD into an OpenXR composition layer.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_0_45_0_continuous_dual_render",
+      "label": "0.45.0 Continuous Dual Render",
+      "community": 18,
+      "file_type": "document",
+      "norm_label": "0.45.0 continuous dual render",
+      "rationale": "Validates the same-frame stereo (continuous dual render) path.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 915
+    },
+    {
+      "id": "test_checklists_0_51_0_comfort_vignette",
+      "label": "0.51.0 Comfort Vignette",
+      "community": 18,
+      "file_type": "document",
+      "norm_label": "0.51.0 comfort vignette",
+      "rationale": "Tests the peripheral comfort vignette during locomotion.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 785
+    },
+    {
+      "id": "test_checklists_0_59_0_live_usability",
+      "label": "0.59.0 Live Usability",
+      "community": 18,
+      "file_type": "document",
+      "norm_label": "0.59.0 live usability",
+      "rationale": "Comprehensive usability test including same-frame stereo and comfort vignettes.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 635
+    },
+    {
+      "id": "test_checklists_input_foundation",
+      "label": "0.6.0 Input, Pose, And Calibration Foundation",
+      "community": 180,
+      "file_type": "document",
+      "norm_label": "0.6.0 input, pose, and calibration foundation",
+      "rationale": "Defines test procedures for OpenXR input action initialization.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_native_comfort",
+      "label": "0.19.0 Native Comfort And Focus Snapshot",
+      "community": 181,
+      "file_type": "document",
+      "norm_label": "0.19.0 native comfort and focus snapshot",
+      "rationale": "Defines test procedures for suppressing native head bob/sway and interaction snapshots.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_native_interaction",
+      "label": "0.12.0 Native Controller Interaction And HUD Metrics",
+      "community": 182,
+      "file_type": "document",
+      "norm_label": "0.12.0 native controller interaction and hud metrics",
+      "rationale": "Defines test procedures for controller-aimed interaction and HUD coordinate tracking.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_onekey",
+      "label": "0.5.8 One-Key VR Activation",
+      "community": 183,
+      "file_type": "document",
+      "norm_label": "0.5.8 one-key vr activation",
+      "rationale": "Defines test procedures for single-key VR mode toggle.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_physical_manipulation",
+      "label": "0.22.0 Physical Manipulation And ImGui Identity",
+      "community": 184,
+      "file_type": "document",
+      "norm_label": "0.22.0 physical manipulation and imgui identity",
+      "rationale": "Defines test procedures for physics-based interaction (wheels, levers) and ImGui tracking.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_poselatch",
+      "label": "0.5.10 Neutral Pose Latch",
+      "community": 185,
+      "file_type": "document",
+      "norm_label": "0.5.10 neutral pose latch",
+      "rationale": "Defines test procedures for stable tracking activation and eye height calibration.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_post_effect_resource_ownership",
+      "label": "0.37.0 Post-Effect Resource Ownership",
+      "community": 186,
+      "file_type": "document",
+      "norm_label": "0.37.0 post-effect resource ownership",
+      "rationale": "Defines test procedures for post-effect resource tracking and eye ownership.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_presentation_optics",
+      "label": "0.29.0 Presentation And Optics",
+      "community": 187,
+      "file_type": "document",
+      "norm_label": "0.29.0 presentation and optics",
+      "rationale": "Defines test procedures for comfort optics, loading screens, and video lifecycle.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_recenter",
+      "label": "0.5.11 In-Session Recenter",
+      "community": 188,
+      "file_type": "document",
+      "norm_label": "0.5.11 in-session recenter",
+      "rationale": "Defines test procedures for in-game orientation recentering.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_reconstruct",
+      "label": "0.5.5 Reconstruction And Shutdown Diagnostic",
+      "community": 189,
+      "file_type": "document",
+      "norm_label": "0.5.5 reconstruction and shutdown diagnostic",
+      "rationale": "Defines test procedures for deferred reconstruction and OpenXR teardown.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_0_63_0_diegetic_terminals",
+      "label": "0.63.0 Diegetic Terminals",
+      "community": 19,
+      "file_type": "document",
+      "norm_label": "0.63.0 diegetic terminals",
+      "rationale": "Focuses on diegetic (in-world) terminal interactions without camera takeover.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 515
+    },
+    {
+      "id": "test_checklists_0_67_0_native_manipulation_overlay",
+      "label": "0.67.0 Native Manipulation And Terminal Overlay",
+      "community": 19,
+      "file_type": "document",
+      "norm_label": "0.67.0 native manipulation and terminal overlay",
+      "rationale": "Tests native manipulation of objects and the head-locked terminal overlay.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 405
+    },
+    {
+      "id": "test_checklists_0_75_0_terminal_dirty_rects",
+      "label": "0.75.0 Terminal Dirty Rectangles And Wrist Candidate",
+      "community": 19,
+      "file_type": "document",
+      "norm_label": "0.75.0 terminal dirty rectangles and wrist candidate",
+      "rationale": "Tests terminal rendering optimization via dirty rectangles and wrist tracking candidates.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 225
+    },
+    {
+      "id": "test_checklists_reference_space",
+      "label": "0.9.0 Reference Space, Focus, Haptics, And Native Roll",
+      "community": 190,
+      "file_type": "document",
+      "norm_label": "0.9.0 reference space, focus, haptics, and native roll",
+      "rationale": "Defines test procedures for OpenXR reference spaces and native camera roll suppression.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_render_state_policy",
+      "label": "0.7.2 Authored Camera And Render-State Policy",
+      "community": 191,
+      "file_type": "document",
+      "norm_label": "0.7.2 authored camera and render-state policy",
+      "rationale": "Defines test procedures for authored camera detection and render stage classification.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_renderdiag",
+      "label": "0.5.4 Shadow/Reflection Render Diagnostic",
+      "community": 192,
+      "file_type": "document",
+      "norm_label": "0.5.4 shadow/reflection render diagnostic",
+      "rationale": "Defines test procedures for capturing render state and matrices for debugging.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_roomscale_safety",
+      "label": "0.24.0 Room-Scale Safety",
+      "community": 193,
+      "file_type": "document",
+      "norm_label": "0.24.0 room-scale safety",
+      "rationale": "Defines test procedures for static geometry clipping prevention.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_runtime_resilience",
+      "label": "0.8.0 Runtime Resilience, Comfort, Effects, And GUI Sets",
+      "community": 194,
+      "file_type": "document",
+      "norm_label": "0.8.0 runtime resilience, comfort, effects, and gui sets",
+      "rationale": "Defines test procedures for GUI hook stability and post-effect isolation.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_screen_materials",
+      "label": "0.30.0 Screen Materials",
+      "community": 195,
+      "file_type": "document",
+      "norm_label": "0.30.0 screen materials",
+      "rationale": "Defines test procedures for camera-relative screen effects (damage, distortion).",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_shadowjitter",
+      "label": "0.5.3 Shadow Jitter A/B",
+      "community": 196,
+      "file_type": "document",
+      "norm_label": "0.5.3 shadow jitter a/b",
+      "rationale": "Defines test procedures for suppressing shadow map offset jitter.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_stability",
+      "label": "0.5.6 Shadow Motion And Reflection Fade",
+      "community": 197,
+      "file_type": "document",
+      "norm_label": "0.5.6 shadow motion and reflection fade",
+      "rationale": "Defines test procedures for room-scale shadow stability and reflection fade bypass.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_tools_imgui",
+      "label": "0.31.0 Tools, Gameplay ImGui, And Render Transaction",
+      "community": 198,
+      "file_type": "document",
+      "norm_label": "0.31.0 tools, gameplay imgui, and render transaction",
+      "rationale": "Defines test procedures for controller-held tools and gameplay ImGui capture.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_tracking_recovery",
+      "label": "0.10.0 Tracking Recovery And Controller Accessibility",
+      "community": 199,
+      "file_type": "document",
+      "norm_label": "0.10.0 tracking recovery and controller accessibility",
+      "rationale": "Defines test procedures for HMD tracking loss and one-hand controller fallback.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "gdi32_swapbuffers",
+      "label": "gdi32!SwapBuffers",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "gdi32!swapbuffers",
+      "rationale": "The proven frame boundary used to anchor XR frame pacing.",
+      "source_file": "UEVR_LEARNINGS.md"
+    },
+    {
+      "id": "gl_uniform_matrix_4fv",
+      "label": "glUniformMatrix4fv",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "gluniformmatrix4fv",
+      "rationale": "Hooked to observe and potentially mutate projection/view matrices.",
+      "source_file": "future-hook-map.md"
+    },
+    {
+      "id": "j_l_wrist",
+      "label": "j_L_Wrist",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "j_l_wrist",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "j_r_wrist",
+      "label": "j_R_Wrist",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "j_r_wrist",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "j_root",
+      "label": "j_Root",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "j_root",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "soma_no_steam_exe",
+      "label": "Soma_NoSteam.exe",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "soma_nosteam.exe",
+      "rationale": "The primary 64-bit game executable targeted for injection and hooking.",
+      "source_file": "USER_GUIDE.md"
+    },
+    {
+      "id": "somavr_dll",
+      "label": "somavr.dll",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "somavr.dll",
+      "rationale": "The core mod library containing hooks and OpenXR logic.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "somavr_injector_exe",
+      "label": "somavr_injector.exe",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "somavr_injector.exe",
+      "rationale": "The utility responsible for launching the game and injecting the SOMAVR DLL.",
+      "source_file": "USER_GUIDE.md"
+    },
+    {
+      "id": "ghidra_sync_md",
+      "label": "Ghidra Synchronization Ledger",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "ghidra synchronization ledger",
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "id": "test_checklists_0_80_1_hmd_shoulder_rig",
+      "label": "0.80.1 HMD Shoulder Rig, Physical Grab, Menu, And Terminal Probe",
+      "community": 20,
+      "file_type": "document",
+      "norm_label": "0.80.1 hmd shoulder rig, physical grab, menu, and terminal probe",
+      "rationale": "Focuses on shoulder rig behavior relative to HMD and physical grab mechanics.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 61
+    },
+    {
+      "id": "test_checklists_0_81_0_stable_hands_ui",
+      "label": "0.81.0 Stable Hands And UI Ownership",
+      "community": 20,
+      "file_type": "document",
+      "norm_label": "0.81.0 stable hands and ui ownership",
+      "rationale": "Covers hand stability, shoulder positioning, and UI ownership logic for version 0.81.0.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 31
+    },
+    {
+      "id": "test_checklists_0_82_0_torso_ergonomics",
+      "label": "0.82.0 Torso Ergonomics",
+      "community": 20,
+      "file_type": "document",
+      "norm_label": "0.82.0 torso ergonomics",
+      "rationale": "Defines testing procedures for torso and arm IK ergonomics introduced in version 0.82.0.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 1
+    },
+    {
+      "id": "address_registry_0x1400bcd90",
+      "label": "SOMA_iLuxEntity_SetMatrix",
+      "community": 21,
+      "file_type": "code",
+      "norm_label": "soma_iluxentity_setmatrix",
+      "rationale": "Shared AngelScript registration target for derived Lux entity types.",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x1400bcd90"
+    },
+    {
+      "id": "architecture_hplhandsbridge",
+      "label": "HPLHandsBridge",
+      "community": 21,
+      "file_type": "code",
+      "norm_label": "hplhandsbridge",
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "address_registry_0x1401f1480",
+      "label": "HPL3_Renderer_RenderPostPostEffects",
+      "community": 22,
+      "file_type": "code",
+      "norm_label": "hpl3_renderer_renderpostposteffects",
+      "rationale": "Performs GPU work and callbacks, manages previous-view history matrix.",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x1401f1480"
+    },
+    {
+      "id": "architecture_hplpereyeviewhistory",
+      "label": "HPLPerEyeViewHistory",
+      "community": 22,
+      "file_type": "code",
+      "norm_label": "hplpereyeviewhistory",
+      "rationale": "Guarded native access for renderer previous-view packet during stereo.",
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "address_registry_0x140213970",
+      "label": "HPL3_GuiSet_Render",
+      "community": 23,
+      "file_type": "code",
+      "norm_label": "hpl3_guiset_render",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x140213970"
+    },
+    {
+      "id": "architecture_hplhudbridge",
+      "label": "HPLHudBridge",
+      "community": 23,
+      "file_type": "code",
+      "norm_label": "hplhudbridge",
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "address_registry_0x14032f0e0",
+      "label": "HPL3_cSurfaceData_OnImpact",
+      "community": 24,
+      "file_type": "code",
+      "norm_label": "hpl3_csurfacedata_onimpact",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x14032f0e0"
+    },
+    {
+      "id": "address_registry_0x1405548b0",
+      "label": "HPL3_cPhysicsWorldNewton_Update",
+      "community": 24,
+      "file_type": "code",
+      "norm_label": "hpl3_cphysicsworldnewton_update",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x1405548b0"
+    },
+    {
+      "id": "hpl_flashlight_math",
+      "label": "HPLFlashlightMath",
+      "community": 26,
+      "file_type": "code",
+      "norm_label": "hplflashlightmath",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_23_0_controller_flashlight",
+      "label": "0.23.0-controller-flashlight",
+      "community": 26,
+      "file_type": "document",
+      "norm_label": "0.23.0-controller-flashlight",
+      "rationale": "Promoted flashlight transform to dominant-controller aim via iLuxEntity.SetMatrix.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "concept_roomscale_safety",
+      "label": "Room-scale Safety",
+      "community": 27,
+      "file_type": "concept",
+      "norm_label": "room-scale safety",
+      "rationale": "Collision-aware head translation to prevent clipping through world geometry.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_24_0_roomscale_safety",
+      "label": "0.24.0-roomscale-safety",
+      "community": 27,
+      "file_type": "document",
+      "norm_label": "0.24.0-roomscale-safety",
+      "rationale": "Added collision-aware room-scale head translation using CheckLineOfSight.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "soma_checklineofsight",
+      "label": "SOMA_CheckLineOfSight",
+      "community": 28,
+      "file_type": "code",
+      "norm_label": "soma_checklineofsight",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_27_0_gameplay_coherence",
+      "label": "0.27.0-gameplay-coherence",
+      "community": 28,
+      "file_type": "document",
+      "norm_label": "0.27.0-gameplay-coherence",
+      "rationale": "Extended controller flashlight ownership to gameplay rays in Player.hps.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "hpl_presentation_bridge",
+      "label": "HPLPresentationBridge",
+      "community": 29,
+      "file_type": "code",
+      "norm_label": "hplpresentationbridge",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_29_0_presentation_optics",
+      "label": "0.29.0-presentation-optics",
+      "community": 29,
+      "file_type": "document",
+      "norm_label": "0.29.0-presentation-optics",
+      "rationale": "Added HPLPresentationBridge for loading visibility and AFR cache invalidation.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "ccamera_getfrustum",
+      "label": "cCamera::GetFrustum",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "ccamera::getfrustum",
+      "rationale": "Critical hook point for intercepting native camera queries.",
+      "source_file": "future-hook-map.md",
+      "source_location": "Soma_NoSteam.exe+0x271b80"
+    },
+    {
+      "id": "cfrustum_setupperspectiveproj",
+      "label": "cFrustum::SetupPerspectiveProj",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "cfrustum::setupperspectiveproj",
+      "rationale": "Native function used to rebuild frustums with VR-specific FOV and orientation.",
+      "source_file": "future-hook-map.md",
+      "source_location": "Soma_NoSteam.exe+0x270230"
+    },
+    {
+      "id": "graphify_affected",
+      "label": "graphify affected",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "graphify affected",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl_camera_bridge",
+      "label": "HPLCameraBridge",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "hplcamerabridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl_input_bridge",
+      "label": "HPLInputBridge",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "hplinputbridge",
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "id": "hpl_player_state",
+      "label": "HPLPlayerState",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "hplplayerstate",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "openxr_gl_bridge",
+      "label": "OpenXRGLBridge",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "openxrglbridge",
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "id": "openxr_runtime",
+      "label": "OpenXRRuntime",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "openxrruntime",
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "id": "concept_afr_stereo",
+      "label": "AFR Stereo",
+      "community": 3,
+      "file_type": "concept",
+      "norm_label": "afr stereo",
+      "rationale": "Alternating Frame Rendering used for VR stereo presentation.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "hypotheses_s11_frustum_tracking_audio",
+      "label": "S11 - Frustum-only tracking leaves audio listener body-aligned",
+      "community": 3,
+      "file_type": "concept",
+      "norm_label": "s11 - frustum-only tracking leaves audio listener body-aligned",
+      "rationale": "Confirmed hypothesis that HPLCameraBridge leaves FMOD listener orientation unchanged.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s14_shadow_jitter",
+      "label": "S14 - Screen-space soft-shadow jitter causes stereo shadow shimmer",
+      "community": 3,
+      "file_type": "concept",
+      "norm_label": "s14 - screen-space soft-shadow jitter causes stereo shadow shimmer",
+      "rationale": "Hypothesis that vScreenJitterCoord derived from pixels causes eye-to-eye difference.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "build_history_0_32_0_viewport_depth",
+      "label": "0.32.0-viewport-depth",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "0.32.0-viewport-depth",
+      "rationale": "Hardened native camera ownership and extended depth capability experiment with GL_DEPTH_COMPONENT24.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "runtime_analysis_0_5_1",
+      "label": "Runtime Analysis: 0.5.1 Compatibility Probe",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "runtime analysis: 0.5.1 compatibility probe",
+      "source_file": "RUNTIME_ANALYSIS_0.5.1.md"
+    },
+    {
+      "id": "runtime_analysis_0_5_2",
+      "label": "Runtime Analysis: 0.5.2 Audio/Post Test",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "runtime analysis: 0.5.2 audio/post test",
+      "source_file": "RUNTIME_ANALYSIS_0.5.2.md"
+    },
+    {
+      "id": "current_state_hpl3_cfrustum_setupperspectiveproj",
+      "label": "cFrustum::SetupPerspectiveProj",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": "cfrustum::setupperspectiveproj",
+      "source_file": "CURRENT_STATE.md",
+      "source_location": "0x140270230"
+    },
+    {
+      "id": "current_state_hpl_cameramath",
+      "label": "HPLCameraMath",
+      "community": 30,
+      "file_type": "code",
+      "norm_label": "hplcameramath",
+      "rationale": "Owns pose/projection math and fully centered FOV policy.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "hpllifecycle",
+      "label": "HPLLifecycle",
+      "community": 31,
+      "file_type": "code",
+      "norm_label": "hpllifecycle",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_clean_shutdown",
+      "label": "FEATURE.CLEAN_SHUTDOWN",
+      "community": 31,
+      "file_type": "concept",
+      "norm_label": "feature.clean_shutdown",
+      "rationale": "0x1403b16e0, 0x1403b1803",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplgameplayhapticsbridge",
+      "label": "HPLGameplayHapticsBridge",
+      "community": 32,
+      "file_type": "code",
+      "norm_label": "hplgameplayhapticsbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_controller_haptics",
+      "label": "FEATURE.CONTROLLER_HAPTICS",
+      "community": 32,
+      "file_type": "concept",
+      "norm_label": "feature.controller_haptics",
+      "rationale": "vibration output action, per-hand output paths, 0x140109b30 authored rumble, focused-session guard, segmented refresh/stop envelope",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplterminalbridge",
+      "label": "HPLTerminalBridge",
+      "community": 33,
+      "file_type": "code",
+      "norm_label": "hplterminalbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_diegetic_gui_pointer",
+      "label": "FEATURE.DIEGETIC_GUI_POINTER",
+      "community": 33,
+      "file_type": "concept",
+      "norm_label": "feature.diegetic_gui_pointer",
+      "rationale": "wall/handheld terminal states 8/9, 0x1403132d0, direct original 0x1402f0c90 dispatch, 0x140237920, 0x1401562e0, 0x140159360, focused wrapper/entity +0x180/+0x28, multi-frame native cancel hold",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpldualrendercontrol",
+      "label": "HPLDualRenderControl",
+      "community": 34,
+      "file_type": "code",
+      "norm_label": "hpldualrendercontrol",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_dual_render",
+      "label": "FEATURE.DUAL_RENDER",
+      "community": 34,
+      "file_type": "concept",
+      "norm_label": "feature.dual_render",
+      "rationale": "0x140298850, 0x140298630, immediate first-eye cache, opt-in continuous exact-player replay with GUI bit removed, bounded diagnostic precedence, fail-closed AFR rollback",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpltemporalmutationmath",
+      "label": "HPLTemporalMutationMath",
+      "community": 35,
+      "file_type": "code",
+      "norm_label": "hpltemporalmutationmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_dual_render_temporal_probe",
+      "label": "FEATURE.DUAL_RENDER_TEMPORAL_PROBE",
+      "community": 35,
+      "file_type": "concept",
+      "norm_label": "feature.dual_render_temporal_probe",
+      "rationale": "0x1401f1480, renderer/current/history/settings snapshots, *(renderer+0x20)+0x158 -> *(renderer+0x438)+0x80",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplcontacthapticsbridge",
+      "label": "HPLContactHapticsBridge",
+      "community": 36,
+      "file_type": "code",
+      "norm_label": "hplcontacthapticsbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_grab_contact_haptics",
+      "label": "FEATURE.GRAB_CONTACT_HAPTICS",
+      "community": 36,
+      "file_type": "concept",
+      "norm_label": "feature.grab_contact_haptics",
+      "rationale": "0x14032f0e0 native surface impact, Grab state 1, native normal speed/contact position/count/body, fresh dominant-grip world pose",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplinteractionmath",
+      "label": "HPLInteractionMath",
+      "community": 37,
+      "file_type": "code",
+      "norm_label": "hplinteractionmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_interaction_ray",
+      "label": "FEATURE.INTERACTION_RAY",
+      "community": 37,
+      "file_type": "concept",
+      "norm_label": "feature.interaction_ray",
+      "rationale": "0x1400cd750, inner raycast 0x1401438c0, distance +0x18, body +0x20, entity +0x28, two local hand candidates, one outer finalizer, sticky acquisition plus state-lifetime owner lock, native CanInteract",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplusermodulebridge",
+      "label": "HPLUserModuleBridge",
+      "community": 38,
+      "file_type": "code",
+      "norm_label": "hplusermodulebridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_inventory_presentation",
+      "label": "FEATURE.INVENTORY_PRESENTATION",
+      "community": 38,
+      "file_type": "concept",
+      "norm_label": "feature.inventory_presentation",
+      "rationale": "0x1401378e0, 0x140129a40, 0x1401ae870, mlId +0x158, module 15, action 12, bounded current-ImGui capture",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplphysicalcrouchmath",
+      "label": "HPLPhysicalCrouchMath",
+      "community": 39,
+      "file_type": "code",
+      "norm_label": "hplphysicalcrouchmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_locomotion",
+      "label": "FEATURE.LOCOMOTION",
+      "community": 39,
+      "file_type": "concept",
+      "norm_label": "feature.locomotion",
+      "rationale": "live-proven helper owner root +0x110, semantic Move type 1 at 0x140154fb0, diagnostic 0x1402375f0, native turn 0x140237460, calibrated HMD or movement-controller yaw/height",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl3_guiset_render",
+      "label": "HPL3_GuiSet_Render",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "hpl3_guiset_render",
+      "rationale": "Stateful renderer for SOMA's GUI/Terminal system.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl_hud_bridge",
+      "label": "HPLHudBridge",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "hplhudbridge",
+      "rationale": "Captures flat GUI sets (GameHud, ImGui) for OpenXR quad/cylinder layers.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "iphysicsbody_getlocalmatrix",
+      "label": "iPhysicsBody::GetLocalMatrix",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "iphysicsbody::getlocalmatrix",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "iphysicsjoint_getpindir",
+      "label": "iPhysicsJoint::GetPinDir",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "iphysicsjoint::getpindir",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "openxr_gl_bridge_begin_hud_capture",
+      "label": "OpenXRGLBridge::BeginHudCapture",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "openxrglbridge::beginhudcapture",
+      "rationale": "Handles HUD FBO clearing policy based on session-scoped player state.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "player_state_interact_grab_hps",
+      "label": "PlayerState_Interact_Grab.hps",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "playerstate_interact_grab.hps",
+      "rationale": "Authored script governing loose-prop physics and weight policy.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "player_state_interact_slide_hps",
+      "label": "PlayerState_Interact_Slide.hps",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "playerstate_interact_slide.hps",
+      "rationale": "Authored script governing drawer/curtain interaction logic.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "soma_cluxplayer_on_analog_input",
+      "label": "SOMA_cLuxPlayer_OnAnalogInput",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "soma_cluxplayer_onanaloginput",
+      "rationale": "Native dispatcher for analog input (Look, Move) to player-state scripts.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "soma_cluxplayer_onanaloginput",
+      "label": "SOMA_cLuxPlayer_OnAnalogInput",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "soma_cluxplayer_onanaloginput",
+      "rationale": "Semantic Look dispatcher; signature-guarded native analog dispatcher.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x140154fb0"
+    },
+    {
+      "id": "soma_cluxplayerhelper_update",
+      "label": "SOMA_cLuxPlayerHelper_Update",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "soma_cluxplayerhelper_update",
+      "rationale": "Per-frame helper owner; dispatches Move/Look and guarded manipulation delivery phase.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x14015ba20"
+    },
+    {
+      "id": "ik_boundary",
+      "label": "IK Boundary",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "ik boundary",
+      "rationale": "Defines where VR control ends and native animation/skinning begins.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "soma_vr_mod",
+      "label": "SOMAVR Mod",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "somavr mod",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "somavr_confirmed",
+      "label": "SOMAVR-confirmed",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "somavr-confirmed",
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "id": "three_point_torso_ergonomics",
+      "label": "Three-Point Torso Ergonomics",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "three-point torso ergonomics",
+      "rationale": "Canonical cross-engine solver contract for shoulder/head relationship.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hplmenubridge",
+      "label": "HPLMenuBridge",
+      "community": 40,
+      "file_type": "code",
+      "norm_label": "hplmenubridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_menu_pointer",
+      "label": "FEATURE.MENU_POINTER",
+      "community": 40,
+      "file_type": "concept",
+      "norm_label": "feature.menu_pointer",
+      "rationale": "0x1400ccc90, HMD/aim orientations, native SOMA client cursor/click path, pause or no-camera-control main-menu ownership, native desktop backbuffer preservation",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplpereyeposteffect",
+      "label": "HPLPerEyePostEffect",
+      "community": 41,
+      "file_type": "code",
+      "norm_label": "hplpereyeposteffect",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_per_eye_image_trail",
+      "label": "FEATURE.PER_EYE_IMAGE_TRAIL",
+      "community": 41,
+      "file_type": "concept",
+      "norm_label": "feature.per_eye_image_trail",
+      "rationale": "0x1402d7a40, 0x14038a8b0, 0x14038a950, 0x14038ae60, ImageTrail +0x50/+0x58/+0x98/+0xa0, eye/pose/calibration bank, signature and lifecycle fallback",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplssaotemporalhistory",
+      "label": "HPLSSAOTemporalHistory",
+      "community": 42,
+      "file_type": "code",
+      "norm_label": "hplssaotemporalhistory",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_per_eye_ssao_history",
+      "label": "FEATURE.PER_EYE_SSAO_HISTORY",
+      "community": 42,
+      "file_type": "concept",
+      "norm_label": "feature.per_eye_ssao_history",
+      "rationale": "0x1403f2b50, 0x1402aba30, renderer +0xe78/+0xed8/+0xf40, two GL history copies, eye/pose/calibration ownership",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplpereyeviewhistory",
+      "label": "HPLPerEyeViewHistory",
+      "community": 43,
+      "file_type": "code",
+      "norm_label": "hplpereyeviewhistory",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_per_eye_view_history",
+      "label": "FEATURE.PER_EYE_VIEW_HISTORY",
+      "community": 43,
+      "file_type": "concept",
+      "norm_label": "feature.per_eye_view_history",
+      "rationale": "0x1401f1480, active frustum view +0x158, renderer history pointer +0x438, previous view +0x80, AFR/continuous pending/actual eye-pose transaction, calibration and stale-gap reseed",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplgrabmath",
+      "label": "HPLGrabMath",
+      "community": 44,
+      "file_type": "code",
+      "norm_label": "hplgrabmath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_physics_hands",
+      "label": "FEATURE.PHYSICS_HANDS",
+      "community": 44,
+      "file_type": "concept",
+      "norm_label": "feature.physics_hands",
+      "rationale": "PID 0x140238750, body matrix +0x50, angular velocity vtable +0x90, AddImpulse 0x14049c720, native-strength throw floor and forward clearance, unbounded pull-in plus bounded hand travel",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplpresentationbridge",
+      "label": "HPLPresentationBridge",
+      "community": 45,
+      "file_type": "code",
+      "norm_label": "hplpresentationbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_scripted_presentation",
+      "label": "FEATURE.SCRIPTED_PRESENTATION",
+      "community": 45,
+      "file_type": "concept",
+      "norm_label": "feature.scripted_presentation",
+      "rationale": "0x140484ea0, 0x140485200, 0x140485720, dead state 17, module IDs 10/12/19, exact current/GameHud ImGui",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplssaoframeowner",
+      "label": "HPLSSAOFrameOwner",
+      "community": 46,
+      "file_type": "code",
+      "norm_label": "hplssaoframeowner",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_ssao_frame_owner",
+      "label": "FEATURE.SSAO_FRAME_OWNER",
+      "community": 46,
+      "file_type": "concept",
+      "norm_label": "feature.ssao_frame_owner",
+      "rationale": "0x1403f2b50, global phase 0x14079575c, same-pose baseline replay and single committed update",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpltonemappingframe",
+      "label": "HPLToneMappingFrame",
+      "community": 47,
+      "file_type": "code",
+      "norm_label": "hpltonemappingframe",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_tone_mapping_frame_owner",
+      "label": "FEATURE.TONE_MAPPING_FRAME_OWNER",
+      "community": 47,
+      "file_type": "concept",
+      "norm_label": "feature.tone_mapping_frame_owner",
+      "rationale": "0x1402842d0, 0x1402845d0, 0x140284fd0, ToneMapping +0x8c/+0x94/+0xa0/+0xd8..+0x120/+0x138..+0x158, same-pose baseline replay and single committed update",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplstatuspanelbridge",
+      "label": "HPLStatusPanelBridge",
+      "community": 48,
+      "file_type": "code",
+      "norm_label": "hplstatuspanelbridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_vr_control_panel",
+      "label": "FEATURE.VR_CONTROL_PANEL",
+      "community": 48,
+      "file_type": "concept",
+      "norm_label": "feature.vr_control_panel",
+      "rationale": "F1, Menu+Secondary, VIEW-space alpha quad, guarded camera/runtime setters, same-frame stereo, HUD-shape, and comfort-vignette actions",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "openxrinput",
+      "label": "OpenXRInput",
+      "community": 49,
+      "file_type": "code",
+      "norm_label": "openxrinput",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_xr_input",
+      "label": "FEATURE.XR_INPUT",
+      "community": 49,
+      "file_type": "concept",
+      "norm_label": "feature.xr_input",
+      "rationale": "OpenXR action set, Simple/Touch/Index/Motion bindings, grip/aim action spaces",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplcamerabridge",
+      "label": "HPLCameraBridge",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "hplcamerabridge",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplcameramath",
+      "label": "HPLCameraMath",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "hplcameramath",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hplcompatibilityprobe",
+      "label": "HPLCompatibilityProbe",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "hplcompatibilityprobe",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "openglhooks",
+      "label": "OpenGLHooks",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "openglhooks",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_recenter",
+      "label": "FEATURE.RECENTER",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "feature.recenter",
+      "rationale": "F2 or two-grip hold, stable position plus yaw-only neutral latch; pitch/roll remain level-space relative",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_vr_mode_control",
+      "label": "FEATURE.VR_MODE_CONTROL",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "feature.vr_mode_control",
+      "rationale": "F10 pending activation, F8/F11 diagnostics",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_post_effect_policy",
+      "label": "FEATURE.POST_EFFECT_POLICY",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "feature.post_effect_policy",
+      "rationale": "Suppression of ImageTrail, VideoDistortion, and ChromaticAberration via priority tree +0x328.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_shadow_stability",
+      "label": "FEATURE.SHADOW_STABILITY",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "feature.shadow_stability",
+      "rationale": "Fully centered projection for programs 942/944.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "graphify_update",
+      "label": "graphify update",
+      "community": 50,
+      "file_type": "code",
+      "norm_label": "graphify update",
+      "rationale": "Run after code or architecture-document changes to refresh the graph.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_md",
+      "label": "FEATURE_TRACEABILITY.md",
+      "community": 50,
+      "file_type": "document",
+      "norm_label": "feature_traceability.md",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl3_cphysicsworldnewton_update",
+      "label": "cPhysicsWorldNewton::Update (0x1405548b0)",
+      "community": 52,
+      "file_type": "code",
+      "norm_label": "cphysicsworldnewton::update (0x1405548b0)",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_csurfacedata_onimpact",
+      "label": "HPL3_cSurfaceData_OnImpact (0x14032f0e0)",
+      "community": 52,
+      "file_type": "code",
+      "norm_label": "hpl3_csurfacedata_onimpact (0x14032f0e0)",
+      "rationale": "Narrow, low-frequency event boundary for physical-object contact feedback.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_icharacterbody_addyaw",
+      "label": "iCharacterBody::AddYaw (0x140237460)",
+      "community": 53,
+      "file_type": "code",
+      "norm_label": "icharacterbody::addyaw (0x140237460)",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_icharacterbody_move",
+      "label": "iCharacterBody::Move (0x1402375f0)",
+      "community": 53,
+      "file_type": "code",
+      "norm_label": "icharacterbody::move (0x1402375f0)",
+      "rationale": "Native locomotion entry point for analog movement accumulators.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_iluxentity_setmatrix",
+      "label": "SOMA_iLuxEntity_SetMatrix (0x1400bcd90)",
+      "community": 54,
+      "file_type": "code",
+      "norm_label": "soma_iluxentity_setmatrix (0x1400bcd90)",
+      "rationale": "Shared wrapper for transform mutations, used by hands and flashlight systems.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl_hands_bridge",
+      "label": "HPLHandsBridge",
+      "community": 54,
+      "file_type": "code",
+      "norm_label": "hplhandsbridge",
+      "rationale": "Substitutes hand matrices for VR-compatible states while preserving animations.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_node3d_applypostanimtransform",
+      "label": "HPL3_Node3D_ApplyPostAnimTransform",
+      "community": 55,
+      "file_type": "code",
+      "norm_label": "hpl3_node3d_applypostanimtransform",
+      "rationale": "Mutates local and returns immediately when UsePostTransform=0; records descendant propagation for distributed shoulder/elbow solve.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x140240290"
+    },
+    {
+      "id": "hpl3_node3d_setposttransform",
+      "label": "HPL3_Node3D_SetPostTransform",
+      "community": 55,
+      "file_type": "code",
+      "norm_label": "hpl3_node3d_setposttransform",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1404a94a0"
+    },
+    {
+      "id": "hypotheses_s19_vertical_projection_asymmetry",
+      "label": "S19 - Remaining vertical projection asymmetry causes pitch/roll artifacts",
+      "community": 56,
+      "file_type": "concept",
+      "norm_label": "s19 - remaining vertical projection asymmetry causes pitch/roll artifacts",
+      "rationale": "Confirmed hypothesis that centering both projection axes stabilizes dynamic shadows.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "runtime_analysis_0_5_6",
+      "label": "Runtime Analysis 0.5.6",
+      "community": 56,
+      "file_type": "document",
+      "norm_label": "runtime analysis 0.5.6",
+      "source_file": "RUNTIME_ANALYSIS_0.5.6.md"
+    },
+    {
+      "id": "lux_player_global_set_crosshair_state",
+      "label": "LuxPlayer::_Global_SetCrosshairState",
+      "community": 57,
+      "file_type": "code",
+      "norm_label": "luxplayer::_global_setcrosshairstate",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s21_global_crosshair_callback",
+      "label": "S21 - Global crosshair callback is stable semantic interaction boundary",
+      "community": 57,
+      "file_type": "concept",
+      "norm_label": "s21 - global crosshair callback is stable semantic interaction boundary",
+      "rationale": "Hypothesis that LuxPlayer::_Global_SetCrosshairState provides a stable enum for focus feedback.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "i_character_body_move",
+      "label": "iCharacterBody::Move",
+      "community": 58,
+      "file_type": "code",
+      "norm_label": "icharacterbody::move",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s6_openxr_locomotion",
+      "label": "S6 - OpenXR locomotion should enter through semantic player movement",
+      "community": 58,
+      "file_type": "concept",
+      "norm_label": "s6 - openxr locomotion should enter through semantic player movement",
+      "rationale": "Hypothesis that feeding controller axes into iCharacterBody::Move preserves speed modifiers.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "test_checklists_0_77_0_persistent_arms",
+      "label": "0.77.0 Persistent Arms And Medicine Gestures",
+      "community": 59,
+      "file_type": "document",
+      "norm_label": "0.77.0 persistent arms and medicine gestures",
+      "rationale": "Validates persistent arm visibility and specific medicine interaction gestures.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 165
+    },
+    {
+      "id": "test_checklists_0_79_0_hands_terminal_menu",
+      "label": "0.79.0 Hands, Terminal, Menu, And Recenter",
+      "community": 59,
+      "file_type": "document",
+      "norm_label": "0.79.0 hands, terminal, menu, and recenter",
+      "rationale": "Tests hand tracking persistence, terminal exit logic, and recentering behavior.",
+      "source_file": "TEST_CHECKLISTS.md",
+      "source_location": 88
+    },
+    {
+      "id": "contact_haptics_re_hpl3_cphysicsworldnewton_update",
+      "label": "HPL3_cPhysicsWorldNewton_Update",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "hpl3_cphysicsworldnewton_update",
+      "rationale": "Newton step, contact-record loop, material priority, paired body callbacks",
+      "source_file": "CONTACT_HAPTICS_RE.md",
+      "source_location": "0x1405548b0"
+    },
+    {
+      "id": "contact_haptics_re_hpl3_csurfacedata_onimpact",
+      "label": "HPL3_cSurfaceData_OnImpact",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "hpl3_csurfacedata_onimpact",
+      "rationale": "Normal speed, contact position/count, body; thresholded native Impact effect",
+      "source_file": "CONTACT_HAPTICS_RE.md",
+      "source_location": "0x14032f0e0"
+    },
+    {
+      "id": "contact_haptics_re_hpl3_csurfacedata_onslide",
+      "label": "HPL3_cSurfaceData_OnSlide",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "hpl3_csurfacedata_onslide",
+      "rationale": "Tangent speed, contact position/count, both bodies; sustained Scrape lifecycle",
+      "source_file": "CONTACT_HAPTICS_RE.md",
+      "source_location": "0x14032f380"
+    },
+    {
+      "id": "contact_haptics_re_hplcontacthapticsbridge",
+      "label": "HPLContactHapticsBridge",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "hplcontacthapticsbridge",
+      "rationale": "Hooks OnImpact and executes SOMA first; maps normal speed to OpenXR pulse for dominant hand.",
+      "source_file": "CONTACT_HAPTICS_RE.md"
+    },
+    {
+      "id": "current_state_hpl3_ccamera_getfrustum",
+      "label": "cCamera::GetFrustum",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "ccamera::getfrustum",
+      "source_file": "CURRENT_STATE.md",
+      "source_location": "0x140271b80"
+    },
+    {
+      "id": "current_state_somavr_dll",
+      "label": "somavr.dll",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "somavr.dll",
+      "rationale": "MinHook-based OpenGL/WGL telemetry DLL for SOMAVR mod.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "test_checklists_afrstereo",
+      "label": "0.5.0 Alternating-Eye Stereo Test",
+      "community": 60,
+      "file_type": "document",
+      "norm_label": "0.5.0 alternating-eye stereo test",
+      "rationale": "Defines test procedures for initial AFR (Alternate Frame Rendering) stereo.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_dual_render_probe",
+      "label": "0.35.0 Same-Frame Dual-Render Probe",
+      "community": 60,
+      "file_type": "document",
+      "norm_label": "0.35.0 same-frame dual-render probe",
+      "rationale": "Defines test procedures for same-frame stereo rendering experiments.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_audiopost",
+      "label": "0.5.2 Audio And Post-Effect Test",
+      "community": 61,
+      "file_type": "document",
+      "norm_label": "0.5.2 audio and post-effect test",
+      "rationale": "Defines test procedures for head-relative audio and post-effect bypass.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_spatial_audio",
+      "label": "0.11.0 Spatial Audio, Controller Poses, And HUD Identity",
+      "community": 61,
+      "file_type": "document",
+      "norm_label": "0.11.0 spatial audio, controller poses, and hud identity",
+      "rationale": "Defines test procedures for head-relative audio listener correction.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_depth_reticle",
+      "label": "0.20.0 Controller Depth Reticle And Focus Haptics",
+      "community": 62,
+      "file_type": "document",
+      "norm_label": "0.20.0 controller depth reticle and focus haptics",
+      "rationale": "Defines test procedures for 3D depth-projected interaction reticles.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_semantic_reticle",
+      "label": "0.21.0 Native Semantic Reticle And Focus Profiles",
+      "community": 62,
+      "file_type": "document",
+      "norm_label": "0.21.0 native semantic reticle and focus profiles",
+      "rationale": "Defines test procedures for context-sensitive interaction icons and haptics.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_depth_submission",
+      "label": "0.33.0 Depth Submission And XR Resource Recovery",
+      "community": 63,
+      "file_type": "document",
+      "norm_label": "0.33.0 depth submission and xr resource recovery",
+      "rationale": "Defines test procedures for OpenXR depth composition and resource stability.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_viewport_ownership",
+      "label": "0.32.0 Viewport Ownership, Depth, And Release Safety",
+      "community": 63,
+      "file_type": "document",
+      "norm_label": "0.32.0 viewport ownership, depth, and release safety",
+      "rationale": "Defines test procedures for camera role identification and depth probing.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_diegetic_terminal_pointer",
+      "label": "0.38.0 Diegetic Terminal Pointer",
+      "community": 64,
+      "file_type": "document",
+      "norm_label": "0.38.0 diegetic terminal pointer",
+      "rationale": "Defines test procedures for VR terminal interaction and pointer behavior.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_subtitles_menus",
+      "label": "0.34.0 Subtitle Presentation And Paused Menu Layer",
+      "community": 64,
+      "file_type": "document",
+      "norm_label": "0.34.0 subtitle presentation and paused menu layer",
+      "rationale": "Defines test procedures for VR subtitle layout and paused menu capture.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_fullcenter",
+      "label": "0.5.7 Full Projection Center",
+      "community": 65,
+      "file_type": "document",
+      "norm_label": "0.5.7 full projection center",
+      "rationale": "Defines test procedures for vertical projection centering to fix shadow/reflection artifacts.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_rotationfix",
+      "label": "0.5.9 Camera Rotation Regression Fix",
+      "community": 65,
+      "file_type": "document",
+      "norm_label": "0.5.9 camera rotation regression fix",
+      "rationale": "Defines test procedures for fixing geometry shear during HMD rotation.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_grab_rotation_throw",
+      "label": "0.18.0 Grab Rotation, Physical Throw, And Crosshair Filter",
+      "community": 66,
+      "file_type": "document",
+      "norm_label": "0.18.0 grab rotation, physical throw, and crosshair filter",
+      "rationale": "Defines test procedures for physics object rotation and velocity-based throwing.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_two_hand_tools",
+      "label": "0.36.0 Two-Hand Tools And Grab Rotation",
+      "community": 66,
+      "file_type": "document",
+      "norm_label": "0.36.0 two-hand tools and grab rotation",
+      "rationale": "Defines test procedures for two-handed interaction and physics grab rotation.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_native_locomotion",
+      "label": "0.14.0 Native Analog Locomotion And Exact-Angle Turn",
+      "community": 67,
+      "file_type": "document",
+      "norm_label": "0.14.0 native analog locomotion and exact-angle turn",
+      "rationale": "Defines test procedures for analog stick movement and snap turning.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "test_checklists_physics_input",
+      "label": "0.17.0 Physics Input And Native Grab",
+      "community": 67,
+      "file_type": "document",
+      "norm_label": "0.17.0 physics input and native grab",
+      "rationale": "Defines test procedures for movement reference and native physics grab.",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "address_registry_0x1400b3700",
+      "label": "iLuxEntity::SetActive",
+      "community": 68,
+      "file_type": "code",
+      "norm_label": "iluxentity::setactive",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x1400b3700"
+    },
+    {
+      "id": "address_registry_0x140109b30",
+      "label": "SOMA_cLuxInputHandler_SetRumble",
+      "community": 69,
+      "file_type": "code",
+      "norm_label": "soma_cluxinputhandler_setrumble",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x140109b30"
+    },
+    {
+      "id": "c_camera_get_frustum",
+      "label": "cCamera::GetFrustum",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "ccamera::getfrustum",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "c_frustum_setup_perspective_proj",
+      "label": "cFrustum::SetupPerspectiveProj",
+      "community": 7,
+      "file_type": "code",
+      "norm_label": "cfrustum::setupperspectiveproj",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s3_camera_uniform_stacks",
+      "label": "S3 - Camera-uniform call stacks lead back to native HPL3 frustum owner",
+      "community": 7,
+      "file_type": "concept",
+      "norm_label": "s3 - camera-uniform call stacks lead back to native hpl3 frustum owner",
+      "rationale": "Confirmed hypothesis mapping GLSL matrix setters to HPL3 frustum projection selection.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s4_hmd_orientation",
+      "label": "S4 - HMD orientation can be applied coherently at native frustum setup",
+      "community": 7,
+      "file_type": "concept",
+      "norm_label": "s4 - hmd orientation can be applied coherently at native frustum setup",
+      "rationale": "Confirmed hypothesis that composing inverse OpenXR orientation before world-to-camera view updates culling.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s5_alternating_eye_renders",
+      "label": "S5 - Alternating cached eye renders can prove native stereo",
+      "community": 7,
+      "file_type": "concept",
+      "norm_label": "s5 - alternating cached eye renders can prove native stereo",
+      "rationale": "Confirmed hypothesis that alternating HPL frustum between OpenXR poses produces correct stereo.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "address_registry_0x140154fb0",
+      "label": "SOMA_cLuxPlayer_OnAnalogInput",
+      "community": 70,
+      "file_type": "code",
+      "norm_label": "soma_cluxplayer_onanaloginput",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x140154fb0"
+    },
+    {
+      "id": "address_registry_0x1402cb5a0",
+      "label": "HPL3_Entity3D_SetVisible",
+      "community": 71,
+      "file_type": "code",
+      "norm_label": "hpl3_entity3d_setvisible",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "0x1402cb5a0"
+    },
+    {
+      "id": "address_registry_soma_nosteam",
+      "label": "Soma_NoSteam.exe",
+      "community": 72,
+      "file_type": "code",
+      "norm_label": "soma_nosteam.exe",
+      "rationale": "Target program for Ghidra analysis and runtime hooking.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "architecture_openxrruntime",
+      "label": "OpenXRRuntime",
+      "community": 73,
+      "file_type": "code",
+      "norm_label": "openxrruntime",
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "build_history_0_22_0_physical_manipulation",
+      "label": "0.22.0-physical-manipulation",
+      "community": 74,
+      "file_type": "document",
+      "norm_label": "0.22.0-physical-manipulation",
+      "rationale": "Added dominant-grip physical manipulation for specific player states (Wheel, Slide, etc.).",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_25_0_volume_spectator_telemetry",
+      "label": "0.25.0-volume-spectator-telemetry",
+      "community": 75,
+      "file_type": "document",
+      "norm_label": "0.25.0-volume-spectator-telemetry",
+      "rationale": "Replaced point safety sample with swept head-volume approximation and added desktop spectator controls.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_26_0_gpu_depth_probe",
+      "label": "0.26.0-gpu-depth-probe",
+      "community": 76,
+      "file_type": "document",
+      "norm_label": "0.26.0-gpu-depth-probe",
+      "rationale": "Added nonblocking per-eye GPU telemetry using GL_TIMESTAMP pairs.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_28_0_authored_comfort",
+      "label": "0.28.0-authored-comfort",
+      "community": 77,
+      "file_type": "document",
+      "norm_label": "0.28.0-authored-comfort",
+      "rationale": "Added semantic camera-roll control and comfort black frames for state transitions.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_0_30_0_screen_effects",
+      "label": "0.30.0-screen-effects",
+      "community": 78,
+      "file_type": "document",
+      "norm_label": "0.30.0-screen-effects",
+      "rationale": "Promoted Effect_Screen.hps into a dedicated native bridge for billboard identity.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "build_history_md",
+      "label": "BUILD_HISTORY.md",
+      "community": 79,
+      "file_type": "document",
+      "norm_label": "build_history.md",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "hpl3_engine_runmainloop",
+      "label": "HPL3_Engine_RunMainLoop",
+      "community": 8,
+      "file_type": "code",
+      "norm_label": "hpl3_engine_runmainloop",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x1402332b0"
+    },
+    {
+      "id": "hpl3_postposteffects_phase",
+      "label": "PostPostEffects Phase (0x1401f1480)",
+      "community": 8,
+      "file_type": "code",
+      "norm_label": "postposteffects phase (0x1401f1480)",
+      "rationale": "Stateful renderer phase where frustum view matrices are copied to history.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "hpl3_scene_renderviewport",
+      "label": "HPL3_Scene_RenderViewport",
+      "community": 8,
+      "file_type": "code",
+      "norm_label": "hpl3_scene_renderviewport",
+      "rationale": "Central stereo split map; mask bits 1 world, 2 screen GUI, 4 post effects.",
+      "source_file": "GHIDRA_SYNC.md",
+      "source_location": "0x140298630"
+    },
+    {
+      "id": "hpl_dual_render_control",
+      "label": "HPLDualRenderControl",
+      "community": 8,
+      "file_type": "code",
+      "norm_label": "hpldualrendercontrol",
+      "rationale": "Manages the continuous same-frame stereo path and fail-closed logic.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "future_systems_re_live_usability",
+      "label": "0.59.0 Live Usability Result",
+      "community": 8,
+      "file_type": "document",
+      "norm_label": "0.59.0 live usability result",
+      "rationale": "Records results of integrated VR stack testing, including stereo geometry, HUD capture fixes, and player state transitions.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "comfort_vignette",
+      "label": "Comfort Vignette",
+      "community": 80,
+      "file_type": "concept",
+      "norm_label": "comfort vignette",
+      "rationale": "Dynamic peripheral masking to reduce motion sickness during locomotion.",
+      "source_file": "USER_GUIDE.md"
+    },
+    {
+      "id": "current_state_hpl3_cnode3d_setmatrix",
+      "label": "cNode3D::SetMatrix",
+      "community": 81,
+      "file_type": "code",
+      "norm_label": "cnode3d::setmatrix",
+      "rationale": "Signature-guarded matrix setter used to restore authored shoulder/elbow/wrist locals before IK solve.",
+      "source_file": "CURRENT_STATE.md",
+      "source_location": "0x14023fee0"
+    },
+    {
+      "id": "current_state_hpl3_posteffect_renderone",
+      "label": "HPL3_PostEffect_RenderOne",
+      "community": 82,
+      "file_type": "code",
+      "norm_label": "hpl3_posteffect_renderone",
+      "rationale": "Boundary for wrapping active effects in read-only GL resource capture.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_hpl_hudbridge",
+      "label": "HPLHudBridge",
+      "community": 83,
+      "file_type": "code",
+      "norm_label": "hplhudbridge",
+      "rationale": "Correlates rendered cGuiSet with ImGui ownership; redirects gameplay HUD to OpenXR quad.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_hpl_playerstate",
+      "label": "HPLPlayerState",
+      "community": 84,
+      "file_type": "code",
+      "norm_label": "hplplayerstate",
+      "rationale": "Owns signature-guarded player/camera/body and state getters.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_openxr_input",
+      "label": "OpenXRInput",
+      "community": 85,
+      "file_type": "code",
+      "norm_label": "openxrinput",
+      "rationale": "Owns gameplay action sets, bindings, and per-frame action synchronization.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "feature_traceability_audio_listener",
+      "label": "FEATURE.AUDIO_LISTENER",
+      "community": 86,
+      "file_type": "concept",
+      "norm_label": "feature.audio_listener",
+      "rationale": "World head offset orientation without Doppler errors.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_authored_physical_interactions",
+      "label": "FEATURE.AUTHORED_PHYSICAL_INTERACTIONS",
+      "community": 87,
+      "file_type": "concept",
+      "norm_label": "feature.authored_physical_interactions",
+      "rationale": "Medicine bottle tip/hold state machine and native R_Hand socket ownership.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_comfort_policy",
+      "label": "FEATURE.COMFORT_POLICY",
+      "community": 88,
+      "file_type": "concept",
+      "norm_label": "feature.comfort_policy",
+      "rationale": "Semantic add/roll/optics suppression across locomotion and transitions.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_desktop_spectator",
+      "label": "FEATURE.DESKTOP_SPECTATOR",
+      "community": 89,
+      "file_type": "concept",
+      "norm_label": "feature.desktop_spectator",
+      "rationale": "AFR eye caches and GL backbuffer blit before SwapBuffers.",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl_interaction_bridge",
+      "label": "HPLInteractionBridge",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "hplinteractionbridge",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "soma_get_closest_entity",
+      "label": "SOMA_GetClosestEntity",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "soma_getclosestentity",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "hypotheses_s22_native_picker",
+      "label": "S22 - Native picker distance can drive a stable binocular controller reticle",
+      "community": 9,
+      "file_type": "concept",
+      "norm_label": "s22 - native picker distance can drive a stable binocular controller reticle",
+      "rationale": "Hypothesis that application-space OpenXR quad on controller aim pose provides stable depth.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "build_history_0_20_0_depth_reticle",
+      "label": "0.20.0-depth-reticle",
+      "community": 9,
+      "file_type": "document",
+      "norm_label": "0.20.0-depth-reticle",
+      "rationale": "Added controller interaction reticle as a source-alpha OpenXR quad.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "feature_traceability_feature_afr_stereo",
+      "label": "FEATURE.AFR_STEREO",
+      "community": 90,
+      "file_type": "concept",
+      "norm_label": "feature.afr_stereo",
+      "rationale": "F11, per-eye cache and submitted render pose",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_comfort_vignette",
+      "label": "FEATURE.COMFORT_VIGNETTE",
+      "community": 91,
+      "file_type": "concept",
+      "norm_label": "feature.comfort_vignette",
+      "rationale": "post-policy controller motion, stale-frame expiry, VIEW-space alpha quad and dedicated swapchain",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_controller_accessibility",
+      "label": "FEATURE.CONTROLLER_ACCESSIBILITY",
+      "community": 92,
+      "file_type": "concept",
+      "norm_label": "feature.controller_accessibility",
+      "rationale": "per-hand primary/secondary actions, dominant-hand roles, stick swap, one-hand fallback, support-hand flashlight/inventory, five standard suggested profiles",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_fixed_foveation",
+      "label": "FEATURE.FIXED_FOVEATION",
+      "community": 93,
+      "file_type": "concept",
+      "norm_label": "feature.fixed_foveation",
+      "rationale": "XR_FB_swapchain_update_state, XR_FB_foveation, XR_FB_foveation_configuration, per-eye color swapchain create chains, shared configured and level-zero rollback profiles",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_head_tracking",
+      "label": "FEATURE.HEAD_TRACKING",
+      "community": 94,
+      "file_type": "concept",
+      "norm_label": "feature.head_tracking",
+      "rationale": "0x140271b80, 0x140270230",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_interaction_reticle",
+      "label": "FEATURE.INTERACTION_RETICLE",
+      "community": 95,
+      "file_type": "concept",
+      "norm_label": "feature.interaction_reticle",
+      "rationale": "selected native aim/distance, simultaneous per-hand guides, independent guide/semantic swapchains, 0x140484ea0 script dispatch, exact 35-state enum, 34 shipped TGA icons, application-space alpha quads",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_paused_menu_layer",
+      "label": "FEATURE.PAUSED_MENU_LAYER",
+      "community": 96,
+      "file_type": "concept",
+      "norm_label": "feature.paused_menu_layer",
+      "rationale": "0x1400cca70, 0x140071f20, 0x1400ccc90, exact current ImGui set plus confirmed pause ownership",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_per_eye_cpu_telemetry",
+      "label": "FEATURE.PER_EYE_CPU_TELEMETRY",
+      "community": 97,
+      "file_type": "concept",
+      "norm_label": "feature.per_eye_cpu_telemetry",
+      "rationale": "six guarded render-stage hooks, active AFR eye identity, QPC totals",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_roomscale_safety",
+      "label": "FEATURE.ROOMSCALE_SAFETY",
+      "community": 98,
+      "file_type": "concept",
+      "norm_label": "feature.roomscale_safety",
+      "rationale": "0x1400cd710, 0x140143650, optional dynamic-inclusive center/radial/vertical sweep, shared physical-head decomposition",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "feature_traceability_feature_terminal_overlay",
+      "label": "FEATURE.TERMINAL_OVERLAY",
+      "community": 99,
+      "file_type": "concept",
+      "norm_label": "feature.terminal_overlay",
+      "rationale": "state 8, manager world owner +0x170, focused set +0x180/+0x18, logical 1024x577/880x560, one 0x140213970 render into retained native-size target, exact-FBO nested color-clear suppression, upscale to HUD, HMD look-away native cancel",
+      "source_file": "FEATURE_TRACEABILITY.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "hpl_camera_bridge",
+      "target": "openxr_runtime",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Camera bridge requires HMD local pose from the runtime.",
+      "source_file": "VR_COMPATIBILITY_RE.md"
+    },
+    {
+      "source": "current_state_somavr_dll",
+      "target": "current_state_hpl3_ccamera_getfrustum",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Hooks GetFrustum to inject calibrated orientation deltas.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "contact_haptics_re_hplcontacthapticsbridge",
+      "target": "contact_haptics_re_hpl3_csurfacedata_onimpact",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Hooks OnImpact to provide haptic feedback.",
+      "source_file": "CONTACT_HAPTICS_RE.md"
+    },
+    {
+      "source": "hpl_dual_render_control",
+      "target": "hpl3_scene_renderviewport",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Invokes native viewport rendering for stereo replays.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "openxr_runtime",
+      "target": "openxr_gl_bridge",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Separation of concerns between XR lifecycle and GL resource handling.",
+      "source_file": "UEVR_LEARNINGS.md"
+    },
+    {
+      "source": "address_registry_0x1405548b0",
+      "target": "address_registry_0x14032f0e0",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "architecture_openglhooks",
+      "target": "architecture_hplplayerstate",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "source": "contact_haptics_re_hpl3_cphysicsworldnewton_update",
+      "target": "contact_haptics_re_hpl3_csurfacedata_onimpact",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CONTACT_HAPTICS_RE.md"
+    },
+    {
+      "source": "contact_haptics_re_hpl3_cphysicsworldnewton_update",
+      "target": "contact_haptics_re_hpl3_csurfacedata_onslide",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CONTACT_HAPTICS_RE.md"
+    },
+    {
+      "source": "current_state_hpl_cameramath",
+      "target": "current_state_hpl3_cfrustum_setupperspectiveproj",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "graphify_affected",
+      "target": "hpl_camera_bridge",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "hpl3_cphysicsworldnewton_update",
+      "target": "hpl3_csurfacedata_onimpact",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "hpl3_postposteffects_phase",
+      "target": "hpl3_scene_renderviewport",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "hpl_camera_bridge",
+      "target": "cfrustum_setupperspectiveproj",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "future-hook-map.md"
+    },
+    {
+      "source": "hpl_comfort_bridge",
+      "target": "cluxplayer_setcameraposadd",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "source": "hpl_crosshair_bridge",
+      "target": "luxplayer_global_setcrosshairstate",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "source": "hpl_hands_bridge",
+      "target": "hpl3_iluxentity_setmatrix",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "hpl_hud_bridge",
+      "target": "hpl3_guiset_render",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "hplcamerabridge",
+      "target": "hplcameramath",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "hplcompatibilityprobe",
+      "target": "hplcameramath",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "hypotheses_s4_hmd_orientation",
+      "target": "c_frustum_setup_perspective_proj",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "openglhooks",
+      "target": "openxrruntime",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "openxrruntime",
+      "target": "hplinputbridge",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "soma_cluxplayerhelper_update",
+      "target": "soma_cluxplayer_onanaloginput",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "source": "soma_vr_mod",
+      "target": "hpl3_guiset_render",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "soma_vr_mod",
+      "target": "iphysicsbody_getlocalmatrix",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "soma_vr_mod",
+      "target": "iphysicsjoint_getpindir",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "soma_vr_mod",
+      "target": "openxr_gl_bridge_begin_hud_capture",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "soma_vr_mod",
+      "target": "soma_cluxplayer_on_analog_input",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "somavr_bridge",
+      "target": "hpl3_cmeshentity_setvisible",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_bridge",
+      "target": "hpl3_cnode3d_setmatrix",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_bridge",
+      "target": "soma_nosteam_exe",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_dll",
+      "target": "openglhooks",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "somavr_dll",
+      "target": "openxr_runtime",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "somavr_dll",
+      "target": "gdi32_swapbuffers",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "UEVR_LEARNINGS.md"
+    },
+    {
+      "source": "somavr_dll",
+      "target": "gl_uniform_matrix_4fv",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "future-hook-map.md"
+    },
+    {
+      "source": "somavr_injector_exe",
+      "target": "soma_no_steam_exe",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "USER_GUIDE.md"
+    },
+    {
+      "source": "build_history_0_24_0_roomscale_safety",
+      "target": "concept_roomscale_safety",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_32_0_viewport_depth",
+      "target": "concept_afr_stereo",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "hpl3_guiset_render",
+      "target": "somavr_confirmed",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "source": "hpl3_node3d_applypostanimtransform",
+      "target": "hpl3_node3d_setposttransform",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "source": "soma_cluxplayer_onanaloginput",
+      "target": "somavr_confirmed",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "source": "soma_vr_mod",
+      "target": "ik_boundary",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "soma_vr_mod",
+      "target": "three_point_torso_ergonomics",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "test_checklists_dual_render_probe",
+      "target": "test_checklists_afrstereo",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_fullcenter",
+      "target": "test_checklists_rotationfix",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_semantic_reticle",
+      "target": "test_checklists_depth_reticle",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_spatial_audio",
+      "target": "test_checklists_audiopost",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_two_hand_tools",
+      "target": "test_checklists_grab_rotation_throw",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "hpl_camera_bridge",
+      "target": "ccamera_getfrustum",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "future-hook-map.md"
+    },
+    {
+      "source": "architecture_hplgrabbridge",
+      "target": "architecture_hplplayerstate",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "source": "architecture_hplhandsbridge",
+      "target": "address_registry_0x1400bcd90",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "source": "architecture_hplhudbridge",
+      "target": "address_registry_0x140213970",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "source": "authored_states_and_visible_hands_re",
+      "target": "feature_authored_camera",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "authored_states_and_visible_hands_re",
+      "target": "feature_authored_state_compatibility",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "authored_states_and_visible_hands_re",
+      "target": "feature_physical_manipulation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "authored_states_and_visible_hands_re",
+      "target": "feature_visible_hands",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "build_history_0_19_0_comfort_focus",
+      "target": "cluxplayer_setcameraposadd",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_20_0_depth_reticle",
+      "target": "hpl_interaction_bridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_21_0_semantic_reticle",
+      "target": "hpl_crosshair_bridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_23_0_controller_flashlight",
+      "target": "hpl_flashlight_math",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_27_0_gameplay_coherence",
+      "target": "soma_checklineofsight",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_29_0_presentation_optics",
+      "target": "hpl_presentation_bridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_31_0_tools_hud",
+      "target": "cluxmap_destroyentity",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_31_0_tools_hud",
+      "target": "soma_getgamehudimgui",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "build_history_0_32_0_viewport_depth",
+      "target": "hpl_player_state",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "source": "feature_physical_manipulation",
+      "target": "hplgrabbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_physical_manipulation",
+      "target": "hplinputbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_clean_shutdown",
+      "target": "hpllifecycle",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_controller_haptics",
+      "target": "hplgameplayhapticsbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_diegetic_gui_pointer",
+      "target": "hplterminalbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_dual_render",
+      "target": "hpldualrendercontrol",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_dual_render_temporal_probe",
+      "target": "hpltemporalmutationmath",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_grab_contact_haptics",
+      "target": "hplcontacthapticsbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_injection",
+      "target": "src_dll_dllmain",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_injection",
+      "target": "src_injector_main",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_interaction_ray",
+      "target": "hplinteractionmath",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_inventory_presentation",
+      "target": "hplusermodulebridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_locomotion",
+      "target": "hplphysicalcrouchmath",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_menu_pointer",
+      "target": "hplmenubridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_per_eye_image_trail",
+      "target": "hplpereyeposteffect",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_per_eye_ssao_history",
+      "target": "hplssaotemporalhistory",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_per_eye_view_history",
+      "target": "hplpereyeviewhistory",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_physics_hands",
+      "target": "hplgrabmath",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_recenter",
+      "target": "hplcameramath",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_roomscale_body_reconciliation",
+      "target": "hplnativelocomotion",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_roomscale_body_reconciliation",
+      "target": "hplroomscalereconciliationmath",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_scripted_presentation",
+      "target": "hplpresentationbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_ssao_frame_owner",
+      "target": "hplssaoframeowner",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_tone_mapping_frame_owner",
+      "target": "hpltonemappingframe",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_vr_control_panel",
+      "target": "hplstatuspanelbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_vr_mode_control",
+      "target": "hplcamerabridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_xr_bootstrap",
+      "target": "openxrhelpers",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_xr_bootstrap",
+      "target": "openxrruntime",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_xr_gl_submission",
+      "target": "openxrglbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_xr_gl_submission",
+      "target": "openxrruntime",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_feature_xr_input",
+      "target": "openxrinput",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_hud_layer",
+      "target": "hplhudbridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_hud_layer",
+      "target": "openxrruntime",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_post_effect_policy",
+      "target": "hplcompatibilityprobe",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_post_effect_policy",
+      "target": "openglhooks",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_shadow_stability",
+      "target": "hplcamerabridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "feature_traceability_shadow_stability",
+      "target": "hplcameramath",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "future_systems_re_live_usability",
+      "target": "hpl3_scene_renderviewport",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "ghidra_sync_md",
+      "target": "soma_nosteam_exe",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "source": "graphify_update",
+      "target": "feature_traceability_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "source": "hypotheses_s11_frustum_tracking_audio",
+      "target": "hpl_camera_bridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s12_controller_translation",
+      "target": "hpl_grab_bridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s13_native_torque",
+      "target": "hpl_grab_bridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s21_global_crosshair_callback",
+      "target": "lux_player_global_set_crosshair_state",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s22_native_picker",
+      "target": "hpl_interaction_bridge",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s22_native_picker",
+      "target": "soma_get_closest_entity",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s3_camera_uniform_stacks",
+      "target": "c_camera_get_frustum",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s3_camera_uniform_stacks",
+      "target": "c_frustum_setup_perspective_proj",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s4_hmd_orientation",
+      "target": "c_camera_get_frustum",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s5_alternating_eye_renders",
+      "target": "c_camera_get_frustum",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "hypotheses_s6_openxr_locomotion",
+      "target": "i_character_body_move",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "source": "player_hands_0",
+      "target": "j_l_wrist",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "player_hands_0",
+      "target": "j_r_wrist",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "player_hands_0",
+      "target": "j_root",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "player_hands_handler_hps",
+      "target": "hands_human_ent",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "runtime_analysis_0_5_1",
+      "target": "hypotheses_s11_frustum_tracking_audio",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RUNTIME_ANALYSIS_0.5.1.md"
+    },
+    {
+      "source": "runtime_analysis_0_5_2",
+      "target": "hypotheses_s11_frustum_tracking_audio",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RUNTIME_ANALYSIS_0.5.2.md"
+    },
+    {
+      "source": "runtime_analysis_0_5_2",
+      "target": "hypotheses_s14_shadow_jitter",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RUNTIME_ANALYSIS_0.5.2.md"
+    },
+    {
+      "source": "runtime_analysis_0_5_4",
+      "target": "hypotheses_s16_deferred_reconstruction_mono",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RUNTIME_ANALYSIS_0.5.4.md"
+    },
+    {
+      "source": "runtime_analysis_0_5_5",
+      "target": "hypotheses_s16_deferred_reconstruction_mono",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RUNTIME_ANALYSIS_0.5.5.md"
+    },
+    {
+      "source": "runtime_analysis_0_5_6",
+      "target": "hypotheses_s19_vertical_projection_asymmetry",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RUNTIME_ANALYSIS_0.5.6.md"
+    },
+    {
+      "source": "script_player_player_types_hps",
+      "target": "authored_states_and_visible_hands_re",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_68_2",
+      "target": "somavr_0_68_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_69_0",
+      "target": "somavr_0_68_2",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_70_0",
+      "target": "somavr_0_69_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_71_0",
+      "target": "somavr_0_70_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_72_0",
+      "target": "somavr_0_71_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_73_0",
+      "target": "somavr_0_72_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_74_0",
+      "target": "somavr_0_73_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_75_0",
+      "target": "somavr_0_74_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_76_0",
+      "target": "somavr_0_75_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_77_0",
+      "target": "somavr_0_76_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_77_1",
+      "target": "somavr_0_77_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_77_2",
+      "target": "somavr_0_77_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_78_0",
+      "target": "somavr_0_77_2",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_78_1",
+      "target": "somavr_0_78_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_79_0",
+      "target": "somavr_0_78_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_80_0",
+      "target": "somavr_0_79_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_80_1",
+      "target": "somavr_0_80_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_81_0",
+      "target": "somavr_0_80_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_0_82_0",
+      "target": "build_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "BUILD_HISTORY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_bridge",
+      "target": "hpl3_scripts",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_bridge",
+      "target": "player_hands_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "somavr_dll",
+      "target": "soma_nosteam_exe",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "somavr_injector_exe",
+      "target": "somavr_dll",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_0_45_0_continuous_dual_render",
+      "target": "test_checklists_0_59_0_live_usability",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_0_59_0_live_usability",
+      "target": "test_checklists_0_51_0_comfort_vignette",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_0_67_0_native_manipulation_overlay",
+      "target": "test_checklists_0_63_0_diegetic_terminals",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_0_75_0_terminal_dirty_rects",
+      "target": "test_checklists_0_67_0_native_manipulation_overlay",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_0_79_0_hands_terminal_menu",
+      "target": "test_checklists_0_77_0_persistent_arms",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_0_81_0_stable_hands_ui",
+      "target": "test_checklists_0_80_1_hmd_shoulder_rig",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_0_82_0_torso_ergonomics",
+      "target": "test_checklists_0_81_0_stable_hands_ui",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_diegetic_terminal_pointer",
+      "target": "test_checklists_subtitles_menus",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "test_checklists_native_locomotion",
+      "target": "test_checklists_physics_input",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "hpl3_icharacterbody_move",
+      "target": "hpl3_icharacterbody_addyaw",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "rationale": "Both are part of the native character body input API.",
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "hpl_input_bridge",
+      "target": "openxr_runtime",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "rationale": "Emits haptic feedback and queries controller poses via OpenXR.",
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "source": "hpl_input_bridge",
+      "target": "hpl_player_state",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "rationale": "Input release depends on whether the player is in an authored camera state.",
+      "source_file": "VR_COMPATIBILITY_RE.md"
+    },
+    {
+      "source": "hpl3_engine_runmainloop",
+      "target": "hpl3_scene_renderviewport",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "source": "soma_cluxplayer_on_analog_input",
+      "target": "player_state_interact_grab_hps",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "soma_cluxplayer_on_analog_input",
+      "target": "player_state_interact_slide_hps",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "source": "test_checklists_depth_submission",
+      "target": "test_checklists_viewport_ownership",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "architecture_hplpereyeviewhistory",
+      "target": "address_registry_0x1401f1480",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ARCHITECTURE.md",
+      "source_location": "HPLPerEyeViewHistory description"
+    },
+    {
+      "source": "current_state_somavr_dll",
+      "target": "contact_haptics_re_hplcontacthapticsbridge",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "CURRENT_STATE.md"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "camera_tracking_audio_sync",
+      "label": "Camera Tracking and Audio Listener Synchronization",
+      "nodes": [
+        "hypotheses_s4_hmd_orientation",
+        "hypotheses_s11_frustum_tracking_audio",
+        "hpl_camera_bridge"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85
+    },
+    {
+      "id": "hpl3_render_pipeline",
+      "label": "HPL3 Render Pipeline",
+      "nodes": [
+        "address_registry_0x1401f1480",
+        "address_registry_0x140213970",
+        "address_registry_0x1402cb5a0"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "input_phase_safety_sync",
+      "label": "Input-Phase Safety Sync",
+      "nodes": [
+        "soma_cluxplayer_onanaloginput",
+        "soma_cluxplayerhelper_update",
+        "soma_getplayer"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "id": "arm_ik_evolution",
+      "label": "Evolution of Arm IK and Ergonomics",
+      "nodes": [
+        "test_checklists_0_82_0_torso_ergonomics",
+        "test_checklists_0_81_0_stable_hands_ui",
+        "test_checklists_0_80_1_hmd_shoulder_rig",
+        "test_checklists_0_77_0_persistent_arms"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "bilateral_arm_chain_sync",
+      "label": "Bilateral Arm Chain Sync",
+      "nodes": [
+        "hpl3_node3d_setposttransform",
+        "hpl3_node3d_applypostanimtransform",
+        "hpl3_node3d_getparent"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "id": "comfort_and_safety_systems",
+      "label": "VR Comfort and Safety Features",
+      "nodes": [
+        "test_checklists_native_comfort",
+        "test_checklists_authored_comfort",
+        "test_checklists_roomscale_safety",
+        "test_checklists_gameplay_coherence",
+        "test_checklists_presentation_optics"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "hpl_engine_bridges",
+      "label": "HPL Engine Bridges",
+      "nodes": [
+        "hplcamerabridge",
+        "hplinputbridge",
+        "hplinteractionbridge",
+        "hplhudbridge",
+        "hplterminalbridge",
+        "hplgrabbridge"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "interaction_physics_flow",
+      "label": "Interaction and Physics Manipulation Flow",
+      "nodes": [
+        "hypotheses_s13_native_torque",
+        "hypotheses_s12_controller_translation",
+        "hpl_grab_bridge"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "id": "rendering_and_comfort_features",
+      "label": "Rendering and Comfort Feature Set",
+      "nodes": [
+        "test_checklists_0_59_0_live_usability",
+        "test_checklists_0_51_0_comfort_vignette",
+        "test_checklists_0_45_0_continuous_dual_render"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "rendering_stability_chain",
+      "label": "Rendering Stability and Artifact Correction",
+      "nodes": [
+        "test_checklists_shadowjitter",
+        "test_checklists_reconstruct",
+        "test_checklists_stability",
+        "test_checklists_fullcenter",
+        "test_checklists_rotationfix"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "somavr_input_flow",
+      "label": "SOMAVR Input Flow",
+      "nodes": [
+        "architecture_openglhooks",
+        "architecture_hplplayerstate",
+        "architecture_openxrruntime"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "ARCHITECTURE.md"
+    },
+    {
+      "id": "terminal_interaction_evolution",
+      "label": "Evolution of Terminal and UI Systems",
+      "nodes": [
+        "test_checklists_0_75_0_terminal_dirty_rects",
+        "test_checklists_0_67_0_native_manipulation_overlay",
+        "test_checklists_0_63_0_diegetic_terminals"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "vr_interaction_flow",
+      "label": "VR Interaction and Reticle Flow",
+      "nodes": [
+        "hpl_interaction_bridge",
+        "hpl_crosshair_bridge",
+        "hpl_flashlight_math"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "camera_pose_composition",
+      "label": "Camera Pose Composition",
+      "nodes": [
+        "hpl_camera_bridge",
+        "openxr_runtime",
+        "hpl_player_state"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "VR_COMPATIBILITY_RE.md"
+    },
+    {
+      "id": "gui_capture_pipeline",
+      "label": "GUI Capture Pipeline",
+      "nodes": [
+        "hpl3_guiset_render",
+        "hpl_hud_bridge",
+        "hpl3_imguimanager_updateinput"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "interaction_evolution",
+      "label": "Evolution of VR Interaction Systems",
+      "nodes": [
+        "test_checklists_native_interaction",
+        "test_checklists_depth_reticle",
+        "test_checklists_semantic_reticle",
+        "test_checklists_physical_manipulation",
+        "test_checklists_diegetic_terminal_pointer"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "render_frame_ownership",
+      "label": "Render and Frame Ownership",
+      "nodes": [
+        "hpl3_engine_runmainloop",
+        "hpl3_scene_renderviewport",
+        "hpl3_guiset_render"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "GHIDRA_SYNC.md"
+    },
+    {
+      "id": "stereo_rendering_pipeline",
+      "label": "Stereo Rendering and Projection Pipeline",
+      "nodes": [
+        "hypotheses_s5_alternating_eye_renders",
+        "hypotheses_s16_deferred_reconstruction_mono",
+        "hypotheses_s19_vertical_projection_asymmetry",
+        "hypotheses_s12_safe_dual_rendering"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95
+    },
+    {
+      "id": "graphify_toolset",
+      "label": "Graphify CLI Tools",
+      "nodes": [
+        "graphify_update",
+        "graphify_query",
+        "graphify_explain",
+        "graphify_affected",
+        "graphify_tree"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "hpl3_physics_contact_flow",
+      "label": "HPL3 Physics Contact Flow",
+      "nodes": [
+        "contact_haptics_re_hpl3_cphysicsworldnewton_update",
+        "contact_haptics_re_hpl3_csurfacedata_onimpact",
+        "contact_haptics_re_hpl3_csurfacedata_onslide"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CONTACT_HAPTICS_RE.md"
+    },
+    {
+      "id": "interaction_scripts",
+      "label": "SOMA Interaction Scripts",
+      "nodes": [
+        "player_state_interact_slide_hps",
+        "player_state_interact_grab_hps",
+        "player_state_interact_read_hps"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "locomotion_system_flow",
+      "label": "Locomotion System Flow",
+      "nodes": [
+        "hpl3_icharacterbody_move",
+        "hpl3_icharacterbody_addyaw",
+        "hpl3_characterbody_setfeetposition"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "somavr_feature_set",
+      "label": "SOMAVR Core Features",
+      "nodes": [
+        "feature_authored_state_compatibility",
+        "feature_visible_hands",
+        "feature_authored_camera",
+        "feature_physical_manipulation"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md"
+    },
+    {
+      "id": "stereo_rendering_logic",
+      "label": "Stereo Rendering Logic",
+      "nodes": [
+        "hpl3_scene_renderviewport",
+        "hpl_dual_render_control",
+        "hpl3_postposteffects_phase"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FUTURE_SYSTEMS_RE.md"
+    },
+    {
+      "id": "xr_frame_loop",
+      "label": "OpenXR Frame Loop",
+      "nodes": [
+        "openxr_runtime",
+        "openxr_gl_bridge",
+        "gdi32_swapbuffers"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "UEVR_LEARNINGS.md"
+    },
+    {
+      "id": "rendering_pipeline_features",
+      "label": "Rendering Pipeline Features",
+      "nodes": [
+        "feature_traceability_feature_xr_gl_submission",
+        "feature_traceability_feature_dual_render",
+        "feature_traceability_feature_afr_stereo",
+        "feature_traceability_feature_xr_depth_capability",
+        "feature_traceability_feature_fixed_foveation"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "somavr_core_bridges",
+      "label": "SOMAVR Core Bridges",
+      "nodes": [
+        "contact_haptics_re_hplcontacthapticsbridge",
+        "current_state_hpl_hudbridge",
+        "current_state_hpl_playerstate"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "comfort_and_motion_control",
+      "label": "Comfort and Motion Control System",
+      "nodes": [
+        "hpl_comfort_bridge",
+        "hpl_input_bridge",
+        "openxr_runtime"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "COMFORT_AND_FOCUS_RE.md"
+    },
+    {
+      "id": "hpl3_engine_integration",
+      "label": "HPL3 Engine Integration Points",
+      "nodes": [
+        "soma_nosteam_exe",
+        "hpl3_cnode3d_setmatrix",
+        "hpl3_cmeshentity_setvisible",
+        "player_hands_handler_hps"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md"
+    },
+    {
+      "id": "per_eye_temporal_stability",
+      "label": "Per-Eye Temporal Stability",
+      "nodes": [
+        "feature_traceability_feature_per_eye_view_history",
+        "feature_traceability_feature_per_eye_ssao_history",
+        "feature_traceability_feature_tone_mapping_frame_owner",
+        "feature_traceability_feature_ssao_frame_owner"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "physical_interaction_system",
+      "label": "Physical Interaction System",
+      "nodes": [
+        "feature_visible_hands",
+        "feature_traceability_authored_physical_interactions",
+        "feature_physical_manipulation",
+        "feature_traceability_viewmodel"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    },
+    {
+      "id": "vr_rendering_core",
+      "label": "VR Rendering Core Subsystem",
+      "nodes": [
+        "feature_traceability_hud_layer",
+        "feature_traceability_shadow_stability",
+        "feature_traceability_reflection_stability",
+        "feature_traceability_post_effect_policy"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "FEATURE_TRACEABILITY.md"
+    }
+  ]
+}

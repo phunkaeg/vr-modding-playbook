@@ -1,0 +1,307 @@
+# bottlenecks.yml — fleet-wide critical-path bottleneck ledger.
+#
+# This is not a bug list. A bottleneck is a missing fact or capability that
+# prevents the next playbook gate from producing a valid verdict. Project-local
+# details remain in each project's CURRENT_STATE / FAILURE_REGISTRY / evidence
+# logs; this ledger stores the transferable class and fleet routing state.
+#
+# State meanings:
+#   active  current critical path; downstream verdicts depend on it
+#   open    unresolved, but another bottleneck is currently earlier
+#   risk    expected or structurally plausible; not yet exercised
+#   cleared the named exit proof passed (not "the subsystem is perfect")
+#   na      demonstrated not applicable to this project's selected route
+
+updated_at: 2026-08-27
+
+bottlenecks:
+  - id: BN-ACC-001
+    title: Integration authority is not classified
+    applies_to: both
+    gate: ACCESS
+    blocks: Choosing an architecture, estimating work, and deciding whether RE findings are shipping dependencies or merely source oracles.
+    fast_test: Ask whether the code that owns the camera and world-render loop can be legally built, modified, and shipped for the exact retail assets/build.
+    exit_proof: AUTHORITY_MAP names the shipping route—source-owned, RE-owned, or hybrid—and names every code layer that remains closed.
+    route: "[Choose the route](start-new-port.md#port-01)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: SOURCE, note: "Native KEX injector plus a shipped Squirrel bridge; engine source is not the delivery boundary."}
+      BioshockVR: {state: cleared, evidence: STATIC, note: "Native x86 injector against a closed Vengeance build."}
+      SOMAVR: {state: cleared, evidence: SOURCE, note: "Native OpenGL injector, with HPL2 source and SOMA scripts used as readable oracles."}
+      PreyVR: {state: cleared, evidence: STATIC, note: "Native x64 injector; PreyDll.dll is the closed gameplay/render ownership boundary."}
+      DishonoredVR: {state: cleared, evidence: STATIC, note: "Native x86 injector against UE3/D3D9."}
+      FarCry2-vr: {state: cleared, evidence: LIVE, note: "Native x86 injector against Dunia.dll; editor symbols are leads, not a shippable source route."}
+      Swat4-VR: {state: cleared, evidence: SOURCE, note: "Hybrid evidence route: shipped UnrealScript/SDK and exports are oracles; the deliverable remains a native injector."}
+      Sims4VR: {state: cleared, evidence: LIVE, note: "Hybrid candidate: Python controls gameplay camera state; a future native D3D11 layer must own stereo and submission."}
+
+  - id: BN-LOAD-001
+    title: The active bytes and test session are not proven
+    applies_to: both
+    gate: BASELINE
+    blocks: Every interpretation of “the change had no effect,” every A/B, and every headset verdict.
+    fast_test: Require the first log line to contain version, build time, loaded path, executable hash, PID, mode, and config identity; run a harmless canary.
+    exit_proof: A fresh log alone proves which build/config entered which executable, and a vanilla control proves the launch recipe did not change the target.
+    route: "[RE-03](reverse-engineered-route.md#re-03) or [SRC-01](source-owned-route.md#src-01)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: LIVE, note: "Self-identifying DLL/config lines retired stale-package and ignored-key false tests."}
+      BioshockVR: {state: cleared, evidence: LIVE, note: "Release-tag and canonical-path handoffs are part of every runtime verdict."}
+      SOMAVR: {state: cleared, evidence: LIVE, note: "Build flavor, loader path, runtime and prior-log preservation are explicit."}
+      PreyVR: {state: cleared, evidence: SOURCE, note: "Build and runtime baselines plus landmark gates identify the target."}
+      DishonoredVR: {state: open, evidence: STATIC, note: "Exact executable hash is established; deterministic mod-load proof has not yet become the primary gate."}
+      FarCry2-vr: {state: cleared, evidence: LIVE, note: "Launch preconditions and build-time OpenXR option are logged; vanilla and mod recipes are distinct."}
+      Swat4-VR: {state: cleared, evidence: LIVE, note: "Fresh-log injected launch and test-artifact config identity are explicit."}
+      Sims4VR: {state: open, evidence: LIVE, note: "Retail build and tool observations are pinned; there is no mod build yet because the project remains pre-feasibility."}
+
+  - id: BN-OBS-001
+    title: The active renderer and frame boundary are not owned
+    applies_to: both
+    gate: OBSERVE
+    blocks: Safe XR timing, render-target capture, scene replay, and attribution of menu/loading/gameplay frames.
+    fast_test: Log thread, context/device, backbuffer identity, dimensions, format, call rate, and transition behavior at each candidate boundary.
+    exit_proof: One named callback owns gameplay frames with understood menu/loading/device-reset behavior; a control proves the hook is not observing a launcher or secondary swapchain.
+    route: "[RE-04](reverse-engineered-route.md#re-04) or [SRC-02](source-owned-route.md#src-02)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: LIVE, note: "KEX render and D3D11 ownership are established."}
+      BioshockVR: {state: cleared, evidence: LIVE, note: "D3D11/private-HDR frame ownership is sustained and logged."}
+      SOMAVR: {state: cleared, evidence: LIVE, note: "OpenGL context, SwapBuffers and HPL render-stage ownership are live-mapped."}
+      PreyVR: {state: cleared, evidence: LIVE, note: "EndRendererScene, live swapchain/device and renderer singleton are reproduced."}
+      DishonoredVR: {state: active, evidence: LIVE, note: "Present wrapper +0x5C0180 proven by a LIVE breakpoint at the device Present target returning to +0x5C01A4, hitting every frame - 682 Presents in five seconds. RHI global +0x103EC78, factory +0x5C2D70, constructor +0x5C27C0 and device field RHI+0x824 all live-read, the last QueryInterface-proven. STILL ACTIVE for the reason the exit proof names: no control yet proves the hook is not observing a launcher or secondary swapchain. Was previously graded STATIC, which was stale. Proven live."}
+      FarCry2-vr: {state: cleared, evidence: LIVE, note: "D3D10 bridge and WorldExec/pass dispatch are live-mapped."}
+      Swat4-VR: {state: cleared, evidence: LIVE, note: "UGameEngine::Draw and scene-node callbacks are hookable and counted; the world/HUD sub-seam remains a stereo question."}
+      Sims4VR: {state: active, evidence: LIVE, note: "RenderDoc proves the pass graph, but no shippable engine/frame callback has been selected."}
+
+  - id: BN-CAM-001
+    title: Camera, projection, culling, and consumers are not separated
+    applies_to: both
+    gate: CAMERA
+    blocks: Correct 6DoF, peripheral visibility, detached aim, authored-camera yielding, and any claim that a second eye represents a second viewpoint.
+    fast_test: Correlate an exact scene projection with a rigid/view candidate across controlled translation and rotation, then enumerate who reads it before and after the intended write seam.
+    exit_proof: CAMERA_FINDINGS or RENDER_OWNERSHIP_MAP names the render, game/body, cull, scripted, viewmodel and secondary-view authorities, including invalidation conditions.
+    route: "[RE-05/06](reverse-engineered-route.md#re-05) or [SRC-02](source-owned-route.md#src-02)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: HEADSET, note: "KEX render/cull camera and Dark gameplay consumers are separated; remaining work is feature-level coverage."}
+      BioshockVR: {state: cleared, evidence: HEADSET, note: "Player scene-node camera, transient per-eye matrices and foreground ownership are mapped."}
+      SOMAVR: {state: cleared, evidence: HEADSET, note: "Player versus authored/secondary HPL frusta are classified and yielded to by state."}
+      PreyVR: {state: open, evidence: STATIC, note: "ArkPlayerCamera, CSystem::m_ViewCamera and CRenderView copy-by-value seam are mapped; projection/cull behavior still needs live stereo proof."}
+      DishonoredVR: {state: active, evidence: LIVE, note: "Render camera isolated by return address (+0x2C48AE, which immediately builds camera/view/projection in FUN_006c4710 and is reached from the viewport draw) and separated LIVE from nine other per-frame GetPlayerViewPoint consumers; +0x250F25 is the tick-timing consumer that must stay on the body camera. Pose query dispatches through PlayerController vtable +0x3C4; camera location +0x330, integer rotator +0x33C. Camera DELIVERY - parameter or global - remains unknown."}
+      FarCry2-vr: {state: cleared, evidence: HEADSET, note: "6DoF camera and authored-camera yielding work; the weapon/viewmodel transform is a separate open lane."}
+      Swat4-VR: {state: open, evidence: LIVE, note: "Exports and forward census reduce search cost; the stereo camera delivery/seam still needs completion."}
+      Sims4VR: {state: active, evidence: LIVE, note: "Python camera control is proven but too smoothed for head tracking; 30 native candidates remain ambiguous pending GPU-value correlation."}
+
+  - id: BN-STE-001
+    title: The stereo production route is not selected by evidence
+    applies_to: both
+    gate: STEREO-ARCH
+    blocks: The renderer architecture, eye cadence, culling strategy, performance model, and the meaning of every later stereo artifact.
+    fast_test: Price and test the highest viable rung in order—native scene re-entry, per-draw replay, alternate-eye, then draw-stream reconstruction—using a control and a reversible eye perturbation.
+    exit_proof: STEREO_ROUTE.md records the selected rung, rejected higher rungs, camera delivery method, cost, rollback, and an exit test that distinguishes camera change from repeated side effects.
+    route: "[RE-09](reverse-engineered-route.md#re-09), then [PORT-07](shared-vr-spine.md#port-07)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: HEADSET, note: "Private per-eye targets with alternate-eye fills are the proven shipping route; native cubemap re-entry is a future opportunity."}
+      BioshockVR: {state: cleared, evidence: HEADSET, note: "Per-draw private-eye replay is proven; rung-1 reflection/mirror re-entry remains optional research."}
+      SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR is the selected route around expensive/side-effectful HPL re-entry."}
+      PreyVR: {state: active, evidence: STATIC, note: "RenderWorld plus arbitrary-camera pass construction meet static preconditions; live viability, render-view pools and cost are open."}
+      DishonoredVR: {state: active, evidence: STATIC, note: "No stereo route can be committed before camera ownership and D3D9 transport are proven."}
+      FarCry2-vr: {state: cleared, evidence: HEADSET, note: "Per-draw stereo works; WorldExec native-stereo viability is the higher-rung investigation."}
+      Swat4-VR: {state: active, evidence: LIVE, note: "Scene doubling and AFR are proven possible; the clean world/HUD seam and side-effect gate decide the final route."}
+      Sims4VR: {state: active, evidence: LIVE, note: "Multiple world traversals exist, but the reduced height/depth pass is not a borrowable second camera; a full-quality callable seam remains open."}
+
+  - id: BN-SFX-001
+    title: A second eye may advance once-per-frame side effects
+    applies_to: both
+    gate: STEREO-SAFETY
+    blocks: Native scene re-entry and any replay whose second image might change simulation, particles, audio, queries, histories, allocators, or observers.
+    fast_test: Compare stock, repeated-with-zero-camera-delta control, and repeated-with-eye/yaw-delta test while logging simulation, audio, particle, query and allocation counters.
+    exit_proof: The zero-delta control stays at the measured noise floor and a side-effect ledger proves which work runs once per frame, once per view, or is snapshot/restored.
+    route: "[RE-09 side-effect gate](reverse-engineered-route.md#the-three-capture-side-effect-gate)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: LIVE, note: "Current per-draw/AFR architecture avoids re-entering the complete simulation frame."}
+      BioshockVR: {state: cleared, evidence: LIVE, note: "Private-eye replay is scoped to eligible rendering work; pair authority and fallbacks are explicit."}
+      SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR deliberately avoids same-frame scene re-entry and banks temporal histories per eye."}
+      PreyVR: {state: active, evidence: STATIC, note: "RenderWorld viability is not established; global-camera consumers and pooled render views make live ordering mandatory."}
+      DishonoredVR: {state: risk, note: "UE3 scene entry has not yet reached a live repeat test."}
+      FarCry2-vr: {state: active, evidence: STATIC, note: "WorldExec has 37 pass dispatches and no known simulation, but the live M3 side-effect gate is unrun."}
+      Swat4-VR: {state: active, evidence: LIVE, note: "Scene re-entry passes the pixel proof; the explicit side-effect gate is still unrun and two camera consumers repeat."}
+      Sims4VR: {state: risk, note: "Existing repeated passes prove re-entrancy, not that a new full-quality eye invocation is idempotent."}
+
+  - id: BN-XR-001
+    title: The game graphics path cannot yet deliver owned images to OpenXR
+    applies_to: both
+    gate: XR-TRANSPORT
+    blocks: Headset pixels, adapter matching, swapchain sizing, lifecycle validation, and meaningful headset acceptance.
+    fast_test: Submit known-color eye images on the runtime-required adapter before connecting game rendering; separately prove the game image can enter an owned shareable resource.
+    exit_proof: Both known-color and game-image transport pass; adapter LUID, API binding, format, synchronization, and recovery behavior are logged.
+    route: "[PORT-08](shared-vr-spine.md#port-08) and [graphics API routes](10-graphics-apis.md)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: HEADSET, note: "D3D11 OpenXR transport and recovery are shipping."}
+      BioshockVR: {state: cleared, evidence: HEADSET, note: "D3D11 private-HDR to OpenXR projection submission is sustained."}
+      SOMAVR: {state: cleared, evidence: HEADSET, note: "OpenGL OpenXR handoff is proven; transfer cost remains a performance lane."}
+      PreyVR: {state: open, evidence: STATIC, note: "D3D11 is compatible, but transport is downstream of the current native-stereo viability gate."}
+      DishonoredVR: {state: active, evidence: LIVE, note: "GAME-LESS PROBE (not in-game): Direct3DCreate9On12 -> UnwrapUnderlyingResource -> D3D12 -> OpenXR passes end to end on VirtualDesktopXR 1.0.10, with XR_KHR_D3D12_enable v9 among 31 extensions. Negative control recorded - plain Direct3DCreate9 refuses shared resources (0x8876086C). D3DFMT_A8R8G8B8 opens as DXGI_FORMAT_B8G8R8A8_UNORM unconverted; adapter LUIDs are per-boot handles. Completed-query median 0.224 ms is an IDLE-GPU FLOOR, not a budget. Remains active: known-colour transport only, never a game image."}
+      FarCry2-vr: {state: cleared, evidence: HEADSET, note: "D3D10 via shared DXGI surface reaches OpenXR; descriptor/copy compatibility is proven."}
+      Swat4-VR: {state: active, evidence: LIVE, note: "9On12 reaches an owned D3D12 resource and XR bring-up passes without hardware; first headset submission remains."}
+      Sims4VR: {state: open, evidence: LIVE, note: "D3D11 makes the binding straightforward, but no mod-owned eye resource or XR host exists yet."}
+
+  - id: BN-RND-001
+    title: Per-eye render state is incomplete or misattributed
+    applies_to: both
+    gate: RENDER-CORRECTNESS
+    blocks: Fusion-correct lighting, fog, shadows, reflections, temporal effects, viewmodels, secondary views, and culling at headset edges.
+    fast_test: Classify each suspicious pass by view provenance, producer resource identity, projection companions, history bank, depth owner, and secondary-view target—not by shader or dimensions alone.
+    exit_proof: RENDER_PASS_CENSUS states once/per-eye/disabled policy for every material class and a device capture proves the intended workload and resource identities.
+    route: "[PORT-09](shared-vr-spine.md#port-09) and [render hazard atlas](14-render-pass-hazard-atlas.md)"
+    projects:
+      ss2vr-work: {state: open, evidence: HEADSET, note: "Core stereo/culling are proven; reflections, portals, viewmodels and effects remain ownership-sensitive feature lanes."}
+      BioshockVR: {state: active, evidence: LIVE, note: "Mono screen-space shadow/light/fog producer resources remain the dominant visual defect after geometry stereo."}
+      SOMAVR: {state: active, evidence: LIVE, note: "Refraction/post-effect ownership, occlusion identities and OpenGL transfer timing are current T3 refinement lanes."}
+      PreyVR: {state: risk, note: "Deferred CryEngine companions and render-view pools are not yet exercised by a second eye."}
+      DishonoredVR: {state: risk, note: "Render-pass census is partial and downstream of transport/camera gates."}
+      FarCry2-vr: {state: open, evidence: HEADSET, note: "World stereo works; viewmodel pass ownership, vertical coverage and a higher-rung scene route remain open."}
+      Swat4-VR: {state: open, evidence: LIVE, note: "Hazard census is favorable, but the clean world/HUD M-C seam is unresolved."}
+      Sims4VR: {state: risk, note: "Depth prepass, shadow atlas and reduced auxiliary pass are identified; per-eye policy is not designed."}
+
+  - id: BN-POSE-001
+    title: Pose, frame, and eye-pair ownership are incoherent
+    applies_to: both
+    gate: POSE
+    blocks: Low-latency head tracking, stable hands/rays, recenter, authored-camera transitions, AFR pair coherence, and tracking-loss recovery.
+    fast_test: Stamp tracking sample, simulation frame, render frame, eye, pair generation, recenter generation and every consumer; compare them at the exact transition frame.
+    exit_proof: One immutable per-frame pose packet drives all declared consumers, and stale/focus-loss paths neutralize or hold according to a documented policy.
+    route: "[PORT-06](shared-vr-spine.md#port-06) and [A2](a2-pose-pipeline.md)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: HEADSET, note: "AFR pair latching, render/game pose separation and recenter ownership are implemented."}
+      BioshockVR: {state: cleared, evidence: HEADSET, note: "Pair authority and shared recenter/height baselines are explicit; feature consumers still require regression tests."}
+      SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR history banking, pose latch, authored-state transitions and recenter generations are live."}
+      PreyVR: {state: risk, note: "The downstream CRenderView seam avoids contaminating the cached aim ray, but no live eye pair exists."}
+      DishonoredVR: {state: risk, note: "No render-pose packet has reached a headset path."}
+      FarCry2-vr: {state: open, evidence: HEADSET, note: "6DoF works; native scene re-entry must preserve primary-camera observers and pair policy."}
+      Swat4-VR: {state: open, evidence: LIVE, note: "Eye tagging is live and pair IDs are desk-tested; headset timing and final route are pending."}
+      Sims4VR: {state: risk, note: "Python camera interpolation is explicitly unsuitable as the render-pose transport."}
+
+  - id: BN-INP-001
+    title: Native gameplay input, aim, and interaction ownership are unresolved
+    applies_to: both
+    gate: INPUT
+    blocks: Locomotion, detached aim, projectiles, use/melee, correct release edges, coexistence with keyboard/gamepad, and semantic haptics.
+    fast_test: Drive one semantic action through one lane at a time and compare the engine-owned state/result, not just injected key or controller state.
+    exit_proof: INPUT_OWNERSHIP maps every action to one press owner, one release owner, one native endpoint and one neutralization policy.
+    route: "[PORT-10](shared-vr-spine.md#port-10)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: HEADSET, note: "Squirrel verbs/native gameplay systems own locomotion and interactions; coverage continues feature by feature."}
+      BioshockVR: {state: open, evidence: LIVE, note: "XInput/native camera and weapon endpoints are mapped; body-yaw snap turn and some action ownership remain active work."}
+      SOMAVR: {state: cleared, evidence: HEADSET, note: "Native analog mover, action routes, focus-loss release and haptic bridge are working."}
+      PreyVR: {state: open, evidence: LIVE, note: "Detached melee/use ray proofs pass; projectile and complete action-family ownership remain."}
+      DishonoredVR: {state: risk, note: "PlayerController action strings are static anchors only."}
+      FarCry2-vr: {state: active, evidence: LIVE, note: "Native aim contract is read; viewmodel/muzzle alignment and final fire-direction delivery remain."}
+      Swat4-VR: {state: open, evidence: LIVE, note: "Console/FExec property bridge is proven; VR semantic ownership is downstream of headset stereo."}
+      Sims4VR: {state: risk, note: "The intended dollhouse/giant experience must be chosen before VR interaction semantics are designed."}
+
+  - id: BN-UI-001
+    title: Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier
+    applies_to: both
+    gate: ADAPTATION
+    blocks: Progression-critical menus, believable weapon alignment, reliable selection, comfort, and declaring T2–T4 completeness.
+    fast_test: Inventory every required game surface and mechanic by owner—world, compositor, viewmodel, fallback—and test the authoritative visual/input target together.
+    exit_proof: VR_UI_MATRIX and mechanic checklist cover progression, cutscenes, loading, death, handedness, interaction ranges and controller loss at the declared completeness tier.
+    route: "[PORT-11](shared-vr-spine.md#port-11)"
+    projects:
+      ss2vr-work: {state: active, evidence: HEADSET, note: "T3 feature completion now concentrates on frob coverage, weapon/assets, gravity glove, wrist HUD and physical interactions."}
+      BioshockVR: {state: active, evidence: LIVE, note: "Viewmodel/arm ownership, native AimIK lifecycle and late-LDR HUD capture remain incomplete."}
+      SOMAVR: {state: open, evidence: HEADSET, note: "Hands, HUD layers, subtitles and interaction lanes work; effect/state coverage continues."}
+      PreyVR: {state: open, evidence: LIVE, note: "Detached aim/use/melee are partially proven; rendered first-person attachment override is still static/partial."}
+      DishonoredVR: {state: risk, note: "Adaptation is intentionally downstream of transport, camera and stereo gates."}
+      FarCry2-vr: {state: active, evidence: HEADSET, note: "The animator writer census found 106/101/101-bone rigs and a 101-bone poke moved a body plus shadow; first-person arms/viewmodel remain on a separate undiscovered path."}
+      Swat4-VR: {state: risk, note: "HUD/world separation and gameplay adaptation follow first headset pixels."}
+      Sims4VR: {state: active, evidence: LIVE, note: "Dollhouse versus true-scale player embodiment is an unresolved design gate that controls scale, IPD and interaction."}
+
+  - id: BN-PERF-001
+    title: The fresh-frame budget and dominant cost are not measured
+    applies_to: both
+    gate: PERFORMANCE
+    blocks: Choosing native re-entry versus AFR, valid optimization, mobile thermal stability, and honest hardware requirements.
+    fast_test: Record release-build CPU update, scene preparation, each eye, synchronization, submit, GPU, stale/reprojected frames and thermal state under matched device visuals.
+    exit_proof: PERFORMANCE_BASELINE identifies the dominant metric and a preregistered A/B moves that metric without changing workload or image validity.
+    route: "[PORT-12](shared-vr-spine.md#port-12) and [PERF-002](pattern-catalog.md#perf-002)"
+    projects:
+      ss2vr-work: {state: open, evidence: LIVE, note: "Performance telemetry exists; debugger/logging distortion and fresh-frame cadence remain recurring acceptance concerns."}
+      BioshockVR: {state: active, evidence: LIVE, note: "Two eye renders plus a desktop world render dominate; reusable buffers help, but eliminating the third world render is the architectural lever. KSA_XR independently corroborates the knowingly inefficient three-frame problem on Vulkan; Scrap Mechanic demonstrates the worked D3D11 answer by mirroring the finished left eye with one three-vertex fullscreen draw."}
+      SOMAVR: {state: active, evidence: LIVE, note: "OpenGL-to-XR handoff cost, occlusion/query behavior and thermally valid device timing are being priced."}
+      PreyVR: {state: risk, note: "Native scene re-entry cost is unknown until a live second pass exists."}
+      DishonoredVR: {state: risk, note: "Transport choice will determine synchronization and copy cost."}
+      FarCry2-vr: {state: active, evidence: LIVE, note: "Frame pacing and 60-versus-90 cadence remain open alongside native-stereo work."}
+      Swat4-VR: {state: open, evidence: LIVE, note: "Flat noise floor and pacing census exist; headset fresh-frame cadence remains."}
+      Sims4VR: {state: risk, note: "8x MSAA main targets and multiple scene traversals are visible, but no VR workload has been measured."}
+
+  - id: BN-PACK-001
+    title: Build, version, install, and recovery contracts are not shippable
+    applies_to: both
+    gate: RELEASE
+    blocks: Reproducible user installs, safe updates/uninstalls, supported-build enforcement, and credible bug reports.
+    fast_test: Run a clean-install/uninstall matrix on a machine/profile without the developer's runtime, PATH, registry, caches or previous proxy DLLs.
+    exit_proof: Known builds are signature/hash guarded, unknown builds fail closed, install/uninstall are recoverable, dependencies and anti-cheat boundaries are explicit, and logs self-identify.
+    route: "[PORT-13](shared-vr-spine.md#port-13)"
+    projects:
+      ss2vr-work: {state: cleared, evidence: SOURCE, note: "Packaging and self-identification are mature; each new feature still needs rollback/default validation."}
+      BioshockVR: {state: open, evidence: SOURCE, note: "Canonical package path and guards exist; runtime/implicit-layer/startup variability remains a support surface."}
+      SOMAVR: {state: cleared, evidence: SOURCE, note: "OpenXR/non-OpenXR build flavors, loader locality and runtime recovery are explicit."}
+      PreyVR: {state: risk, note: "Landmark gates are designed, but the mod is not at release scope."}
+      DishonoredVR: {state: risk, note: "Exact binary hash is pinned; no releasable transport exists."}
+      FarCry2-vr: {state: open, evidence: SOURCE, note: "Launch/build prerequisites and wrapper cleanup are explicit; feature path is still T1."}
+      Swat4-VR: {state: open, evidence: SOURCE, note: "Fresh-log launch and test config are disciplined; first headset and release defaults remain."}
+      Sims4VR: {state: risk, note: "Research target; distribution boundaries for Python/script replacement plus a native layer are not designed."}
+
+project_focus:
+  - project: ss2vr-work
+    stage: T3 adaptation and regression
+    primary: [BN-UI-001]
+    current_question: Which remaining interactions, weapon assets, wrist surfaces and physical mechanics fail the declared T3 coverage matrix?
+    next_proof: Run the ordered headset regressions for frob coverage, weapon alignment, gravity glove, hazard UI, reload, two-hand grip and wall collision.
+    source: "D:/Dev Debug/ss2vr-work/docs/CURRENT_STATE.md"
+
+  - project: BioshockVR
+    stage: T3 render/adaptation refinement
+    primary: [BN-RND-001, BN-UI-001, BN-PERF-001]
+    current_question: Which mono screen-space producers and late viewmodel/HUD owners still violate the otherwise working per-eye geometry path?
+    next_proof: Run the centered-projection discriminator and exact producer/resource-identity A/B before changing another matrix family; separately test suspended-launch AimIK ownership.
+    source: "D:/Dev Debug/BioshockVR/docs/CURRENT_STATE.md"
+
+  - project: SOMAVR
+    stage: T3 render/performance refinement
+    primary: [BN-RND-001, BN-PERF-001]
+    current_question: Which OpenGL transfer, refraction/post-effect and occlusion-query owners dominate the remaining visual or frame-time cost?
+    next_proof: Use the bounded render-stage identities and nonblocking GPU timestamps under a matched headset scene before changing the AFR architecture.
+    source: "D:/Dev Debug/SOMAVR/docs/CURRENT_STATE.md"
+
+  - project: PreyVR
+    stage: pre-T1 stereo architecture
+    primary: [BN-STE-001, BN-SFX-001]
+    current_question: Can C3DEngine::RenderWorld execute a second live pass from an arbitrary CCamera without corrupting pooled render views, usage modes, aim observers or frame side effects?
+    next_proof: Make one guarded live second-pass experiment downstream at CRenderView::SetCamera, with before/after aim-ray, render-view-pool, side-effect and cost assertions.
+    source: "D:/Dev Debug/PreyVR/docs/HYPOTHESES.md"
+
+  - project: DishonoredVR
+    stage: pre-T1 transport and camera discovery
+    primary: [BN-XR-001, BN-CAM-001, BN-OBS-001]
+    current_question: Which D3D9-to-OpenXR transport is viable for the retail renderer, and where are the live player view/projection and frame owners?
+    next_proof: Establish the live gameplay D3D9 boundary and camera/projection values, then prove one owned shareable image reaches a supported OpenXR graphics binding.
+    source: "D:/Dev Debug/DishonoredVR/docs/CURRENT_STATE.md"
+
+  - project: FarCry2-vr
+    stage: T1 native-stereo and viewmodel ownership
+    primary: [BN-SFX-001, BN-UI-001, BN-PERF-001]
+    current_question: Is WorldExec safe and affordable as a second same-frame world pass, and which separate evaluation/render path owns the first-person arms and armed weapon mesh?
+    next_proof: Run the M3 zero-delta side-effect gate; trace the first-person viewmodel draw upstream to its own skinning/animation writer, then repeat the writer-census plus large pixel-poke proof; measure pacing separately.
+    source: "D:/Dev Debug/FarCry2-vr/docs/CURRENT_STATE.md"
+
+  - project: Swat4-VR
+    stage: pre-T1 first headset submission
+    primary: [BN-XR-001, BN-SFX-001, BN-STE-001]
+    current_question: Will the 9On12/OpenXR route submit the first headset frame, and can the selected scene seam repeat without world/HUD or once-per-frame contamination?
+    next_proof: Run the ordered headset trip to FIRST FRAME SUBMITTED, then execute the three-capture side-effect gate and resolve the M-C world/HUD seam.
+    source: "D:/Dev Debug/Swat4-VR/docs/CURRENT_STATE.md"
+
+  - project: Sims4VR
+    stage: research target / pre-feasibility
+    primary: [BN-OBS-001, BN-CAM-001, BN-STE-001, BN-UI-001]
+    current_question: Which native camera candidate feeds the main scene, is a full-quality repeat view callable, and is the intended experience dollhouse or true-scale embodiment?
+    next_proof: Correlate exact RenderDoc view constants against the 30 live candidates, classify the full-quality scene invocation, and decide the scale/embodiment contract before implementation.
+    source: "D:/Dev Debug/Sims4VR/docs/CURRENT_STATE.md"

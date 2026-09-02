@@ -1,0 +1,512 @@
+{
+  "D:\\Dev Debug\\ss2vr-work\\docs\\.obsidian\\app.json": {
+    "mtime": 1782543041.4466662,
+    "ast_hash": "af44eb29ba95b2b376c1766870f42fbf",
+    "semantic_hash": "af44eb29ba95b2b376c1766870f42fbf"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\.obsidian\\appearance.json": {
+    "mtime": 1782543041.4466662,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\.obsidian\\bookmarks.json": {
+    "mtime": 1782543041.4466662,
+    "ast_hash": "e1adc4037d7429c59ab97fc44f4abf90",
+    "semantic_hash": "e1adc4037d7429c59ab97fc44f4abf90"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\.obsidian\\core-plugins.json": {
+    "mtime": 1782543041.4476707,
+    "ast_hash": "7c877bea49eaeabb100563bd157b9051",
+    "semantic_hash": "7c877bea49eaeabb100563bd157b9051"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\.obsidian\\graph.json": {
+    "mtime": 1782543041.4476707,
+    "ast_hash": "7a9714972945b23607eaa3ca2803f825",
+    "semantic_hash": "7a9714972945b23607eaa3ca2803f825"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\ACTIVE_BASELINE.md": {
+    "mtime": 1782609259.152258,
+    "ast_hash": "ec4fd2c0b05374379a25ba2467657b09",
+    "semantic_hash": "ec4fd2c0b05374379a25ba2467657b09"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\ADDRESS_REGISTRY.md": {
+    "mtime": 1785283924.511548,
+    "ast_hash": "586101376bd734d5ee7568148c588a09",
+    "semantic_hash": "586101376bd734d5ee7568148c588a09"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\AR15_VHOT_CRASH_FINDING.md": {
+    "mtime": 1782543041.44867,
+    "ast_hash": "c0c8ec1d387c9c364e4fa9117192a68b",
+    "semantic_hash": "c0c8ec1d387c9c364e4fa9117192a68b"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\AR15_VHOT_INTEGRATION_HANDOFF.md": {
+    "mtime": 1782609016.0616372,
+    "ast_hash": "c232d474675a11ebcfaa56d5dbecd621",
+    "semantic_hash": "c232d474675a11ebcfaa56d5dbecd621"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\BIOSHOCKVR_LESSONS.md": {
+    "mtime": 1785393535.052801,
+    "ast_hash": "10799853f38db61d4a48f0a0b58cc105",
+    "semantic_hash": "10799853f38db61d4a48f0a0b58cc105"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\BUILD_HISTORY.md": {
+    "mtime": 1785545272.9431894,
+    "ast_hash": "ae26f9cfdaf73e6bcce9833d497f645e",
+    "semantic_hash": "ae26f9cfdaf73e6bcce9833d497f645e"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\CLAUDE_DARKENGINE_FINDS.md": {
+    "mtime": 1780375112.2155282,
+    "ast_hash": "3ab14be8ef5a51eb2706e809f3457728",
+    "semantic_hash": "3ab14be8ef5a51eb2706e809f3457728"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\CONVENTIONS.md": {
+    "mtime": 1782543041.4506707,
+    "ast_hash": "4684e48c2818ee22d90129346e950250",
+    "semantic_hash": "4684e48c2818ee22d90129346e950250"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\CULLING_FRUSTUM.md": {
+    "mtime": 1783909534.7561467,
+    "ast_hash": "578f52a7584d7cb6a2ae5f54736c059e",
+    "semantic_hash": "578f52a7584d7cb6a2ae5f54736c059e"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\CURRENT_STATE.md": {
+    "mtime": 1785805224.5416255,
+    "ast_hash": "61eb1e1488ce5a2ebea5d336ee3c858a",
+    "semantic_hash": "61eb1e1488ce5a2ebea5d336ee3c858a"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\CURRENT_STATE_ARCHIVE.md": {
+    "mtime": 1782543041.451671,
+    "ast_hash": "ef1fb8b0ed472058b62b155824161ea1",
+    "semantic_hash": "ef1fb8b0ed472058b62b155824161ea1"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\DARK_ENGINE_SOURCE_NOTES.md": {
+    "mtime": 1782543041.4526713,
+    "ast_hash": "2025f98a046dea3399cc5f812bb42cf0",
+    "semantic_hash": "2025f98a046dea3399cc5f812bb42cf0"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\DARK_ENGINE_VR_MODDING_GUIDE.md": {
+    "mtime": 1785285944.7796967,
+    "ast_hash": "ffa6ce9874bae7c7868734df2125bd9d",
+    "semantic_hash": "ffa6ce9874bae7c7868734df2125bd9d"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\DECISION_LOG.md": {
+    "mtime": 1782773984.3537579,
+    "ast_hash": "0abb86c731bc719753862ce0bbb9918a",
+    "semantic_hash": "0abb86c731bc719753862ce0bbb9918a"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\ENEMY_HEALTH_BRACKET_RE.md": {
+    "mtime": 1783391977.655684,
+    "ast_hash": "809d3d399e07bc5268ceba3d659b8709",
+    "semantic_hash": "809d3d399e07bc5268ceba3d659b8709"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\FAILURE_REGISTRY.md": {
+    "mtime": 1785110738.243427,
+    "ast_hash": "192cc6dc62b40cd04ee41c9adc2b03b5",
+    "semantic_hash": "192cc6dc62b40cd04ee41c9adc2b03b5"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\FEATURE_ROADMAP.md": {
+    "mtime": 1782543041.4566708,
+    "ast_hash": "8b1dfc766117601bd4ea91615e961f03",
+    "semantic_hash": "8b1dfc766117601bd4ea91615e961f03"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\FLATAIM_TO_SS2VR_HANDOFF.md": {
+    "mtime": 1782543041.4576702,
+    "ast_hash": "7425c28094603eeff4eea8240dc8d196",
+    "semantic_hash": "7425c28094603eeff4eea8240dc8d196"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\FROB_ARCHETYPE_TREE_RAW.md": {
+    "mtime": 1782543041.4576702,
+    "ast_hash": "35d61ff1e47992977b763c50981e97d1",
+    "semantic_hash": "35d61ff1e47992977b763c50981e97d1"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\FROB_TARGET_LIBRARY.md": {
+    "mtime": 1782543041.4586701,
+    "ast_hash": "f9574a6a3deff90ef8700b59eef3628a",
+    "semantic_hash": "f9574a6a3deff90ef8700b59eef3628a"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\GAMEPIG_ICEBREAKER.md": {
+    "mtime": 1783745381.1022573,
+    "ast_hash": "8769a22992fa0378ebd962b81ebc3d58",
+    "semantic_hash": "8769a22992fa0378ebd962b81ebc3d58"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\GAMEPIG_RE.md": {
+    "mtime": 1783861318.5756588,
+    "ast_hash": "cf7f7b03ea6070b83d9334720444cce9",
+    "semantic_hash": "cf7f7b03ea6070b83d9334720444cce9"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\GAME_EVENT_EFFECTS.md": {
+    "mtime": 1782608928.2371898,
+    "ast_hash": "6b601a73dbe4b09ed6b6b815ff199571",
+    "semantic_hash": "6b601a73dbe4b09ed6b6b815ff199571"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\GHIDRA_ANNOTATION_BACKLOG.md": {
+    "mtime": 1783491964.917839,
+    "ast_hash": "83cfb6f708ffaae8d4971edfad6b804e",
+    "semantic_hash": "83cfb6f708ffaae8d4971edfad6b804e"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\GIT_AGENT_BRIEF.md": {
+    "mtime": 1780525039.4883103,
+    "ast_hash": "3a4f5a7cc6b3c7e93823d91b269271d6",
+    "semantic_hash": "3a4f5a7cc6b3c7e93823d91b269271d6"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\HANDOVER_2026-08-03.md": {
+    "mtime": 1785805213.8504229,
+    "ast_hash": "0001c356f6844e9c639415fc008704d3",
+    "semantic_hash": "0001c356f6844e9c639415fc008704d3"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\HAND_COLLISION_RESEARCH.md": {
+    "mtime": 1783597030.4095397,
+    "ast_hash": "caeca7e9c4eac41524c92758330e12ac",
+    "semantic_hash": "caeca7e9c4eac41524c92758330e12ac"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\HUD_OVERLAY_ASSEMBLY.md": {
+    "mtime": 1782608943.2853508,
+    "ast_hash": "ad0fa4a3ccb55a844e634959d15126c1",
+    "semantic_hash": "ad0fa4a3ccb55a844e634959d15126c1"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\HUD_PARALLAX_PARKED.md": {
+    "mtime": 1782543041.4606702,
+    "ast_hash": "185e951f25168685bdbe164e008270ff",
+    "semantic_hash": "185e951f25168685bdbe164e008270ff"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\HYPOTHESES.md": {
+    "mtime": 1782685759.6248355,
+    "ast_hash": "1f91d37445127dbd6d630793e629d01d",
+    "semantic_hash": "1f91d37445127dbd6d630793e629d01d"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\HYPOTHESES_ARCHIVE.md": {
+    "mtime": 1782608856.3666599,
+    "ast_hash": "8e2c158e8eab481d25dd55dfb7f43982",
+    "semantic_hash": "8e2c158e8eab481d25dd55dfb7f43982"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\INTERACTION_SQUIRREL_REPORT.md": {
+    "mtime": 1783119136.675296,
+    "ast_hash": "afa36838c68a4773aa07dfe55316726f",
+    "semantic_hash": "afa36838c68a4773aa07dfe55316726f"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\INTERACTION_SQUIRREL_SPIKE_SPEC.md": {
+    "mtime": 1780107863.525802,
+    "ast_hash": "4e7d8037b7408b37954b6e799e5111e5",
+    "semantic_hash": "4e7d8037b7408b37954b6e799e5111e5"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\LGMD_VHOT_HEADER_FIX.md": {
+    "mtime": 1782543041.4631128,
+    "ast_hash": "30570e6dab92f1ad1565112950f700ab",
+    "semantic_hash": "30570e6dab92f1ad1565112950f700ab"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\LGMM_CAL_INVESTIGATION.md": {
+    "mtime": 1782543041.464113,
+    "ast_hash": "cf11bb26dfda45d3addeec84cec0c4a1",
+    "semantic_hash": "cf11bb26dfda45d3addeec84cec0c4a1"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MARKETING_TEASER_DRAFT.md": {
+    "mtime": 1780222197.904414,
+    "ast_hash": "bf2625131d2722f34d037f6989ffcc37",
+    "semantic_hash": "bf2625131d2722f34d037f6989ffcc37"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MELEE_AUDIO_RE.md": {
+    "mtime": 1783679758.7073622,
+    "ast_hash": "aaf983adac0cca78368871e10a04524d",
+    "semantic_hash": "aaf983adac0cca78368871e10a04524d"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MELEE_DAMAGE_RE.md": {
+    "mtime": 1784765879.998897,
+    "ast_hash": "f3f726fb13997ae14ec8ea7a6ef8770f",
+    "semantic_hash": "f3f726fb13997ae14ec8ea7a6ef8770f"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MELEE_SCALING_HANDOVER.md": {
+    "mtime": 1782887673.7389503,
+    "ast_hash": "88ef3d85bf4afafff6f4a9d6ed215110",
+    "semantic_hash": "88ef3d85bf4afafff6f4a9d6ed215110"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MELEE_VR_REPORT.md": {
+    "mtime": 1780059353.5300052,
+    "ast_hash": "7ca5a5323c288b20377f55d617e90cc3",
+    "semantic_hash": "7ca5a5323c288b20377f55d617e90cc3"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MELEE_VR_SPEC.md": {
+    "mtime": 1782543041.464113,
+    "ast_hash": "50132e8f8944adb9cf01b27fee5a6824",
+    "semantic_hash": "50132e8f8944adb9cf01b27fee5a6824"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MENU_OPTIONS_BIND_TEST_SPEC.md": {
+    "mtime": 1780054754.5287929,
+    "ast_hash": "cdd0c72490b9006270edb7ff874100ea",
+    "semantic_hash": "cdd0c72490b9006270edb7ff874100ea"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\MENU_VR_REPORT.md": {
+    "mtime": 1782543041.4651115,
+    "ast_hash": "1ad5d26774006d1705833c8888e393dd",
+    "semantic_hash": "1ad5d26774006d1705833c8888e393dd"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\OVERLAY_PANEL_INDEX_MAP.md": {
+    "mtime": 1783547441.121868,
+    "ast_hash": "f230d9f0bd9c1c461ba6f7ef019f2a77",
+    "semantic_hash": "f230d9f0bd9c1c461ba6f7ef019f2a77"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\PROJECT_PHASES.md": {
+    "mtime": 1782543041.466114,
+    "ast_hash": "b9e0ce28ebd76ed67562b4a9b65971b4",
+    "semantic_hash": "b9e0ce28ebd76ed67562b4a9b65971b4"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\RESOLUTION_COMPAT.md": {
+    "mtime": 1783683539.321806,
+    "ast_hash": "4e8cdc14ac13ef0e87b15bc2f22dbac8",
+    "semantic_hash": "4e8cdc14ac13ef0e87b15bc2f22dbac8"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\RE_FINDINGS.md": {
+    "mtime": 1785285955.5574262,
+    "ast_hash": "a9b25d5601feb5347d10434c4b1f8f88",
+    "semantic_hash": "a9b25d5601feb5347d10434c4b1f8f88"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\ROOMSCALE_CROUCH_RESEARCH.md": {
+    "mtime": 1783164262.2227387,
+    "ast_hash": "1d9498b3c535dfc8b138d20217654fa0",
+    "semantic_hash": "1d9498b3c535dfc8b138d20217654fa0"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\SHOCK2QUEST_REFERENCE.md": {
+    "mtime": 1785295050.171147,
+    "ast_hash": "e1ec405ed940d61e24ec8607a4aa9ff4",
+    "semantic_hash": "e1ec405ed940d61e24ec8607a4aa9ff4"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\SQUIRREL_WORLD_PHYSICS.md": {
+    "mtime": 1782543041.4671133,
+    "ast_hash": "eb14be7b12205af70439820b2aebc14b",
+    "semantic_hash": "eb14be7b12205af70439820b2aebc14b"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\SS2_ASSET_TOOL_COMPARISON.md": {
+    "mtime": 1782543041.4711142,
+    "ast_hash": "131646d2ea4674c41f3fb381e9a84f59",
+    "semantic_hash": "131646d2ea4674c41f3fb381e9a84f59"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\TELEPORT_LOCOMOTION_RE.md": {
+    "mtime": 1783725494.2288687,
+    "ast_hash": "b341482a244308436ac592d822074db2",
+    "semantic_hash": "b341482a244308436ac592d822074db2"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\TEST_CHECKLISTS.md": {
+    "mtime": 1782609098.2104902,
+    "ast_hash": "15ed9c9735b75971071270896b702dd5",
+    "semantic_hash": "15ed9c9735b75971071270896b702dd5"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\TEST_PLAN_2026-07.md": {
+    "mtime": 1783843557.0449505,
+    "ast_hash": "c6d1fbd684db3828225a1f5ca60d39c9",
+    "semantic_hash": "c6d1fbd684db3828225a1f5ca60d39c9"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\UEVR_STEREO_LESSONS.md": {
+    "mtime": 1785542912.4219882,
+    "ast_hash": "4c5bb74e6a946acea0c8ceb672ba5db5",
+    "semantic_hash": "4c5bb74e6a946acea0c8ceb672ba5db5"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\USER_TEST_LOG.md": {
+    "mtime": 1783382644.892872,
+    "ast_hash": "02285f4fd053a7265bc9b451e4e737c0",
+    "semantic_hash": "02285f4fd053a7265bc9b451e4e737c0"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_ACTION_PANEL_TEST.md": {
+    "mtime": 1780120483.2081275,
+    "ast_hash": "164ad294933427c5af7c22d08ee5e0a1",
+    "semantic_hash": "164ad294933427c5af7c22d08ee5e0a1"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_BODY_HOLSTERS.md": {
+    "mtime": 1782543041.4761126,
+    "ast_hash": "eda4fe7435f977bcd33e7a2de5d26f7e",
+    "semantic_hash": "eda4fe7435f977bcd33e7a2de5d26f7e"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_CLIMBING_RE.md": {
+    "mtime": 1783724060.2573712,
+    "ast_hash": "5a6314c58d9517097bc5dfe32aebbb10",
+    "semantic_hash": "5a6314c58d9517097bc5dfe32aebbb10"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_DEPTH_AND_COLLISION_BRIEF.md": {
+    "mtime": 1785106024.2103019,
+    "ast_hash": "bce94edbb783e6a23ae09ba472712315",
+    "semantic_hash": "bce94edbb783e6a23ae09ba472712315"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_FINDINGS_INDEX.md": {
+    "mtime": 1785393547.0208592,
+    "ast_hash": "0246b7bfd494ac5b3f6a246c54ae088b",
+    "semantic_hash": "0246b7bfd494ac5b3f6a246c54ae088b"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_HIGHLIGHTS_REPORT.md": {
+    "mtime": 1780181040.1070569,
+    "ast_hash": "804207883a2edc912ccf70fe235efcec",
+    "semantic_hash": "804207883a2edc912ccf70fe235efcec"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_LATENCY_RECOVERY_PLAN.md": {
+    "mtime": 1783646572.641437,
+    "ast_hash": "fc9c0b8f0d2f8c9cfdf4ecc71eea9111",
+    "semantic_hash": "fc9c0b8f0d2f8c9cfdf4ecc71eea9111"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_MANUAL_RELOADS.md": {
+    "mtime": 1782543041.4771128,
+    "ast_hash": "d62407a7c13e39566c30306b71dc190a",
+    "semantic_hash": "d62407a7c13e39566c30306b71dc190a"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_POST_PROCESS_DESIGN.md": {
+    "mtime": 1782543041.4771128,
+    "ast_hash": "7e4edb36c1fc46e6b8909e65bb984161",
+    "semantic_hash": "7e4edb36c1fc46e6b8909e65bb984161"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_SETTINGS_PANEL_SPEC.md": {
+    "mtime": 1780101621.5867205,
+    "ast_hash": "626d2577d4d8c033410760dbd003f5f7",
+    "semantic_hash": "626d2577d4d8c033410760dbd003f5f7"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_TWO_HANDED_WEAPONS.md": {
+    "mtime": 1782543041.4781137,
+    "ast_hash": "137c2e148bc7a85cc509f2ea3126075b",
+    "semantic_hash": "137c2e148bc7a85cc509f2ea3126075b"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_VIEW_EFFECTS.md": {
+    "mtime": 1782608917.0337522,
+    "ast_hash": "ddc3b0c9e1c2e179de75920bad0c7384",
+    "semantic_hash": "ddc3b0c9e1c2e179de75920bad0c7384"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_WEAPON_MESH_PIPELINE.md": {
+    "mtime": 1783558183.7592328,
+    "ast_hash": "8def78224e8ad8fd9855e07c6915b5d3",
+    "semantic_hash": "8def78224e8ad8fd9855e07c6915b5d3"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\VR_WRIST_KEYPAD_SPEC.md": {
+    "mtime": 1782543041.4801126,
+    "ast_hash": "7a11fe61f236dae91d4c3e6bd4f5fdb4",
+    "semantic_hash": "7a11fe61f236dae91d4c3e6bd4f5fdb4"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\WEAPON_CAMERAOBJ_HMD_BLEED_HANDOFF.md": {
+    "mtime": 1782543041.4801126,
+    "ast_hash": "230b3fa5440c30c69b2cd356dd11b8f9",
+    "semantic_hash": "230b3fa5440c30c69b2cd356dd11b8f9"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\WEAPON_MODEL_REPORT.md": {
+    "mtime": 1783909585.45078,
+    "ast_hash": "faf4503f566140babd27a701c43706e8",
+    "semantic_hash": "faf4503f566140babd27a701c43706e8"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\WEAPON_MODEL_SPEC.md": {
+    "mtime": 1782609112.1141295,
+    "ast_hash": "fe672e0c7fa36eaa44ea3bf3ece8802c",
+    "semantic_hash": "fe672e0c7fa36eaa44ea3bf3ece8802c"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\WEAPON_SPREAD_RECOIL_REPORT.md": {
+    "mtime": 1782543041.4811134,
+    "ast_hash": "7e7af6076f6d887c5c4f1d0095681bc5",
+    "semantic_hash": "7e7af6076f6d887c5c4f1d0095681bc5"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\WEAPON_VR_AIM_SPEC.md": {
+    "mtime": 1782543041.4811134,
+    "ast_hash": "29aa6b9623266793fce55def7980a7e6",
+    "semantic_hash": "29aa6b9623266793fce55def7980a7e6"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\WEAPON_VR_HANDOVER.md": {
+    "mtime": 1780285536.957454,
+    "ast_hash": "4e16dbceb1b010b5f671f5ea551b95a8",
+    "semantic_hash": "4e16dbceb1b010b5f671f5ea551b95a8"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\archive\\CLEANUP_CHECKPOINT_2026-06-04.md": {
+    "mtime": 1780554201.9393964,
+    "ast_hash": "02e8c3731a130e38d08a13796560d88c",
+    "semantic_hash": "02e8c3731a130e38d08a13796560d88c"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\archive\\CODEX_PROPOSAL_pose_bridge_kiss.md": {
+    "mtime": 1780520773.2568903,
+    "ast_hash": "79a4cc6e2e1dd00348adca723d4a90bd",
+    "semantic_hash": "79a4cc6e2e1dd00348adca723d4a90bd"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\archive\\CURRENT_TEST_RUN_2026-06-08.md": {
+    "mtime": 1782543041.4526713,
+    "ast_hash": "b8581601d6ba9d6aff8a96c093cf9ac6",
+    "semantic_hash": "b8581601d6ba9d6aff8a96c093cf9ac6"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\archive\\index.md": {
+    "mtime": 1782609205.616542,
+    "ast_hash": "c87e0e3394f57ada1cfd41dcccf8f627",
+    "semantic_hash": "c87e0e3394f57ada1cfd41dcccf8f627"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\console-commands.md": {
+    "mtime": 1780273554.646736,
+    "ast_hash": "05f550f6d0f97d32bc207ac3e0217b24",
+    "semantic_hash": "05f550f6d0f97d32bc207ac3e0217b24"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\fov-frustum-foundation.md": {
+    "mtime": 1779453555.3331652,
+    "ast_hash": "4f13458f1cfecda4486025a411daa056",
+    "semantic_hash": "4f13458f1cfecda4486025a411daa056"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\future-hook-map.md": {
+    "mtime": 1780457456.9731264,
+    "ast_hash": "378407f0dd33376f18d19862c66a7bed",
+    "semantic_hash": "378407f0dd33376f18d19862c66a7bed"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\index.md": {
+    "mtime": 1782619128.6165252,
+    "ast_hash": "4874769d882117dce8076a0b447883f1",
+    "semantic_hash": "4874769d882117dce8076a0b447883f1"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\Asset and Mesh Pipeline.md": {
+    "mtime": 1782609339.9540234,
+    "ast_hash": "e95dde6b7d24309b3e48b40c98048938",
+    "semantic_hash": "e95dde6b7d24309b3e48b40c98048938"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\Home.md": {
+    "mtime": 1782609218.9703195,
+    "ast_hash": "0db6c565c4f51c8cde0f612ca4a3ed25",
+    "semantic_hash": "0db6c565c4f51c8cde0f612ca4a3ed25"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\How to use this vault.md": {
+    "mtime": 1782543041.483624,
+    "ast_hash": "84a72863b0ec82e120fcff423cc1b9c1",
+    "semantic_hash": "84a72863b0ec82e120fcff423cc1b9c1"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\Interaction, Frob and UI.md": {
+    "mtime": 1782543041.483624,
+    "ast_hash": "b17e4fabaecff3374ad6a470e6ee0d9f",
+    "semantic_hash": "b17e4fabaecff3374ad6a470e6ee0d9f"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\Native Input and Movement.md": {
+    "mtime": 1783122638.959321,
+    "ast_hash": "31eb875222f0a9790ce4c047eb60df40",
+    "semantic_hash": "31eb875222f0a9790ce4c047eb60df40"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\Performance and VR Effects.md": {
+    "mtime": 1782608969.772975,
+    "ast_hash": "ead4077227b44ef12c0ae262360a29d4",
+    "semantic_hash": "ead4077227b44ef12c0ae262360a29d4"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\Reverse Engineering.md": {
+    "mtime": 1782609161.3606772,
+    "ast_hash": "628bde5c1e5c862d208de36da0dce6ba",
+    "semantic_hash": "628bde5c1e5c862d208de36da0dce6ba"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\maps\\Weapons, Hands and Melee.md": {
+    "mtime": 1782543041.4856248,
+    "ast_hash": "d6041b6c9fd5a0eee754f7439fc93a05",
+    "semantic_hash": "d6041b6c9fd5a0eee754f7439fc93a05"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\phase0-findings.md": {
+    "mtime": 1779683342.967627,
+    "ast_hash": "8a7c5c29d24056cf6a6984f2e7d79c0c",
+    "semantic_hash": "8a7c5c29d24056cf6a6984f2e7d79c0c"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\phase1-usage.md": {
+    "mtime": 1782543041.486624,
+    "ast_hash": "e5f1406cabc5faf2d11f177e1d631c5b",
+    "semantic_hash": "e5f1406cabc5faf2d11f177e1d631c5b"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\phase2-ui.md": {
+    "mtime": 1782543041.4876237,
+    "ast_hash": "7878ef34eff3694997f9c1e7c73c6c62",
+    "semantic_hash": "7878ef34eff3694997f9c1e7c73c6c62"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\runbooks\\README.md": {
+    "mtime": 1779890894.0,
+    "ast_hash": "0eddc09ebb19cfe73f57d64cae3f389e",
+    "semantic_hash": "0eddc09ebb19cfe73f57d64cae3f389e"
+  },
+  "D:\\Dev Debug\\ss2vr-work\\docs\\vr-mod-reference-survey.md": {
+    "mtime": 1780028448.4117577,
+    "ast_hash": "a103c713dd9b4b387e50b0825ff17f71",
+    "semantic_hash": "a103c713dd9b4b387e50b0825ff17f71"
+  }
+}

@@ -1,0 +1,221 @@
+## FILE: 00-engine-profiles.md
+  - The four projects at a glance
+  - What each engine makes easy, and what it makes painful
+  - A different shape entirely: the managed mod layer (IL-2 1946)
+  - The cross-engine spine (why one playbook covers all four)
+## FILE: 01-camera-and-tracking.md
+  - The multiple-cameras problem (the #1 source of "VR jank")
+  - Authoritative vs. follower rendering
+  - Stereo projection is a camera contract, not one matrix write
+  - You cannot render your way out of missing geometry (cull-camera ownership)
+  - Camera view is not aim ownership
+  - Latency, prediction, and smoothing
+  - Turning (snap & smooth) without nausea
+  - Recenter & horizon
+  - Yield to the engine's authored cameras (cutscenes, ladders, conversations, seats)
+  - Comfort is its own engineering surface
+  - Roomscale stance: don't double-count height
+  - Frame-timing bug classes (recognize these on sight)
+## FILE: 02-viewmodels-and-hands.md
+  - The viewmodel is probably drawn twice
+  - Reference frame: place attached objects in the right space
+  - Drive the engine's own skeleton; don't override the skinned vertices
+  - Foreground lighting rides the same reference-frame contract
+  - Don't fix the visible model by retuning the invisible systems
+  - Authored offset or live delta — composition order decides which
+  - Euler/quaternion traps (the recurring math failures)
+  - Hiding the original viewmodel
+  - Lighting an attached/spawned object
+  - Held tools and physical manipulation: drive the native system, share one basis
+  - Grip pose places the model; aim pose points the ray
+  - One trim, one algebra, one ray
+  - Keep left and right hands as fully separate lanes
+  - Haptics: hook where the contact actually happens
+  - Physical hand/viewmodel collision with the world
+  - Throwing, knocking, and physical melee
+  - Weapon scopes: a second camera on a panel, staged in three steps
+## FILE: 03-input-and-locomotion.md
+  - The input ladder (crude → clean)
+  - Locomotion: puppeteer the engine's native movement, don't reimplement it
+  - The double-driving trap (read this twice)
+  - Don't share a gate between movement and buttons
+  - Stick-as-buttons (jump/crouch on the right stick)
+  - Control-bind strings are vocabulary, not an API
+  - A synthetic controller's *presence* is a lane too (rung 3 gotcha)
+  - Platform-state gotchas
+## FILE: 04-ui-and-hud.md
+  - Get UI off the backbuffer and onto a layer
+  - HUD element ownership — find who actually draws it
+  - The HUD's layout may be data, not code
+  - The reticle is often not where you think
+  - A world-depth reticle comes from the engine's own picker, not from GL/DX depth
+  - Suppression must be gated by context
+  - Placing panels in 3D
+  - Virtual-coordinate gotcha
+  - Diegetic in-world screens and handheld devices
+## FILE: 05-assets-and-materials.md
+  - Exporter header traps
+  - Compacting/rewriting model data
+  - Your validator checks structure; the engine checks meaning
+  - One-variable A/B, always
+  - Pick the right control group
+  - Material/include resolution
+  - Know the engine's real package format — a parse failure isn't proof of absence
+  - Validate the asset on the GPU, not just in the loader
+  - Asset-pipeline hygiene
+## FILE: 06-debugging-methodology.md
+  - Make every build self-identify (do this on day one)
+  - Measure, don't theorize: the readback probe
+  - Coarse switches before fine instruments — and know when to stop toggling
+  - Absence of errors is not evidence
+  - Falsify your own hypothesis before shipping a fix
+  - An isolation gate is itself a second variable
+  - Your control group must consume the variable under test
+  - A hook that "does nothing" may simply never be reached
+  - Presence is not proof of loading
+  - Check the cheap environmental causes before you bisect code
+  - Frame-capture (RenderDoc) workflow
+  - Tooling lies in specific, learnable ways — know them before you trust a reading
+  - Settings lie: read the value the consumer receives, not the one you wrote
+  - Tools that cannot see the process report it as absent
+  - You cannot pause a VR process
+  - Dynamic tracing finds the exact owner that static RE only approximates
+  - Crash-dump workflow
+  - Native-engine RE shortcuts
+  - Logging discipline (or your evidence destroys itself)
+  - Read a per-frame GPU value without paying for it
+  - Your capture is phase-locked to your own stereo pair
+  - Attribute by ownership before shader identity
+  - Prove ownership by correlating two logs, without instrumenting either system
+## FILE: 07-engine-integration-safety.md
+  - Hooking & native-call discipline
+  - Module lifecycle: three Windows loader hazards that look like engine bugs
+  - Never read your own output back as fresh input
+  - Know which modules are DRM, and exclude them early
+  - Debuggers have an attach *window*, not just an attach *mode*
+  - Hardware/debugger gotchas
+  - Everything default-off, behind a knob
+  - Config-system rigor
+  - Initialization timing
+  - D3D11 state and resource ownership
+  - When a feature crashes the runtime, quarantine it — don't paper over it
+  - "Installed at a verified-correct address and never fires" = you hooked a wrapper
+  - Budget OpenXR composition layers — over-submitting freezes the whole HMD
+  - Don't over-reject "implausible" values — they may be a valid branch
+  - Attach versus launch injection — and one-time construction seams
+  - Don't trust "same path = loaded"
+## FILE: 08-project-process.md
+  - The documentation system that worked
+  - Test-validity discipline (the hardest-won lesson)
+  - Reduce the project's biggest bet to one falsifiable experiment, first
+  - Two gates per milestone: flat first, headset second
+  - A self-consistent instrument can be consistently wrong
+  - Slow-loop ergonomics
+  - Your pixel-diff threshold is an experiment, not a constant
+  - Launch preconditions are part of test validity
+  - Mark every claim `VERIFIED` or `UNVERIFIED`, and say how
+  - Running several mods at once: which way knowledge flows
+  - Verify the baseline you are betting on
+  - Test-artifact config files silently outrank your code defaults
+  - Packaging & backup hygiene
+  - Working with the unknown
+## FILE: 09-d3d11-openxr-injection.md
+  - Keep the architecture in explicit lanes
+  - The proof ladder
+  - Architecture and loader compatibility
+  - Bind OpenXR to the game's real D3D11 device
+  - The OpenXR frame loop is an ownership contract
+  - Private per-eye color and depth targets
+  - Stereo math: translate in view space, not by sliding clip-space pixels
+  - Projection companions must remain coherent
+  - Preserve render-view provenance
+  - Mono screen-space buffers are a separate stereo problem
+  - FoV, aspect, and full-eye presentation
+  - Resolution, aspect, and display-mode compatibility
+  - Tonemapping and gamma
+  - Diagnostics that work inside a headset
+  - Performance accounting
+  - Common signatures and likely causes
+  - Definition of a real native-stereo milestone
+## FILE: 10-graphics-apis.md
+  - The concept map
+  - Frame boundary: SwapBuffers, not Present
+  - There is no device to bind — bind the context
+  - Own state in a global machine, not on a context object
+  - Reading the projection: hook the uniform upload
+  - Projection companions are an OpenGL problem too
+  - AFR: a legitimate first stereo path when re-entry is expensive
+  - AFR stereo coherence: the disparity you bake in, and how to hide it
+  - D3D9 and D3D10: there is no OpenXR binding at all
+  - Depth submission differs in the details, not the intent
+## FILE: 11-re-anchoring-and-discovery.md
+  - The anchor ladder — prefer higher rungs
+  - Never rely on a single discovery method
+  - Disassembly has to follow every branch
+  - Emulation and data-flow tainting
+  - Validate a discovery by provenance, not by hope
+  - An exported address is usually a thunk, and internal callers bypass it
+  - Record the module base alongside every RVA
+  - Prologue scans lie in four specific ways
+  - Look for ground-truth source before you disassemble
+  - Classify an unknown value by its magnitude, not its declared type
+  - Signature-scan the data, not just the code
+  - Differential state scanning: capture the same process in known states
+  - Version robustness
+  - The engine's own debug commands are a validation oracle
+  - If the engine has its own stereo path, use it
+  - Tooling worth adopting
+## FILE: 12-torso-calculations-and-ergonomics.md
+  - Evidence: this is an underconstrained problem
+  - The ownership model
+  - Shoulder position
+  - Efficient two-bone arm IK
+  - Calibration
+  - Runtime contract
+  - Diagnostics
+  - Headset acceptance matrix
+  - SOMAVR adoption state
+## FILE: 13-teardown-bioshock-vr.md
+  - The headline: re-render the scene per eye instead of patching draws
+  - The stereo ladder as a de-risking device
+  - Finding the re-entry seam: three refutations before the right one
+  - Making a single-threaded engine re-entrant
+  - Pair coherence: replay the base, never re-sample
+  - Pacing: poll, never wait on a racy engine event — and never wait unbounded
+  - Don't port a workaround before testing whether the second game needs it
+  - Architecture: a game-agnostic core behind a capability-based adapter
+  - Build your own in-process frame inspector
+  - A closed-loop flat-screen test harness
+  - Engine-side writes beat render-side writes
+  - Write script properties by name through the console seam
+  - Foreground FOV: the viewmodel is a separate scene with its own lens
+  - Screen classes share one fingerprint: no world pass at all
+  - Cutscenes: the claim, not the pixels, was broken
+  - Assorted findings worth keeping
+## FILE: 14-render-pass-hazard-atlas.md
+  - The five hazard classes
+  - The atlas
+  - The temporal trap, in detail
+  - A stereo-only artifact is infrastructure until proven content
+  - Scope the fix to the narrowest predicate that reproduces
+  - There is no canonical G-buffer
+  - Sub-resolution passes need per-eye company
+  - What to disable outright
+  - Using this atlas on a capture
+## FILE: 15-teardown-il2-1946-vr.md
+  - The headline: when the mod surface is the game's own source, chapter 11 evaporates
+  - The frame loop: same-frame three-pass, from one pose sample
+  - Head pose: two matrices and a swizzle
+  - UI: 100% compositor overlays, including the main menu
+  - What it confirms (independent corroboration)
+  - Where it diverges, and why
+  - What it teaches us (net new)
+  - Improving it: what the playbook would change
+  - Verification notes
+## FILE: README.md
+  - Reading order
+  - The eight lessons that outrank everything else
+## FILE: cross-engine-map.md
+  - Part 1 — Overlaps: problems every engine forced
+  - Part 2 — Contradictions: where the right answer is engine-specific
+  - How to use this map on the next engine
