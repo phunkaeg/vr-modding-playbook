@@ -1,1 +1,0 @@
-{"nodes": [{"id": "assao_params_cbuffer", "label": "ASSAO_Params CBuffer", "file_type": "code", "source_file": "fov-frustum-foundation.md", "rationale": "Must be patched alongside RenderView when changing FoV to prevent GPU crashes and maintain correct depth reconstruction."}], "edges": [], "hyperedges": []}

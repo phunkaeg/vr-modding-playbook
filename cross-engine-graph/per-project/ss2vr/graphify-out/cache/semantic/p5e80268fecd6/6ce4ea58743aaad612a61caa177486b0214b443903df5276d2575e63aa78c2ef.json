@@ -1,1 +1,0 @@
-{"nodes": [{"id": "vr_latency_recovery_plan_render_view_authoritative", "label": "render_view_authoritative", "file_type": "concept", "source_file": "VR_LATENCY_RECOVERY_PLAN.md", "rationale": "Setting to render scene from fresh HMD pose; high latency win but historically prone to culling/picking disconnects."}], "edges": [], "hyperedges": []}

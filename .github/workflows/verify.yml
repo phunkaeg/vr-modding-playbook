@@ -1,0 +1,24 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  playbook:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install documentation dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Build and run reference maths
+        run: cmd /c reference\build-and-test.bat
+      - name: Verify playbook
+        run: python tools/verify.py --portable

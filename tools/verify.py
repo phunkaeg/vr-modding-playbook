@@ -19,6 +19,7 @@ that a linked PAGE exists, not that a linked #fragment exists on it.
 Usage:
   python tools/verify.py            # all checks
   python tools/verify.py --quick    # skip the site build and anchor audit
+  python tools/verify.py --portable # skip checks requiring sibling fleet trees
 """
 
 from __future__ import annotations
@@ -291,17 +292,22 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Run every playbook check.")
     parser.add_argument("--quick", action="store_true",
                         help="skip the site build and anchor audit")
+    parser.add_argument("--portable", action="store_true",
+                        help="skip checks requiring sibling fleet source trees")
     args = parser.parse_args()
 
     py = sys.executable
-    results = [
-        run("source coverage ledger", [py, "tools/coverage.py", "--check"]),
+    results = []
+    if not args.portable:
+        results.append(run("source coverage ledger", [py, "tools/coverage.py", "--check"]))
+    results.extend([
         run("bottleneck ledger", [py, "tools/bottlenecks.py", "--check"]),
         run("retrieval ID integrity", [py, "tools/playbook_integrity.py", "--check"]),
         audit_entry_points(),
-        audit_project_instructions(),
-        reference_maths(),
-    ]
+    ])
+    if not args.portable:
+        results.append(audit_project_instructions())
+    results.append(reference_maths())
 
     if not args.quick:
         results.append(run("strict site build", ["mkdocs", "build", "--strict"]))

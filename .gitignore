@@ -1,7 +1,9 @@
 site/
 cross-engine-graph/corpus/
 cross-engine-graph/graphify-out/cache/
+cross-engine-graph/**/graphify-out/cache/
 cross-engine-graph/graphify_run.log
+/reference/build/
 
 # Belt-and-braces: the real key lives in %LOCALAPPDATA%\graphify\ (outside any
 # repo), but never let a stray secret file land here either.

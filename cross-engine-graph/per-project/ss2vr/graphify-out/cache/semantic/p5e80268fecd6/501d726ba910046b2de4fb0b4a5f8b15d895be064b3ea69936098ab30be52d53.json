@@ -1,1 +1,0 @@
-{"nodes": [{"id": "vr_post_process_design_gpu_backend", "label": "GPU Post-Process Backend", "file_type": "concept", "source_file": "VR_POST_PROCESS_DESIGN.md", "rationale": "Moves view effects from CPU to GPU via fullscreen PS pass to resolve framerate hitches."}], "edges": [], "hyperedges": []}
