@@ -270,6 +270,49 @@ extension surface is *the set of pre/post pairs around moments where your layer 
 what the host is doing*, plus whatever introspection stops extenders duplicating your reverse
 engineering. See [META-008](pattern-catalog.md#meta-008).
 
+## What a source-port VR layer actually costs, measured {#source-port-vr-layer}
+
+Mode 4 below warns that a source port has *"the highest cost: you now ship and support an entire
+engine."* That is true of the **maintenance** burden and misleading about the **integration** one. Two
+independent Quake 2 VR ports were measured, and the VR layer is far smaller than the framing suggests.
+`[SOURCE]`
+
+**Team Beef's Quake2Quest** - active, OpenXR, 6DoF - keeps its VR code in **one directory** the engine
+fork does not otherwise touch, and the entire VR-to-engine interface is **about thirteen globals**:
+
+```c
+extern vec3_t hmdPosition, hmdorientation, positionDeltaThisFrame;
+extern vec3_t weaponangles,     weaponoffset;
+extern vec3_t flashlightangles, flashlightoffset;
+extern float  playerHeight, playerYaw;
+extern int    ducked;          // DUCK_NOTDUCKED / DUCK_BUTTON / DUCK_CROUCHED
+extern bool   player_moving, showingScreenLayer;
+```
+
+Counted across the engine tree: **23 files touched in total**, and the busiest values are read in very
+few places - `hmdPosition` 11 references, `weaponangles` 11, `weaponoffset` 9.
+
+> **`hmdorientation` is read in exactly one file, once.**
+
+That number is the useful one. **Head orientation - the thing a VR port is fundamentally for - is a
+single integration site** on an engine whose camera arrives as a parameter. The cost of a source port is
+in shipping and supporting the engine, not in wiring VR into it.
+
+### Four design decisions visible in that interface
+
+- **Every tracked thing gets its own pose pair.** `weapon*`, `flashlight*` and the HMD are separate -
+  there is no single "controller" concept that attachments hang off. Adding a tracked object is adding
+  two vectors, not extending a class.
+- **The roomscale delta is its own variable.** `positionDeltaThisFrame` sits beside absolute position, so
+  the consumer decides which it wants - the
+  [consumed-versus-residual split](01-camera-and-tracking.md#roomscale-handoff) in one field.
+- **Crouch is tri-state, not boolean.** `DUCK_NOTDUCKED / DUCK_BUTTON / DUCK_CROUCHED` keeps *physically
+  ducking* and *pressing crouch* distinguishable, because they need different handling on the way out
+  even though the game has one crouch.
+- **Per-weapon calibration is data, keyed by the engine's own index.** A cvar per weapon model -
+  `vr_weapon_adjustment_%i`, six values for offset and rotation, with a sane default - so alignment is
+  tuned without a rebuild, and the key is a number the engine already assigns.
+
 ## Mode 4 — Source ports: when the developer released the engine
 
 Where the engine source shipped (id Tech, GoldSrc/Xash, IW/CoD4's community rebuild), the mod is a fork

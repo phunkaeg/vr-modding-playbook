@@ -1820,7 +1820,7 @@ external:
     upstream_url: unknown
     license: unknown
     reviewed_at: 2026-09-02
-    reviewed_revision: unknown
+    reviewed_revision: "tree:461b476dadb7b80e"
     engine: id Tech 2 (Quake II, via KMQuake II)
     api: OpenGL
     vehicle: source-port
@@ -1830,7 +1830,7 @@ external:
       camera_tracking: {review: not_reviewed}
       hands_interaction: {review: not_reviewed}
       ui_hud: {review: not_reviewed}
-      re_discovery: {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation."}
+      re_discovery: {review: not_reviewed, note: "REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation."}
       xr_lifecycle: {review: not_reviewed}
       xr_input: {review: not_reviewed}
       performance: {review: not_reviewed}
@@ -1845,7 +1845,7 @@ external:
     upstream_url: unknown
     license: unknown
     reviewed_at: 2026-09-02
-    reviewed_revision: unknown
+    reviewed_revision: "tree:6762626f4c1aed86"
     engine: id Tech 2 (Quake II, via Yamagi)
     api: OpenGL ES / OpenXR
     vehicle: source-port
@@ -1855,7 +1855,7 @@ external:
       camera_tracking: {review: not_reviewed}
       hands_interaction: {review: not_reviewed}
       ui_hud: {review: not_reviewed}
-      re_discovery: {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does."}
+      re_discovery: {review: not_reviewed, note: "REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does."}
       xr_lifecycle: {review: not_reviewed}
       xr_input: {review: not_reviewed}
       performance: {review: not_reviewed}

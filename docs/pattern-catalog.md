@@ -1098,6 +1098,29 @@ focus, whatever you inject through. Close the side doors or the wrap is decorati
 `QueryInterface` must never hand back the raw device. Load the real DLL from `GetSystemDirectoryA()`
 and refuse any copy in the game folder, which would be yourself.
 
+## INPUT-008 — Ship aim mode as a setting, with the axes split {#input-008}
+
+**Problem:** which input owns yaw and which owns pitch is treated as one design decision, so the mod
+hard-codes a single aim relationship - and makes a comfort call on the player's behalf that cannot be
+predicted from first principles.
+
+**Use when:** any target where the weapon is not motion-tracked, and any target that should support
+seated, gamepad or accessibility play - which is most of them.
+
+**Recipe:** expose aim mode as a **user setting**, and vary **yaw ownership and pitch ownership
+independently** rather than offering one "decoupled" toggle. A shipped Quake 2 port offers nine,
+including head-yaw with mouse-pitch, head-yaw-and-pitch, mouse-only, fully decoupled and disabled.
+**Inherit a taxonomy that has already been tested at scale** where one exists - three of its modes are
+named after another shipping VR title's scheme.
+
+**Proof:** a wearer cycling the modes in the headset and choosing, rather than an argument about which
+is correct. Ship HUD smoothing on the same principle.
+
+**Trip hazard:** do not collapse the axes into one switch. Head-yaw-with-mouse-pitch is a distinct
+experience from head-yaw-and-pitch, and a single "decoupled aim" boolean cannot express it. And a mode
+list is not a substitute for a sane default - pick one, and let the setting exist for the players it does
+not suit.
+
 ## CFG-003 — Write the config before the process starts {#cfg-003}
 
 **Problem:** a setting VR needs cannot be made to stick, because the game rewrites its config at exit with

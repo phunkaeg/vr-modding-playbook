@@ -24,8 +24,8 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | Area | Source | What is sitting there |
 |---|---|---|
 | `re_discovery` | **Dishonored-VR** | REGISTERED NOT REVIEWED 2026-09-02. ALREADY MINED by the in-house DishonoredVR project (2026-09-02), which took the render path instead and avoided its blockers - read for method and negative results, not as an open task. GingasVRFO/Dishonored-VR is a SEPARATE VR conversion of the SAME GAME as the in-house DishonoredVR project. A d3d9.dll proxy built on a FORKED DXVK, with true stereo, 6DoF, motion controls, roomscale and a hand-aimed Blink. DISCONTINUED and explicitly offered for pickup (author burned out on unreproducible reports). Its 13 numbered fork-patches read as a complete rung-2 development history: M2 frame-map instrumentation, M3 stereo splice per-eye draw replay, mirrored-VP skip, world-quad splice via a c6 identity test, depth-test state REPLACING that c6 heuristic, an explicit revert to proven M3.1, measured gates, live projection scales, live writable separation and convergence, per-draw splice verdicts, world-space UP effects (the fire fix), and the Blink marker. The real payload is dllmain.cpp (~23k lines of in-game research log); its negative results are worth more than its code. |
-| `re_discovery` | **Quake2Quest** | REGISTERED NOT REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
-| `re_discovery` | **quake2vr** | REGISTERED NOT REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
+| `re_discovery` | **Quake2Quest** | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
+| `re_discovery` | **quake2vr** | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
 | `stereo` | **Fallout-New-Vegas-FNVR** | NOT HARVESTABLE AS SHIPPED: 'Fallout New Virtual Reality' is a 12 KB FNVR.esp plus a 3 KB .7z - a plugin, not a native VR conversion, and no source. What IS readable in this directory is xNVSE, the New Vegas Script Extender, which is general modding tooling rather than a VR implementation. Extract the archive and re-assess only if the script-extender route to VR becomes relevant to a project. |
 | `stereo` | **GRAND-alien-isolation** | BINARY ONLY: XINPUT1_3.dll proxy. Built on Nibre's MotherVR. No source to read. |
 | `stereo` | **IRON-NEST-VR** | BINARY ONLY: managed code driving OpenXR and D3D11 directly via Silk.NET rather than through Unity XR. No source. |
@@ -127,8 +127,8 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **prince-of-persia-2008-vr-external-research** | external reference | Scimitar / Anvil (Prince of Persia 2008) | framework-companion | — | — | 11 | 13 | 0 | 11 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 0S / 9NR / 2— |
 | **psychonauts-vr-dev-archive** | external reference | Runtime (Psychonauts 2005) | native-injector | — | — | 6 | 147 | 12 | 77 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
 | **psychonauts-vr-modding-notes** | external reference | Runtime (Psychonauts 2005) | native-injector | T1 | ? | 11 | 67 | 0 | 67 | 2026-08-29 | ⚪ unpinned | 3F / 1P / 1S / 6NR / 2— |
-| **Quake2Quest** | external reference | id Tech 2 (Quake II, via Yamagi) | source-port | ? | ? | 9 | 1057 | 707 | 28 | 2026-09-02 | ⚪ unpinned | 0F / 0P / 0S / 11NR / 2— |
-| **quake2vr** | external reference | id Tech 2 (Quake II, via KMQuake II) | source-port | ? | ? | 9 | 1090 | 338 | 24 | 2026-09-02 | ⚪ unpinned | 0F / 0P / 0S / 11NR / 2— |
+| **Quake2Quest** | external reference | id Tech 2 (Quake II, via Yamagi) | source-port | ? | ? | 9 | 1057 | 707 | 28 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
+| **quake2vr** | external reference | id Tech 2 (Quake II, via KMQuake II) | source-port | ? | ? | 9 | 1090 | 338 | 24 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
 | **ravenfield-vr-mod** | external reference | Unity | managed-plugin | — | — | — | 40 | 10 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **Rea-Virtua-Cop-2-VR** | external reference | 1997 fixed-function | native-injector | — | — | 16 | 8 | 3 | 1 | 2026-08-21 | 🟩 current | 3F / 2P / 0S / 0NR / 8— |
 | **ReclaimerVR** | external reference | Blam / Saber (MCC) | native-injector | ? | ? | — | 1 | 0 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 0S / 1NR / 12— |
@@ -227,8 +227,8 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **prince-of-persia-2008-vr-external-research** | 2026-08-29 | `unknown` | `tree:05fa0ca45f7a63b8` | `—` | ⚪ unpinned | unknown | unknown |
 | **psychonauts-vr-dev-archive** | 2026-08-29 | `unknown` | `tree:90e822bc3d53f345` | `—` | ⚪ unpinned | unknown | unknown |
 | **psychonauts-vr-modding-notes** | 2026-08-29 | `unknown` | `tree:45d31d43bf8ad326` | `—` | ⚪ unpinned | unknown | unknown |
-| **Quake2Quest** | 2026-09-02 | `unknown` | `tree:af131bfd6663683b` | `—` | ⚪ unpinned | unknown | unknown |
-| **quake2vr** | 2026-09-02 | `unknown` | `tree:a203a1a1bb26e4e1` | `—` | ⚪ unpinned | unknown | unknown |
+| **Quake2Quest** | 2026-09-02 | `tree:6762626f4c1aed86` | `tree:af131bfd6663683b` | `—` | 🟥 source changed | unknown | unknown |
+| **quake2vr** | 2026-09-02 | `tree:461b476dadb7b80e` | `tree:a203a1a1bb26e4e1` | `—` | 🟥 source changed | unknown | unknown |
 | **ravenfield-vr-mod** | 2026-08-26 | `tree:5ff2383f8ff12840` | `tree:5ff2383f8ff12840` | `4ed67514aa3302ba255b6ddb870854f9c992737e` | 🟩 current | https://github.com/GDani31/ravenfield-vr-mod | unknown |
 | **Rea-Virtua-Cop-2-VR** | 2026-08-25 | `tree:d5c76a58e1e614ca` | `tree:d5c76a58e1e614ca` | `—` | 🟩 current | unknown | unknown |
 | **ReclaimerVR** | 2026-08-26 | `tree:cf2ce2d8fb2ea250` | `tree:cf2ce2d8fb2ea250` | `9f746e07e6a34c5d23189bad1b2fb87b08d1c6e3` | 🟩 current | https://github.com/Nibre/ReclaimerVR | unknown |
@@ -1326,7 +1326,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `performance` | 🟥 not reviewed | `—` | — |
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
-| `re_discovery` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
+| `re_discovery` | 🟥 not reviewed | `—` | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### quake2vr
@@ -1344,7 +1344,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `performance` | 🟥 not reviewed | `—` | — |
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
-| `re_discovery` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
+| `re_discovery` | 🟥 not reviewed | `—` | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### ravenfield-vr-mod

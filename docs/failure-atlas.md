@@ -245,6 +245,8 @@ legacy failure ID and should name this atlas when interpreted.
 | **FAIL-META-013** | A candidate shortlist misses strong targets | Sweep every install location - GOG, Epic, standalone, retail - before ranking, and record DRM status beside the engine | A survey scoped to one storefront, treated as complete | [08](08-project-process.md#sweep-install-locations) |
 | **FAIL-RE-021** | A packing heuristic flags a game module that is not packed | Scope thin-import-table checks to EXECUTABLES | A game module legitimately imports almost nothing, because it links against the engine's exports | [08](08-project-process.md#sweep-install-locations) |
 | **FAIL-META-014** | An engine family is assumed modular and the target turns out monolithic | Dump the exports: a single contract symbol means modular, an allocator shim means the renderer is in the executable | Family lineage read as a guarantee about one build | [00](00-engine-profiles.md#id-tech-family) |
+| **FAIL-INPUT-017** | Testers disagree about whether aiming feels right, and no single setting satisfies them | Split yaw ownership from pitch ownership and ship both as a setting | One hard-coded aim relationship, treated as a design decision rather than a preference | [INPUT-008](pattern-catalog.md#input-008) |
+| **FAIL-HAND-014** | Weapon alignment is right for one weapon and wrong for others | Key a per-weapon calibration record to the engine's own model index, as data | A single global weapon offset, so tuning one weapon breaks another | [18](18-beyond-the-native-injector.md#source-port-vr-layer) |
 
 ## How to add a failure
 

@@ -631,6 +631,36 @@ and say which space every number is in when you record it - this is the
 [eye-height datum problem](12-torso-calculations-and-ergonomics.md#eye-height-datum) in another
 coordinate system.
 
+## Aim mode is a shipped setting, not a design decision to get right once {#aim-mode-is-a-setting}
+
+The fleet has treated decoupled aim as *the* correct answer. An earlier Quake 2 VR port shipped **nine
+aim modes as a user cvar** and let the player choose. `[SOURCE]`
+
+```c
+VR_AIMMODE_DISABLE,
+VR_AIMMODE_HEAD_MYAW,          VR_AIMMODE_HEAD_MYAW_MPITCH,
+VR_AIMMODE_MOUSE_MYAW,         VR_AIMMODE_MOUSE_MYAW_MPITCH,
+VR_AIMMODE_TF2_MODE2,          VR_AIMMODE_TF2_MODE3,   VR_AIMMODE_TF2_MODE4,
+VR_AIMMODE_DECOUPLED
+```
+
+Read the axis structure rather than the names: the modes vary **which input owns yaw and which owns
+pitch**, independently. Head-yaw with mouse-pitch is a different experience from head-yaw-and-pitch, and
+both are different from fully decoupled - and **which one a given player tolerates is not predictable
+from first principles.**
+
+**Three of them are named after another shipping VR implementation's taxonomy** (`TF2_MODE2..4`),
+which is the useful part: rather than inventing a scheme, they inherited one that had already been
+tested on players at scale and shipped it alongside their own.
+
+**This matters beyond that era.** It was written before hand controllers, so the question was "you have a
+head tracker and a mouse" - but the same question returns for **seated play, gamepad play, accessibility,
+and any target where the weapon is not motion-tracked.** A mod that hard-codes one aim relationship has
+made a comfort decision on the player's behalf.
+
+The same port ships HUD **bounce** modes on the same principle (`NONE / SES / LES`), which is
+[an in-headset A/B](08-project-process.md#headset-reachable-controls) turned into a shipped preference.
+
 ## A controller lying on a desk is not reporting zero {#resting-controller}
 
 Nine runs, five proposed mechanisms, all buried, and a shipped workaround built on a correlation nobody
