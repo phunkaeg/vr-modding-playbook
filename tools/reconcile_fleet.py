@@ -264,10 +264,30 @@ def ask(batch: dict[str, list[str]], roster: str) -> list[dict]:
 
 # -------------------------------------------------------------- edge build --
 
-def edges_from_groups(groups: list[dict], index: dict) -> tuple[list[dict], Counter, list[str]]:
-    """Cross-project edges only, de-duplicated, self-loops impossible by construction."""
+def slug(text: str) -> str:
+    keep = [c.lower() if c.isalnum() else "_" for c in text]
+    return "".join(keep).strip("_").replace("__", "_")[:60] or "concept"
+
+
+def edges_from_groups(
+    groups: list[dict], index: dict
+) -> tuple[list[dict], list[dict], list[dict], Counter, list[str]]:
+    """Cross-project edges only, de-duplicated, self-loops impossible by construction.
+
+    Also materialises each surviving concept as a NODE. graphify's query seeds by
+    lexical match on labels, so a question phrased in plain English ("stop geometry
+    being culled") matches nothing when the only nodes are engine symbols like
+    cFrustum::SetupPerspectiveProj. Measured on this graph: that question seeded on
+    ICEBREAKER and SwineInputHandler and never reached the concept at all, while
+    "frustum culling" reached four projects immediately. A concept node carries the
+    plain-English name and the reason, so the question lands on it and every
+    project's implementation is one hop away.
+    """
     edges: list[dict] = []
+    concept_nodes: list[dict] = []
+    concept_edges: list[dict] = []
     seen: set[tuple[str, str]] = set()
+    seen_concepts: set[str] = set()
     stats = Counter()
     invented: list[str] = []
 
@@ -316,13 +336,49 @@ def edges_from_groups(groups: list[dict], index: dict) -> tuple[list[dict], Coun
                     "provenance": "reconcile_fleet.py",
                 })
                 stats["edge_kept"] += 1
-    return edges, stats, invented
+
+        # Materialise the concept itself, once, and hang every member off it.
+        name = (g.get("concept") or "").strip()
+        if not name:
+            continue
+        cid = f"concept{SEP}{slug(name)}"
+        if cid not in seen_concepts:
+            seen_concepts.add(cid)
+            concept_nodes.append({
+                "id": cid,
+                "label": name,
+                "norm_label": name.lower(),
+                "description": g.get("why", ""),
+                "project": "concept",
+                "file_type": "concept",
+                "source_file": "FLEET_RECONCILIATION.md",
+                "_origin": "reconcile_fleet",
+                "community": 0,
+            })
+            stats["concept_node"] += 1
+        for _, nid in resolved:
+            key = (cid, nid)
+            if key in seen:
+                continue
+            seen.add(key)
+            concept_edges.append({
+                "source": cid, "target": nid,
+                "relation": "instance_of",
+                "scope": "concept",
+                "concept": name,
+                "confidence": "INFERRED",
+                "evidence_grade": "INFERENCE",
+                "provenance": "reconcile_fleet.py",
+            })
+            stats["concept_edge"] += 1
+
+    return edges, concept_edges, concept_nodes, stats, invented
 
 
 # ----------------------------------------------------------------- report ---
 
 def coverage_report(graphs: dict, nodes: list, intra: list, cross: list,
-                    stats: Counter, invented: list) -> str:
+                    cnodes: list, cedges: list, stats: Counter, invented: list) -> str:
     pids = list(graphs)
     pair = Counter()
     touched = Counter()
@@ -352,10 +408,17 @@ def coverage_report(graphs: dict, nodes: list, intra: list, cross: list,
     L.append("## Totals")
     L.append("")
     L.append(f"- projects reconciled: **{len(pids)}**")
-    L.append(f"- nodes: **{len(nodes):,}** (all namespaced `project{SEP}id`)")
+    L.append(f"- nodes: **{len(nodes):,}** (all namespaced `project{SEP}id`), of which "
+             f"**{len(cnodes):,}** are concept nodes")
     L.append(f"- intra-project links: **{len(intra):,}**")
     L.append(f"- cross-project links: **{len(cross):,}**")
+    L.append(f"- concept→implementation links: **{len(cedges):,}**")
     L.append(f"- distinct concepts bridging 2+ projects: **{len(concepts):,}**")
+    L.append("")
+    L.append("Concept nodes exist because graphify seeds a query by **lexical** match on labels.")
+    L.append("A question in plain English (\"stop geometry being culled\") matches no engine symbol")
+    L.append("and seeds on noise; a concept node carries the plain-English name and reason, so the")
+    L.append("question lands on it and every project's implementation is one `instance_of` hop away.")
     L.append("")
     L.append("## Per-project coverage")
     L.append("")
@@ -445,6 +508,8 @@ def main() -> int:
     print(f"validation index: {len(index):,} (project, label) pairs")
 
     cross: list[dict] = []
+    cedges: list[dict] = []
+    cnodes: list[dict] = []
     stats: Counter = Counter()
     invented: list[str] = []
 
@@ -459,12 +524,14 @@ def main() -> int:
             print(f"  pass {i}/{len(passes)}: {sum(len(v) for v in b.values()):,} labels")
             groups.extend(ask(b, roster))
         print(f"\nmodel proposed {len(groups)} group(s)")
-        cross, stats, invented = edges_from_groups(groups, index)
-        print(f"cross-project edges kept: {len(cross):,}")
+        cross, cedges, cnodes, stats, invented = edges_from_groups(groups, index)
+        print(f"cross-project edges kept: {len(cross):,}   "
+              f"concept nodes: {len(cnodes):,}   concept edges: {len(cedges):,}")
         for k, v in sorted(stats.items()):
             print(f"   {k:<22} {v:,}")
 
-    report = coverage_report(graphs, nodes, intra, cross, stats, invented)
+    nodes = nodes + cnodes
+    report = coverage_report(graphs, nodes, intra, cross, cnodes, cedges, stats, invented)
 
     if args.dry_run:
         print("\n" + report)
@@ -479,13 +546,13 @@ def main() -> int:
               f"dropped on load: {', '.join(orphan[:4])}"
               f"{' ...' if len(orphan) > 4 else ''}")
 
-    write_graph(OUT, nodes, intra + cross, hyperedges=hyper,
+    write_graph(OUT, nodes, intra + cross + cedges, hyperedges=hyper,
                 fleet={"projects": list(graphs), "generated": date.today().isoformat(),
                        "cross_project_links": len(cross)})
     REPORT.write_text(report, encoding="utf-8")
     print(f"\nwrote {OUT}")
-    print(f"      {len(nodes):,} nodes, {len(intra) + len(cross):,} links "
-          f"({len(cross):,} cross-project)")
+    print(f"      {len(nodes):,} nodes, {len(intra) + len(cross) + len(cedges):,} links "
+          f"({len(cross):,} cross-project, {len(cedges):,} concept)")
     print(f"wrote {REPORT}")
 
     if not args.offline and not cross:

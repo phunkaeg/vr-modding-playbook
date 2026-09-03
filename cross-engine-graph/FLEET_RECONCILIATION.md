@@ -9,10 +9,16 @@ one-line reason, and are graded `INFERENCE` - a model proposed them from labels 
 ## Totals
 
 - projects reconciled: **8**
-- nodes: **2,000** (all namespaced `project::id`)
+- nodes: **2,032** (all namespaced `project::id`), of which **32** are concept nodes
 - intra-project links: **880**
 - cross-project links: **192**
+- concept→implementation links: **124**
 - distinct concepts bridging 2+ projects: **32**
+
+Concept nodes exist because graphify seeds a query by **lexical** match on labels.
+A question in plain English ("stop geometry being culled") matches no engine symbol
+and seeds on noise; a concept node carries the plain-English name and reason, so the
+question lands on it and every project's implementation is one `instance_of` hop away.
 
 ## Per-project coverage
 
