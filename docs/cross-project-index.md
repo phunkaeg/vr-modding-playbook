@@ -40,6 +40,11 @@ the chapters carry the distilled rule, these carry the working. Distilled in
 | **CallOfDuty4_VR** | IW source port | Deployment engineering: 32-bit OpenXR registration, preflight vs live receipt, refuse-don't-guess installers |
 | **JKXR** | id Tech 3 source port | Command-buffer stereo replay **with validate-before-replay**; grip-to-button hysteresis; latched action ownership |
 | **BF2VR** | Frostbite / D3D11, native | The `-Array` string-convention type enumeration; register mid-hooks; view-dependent lighting disabled via engine settings; anti-cheat and the interoperability framing |
+| **MonsterDeadWood FC2VR** | Dunia / D3D9, native | Exact-build culling sphere/plane dataflow; observer-only association before culling mutation; hash-locked golden experiments |
+| **MonsterDeadWood C2VR** | CryEngine 3 / D3D11, native | Atomic publication of pixels + depth + pose/FOV/contract; last-good pair retains original metadata; startup absence is WAIT, not permanent fault |
+| **MonsterDeadWood BF3VR** | Frostbite 2 / D3D11, native | Same-Present native scheduler proof; pointer identity is not image identity; distinct eye images still need inverse-depth disparity proof |
+| **MonsterDeadWood DiRT2VR** | EGO / D3D11, native | Submitted-buffer stereo oracle; consumer-draw → stack → recurring-RVA discovery; the `EFLAGS.RF` breakpoint-resume trap |
+| **MonsterDeadWood TimeShiftVR** | Saber3D / D3D9, native | Structural execution versus visual acceptance; draw ordinal + geometry/shader signature beats last-texture-per-shader replay |
 | **Rea-Virtua-Cop-2-VR** | 1997 fixed-function | Scene reconstruction from the draw stream — the bottom rung, and when it is the *only* door |
 | **GTFO / SPT-VR / RoR2 / BendyVR / MyFriendlyNeighborhood / White_Knuckle_VR** | Unity, BepInEx | The managed-plugin mode: per-eye callbacks, hidden-area-mask rebuild, physics-input philosophy, third-person→VR |
 | **satisfactory-uevr-enhancements** | UEVR + companion mod | What you build *next to* a generic framework |
@@ -58,6 +63,25 @@ game — [13](13-teardown-bioshock-vr.md)), and the shipped-mod source trees in
   See `Swat4-VR\docs\VENGEANCE_SHARED_FINDINGS.md`.
 - **DishonoredVR ↔ Swat4-VR** — both plain D3D9, and they solved the bridge question from opposite ends.
 - **SOMAVR ↔ PreyVR** — the two 64-bit targets. x64-only traps (REX prefixes) apply to both and to nobody else.
+- **MonsterDeadWood FC2VR ↔ FarCry2-VR** — same game, different retail bytes and graphics route. Flow the
+  culling *method* across; never flow an RVA or ABI without proving it against the in-house executable.
+
+---
+
+## MonsterDeadWood transfer map
+
+This is the practical hand-off into the in-house fleet. It lists the first place to apply each result;
+it does **not** claim those project code changes have been made.
+
+| New reusable result | Canonical home | First in-house use |
+|---|---|---|
+| Claim ID + baseline + artifacts + decision rule; promote only that claim | [META-010](pattern-catalog.md#meta-010), [06](06-debugging-methodology.md#claim-scoped-promotion) | Every project experiment and evidence ledger |
+| Pixels, depth, pose, FOV and resource generation publish atomically | [STR-002](pattern-catalog.md#str-002) | **FarCry2-VR native pair**, then SS2VR/SOMAVR asynchronous pair audits |
+| Semantic image epoch outranks COM pointer or shader identity | [STR-004](pattern-catalog.md#str-004) | FarCry2-VR capture seam; BioshockVR/DishonoredVR replay correspondence |
+| Observer-only denominator before force-pass or duplication | [06](06-debugging-methodology.md#observer-before-intervention) | FarCry2-VR M3/culling probes; Swat4-VR side-effect controls |
+| Submitted-buffer oracle plus inverse-depth disparity | [FAIL-STR-001](failure-atlas.md) | Objective stereo acceptance across the fleet |
+| `EFLAGS.RF` on hardware execution-breakpoint resume | [RE-005](pattern-catalog.md#re-005) | Every x86 target using DR breakpoints |
+| Exact execution is not visible success | [FAIL-TEST-016](failure-atlas.md) | Render-state/shadow repairs in all projects |
 
 ---
 
@@ -85,7 +109,7 @@ their own binaries. **Check here before starting that investigation.**
 |---|---|---|---|
 | **SS2VR** | **Parameter** — `Kex_RenderFrame` builds it on its own stack, passes by pointer to `0x45C470` | **PROVEN** — `Kex_RenderCubemapSixFaces` → `Kex_RenderWorldFromCamera_Probe` **6× per frame in stock gameplay** | Best case in the fleet. The borrow-and-restore bug family does not apply |
 | **PreyVR** | **Parameter** — `CreateGeneralPassRenderingInfo(const CCamera&,…)` @ `0x1E5B30`; `CRenderView::SetCamera` copies **by value** | `C3DEngine::RenderWorld` @ `0x21F520`, zero direct xrefs — all virtual dispatch, `IProcess` idx 3, vtable `+0x18` | **H-009: preconditions met, viability not established.** Nothing called yet |
-| **FarCry2-VR** | **Global** — must borrow and restore | `WorldExec` @ `0x342360` — 37 pass dispatches, **no simulation** | All four functions decompiled and confirmed on their own binary. Recipe complete; M3 side-effect gate unrun |
+| **FarCry2-VR** | **Global** — must borrow and restore | `WorldExec` @ `0x342360` — 37 pass dispatches, **no simulation** | M3 Q1 live: 3,521 prepare+execute replays, 1.915× draws, animator 1.0×. Camera delivery, zero-delta control and capture/publication remain open |
 | **SOMAVR** | **Parameter** — `iRenderer::Render(…, cFrustum* apFrustum, …)`, `mpCurrentFrustum` assigned from the argument every call | unresolved | **But their own AFR path mutates the frustum in place** — F-19 and F-20 are that defect family, self-inflicted |
 | **DishonoredVR** | unresolved | `+0x2C59A0` is a reachability lead only; needs 59 callees walked | **Not open.** Side-effect gate never run by anyone |
 | **Swat4-VR** | unresolved | unresolved — 7,682 exported symbols make it fast to check | Open |
@@ -133,6 +157,9 @@ The two findings worth knowing before you touch anything:
 |---|---|---|
 | Alternate-eye (AFR): coherence, pair latching, eye-lag root cause | SS2VR | `docs/UEVR_STEREO_LESSONS.md`, `VR_LATENCY_RECOVERY_PLAN.md` |
 | Per-eye temporal history banks under AFR (the fix pattern) | SOMAVR | `docs/BUILD_HISTORY.md` (0.5.x) |
+| Atomic pixels + depth + render pose/FOV/contract publication across keyed-mutex transport | *external: MonsterDeadWood C2VR* | `C2VR/research/POSEPAIR_PACKET_ATOMICITY_PACING_20260824.md`, donor `t1_proxy.cpp` |
+| One resource reused serially for L/R: semantic phase and generation outrank pointer identity | *external: MonsterDeadWood BF3VR* | `BF3VR/docs/STATE.md` |
+| Submitted-buffer oracle: mono / normal / swap / exaggerated phases | *external: MonsterDeadWood DiRT2VR* | `DiRT2VR/docs/XR_EYE_SNAPSHOT_ORACLE_v1.3.0.md` |
 | **SequentialReentry** — call the scene-draw twice | *external: bioshock-vr* | [13](13-teardown-bioshock-vr.md) |
 | Per-draw stereo replay, private eye targets, proof ladder | BioshockVR | `docs/BUILD_HISTORY.md`, `DECISION_LOG.md` |
 | Desktop + two XR eye frames as three complete game frames, with each eye copied from the main offscreen colour image | *external: KSA_XR* | [10](10-graphics-apis.md#vulkan-three-frame-proof) |
@@ -152,6 +179,7 @@ The two findings worth knowing before you touch anything:
 | Cull-camera ownership; the FOV lever | SS2VR; *Halo-MCC-VR* | `docs/CULLING_FRUSTUM.md` |
 | Authored-camera yielding (20 player states, 3 detection signals) | SOMAVR | `docs/AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md` |
 | Reference-space first-pose settling latch | SOMAVR | `docs/BUILD_HISTORY.md` (0.5.10-poselatch) |
+| Side-only binocular cull union: preserve depth planes, widen lateral planes | *external: MonsterDeadWood FC2VR* | `FC2VR/research/FRUSTUM_PLANE_CLASS_MAP_20260824.md` — method transfers; offsets do not |
 | One recenter event across all lanes | BioshockVR | `docs/DECISION_LOG.md` |
 | Unified tracking space as the root cause of *panel* drift (not view drift) | *external: IL-2 1946 VR* | [15](15-teardown-il2-1946-vr.md) |
 | Roomscale crouch double-drop | SS2VR | `docs/ROOMSCALE_CROUCH_RESEARCH.md` |
@@ -194,6 +222,9 @@ The two findings worth knowing before you touch anything:
 | Ghidra annotation loss on re-analysis | PreyVR | `docs/GHIDRA_SYNC.md` |
 | Frame inspector as a RenderDoc replacement | FarCry2-VR | `docs/RE_FINDINGS.md` |
 | Live probing over static RE (four recipes failed) | SS2VR | `docs/FAILURE_REGISTRY.md` |
+| Hardware execution breakpoint resumes only after `EFLAGS.RF`; `DR6` clear is insufficient | *external: MonsterDeadWood DiRT2VR* | `DiRT2VR/docs/results/REENTRY_CONTRACT_RF_FIX_20260827_031450_032351.md` |
+| Start at a known GPU consumer, capture the first-consuming-draw stack, then rank recurring RVAs | *external: MonsterDeadWood DiRT2VR* | `DiRT2VR/docs/results/CB400_BIND_ISOLATOR_20260827_141903.md` |
+| Promote registry/RTTI candidates only after direct graphics-API activity proves runtime ownership | *external: MonsterDeadWood TimeShiftVR* | `TimeShiftVR/docs/STATE.md` |
 
 ## Process, testing, harnesses
 
@@ -203,6 +234,7 @@ The two findings worth knowing before you touch anything:
 | Control capture that can veto a verdict | Swat4-VR | `docs/DERISKING_BATTERY.md` |
 | Headless fixtures replaying live discoveries | PreyVR | `docs/HEADLESS_TESTING.md` |
 | Pre-registered decision rules (confirm/refute/ambiguous) | PreyVR | `docs/LIVE_*_PROTOCOL.md` |
+| Claim-scoped branch promotion with baseline and artifact integrity gates | *external: all five MonsterDeadWood trees* | each project's `docs/BRANCH_PROMOTION_POLICY.md` + `tools/research_integrity.py` |
 | Launch preconditions as test validity (affinity mask) | FarCry2-VR | `docs/DECISION_LOG.md` D-005 |
 | Config-key consumer check (found 10/15 dead) | Swat4-VR | `tools/check_config_keys.py` |
 | Verifying the baseline you're betting on | Swat4-VR | `docs/FAILURE_REGISTRY.md` F-0011 |

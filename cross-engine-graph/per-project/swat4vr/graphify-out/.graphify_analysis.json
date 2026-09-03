@@ -1,0 +1,430 @@
+{
+  "communities": {
+    "0": [
+      "agents_md",
+      "apitrace",
+      "cross_engine_graph",
+      "re_mcp_toolkit",
+      "swat4_exe",
+      "swat4x_exe",
+      "xr_tape"
+    ],
+    "1": [
+      "address_registry_engine_dll",
+      "address_registry_flevelscenenode_render",
+      "address_registry_fplayerscenenode_ctor",
+      "address_registry_fproxyrenderinterface_settransform",
+      "address_registry_ugameengine_draw"
+    ],
+    "2": [
+      "address_registry_md",
+      "build_history_md",
+      "current_state_md",
+      "failure_registry_md",
+      "vr_findings_index_md"
+    ],
+    "3": [
+      "engine_notes_swat4_flevelscenenode_render",
+      "engine_notes_swat4_fplayerscenenode_render",
+      "engine_notes_swat4_ugameengine_draw",
+      "engine_notes_swat4_uscriptedtexture_drawportal",
+      "experiment_function_matching_calibration"
+    ],
+    "4": [
+      "current_state_sequential_reentry",
+      "engine_fplayerscenenode_ctor",
+      "engine_ugameengine_draw",
+      "tools_pixel_proof"
+    ],
+    "5": [
+      "autotest_census_parse",
+      "autotest_orchestrator",
+      "autotest_xr_tape"
+    ],
+    "6": [
+      "engine_notes_swat4_alternate_eye_rendering",
+      "engine_notes_swat4_b1",
+      "engine_notes_swat4_b1frameid"
+    ],
+    "7": [
+      "address_registry_d3d9_dll",
+      "address_registry_ud3drenderdevice"
+    ],
+    "8": [
+      "address_registry_swat4x_exe",
+      "claude_rules"
+    ],
+    "9": [
+      "conventions_engine_rotation",
+      "conventions_world_scale"
+    ],
+    "10": [
+      "decision_log_d0003",
+      "engine_uviewport_exec"
+    ],
+    "11": [
+      "engine_notes_swat4_on12_presenttoxr",
+      "engine_notes_swat4_openxr_loader"
+    ],
+    "12": [
+      "engine_notes_swat4_vengeance",
+      "sef_mod"
+    ],
+    "13": [
+      "failure_registry_f0001",
+      "failure_registry_f0007"
+    ],
+    "14": [
+      "failure_registry_f0013",
+      "failure_registry_f0019"
+    ],
+    "15": [
+      "failure_registry_f0018",
+      "failure_registry_f0025"
+    ],
+    "16": [
+      "forward_plan_c4",
+      "forward_plan_h8_interaction"
+    ],
+    "17": [
+      "forward_plan_h3",
+      "forward_plan_monotracked"
+    ],
+    "18": [
+      "next_test_step0",
+      "vengeance_findings_viewmodel_fov"
+    ],
+    "19": [
+      "next_test_step2",
+      "playbook_handover_hud_cropping"
+    ],
+    "20": [
+      "playbook_handover_d3d9on12_ownership",
+      "readme_r1_derisking"
+    ],
+    "21": [
+      "conventions_engine_fov"
+    ],
+    "22": [
+      "conventions_handedness"
+    ],
+    "23": [
+      "decision_log_d0009"
+    ],
+    "24": [
+      "derisking_battery_r1"
+    ],
+    "25": [
+      "derisking_battery_r2"
+    ],
+    "26": [
+      "derisking_battery_r3"
+    ],
+    "27": [
+      "derisking_battery_r4"
+    ],
+    "28": [
+      "derisking_battery_r6"
+    ],
+    "29": [
+      "engine_notes_swat4_use9on12"
+    ],
+    "30": [
+      "failure_registry_f0002"
+    ],
+    "31": [
+      "failure_registry_f0003"
+    ],
+    "32": [
+      "failure_registry_f0004"
+    ],
+    "33": [
+      "failure_registry_f0005"
+    ],
+    "34": [
+      "failure_registry_f0006"
+    ],
+    "35": [
+      "failure_registry_f0008"
+    ],
+    "36": [
+      "failure_registry_f0009"
+    ],
+    "37": [
+      "failure_registry_f0010"
+    ],
+    "38": [
+      "failure_registry_f0011"
+    ],
+    "39": [
+      "failure_registry_f0012"
+    ],
+    "40": [
+      "failure_registry_f0014"
+    ],
+    "41": [
+      "failure_registry_f0015"
+    ],
+    "42": [
+      "failure_registry_f0016"
+    ],
+    "43": [
+      "failure_registry_f0017"
+    ],
+    "44": [
+      "failure_registry_f0020"
+    ],
+    "45": [
+      "failure_registry_f0021"
+    ],
+    "46": [
+      "failure_registry_f0022"
+    ],
+    "47": [
+      "failure_registry_f0023"
+    ],
+    "48": [
+      "failure_registry_f0024"
+    ],
+    "49": [
+      "failure_registry_f0026"
+    ],
+    "50": [
+      "failure_registry_f0027"
+    ],
+    "51": [
+      "failure_registry_f0028"
+    ],
+    "52": [
+      "failure_registry_f0029"
+    ],
+    "53": [
+      "forward_plan_c1"
+    ],
+    "54": [
+      "forward_plan_h1"
+    ],
+    "55": [
+      "forward_plan_h2"
+    ],
+    "56": [
+      "handover_interop_9on12"
+    ],
+    "57": [
+      "milestones_m1_2"
+    ],
+    "58": [
+      "next_test_step1"
+    ],
+    "59": [
+      "next_test_step3"
+    ],
+    "60": [
+      "playbook_handover_cancelling_errors"
+    ],
+    "61": [
+      "playbook_handover_device_loss"
+    ],
+    "62": [
+      "playbook_handover_openxr_fov"
+    ],
+    "63": [
+      "playbook_handover_struct_offsets"
+    ],
+    "64": [
+      "re_plan_anchor_ladder"
+    ],
+    "65": [
+      "testing_exit_counters"
+    ],
+    "66": [
+      "testing_mutate_py"
+    ],
+    "67": [
+      "vengeance_findings_scenenode"
+    ]
+  },
+  "cohesion": {
+    "0": 0.2857142857142857,
+    "1": 0.4,
+    "2": 0.4,
+    "3": 0.4,
+    "4": 0.5,
+    "5": 0.6666666666666666,
+    "6": 0.6666666666666666,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0
+  },
+  "gods": [
+    {
+      "id": "address_registry_engine_dll",
+      "label": "Engine.dll",
+      "degree": 4
+    },
+    {
+      "id": "engine_notes_swat4_fplayerscenenode_render",
+      "label": "FPlayerSceneNode::Render",
+      "degree": 3
+    },
+    {
+      "id": "current_state_sequential_reentry",
+      "label": "Sequential Re-entry Architecture",
+      "degree": 3
+    },
+    {
+      "id": "engine_notes_swat4_ugameengine_draw",
+      "label": "UGameEngine::Draw",
+      "degree": 2
+    },
+    {
+      "id": "engine_notes_swat4_b1",
+      "label": "B1 Doubling",
+      "degree": 2
+    },
+    {
+      "id": "autotest_orchestrator",
+      "label": "autotest.ps1",
+      "degree": 2
+    },
+    {
+      "id": "experiment_function_matching_calibration",
+      "label": "Function Matcher Calibration",
+      "degree": 1
+    },
+    {
+      "id": "engine_notes_swat4_alternate_eye_rendering",
+      "label": "Alternate-eye rendering",
+      "degree": 1
+    },
+    {
+      "id": "engine_notes_swat4_flevelscenenode_render",
+      "label": "FLevelSceneNode::Render",
+      "degree": 1
+    },
+    {
+      "id": "engine_notes_swat4_uscriptedtexture_drawportal",
+      "label": "UScriptedTexture::DrawPortal",
+      "degree": 1
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Viewmodel FOV Formula",
+      "target": "Step 0: Desk Probe",
+      "source_files": [
+        "VENGEANCE_SHARED_FINDINGS.md",
+        "NEXT_TEST.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "HUD Cropping vs Scaling",
+      "target": "Step 2: HUD Scale",
+      "source_files": [
+        "PLAYBOOK_HANDOVER_2026-09-02.md",
+        "NEXT_TEST.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "D3D9On12 Device Ownership",
+      "target": "R1: D3D9 to OpenXR Interop",
+      "source_files": [
+        "PLAYBOOK_HANDOVER_2026-09-02.md",
+        "README.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Project Rules",
+      "target": "swat4x.exe",
+      "source_files": [
+        "CLAUDE.md",
+        "ADDRESS_REGISTRY.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Two-half Architecture",
+      "target": "UViewport::Exec",
+      "source_files": [
+        "DECISION_LOG.md",
+        "ADDRESS_REGISTRY.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    }
+  ],
+  "tokens": {
+    "input": 5255,
+    "output": 1222
+  }
+}

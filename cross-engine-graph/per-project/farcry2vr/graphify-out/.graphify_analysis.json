@@ -1,0 +1,456 @@
+{
+  "communities": {
+    "0": [
+      "runbooks_apitrace_affinity_mask",
+      "runbooks_apitrace_apitrace",
+      "runbooks_apitrace_farcry2_exe",
+      "runbooks_apitrace_find_matrices",
+      "runbooks_apitrace_systemdetection_dll",
+      "runbooks_apitrace_trace_farcry2_ps1",
+      "runbooks_injection_farcry2vr_dll",
+      "runbooks_injection_fc2vr_inject_exe",
+      "runbooks_xr_tape_xr_tape",
+      "runbooks_xrsim_xrsim"
+    ],
+    "1": [
+      "address_registry_md",
+      "dunia_dll",
+      "engine_dunia_exports_fce_exports",
+      "engine_player_rig_map_bone_map",
+      "farcry2vr_dll",
+      "fce_camera_getpos",
+      "openxr_runtime",
+      "startup_watchdog",
+      "xr_sim"
+    ],
+    "2": [
+      "re_findings_camera_rebuild",
+      "re_findings_ccamera",
+      "re_findings_d3d10_renderer",
+      "re_findings_dunia_dll",
+      "re_findings_gamerprofile_xml",
+      "re_findings_input_abstraction",
+      "re_findings_nearz_pass",
+      "re_findings_scene_camera_buffer"
+    ],
+    "3": [
+      "agents_codex",
+      "claude_rules",
+      "cross_engine_graph",
+      "farcry2_exe",
+      "re_mcp_toolkit",
+      "trace_farcry2_ps1",
+      "xr_tape"
+    ],
+    "4": [
+      "camera_copy",
+      "camera_rebuild",
+      "m3_gate",
+      "native_stereo_plan",
+      "prepare_frame_graph_d3d10",
+      "view_builder",
+      "world_exec_d3d10"
+    ],
+    "5": [
+      "affine_residual_gate",
+      "alternate_eye_rendering",
+      "current_state",
+      "decision_log"
+    ],
+    "6": [
+      "archive_forward_plan_authored_state_detector",
+      "re_findings_malaria_event",
+      "re_findings_sprint_event",
+      "test_checklists_validity_contract"
+    ],
+    "7": [
+      "engine_d3d9_openxr_notes_d3d9_openxr",
+      "engine_dunia_engine_profile_dunia",
+      "private_d3d11_device",
+      "xr_khr_d3d11_enable"
+    ],
+    "8": [
+      "engine_dunia_render_device_render_abstraction",
+      "engine_render_pass_hazards_hazard_atlas",
+      "fc2vr_renderdevice_draw",
+      "fc2vr_scenerenderloop"
+    ],
+    "9": [
+      "handover_native_stereo_d3d10_prepareframegraph",
+      "handover_native_stereo_d3d10_worldexec",
+      "native_stereo_plan_m3_gate",
+      "readme_dunia_vtable_hooking"
+    ],
+    "10": [
+      "archive_needs_user_input",
+      "archive_probe_plan",
+      "id3d10device"
+    ],
+    "11": [
+      "arm_ik_solver",
+      "bone_80_palm",
+      "handover_viewmodel_and_aim_animator_hook"
+    ],
+    "12": [
+      "doc_index",
+      "findings_index",
+      "installation_guide"
+    ],
+    "13": [
+      "re_findings_affinity_workaround",
+      "re_findings_cpuid_loop_bug",
+      "re_findings_systemdetection_dll"
+    ],
+    "14": [
+      "re_findings_aimangles",
+      "re_findings_lookangles",
+      "re_findings_pawn_getaimtarget"
+    ],
+    "15": [
+      "re_findings_camera_bone",
+      "re_findings_dunia_bone_array",
+      "re_findings_weapon_attach_bone"
+    ],
+    "16": [
+      "re_findings_vs_constant_buffers",
+      "re_findings_weapon_draw_indexed",
+      "re_findings_weapon_matrix_absence"
+    ],
+    "17": [
+      "archive_handover_b1_32bit_openxr",
+      "archive_handover_f001_motion_comp_layer"
+    ],
+    "18": [
+      "archive_handover_d3d10_creation_globals",
+      "archive_handover_dunia_draw_hook"
+    ],
+    "19": [
+      "archive_handover_dunia_camera_write",
+      "archive_handover_hotkey_f10"
+    ],
+    "20": [
+      "current_state_shared_surface_bridge",
+      "current_state_viewmodel_lever"
+    ],
+    "21": [
+      "de_risking_battery",
+      "scene_reentry"
+    ],
+    "22": [
+      "dunia_dll_camera_object",
+      "dunia_world_space"
+    ],
+    "23": [
+      "dunia_engine",
+      "renderdoc_runbook"
+    ],
+    "24": [
+      "failure_registry_f006",
+      "gameplay_vr_risk_healing"
+    ],
+    "25": [
+      "handover_native_stereo_d3d10_camerarebuild",
+      "handover_native_stereo_d3d10_viewbuilder"
+    ],
+    "26": [
+      "handover_viewmodel_and_aim_player_fire_path",
+      "handover_viewmodel_and_aim_shot_direction_provider"
+    ],
+    "27": [
+      "re_findings_aim_takeover",
+      "re_findings_player_fire_path"
+    ],
+    "28": [
+      "re_findings_fp_camera_offset",
+      "re_findings_weapon_camera_offset"
+    ],
+    "29": [
+      "archive_readme"
+    ],
+    "30": [
+      "authored_state_detector"
+    ],
+    "31": [
+      "current_state_aim_contract"
+    ],
+    "32": [
+      "current_state_frustum_mismatch"
+    ],
+    "33": [
+      "current_state_input_funnel"
+    ],
+    "34": [
+      "current_state_md"
+    ],
+    "35": [
+      "current_state_worldexec"
+    ],
+    "36": [
+      "drop_review_fc2vr"
+    ],
+    "37": [
+      "dunia_handoff"
+    ],
+    "38": [
+      "engine_reference_tools_corpus"
+    ],
+    "39": [
+      "failure_registry_f001"
+    ],
+    "40": [
+      "failure_registry_f002"
+    ],
+    "41": [
+      "failure_registry_f003"
+    ],
+    "42": [
+      "failure_registry_f004"
+    ],
+    "43": [
+      "failure_registry_f005"
+    ],
+    "44": [
+      "failure_registry_f007"
+    ],
+    "45": [
+      "failure_registry_f008"
+    ],
+    "46": [
+      "failure_registry_f010"
+    ],
+    "47": [
+      "failure_registry_f011"
+    ],
+    "48": [
+      "fc2vr_inject"
+    ],
+    "49": [
+      "gameplay_vr_risk_malaria"
+    ],
+    "50": [
+      "gameplay_vr_risk_vehicles"
+    ],
+    "51": [
+      "hypotheses_h008"
+    ],
+    "52": [
+      "project_phases_p3"
+    ],
+    "53": [
+      "re_findings_bridge_sync"
+    ],
+    "54": [
+      "re_findings_displacement_signal"
+    ],
+    "55": [
+      "re_findings_fov_horizontal"
+    ],
+    "56": [
+      "re_findings_xinput_seam"
+    ],
+    "57": [
+      "runbooks_apitrace_renderdoc"
+    ],
+    "58": [
+      "runbooks_flat_harness_command_file"
+    ],
+    "59": [
+      "runbooks_headless_harness_dinput_hook"
+    ],
+    "60": [
+      "runbooks_readme"
+    ],
+    "61": [
+      "src_common"
+    ],
+    "62": [
+      "src_dll"
+    ],
+    "63": [
+      "troubleshooting_symptom_classes"
+    ],
+    "64": [
+      "viewmodel_probe"
+    ]
+  },
+  "cohesion": {
+    "0": 0.2,
+    "1": 0.2222222222222222,
+    "2": 0.25,
+    "3": 0.2857142857142857,
+    "4": 0.2857142857142857,
+    "5": 0.5,
+    "6": 0.5,
+    "7": 0.5,
+    "8": 0.5,
+    "9": 0.5,
+    "10": 0.6666666666666666,
+    "11": 0.6666666666666666,
+    "12": 0.6666666666666666,
+    "13": 0.6666666666666666,
+    "14": 0.6666666666666666,
+    "15": 0.6666666666666666,
+    "16": 0.6666666666666666,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0
+  },
+  "gods": [
+    {
+      "id": "native_stereo_plan",
+      "label": "Native Stereo Plan",
+      "degree": 6
+    },
+    {
+      "id": "dunia_dll",
+      "label": "Dunia.dll",
+      "degree": 5
+    },
+    {
+      "id": "farcry2vr_dll",
+      "label": "farcry2vr.dll",
+      "degree": 4
+    },
+    {
+      "id": "re_findings_d3d10_renderer",
+      "label": "D3D10 Renderer",
+      "degree": 4
+    },
+    {
+      "id": "runbooks_apitrace_apitrace",
+      "label": "apitrace",
+      "degree": 3
+    },
+    {
+      "id": "runbooks_apitrace_farcry2_exe",
+      "label": "FarCry2.exe",
+      "degree": 3
+    },
+    {
+      "id": "runbooks_injection_fc2vr_inject_exe",
+      "label": "fc2vr_inject.exe",
+      "degree": 3
+    },
+    {
+      "id": "re_findings_dunia_dll",
+      "label": "Dunia.dll",
+      "degree": 3
+    },
+    {
+      "id": "engine_dunia_render_device_render_abstraction",
+      "label": "Dunia Render Device",
+      "degree": 3
+    },
+    {
+      "id": "handover_native_stereo_d3d10_worldexec",
+      "label": "WorldExec (D3D10)",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Player Rig Bone Map",
+      "target": "Dunia.dll",
+      "source_files": [
+        "engine/PLAYER_RIG_MAP.md",
+        "CLAUDE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Player Rig Bone Map` unexpectedly reaches hub `Dunia.dll`"
+    },
+    {
+      "source": "Address Registry",
+      "target": "Dunia.dll",
+      "source_files": [
+        "ADDRESS_REGISTRY.md",
+        "CLAUDE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `Address Registry` unexpectedly reaches hub `Dunia.dll`"
+    },
+    {
+      "source": "Validity Contract",
+      "target": "Malaria Attack",
+      "source_files": [
+        "TEST_CHECKLISTS.md",
+        "RE_FINDINGS.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Dunia FCE Exports",
+      "target": "Dunia.dll",
+      "source_files": [
+        "engine/DUNIA_EXPORTS.md",
+        "CLAUDE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `Dunia FCE Exports` unexpectedly reaches hub `Dunia.dll`"
+    },
+    {
+      "source": "Animator Hook (FUN_100D7B10)",
+      "target": "Bone 80 (Right Palm)",
+      "source_files": [
+        "HANDOVER_VIEWMODEL_AND_AIM.md",
+        "CURRENT_STATE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    }
+  ],
+  "tokens": {
+    "input": 8763,
+    "output": 1844
+  }
+}

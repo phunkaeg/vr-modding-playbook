@@ -1,0 +1,278 @@
+{
+  "ADDRESS_REGISTRY.md": {
+    "mtime": 1788374436.7902384,
+    "seen": 1788403381.2020683,
+    "ast_hash": "a449230e455bdb13602775d4bfb6b460",
+    "semantic_hash": "a449230e455bdb13602775d4bfb6b460"
+  },
+  "ARCHITECTURE.md": {
+    "mtime": 1787803705.5578427,
+    "seen": 1788403381.2020683,
+    "ast_hash": "05b31ef03c5f823fdc5e1c0a325bf371",
+    "semantic_hash": "05b31ef03c5f823fdc5e1c0a325bf371"
+  },
+  "CCAMERA_LAYOUT.md": {
+    "mtime": 1788005690.8008149,
+    "seen": 1788403381.2020683,
+    "ast_hash": "5eeb4ca5715fe72c2b968f332f37db47",
+    "semantic_hash": "5eeb4ca5715fe72c2b968f332f37db47"
+  },
+  "CRYENGINE_SOURCE_FINDINGS.md": {
+    "mtime": 1788253264.1782694,
+    "seen": 1788403381.2020683,
+    "ast_hash": "9f9177e03031cfafe95c2b3d25e4cb24",
+    "semantic_hash": "9f9177e03031cfafe95c2b3d25e4cb24"
+  },
+  "FAILURE_REGISTRY.md": {
+    "mtime": 1788249127.0004375,
+    "seen": 1788403381.2020683,
+    "ast_hash": "8dd1f3bae61f96fdb64c2cfa096a3b6b",
+    "semantic_hash": "8dd1f3bae61f96fdb64c2cfa096a3b6b"
+  },
+  "FRAME_OBSERVER_BOOTSTRAP.md": {
+    "mtime": 1787985516.5605702,
+    "seen": 1788403381.2020683,
+    "ast_hash": "9546ca0e77b3c9cd679c37f9362af86c",
+    "semantic_hash": "9546ca0e77b3c9cd679c37f9362af86c"
+  },
+  "GHIDRA_SYNC.md": {
+    "mtime": 1787289517.7615812,
+    "seen": 1788403381.2020683,
+    "ast_hash": "4db78447615cb1a1f41d930aee795818",
+    "semantic_hash": "4db78447615cb1a1f41d930aee795818"
+  },
+  "HANDOVER-2026-08-03.md": {
+    "mtime": 1786776759.051589,
+    "seen": 1788403381.2020683,
+    "ast_hash": "89965212df6a6e8505cf3cc0dcf2e70a",
+    "semantic_hash": "89965212df6a6e8505cf3cc0dcf2e70a"
+  },
+  "HANDOVER-2026-08-07-HARDENING.md": {
+    "mtime": 1787363172.8359227,
+    "seen": 1788403381.2020683,
+    "ast_hash": "e274fb5ded342ef29887eb1773f98bca",
+    "semantic_hash": "e274fb5ded342ef29887eb1773f98bca"
+  },
+  "HEAD_TRACKING_SCOPE.md": {
+    "mtime": 1788395743.2805083,
+    "seen": 1788403381.2020683,
+    "ast_hash": "9d74f217d5203ff76366815c7505b61f",
+    "semantic_hash": "9d74f217d5203ff76366815c7505b61f"
+  },
+  "LIVE_A0B_WRENCH_PROTOCOL.md": {
+    "mtime": 1785536329.0550878,
+    "seen": 1788403381.2020683,
+    "ast_hash": "659798b487177b10daa3ef11e76bc42c",
+    "semantic_hash": "659798b487177b10daa3ef11e76bc42c"
+  },
+  "LIVE_CAMERA_A1_PROTOCOL.md": {
+    "mtime": 1788218938.9341707,
+    "seen": 1788403381.2020683,
+    "ast_hash": "5c08f7505fd1632935dbbb8928bbd210",
+    "semantic_hash": "5c08f7505fd1632935dbbb8928bbd210"
+  },
+  "LIVE_INTERACTION_A0_PROTOCOL.md": {
+    "mtime": 1785537756.6314828,
+    "seen": 1788403381.2020683,
+    "ast_hash": "a3b8598c4dfa74f923543da6809261b8",
+    "semantic_hash": "a3b8598c4dfa74f923543da6809261b8"
+  },
+  "LIVE_MULTIVIEW_PROBE_PROTOCOL.md": {
+    "mtime": 1786058504.8416522,
+    "seen": 1788403381.2020683,
+    "ast_hash": "b422368b3687ecc5bb994148f651cb2d",
+    "semantic_hash": "b422368b3687ecc5bb994148f651cb2d"
+  },
+  "LIVE_SUBMISSION_TEST_PROTOCOL.md": {
+    "mtime": 1788309055.395514,
+    "seen": 1788403381.2020683,
+    "ast_hash": "d83cd9769d61795733499638482470f6",
+    "semantic_hash": "d83cd9769d61795733499638482470f6"
+  },
+  "PLAYBOOK_HANDOVER_2026-09-02.md": {
+    "mtime": 1788311785.447717,
+    "seen": 1788403381.2020683,
+    "ast_hash": "47d60edef25f3cd6f6bc1bf6464da306",
+    "semantic_hash": "47d60edef25f3cd6f6bc1bf6464da306"
+  },
+  "PRIOR_ART_FC2VR.md": {
+    "mtime": 1787360995.5275319,
+    "seen": 1788403381.2020683,
+    "ast_hash": "fbe067853fba455a1ed79bda20b69744",
+    "semantic_hash": "fbe067853fba455a1ed79bda20b69744"
+  },
+  "RESEARCH_LOG.md": {
+    "mtime": 1788262266.9113216,
+    "seen": 1788403381.2020683,
+    "ast_hash": "93fe21126ab52cd18ea64c25ec8d1077",
+    "semantic_hash": "93fe21126ab52cd18ea64c25ec8d1077"
+  },
+  "RUNTIME_BASELINE.md": {
+    "mtime": 1785454656.1556213,
+    "seen": 1788403381.2020683,
+    "ast_hash": "2d5599b300234f488af68d23e794db2d",
+    "semantic_hash": "2d5599b300234f488af68d23e794db2d"
+  },
+  "SMOKE_BUILD.md": {
+    "mtime": 1786058455.6678445,
+    "seen": 1788403381.2020683,
+    "ast_hash": "84db822349a34b70019185240be7408e",
+    "semantic_hash": "84db822349a34b70019185240be7408e"
+  },
+  "STEREO_RENDER_ARCHITECTURE.md": {
+    "mtime": 1788231656.3912852,
+    "seen": 1788403381.2020683,
+    "ast_hash": "e0ca14cfa605563858fae07d8d6365e7",
+    "semantic_hash": "e0ca14cfa605563858fae07d8d6365e7"
+  },
+  "STEREO_ROUTE.md": {
+    "mtime": 1788311250.0021431,
+    "seen": 1788403381.2020683,
+    "ast_hash": "0b487c2ec3a8673076af8f0bcfd7abcc",
+    "semantic_hash": "0b487c2ec3a8673076af8f0bcfd7abcc"
+  },
+  "SUBMISSION_CONTRACT.md": {
+    "mtime": 1788306344.568476,
+    "seen": 1788403381.2020683,
+    "ast_hash": "5dc863b05409d6179016ad8d2330ef2f",
+    "semantic_hash": "5dc863b05409d6179016ad8d2330ef2f"
+  },
+  "SYSTEM_VTABLE.md": {
+    "mtime": 1787363366.797829,
+    "seen": 1788403381.2020683,
+    "ast_hash": "c378f5eb00bfd614d022dc21936d8b58",
+    "semantic_hash": "c378f5eb00bfd614d022dc21936d8b58"
+  },
+  "TEST_PLAN.md": {
+    "mtime": 1787781917.1316428,
+    "seen": 1788403381.2020683,
+    "ast_hash": "1046d4dd50728a17409fa6e05ccac705",
+    "semantic_hash": "1046d4dd50728a17409fa6e05ccac705"
+  },
+  "VR_MECHANICS_RISK.md": {
+    "mtime": 1785716758.701802,
+    "seen": 1788403381.2020683,
+    "ast_hash": "71fb3ae4f7368679d5d00d9408991ecb",
+    "semantic_hash": "71fb3ae4f7368679d5d00d9408991ecb"
+  },
+  "XRSIM_INTEGRATION.md": {
+    "mtime": 1788230672.7775257,
+    "seen": 1788403381.2020683,
+    "ast_hash": "7ddcb5f443b053cf6183512a62d6308d",
+    "semantic_hash": "7ddcb5f443b053cf6183512a62d6308d"
+  },
+  "captures/traces/2026-07-31-prey-detached-aim-probe.md": {
+    "mtime": 1786058643.3989286,
+    "seen": 1788403381.2020683,
+    "ast_hash": "be0b3a8baa35a34127ef5fad4096418a",
+    "semantic_hash": "be0b3a8baa35a34127ef5fad4096418a"
+  },
+  "captures/traces/2026-07-31-prey-endscene-present-cadence.md": {
+    "mtime": 1785450630.0432904,
+    "seen": 1788403381.2020683,
+    "ast_hash": "d7042e64e35fd8563b1bb2ee94a08e71",
+    "semantic_hash": "d7042e64e35fd8563b1bb2ee94a08e71"
+  },
+  "captures/traces/2026-07-31-prey-wrench-hit-query.md": {
+    "mtime": 1785470776.6129897,
+    "seen": 1788403381.2020683,
+    "ast_hash": "64c5d649c6b5d9ca1971697bcf0b62b5",
+    "semantic_hash": "64c5d649c6b5d9ca1971697bcf0b62b5"
+  },
+  "captures/traces/2026-08-01-prey-device-creation-map.md": {
+    "mtime": 1785553055.7981029,
+    "seen": 1788403381.2030685,
+    "ast_hash": "257d9473af30a505850447a936da516d",
+    "semantic_hash": "257d9473af30a505850447a936da516d"
+  },
+  "captures/traces/2026-08-01-prey-frame-observer-smoke.md": {
+    "mtime": 1785538822.7642703,
+    "seen": 1788403381.2030685,
+    "ast_hash": "4f871c98e305a86c697fec8d5c668374",
+    "semantic_hash": "4f871c98e305a86c697fec8d5c668374"
+  },
+  "captures/traces/2026-08-01-prey-interaction-a0.md": {
+    "mtime": 1786058643.3999321,
+    "seen": 1788403381.2030685,
+    "ast_hash": "f8c11c2b51b7b02c70ec2117503dfae4",
+    "semantic_hash": "f8c11c2b51b7b02c70ec2117503dfae4"
+  },
+  "captures/traces/2026-08-01-prey-multiview-probe.md": {
+    "mtime": 1786776759.0195081,
+    "seen": 1788403381.2030685,
+    "ast_hash": "8ffe214f5a6d5ef8fcc0457efda1f62f",
+    "semantic_hash": "8ffe214f5a6d5ef8fcc0457efda1f62f"
+  },
+  "captures/traces/2026-08-15-prey-lookingglass-second-scene.md": {
+    "mtime": 1786798879.3077867,
+    "seen": 1788403381.2030685,
+    "ast_hash": "9bab8e4884b9dfdca9e66f3a3eb9ccae",
+    "semantic_hash": "9bab8e4884b9dfdca9e66f3a3eb9ccae"
+  },
+  "captures/traces/2026-08-29-prey-hurdle1-live-capture.md": {
+    "mtime": 1788007567.7114599,
+    "seen": 1788403381.2030685,
+    "ast_hash": "08e24898cb69dae1c42ef4c5bdb5bf6c",
+    "semantic_hash": "08e24898cb69dae1c42ef4c5bdb5bf6c"
+  },
+  "AGENTS.md": {
+    "mtime": 1788252772.160066,
+    "seen": 1788403597.1940017,
+    "ast_hash": "9bf8295d01eef55e67cf5b496bd8e4f5",
+    "semantic_hash": "9bf8295d01eef55e67cf5b496bd8e4f5"
+  },
+  "BUILD_BASELINE.md": {
+    "mtime": 1787725882.7833006,
+    "seen": 1788403597.1940017,
+    "ast_hash": "d5822dc4f0c922fbdee2c51e10a0f754",
+    "semantic_hash": "d5822dc4f0c922fbdee2c51e10a0f754"
+  },
+  "HYPOTHESES.md": {
+    "mtime": 1788055130.171973,
+    "seen": 1788403597.1940017,
+    "ast_hash": "61621b5ab498bc743f096f28fda8a74c",
+    "semantic_hash": "61621b5ab498bc743f096f28fda8a74c"
+  },
+  "LIVE_CAPTURE_PLAN.md": {
+    "mtime": 1788121593.6112928,
+    "seen": 1788403597.1940017,
+    "ast_hash": "b5792fdc1205ea828828d248108bc64e",
+    "semantic_hash": "b5792fdc1205ea828828d248108bc64e"
+  },
+  "captures/traces/2026-08-01-prey-wrench-a0b.md": {
+    "mtime": 1786058643.4009304,
+    "seen": 1788403597.1940017,
+    "ast_hash": "353356c2ae68d979b4fba4eaef47b3ff",
+    "semantic_hash": "353356c2ae68d979b4fba4eaef47b3ff"
+  },
+  "CLAUDE.md": {
+    "mtime": 1787808180.996495,
+    "seen": 1788403749.4781382,
+    "ast_hash": "79b53015bb81da3154029387983b5c46",
+    "semantic_hash": "79b53015bb81da3154029387983b5c46"
+  },
+  "HEADLESS_TESTING.md": {
+    "mtime": 1788051788.7642438,
+    "seen": 1788403749.4781382,
+    "ast_hash": "976ed4d37cfcd9a4ea31def0c3500449",
+    "semantic_hash": "976ed4d37cfcd9a4ea31def0c3500449"
+  },
+  "README.md": {
+    "mtime": 1787407321.1787922,
+    "seen": 1788403749.4781382,
+    "ast_hash": "44ba9925c2ead7ba999470e093b6b348",
+    "semantic_hash": ""
+  },
+  "captures/traces/2026-08-01-prey-stereo-path-recon.md": {
+    "mtime": 1785553068.361322,
+    "seen": 1788403749.4781382,
+    "ast_hash": "c3d63912433248f729c9f853cba17228",
+    "semantic_hash": "c3d63912433248f729c9f853cba17228"
+  },
+  "_project/README.md": {
+    "mtime": 1787407321.1787922,
+    "seen": 1788403966.3734405,
+    "ast_hash": "44ba9925c2ead7ba999470e093b6b348",
+    "semantic_hash": "44ba9925c2ead7ba999470e093b6b348"
+  }
+}

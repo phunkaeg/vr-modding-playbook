@@ -1,0 +1,246 @@
+{
+  "communities": {
+    "0": [
+      "address_registry_cb2_pos",
+      "address_registry_cbuffer0_layout",
+      "address_registry_gameplay_camera_data",
+      "current_state_gate_verdict",
+      "frida",
+      "simulation_x64_dll",
+      "ts4_x64_exe"
+    ],
+    "1": [
+      "decision_log_d004",
+      "decision_log_d007",
+      "decision_log_d008",
+      "tools_xrprobe",
+      "xr_sim",
+      "xr_tape"
+    ],
+    "2": [
+      "next_tests_t1",
+      "next_tests_t8",
+      "playbook_handover_mirror_reflection",
+      "prior_art_fear_vr",
+      "stereo_route_rung_ladder",
+      "testing_ivr_interface"
+    ],
+    "3": [
+      "agents_re_mcp_toolkit",
+      "agents_vr_re_workflow",
+      "claude_project_rules",
+      "readme_convexvr_mod",
+      "readme_sims4vr"
+    ],
+    "4": [
+      "current_state_cb2",
+      "current_state_event_8335",
+      "current_state_mirror_reflection",
+      "current_state_pass_24",
+      "current_state_pass_28"
+    ],
+    "5": [
+      "decision_log_d001",
+      "decision_log_d003",
+      "renderdoc_mcp"
+    ],
+    "6": [
+      "address_registry_camera_py_api",
+      "address_registry_static_global_candidate"
+    ],
+    "7": [
+      "agents_renderdoc",
+      "agents_xr_tape"
+    ],
+    "8": [
+      "failure_registry_constant_buffer_probe",
+      "failure_registry_zero_result_diagnostic"
+    ],
+    "9": [
+      "next_tests_t3",
+      "next_tests_t4"
+    ],
+    "10": [
+      "playbook_handover_vertex_recovery",
+      "testing_desk_assertions"
+    ],
+    "11": [
+      "address_registry_camera_struct_x"
+    ],
+    "12": [
+      "address_registry_camera_struct_y"
+    ],
+    "13": [
+      "address_registry_camera_struct_z"
+    ],
+    "14": [
+      "agents_cross_engine_docs_graph"
+    ],
+    "15": [
+      "agents_ghidra"
+    ],
+    "16": [
+      "agents_xr_sim"
+    ],
+    "17": [
+      "current_state_ui_mirror_strategy"
+    ],
+    "18": [
+      "decision_log_d002"
+    ],
+    "19": [
+      "decision_log_d005"
+    ],
+    "20": [
+      "decision_log_d006"
+    ],
+    "21": [
+      "next_tests_t2"
+    ],
+    "22": [
+      "playbook_handover_frida_dump"
+    ],
+    "23": [
+      "playbook_handover_instance_format"
+    ]
+  },
+  "cohesion": {
+    "0": 0.2857142857142857,
+    "1": 0.3333333333333333,
+    "2": 0.3333333333333333,
+    "3": 0.4,
+    "4": 0.4,
+    "5": 0.6666666666666666,
+    "6": 1.0,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0
+  },
+  "gods": [
+    {
+      "id": "address_registry_cbuffer0_layout",
+      "label": "Shader Constant Buffer 0 Layout",
+      "degree": 3
+    },
+    {
+      "id": "ts4_x64_exe",
+      "label": "TS4_x64.exe",
+      "degree": 3
+    },
+    {
+      "id": "tools_xrprobe",
+      "label": "xrprobe",
+      "degree": 3
+    },
+    {
+      "id": "playbook_handover_mirror_reflection",
+      "label": "Mirror Reflection Repeat Render",
+      "degree": 3
+    },
+    {
+      "id": "stereo_route_rung_ladder",
+      "label": "Stereo Rung Ladder (STR-006)",
+      "degree": 3
+    },
+    {
+      "id": "current_state_cb2",
+      "label": "Constant Buffer 2 (cb2)",
+      "degree": 3
+    },
+    {
+      "id": "agents_vr_re_workflow",
+      "label": "VR RE Workflow",
+      "degree": 3
+    },
+    {
+      "id": "simulation_x64_dll",
+      "label": "Simulation_x64.dll",
+      "degree": 2
+    },
+    {
+      "id": "xr_sim",
+      "label": "xr-sim",
+      "degree": 2
+    },
+    {
+      "id": "xr_tape",
+      "label": "xr-tape",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Desk Assertions (ch09)",
+      "target": "Vertex-Based Projection Recovery",
+      "source_files": [
+        "TESTING.md",
+        "PLAYBOOK_HANDOVER.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Sims4VR",
+      "target": "VR RE Workflow",
+      "source_files": [
+        "README.md",
+        "AGENTS.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Shader Constant Buffer 0 Layout",
+      "target": "TS4_x64.exe",
+      "source_files": [
+        "ADDRESS_REGISTRY.md",
+        "CURRENT_STATE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Feasibility Gate: GO",
+      "target": "Shader Constant Buffer 0 Layout",
+      "source_files": [
+        "CURRENT_STATE.md",
+        "ADDRESS_REGISTRY.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "EA::Sims4::Persistence::GameplayCameraData",
+      "target": "Simulation_x64.dll",
+      "source_files": [
+        "ADDRESS_REGISTRY.md",
+        "CURRENT_STATE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    }
+  ],
+  "tokens": {
+    "input": 4704,
+    "output": 1104
+  }
+}

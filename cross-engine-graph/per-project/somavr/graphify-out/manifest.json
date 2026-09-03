@@ -1,27 +1,27 @@
 {
   "ADDRESS_REGISTRY.md": {
-    "mtime": 1784771987.5792072,
-    "seen": 1787797068.0993092,
-    "ast_hash": "4b2e78d002c86e0038f7f1d34ca1a84e",
-    "semantic_hash": "4b2e78d002c86e0038f7f1d34ca1a84e"
+    "mtime": 1788267396.6030111,
+    "seen": 1788403297.256641,
+    "ast_hash": "9a43913065fec4646d249f02af6bfa66",
+    "semantic_hash": "9a43913065fec4646d249f02af6bfa66"
   },
   "ARCHITECTURE.md": {
-    "mtime": 1784771987.603719,
-    "seen": 1787797068.0993092,
-    "ast_hash": "7a7730acea37aa7e0c1274d3d1d49bad",
-    "semantic_hash": "7a7730acea37aa7e0c1274d3d1d49bad"
+    "mtime": 1788233353.7767792,
+    "seen": 1788403297.256641,
+    "ast_hash": "c20c44e0e4c20eac1bdcb163836800f1",
+    "semantic_hash": "c20c44e0e4c20eac1bdcb163836800f1"
   },
   "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md": {
     "mtime": 1784771987.6291213,
     "seen": 1787797068.0993092,
     "ast_hash": "9eb3e0dacb593b3b97c7c3307b69a0c2",
-    "semantic_hash": "9eb3e0dacb593b3b97c7c3307b69a0c2"
+    "semantic_hash": ""
   },
   "BUILD_HISTORY.md": {
-    "mtime": 1784771987.6586392,
-    "seen": 1787797068.0993092,
-    "ast_hash": "cf24848f27af2f183c7f7412c8a79b02",
-    "semantic_hash": "cf24848f27af2f183c7f7412c8a79b02"
+    "mtime": 1788394339.5508819,
+    "seen": 1788403297.256641,
+    "ast_hash": "49a5c80bd73337a9b510186059572a85",
+    "semantic_hash": "49a5c80bd73337a9b510186059572a85"
   },
   "COMFORT_AND_FOCUS_RE.md": {
     "mtime": 1784771987.68151,
@@ -39,31 +39,31 @@
     "mtime": 1784771987.7270372,
     "seen": 1787797068.0993092,
     "ast_hash": "ca3a89ad5596e2bba4444c4afa3348d5",
-    "semantic_hash": "ca3a89ad5596e2bba4444c4afa3348d5"
+    "semantic_hash": ""
   },
   "FEATURE_TRACEABILITY.md": {
     "mtime": 1784771987.7490592,
     "seen": 1787797068.0993092,
     "ast_hash": "0ba57543d626546d2495aceb8c48aab2",
-    "semantic_hash": "0ba57543d626546d2495aceb8c48aab2"
+    "semantic_hash": ""
   },
   "FUTURE_SYSTEMS_RE.md": {
     "mtime": 1784771987.7951918,
     "seen": 1787797068.0993092,
     "ast_hash": "082aae0ab08a006990a83abffb30e0d2",
-    "semantic_hash": "082aae0ab08a006990a83abffb30e0d2"
+    "semantic_hash": ""
   },
   "GHIDRA_SYNC.md": {
     "mtime": 1784771987.8167093,
     "seen": 1787797068.0993092,
     "ast_hash": "49ffd2b149ea047fd5184a88c1c9d66a",
-    "semantic_hash": "49ffd2b149ea047fd5184a88c1c9d66a"
+    "semantic_hash": ""
   },
   "HPL_OPENGL_NOTES.md": {
-    "mtime": 1784771987.835362,
-    "seen": 1787797068.0993092,
-    "ast_hash": "2452c1c766da65fe0ce30283e801ad16",
-    "semantic_hash": "2452c1c766da65fe0ce30283e801ad16"
+    "mtime": 1787408963.829055,
+    "seen": 1788403297.256641,
+    "ast_hash": "95a03c52e589f4de2834396872355d7d",
+    "semantic_hash": "95a03c52e589f4de2834396872355d7d"
   },
   "HYPOTHESES.md": {
     "mtime": 1784771987.855874,
@@ -72,10 +72,10 @@
     "semantic_hash": "051fd802c973c6386f1b2789b545b735"
   },
   "NEXT_LIVE_EVIDENCE.md": {
-    "mtime": 1784771987.878299,
-    "seen": 1787797068.0993092,
-    "ast_hash": "07ea0aad1612d26829b1c7a2ebb3fa33",
-    "semantic_hash": "07ea0aad1612d26829b1c7a2ebb3fa33"
+    "mtime": 1788394149.6869383,
+    "seen": 1788403297.256641,
+    "ast_hash": "404feffe7263d55caa61ac99f1bce220",
+    "semantic_hash": "404feffe7263d55caa61ac99f1bce220"
   },
   "RUNTIME_ANALYSIS_0.5.1.md": {
     "mtime": 1784771987.9018164,
@@ -108,16 +108,16 @@
     "semantic_hash": "4ea1b125d1c77f1137dfc754f33f8aa0"
   },
   "SMOKE_TEST_MATRIX.md": {
-    "mtime": 1784771988.0449903,
-    "seen": 1787797068.0993092,
-    "ast_hash": "070af360ad092080e0806f1221b5c46b",
-    "semantic_hash": "070af360ad092080e0806f1221b5c46b"
+    "mtime": 1788233355.4313526,
+    "seen": 1788403297.256641,
+    "ast_hash": "fd11883ad4e73dfe88177dec4953ff4f",
+    "semantic_hash": "fd11883ad4e73dfe88177dec4953ff4f"
   },
   "TEST_CHECKLISTS.md": {
-    "mtime": 1784771988.0711415,
-    "seen": 1787797068.0993092,
-    "ast_hash": "25f2145fec54d34237cd8f0f9cf5718a",
-    "semantic_hash": "25f2145fec54d34237cd8f0f9cf5718a"
+    "mtime": 1788394151.6776261,
+    "seen": 1788403297.256641,
+    "ast_hash": "0b1579653267cacf3c9c81959ad52f14",
+    "semantic_hash": "0b1579653267cacf3c9c81959ad52f14"
   },
   "UEVR_LEARNINGS.md": {
     "mtime": 1784771988.0936556,
@@ -129,18 +129,120 @@
     "mtime": 1784771988.1158795,
     "seen": 1787797068.0993092,
     "ast_hash": "1e6046dc346560d6a991d32873a25f18",
-    "semantic_hash": "1e6046dc346560d6a991d32873a25f18"
+    "semantic_hash": ""
   },
   "VR_COMPATIBILITY_RE.md": {
-    "mtime": 1784771988.1389022,
-    "seen": 1787797068.0993092,
-    "ast_hash": "4850b633d0f246af9427648a80c47640",
-    "semantic_hash": "4850b633d0f246af9427648a80c47640"
+    "mtime": 1787744553.0661688,
+    "seen": 1788403297.256641,
+    "ast_hash": "cb2f4c244fff46b7d40832769f2c3e92",
+    "semantic_hash": "cb2f4c244fff46b7d40832769f2c3e92"
   },
   "future-hook-map.md": {
-    "mtime": 1784771987.7705715,
-    "seen": 1787797068.0993092,
-    "ast_hash": "fcb9a9b9bcee52e641ca264199ef9d41",
-    "semantic_hash": "fcb9a9b9bcee52e641ca264199ef9d41"
+    "mtime": 1787409766.9270267,
+    "seen": 1788403297.256641,
+    "ast_hash": "b5a1c46c4c2ce6f1766cd939e0ce9d16",
+    "semantic_hash": "b5a1c46c4c2ce6f1766cd939e0ce9d16"
+  },
+  "AGENTS.md": {
+    "mtime": 1788249824.0654361,
+    "seen": 1788403297.256641,
+    "ast_hash": "05b76b0ba3d9e28f87591005c301b16a",
+    "semantic_hash": "05b76b0ba3d9e28f87591005c301b16a"
+  },
+  "BIOSHOCK_VR_TRANSFER_AUDIT.md": {
+    "mtime": 1786062008.4256155,
+    "seen": 1788403297.256641,
+    "ast_hash": "f705f44d90ca760a63cc66c8acec721f",
+    "semantic_hash": "f705f44d90ca760a63cc66c8acec721f"
+  },
+  "CLAUDE.md": {
+    "mtime": 1787808180.9954972,
+    "seen": 1788403297.256641,
+    "ast_hash": "d1a11cca93b86763a8b70ca1f022df80",
+    "semantic_hash": "d1a11cca93b86763a8b70ca1f022df80"
+  },
+  "CRASH_F10_DUAL_RENDER_2026-09-01.md": {
+    "mtime": 1788216772.6337068,
+    "seen": 1788403297.256641,
+    "ast_hash": "764066ed4a2e1e2b67253d7c25e91f81",
+    "semantic_hash": "764066ed4a2e1e2b67253d7c25e91f81"
+  },
+  "NATIVE_STEREO_FEASIBILITY.md": {
+    "mtime": 1788297885.87558,
+    "seen": 1788403297.256641,
+    "ast_hash": "0cd0c3af4249b9030a069edb6e729542",
+    "semantic_hash": "0cd0c3af4249b9030a069edb6e729542"
+  },
+  "OPENXR_GL_TRANSFER_RE.md": {
+    "mtime": 1788234055.5351284,
+    "seen": 1788403297.256641,
+    "ast_hash": "9ebf8df24caca820ad40458cbcfe9df2",
+    "semantic_hash": "9ebf8df24caca820ad40458cbcfe9df2"
+  },
+  "PLAYBOOK_AUDIT_2026-08-27.md": {
+    "mtime": 1787804051.1765335,
+    "seen": 1788403297.256641,
+    "ast_hash": "ec4cef9ed2a54c158741056f382c5c6b",
+    "semantic_hash": "ec4cef9ed2a54c158741056f382c5c6b"
+  },
+  "PLAYBOOK_AUDIT_2026-08-29.md": {
+    "mtime": 1787959966.713778,
+    "seen": 1788403297.256641,
+    "ast_hash": "aaae0c58c96844e0636514db96d56f32",
+    "semantic_hash": "aaae0c58c96844e0636514db96d56f32"
+  },
+  "PLAYBOOK_HANDOVER_2026-09-02.md": {
+    "mtime": 1788394153.6427593,
+    "seen": 1788403297.256641,
+    "ast_hash": "434fc69be06307c485961901239b61d6",
+    "semantic_hash": "434fc69be06307c485961901239b61d6"
+  },
+  "PRIOR_ART_SWEEP_2026-09-01.md": {
+    "mtime": 1788234400.897892,
+    "seen": 1788403297.256641,
+    "ast_hash": "4e0f5bafdc150a301da5e8b7f8771581",
+    "semantic_hash": "4e0f5bafdc150a301da5e8b7f8771581"
+  },
+  "README.md": {
+    "mtime": 1786067801.498215,
+    "seen": 1788403297.256641,
+    "ast_hash": "8a645427f6ede07922c400156fb39cbf",
+    "semantic_hash": "8a645427f6ede07922c400156fb39cbf"
+  },
+  "REVIEW_HANDOVER_2026-08-07.md": {
+    "mtime": 1788216774.5120287,
+    "seen": 1788403297.256641,
+    "ast_hash": "2a4739481518797dfdb12ea4edc7a793",
+    "semantic_hash": "2a4739481518797dfdb12ea4edc7a793"
+  },
+  "REVIEW_REMEDIATION_2026-08-07.md": {
+    "mtime": 1786067801.4992144,
+    "seen": 1788403297.256641,
+    "ast_hash": "f68666817aad3fb381eb8d800a7f8def",
+    "semantic_hash": "f68666817aad3fb381eb8d800a7f8def"
+  },
+  "RUNTIME_ANALYSIS_0.5.3.md": {
+    "mtime": 1783842966.8615565,
+    "seen": 1788403297.256641,
+    "ast_hash": "122fecaab99e074ebf1ad4fef474156f",
+    "semantic_hash": "122fecaab99e074ebf1ad4fef474156f"
+  },
+  "SESSION_HANDOVER_2026-08-22.md": {
+    "mtime": 1787392339.0784855,
+    "seen": 1788403297.256641,
+    "ast_hash": "894c30592088a6008436a8a5b21df7b9",
+    "semantic_hash": "894c30592088a6008436a8a5b21df7b9"
+  },
+  "XRSIM_INTEGRATION_ASSESSMENT.md": {
+    "mtime": 1788125636.7070916,
+    "seen": 1788403297.256641,
+    "ast_hash": "87bbe7337abc9202914f107644e7e5b6",
+    "semantic_hash": "87bbe7337abc9202914f107644e7e5b6"
+  },
+  "XRTAPE_FIRST_RUN.md": {
+    "mtime": 1788215024.7413638,
+    "seen": 1788403297.256641,
+    "ast_hash": "dfd398105589e36676884ff6a6983edb",
+    "semantic_hash": "dfd398105589e36676884ff6a6983edb"
   }
 }

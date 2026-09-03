@@ -1,6 +1,6 @@
 # Coverage dashboard
 
-**Generated deterministically by `tools/coverage.py` from `sources.yml` (ledger updated 2026-08-27) plus a filesystem scan. Do not edit by hand.**
+**Generated deterministically by `tools/coverage.py` from `sources.yml` (ledger updated 2026-09-03) plus a filesystem scan. Do not edit by hand.**
 
 This page makes both knowledge gaps and stale reviews visible. `Last change` and `current revision` are measured; review depth, evidence and `reviewed revision` are human/agent judgements.
 
@@ -39,19 +39,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 15 | 20 | 14 | 20 | 16 |
-| `xr_lifecycle` | 6 | 5 | 0 | 33 | 41 |
-| `xr_input` | 4 | 0 | 4 | 33 | 44 |
-| `camera_tracking` | 11 | 10 | 1 | 24 | 39 |
-| `render_hazards` | 3 | 6 | 1 | 0 | 75 |
-| `ui_hud` | 5 | 13 | 5 | 27 | 35 |
-| `hands_interaction` | 6 | 9 | 5 | 22 | 43 |
-| `input_locomotion` | 2 | 4 | 1 | 0 | 78 |
-| `performance` | 8 | 5 | 3 | 28 | 41 |
-| `audio` | 1 | 1 | 0 | 37 | 46 |
-| `packaging_deploy` | 6 | 18 | 18 | 12 | 31 |
-| `re_discovery` | 12 | 11 | 5 | 20 | 37 |
-| `source_integration` | 2 | 8 | 7 | 26 | 42 |
+| `stereo` | 19 | 21 | 14 | 20 | 16 |
+| `xr_lifecycle` | 6 | 7 | 0 | 33 | 44 |
+| `xr_input` | 4 | 0 | 4 | 33 | 49 |
+| `camera_tracking` | 12 | 13 | 1 | 24 | 40 |
+| `render_hazards` | 5 | 9 | 1 | 0 | 75 |
+| `ui_hud` | 5 | 13 | 5 | 27 | 40 |
+| `hands_interaction` | 6 | 9 | 5 | 22 | 48 |
+| `input_locomotion` | 2 | 4 | 1 | 0 | 83 |
+| `performance` | 8 | 7 | 3 | 28 | 44 |
+| `audio` | 1 | 1 | 0 | 37 | 51 |
+| `packaging_deploy` | 6 | 23 | 18 | 12 | 31 |
+| `re_discovery` | 14 | 13 | 5 | 20 | 38 |
+| `source_integration` | 2 | 8 | 7 | 31 | 42 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -117,6 +117,11 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **manhunt-2003-vr-modding-notes** | external reference | RenderWare (Manhunt 2003) | native-injector | — | — | 7 | 10 | 0 | 9 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
 | **MELE-VR** | external reference | UE3 (Mass Effect Legendary) | native-injector | ? | ? | — | 18 | 0 | 3 | 2026-08-23 | 🟩 current | 0F / 2P / 0S / 1NR / 10— |
 | **mirrors-edge-vr-mod** | external reference | Unreal Engine 3.536 (Mirror's Edge, 2008) | native-injector | T1 | — | 9 | 37 | 17 | 9 | 2026-08-30 | 🟥 source changed | 2F / 0P / 2S / 8NR / 1— |
+| **MonsterDeadWood-BF3VR** | external reference | Frostbite 2 / Venice Unleashed (Battlefield 3) | native-injector | T1 | R4 · reconstruction | 14 | 55 | 4 | 44 | 2026-09-03 | 🟩 current | 2F / 4P / 0S / 1NR / 6— |
+| **MonsterDeadWood-C2VR** | external reference | CryEngine 3 (Crysis 2) | native-injector | T1 | R4 · reconstruction | 9 | 105 | 12 | 85 | 2026-09-03 | 🟩 current | 1F / 5P / 0S / 1NR / 6— |
+| **MonsterDeadWood-DiRT2VR** | external reference | EGO (DiRT 2) | native-injector | T1 | R1 · native re-entry | 17 | 44 | 4 | 36 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
+| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 63 | 9 | 47 | 2026-09-03 | 🟩 current | 0F / 5P / 0S / 1NR / 7— |
+| **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
 | **openmw-vr** | external reference | OpenMW (OSG / OpenGL) | source-port | — | — | — | 3825 | 3023 | 208 | 2026-08-26 | 🟩 current | 0F / 2P / 1S / 1NR / 9— |
@@ -171,14 +176,14 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 
 | Source | Reviewed at | Reviewed tree | Current tree | Reviewed Git commit | Result | Upstream | License |
 |---|---|---|---|---|---|---|---|
-| **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:f67d2e3d6721833d` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:1d04d83146c363a4` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-08-28 | `tree:483945e093abe687` | `tree:95426ca51aeaed12` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:73a1462ac8c79e2e` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:b19e96529eebf020` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:546c1c2f79d2fcb3` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:1b1009ee1f6c1689` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:be9b65cc0c912fab` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:bf2f0979eebb5e8c` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:6b9cb84d884c327c` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:e2910271eb4f3c8b` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:2deafb1dc470d884` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:0e355f2144bdbff3` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:85f3968d8f74a50e` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:585d04998b5ed86e` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:e4c5583252a7a45b` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
 | **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | unknown |
@@ -217,6 +222,11 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **manhunt-2003-vr-modding-notes** | 2026-08-29 | `unknown` | `tree:e8d969134352da0f` | `—` | ⚪ unpinned | unknown | unknown |
 | **MELE-VR** | 2026-08-28 | `tree:b8d87bff0fecabf1` | `tree:b8d87bff0fecabf1` | `—` | 🟩 current | unknown | unknown |
 | **mirrors-edge-vr-mod** | 2026-08-29 | `tree:a64e71450006b5d5` | `tree:ba6ab5363d9090ac` | `—` | 🟥 source changed | unknown | unknown |
+| **MonsterDeadWood-BF3VR** | 2026-09-03 | `tree:a434e6fd4ed2c819` | `tree:a434e6fd4ed2c819` | `—` | 🟩 current | unknown | unknown |
+| **MonsterDeadWood-C2VR** | 2026-09-03 | `tree:5c9a476fdb91dfb4` | `tree:5c9a476fdb91dfb4` | `—` | 🟩 current | unknown | unknown |
+| **MonsterDeadWood-DiRT2VR** | 2026-09-03 | `tree:e1f675860774af3f` | `tree:e1f675860774af3f` | `—` | 🟩 current | unknown | unknown |
+| **MonsterDeadWood-FC2VR** | 2026-09-03 | `tree:0f01206573f0c260` | `tree:0f01206573f0c260` | `—` | 🟩 current | unknown | unknown |
+| **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | unknown |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | unknown |
 | **openmw-vr** | 2026-08-26 | `tree:7155f265d832b125` | `tree:7155f265d832b125` | `0f520f65c3e085369e66d6a90ce871e817d4533f` | 🟩 current | https://gitlab.com/madsbuvi/openmw/-/tree/openmw-vr | GPL-3.0 (OpenMW) |
@@ -288,14 +298,14 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 4068 | 347 | 2026-09-02 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
-| **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4981 | 2582 | 2026-09-01 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 19228 | 2285 | 2026-09-02 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 1719 | 252 | 2026-09-02 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
-| **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 315 | 68 | 2026-09-02 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
-| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5646 | 130 | 2026-09-02 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
-| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 236 | 32 | 2026-09-02 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
-| **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 118 | 16 | 2026-09-02 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3984 | 348 | 2026-09-03 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4932 | 2585 | 2026-09-03 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 19124 | 2286 | 2026-09-03 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 1859 | 264 | 2026-09-03 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 268 | 69 | 2026-09-03 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
+| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5610 | 132 | 2026-09-03 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
+| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-03 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
+| **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 150 | 18 | 2026-09-03 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
 
 ## Per-source area detail
 
@@ -1129,6 +1139,96 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟧 skimmed | `AUTHOR` | three files into one folder, no installer and no game file modified - but REQUIRES Virtual Desktop; SteamVR and Meta Link are stated as unable to run it, which is a constraint worth understanding rather than accepting |
 | `re_discovery` | 🟩 full | `SOURCE` | 2026-08-29 deep read - badly under-rated on the first pass as 'pre-alpha'. ENGINE_NOTES and FEASIBILITY follow the same shape as singularity-vr-mod and produced three engine traps plus a correction to the DRM procedure. (1) ch10 #validate-every-upload: c0 carries MORE THAN ONE MATRIX - the derived FOV alternates between the scene view-projection and a 160x160 deg shadow or light transform on consecutive uploads to the SAME register, and injecting into it corrupts that pass INVISIBLY, with the symptom appearing elsewhere. 'The register says where to look. It is never permission to modify.' Gated by the clip.w test on every write - four multiply-adds against a cached camera position - at 220,000 accepted against 91 rejected, which is why a one-shot validation would have passed. (2) ch11 #pointer-not-identity: Direct3DCreate9 is called TWICE per run and in one run returned the SAME address both times, because the first object was released before the second was created and the allocator reused the slot. (3) ch09 #typeless-swapchain: OpenXR returns DXGI format 90 (B8G8R8A8_TYPELESS) for a requested 91, so CreateRenderTargetView with a null description FAILS - a typeless format cannot be a view format. (4) ch11 entropy triage, the OPPOSITE outcome to Singularity: .text is 6.480 on both Steam and GOG and the sections are BYTE-IDENTICAL by SHA-256, so the older SteamStub variant only wraps the entry point - static analysis can target the Steam binary directly. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### MonsterDeadWood-BF3VR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟩 full | `AUTHOR` | Two-Key native same-Present scheduling is author-reported; exact L/R output ownership remains separate. The proven delivered fallback is center color+depth reprojection, with disocclusion visually falsifying it as final stereo. |
+| `xr_lifecycle` | 🟨 partial | `AUTHOR` | x86 game to x64 OpenXR GPU transport and Quest delivery are documented but not independently replayed. |
+| `xr_input` | — no entry — | — | — |
+| `camera_tracking` | 🟨 partial | `AUTHOR` | Distinct L/R states or images do not prove physical stereo; acceptance requires disparity that varies with inverse depth. |
+| `render_hazards` | 🟩 full | `AUTHOR` | Harvested into STR-004 and FAIL-STR-045: one logical resource may contain LEFT then RIGHT serially, so COM pointer identity is not image identity; semantic phase/role and generation decide. |
+| `ui_hud` | — no entry — | — | — |
+| `hands_interaction` | — no entry — | — | — |
+| `input_locomotion` | — no entry — | — | — |
+| `performance` | — no entry — | — | — |
+| `audio` | — no entry — | — | — |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | Research-integrity and document-integrity gates are present; the research-integrity selftest currently rejects one unreviewed checker blob. |
+| `re_discovery` | 🟨 partial | `AUTHOR` | Existing result payloads are treated as evidence to recover before creating replacement experiments. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### MonsterDeadWood-C2VR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟩 full | `SOURCE` | Harvested into STR-002 and FAIL-STR-044: source publishes pair metadata while owning both keyed mutexes, barriers before release, and forbids old pixels plus new pose/FOV. Runtime acceptance figures remain AUTHOR. |
+| `xr_lifecycle` | 🟨 partial | `AUTHOR` | Startup/session-reentry rendezvous: missing first contract must WAIT/no-submit and retry, not latch a global fault. Harvested into STR-002 and FAIL-XR-023. |
+| `xr_input` | — no entry — | — | — |
+| `camera_tracking` | 🟨 partial | `AUTHOR` | Complete cached pair retains its original render pose/FOV/contract; pose freshness cannot relabel older pixels. |
+| `render_hazards` | 🟨 partial | `AUTHOR` | Serial/contract sandwich around both copies and one-fresh/one-stale rejection are documented; result artifacts were not independently replayed. |
+| `ui_hud` | — no entry — | — | — |
+| `hands_interaction` | — no entry — | — | — |
+| `input_locomotion` | — no entry — | — | — |
+| `performance` | 🟨 partial | `AUTHOR` | Bounded-wait history and pose-age telemetry separate producer cadence misses from coherence failures. |
+| `audio` | — no entry — | — | — |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | Finalist integrity scripts and package manifests are present. |
+| `re_discovery` | — no entry — | — | — |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### MonsterDeadWood-DiRT2VR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟩 full | `AUTHOR` | Same-frame L/R render path and submitted-buffer oracle are documented. The oracle separates mono, normal, swapped and exaggerated phases using the exact submitted buffers. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | — no entry — | — | — |
+| `camera_tracking` | 🟩 full | `AUTHOR` | A 400-byte VS-slot-3 camera buffer is traced backward from the first consuming draw; projection metadata follows live P00/P11/P8/P9 rather than a fixed host FOV. |
+| `render_hazards` | 🟨 partial | `AUTHOR` | Clone substitution leaves the original game buffer untouched and ranks active bind ordinals instead of assuming a fixed count. |
+| `ui_hud` | — no entry — | — | — |
+| `hands_interaction` | — no entry — | — | — |
+| `input_locomotion` | — no entry — | — | — |
+| `performance` | — no entry — | — | — |
+| `audio` | — no entry — | — | — |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | Research-integrity tooling is present; its selftest currently rejects one unreviewed checker blob. |
+| `re_discovery` | 🟩 full | `AUTHOR` | Harvested into RE-005 and FAIL-RE-022: x86 execution breakpoints require EFLAGS.RF before resume; DR6 clearing alone retriggers. Also contributes consumer-to-caller stack ranking. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### MonsterDeadWood-FC2VR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟨 partial | `AUTHOR` | AUTHOR runtime record: same-frame D3D9 stereo and 400 completed pairs. Harvested only as prior art; not replayed independently. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | — no entry — | — | — |
+| `camera_tracking` | 🟨 partial | `AUTHOR` | Build-specific culling seam and sphere center/radius layout are documented against GOG Dunia.dll SHA256 7B82...; the in-house UPLAY/Steam bytes differ, so addresses are leads only. |
+| `render_hazards` | 🟨 partial | `AUTHOR` | Side planes 2-5 versus depth planes 0-1 support a side-only binocular-union candidate. An intrusive force-pass changed the call denominator, establishing the observer-before-intervention rule. |
+| `ui_hud` | — no entry — | — | — |
+| `hands_interaction` | — no entry — | — | — |
+| `input_locomotion` | — no entry — | — | — |
+| `performance` | — no entry — | — | — |
+| `audio` | — no entry — | — | — |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | Hash-locked golden baseline, byte-identical rebuild check and one-click experiment packaging are present in source. |
+| `re_discovery` | 🟨 partial | `AUTHOR` | Useful culling dataflow and exact-build receipts; no address or ABI was promoted across builds. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### MonsterDeadWood-TimeShiftVR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟩 full | `AUTHOR` | Author reports proven same-frame D3D9-to-x64-OpenXR stereo. Runtime counters were not independently replayed. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | — no entry — | — | — |
+| `camera_tracking` | — no entry — | — | — |
+| `render_hazards` | 🟩 full | `AUTHOR` | Harvested into STR-004 and FAIL-TEST-016: per-shader last-texture replay aliases unrelated state; draw ordinal plus primitive/geometry/VS/PS signature is safer. An exact D16 bind replay executed yet did not restore visible shadows. |
+| `ui_hud` | — no entry — | — | — |
+| `hands_interaction` | — no entry — | — | — |
+| `input_locomotion` | — no entry — | — | — |
+| `performance` | 🟨 partial | `AUTHOR` | Controlled ten-mode replay sweep preserved the baseline and showed further widening of the same replay algorithm was low-information duplicate research. |
+| `audio` | — no entry — | — | — |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | Research-integrity tooling is present; its selftest currently rejects one unreviewed checker blob. |
+| `re_discovery` | 🟩 full | `AUTHOR` | Registry/string/RTTI candidates remain candidates until a runtime method shows direct D3D9 COM activity; structural proximity is not ownership. |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### MyFriendlyNeighborhoodVR

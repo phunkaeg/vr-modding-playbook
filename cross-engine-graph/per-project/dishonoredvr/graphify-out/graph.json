@@ -1,0 +1,1236 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "stereo_rendering_pathways",
+        "label": "Stereo Rendering Pathways",
+        "nodes": [
+          "nvidia_3d_vision",
+          "ue3_scene_capture",
+          "fc2vr",
+          "research_12_native_stereo_assessment_2026_08_22"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+      },
+      {
+        "id": "camera_injection_flow",
+        "label": "Camera Injection Discovery Flow",
+        "nodes": [
+          "research_02_live_runtime_probe_2026_07_31_player_view_query",
+          "research_05_camera_caller_sampling_plan_caller_sampling",
+          "research_07_visual_camera_probe_0_3_visual_consumer_rva"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "research/07-visual-camera-probe-0.3.md"
+      },
+      {
+        "id": "renderer_hook_pattern",
+        "label": "Renderer Hooking Pattern",
+        "nodes": [
+          "research_02_live_runtime_probe_2026_07_31_rhi_global",
+          "research_02_live_runtime_probe_2026_07_31_present_wrapper",
+          "research_03_test_build_smoke_2026_07_31_dishonoredvr_dll"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+      },
+      {
+        "id": "stereo_rendering_pipeline",
+        "label": "Stereo Rendering Pipeline",
+        "nodes": [
+          "research_23_calcsceneview",
+          "research_24_fsceneviewfamily",
+          "research_24_viewstate"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "research/24-the-stereo-mechanism-2026-09-02.md"
+      },
+      {
+        "id": "automated_testing_stack",
+        "label": "Automated Testing Stack",
+        "nodes": [
+          "workflows_01_test_harness",
+          "workflows_02_headless_harness",
+          "src_injector"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "workflows/02-headless-harness.md"
+      },
+      {
+        "id": "ue3_render_pipeline",
+        "label": "UE3 Render Pipeline Analysis",
+        "nodes": [
+          "ulocalplayer_calcsceneview",
+          "eventgetplayerviewpoint",
+          "ue3_engine"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "handover-to-playbook-2026-09-02.md"
+      },
+      {
+        "id": "ue3_view_construction_flow",
+        "label": "UE3 View Construction and Override Flow",
+        "nodes": [
+          "research_20_ue3_source_names_the_camera_2026_09_01_calcsceneview",
+          "research_21_shipped_mod_extraction_2026_09_02_gingasvr_failure",
+          "research_22_calcsceneview_disassembled_2026_09_02_view_override"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "research/22-calcsceneview-disassembled-2026-09-02.md"
+      },
+      {
+        "id": "vr_transport_stack",
+        "label": "VR Transport Stack",
+        "nodes": [
+          "d3d9_api",
+          "nine_on_twelve",
+          "openxr_api"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CURRENT_STATE.md"
+      },
+      {
+        "id": "camera_injection_strategy",
+        "label": "Camera Injection Strategy",
+        "nodes": [
+          "research_06_camera_callers_live_2026_07_31_visual_gate",
+          "research_09_vr_mechanic_risk_2026_08_03_possession"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.8,
+        "source_file": "research/09-vr-mechanic-risk-2026-08-03.md"
+      },
+      {
+        "id": "adapter_luid_resolution_pattern",
+        "label": "Adapter LUID Resolution and 9On12 Strategy",
+        "nodes": [
+          "research_16_adapter_identity_blocks_the_join_2026_08_30_adapter_mismatch",
+          "research_16_adapter_identity_blocks_the_join_2026_08_30_xrsim_tie_break",
+          "research_19_borrowed_unblocks_2026_09_01_9on12_device_constraint"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "research/19-borrowed-unblocks-2026-09-01.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "dishonored_exe",
+      "label": "Dishonored.exe",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "dishonored.exe",
+      "rationale": "The target executable (32-bit, x86).",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "d3d9_drv",
+      "label": "D3D9Drv",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "d3d9drv",
+      "rationale": "The D3D9 renderer driver in Dishonored/UE3.",
+      "source_file": "research/10-d3d9-pool-audit-2026-08-07.md"
+    },
+    {
+      "id": "d3dpool_managed",
+      "label": "D3DPOOL_MANAGED",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "d3dpool_managed",
+      "rationale": "D3D9 memory pool that is removed in D3D9Ex, used extensively by Dishonored.",
+      "source_file": "research/10-d3d9-pool-audit-2026-08-07.md"
+    },
+    {
+      "id": "research_10_d3d9_pool_audit_2026_08_07",
+      "label": "D3D9 memory-pool audit \u2014 2026-08-07",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "paper",
+      "norm_label": "d3d9 memory-pool audit \u2014 2026-08-07",
+      "rationale": "Audit of Dishonored's D3D9 memory pool usage to determine D3D9Ex compatibility.",
+      "source_file": "research/10-d3d9-pool-audit-2026-08-07.md"
+    },
+    {
+      "id": "research_13_icf_hook_safety_2026_08_22",
+      "label": "/OPT:ICF and our hook targets \u2014 2026-08-22",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "paper",
+      "norm_label": "/opt:icf and our hook targets \u2014 2026-08-22",
+      "rationale": "Investigation into MSVC Identical COMDAT Folding (ICF) risks for function hooking.",
+      "source_file": "research/13-icf-hook-safety-2026-08-22.md"
+    },
+    {
+      "id": "research_14_d3d9_fpu_precision_2026_08_27",
+      "label": "The D3D9 x87 precision trap, and the adapter assertion we were missing \u2014 2026-08-27",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "paper",
+      "norm_label": "the d3d9 x87 precision trap, and the adapter assertion we were missing \u2014 2026-08-27",
+      "rationale": "Analysis of D3D9's impact on x87 FPU precision and adapter LUID consistency.",
+      "source_file": "research/14-d3d9-fpu-precision-2026-08-27.md"
+    },
+    {
+      "id": "agents_md",
+      "label": "AGENTS.md",
+      "_origin": "semantic",
+      "community": 10,
+      "file_type": "document",
+      "norm_label": "agents.md",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "claude_md",
+      "label": "CLAUDE.md",
+      "_origin": "semantic",
+      "community": 10,
+      "file_type": "document",
+      "norm_label": "claude.md",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "bvr_xrsim",
+      "label": "bvr-xrsim",
+      "_origin": "semantic",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "bvr-xrsim",
+      "rationale": "Simulated OpenXR runtime for 32-bit testing.",
+      "source_file": "research/15-xrsim-openxr-session-2026-08-30.md"
+    },
+    {
+      "id": "research_15_xrsim_openxr_session_2026_08_30",
+      "label": "A simulated runtime closes the OpenXR session gap \u2014 2026-08-30",
+      "_origin": "semantic",
+      "community": 11,
+      "file_type": "paper",
+      "norm_label": "a simulated runtime closes the openxr session gap \u2014 2026-08-30",
+      "rationale": "Validation of OpenXR session creation using a simulated runtime (bvr-xrsim).",
+      "source_file": "research/15-xrsim-openxr-session-2026-08-30.md"
+    },
+    {
+      "id": "openxr_api",
+      "label": "OpenXR",
+      "_origin": "semantic",
+      "community": 12,
+      "file_type": "concept",
+      "norm_label": "openxr",
+      "source_file": "README.md"
+    },
+    {
+      "id": "readme_md",
+      "label": "README.md",
+      "_origin": "semantic",
+      "community": 12,
+      "file_type": "document",
+      "norm_label": "readme.md",
+      "source_file": "README.md"
+    },
+    {
+      "id": "research_08_d3d9_d3d11_interop_2026_08_01_d3d9ex_requirement",
+      "label": "D3D9Ex Requirement",
+      "_origin": "semantic",
+      "community": 13,
+      "file_type": "concept",
+      "norm_label": "d3d9ex requirement",
+      "rationale": "Plain D3D9 cannot create shared resources; D3D9Ex or 9On12 is required.",
+      "source_file": "research/08-d3d9-d3d11-interop-2026-08-01.md"
+    },
+    {
+      "id": "research_10_d3d9_pool_audit_2026_08_07_9on12_pivot",
+      "label": "9On12 Pivot",
+      "_origin": "semantic",
+      "community": 13,
+      "file_type": "concept",
+      "norm_label": "9on12 pivot",
+      "rationale": "D3D9Ex route closed due to D3DPOOL_MANAGED; 9On12 to D3D12 is the new transport path.",
+      "source_file": "research/04-openxr-preflight-2026-07-31.md"
+    },
+    {
+      "id": "arch_module_boundaries",
+      "label": "Module Boundaries",
+      "_origin": "semantic",
+      "community": 14,
+      "file_type": "document",
+      "norm_label": "module boundaries",
+      "source_file": "architecture/00-module-boundaries.md"
+    },
+    {
+      "id": "research_00_project_baseline_dishonored_exe",
+      "label": "Dishonored.exe (x86)",
+      "_origin": "semantic",
+      "community": 15,
+      "file_type": "code",
+      "norm_label": "dishonored.exe (x86)",
+      "rationale": "Target executable for the VR mod; SHA-256 66443F3D...E17E.",
+      "source_file": "research/00-project-baseline.md"
+    },
+    {
+      "id": "research_06_camera_callers_live_2026_07_31_visual_gate",
+      "label": "Visual Camera Gate (0x002C48AE)",
+      "_origin": "semantic",
+      "community": 18,
+      "file_type": "concept",
+      "norm_label": "visual camera gate (0x002c48ae)",
+      "rationale": "Primary visual consumer for head-pose injection identified via caller sampling.",
+      "source_file": "research/06-camera-callers-live-2026-07-31.md"
+    },
+    {
+      "id": "research_09_vr_mechanic_risk_2026_08_03_possession",
+      "label": "Possession Mechanic Risk",
+      "_origin": "semantic",
+      "community": 19,
+      "file_type": "concept",
+      "norm_label": "possession mechanic risk",
+      "rationale": "Hardest mechanic due to camera re-parenting and eye-height changes.",
+      "source_file": "research/09-vr-mechanic-risk-2026-08-03.md"
+    },
+    {
+      "id": "research_23_calcsceneview",
+      "label": "CalcSceneView",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "calcsceneview",
+      "rationale": "Function at 0x006C4710 that builds matrices from view points and appends views to FSceneViewFamily.",
+      "source_file": "research/23-first-in-game-session-2026-09-02.md"
+    },
+    {
+      "id": "research_23_camera_gate",
+      "label": "Main-View Caller Gate",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "main-view caller gate",
+      "rationale": "Address 0x006C48AE used to isolate the render camera from other view consumers (AI, audio).",
+      "source_file": "research/23-first-in-game-session-2026-09-02.md"
+    },
+    {
+      "id": "research_23_eventgetplayerviewpoint",
+      "label": "eventGetPlayerViewPoint",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "eventgetplayerviewpoint",
+      "rationale": "Engine function that fills ViewLocation/ViewRotation as out-parameters.",
+      "source_file": "research/23-first-in-game-session-2026-09-02.md"
+    },
+    {
+      "id": "research_24_fsceneviewfamily",
+      "label": "FSceneViewFamily",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "fsceneviewfamily",
+      "rationale": "UE3 structure containing a TArray of FSceneView pointers; iterated by the renderer for stereo.",
+      "source_file": "research/24-the-stereo-mechanism-2026-09-02.md"
+    },
+    {
+      "id": "research_23_bn_cam_001",
+      "label": "BN-CAM-001",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "concept",
+      "norm_label": "bn-cam-001",
+      "rationale": "Closed by measurement; confirmed 6DoF control of Dishonored render camera.",
+      "source_file": "research/23-first-in-game-session-2026-09-02.md"
+    },
+    {
+      "id": "research_11_apitrace_capture_2026_08_15",
+      "label": "apitrace capture \u2014 negative result and a corrected procedure, 2026-08-15",
+      "_origin": "semantic",
+      "community": 20,
+      "file_type": "paper",
+      "norm_label": "apitrace capture \u2014 negative result and a corrected procedure, 2026-08-15",
+      "rationale": "Analysis of failed apitrace captures and establishment of corrected procedures for UE3/Dishonored.",
+      "source_file": "research/11-apitrace-capture-2026-08-15.md"
+    },
+    {
+      "id": "research_16_adapter_identity_blocks_the_join_2026_08_30_xrsim_tie_break",
+      "label": "xrsim LUID Tie-Break Logic",
+      "_origin": "semantic",
+      "community": 21,
+      "file_type": "code",
+      "norm_label": "xrsim luid tie-break logic",
+      "rationale": "The simulator (bvr_xrsim32) uses a >= comparison on VRAM, causing it to select the last enumerated identical adapter, while D3D9 typically uses the first.",
+      "source_file": "research/16-adapter-identity-blocks-the-join-2026-08-30.md"
+    },
+    {
+      "id": "research_18_first_pixels_in_a_headset_2026_09_01_frustum_trap",
+      "label": "The Frustum Declaration Trap",
+      "_origin": "semantic",
+      "community": 22,
+      "file_type": "concept",
+      "norm_label": "the frustum declaration trap",
+      "rationale": "XrCompositionLayerProjectionView::fov must describe the rendered frustum (game tangents), not the runtime's requested FOV. Declaring the runtime's FOV over game pixels causes convergence failure.",
+      "source_file": "research/18-first-pixels-in-a-headset-2026-09-01.md"
+    },
+    {
+      "id": "research_20_ue3_source_names_the_camera_2026_09_01_reald_hook",
+      "label": "UE3 RealD Stereo Hook",
+      "_origin": "semantic",
+      "community": 23,
+      "file_type": "concept",
+      "norm_label": "ue3 reald stereo hook",
+      "rationale": "Native UE3 stereo implementation uses a post-multiply on the finished view matrix in view-space (X-right). Not present in Dishonored build but provides the architectural template.",
+      "source_file": "research/20-ue3-source-names-the-camera-2026-09-01.md"
+    },
+    {
+      "id": "research_24_fsceneview_layout",
+      "label": "FSceneView Layout",
+      "_origin": "semantic",
+      "community": 24,
+      "file_type": "rationale",
+      "norm_label": "fsceneview layout",
+      "rationale": "Mapped offsets: 0x50 ViewMatrix, 0x90 ProjectionMatrix, 0x2F0 ViewOrigin.",
+      "source_file": "research/24-the-stereo-mechanism-2026-09-02.md"
+    },
+    {
+      "id": "research_24_viewstate",
+      "label": "FViewState",
+      "_origin": "semantic",
+      "community": 25,
+      "file_type": "code",
+      "norm_label": "fviewstate",
+      "rationale": "Holds temporal history; sharing between eyes causes flickering/artefacts.",
+      "source_file": "research/24-the-stereo-mechanism-2026-09-02.md",
+      "verification": "unverified"
+    },
+    {
+      "id": "workflows_02_headless_harness",
+      "label": "Headless Harness",
+      "_origin": "semantic",
+      "community": 26,
+      "file_type": "document",
+      "norm_label": "headless harness",
+      "rationale": "System for frame capture, synthetic input, and scripted testing without a headset.",
+      "source_file": "workflows/02-headless-harness.md"
+    },
+    {
+      "id": "eventgetplayerviewpoint",
+      "label": "eventGetPlayerViewPoint",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "eventgetplayerviewpoint",
+      "rationale": "UE3 function that delivers camera data via out-parameters.",
+      "source_file": "handover-to-playbook-2026-09-02.md"
+    },
+    {
+      "id": "ulocalplayer_calcsceneview",
+      "label": "ULocalPlayer::CalcSceneView",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "ulocalplayer::calcsceneview",
+      "rationale": "The primary render path hook site in UE3.",
+      "source_file": "handover-to-playbook-2026-09-02.md"
+    },
+    {
+      "id": "arch_forward_data_plan",
+      "label": "Forward Data Plan",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "forward data plan",
+      "source_file": "architecture/01-forward-data-plan.md"
+    },
+    {
+      "id": "handover_playbook_20260902",
+      "label": "Handover to Playbook (2026-09-02)",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "handover to playbook (2026-09-02)",
+      "rationale": "High-value findings promoted to the fleet-wide VR modding playbook.",
+      "source_file": "handover-to-playbook-2026-09-02.md"
+    },
+    {
+      "id": "d3d9_api",
+      "label": "Direct3D 9",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "direct3d 9",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "nine_on_twelve",
+      "label": "9On12",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "9on12",
+      "rationale": "The transport route: D3D9 -> D3D12 -> OpenXR.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "ue3_engine",
+      "label": "Unreal Engine 3",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "unreal engine 3",
+      "rationale": "The target game engine (build 10897 referenced for source analysis).",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "current_state_md",
+      "label": "Current State",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "document",
+      "norm_label": "current state",
+      "rationale": "Central status document tracking project progress, bottlenecks, and established facts.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "fc2vr",
+      "label": "FarCry2-VR (FC2VR)",
+      "_origin": "semantic",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "farcry2-vr (fc2vr)",
+      "rationale": "Reference VR mod used for architectural comparison.",
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "id": "nvidia_3d_vision",
+      "label": "NVIDIA 3D Vision",
+      "_origin": "semantic",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "nvidia 3d vision",
+      "rationale": "Legacy driver-side stereo technology found in Dishonored.",
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "id": "ue3_scene_capture",
+      "label": "UE3 Scene Capture System",
+      "_origin": "semantic",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "ue3 scene capture system",
+      "rationale": "Engine mechanism for secondary world renders (mirrors, portals).",
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "id": "research_12_native_stereo_assessment_2026_08_22",
+      "label": "Native stereo: FC2VR assessment, and what Dishonored actually has \u2014 2026-08-22",
+      "_origin": "semantic",
+      "community": 5,
+      "file_type": "paper",
+      "norm_label": "native stereo: fc2vr assessment, and what dishonored actually has \u2014 2026-08-22",
+      "rationale": "Comparative analysis of FarCry2-VR and Dishonored's internal stereo support (NVIDIA 3D Vision).",
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "id": "research_17_second_render_path_2026_09_01_fun_005fc5b0",
+      "label": "FUN_005fc5b0 (Texture Streaming Loop)",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "fun_005fc5b0 (texture streaming loop)",
+      "rationale": "Initially suspected as a second render path; later identified via UE3 source as the texture streaming manager's view update loop.",
+      "source_file": "research/17-second-render-path-2026-09-01.md"
+    },
+    {
+      "id": "research_20_ue3_source_names_the_camera_2026_09_01_calcsceneview",
+      "label": "ULocalPlayer::CalcSceneView",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "ulocalplayer::calcsceneview",
+      "rationale": "Identified as the primary injection point (0x006C4710). It constructs the FSceneView per frame. Sourced from PlayerController via eventGetPlayerViewPoint.",
+      "source_file": "research/20-ue3-source-names-the-camera-2026-09-01.md"
+    },
+    {
+      "id": "research_22_calcsceneview_disassembled_2026_09_02_view_override",
+      "label": "Native View Override (Object Propagator)",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "native view override (object propagator)",
+      "rationale": "A data-only branch in CalcSceneView (0x006C4850) that reads from globals (0x01448FA0) instead of the Actor. Allows driving the view without a code detour.",
+      "source_file": "research/22-calcsceneview-disassembled-2026-09-02.md"
+    },
+    {
+      "id": "research_21_shipped_mod_extraction_2026_09_02_gingasvr_failure",
+      "label": "GingasVR Dishonored-VR Analysis",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "document",
+      "norm_label": "gingasvr dishonored-vr analysis",
+      "rationale": "Analysis of a discontinued mod. Their failure to drive the camera is attributed to writing to output caches (FTPOV) rather than the CalcSceneView construction path.",
+      "source_file": "research/21-shipped-mod-extraction-2026-09-02.md"
+    },
+    {
+      "id": "handover_2026_08_03_interop_lane_interop_spike",
+      "label": "D3D9\u2192D3D11 Interop Spike",
+      "_origin": "semantic",
+      "community": 7,
+      "file_type": "concept",
+      "norm_label": "d3d9\u2192d3d11 interop spike",
+      "rationale": "Feasibility experiment 4 to prove zero-copy D3D9Ex to D3D11 transport.",
+      "source_file": "handover/2026-08-03-interop-lane.md"
+    },
+    {
+      "id": "handover_2026_08_07_probe_hardening_hardening",
+      "label": "Probe Hardening",
+      "_origin": "semantic",
+      "community": 7,
+      "file_type": "concept",
+      "norm_label": "probe hardening",
+      "rationale": "Fixes correctness gaps in interop/OpenXR probes, including LUID stability and synchronization.",
+      "source_file": "handover/2026-08-07-probe-hardening.md"
+    },
+    {
+      "id": "research_01_feasibility_plan_stereo_ladder",
+      "label": "Stereo Rungs Ladder",
+      "_origin": "semantic",
+      "community": 7,
+      "file_type": "concept",
+      "norm_label": "stereo rungs ladder",
+      "rationale": "Incremental strategy for stereo rendering to de-risk re-entrancy issues.",
+      "source_file": "research/01-feasibility-plan.md"
+    },
+    {
+      "id": "research_16_adapter_identity_blocks_the_join_2026_08_30_adapter_mismatch",
+      "label": "Adapter LUID Mismatch Hazard",
+      "_origin": "semantic",
+      "community": 8,
+      "file_type": "concept",
+      "norm_label": "adapter luid mismatch hazard",
+      "rationale": "A D3D9 surface cannot be shared into a D3D11 device built on a different DXGI adapter entry, even on the same physical GPU. D3D9 and DXGI/OpenXR do not enumerate the same set of adapter entries.",
+      "source_file": "research/16-adapter-identity-blocks-the-join-2026-08-30.md"
+    },
+    {
+      "id": "research_18_first_pixels_in_a_headset_2026_09_01_vdxr_test",
+      "label": "VirtualDesktopXR Stereo Submission",
+      "_origin": "semantic",
+      "community": 8,
+      "file_type": "concept",
+      "norm_label": "virtualdesktopxr stereo submission",
+      "rationale": "First successful end-to-end test of D3D9-to-OpenXR submission on real hardware. Confirmed eye assignment (Left=Blue, Right=Red) and texture array support.",
+      "source_file": "research/18-first-pixels-in-a-headset-2026-09-01.md"
+    },
+    {
+      "id": "research_19_borrowed_unblocks_2026_09_01_9on12_device_constraint",
+      "label": "9On12 Device Creation Constraint",
+      "_origin": "semantic",
+      "community": 8,
+      "file_type": "concept",
+      "norm_label": "9on12 device creation constraint",
+      "rationale": "Swat4-VR evidence suggests Direct3DCreate9On12 fails in-game if passed a caller-created D3D12 device; it must create its own, which we then adopt.",
+      "source_file": "research/19-borrowed-unblocks-2026-09-01.md"
+    },
+    {
+      "id": "src_injector",
+      "label": "DishonoredVRInjector",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "dishonoredvrinjector",
+      "rationale": "Loader that injects DLL via remote thread; uses identity gate (SHA-256) for safety.",
+      "source_file": "workflows/02-headless-harness.md"
+    },
+    {
+      "id": "workflows_00_evidence_workflow",
+      "label": "Evidence Workflow",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "document",
+      "norm_label": "evidence workflow",
+      "rationale": "Rules for measurement validation, control usage, and avoiding 'confident zero' failures.",
+      "source_file": "workflows/00-evidence-workflow.md"
+    },
+    {
+      "id": "workflows_01_test_harness",
+      "label": "Test Harness",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "document",
+      "norm_label": "test harness",
+      "source_file": "workflows/01-test-harness.md"
+    },
+    {
+      "id": "research_02_live_runtime_probe_2026_07_31_dishonored_exe",
+      "label": "Dishonored.exe (SHA-256: 66443F3D...)",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "dishonored.exe (sha-256: 66443f3d...)",
+      "rationale": "Target executable for the VR mod, identified by specific SHA-256 and image base 0x00400000.",
+      "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+    },
+    {
+      "id": "research_02_live_runtime_probe_2026_07_31_player_view_query",
+      "label": "APlayerControllerexecGetPlayerViewPoint",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "aplayercontrollerexecgetplayerviewpoint",
+      "rationale": "Native UE3 entry point at Dishonored.exe+0x1D1430 for camera telemetry.",
+      "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+    },
+    {
+      "id": "research_02_live_runtime_probe_2026_07_31_present_wrapper",
+      "label": "Engine-side Present Wrapper",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "engine-side present wrapper",
+      "rationale": "Located at Dishonored.exe+0x5C0180; forwards to IDirect3DDevice9::Present. Preferred hook location.",
+      "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+    },
+    {
+      "id": "research_02_live_runtime_probe_2026_07_31_rhi_global",
+      "label": "Dynamic RHI Global",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "dynamic rhi global",
+      "rationale": "Located at Dishonored.exe+0x103EC78; used to discover the D3D9 device.",
+      "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+    },
+    {
+      "id": "research_03_test_build_smoke_2026_07_31_dishonoredvr_dll",
+      "label": "DishonoredVR.dll",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "dishonoredvr.dll",
+      "rationale": "The VR mod injection DLL.",
+      "source_file": "research/03-test-build-smoke-2026-07-31.md"
+    },
+    {
+      "id": "research_07_visual_camera_probe_0_3_visual_consumer_rva",
+      "label": "Main View Consumer (RVA 0x002C48AE)",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "main view consumer (rva 0x002c48ae)",
+      "rationale": "Specific return address identified as the target for head-pose injection.",
+      "source_file": "research/07-visual-camera-probe-0.3.md"
+    },
+    {
+      "id": "research_05_camera_caller_sampling_plan_caller_sampling",
+      "label": "Camera Caller Sampling",
+      "community": 0,
+      "file_type": "concept",
+      "norm_label": "camera caller sampling",
+      "rationale": "Strategy to identify which of the ~5 per-frame player-view calls is the main world render.",
+      "source_file": "research/05-camera-caller-sampling-plan.md"
+    },
+    {
+      "id": "research_02_live_runtime_probe_2026_07_31_process_view_rotation",
+      "label": "APlayerControllerexecProcessViewRotation",
+      "community": 16,
+      "file_type": "code",
+      "norm_label": "aplayercontrollerexecprocessviewrotation",
+      "rationale": "Located at Dishonored.exe+0x1D3840; candidate for replacing look deltas with HMD orientation.",
+      "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+    },
+    {
+      "id": "research_03_test_build_smoke_2026_07_31_command_mailbox",
+      "label": "Command Mailbox",
+      "community": 17,
+      "file_type": "concept",
+      "norm_label": "command mailbox",
+      "rationale": "Polled by a worker thread to handle read-only telemetry commands without blocking the game thread.",
+      "source_file": "research/03-test-build-smoke-2026-07-31.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "research_08_d3d9_d3d11_interop_2026_08_01_d3d9ex_requirement",
+      "target": "research_10_d3d9_pool_audit_2026_08_07_9on12_pivot",
+      "relation": "conceptually_related_to",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "The D3D9Ex requirement was superseded by the 9On12 pivot after the pool audit.",
+      "source_file": "research/08-d3d9-d3d11-interop-2026-08-01.md"
+    },
+    {
+      "source": "d3d9_drv",
+      "target": "d3dpool_managed",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/10-d3d9-pool-audit-2026-08-07.md"
+    },
+    {
+      "source": "research_20_ue3_source_names_the_camera_2026_09_01_calcsceneview",
+      "target": "research_17_second_render_path_2026_09_01_fun_005fc5b0",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/20-ue3-source-names-the-camera-2026-09-01.md"
+    },
+    {
+      "source": "research_23_calcsceneview",
+      "target": "research_23_eventgetplayerviewpoint",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/23-first-in-game-session-2026-09-02.md"
+    },
+    {
+      "source": "ulocalplayer_calcsceneview",
+      "target": "eventgetplayerviewpoint",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "handover-to-playbook-2026-09-02.md"
+    },
+    {
+      "source": "research_16_adapter_identity_blocks_the_join_2026_08_30_adapter_mismatch",
+      "target": "research_19_borrowed_unblocks_2026_09_01_9on12_device_constraint",
+      "relation": "conceptually_related_to",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/19-borrowed-unblocks-2026-09-01.md"
+    },
+    {
+      "source": "research_23_bn_cam_001",
+      "target": "research_23_camera_gate",
+      "relation": "conceptually_related_to",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/23-first-in-game-session-2026-09-02.md"
+    },
+    {
+      "source": "research_22_calcsceneview_disassembled_2026_09_02_view_override",
+      "target": "research_20_ue3_source_names_the_camera_2026_09_01_calcsceneview",
+      "relation": "implements",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/22-calcsceneview-disassembled-2026-09-02.md"
+    },
+    {
+      "source": "src_injector",
+      "target": "workflows_01_test_harness",
+      "relation": "participate_in",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "workflows/02-headless-harness.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "claude_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "d3d9_api",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "dishonored_exe",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "nine_on_twelve",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "ue3_engine",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "dishonored_exe",
+      "target": "d3d9_drv",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/10-d3d9-pool-audit-2026-08-07.md"
+    },
+    {
+      "source": "handover_2026_08_07_probe_hardening_hardening",
+      "target": "handover_2026_08_03_interop_lane_interop_spike",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "handover/2026-08-07-probe-hardening.md"
+    },
+    {
+      "source": "handover_playbook_20260902",
+      "target": "ulocalplayer_calcsceneview",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "handover-to-playbook-2026-09-02.md"
+    },
+    {
+      "source": "readme_md",
+      "target": "openxr_api",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "research_01_feasibility_plan_stereo_ladder",
+      "target": "handover_2026_08_03_interop_lane_interop_spike",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/01-feasibility-plan.md"
+    },
+    {
+      "source": "research_10_d3d9_pool_audit_2026_08_07",
+      "target": "dishonored_exe",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/10-d3d9-pool-audit-2026-08-07.md"
+    },
+    {
+      "source": "research_12_native_stereo_assessment_2026_08_22",
+      "target": "fc2vr",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "source": "research_12_native_stereo_assessment_2026_08_22",
+      "target": "nvidia_3d_vision",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "source": "research_12_native_stereo_assessment_2026_08_22",
+      "target": "ue3_scene_capture",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "source": "research_13_icf_hook_safety_2026_08_22",
+      "target": "dishonored_exe",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/13-icf-hook-safety-2026-08-22.md"
+    },
+    {
+      "source": "research_14_d3d9_fpu_precision_2026_08_27",
+      "target": "d3d9_drv",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/14-d3d9-fpu-precision-2026-08-27.md"
+    },
+    {
+      "source": "research_15_xrsim_openxr_session_2026_08_30",
+      "target": "bvr_xrsim",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/15-xrsim-openxr-session-2026-08-30.md"
+    },
+    {
+      "source": "research_23_camera_gate",
+      "target": "research_23_calcsceneview",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/23-first-in-game-session-2026-09-02.md"
+    },
+    {
+      "source": "research_18_first_pixels_in_a_headset_2026_09_01_vdxr_test",
+      "target": "research_16_adapter_identity_blocks_the_join_2026_08_30_adapter_mismatch",
+      "relation": "shares_data_with",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/18-first-pixels-in-a-headset-2026-09-01.md"
+    },
+    {
+      "source": "research_24_fsceneviewfamily",
+      "target": "research_23_calcsceneview",
+      "relation": "shares_data_with",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/24-the-stereo-mechanism-2026-09-02.md"
+    },
+    {
+      "source": "workflows_01_test_harness",
+      "target": "workflows_00_evidence_workflow",
+      "relation": "implements",
+      "_origin": "semantic",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "workflows/01-test-harness.md"
+    },
+    {
+      "source": "arch_forward_data_plan",
+      "target": "eventgetplayerviewpoint",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "architecture/01-forward-data-plan.md"
+    },
+    {
+      "source": "research_21_shipped_mod_extraction_2026_09_02_gingasvr_failure",
+      "target": "research_20_ue3_source_names_the_camera_2026_09_01_calcsceneview",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "research/21-shipped-mod-extraction-2026-09-02.md"
+    },
+    {
+      "source": "research_03_test_build_smoke_2026_07_31_dishonoredvr_dll",
+      "target": "research_02_live_runtime_probe_2026_07_31_dishonored_exe",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/03-test-build-smoke-2026-07-31.md"
+    },
+    {
+      "source": "research_05_camera_caller_sampling_plan_caller_sampling",
+      "target": "research_02_live_runtime_probe_2026_07_31_player_view_query",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/05-camera-caller-sampling-plan.md"
+    },
+    {
+      "source": "research_02_live_runtime_probe_2026_07_31_present_wrapper",
+      "target": "research_02_live_runtime_probe_2026_07_31_rhi_global",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+    },
+    {
+      "source": "research_03_test_build_smoke_2026_07_31_dishonoredvr_dll",
+      "target": "research_02_live_runtime_probe_2026_07_31_player_view_query",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/03-test-build-smoke-2026-07-31.md"
+    },
+    {
+      "source": "research_03_test_build_smoke_2026_07_31_dishonoredvr_dll",
+      "target": "research_02_live_runtime_probe_2026_07_31_present_wrapper",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/03-test-build-smoke-2026-07-31.md"
+    },
+    {
+      "source": "research_07_visual_camera_probe_0_3_visual_consumer_rva",
+      "target": "research_02_live_runtime_probe_2026_07_31_player_view_query",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/07-visual-camera-probe-0.3.md"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "stereo_rendering_pathways",
+      "label": "Stereo Rendering Pathways",
+      "nodes": [
+        "nvidia_3d_vision",
+        "ue3_scene_capture",
+        "fc2vr",
+        "research_12_native_stereo_assessment_2026_08_22"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "research/12-native-stereo-assessment-2026-08-22.md"
+    },
+    {
+      "id": "camera_injection_flow",
+      "label": "Camera Injection Discovery Flow",
+      "nodes": [
+        "research_02_live_runtime_probe_2026_07_31_player_view_query",
+        "research_05_camera_caller_sampling_plan_caller_sampling",
+        "research_07_visual_camera_probe_0_3_visual_consumer_rva"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "research/07-visual-camera-probe-0.3.md"
+    },
+    {
+      "id": "renderer_hook_pattern",
+      "label": "Renderer Hooking Pattern",
+      "nodes": [
+        "research_02_live_runtime_probe_2026_07_31_rhi_global",
+        "research_02_live_runtime_probe_2026_07_31_present_wrapper",
+        "research_03_test_build_smoke_2026_07_31_dishonoredvr_dll"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "research/02-live-runtime-probe-2026-07-31.md"
+    },
+    {
+      "id": "stereo_rendering_pipeline",
+      "label": "Stereo Rendering Pipeline",
+      "nodes": [
+        "research_23_calcsceneview",
+        "research_24_fsceneviewfamily",
+        "research_24_viewstate"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "research/24-the-stereo-mechanism-2026-09-02.md"
+    },
+    {
+      "id": "automated_testing_stack",
+      "label": "Automated Testing Stack",
+      "nodes": [
+        "workflows_01_test_harness",
+        "workflows_02_headless_harness",
+        "src_injector"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "workflows/02-headless-harness.md"
+    },
+    {
+      "id": "ue3_render_pipeline",
+      "label": "UE3 Render Pipeline Analysis",
+      "nodes": [
+        "ulocalplayer_calcsceneview",
+        "eventgetplayerviewpoint",
+        "ue3_engine"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "handover-to-playbook-2026-09-02.md"
+    },
+    {
+      "id": "ue3_view_construction_flow",
+      "label": "UE3 View Construction and Override Flow",
+      "nodes": [
+        "research_20_ue3_source_names_the_camera_2026_09_01_calcsceneview",
+        "research_21_shipped_mod_extraction_2026_09_02_gingasvr_failure",
+        "research_22_calcsceneview_disassembled_2026_09_02_view_override"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/22-calcsceneview-disassembled-2026-09-02.md"
+    },
+    {
+      "id": "vr_transport_stack",
+      "label": "VR Transport Stack",
+      "nodes": [
+        "d3d9_api",
+        "nine_on_twelve",
+        "openxr_api"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "camera_injection_strategy",
+      "label": "Camera Injection Strategy",
+      "nodes": [
+        "research_06_camera_callers_live_2026_07_31_visual_gate",
+        "research_09_vr_mechanic_risk_2026_08_03_possession"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "research/09-vr-mechanic-risk-2026-08-03.md"
+    },
+    {
+      "id": "adapter_luid_resolution_pattern",
+      "label": "Adapter LUID Resolution and 9On12 Strategy",
+      "nodes": [
+        "research_16_adapter_identity_blocks_the_join_2026_08_30_adapter_mismatch",
+        "research_16_adapter_identity_blocks_the_join_2026_08_30_xrsim_tie_break",
+        "research_19_borrowed_unblocks_2026_09_01_9on12_device_constraint"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "research/19-borrowed-unblocks-2026-09-01.md"
+    }
+  ],
+  "built_at_commit": "4eef472859c07914a20b9cea76bc0d70870f1f5f"
+}

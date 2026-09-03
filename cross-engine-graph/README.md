@@ -8,6 +8,11 @@ one project can reach the others.
 > ledger is `..\sources.yml`, rendered in `..\docs\coverage.md`. This graph holds three projects only and
 > must never be used to conclude that no *other* project solved a problem.
 
+The **built reconciled graph** still has that three-project scope. The refresh pipeline is now configured
+for all eight in-house projects: SS2VR, BioShockVR, SOMAVR, PreyVR, DishonoredVR, FarCry2VR, SWAT4VR and
+Sims4VR. It produces separate semantic document graphs first; adding those five new graphs to semantic
+cross-project reconciliation is a distinct step, because a Graphify union does not discover shared concepts.
+
 ---
 
 ## Use this graph
@@ -37,6 +42,96 @@ node is a lead with provenance, not evidence.
 ---
 
 ## Rebuilding it
+
+### Fleet document refresh (recommended)
+
+The PowerShell driver stages a curated corpus per project and incrementally refreshes each semantic graph:
+
+```powershell
+# Free sizing pass: no staging, writes, API calls or cost.
+.\update-fleet-docs.ps1 -WhatIfCost
+
+# All eight projects. Existing manifests mean only changed documents are sent.
+.\update-fleet-docs.ps1
+
+# Upgrade the Graphify CLI and synchronize its Codex + Claude skills first,
+# normalize all eight project code graphs under that version while preserving
+# their semantic tiers, then update all eight semantic document graphs.
+.\update-fleet-docs.ps1 -UpdateGraphify -NormalizeCode
+
+# A selected subset, or a deliberate clean re-extraction.
+.\update-fleet-docs.ps1 -Project farcry2vr,swat4vr
+.\update-fleet-docs.ps1 -Project sims4vr -Force
+
+# Update the projects' own mixed code+document graphs instead of the curated
+# documentation-only outputs. PreyVR's custom corpus is restaged automatically.
+.\update-fleet-docs.ps1 -ProjectGraph -Project bioshockvr,dishonoredvr
+
+# Deterministic code only, preserving the graph's existing semantic tier.
+.\update-fleet-docs.ps1 -Project farcry2vr -CodeOnly
+
+# Use the trusted LAN AI box instead of Gemini for document semantics.
+.\update-fleet-docs.ps1 -Project farcry2vr -ProjectGraph -NormalizeCode `
+  -SemanticProvider local -LocalModel coder-next
+```
+
+Every configured in-house project root also has two identical shortcuts:
+
+```powershell
+.\Graphify-Update-CodeOnly.ps1
+.\Graphify-Update-All.ps1
+.\Graphify-Update-All.ps1 -SemanticProvider local -LocalModel gemma4-26b
+```
+
+`CodeOnly` is free and deterministic. `All` first normalizes code, verifies that
+existing document provenance survived, and then refreshes document semantics in
+the project's mixed graph. Both shortcuts delegate back here, so project-local
+scripts cannot drift into different Graphify command lines.
+
+`-UpdateGraphify` runs `uv tool upgrade graphifyy`, reinstalls the matching `codex` and `claude`
+skills, and prints the resulting CLI version before graph extraction. Use
+`-GraphifyPlatform codex` if a machine should update only the Codex integration.
+
+`-NormalizeCode` runs `graphify extract --force --code-only` for every selected project before the
+semantic pass. Graphify 0.9.51+ carries the existing semantic tier forward during this rescan; the wrapper
+fails if any previously represented document source disappears. Exact/fuzzy node consolidation is
+reported separately because a smaller node count can be a legitimate deduplication rather than data loss.
+
+Gemini can occasionally return an empty result for a valid document. The driver therefore uses Graphify
+0.9.53's incomplete-file requeue support and makes up to two cheap incremental retries by default; cached
+successes are not resent. Set `-SemanticRetries 0` to disable this, or choose `1`-`5`. Final coverage is
+checked against node, edge, and hyperedge provenance, and any consistently non-semantic wrapper documents
+are named explicitly rather than being counted as integrated.
+
+The measured fleet input is currently 348 documents / about 2.4 million estimated input tokens before
+Graphify chunking. Use the sizing pass before `-Force`; a normal incremental run is usually much smaller.
+The load-bearing Gemini defaults from the original experiment remain enforced: 20,000-token chunks and
+concurrency 2. The local provider defaults to concurrency 1 because the LAN endpoint is a single-GPU
+model server; an explicit `-MaxConcurrency` overrides it.
+
+The key lives at `%LOCALAPPDATA%\graphify\gemini.key`, outside every repository. The runner reads it into
+the current process only, never prints it, and clears it in `finally`. To create or replace it, use a masked
+prompt in your own PowerShell window (never paste the key into a chat):
+
+```powershell
+$dir = "$env:LOCALAPPDATA\graphify"
+New-Item -ItemType Directory -Force -Path $dir | Out-Null
+Read-Host "Paste Gemini API key" -AsSecureString |
+  ConvertFrom-SecureString -AsPlainText |
+  Set-Content -Path "$dir\gemini.key" -NoNewline -Encoding utf8
+```
+
+For `-SemanticProvider local`, Graphify uses its zero-cost OpenAI-compatible local backend against
+`http://192.168.0.161:8080/v1`. The runner reuses `LOCAL_LLM_API_KEY`,
+`%LOCALAPPDATA%\graphify\local-ai.key`, or the existing Codex local-llm MCP credential—without printing
+or copying it into a repository. Both `coder-next` and `gemma4-26b` have passed the real Graphify JSON
+extraction call; select either with `-LocalModel`. Graphify reports the local route at zero API cost.
+
+Outputs are isolated under `per-project/<project>/graphify-out/`, preventing entity-ID collisions and
+allowing one failed project to be retried without paying for the others. `-StageOnly` refreshes the corpus
+without calling a semantic provider.
+
+### Original three-project reconciled build
 
 Three stages. Total cost **~$1.50** on Gemini flash; the reconciliation stage alone is ~$0.013, so
 iterate on that freely and avoid re-running stage 2.

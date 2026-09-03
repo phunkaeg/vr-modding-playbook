@@ -1,0 +1,260 @@
+{
+  "ADDRESS_REGISTRY.md": {
+    "mtime": 1788394201.799289,
+    "seen": 1788403494.8829665,
+    "ast_hash": "999c565e254fadfcc187fcceac99ce1f",
+    "semantic_hash": "999c565e254fadfcc187fcceac99ce1f"
+  },
+  "CONVENTIONS.md": {
+    "mtime": 1786791319.6695755,
+    "seen": 1788403494.8829665,
+    "ast_hash": "d72757e45df459dd8510dcb102083b49",
+    "semantic_hash": "d72757e45df459dd8510dcb102083b49"
+  },
+  "CURRENT_STATE.md": {
+    "mtime": 1788394222.7808156,
+    "seen": 1788403494.8829665,
+    "ast_hash": "ee6d5662a562c8e3b22476d675f6c07f",
+    "semantic_hash": "ee6d5662a562c8e3b22476d675f6c07f"
+  },
+  "DECISION_LOG.md": {
+    "mtime": 1785996986.5272748,
+    "seen": 1788403494.8829665,
+    "ast_hash": "65ed2259bcdae27c79c37aac147e9e5a",
+    "semantic_hash": "65ed2259bcdae27c79c37aac147e9e5a"
+  },
+  "DE_RISKING_BATTERY.md": {
+    "mtime": 1785804835.2965062,
+    "seen": 1788403494.8829665,
+    "ast_hash": "726535b8d8d3549c0e05bcff58835a8b",
+    "semantic_hash": "726535b8d8d3549c0e05bcff58835a8b"
+  },
+  "DROP_REVIEW_FC2VR_20260903.md": {
+    "mtime": 1788394438.8414302,
+    "seen": 1788403494.8829665,
+    "ast_hash": "bd68aa5aed05521095bc46d2d7a90f66",
+    "semantic_hash": "bd68aa5aed05521095bc46d2d7a90f66"
+  },
+  "DUNIA_HANDOFF.md": {
+    "mtime": 1788394418.981499,
+    "seen": 1788403494.8829665,
+    "ast_hash": "59bcf55cbaef34db890e71e53b47bb48",
+    "semantic_hash": "59bcf55cbaef34db890e71e53b47bb48"
+  },
+  "FAILURE_REGISTRY.md": {
+    "mtime": 1788393618.2684677,
+    "seen": 1788403494.8829665,
+    "ast_hash": "34bbeb210e321c69d245569eeb1d166b",
+    "semantic_hash": "34bbeb210e321c69d245569eeb1d166b"
+  },
+  "GAMEPLAY_VR_RISK.md": {
+    "mtime": 1785798560.2165155,
+    "seen": 1788403494.8829665,
+    "ast_hash": "1e94ab0a80aa35cf727b08fdebdda6f1",
+    "semantic_hash": "1e94ab0a80aa35cf727b08fdebdda6f1"
+  },
+  "HANDOVER_NATIVE_STEREO_D3D10.md": {
+    "mtime": 1788312921.2705352,
+    "seen": 1788403494.8829665,
+    "ast_hash": "4821dcf60324a64f1d0d78e1e7028e27",
+    "semantic_hash": "4821dcf60324a64f1d0d78e1e7028e27"
+  },
+  "HANDOVER_VIEWMODEL_AND_AIM.md": {
+    "mtime": 1787725295.2367086,
+    "seen": 1788403494.8829665,
+    "ast_hash": "8245312406620b1d03c83c801a15166c",
+    "semantic_hash": "8245312406620b1d03c83c801a15166c"
+  },
+  "HYPOTHESES.md": {
+    "mtime": 1785705063.2678728,
+    "seen": 1788403494.8829665,
+    "ast_hash": "91987d649de79c750d88fba7fb593fc9",
+    "semantic_hash": "91987d649de79c750d88fba7fb593fc9"
+  },
+  "NATIVE_STEREO_PLAN.md": {
+    "mtime": 1788299888.17026,
+    "seen": 1788403494.8829665,
+    "ast_hash": "082138a5646a6345c46a81d3d8dba2e8",
+    "semantic_hash": "082138a5646a6345c46a81d3d8dba2e8"
+  },
+  "PROJECT_PHASES.md": {
+    "mtime": 1785545060.7320008,
+    "seen": 1788403494.8829665,
+    "ast_hash": "973064f9a0d3005bde25e93dffcff9ab",
+    "semantic_hash": "973064f9a0d3005bde25e93dffcff9ab"
+  },
+  "README.md": {
+    "mtime": 1786059066.2138543,
+    "seen": 1788403494.8829665,
+    "ast_hash": "92a2cb309129049a0a026ac82e3dda5b",
+    "semantic_hash": "92a2cb309129049a0a026ac82e3dda5b"
+  },
+  "RE_FINDINGS.md": {
+    "mtime": 1788151052.0310452,
+    "seen": 1788403494.8829665,
+    "ast_hash": "954135d499031287176b9eae02379bf5",
+    "semantic_hash": "954135d499031287176b9eae02379bf5"
+  },
+  "TEST_CHECKLISTS.md": {
+    "mtime": 1785545258.7851393,
+    "seen": 1788403494.8829665,
+    "ast_hash": "ade622d124d529d00f62697fee10e356",
+    "semantic_hash": "ade622d124d529d00f62697fee10e356"
+  },
+  "TROUBLESHOOTING.md": {
+    "mtime": 1788150696.001586,
+    "seen": 1788403494.8829665,
+    "ast_hash": "7bc57303956c393f86e1d3d187252acf",
+    "semantic_hash": "7bc57303956c393f86e1d3d187252acf"
+  },
+  "archive/FORWARD_PLAN.md": {
+    "mtime": 1788151128.41449,
+    "seen": 1788403494.8829665,
+    "ast_hash": "40a0534330cd040a3acf7c5ee1b0c82a",
+    "semantic_hash": "40a0534330cd040a3acf7c5ee1b0c82a"
+  },
+  "archive/HANDOVER.md": {
+    "mtime": 1788151128.412322,
+    "seen": 1788403494.8829665,
+    "ast_hash": "2dfbc4f1d2180d4b5ad3c69eb8d72ba9",
+    "semantic_hash": "2dfbc4f1d2180d4b5ad3c69eb8d72ba9"
+  },
+  "engine/D3D9_OPENXR_NOTES.md": {
+    "mtime": 1786080580.0232527,
+    "seen": 1788403494.8829665,
+    "ast_hash": "a7001d4818d44050bea38183f2f27755",
+    "semantic_hash": "a7001d4818d44050bea38183f2f27755"
+  },
+  "engine/DUNIA_ENGINE_PROFILE.md": {
+    "mtime": 1785544971.1258354,
+    "seen": 1788403494.8829665,
+    "ast_hash": "95e1e7cd32219890f89897f98477cf29",
+    "semantic_hash": "95e1e7cd32219890f89897f98477cf29"
+  },
+  "engine/DUNIA_EXPORTS.md": {
+    "mtime": 1785544925.5933356,
+    "seen": 1788403494.8829665,
+    "ast_hash": "064371c2e2d8e71279625ae63ba6b85b",
+    "semantic_hash": "064371c2e2d8e71279625ae63ba6b85b"
+  },
+  "engine/DUNIA_RENDER_DEVICE.md": {
+    "mtime": 1788151052.0352168,
+    "seen": 1788403494.8829665,
+    "ast_hash": "3c93510c8d6c9e589ce8501610690476",
+    "semantic_hash": "3c93510c8d6c9e589ce8501610690476"
+  },
+  "engine/PLAYER_RIG_MAP.md": {
+    "mtime": 1787803904.9086306,
+    "seen": 1788403494.8829665,
+    "ast_hash": "853055778f5d6093f5f9dfe11b49749c",
+    "semantic_hash": "853055778f5d6093f5f9dfe11b49749c"
+  },
+  "engine/REFERENCE_TOOLS.md": {
+    "mtime": 1785545039.0492985,
+    "seen": 1788403494.8829665,
+    "ast_hash": "4fad3b71414f8f35771ef421e6aec251",
+    "semantic_hash": "4fad3b71414f8f35771ef421e6aec251"
+  },
+  "engine/RENDER_PASS_HAZARDS.md": {
+    "mtime": 1785996922.3945296,
+    "seen": 1788403494.8829665,
+    "ast_hash": "ec9bfa12639bc3029195d0dfc61a23e0",
+    "semantic_hash": "ec9bfa12639bc3029195d0dfc61a23e0"
+  },
+  "runbooks/apitrace.md": {
+    "mtime": 1788122135.647887,
+    "seen": 1788403494.8829665,
+    "ast_hash": "07151c7f95fe3ca735b1913299c7d2c9",
+    "semantic_hash": "07151c7f95fe3ca735b1913299c7d2c9"
+  },
+  "runbooks/flat-harness.md": {
+    "mtime": 1786000518.947553,
+    "seen": 1788403494.8829665,
+    "ast_hash": "67d6c79420b16405f7d0be9c65f3ee48",
+    "semantic_hash": "67d6c79420b16405f7d0be9c65f3ee48"
+  },
+  "runbooks/headless-harness.md": {
+    "mtime": 1788057858.052735,
+    "seen": 1788403494.8829665,
+    "ast_hash": "859efa08486ce95c467da8413d3f650f",
+    "semantic_hash": "859efa08486ce95c467da8413d3f650f"
+  },
+  "runbooks/injection.md": {
+    "mtime": 1785837502.792788,
+    "seen": 1788403494.8829665,
+    "ast_hash": "08be39d55e8c9cf0d02266ba4c2cc740",
+    "semantic_hash": "08be39d55e8c9cf0d02266ba4c2cc740"
+  },
+  "runbooks/xr-tape.md": {
+    "mtime": 1788144508.2387538,
+    "seen": 1788403494.8829665,
+    "ast_hash": "c8bca1ba14d5b0a37f49deaf08764f6e",
+    "semantic_hash": "c8bca1ba14d5b0a37f49deaf08764f6e"
+  },
+  "runbooks/xrsim.md": {
+    "mtime": 1788122298.6069806,
+    "seen": 1788403494.8829665,
+    "ast_hash": "c89d2414f190ded700b797f8f9e3cae7",
+    "semantic_hash": "c89d2414f190ded700b797f8f9e3cae7"
+  },
+  "AGENTS.md": {
+    "mtime": 1788252571.9427443,
+    "seen": 1788403631.043448,
+    "ast_hash": "8c8f26e3a0e500c2bde2841aee08fd59",
+    "semantic_hash": "8c8f26e3a0e500c2bde2841aee08fd59"
+  },
+  "CLAUDE.md": {
+    "mtime": 1787808180.993497,
+    "seen": 1788403631.043448,
+    "ast_hash": "60e700db4b5b7cd6c87bd1d7498901b9",
+    "semantic_hash": "60e700db4b5b7cd6c87bd1d7498901b9"
+  },
+  "INSTALLATION.md": {
+    "mtime": 1788150696.0005856,
+    "seen": 1788403631.043448,
+    "ast_hash": "eb95941c65981b725959202badfe06a9",
+    "semantic_hash": "eb95941c65981b725959202badfe06a9"
+  },
+  "VR_FINDINGS_INDEX.md": {
+    "mtime": 1788394438.185842,
+    "seen": 1788403631.043448,
+    "ast_hash": "b09ba51850dcf5fe5349fc250361e3fc",
+    "semantic_hash": "b09ba51850dcf5fe5349fc250361e3fc"
+  },
+  "index.md": {
+    "mtime": 1788151082.4737291,
+    "seen": 1788403631.043448,
+    "ast_hash": "7eb3376d3d12ea6561e3ab39766347b2",
+    "semantic_hash": "7eb3376d3d12ea6561e3ab39766347b2"
+  },
+  "runbooks/renderdoc-capture.md": {
+    "mtime": 1788151052.0373566,
+    "seen": 1788403631.043448,
+    "ast_hash": "13e20413c5a03b74a4ebe36ad5e93f69",
+    "semantic_hash": "13e20413c5a03b74a4ebe36ad5e93f69"
+  },
+  "archive/NEEDS_USER_INPUT.md": {
+    "mtime": 1788151128.4133236,
+    "seen": 1788403766.3915973,
+    "ast_hash": "8c8880a502300ab9e93b9ab185791952",
+    "semantic_hash": "8c8880a502300ab9e93b9ab185791952"
+  },
+  "archive/PROBE_PLAN.md": {
+    "mtime": 1788151128.4133236,
+    "seen": 1788403766.3915973,
+    "ast_hash": "8feb6e17da3adfa56d1f73a33ffb94eb",
+    "semantic_hash": "8feb6e17da3adfa56d1f73a33ffb94eb"
+  },
+  "archive/README.md": {
+    "mtime": 1788151067.4246218,
+    "seen": 1788403766.3915973,
+    "ast_hash": "5494310f60e3ad205f21b17a03e58608",
+    "semantic_hash": "5494310f60e3ad205f21b17a03e58608"
+  },
+  "runbooks/README.md": {
+    "mtime": 1786776838.430514,
+    "seen": 1788403766.3915973,
+    "ast_hash": "e0c0a81c545e3eafd84535db6279d235",
+    "semantic_hash": "e0c0a81c545e3eafd84535db6279d235"
+  }
+}

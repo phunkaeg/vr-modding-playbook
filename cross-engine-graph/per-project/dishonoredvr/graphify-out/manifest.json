@@ -1,0 +1,224 @@
+{
+  "AGENTS.md": {
+    "mtime": 1788249824.0119627,
+    "seen": 1788403423.0858908,
+    "ast_hash": "5627accce1562e4a1afa8dcd8d3f6a55",
+    "semantic_hash": "5627accce1562e4a1afa8dcd8d3f6a55"
+  },
+  "CLAUDE.md": {
+    "mtime": 1787808180.996495,
+    "seen": 1788403423.0858908,
+    "ast_hash": "962d94cc6f70a4198b391b89c4e929e9",
+    "semantic_hash": "962d94cc6f70a4198b391b89c4e929e9"
+  },
+  "CURRENT_STATE.md": {
+    "mtime": 1788304511.9848716,
+    "seen": 1788403423.0858908,
+    "ast_hash": "b06728ccf66b18e1c7f7c2a67a427cba",
+    "semantic_hash": "b06728ccf66b18e1c7f7c2a67a427cba"
+  },
+  "README.md": {
+    "mtime": 1785544920.2258785,
+    "seen": 1788403423.0858908,
+    "ast_hash": "2260b0bafdd5aab23ff502ac22f338a5",
+    "semantic_hash": "2260b0bafdd5aab23ff502ac22f338a5"
+  },
+  "architecture/00-module-boundaries.md": {
+    "mtime": 1785414293.0523014,
+    "seen": 1788403423.0858908,
+    "ast_hash": "f914aeb02fe2b3324fcc4508b40db0e7",
+    "semantic_hash": "f914aeb02fe2b3324fcc4508b40db0e7"
+  },
+  "architecture/01-forward-data-plan.md": {
+    "mtime": 1787406873.4734144,
+    "seen": 1788403423.0858908,
+    "ast_hash": "913b47f5ae977d7ca42af86ff720837c",
+    "semantic_hash": "913b47f5ae977d7ca42af86ff720837c"
+  },
+  "handover-to-playbook-2026-09-02.md": {
+    "mtime": 1788311793.9704018,
+    "seen": 1788403423.0858908,
+    "ast_hash": "27724677b00041a8b06180a248f7e01b",
+    "semantic_hash": "27724677b00041a8b06180a248f7e01b"
+  },
+  "handover/2026-08-03-interop-lane.md": {
+    "mtime": 1787641745.912734,
+    "seen": 1788403423.0858908,
+    "ast_hash": "c8c9d87bf403bb54d9ba0606f902bdef",
+    "semantic_hash": "c8c9d87bf403bb54d9ba0606f902bdef"
+  },
+  "handover/2026-08-07-probe-hardening.md": {
+    "mtime": 1786059828.4980576,
+    "seen": 1788403423.0858908,
+    "ast_hash": "7816ff801db6b22a5d5f13264d87734b",
+    "semantic_hash": "7816ff801db6b22a5d5f13264d87734b"
+  },
+  "research/00-project-baseline.md": {
+    "mtime": 1785414420.6557534,
+    "seen": 1788403423.0858908,
+    "ast_hash": "e792565c4ac3d974122acc45ed072619",
+    "semantic_hash": "e792565c4ac3d974122acc45ed072619"
+  },
+  "research/01-feasibility-plan.md": {
+    "mtime": 1787782271.4368632,
+    "seen": 1788403423.0858908,
+    "ast_hash": "3032d66ce57e0864486b1193482d58e2",
+    "semantic_hash": "3032d66ce57e0864486b1193482d58e2"
+  },
+  "research/04-openxr-preflight-2026-07-31.md": {
+    "mtime": 1787290503.0626433,
+    "seen": 1788403423.0858908,
+    "ast_hash": "acbbd8c170a52028118c06e3ff593485",
+    "semantic_hash": "acbbd8c170a52028118c06e3ff593485"
+  },
+  "research/06-camera-callers-live-2026-07-31.md": {
+    "mtime": 1785501892.7950304,
+    "seen": 1788403423.0858908,
+    "ast_hash": "259d1c9fb2eed652518fa5995e75dc69",
+    "semantic_hash": "259d1c9fb2eed652518fa5995e75dc69"
+  },
+  "research/08-d3d9-d3d11-interop-2026-08-01.md": {
+    "mtime": 1787641745.9117372,
+    "seen": 1788403423.0858908,
+    "ast_hash": "d74f710d1e881470b3cfffd6bbc0d915",
+    "semantic_hash": "d74f710d1e881470b3cfffd6bbc0d915"
+  },
+  "research/09-vr-mechanic-risk-2026-08-03.md": {
+    "mtime": 1785716872.038515,
+    "seen": 1788403423.0858908,
+    "ast_hash": "59eaef5b58be100b89089b12d330fa19",
+    "semantic_hash": "59eaef5b58be100b89089b12d330fa19"
+  },
+  "research/10-d3d9-pool-audit-2026-08-07.md": {
+    "mtime": 1787388491.3647032,
+    "seen": 1788403423.0858908,
+    "ast_hash": "880b0fdde1e415a566205e08efe4186a",
+    "semantic_hash": "880b0fdde1e415a566205e08efe4186a"
+  },
+  "research/11-apitrace-capture-2026-08-15.md": {
+    "mtime": 1786925720.2771955,
+    "seen": 1788403423.0858908,
+    "ast_hash": "e88c2d4ee9ce7ae7c7c9bb53bfa0637f",
+    "semantic_hash": "e88c2d4ee9ce7ae7c7c9bb53bfa0637f"
+  },
+  "research/12-native-stereo-assessment-2026-08-22.md": {
+    "mtime": 1787436254.711073,
+    "seen": 1788403423.0858908,
+    "ast_hash": "1586cacfb3d2d2b8cd6a1a954b3833b7",
+    "semantic_hash": "1586cacfb3d2d2b8cd6a1a954b3833b7"
+  },
+  "research/13-icf-hook-safety-2026-08-22.md": {
+    "mtime": 1787398076.812046,
+    "seen": 1788403423.0858908,
+    "ast_hash": "581827b57bd8ceb82ff34d503e0effb0",
+    "semantic_hash": "581827b57bd8ceb82ff34d503e0effb0"
+  },
+  "research/14-d3d9-fpu-precision-2026-08-27.md": {
+    "mtime": 1788262888.4740155,
+    "seen": 1788403423.0858908,
+    "ast_hash": "2a1f1d7824d4dc95e27db3890ee93e26",
+    "semantic_hash": "2a1f1d7824d4dc95e27db3890ee93e26"
+  },
+  "research/15-xrsim-openxr-session-2026-08-30.md": {
+    "mtime": 1788059129.192807,
+    "seen": 1788403423.0858908,
+    "ast_hash": "ca965eaa241ebe698b53b88d5fb6f83f",
+    "semantic_hash": "ca965eaa241ebe698b53b88d5fb6f83f"
+  },
+  "research/16-adapter-identity-blocks-the-join-2026-08-30.md": {
+    "mtime": 1788232165.4805148,
+    "seen": 1788403423.0858908,
+    "ast_hash": "ca447b7d4dbf4f3d0400a2cd7baf06d0",
+    "semantic_hash": "ca447b7d4dbf4f3d0400a2cd7baf06d0"
+  },
+  "research/17-second-render-path-2026-09-01.md": {
+    "mtime": 1788262930.8058953,
+    "seen": 1788403423.0858908,
+    "ast_hash": "54ef38274e92ba41c57270d9fca3c1dd",
+    "semantic_hash": "54ef38274e92ba41c57270d9fca3c1dd"
+  },
+  "research/18-first-pixels-in-a-headset-2026-09-01.md": {
+    "mtime": 1788231667.0946145,
+    "seen": 1788403423.0858908,
+    "ast_hash": "d2d3795f23205fe63b79c6ff1c04bd4b",
+    "semantic_hash": "d2d3795f23205fe63b79c6ff1c04bd4b"
+  },
+  "research/19-borrowed-unblocks-2026-09-01.md": {
+    "mtime": 1788262881.4111109,
+    "seen": 1788403423.0858908,
+    "ast_hash": "ce44d48de4bf5198282389b163fd06d0",
+    "semantic_hash": "ce44d48de4bf5198282389b163fd06d0"
+  },
+  "research/20-ue3-source-names-the-camera-2026-09-01.md": {
+    "mtime": 1788263099.0142033,
+    "seen": 1788403423.0858908,
+    "ast_hash": "cb4e6fb2636211ace3afc86c45f4dfc1",
+    "semantic_hash": "cb4e6fb2636211ace3afc86c45f4dfc1"
+  },
+  "research/21-shipped-mod-extraction-2026-09-02.md": {
+    "mtime": 1788298719.724235,
+    "seen": 1788403423.0858908,
+    "ast_hash": "33524678b2ce24ca6e78489cf26b368e",
+    "semantic_hash": "33524678b2ce24ca6e78489cf26b368e"
+  },
+  "research/22-calcsceneview-disassembled-2026-09-02.md": {
+    "mtime": 1788299553.9716613,
+    "seen": 1788403423.0858908,
+    "ast_hash": "84d150f1e4c3ca6268a38f8818bcb2c4",
+    "semantic_hash": "84d150f1e4c3ca6268a38f8818bcb2c4"
+  },
+  "research/23-first-in-game-session-2026-09-02.md": {
+    "mtime": 1788304582.2592368,
+    "seen": 1788403423.0858908,
+    "ast_hash": "31dc46f2ed0b6328b04efa853983b32f",
+    "semantic_hash": "31dc46f2ed0b6328b04efa853983b32f"
+  },
+  "research/24-the-stereo-mechanism-2026-09-02.md": {
+    "mtime": 1788304930.1978824,
+    "seen": 1788403423.0858908,
+    "ast_hash": "5b0b72aa4b5f97ac7d79617dd73b9d4a",
+    "semantic_hash": "5b0b72aa4b5f97ac7d79617dd73b9d4a"
+  },
+  "workflows/00-evidence-workflow.md": {
+    "mtime": 1788263133.7054777,
+    "seen": 1788403423.0858908,
+    "ast_hash": "39d5e78116998a9de31c4c8f43d4a207",
+    "semantic_hash": "39d5e78116998a9de31c4c8f43d4a207"
+  },
+  "workflows/01-test-harness.md": {
+    "mtime": 1788055808.606312,
+    "seen": 1788403423.0858908,
+    "ast_hash": "5c1ec1ca941aadfdf6fb207ebf765867",
+    "semantic_hash": "5c1ec1ca941aadfdf6fb207ebf765867"
+  },
+  "workflows/02-headless-harness.md": {
+    "mtime": 1788057907.2044475,
+    "seen": 1788403423.0858908,
+    "ast_hash": "ffa184f3d2626e7d215bf3efe752dcd3",
+    "semantic_hash": "ffa184f3d2626e7d215bf3efe752dcd3"
+  },
+  "research/02-live-runtime-probe-2026-07-31.md": {
+    "mtime": 1785488121.6237164,
+    "seen": 1788403615.4452672,
+    "ast_hash": "df1aaa474e78fae35b45d144cf464a91",
+    "semantic_hash": "df1aaa474e78fae35b45d144cf464a91"
+  },
+  "research/03-test-build-smoke-2026-07-31.md": {
+    "mtime": 1785492928.6972208,
+    "seen": 1788403615.4452672,
+    "ast_hash": "b84c450939739d1efb600cb6c0d7942e",
+    "semantic_hash": "b84c450939739d1efb600cb6c0d7942e"
+  },
+  "research/05-camera-caller-sampling-plan.md": {
+    "mtime": 1785500563.1549582,
+    "seen": 1788403615.4452672,
+    "ast_hash": "fa984da2f5b7d2157754636bb0f84265",
+    "semantic_hash": "fa984da2f5b7d2157754636bb0f84265"
+  },
+  "research/07-visual-camera-probe-0.3.md": {
+    "mtime": 1785502153.2550862,
+    "seen": 1788403615.4452672,
+    "ast_hash": "8866376669b9077d163e2f0c3f65f9be",
+    "semantic_hash": "8866376669b9077d163e2f0c3f65f9be"
+  }
+}

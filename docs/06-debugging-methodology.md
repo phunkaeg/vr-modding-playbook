@@ -1492,6 +1492,41 @@ reads that value through the same path. Otherwise you haven't controlled for any
 your best lead. Before you write off a finding, name the code path that would consume it and confirm your
 control runs that path. [05](05-assets-and-materials.md) has the worked example that cost a day.
 
+## Promote claims, not branches {#claim-scoped-promotion}
+
+An evidence label answers **how this was observed**; a promotion scope answers **what proposition the
+observation is allowed to change**. They are independent. A `[LIVE]` run can prove one narrow role and
+leave every neighboring address a candidate; a `[SOURCE]` validator can prove that a gate is enforced
+without proving the runtime result that the gate describes.
+
+Five MonsterDeadWood research trees converge on a small experiment contract that makes this distinction
+mechanical. `[SOURCE]` Before a run, record:
+
+1. the claim ID and its present scope (`candidate`, `cold-only`, `role-proven`, or globally locked);
+2. the exact baseline revision and target-binary identity;
+3. the one intended intervention, plus an observer-only control;
+4. the artifacts that must exist for the result to be readable; and
+5. the predeclared `CONFIRM / REFUTE / AMBIGUOUS` decision rule.
+
+After the run, promote **that claim only** and attach the artifact hashes. Do not merge the branch as a
+unit of truth. A prepared plan is not a result; donor evidence is not target evidence; static closure is
+not runtime ownership; exact execution is not a visual verdict. Reopening a closed claim needs a written
+new premise or new evidence. This is [META-010](pattern-catalog.md#meta-010).
+
+## Observe the denominator before intervention {#observer-before-intervention}
+
+An intervention can change the population it claims to measure. A force-pass patch, early return, draw
+duplication or diagnostic hook may create/delete calls, alter culling, or move work to another phase;
+after that, a clean percentage or association is about the instrumented program rather than the target.
+
+Record the untouched denominator first: total candidates, total calls/draws, and how many satisfy the
+association. Then run a passive observer with the same counting path. Only after both agree should the
+causal mutation run. If the mutation changes the denominator, report the experiment `CONFOUNDED` unless
+the changed population is itself the named subject. MonsterDeadWood FC2VR found this while forcing a
+culling predicate: the mutation moved the very call population needed to identify the natural owner, so
+the next useful run was observer-only rather than a stronger force-pass.
+`[AUTHOR]`
+
 ## A hook that "does nothing" may simply never be reached
 
 Before you conclude your hook is wrong, prove it *ran*. The common cause of a correct hook having zero

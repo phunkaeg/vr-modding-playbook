@@ -194,6 +194,45 @@ practical tell is that **the fix does not work** - a change that should have mov
 it unmoved. At that point suspect the attribution, not the fix. Four instances in one day in this fleet,
 each individually rigorous.
 
+## META-010 — Promote a claim, not a branch {#meta-010}
+
+**Problem:** one successful experiment silently promotes every assumption, note and adjacent change on
+its branch to "proven".
+
+**Use when:** experiments are prepared on child branches, evidence arrives asynchronously, or several
+projects share donor code and research notes.
+
+**Recipe:** give the experiment a claim ID and keep **evidence class** separate from **promotion scope**.
+Pin the baseline revision, the one intended intervention, required artifacts, decision rule and
+invalidation condition before the run. Afterward, promote only the named claim supported by those
+artifacts; leave adjacent candidates cold. Reopening a closed claim requires a written new premise or
+new evidence, not a renamed experiment.
+
+**Proof:** the promotion record names the exact baseline and artifacts, and a validator rejects an
+unreviewed artifact or a promotion whose claim ID/scope does not match the experiment.
+
+**Trip hazard:** merging a branch, building successfully, or receiving a green summary is not blanket
+validation of everything that travelled with it.
+
+**Three scars in this fleet, each a different way the scope crept:**
+
+- **Swat4-VR withdrew three separate stereo measurements** (F-0014, F-0015, F-0020), **one of them with
+  a passing control.** The runs happened; what was promoted was a conclusion the artifacts did not carry.
+  *Pin the decision rule before the run, or a passing control becomes evidence for whatever you hoped.*
+- **A shipped Dishonored VR mod's patch series contains `revert to proven M3.1`** after two successive
+  refinements lost to the thing they replaced - and the last commit in its 52-patch series is **also** a
+  revert. **Reverting to a named proven state is only possible if the proven state was named**; that
+  project could roll back precisely because each candidate carried an identity.
+- **DishonoredVR quoted a sibling by name as prior art and never opened its tree** - for five days,
+  while writing an architecture argument from first principles that the sibling had already falsified by
+  experiment. **A citation promoted to a finding is this pattern at the corpus level**
+  ([FAIL-META-005](failure-atlas.md)), and *"a good citation feels like an answer, which
+  is precisely why it stops the search."*
+
+The common shape: **the unit that gets promoted is larger than the unit that was tested.** A branch, a
+session, a build, a cited project - each carries adjacent material that inherits a verdict it never
+earned.
+
 ## HOOK-001 — Resolve from a throwaway object, hook the real object {#hook-001}
 
 **Problem:** hard-coded COM vtable addresses drift across OS/runtime versions.
@@ -457,14 +496,17 @@ any permanent instrumentation exists.
 their slot for the next stage; copy only entry values in the handler. When you run out of slots, reuse
 freed ones and **report partial results** rather than presenting an incomplete census as complete. Before
 arming on a thread you do not own, save its debug-register context and restore it afterwards, and **skip
-any thread that already has one set**. Bound the whole diagnostic in time.
+any thread that already has one set**. On x86/x64 execution breakpoints, set `EFLAGS.RF` before
+continuing from the trapped instruction; clearing `DR6` alone leaves the instruction eligible to trap
+again. Bound the whole diagnostic in time.
 
 **Proof:** the same run reports which targets were hit and which were never reached - the second list is
 the point.
 
-**Trip hazard:** silently clobbering another tool's breakpoints, and probes on hot null-return paths -
-BFVR removed one such probe permanently after it froze a map-load session, and documented the absence
-where the probe would have been.
+**Trip hazard:** silently clobbering another tool's breakpoints, resuming without `RF` into a
+same-instruction retrigger loop, and probes on hot null-return paths - BFVR removed one such probe
+permanently after it froze a map-load session, and documented the absence where the probe would have
+been.
 
 ## RE-007 — Discriminate on a second physical quantity {#re-007}
 
@@ -658,13 +700,18 @@ or pose samples.
 
 **Use when:** eyes are not rendered sequentially in one engine frame.
 
-**Recipe:** tag each eye with pair ID, simulation frame, render pose and source
-resource generation. Publish only a complete coherent pair under a declared
-reuse policy.
+**Recipe:** make pixels, optional depth, pair ID, simulation frame, per-eye render poses, rendered FOV,
+display time, contract identity and source-resource generation one immutable publication unit. The
+producer owns both eye resources while it copies both images and publishes the metadata/ticket, issues
+the release barrier, then releases ownership; the consumer acquires both resources before reading the
+ticket and metadata. A last-good fallback carries the metadata that rendered those pixels. Before the
+first complete packet, return **WAIT / no submit**, not a permanent session fault.
 
-**Proof:** logs show pair IDs never regress or mix generations.
+**Proof:** delayed-publication fault injection cannot produce old pixels with new pose/FOV, one fresh eye
+with one stale eye, or a mixed resource generation; logs show pair IDs never regress or mix contracts.
 
-**Trip hazard:** “latest left + latest right” is not a pair. See
+**Trip hazard:** “latest left + latest right” is not a pair, and a fresh ticket does not make stale
+pixels fresh. See
 [09](09-d3d11-openxr-injection.md#the-unit-of-publication-is-the-pair-not-the-eye).
 
 ## STR-003 — Projection companion bundle {#str-003}
@@ -689,12 +736,18 @@ resources.
 
 **Use when:** a hook observes multiple camera/render-target owners.
 
-**Recipe:** classify by render target, depth, camera/view identity, call
-ancestry and frame phase; redirect only a proven main-view lane.
+**Recipe:** classify by render target, depth, camera/view identity, call ancestry, frame phase and a
+semantic image/resource generation. Where one resource is reused serially for LEFT then RIGHT, pointer
+identity is deliberately ignored. For replay correspondence, prefer draw ordinal plus
+primitive/geometry/VS/PS signature over "last texture seen for this shader"; a shader may consume many
+unrelated resources.
 
-**Proof:** capture each special pass and confirm it retains its own targets.
+**Proof:** capture each special pass and confirm it retains its own targets; instrument a known
+same-pointer/different-eye reuse and a known same-shader/different-texture case and confirm neither is
+misclassified.
 
-**Trip hazard:** resolution and format are weak identity signals.
+**Trip hazard:** resolution, format, COM pointer and shader ID are all weak identity signals unless tied
+to a semantic epoch and pass role.
 
 ## STR-005 — Native scene re-entry before draw replay {#str-005}
 

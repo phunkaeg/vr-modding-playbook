@@ -9,12 +9,12 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **BN-ACC-001** — Integration authority is not classified | `both` | ACCESS | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared |
 | **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟧 open |
 | **BN-OBS-001** — The active renderer and frame boundary are not owned | `both` | OBSERVE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared | 🟥 active |
-| **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟩 cleared | 🟧 open | 🟥 active |
+| **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟥 active | 🟧 open | 🟥 active |
 | **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active |
 | **BN-SFX-001** — A second eye may advance once-per-frame side effects | `both` | STEREO-SAFETY | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk |
 | **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟩 cleared | 🟥 active | 🟧 open |
-| **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟧 open | 🟧 open | 🟨 risk |
-| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟨 risk | 🟨 risk | 🟧 open | 🟧 open | 🟨 risk |
+| **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
+| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
 | **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟩 cleared | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
 | **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟥 active | 🟧 open | 🟧 open | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active |
 | **BN-PERF-001** — The fresh-frame budget and dominant cost are not measured | `both` | PERFORMANCE | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
@@ -94,7 +94,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SOMAVR** | 🟩 cleared | `HEADSET` | Player versus authored/secondary HPL frusta are classified and yielded to by state. |
 | **PreyVR** | 🟧 open | `STATIC` | ArkPlayerCamera, CSystem::m_ViewCamera and CRenderView copy-by-value seam are mapped; projection/cull behavior still needs live stereo proof. |
 | **DishonoredVR** | 🟥 active | `LIVE` | Render camera isolated by return address (+0x2C48AE, which immediately builds camera/view/projection in FUN_006c4710 and is reached from the viewport draw) and separated LIVE from nine other per-frame GetPlayerViewPoint consumers; +0x250F25 is the tick-timing consumer that must stay on the body camera. Pose query dispatches through PlayerController vtable +0x3C4; camera location +0x330, integer rotator +0x33C. Camera DELIVERY - parameter or global - remains unknown. |
-| **FarCry2-VR** | 🟩 cleared | `HEADSET` | 6DoF camera and authored-camera yielding work; the weapon/viewmodel transform is a separate open lane. |
+| **FarCry2-VR** | 🟥 active | `LIVE` | The shipped rung-2 baseline has headset-proven 6DoF and authored-camera yielding, but the new WorldExec route has not yet proved that its second-pass camera mutation reaches the consuming draw. Treat the working route as the fallback, not evidence for the new route. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Exports and forward census reduce search cost; the stereo camera delivery/seam still needs completion. |
 | **Sims4VR** | 🟥 active | `LIVE` | Python camera control is proven but too smoothed for head tracking; 30 native candidates remain ambiguous pending GPU-value correlation. |
 
@@ -132,7 +132,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR deliberately avoids same-frame scene re-entry and banks temporal histories per eye. |
 | **PreyVR** | 🟥 active | `STATIC` | RenderWorld viability is not established; global-camera consumers and pooled render views make live ordering mandatory. |
 | **DishonoredVR** | 🟨 risk | `—` | UE3 scene entry has not yet reached a live repeat test. |
-| **FarCry2-VR** | 🟥 active | `STATIC` | WorldExec has 37 pass dispatches and no known simulation, but the live M3 side-effect gate is unrun. |
+| **FarCry2-VR** | 🟥 active | `LIVE` | M3 question 1 is now live: 3,521 PrepareFrameGraph+WorldExec replays produced a 1.915 draw ratio while the animator stayed at 1.0. This is strong side-effect separation, not the full exit proof: the zero-delta control and remaining audio/particle/query/allocation observers still decide safety. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | Scene re-entry passes the pixel proof; the explicit side-effect gate is still unrun and two camera consumers repeat. |
 | **Sims4VR** | 🟨 risk | `—` | Existing repeated passes prove re-entrancy, not that a new full-quality eye invocation is idempotent. |
 
@@ -170,7 +170,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SOMAVR** | 🟥 active | `LIVE` | Refraction/post-effect ownership, occlusion identities and OpenGL transfer timing are current T3 refinement lanes. |
 | **PreyVR** | 🟨 risk | `—` | Deferred CryEngine companions and render-view pools are not yet exercised by a second eye. |
 | **DishonoredVR** | 🟨 risk | `—` | Render-pass census is partial and downstream of transport/camera gates. |
-| **FarCry2-VR** | 🟧 open | `HEADSET` | World stereo works; viewmodel pass ownership, vertical coverage and a higher-rung scene route remain open. |
+| **FarCry2-VR** | 🟥 active | `SOURCE` | The headset-proven rung-2 baseline still works. For the native route, classify output by frame/pass/resource generation rather than pointer identity, and prove OMSetRenderTargets interception with a positive control before treating the no-copy census as exhaustive; viewmodel ownership remains separate. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Hazard census is favorable, but the clean world/HUD M-C seam is unresolved. |
 | **Sims4VR** | 🟨 risk | `—` | Depth prepass, shadow atlas and reduced auxiliary pass are identified; per-eye policy is not designed. |
 
@@ -189,7 +189,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR history banking, pose latch, authored-state transitions and recenter generations are live. |
 | **PreyVR** | 🟨 risk | `—` | The downstream CRenderView seam avoids contaminating the cached aim ray, but no live eye pair exists. |
 | **DishonoredVR** | 🟨 risk | `—` | No render-pose packet has reached a headset path. |
-| **FarCry2-VR** | 🟧 open | `HEADSET` | 6DoF works; native scene re-entry must preserve primary-camera observers and pair policy. |
+| **FarCry2-VR** | 🟥 active | `SOURCE` | The working 6DoF baseline is headset-proven, but a native pair does not yet carry one atomic pixels+pose/FOV/contract/resource-generation publication. Current unsynchronised SharedSurface fallback cannot establish pair coherence. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Eye tagging is live and pair IDs are desk-tested; headset timing and final route are pending. |
 | **Sims4VR** | 🟨 risk | `—` | Python camera interpolation is explicitly unsuitable as the render-pose transport. |
 

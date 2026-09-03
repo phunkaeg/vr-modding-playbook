@@ -83,7 +83,7 @@ bottlenecks:
       SOMAVR: {state: cleared, evidence: HEADSET, note: "Player versus authored/secondary HPL frusta are classified and yielded to by state."}
       PreyVR: {state: open, evidence: STATIC, note: "ArkPlayerCamera, CSystem::m_ViewCamera and CRenderView copy-by-value seam are mapped; projection/cull behavior still needs live stereo proof."}
       DishonoredVR: {state: active, evidence: LIVE, note: "Render camera isolated by return address (+0x2C48AE, which immediately builds camera/view/projection in FUN_006c4710 and is reached from the viewport draw) and separated LIVE from nine other per-frame GetPlayerViewPoint consumers; +0x250F25 is the tick-timing consumer that must stay on the body camera. Pose query dispatches through PlayerController vtable +0x3C4; camera location +0x330, integer rotator +0x33C. Camera DELIVERY - parameter or global - remains unknown."}
-      FarCry2-vr: {state: cleared, evidence: HEADSET, note: "6DoF camera and authored-camera yielding work; the weapon/viewmodel transform is a separate open lane."}
+      FarCry2-vr: {state: active, evidence: LIVE, note: "The shipped rung-2 baseline has headset-proven 6DoF and authored-camera yielding, but the new WorldExec route has not yet proved that its second-pass camera mutation reaches the consuming draw. Treat the working route as the fallback, not evidence for the new route."}
       Swat4-VR: {state: open, evidence: LIVE, note: "Exports and forward census reduce search cost; the stereo camera delivery/seam still needs completion."}
       Sims4VR: {state: active, evidence: LIVE, note: "Python camera control is proven but too smoothed for head tracking; 30 native candidates remain ambiguous pending GPU-value correlation."}
 
@@ -119,7 +119,7 @@ bottlenecks:
       SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR deliberately avoids same-frame scene re-entry and banks temporal histories per eye."}
       PreyVR: {state: active, evidence: STATIC, note: "RenderWorld viability is not established; global-camera consumers and pooled render views make live ordering mandatory."}
       DishonoredVR: {state: risk, note: "UE3 scene entry has not yet reached a live repeat test."}
-      FarCry2-vr: {state: active, evidence: STATIC, note: "WorldExec has 37 pass dispatches and no known simulation, but the live M3 side-effect gate is unrun."}
+      FarCry2-vr: {state: active, evidence: LIVE, note: "M3 question 1 is now live: 3,521 PrepareFrameGraph+WorldExec replays produced a 1.915 draw ratio while the animator stayed at 1.0. This is strong side-effect separation, not the full exit proof: the zero-delta control and remaining audio/particle/query/allocation observers still decide safety."}
       Swat4-VR: {state: active, evidence: LIVE, note: "Scene re-entry passes the pixel proof; the explicit side-effect gate is still unrun and two camera consumers repeat."}
       Sims4VR: {state: risk, note: "Existing repeated passes prove re-entrancy, not that a new full-quality eye invocation is idempotent."}
 
@@ -155,7 +155,7 @@ bottlenecks:
       SOMAVR: {state: active, evidence: LIVE, note: "Refraction/post-effect ownership, occlusion identities and OpenGL transfer timing are current T3 refinement lanes."}
       PreyVR: {state: risk, note: "Deferred CryEngine companions and render-view pools are not yet exercised by a second eye."}
       DishonoredVR: {state: risk, note: "Render-pass census is partial and downstream of transport/camera gates."}
-      FarCry2-vr: {state: open, evidence: HEADSET, note: "World stereo works; viewmodel pass ownership, vertical coverage and a higher-rung scene route remain open."}
+      FarCry2-vr: {state: active, evidence: SOURCE, note: "The headset-proven rung-2 baseline still works. For the native route, classify output by frame/pass/resource generation rather than pointer identity, and prove OMSetRenderTargets interception with a positive control before treating the no-copy census as exhaustive; viewmodel ownership remains separate."}
       Swat4-VR: {state: open, evidence: LIVE, note: "Hazard census is favorable, but the clean world/HUD M-C seam is unresolved."}
       Sims4VR: {state: risk, note: "Depth prepass, shadow atlas and reduced auxiliary pass are identified; per-eye policy is not designed."}
 
@@ -173,7 +173,7 @@ bottlenecks:
       SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR history banking, pose latch, authored-state transitions and recenter generations are live."}
       PreyVR: {state: risk, note: "The downstream CRenderView seam avoids contaminating the cached aim ray, but no live eye pair exists."}
       DishonoredVR: {state: risk, note: "No render-pose packet has reached a headset path."}
-      FarCry2-vr: {state: open, evidence: HEADSET, note: "6DoF works; native scene re-entry must preserve primary-camera observers and pair policy."}
+      FarCry2-vr: {state: active, evidence: SOURCE, note: "The working 6DoF baseline is headset-proven, but a native pair does not yet carry one atomic pixels+pose/FOV/contract/resource-generation publication. Current unsynchronised SharedSurface fallback cannot establish pair coherence."}
       Swat4-VR: {state: open, evidence: LIVE, note: "Eye tagging is live and pair IDs are desk-tested; headset timing and final route are pending."}
       Sims4VR: {state: risk, note: "Python camera interpolation is explicitly unsuitable as the render-pose transport."}
 
@@ -287,9 +287,9 @@ project_focus:
 
   - project: FarCry2-vr
     stage: T1 native-stereo and viewmodel ownership
-    primary: [BN-SFX-001, BN-UI-001, BN-PERF-001]
-    current_question: Is WorldExec safe and affordable as a second same-frame world pass, and which separate evaluation/render path owns the first-person arms and armed weapon mesh?
-    next_proof: Run the M3 zero-delta side-effect gate; trace the first-person viewmodel draw upstream to its own skinning/animation writer, then repeat the writer-census plus large pixel-poke proof; measure pacing separately.
+    primary: [BN-SFX-001, BN-CAM-001, BN-RND-001, BN-POSE-001, BN-UI-001]
+    current_question: Does the second WorldExec consume the intended eye camera without advancing once-per-frame state, and where are its completed pixels captured and published as one coherent pair?
+    next_proof: Run the zero-delta and numeric-camera-delta M3 controls at the consuming draw; prove the D3D10 hook surface with an OMSetRenderTargets positive control, then tag frame/pass/resource generation and publish both pixels with their original pose/FOV contract atomically. Trace the first-person viewmodel separately after that gate.
     source: "D:/Dev Debug/FarCry2-vr/docs/CURRENT_STATE.md"
 
   - project: Swat4-VR

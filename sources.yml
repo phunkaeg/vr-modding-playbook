@@ -25,7 +25,7 @@
 #   AUTHOR    the author's claim only — not independently checked
 #   INFERENCE transferable hypothesis; not established on this target
 
-ledger_updated_at: 2026-08-27
+ledger_updated_at: 2026-09-03
 
 areas:
   - stereo
@@ -184,8 +184,8 @@ fleet:
     stereo_rung: R2
     upstream_url: internal
     license: internal-unreleased
-    reviewed_at: 2026-08-28
-    reviewed_revision: tree:483945e093abe687
+    reviewed_at: 2026-09-03
+    reviewed_revision: tree:f8a7972fa42c8fde
     areas:
       stereo:           {review: full, evidence: HEADSET}
       xr_lifecycle:     {review: partial, evidence: LIVE}
@@ -1811,6 +1811,118 @@ external:
     vehicle: framework-companion
     areas:
       source_integration: {review: skimmed, evidence: SOURCE, note: "MOSTLY SKIP: all VR lives in an unvendored external PiVRLoader NuGet, so the repo contains no stereo, XR lifecycle, projection or perf work. Two rules worth taking without opening it: assert an exact IL substitution count on every Harmony transpiler, and engine XR-subsystem discovery runs BEFORE any plugin can - so the launch that installs VR can never be the launch that enables it. Budget a documented restart."}
+
+  - id: "MonsterDeadWood-FC2VR"
+    display_name: "MonsterDeadWood FC2VR"
+    tier: T1
+    stereo_rung: R1
+    root: "D:/Dev Debug/Other VR mods/MonsterDeadWood/FC2VR"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-03
+    reviewed_revision: tree:0f01206573f0c260
+    engine: "Dunia (Far Cry 2)"
+    api: D3D9
+    vehicle: native-injector
+    chapter: 17
+    areas:
+      stereo: {review: partial, evidence: AUTHOR, note: "AUTHOR runtime record: same-frame D3D9 stereo and 400 completed pairs. Harvested only as prior art; not replayed independently."}
+      camera_tracking: {review: partial, evidence: AUTHOR, note: "Build-specific culling seam and sphere center/radius layout are documented against GOG Dunia.dll SHA256 7B82...; the in-house UPLAY/Steam bytes differ, so addresses are leads only."}
+      render_hazards: {review: partial, evidence: AUTHOR, note: "Side planes 2-5 versus depth planes 0-1 support a side-only binocular-union candidate. An intrusive force-pass changed the call denominator, establishing the observer-before-intervention rule."}
+      re_discovery: {review: partial, evidence: AUTHOR, note: "Useful culling dataflow and exact-build receipts; no address or ABI was promoted across builds."}
+      packaging_deploy: {review: partial, evidence: SOURCE, note: "Hash-locked golden baseline, byte-identical rebuild check and one-click experiment packaging are present in source."}
+      source_integration: {review: not_reviewed}
+
+  - id: "MonsterDeadWood-C2VR"
+    display_name: "MonsterDeadWood C2VR"
+    tier: T1
+    stereo_rung: R4
+    root: "D:/Dev Debug/Other VR mods/MonsterDeadWood/C2VR"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-03
+    reviewed_revision: tree:5c9a476fdb91dfb4
+    engine: "CryEngine 3 (Crysis 2)"
+    api: D3D11
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo: {review: full, evidence: SOURCE, note: "Harvested into STR-002 and FAIL-STR-044: source publishes pair metadata while owning both keyed mutexes, barriers before release, and forbids old pixels plus new pose/FOV. Runtime acceptance figures remain AUTHOR."}
+      xr_lifecycle: {review: partial, evidence: AUTHOR, note: "Startup/session-reentry rendezvous: missing first contract must WAIT/no-submit and retry, not latch a global fault. Harvested into STR-002 and FAIL-XR-023."}
+      camera_tracking: {review: partial, evidence: AUTHOR, note: "Complete cached pair retains its original render pose/FOV/contract; pose freshness cannot relabel older pixels."}
+      render_hazards: {review: partial, evidence: AUTHOR, note: "Serial/contract sandwich around both copies and one-fresh/one-stale rejection are documented; result artifacts were not independently replayed."}
+      performance: {review: partial, evidence: AUTHOR, note: "Bounded-wait history and pose-age telemetry separate producer cadence misses from coherence failures."}
+      packaging_deploy: {review: partial, evidence: SOURCE, note: "Finalist integrity scripts and package manifests are present."}
+      source_integration: {review: not_reviewed}
+
+  - id: "MonsterDeadWood-BF3VR"
+    display_name: "MonsterDeadWood BF3VR"
+    tier: T1
+    stereo_rung: R4
+    root: "D:/Dev Debug/Other VR mods/MonsterDeadWood/BF3VR"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-03
+    reviewed_revision: tree:a434e6fd4ed2c819
+    engine: "Frostbite 2 / Venice Unleashed (Battlefield 3)"
+    api: D3D11
+    vehicle: native-injector
+    chapter: 14
+    areas:
+      stereo: {review: full, evidence: AUTHOR, note: "Two-Key native same-Present scheduling is author-reported; exact L/R output ownership remains separate. The proven delivered fallback is center color+depth reprojection, with disocclusion visually falsifying it as final stereo."}
+      xr_lifecycle: {review: partial, evidence: AUTHOR, note: "x86 game to x64 OpenXR GPU transport and Quest delivery are documented but not independently replayed."}
+      camera_tracking: {review: partial, evidence: AUTHOR, note: "Distinct L/R states or images do not prove physical stereo; acceptance requires disparity that varies with inverse depth."}
+      render_hazards: {review: full, evidence: AUTHOR, note: "Harvested into STR-004 and FAIL-STR-045: one logical resource may contain LEFT then RIGHT serially, so COM pointer identity is not image identity; semantic phase/role and generation decide."}
+      re_discovery: {review: partial, evidence: AUTHOR, note: "Existing result payloads are treated as evidence to recover before creating replacement experiments."}
+      packaging_deploy: {review: partial, evidence: SOURCE, note: "Research-integrity and document-integrity gates are present; the research-integrity selftest currently rejects one unreviewed checker blob."}
+      source_integration: {review: not_reviewed}
+
+  - id: "MonsterDeadWood-DiRT2VR"
+    display_name: "MonsterDeadWood DiRT2VR"
+    tier: T1
+    stereo_rung: R1
+    root: "D:/Dev Debug/Other VR mods/MonsterDeadWood/DiRT2VR"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-03
+    reviewed_revision: tree:e1f675860774af3f
+    engine: "EGO (DiRT 2)"
+    api: D3D11
+    vehicle: native-injector
+    chapter: 17
+    areas:
+      stereo: {review: full, evidence: AUTHOR, note: "Same-frame L/R render path and submitted-buffer oracle are documented. The oracle separates mono, normal, swapped and exaggerated phases using the exact submitted buffers."}
+      camera_tracking: {review: full, evidence: AUTHOR, note: "A 400-byte VS-slot-3 camera buffer is traced backward from the first consuming draw; projection metadata follows live P00/P11/P8/P9 rather than a fixed host FOV."}
+      render_hazards: {review: partial, evidence: AUTHOR, note: "Clone substitution leaves the original game buffer untouched and ranks active bind ordinals instead of assuming a fixed count."}
+      re_discovery: {review: full, evidence: AUTHOR, note: "Harvested into RE-005 and FAIL-RE-022: x86 execution breakpoints require EFLAGS.RF before resume; DR6 clearing alone retriggers. Also contributes consumer-to-caller stack ranking."}
+      packaging_deploy: {review: partial, evidence: SOURCE, note: "Research-integrity tooling is present; its selftest currently rejects one unreviewed checker blob."}
+      source_integration: {review: not_reviewed}
+
+  - id: "MonsterDeadWood-TimeShiftVR"
+    display_name: "MonsterDeadWood TimeShiftVR"
+    tier: T1
+    stereo_rung: R1
+    root: "D:/Dev Debug/Other VR mods/MonsterDeadWood/TimeShiftVR"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-03
+    reviewed_revision: tree:f90d5188debf073d
+    engine: "Saber3D (TimeShift)"
+    api: D3D9
+    vehicle: native-injector
+    chapter: 14
+    areas:
+      stereo: {review: full, evidence: AUTHOR, note: "Author reports proven same-frame D3D9-to-x64-OpenXR stereo. Runtime counters were not independently replayed."}
+      render_hazards: {review: full, evidence: AUTHOR, note: "Harvested into STR-004 and FAIL-TEST-016: per-shader last-texture replay aliases unrelated state; draw ordinal plus primitive/geometry/VS/PS signature is safer. An exact D16 bind replay executed yet did not restore visible shadows."}
+      re_discovery: {review: full, evidence: AUTHOR, note: "Registry/string/RTTI candidates remain candidates until a runtime method shows direct D3D9 COM activity; structural proximity is not ownership."}
+      performance: {review: partial, evidence: AUTHOR, note: "Controlled ten-mode replay sweep preserved the baseline and showed further widening of the same replay algorithm was low-information duplicate research."}
+      packaging_deploy: {review: partial, evidence: SOURCE, note: "Research-integrity tooling is present; its selftest currently rejects one unreviewed checker blob."}
+      source_integration: {review: not_reviewed}
 # Directories present but deliberately not sources:
   - id: quake2vr
     tier: unknown

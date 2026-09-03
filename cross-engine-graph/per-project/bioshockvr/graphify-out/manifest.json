@@ -1,45 +1,21 @@
 {
   "ACTIVE_BASELINE.md": {
-    "mtime": 1784771986.7508347,
-    "seen": 1787801890.6839528,
-    "ast_hash": "6a7b6b965df80746d4a05bf1527defae",
-    "semantic_hash": "6a7b6b965df80746d4a05bf1527defae"
+    "mtime": 1788394103.54397,
+    "seen": 1788403126.113445,
+    "ast_hash": "48c29b05f1d38926a33b1b87696dcd0c",
+    "semantic_hash": "48c29b05f1d38926a33b1b87696dcd0c"
   },
   "ADDRESS_REGISTRY.md": {
     "mtime": 1784771986.7720792,
     "seen": 1787801890.6839528,
     "ast_hash": "d3a9eddc99e6966df93fd49a96bccb83",
-    "semantic_hash": "d3a9eddc99e6966df93fd49a96bccb83"
+    "semantic_hash": ""
   },
   "BUILD_HISTORY.md": {
-    "mtime": 1784771986.7941012,
-    "seen": 1787801890.6839528,
-    "ast_hash": "2b8b5bb66330fb4d00526f993d681c36",
-    "semantic_hash": "2b8b5bb66330fb4d00526f993d681c36"
-  },
-  "BioShock_Bulk_Files_And_Catalog.md": {
-    "mtime": 1784771988.2287514,
-    "seen": 1787801890.6839528,
-    "ast_hash": "69c1cceb299c1419118726454f78ec6c",
-    "semantic_hash": "69c1cceb299c1419118726454f78ec6c"
-  },
-  "BioShock_Materials_And_Shaders.md": {
-    "mtime": 1784771988.2502663,
-    "seen": 1787801890.6839528,
-    "ast_hash": "519051a2da4075b891db0b11b9803021",
-    "semantic_hash": "519051a2da4075b891db0b11b9803021"
-  },
-  "BioShock_Reading_Textures.md": {
-    "mtime": 1784771988.273973,
-    "seen": 1787801890.6839528,
-    "ast_hash": "81b5bdbe15c7383e4e9459c5b2c91b05",
-    "semantic_hash": "81b5bdbe15c7383e4e9459c5b2c91b05"
-  },
-  "BioShock_Texture_Lightmap_Format.md": {
-    "mtime": 1784771988.2959907,
-    "seen": 1787801890.6839528,
-    "ast_hash": "fe500fa6a4de92ffcd3302223a26ed69",
-    "semantic_hash": "fe500fa6a4de92ffcd3302223a26ed69"
+    "mtime": 1788394071.2849412,
+    "seen": 1788403126.113445,
+    "ast_hash": "1341fe2131f9c535f6ac4ddbe938a082",
+    "semantic_hash": "1341fe2131f9c535f6ac4ddbe938a082"
   },
   "CODE_ARCHITECTURE.md": {
     "mtime": 1784771986.8151999,
@@ -51,19 +27,19 @@
     "mtime": 1784771986.9325643,
     "seen": 1787801890.6839528,
     "ast_hash": "9206e6c2843b42b5bc9222c6158dd93d",
-    "semantic_hash": "9206e6c2843b42b5bc9222c6158dd93d"
+    "semantic_hash": ""
   },
   "DECISION_LOG.md": {
     "mtime": 1784771986.9600856,
     "seen": 1787801890.6839528,
     "ast_hash": "a4136c6193a6b4153d356b78996ccbf6",
-    "semantic_hash": "a4136c6193a6b4153d356b78996ccbf6"
+    "semantic_hash": ""
   },
   "FAILURE_REGISTRY.md": {
     "mtime": 1784771987.0104244,
     "seen": 1787801890.6839528,
     "ast_hash": "6bc76dfc2a980f1ac8716df87bda1e19",
-    "semantic_hash": "6bc76dfc2a980f1ac8716df87bda1e19"
+    "semantic_hash": ""
   },
   "GIT_AGENT_BRIEF.md": {
     "mtime": 1784771987.0871322,
@@ -75,7 +51,7 @@
     "mtime": 1784771987.1136596,
     "seen": 1787801890.6839528,
     "ast_hash": "55bc08d119bee28d0f16e4726c92554d",
-    "semantic_hash": "55bc08d119bee28d0f16e4726c92554d"
+    "semantic_hash": ""
   },
   "INSTALLATION.md": {
     "mtime": 1784771987.1685252,
@@ -87,13 +63,13 @@
     "mtime": 1784771987.317583,
     "seen": 1787801890.6839528,
     "ast_hash": "a2c8c89c121ae889533cfe3fc4854416",
-    "semantic_hash": "a2c8c89c121ae889533cfe3fc4854416"
+    "semantic_hash": ""
   },
   "RE_FINDINGS.md": {
-    "mtime": 1784771987.3647904,
-    "seen": 1787801890.6839528,
-    "ast_hash": "9711d7953fcdce7fa3b6b0bdfa9b3a40",
-    "semantic_hash": "9711d7953fcdce7fa3b6b0bdfa9b3a40"
+    "mtime": 1788394047.6806972,
+    "seen": 1788403126.113445,
+    "ast_hash": "30f39b73dce7c4787ee1678cc3435221",
+    "semantic_hash": "30f39b73dce7c4787ee1678cc3435221"
   },
   "TEST_CHECKLISTS.md": {
     "mtime": 1784771987.38998,
@@ -113,15 +89,9 @@
     "ast_hash": "1832be4b5c5aeabcb50a4ac40991ae4e",
     "semantic_hash": "1832be4b5c5aeabcb50a4ac40991ae4e"
   },
-  "bioshock1-bsm.md": {
-    "mtime": 1784771988.2045484,
-    "seen": 1787801890.6839528,
-    "ast_hash": "609a60e8de98ef12a6ac5a638fc01520",
-    "semantic_hash": "609a60e8de98ef12a6ac5a638fc01520"
-  },
   "engine-findings-integration.md": {
-    "mtime": 1784771986.9851854,
-    "seen": 1787801890.6839528,
+    "mtime": 1783654224.8806026,
+    "seen": 1788403126.113445,
     "ast_hash": "ad1f00ade0585f944c691d759bbe774b",
     "semantic_hash": "ad1f00ade0585f944c691d759bbe774b"
   },
@@ -147,7 +117,7 @@
     "mtime": 1784771987.2468717,
     "seen": 1787801890.6839528,
     "ast_hash": "f7e51c8bfc02e527156d4dc1d4ed176b",
-    "semantic_hash": "f7e51c8bfc02e527156d4dc1d4ed176b"
+    "semantic_hash": ""
   },
   "phase2-ui.md": {
     "mtime": 1784771987.2715507,
@@ -184,5 +154,113 @@
     "seen": 1787801890.6839528,
     "ast_hash": "2545a4b50d3a0df7dd0d58b7d2f6a102",
     "semantic_hash": "2545a4b50d3a0df7dd0d58b7d2f6a102"
+  },
+  "AGENTS.md": {
+    "mtime": 1788233893.4140708,
+    "seen": 1788403126.113445,
+    "ast_hash": "c0f66347a7ecbfe401417c9b06033d0f",
+    "semantic_hash": "c0f66347a7ecbfe401417c9b06033d0f"
+  },
+  "CLAUDE.md": {
+    "mtime": 1787808180.993497,
+    "seen": 1788403126.113445,
+    "ast_hash": "395451b16de30bcd4ef4f9fa90b6c66c",
+    "semantic_hash": "395451b16de30bcd4ef4f9fa90b6c66c"
+  },
+  "COMPATIBILITY.md": {
+    "mtime": 1784228184.8062217,
+    "seen": 1788403126.113445,
+    "ast_hash": "14a4fcec97e12ac16c01abeb401b5dc2",
+    "semantic_hash": "14a4fcec97e12ac16c01abeb401b5dc2"
+  },
+  "CONVENTIONS.md": {
+    "mtime": 1781299122.4693623,
+    "seen": 1788403126.113445,
+    "ast_hash": "4111a9870a563cb94f2fcf74b4a1566b",
+    "semantic_hash": "4111a9870a563cb94f2fcf74b4a1566b"
+  },
+  "Engine Findings/BioShock_Bulk_Files_And_Catalog.md": {
+    "mtime": 1781819208.058242,
+    "seen": 1788403126.113445,
+    "ast_hash": "69c1cceb299c1419118726454f78ec6c",
+    "semantic_hash": "69c1cceb299c1419118726454f78ec6c"
+  },
+  "Engine Findings/BioShock_Materials_And_Shaders.md": {
+    "mtime": 1781819214.0127027,
+    "seen": 1788403126.113445,
+    "ast_hash": "519051a2da4075b891db0b11b9803021",
+    "semantic_hash": "519051a2da4075b891db0b11b9803021"
+  },
+  "Engine Findings/BioShock_Reading_Textures.md": {
+    "mtime": 1781819211.5327582,
+    "seen": 1788403126.113445,
+    "ast_hash": "81b5bdbe15c7383e4e9459c5b2c91b05",
+    "semantic_hash": "81b5bdbe15c7383e4e9459c5b2c91b05"
+  },
+  "Engine Findings/BioShock_Texture_Lightmap_Format.md": {
+    "mtime": 1781819205.2148077,
+    "seen": 1788403126.113445,
+    "ast_hash": "fe500fa6a4de92ffcd3302223a26ed69",
+    "semantic_hash": "fe500fa6a4de92ffcd3302223a26ed69"
+  },
+  "Engine Findings/bioshock1-bsm.md": {
+    "mtime": 1781819201.9733553,
+    "seen": 1788403126.113445,
+    "ast_hash": "609a60e8de98ef12a6ac5a638fc01520",
+    "semantic_hash": "609a60e8de98ef12a6ac5a638fc01520"
+  },
+  "MODDER_HANDOVER.md": {
+    "mtime": 1788393856.2411418,
+    "seen": 1788403126.113445,
+    "ast_hash": "50c6fd5e4bfce4a5fbe9430309156a17",
+    "semantic_hash": "50c6fd5e4bfce4a5fbe9430309156a17"
+  },
+  "MODDER_TECHNICAL_REFERENCE.md": {
+    "mtime": 1788393854.375434,
+    "seen": 1788403126.113445,
+    "ast_hash": "a86a0e7e5b1f9e775f2127e1a8b812a7",
+    "semantic_hash": "a86a0e7e5b1f9e775f2127e1a8b812a7"
+  },
+  "NEXT_CHAT_HANDOVER.md": {
+    "mtime": 1788394351.896156,
+    "seen": 1788403126.113445,
+    "ast_hash": "ec659ff9918a2bc9693515976d06d76c",
+    "semantic_hash": "ec659ff9918a2bc9693515976d06d76c"
+  },
+  "config-profiles.md": {
+    "mtime": 1784227577.7967772,
+    "seen": 1788403126.113445,
+    "ast_hash": "c1a5d928b6e3a5c292f64737daddf061",
+    "semantic_hash": "c1a5d928b6e3a5c292f64737daddf061"
+  },
+  "console-commands.md": {
+    "mtime": 1784215663.743418,
+    "seen": 1788403126.113445,
+    "ast_hash": "faad7a1271eed1a7328ad523e2485e57",
+    "semantic_hash": "faad7a1271eed1a7328ad523e2485e57"
+  },
+  "index.md": {
+    "mtime": 1788393858.1869094,
+    "seen": 1788403126.113445,
+    "ast_hash": "1345dfb16f21bef83370304625c4b21a",
+    "semantic_hash": "1345dfb16f21bef83370304625c4b21a"
+  },
+  "phase0-findings.md": {
+    "mtime": 1781820892.9723103,
+    "seen": 1788403126.113445,
+    "ast_hash": "b54a394fcec8cae6e8ea5ddb8eeb20e5",
+    "semantic_hash": "b54a394fcec8cae6e8ea5ddb8eeb20e5"
+  },
+  "runbooks/B1_LOG_ONLY_D3D11_PROOF.md": {
+    "mtime": 1781300022.6633048,
+    "seen": 1788403126.113445,
+    "ast_hash": "16e49f5d7489da4942385d9ef161dd13",
+    "semantic_hash": "16e49f5d7489da4942385d9ef161dd13"
+  },
+  "runbooks/README.md": {
+    "mtime": 1781299122.4738643,
+    "seen": 1788403126.113445,
+    "ast_hash": "6c5d25e85e92082cb0249347ef6ec6c6",
+    "semantic_hash": "6c5d25e85e92082cb0249347ef6ec6c6"
   }
 }

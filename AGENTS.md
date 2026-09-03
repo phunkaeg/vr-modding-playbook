@@ -13,13 +13,13 @@ wrong move, and reading several is a sign you skipped the routing below.
 
 | What you have | Go to | Why |
 |---|---|---|
-| **A symptom** — something looks or behaves wrong | [`docs/failure-atlas.md`](docs/failure-atlas.md) | 77 rows: symptom → *fast discriminator* → likely cause → route. The discriminator is the point: it is chosen to be cheap. |
+| **A symptom** — something looks or behaves wrong | [`docs/failure-atlas.md`](docs/failure-atlas.md) | 241 rows: symptom → *fast discriminator* → likely cause → route. The discriminator is the point: it is chosen to be cheap. |
 | **A symptom, but you want the chapter** | [`docs/symptom-index.md`](docs/symptom-index.md) | 176 rows mapping what you see to the chapter that covers it |
-| **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 61 atomic patterns, stable IDs, five fixed fields each |
+| **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 107 atomic patterns, stable IDs, five fixed fields each |
 | **A new or inherited target** | [`docs/start-new-port.md`](docs/start-new-port.md) | The router. Classifies integration authority first, then sends you down the RE-owned or source-owned route |
 | **Several plausible next steps** | [`docs/bottleneck-map.md`](docs/bottleneck-map.md) | The earliest uncleared dependency, in order. Its *Agent operating protocol* section is worth reading once. |
 | **A question of "has anyone solved this?"** | [`docs/cross-project-index.md`](docs/cross-project-index.md) | Who solved what, and where the raw working lives |
-| **A target whose engine/API you know** | `python tools/prior_art.py <engine> <api>` | Matching prior art from 48 tracked sources, with what was harvested and what is thin |
+| **A target whose engine/API you know** | `python tools/prior_art.py <engine> <api>` | Matching prior art from 98 tracked sources, with what was harvested and what is thin |
 | **Maths you are about to write yourself** | `docs/a1`–`a5` | Working code with the test that catches the error. Rotation, pose pipeline, stereo projection, hook safety, noise floor. |
 | **A term used oddly** | [`docs/glossary.md`](docs/glossary.md) | Camera, pose, stereo, lifecycle, render and evidence vocabulary |
 | **"Did another project already hit this?"** | `graphify query "<question>" --graph cross-engine-graph/graphify-out/reconciled-graph.json` | A concept-linked graph over SS2VR, BioshockVR and SOMAVR documentation |

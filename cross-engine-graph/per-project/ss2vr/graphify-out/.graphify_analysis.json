@@ -1,27 +1,6 @@
 {
   "communities": {
     "0": [
-      "decision_log_squirrel_world_frob",
-      "failure_registry_echo_suppressor_hang",
-      "flataim_dll",
-      "fun_1408d2c20",
-      "funkmaxexport",
-      "hypotheses_h33",
-      "hypotheses_h34",
-      "hypotheses_h35",
-      "hypotheses_h4",
-      "native_crouch_direct",
-      "native_jump_bind",
-      "ss2vr_dll",
-      "ss2vr_interact_nut",
-      "ss2vr_weapon_handoff_probe_kpf",
-      "test_checklists_curved_hud_cylinder_layer_spike",
-      "test_checklists_radiation_toxin_hazard_meter_fx_test",
-      "test_checklists_v111_right_hand_projectile_aim_stage_a",
-      "test_checklists_v112_squirrel_semantic_interaction_probe",
-      "v4_material_tail_repair"
-    ],
-    "1": [
       "decision_log_flataim_edge_pan",
       "decision_log_flataim_melee_native_orientation",
       "decision_log_flataim_melee_viewmodel",
@@ -38,23 +17,20 @@
       "decision_log_flataim_view_frame_aim",
       "decision_log_retire_flataim_inverse_cos"
     ],
-    "2": [
-      "build_history_v2_94",
-      "build_history_v2_97",
-      "cameraobj",
-      "decision_log_manual_reload_tier1",
-      "decision_log_weapon_handoff_probe",
-      "failure_registry_x64dbg_crash",
-      "hypotheses_archive_flataim_dll",
-      "hypotheses_archive_kex_set_config_raw",
-      "hypotheses_archive_semantic_selection",
-      "hypotheses_archive_ss2fa_nut",
-      "hypotheses_h13",
-      "openxr_runtime",
-      "ss2vr_weapon_probe_nut",
-      "weapon_model_spec"
+    "1": [
+      "clipalloc",
+      "fun_1402925c0",
+      "fun_14045e200",
+      "fun_14046fd80",
+      "g_dwkexscreenflashcolorpacked",
+      "g_flkexscreenflashintensity",
+      "game_event_effects_md",
+      "ghidra_annotation_backlog_md",
+      "kex_screenflashcompositor",
+      "kex_world_render_core",
+      "vr_effects_director"
     ],
-    "3": [
+    "2": [
       "future_hook_map_dat_140f01a50",
       "future_hook_map_fun_14006b200",
       "future_hook_map_fun_1403eedd0",
@@ -67,17 +43,34 @@
       "future_hook_map_fun_1405126e0",
       "phase1_usage_ss2vr_move_nut"
     ],
+    "3": [
+      "culling_frustum_md_c2_eye_bias",
+      "culling_frustum_md_entry_bias_fix",
+      "culling_frustum_md_m1",
+      "culling_frustum_md_m2",
+      "culling_frustum_md_portalgetclipinfo",
+      "culling_frustum_md_scenetraversalbegin_setcullcamera",
+      "culling_frustum_md_viewport_rect_coupling"
+    ],
     "4": [
-      "culling_frustum_c2_entry_bias",
-      "culling_frustum_clipalloc",
-      "culling_frustum_cull_probe",
-      "culling_frustum_examine_portals",
-      "culling_frustum_m1",
-      "culling_frustum_m2",
-      "culling_frustum_portalexpandcellportals",
-      "culling_frustum_scenetraversalbegin_setcullcamera"
+      "dll_logger",
+      "fun_1403c3770",
+      "fun_140502da0",
+      "fun_14051c1e0",
+      "hud_overlay_assembly",
+      "uevr_stereo_lessons",
+      "vr_findings_index"
     ],
     "5": [
+      "maps_asset_and_mesh_pipeline",
+      "maps_home",
+      "maps_interaction_frob_and_ui",
+      "maps_native_input_and_movement",
+      "maps_performance_and_vr_effects",
+      "maps_reverse_engineering",
+      "maps_weapons_hands_and_melee"
+    ],
+    "6": [
       "melee_damage_re_actreact_stimulate",
       "melee_damage_re_fun_1401abf10",
       "melee_damage_re_fun_1403623c0",
@@ -86,7 +79,7 @@
       "melee_damage_re_joint_read_logic",
       "melee_damage_re_parry_mechanic"
     ],
-    "6": [
+    "7": [
       "assao_params_cbuffer",
       "pointrig_nut",
       "weapon_vr_aim_spec_architecture",
@@ -94,31 +87,7 @@
       "weapon_vr_aim_spec_stage_b",
       "weapon_vr_handover_strategy"
     ],
-    "7": [
-      "build_history_ss2vr_interact_nut",
-      "build_history_ss2vr_lhand_nut",
-      "build_history_ss2vr_phys_nut",
-      "build_history_ss2vr_weapon_handoff_probe_kpf",
-      "build_history_ss2vr_weapon_probe_nut",
-      "claude_darkengine_finds_frob_world_select_obj"
-    ],
     "8": [
-      "build_history_v3_09",
-      "gamepig_icebreaker",
-      "gamepig_system",
-      "gr_font_string",
-      "swine_draw",
-      "swine_input_handler"
-    ],
-    "9": [
-      "interaction_squirrel_report_frob_world_end",
-      "interaction_squirrel_report_full_ray_test",
-      "interaction_squirrel_report_ss2vr_interact_nut",
-      "interaction_squirrel_spike_spec_pose_pump",
-      "re_findings_frobinfo",
-      "shock2quest_reference"
-    ],
-    "10": [
       "nd_shock_gun_viewmodel_onframeupdate",
       "player_nut",
       "ss2vr_aim_config_var",
@@ -126,56 +95,70 @@
       "viewmodel_nut",
       "weapon_handler_nut"
     ],
+    "9": [
+      "address_registry_kex_rendercamera_worldrender",
+      "address_registry_kex_rendercamera_worldrender_caller",
+      "address_registry_kex_screenflashcompositor",
+      "address_registry_kex_screenflashrenderer",
+      "address_registry_scenetraversalbegin_setcullcamera"
+    ],
+    "10": [
+      "cameraobj",
+      "hypotheses_archive_flataim_dll",
+      "hypotheses_archive_kex_set_config_raw",
+      "hypotheses_archive_semantic_selection",
+      "hypotheses_archive_ss2fa_nut"
+    ],
     "11": [
-      "active_baseline_camera_culling",
-      "address_registry_clip_alloc",
-      "address_registry_player_turn_tilt",
-      "address_registry_portal_get_clip_info",
-      "address_registry_scene_traversal_begin_set_cull_camera"
+      "funk_custom",
+      "funk_direct",
+      "funk_extract",
+      "hypotheses_funk_max_export",
+      "hypotheses_funk_mesh"
     ],
     "12": [
-      "active_baseline_motion_controls",
-      "address_registry_ai_melee_combat_fsm",
-      "address_registry_ss2vr_apply_weapon_hit_to_object",
-      "address_registry_ss2vr_stimulus_dispatch_build_damage_msg",
-      "address_registry_trigger_native_stun_on_creature"
+      "funkmaxexport",
+      "ss2vr_weapon_handoff_probe_kpf",
+      "test_checklists_radiation_toxin_hazard_meter_fx_test",
+      "test_checklists_v111_right_hand_projectile_aim_stage_a",
+      "test_checklists_v112_squirrel_semantic_interaction_probe"
     ],
     "13": [
-      "fun_1403eedd0",
-      "fun_1404574c0",
-      "hypotheses_h10",
-      "hypotheses_h2",
-      "hypotheses_h3"
+      "gamepig_icebreaker",
+      "gamepig_system",
+      "gr_font_string",
+      "swine_draw",
+      "swine_input_handler"
     ],
     "14": [
-      "build_history_d3d11_hooks",
-      "build_history_openxr_runtime_present_monoscopic",
-      "build_history_ss2vr_dll",
-      "build_history_update_menu_pointer"
+      "culling_frustum_md_clipalloc",
+      "culling_frustum_md_examine_portals",
+      "culling_frustum_md_m3",
+      "culling_frustum_md_portalexpandcellportals"
     ],
     "15": [
-      "build_history_dll_v2_77",
-      "build_history_dll_v2_78",
-      "roomscale_crouch_research",
-      "vr_weapon_mesh_pipeline"
+      "failure_lgpmnm_snapshot_duplicate",
+      "failure_shotgun_vhot_rebuild",
+      "failure_stale_vhot_count",
+      "validate_lgmd_runtime_safety_py"
     ],
     "16": [
-      "build_history_dll_v2_81",
-      "build_history_dll_v2_82",
-      "build_history_dll_v2_83",
-      "enemy_health_bracket_re"
+      "hypotheses_ar15_h_bin",
+      "hypotheses_atek_h_bin",
+      "hypotheses_lasehand_bin",
+      "hypotheses_validate_lgmd_runtime_safety"
     ],
     "17": [
-      "game_event_effects_md",
-      "ghidra_annotation_backlog_md",
-      "kex_screenflashcompositor",
-      "vr_effects_director"
+      "hypotheses_h21_manual_reloads",
+      "hypotheses_h24_long_weapons",
+      "hypotheses_h31_viewmodel_pose_bleed",
+      "hypotheses_ss2vr_weapon_probe_nut"
     ],
     "18": [
-      "hypotheses_archive_h3v",
-      "hypotheses_h31",
-      "kpf_v1_47",
-      "kpf_v1_48"
+      "interaction_squirrel_report_frob_world_end",
+      "interaction_squirrel_report_full_ray_test",
+      "interaction_squirrel_report_ss2vr_interact_nut",
+      "interaction_squirrel_spike_spec_pose_pump"
     ],
     "19": [
       "phase1_usage_ui_virtual_cursor",
@@ -190,1040 +173,1419 @@
       "phase2_ui_ui_virtual_cursor"
     ],
     "21": [
+      "ss2vr_eye_lag_stereo_pair_slip",
+      "uevr_stereo_lessons_kex_rendercamera",
+      "uevr_stereo_lessons_pair_view_latch",
+      "uevr_stereo_lessons_synchronized_sequential"
+    ],
+    "22": [
       "vr_weapon_mesh_pipeline_funkmaxexport",
       "vr_weapon_mesh_pipeline_lgmd",
       "vr_weapon_mesh_pipeline_lgmm",
       "vr_weapon_mesh_pipeline_vhot"
     ],
-    "22": [
-      "build_history_v3_04",
-      "culling_frustum_md",
-      "failure_registry_md"
-    ],
     "23": [
+      "address_registry_mouse_pitch_accumulator",
+      "address_registry_mouse_yaw_accumulator",
+      "address_registry_playerturntilt"
+    ],
+    "24": [
+      "agent_harness_md",
+      "agents_md",
+      "xr_sim"
+    ],
+    "25": [
+      "audio_ownership_md",
+      "openal_soft",
+      "ss2vr_alsetlistenerorientation"
+    ],
+    "26": [
+      "build_history_comfort_vignette",
+      "build_history_dll_v2_89",
+      "build_history_dll_v2_90"
+    ],
+    "27": [
+      "build_history_dll_v2_59",
+      "build_history_dll_v2_79",
+      "build_history_dll_v2_80"
+    ],
+    "28": [
+      "build_history_dll_v2_86",
+      "snap_v3_baseline_rotate",
+      "yaw_trim_servo"
+    ],
+    "29": [
+      "config_manager",
+      "openxr_runtime_presentmonoscopic",
+      "vr_settings_panel_spec"
+    ],
+    "30": [
       "conventions_ss2fa_world_heading_deg",
       "conventions_ss2vr_world_heading_deg",
       "conventions_world_heading"
     ],
-    "24": [
-      "current_state_funkmaxexport",
-      "current_state_ss2vrampcableupdate",
-      "decision_log_lgmd_v4_header_fix"
+    "31": [
+      "dark_engine_vr_modding_guide_md",
+      "entry_bias_cull",
+      "frob_system"
     ],
-    "25": [
-      "current_state_ss2vrmeleecomputedamage",
-      "current_state_ss2vrmeleescaling_nut",
-      "current_state_ss2vrmeleetipcollision"
+    "32": [
+      "dark_engine_vr_modding_guide_viewmodels",
+      "dark_engine_vr_modding_guide_worldrep",
+      "failure_registry_simtime_recenter"
     ],
-    "26": [
+    "33": [
       "decision_log_gpu_effect_manager_expansion",
       "decision_log_hazard_meter_squirrel",
       "decision_log_squirrel_hitpoints_polling"
     ],
-    "27": [
-      "failure_registry_laser_pistol_offset",
-      "failure_registry_shotgun_vhot_rebuild",
-      "failure_registry_stale_vhot_count"
+    "34": [
+      "handover_2026_08_03",
+      "ss2vr_dll_v3_61",
+      "vr_hand_vertex_morph_pipeline"
     ],
-    "28": [
-      "funk_extract",
-      "funk_mesh",
-      "hypotheses_h19"
+    "35": [
+      "hypotheses_h13",
+      "hypotheses_h16",
+      "hypotheses_h9"
     ],
-    "29": [
-      "hud_overlay_assembly_md_goverlayrects",
-      "hud_overlay_assembly_md_overlay_system",
-      "hud_parallax_parked_md_parallax"
-    ],
-    "30": [
+    "36": [
       "lgmd_vhot_header_fix_fun_14025f9b0",
       "lgmd_vhot_header_fix_fun_14027ed80",
       "lgmd_vhot_header_fix_lgmd_vhot_crash"
     ],
-    "31": [
+    "37": [
       "lgmm_cal_investigation_cal_format",
       "lgmm_cal_investigation_lgmm_format",
       "lgmm_cal_investigation_lgpmnm_payload"
     ],
-    "32": [
+    "38": [
       "menu_options_bind_test_spec_menu_options_bind_test",
       "menu_vr_report_menu_interaction_findings",
       "menu_vr_report_shock2_options_model"
     ],
-    "33": [
+    "39": [
       "menu_vr_report_route_b_cursor_warp",
       "project_phases_task_2_4",
       "resolution_compat_v3_06_fixes"
     ],
-    "34": [
+    "40": [
       "nodesarray",
       "weapon_cameraobj_hmd_bleed_handoff",
       "weapon_world_orient"
     ],
-    "35": [
+    "41": [
       "phase0_findings_openxr",
       "phase1_usage_ss2vr_effects_nut",
       "phase1_usage_ss2vr_ini"
     ],
-    "36": [
+    "42": [
       "phase2_ui_hand_panel_spike",
       "phase2_ui_separation",
       "phase2_ui_tee_texture"
     ],
-    "37": [
-      "re_findings_fun_1403eedd0",
-      "re_findings_fun_1403fc820",
-      "re_findings_fun_1404574c0"
+    "43": [
+      "re_findings_dat_140f018b8",
+      "re_findings_fun_140502da0",
+      "re_findings_weapon_recoil"
     ],
-    "38": [
+    "44": [
+      "shock2quest_frob_info",
+      "shock2quest_hand_harvest",
+      "shock2quest_reference"
+    ],
+    "45": [
+      "ss2vr_ln_mtl",
+      "ss2vr_ls_mtl",
+      "weapon_model_report"
+    ],
+    "46": [
+      "uevr_stereo_lessons_depth_submission",
+      "vr_depth_collision_brief_hand_clamp",
+      "vr_depth_collision_brief_visual_spike"
+    ],
+    "47": [
       "vr_climbing_re_kpm_climb",
       "vr_climbing_re_option_1",
       "vr_manual_reloads_tier_1"
     ],
-    "39": [
+    "48": [
       "vr_mod_ref_gtfo",
       "vr_mod_ref_jkxr",
       "vr_mod_ref_ror2"
     ],
-    "40": [
-      "vr_settings_panel_spec_configmanager",
-      "vr_settings_panel_spec_intersectuilayer",
-      "vr_settings_panel_spec_panel"
+    "49": [
+      "address_registry_ai_fsm_block_recoil",
+      "address_registry_ai_stun"
     ],
-    "41": [
+    "50": [
+      "address_registry_getcreaturejointworldpos",
+      "address_registry_kex_creatureattachmentupdate"
+    ],
+    "51": [
+      "address_registry_ss2vr_applyweaponhittoobject",
+      "address_registry_ss2vr_stimulusdispatch_builddamagemsg"
+    ],
+    "52": [
+      "ai_stun_registry",
+      "build_history_v3_48"
+    ],
+    "53": [
       "ar15_vhot_crash_finding_md",
       "lgmd_vhot_header_fix_md"
     ],
-    "42": [
-      "build_history_md",
-      "parry_latch"
+    "54": [
+      "archive_codex_proposal_pose_bridge_kiss",
+      "archive_current_test_run_2026_06_08"
     ],
-    "43": [
-      "build_history_v2_96",
-      "re_findings_md"
+    "55": [
+      "bioshockvr_lessons_md",
+      "stereo_phase_skip"
     ],
-    "44": [
-      "build_history_v2_98",
-      "hand_collision_research_md"
+    "56": [
+      "build_history_dll_v2_91",
+      "build_history_horizon_lock"
     ],
-    "45": [
-      "build_history_v3_00",
-      "uevr_stereo_lessons_md"
+    "57": [
+      "build_history_dll_v3_04",
+      "failure_registry_md"
     ],
-    "46": [
-      "build_history_v3_30",
-      "build_history_v3_31"
+    "58": [
+      "build_history_dll_v3_39",
+      "concept_parry_route_1"
     ],
-    "47": [
-      "current_state_dll_v2_82",
-      "current_state_ss2vr_interact_nut"
+    "59": [
+      "build_history_dll_v3_47",
+      "concept_parry_route_2"
     ],
-    "48": [
-      "current_state_melee_parry",
-      "current_state_roomscale_crouch"
+    "60": [
+      "build_history_ss2vr_effects_nut",
+      "build_history_ss2vr_interact_nut"
     ],
-    "49": [
-      "d3d11hooks_oldinvview",
-      "dll_v1_67"
+    "61": [
+      "build_history_v1_38",
+      "openxr_runtime_predicted_pose"
     ],
-    "50": [
+    "62": [
+      "build_history_v2_54",
+      "claude_hard_rules"
+    ],
+    "63": [
+      "build_history_v2_55",
+      "config_dbg_vm_copy"
+    ],
+    "64": [
+      "build_history_v3_56",
+      "ss2vr_damage_stim_handler"
+    ],
+    "65": [
+      "build_history_v3_65",
+      "kex_cmd_exec"
+    ],
+    "66": [
+      "dark_engine_vr_modding_guide_ropes",
+      "dark_engine_vr_modding_guide_sword_block"
+    ],
+    "67": [
+      "data_gathering_plan_flight_recorder",
+      "data_gathering_plan_pair_slip"
+    ],
+    "68": [
       "decision_log_lgmd_hand_extraction_static",
       "decision_log_vr_wrench_static_lgmd"
     ],
-    "51": [
+    "69": [
       "decision_log_ss2vr_aliases",
       "decision_log_vhot_ids"
     ],
-    "52": [
-      "failure_registry_dark_culling_profile_failure",
-      "flataim_handoff_echo_suppressor"
+    "70": [
+      "dll_v1_59",
+      "dll_v1_60"
     ],
-    "53": [
-      "failure_registry_flataim_config_setter_detour_crash",
-      "failure_registry_kex_config_setter_prologue_mismatch"
+    "71": [
+      "failure_funk_mesh_lgpmnm",
+      "funkmaxexport_v0_6_10_lgpmnmguard"
     ],
-    "54": [
-      "failure_registry_flataim_cursor_selection",
-      "failure_registry_flataim_semantic_selector_mode"
+    "72": [
+      "failure_registry_lgpmnm_magic",
+      "funkmaxexport_v0_6_31_pmnmwrap"
     ],
-    "55": [
-      "failure_registry_flataim_kpf_root_dir",
-      "failure_registry_flataim_kpf_tar_format"
+    "73": [
+      "failure_registry_psi_amp_ctd",
+      "failure_registry_shotgun_dot_naming"
     ],
-    "56": [
-      "failure_registry_lgmd_assert",
-      "lgmd_model_loader"
-    ],
-    "57": [
-      "failure_registry_lgmd_aux_compaction",
-      "failure_registry_ss2vr_lj_joint_metadata_crash"
-    ],
-    "58": [
-      "failure_registry_matrix_flicker",
-      "squirrel_scripts"
-    ],
-    "59": [
-      "failure_registry_object_direct_yaw",
-      "kex_engine"
-    ],
-    "60": [
-      "failure_registry_ss2vr_lhand_shaded_white",
-      "failure_registry_ss2vr_ln_multi_pass_crash"
-    ],
-    "61": [
+    "74": [
       "feature_roadmap_gravity_glove",
       "frob_target_library_goodies"
     ],
-    "62": [
+    "75": [
       "feature_roadmap_healthbars",
       "frob_target_library_corpses"
     ],
-    "63": [
+    "76": [
+      "flataim_dll",
+      "fun_1408d2c20"
+    ],
+    "77": [
+      "funkmaxexport_v0_6_7_lgpmnm",
+      "hypotheses_h33"
+    ],
+    "78": [
       "future_hook_map_dat_1414d279c",
       "future_hook_map_fun_14048b4f0"
     ],
-    "64": [
+    "79": [
       "gamepig_icebreaker_md",
       "gamepig_re_md"
     ],
-    "65": [
+    "80": [
       "gunkick",
       "weapon_spread_recoil_report"
     ],
-    "66": [
-      "hypotheses_h6b",
-      "hypotheses_h6c"
+    "81": [
+      "h4b_vr_selection_brackets",
+      "hud_overlay_assembly_md"
     ],
-    "67": [
+    "82": [
+      "hypotheses_h23_object_grabbing",
+      "hypotheses_ss2vr_phys_nut"
+    ],
+    "83": [
       "melee_audio_re_env_sound_schemas",
       "melee_audio_re_ss2vr_melee_audio"
     ],
-    "68": [
+    "84": [
       "melee_damage_re_bashstim",
       "melee_damage_re_fun_14009a110"
     ],
-    "69": [
+    "85": [
+      "melee_vr_report",
+      "melee_vr_spec"
+    ],
+    "86": [
       "mods_ss2vr_weapon_handoff_sq_scripts_ss2vr_weapon_probe_nut",
       "vr_two_handed_weapons_two_hand_logic"
     ],
-    "70": [
-      "native_axis_direct",
-      "openxrruntime_motion_right_stick"
+    "87": [
+      "native_stereo_gate_md",
+      "re_findings_md"
     ],
-    "71": [
+    "88": [
       "phase0_findings_d3d11",
       "phase0_findings_renderview_cbuffer"
     ],
-    "72": [
+    "89": [
       "phase1_usage_keyboard_emulation",
       "phase1_usage_native_movement_bridge"
     ],
-    "73": [
+    "90": [
       "phase1_usage_motion_controls",
       "phase1_usage_openxr_action_set"
     ],
-    "74": [
+    "91": [
       "phase1_usage_weapon_pose_bridge",
       "phase1_usage_weapon_right_hand_aim"
     ],
-    "75": [
+    "92": [
       "phase2_ui_interact_squirrel",
       "vr_mod_ref_ss2_og"
     ],
-    "76": [
+    "93": [
       "phase2_ui_native_shock_overlay",
       "phase2_ui_right_arm_hud"
     ],
-    "77": [
+    "94": [
       "phase2_ui_transparent_portal",
       "phase2_ui_world_aim_mode"
     ],
-    "78": [
+    "95": [
+      "re_findings_fun_1403eedd0",
+      "re_findings_weapon_spread"
+    ],
+    "96": [
       "re_findings_fun_14051c1e0",
       "re_findings_headlocaly"
     ],
-    "79": [
-      "re_findings_resurrection_path",
-      "re_findings_screen_flash_compositor"
+    "97": [
+      "re_findings_viewmodel_depth",
+      "test_brief_v3_64_flight_recorder"
     ],
-    "80": [
-      "ss2vr_weapon_scale",
-      "weapon_model_report"
-    ],
-    "81": [
+    "98": [
       "test_plan_2026_07_test_plan",
       "vr_action_panel_test_action_panel"
     ],
-    "82": [
+    "99": [
       "vr_body_holsters_holsters",
       "vr_body_holsters_quick_items"
     ],
-    "83": [
+    "100": [
       "vr_climbing_re_climbable_sides",
       "vr_highlights_report_ss2vr_hl"
     ],
-    "84": [
-      "vr_findings_index_right_eye_lag",
-      "vr_latency_recovery_plan_render_view_authoritative"
-    ],
-    "85": [
+    "101": [
       "vr_view_effects_gpu_effects",
       "vr_view_effects_hazard_meter"
     ],
-    "86": [
+    "102": [
       "vr_wrist_keypad_spec_md",
       "wrist_keypad_hologram"
     ],
-    "87": [
-      "active_baseline_ui"
-    ],
-    "88": [
-      "active_baseline_weapon"
-    ],
-    "89": [
-      "actreact_stimulate"
-    ],
-    "90": [
-      "address_registry_creature_mesh_joint_world"
-    ],
-    "91": [
-      "address_registry_get_creature_joint_world_pos"
-    ],
-    "92": [
-      "address_registry_kex_screen_flash_renderer"
-    ],
-    "93": [
-      "address_registry_shock_mfd_game_mouse_dispatch"
-    ],
-    "94": [
-      "ar15_vhot_integration_handoff_md"
-    ],
-    "95": [
-      "baseweapondesc"
-    ],
-    "96": [
-      "build_history_dll_v2_48"
-    ],
-    "97": [
-      "build_history_dll_v2_58"
-    ],
-    "98": [
-      "build_history_dll_v2_59"
-    ],
-    "99": [
-      "build_history_dll_v2_67"
-    ],
-    "100": [
-      "build_history_dll_v2_68"
-    ],
-    "101": [
-      "build_history_dll_v2_69"
-    ],
-    "102": [
-      "build_history_dll_v2_70"
-    ],
     "103": [
-      "build_history_dll_v2_71"
+      "active_baseline_camera_culling"
     ],
     "104": [
-      "build_history_dll_v2_73"
+      "active_baseline_motion_controls"
     ],
     "105": [
-      "build_history_dll_v2_75"
+      "active_baseline_ui"
     ],
     "106": [
-      "build_history_dll_v2_76"
+      "active_baseline_weapon"
     ],
     "107": [
-      "build_history_dll_v2_79"
+      "actreact_stimulate"
     ],
     "108": [
-      "build_history_dll_v2_80"
+      "address_registry_renderview_cb"
     ],
     "109": [
-      "build_history_ss2vr_ini"
+      "address_registry_ss2vr_alsetlistenerorientation"
     ],
     "110": [
-      "build_history_v2_84"
+      "ar15_vhot_integration_handoff_md"
     ],
     "111": [
-      "build_history_v2_85"
+      "archive_cleanup_checkpoint_2026_06_04"
     ],
     "112": [
-      "build_history_v2_86"
+      "archive_index"
     ],
     "113": [
-      "build_history_v2_87"
+      "arm_hologram_render"
     ],
     "114": [
-      "build_history_v2_88"
+      "baseweapondesc"
     ],
     "115": [
-      "build_history_v2_89"
+      "build_history"
     ],
     "116": [
-      "build_history_v2_90"
+      "build_history_dll_v2_69"
     ],
     "117": [
-      "build_history_v2_91"
+      "build_history_dll_v2_75"
     ],
     "118": [
-      "build_history_v2_92"
+      "build_history_dll_v2_81"
     ],
     "119": [
-      "build_history_v2_93"
+      "build_history_dll_v2_85"
     ],
     "120": [
-      "build_history_v2_95"
+      "build_history_dll_v2_87"
     ],
     "121": [
-      "build_history_v2_99"
+      "build_history_dll_v2_88"
     ],
     "122": [
-      "build_history_v3_01"
+      "build_history_dll_v2_96"
     ],
     "123": [
-      "build_history_v3_02"
+      "build_history_dll_v2_98"
     ],
     "124": [
-      "build_history_v3_03"
+      "build_history_dll_v3_05"
     ],
     "125": [
-      "build_history_v3_08"
+      "build_history_dll_v3_06"
     ],
     "126": [
-      "build_history_v3_16"
+      "build_history_dll_v3_08"
     ],
     "127": [
-      "build_history_v3_17"
+      "build_history_dll_v3_09"
     ],
     "128": [
-      "build_history_v3_21"
+      "build_history_dll_v3_10"
     ],
     "129": [
-      "build_history_v3_23"
+      "build_history_dll_v3_11"
     ],
     "130": [
-      "build_history_v3_25"
+      "build_history_dll_v3_12"
     ],
     "131": [
-      "build_history_v3_26"
+      "build_history_dll_v3_13"
     ],
     "132": [
-      "build_history_v3_27"
+      "build_history_dll_v3_14"
     ],
     "133": [
-      "build_history_v3_28"
+      "build_history_dll_v3_16"
     ],
     "134": [
-      "build_history_v3_29"
+      "build_history_dll_v3_17"
     ],
     "135": [
-      "claude_darkengine_finds_frob_system"
+      "build_history_dll_v3_18"
     ],
     "136": [
-      "claude_darkengine_finds_pick_system"
+      "build_history_dll_v3_19"
     ],
     "137": [
-      "conventions_dark_heading"
+      "build_history_dll_v3_21"
     ],
     "138": [
-      "culling_frustum_portalgetclipinfo"
+      "build_history_dll_v3_23"
     ],
     "139": [
-      "current_state_dll_v2_81"
+      "build_history_dll_v3_25"
     ],
     "140": [
-      "dark_engine_source_notes_dpcplgun_cpp"
+      "build_history_dll_v3_26"
     ],
     "141": [
-      "dark_engine_source_notes_pick_cpp"
+      "build_history_dll_v3_27"
     ],
     "142": [
-      "decision_log_aim_facing_conventions"
+      "build_history_dll_v3_28"
     ],
     "143": [
-      "decision_log_authoritative_view_baseline"
+      "build_history_dll_v3_29"
     ],
     "144": [
-      "decision_log_camera_facing_mapping"
+      "build_history_dll_v3_30"
     ],
     "145": [
-      "decision_log_flataim_pointrig_fx"
+      "build_history_dll_v3_31"
     ],
     "146": [
-      "decision_log_flataim_reticle_offset"
+      "build_history_dll_v3_32"
     ],
     "147": [
-      "decision_log_flatlit_left_hand"
+      "build_history_dll_v3_34"
     ],
     "148": [
-      "decision_log_funk_mesh_deletion"
+      "build_history_dll_v3_35"
     ],
     "149": [
-      "decision_log_gravity_glove_follow"
+      "build_history_dll_v3_36"
     ],
     "150": [
-      "decision_log_hitscan_takeover"
+      "build_history_dll_v3_37"
     ],
     "151": [
-      "decision_log_lgmd_runtime_safety"
+      "build_history_dll_v3_38"
     ],
     "152": [
-      "decision_log_lgmm_import_separate"
+      "build_history_dll_v3_40"
     ],
     "153": [
-      "decision_log_lgpmnm_readonly"
+      "build_history_dll_v3_41"
     ],
     "154": [
-      "decision_log_material_include_chains"
+      "build_history_dll_v3_42"
     ],
     "155": [
-      "decision_log_md"
+      "build_history_dll_v3_43"
     ],
     "156": [
-      "decision_log_menu_pointer_gate"
+      "build_history_dll_v3_44"
     ],
     "157": [
-      "decision_log_native_movement_bridge"
+      "build_history_dll_v3_45"
     ],
     "158": [
-      "decision_log_native_suppression"
+      "build_history_dll_v3_46"
     ],
     "159": [
-      "decision_log_physical_reload_transient"
+      "build_history_kpf_2026_07_11"
     ],
     "160": [
-      "decision_log_pistol_muzzle_flash_follow"
+      "build_history_v1_87"
     ],
     "161": [
-      "decision_log_right_arm_hud_native_rect"
+      "build_history_v3_49"
     ],
     "162": [
-      "decision_log_seh_pod_wrappers"
+      "build_history_v3_50"
     ],
     "163": [
-      "decision_log_smooth_turn_kex_delta"
+      "build_history_v3_51"
     ],
     "164": [
-      "decision_log_snap_turn_linear"
+      "build_history_v3_52"
     ],
     "165": [
-      "decision_log_snap_turn_v2"
+      "build_history_v3_54"
     ],
     "166": [
-      "decision_log_ss2vr_weapon_scale_split"
+      "build_history_v3_57"
     ],
     "167": [
-      "decision_log_stereo_pair_prediction"
+      "build_history_v3_58"
     ],
     "168": [
-      "decision_log_two_handed_constraint"
+      "build_history_v3_59"
     ],
     "169": [
-      "decision_log_view_frame_aim"
+      "build_history_v3_61"
     ],
     "170": [
-      "decision_log_vr_selection_marker_mono"
+      "build_history_v3_62"
     ],
     "171": [
-      "decision_log_weapon_spread_recoil"
+      "build_history_v3_63"
     ],
     "172": [
-      "decision_log_world_ray_trace_filter"
+      "build_history_v3_64"
     ],
     "173": [
-      "dll_v2_75_haptic"
+      "build_history_v3_66"
     ],
     "174": [
-      "enemy_health_bracket_re_hp_mechanics"
+      "build_history_v3_67"
     ],
     "175": [
-      "enemy_health_bracket_re_native_hud"
+      "cameraobj_ownership"
     ],
     "176": [
-      "eye_center_pick_origin"
+      "cdamagesrv_resurrect"
     ],
     "177": [
-      "failure_registry_ae_squirrel_config_read_api"
+      "claude_darkengine_finds_frob_system"
     ],
     "178": [
-      "failure_registry_authoritative_baseline"
+      "claude_darkengine_finds_frob_world_select_obj"
     ],
     "179": [
-      "failure_registry_bsp_compaction"
+      "claude_darkengine_finds_pick_system"
     ],
     "180": [
-      "failure_registry_emp_rifle_damage"
+      "console_commands"
     ],
     "181": [
-      "failure_registry_flataim_canvas_size"
+      "conventions_dark_heading"
     ],
     "182": [
-      "failure_registry_flataim_crosshair_opaque_cover"
+      "crosshair_suppression_diagnostic"
     ],
     "183": [
-      "failure_registry_flataim_f5_without_bridge"
+      "culling_frustum_md_cull_probe"
     ],
     "184": [
-      "failure_registry_flataim_projectile_heading_camera"
+      "current_state_archive"
     ],
     "185": [
-      "failure_registry_flataim_proxy_facing_order"
+      "current_state_md"
     ],
     "186": [
-      "failure_registry_flataim_view_frame_aim"
+      "d3d11_draw_classification"
     ],
     "187": [
-      "failure_registry_flataim_weapon_follow_mode_4_clamp"
+      "dark_engine_source_notes_dpcplgun_cpp"
     ],
     "188": [
-      "failure_registry_framerate_regression"
+      "dark_engine_source_notes_pick_cpp"
     ],
     "189": [
-      "failure_registry_funk_mesh_lgpmnm_failure"
+      "decision_log_aim_facing_conventions"
     ],
     "190": [
-      "failure_registry_kpf_backslash_packing"
+      "decision_log_authoritative_view_baseline"
     ],
     "191": [
-      "failure_registry_lgpmnm_duplicate_mesh"
+      "decision_log_camera_facing_mapping"
     ],
     "192": [
-      "failure_registry_lgpmnm_magic_failure"
+      "decision_log_flataim_pointrig_fx"
     ],
     "193": [
-      "failure_registry_lgpmnm_vhot_space"
+      "decision_log_flataim_reticle_offset"
     ],
     "194": [
-      "failure_registry_pistol_offhand_parked_default"
+      "decision_log_flatlit_left_hand"
     ],
     "195": [
-      "failure_registry_portal_relax_failure"
+      "decision_log_funk_mesh_deletion"
     ],
     "196": [
-      "failure_registry_psi_amp_cable_transform"
+      "decision_log_gravity_glove_follow"
     ],
     "197": [
-      "failure_registry_psi_amp_ctd"
+      "decision_log_hitscan_takeover"
     ],
     "198": [
-      "failure_registry_repeated_fixes"
+      "decision_log_lgmd_runtime_safety"
     ],
     "199": [
-      "failure_registry_save_header_size_prefix"
+      "decision_log_lgmd_v4_header_fix"
     ],
     "200": [
-      "failure_registry_save_mod_table_order"
+      "decision_log_lgmm_import_separate"
     ],
     "201": [
-      "failure_registry_squirrel_keywords"
+      "decision_log_lgpmnm_readonly"
     ],
     "202": [
-      "failure_registry_ss2vr_ini_whitelist"
+      "decision_log_manual_reload_tier1"
     ],
     "203": [
-      "failure_registry_truncating_writes"
+      "decision_log_material_include_chains"
     ],
     "204": [
-      "feature_roadmap_action_menu"
+      "decision_log_md"
     ],
     "205": [
-      "feature_roadmap_beam_opacity"
+      "decision_log_menu_pointer_gate"
     ],
     "206": [
-      "feature_roadmap_horizon_lock"
+      "decision_log_native_movement_bridge"
     ],
     "207": [
-      "feature_roadmap_locomotion_dir"
+      "decision_log_native_suppression"
     ],
     "208": [
-      "feature_roadmap_player_height"
+      "decision_log_physical_reload_transient"
     ],
     "209": [
-      "feature_roadmap_projectile_facing"
+      "decision_log_pistol_muzzle_flash_follow"
     ],
     "210": [
-      "feature_roadmap_two_hand_deny"
+      "decision_log_right_arm_hud_native_rect"
     ],
     "211": [
-      "feature_roadmap_weapon_scale"
+      "decision_log_seh_pod_wrappers"
     ],
     "212": [
-      "frob_target_library_controllers"
+      "decision_log_smooth_turn_kex_delta"
     ],
     "213": [
-      "frob_target_library_deny_nd"
+      "decision_log_snap_turn_linear"
     ],
     "214": [
-      "frob_target_library_recharging_station"
+      "decision_log_snap_turn_v2"
     ],
     "215": [
-      "frob_target_library_usable_containers"
+      "decision_log_squirrel_world_frob"
     ],
     "216": [
-      "fun_1401b6310"
+      "decision_log_ss2vr_weapon_scale_split"
     ],
     "217": [
-      "fun_1403f25c0"
+      "decision_log_stereo_pair_prediction"
     ],
     "218": [
-      "fun_1403f3090"
+      "decision_log_two_handed_constraint"
     ],
     "219": [
-      "fun_140519380"
+      "decision_log_view_frame_aim"
     ],
     "220": [
-      "funk_custom"
+      "decision_log_vr_selection_marker_mono"
     ],
     "221": [
-      "funk_direct"
+      "decision_log_weapon_handoff_probe"
     ],
     "222": [
-      "future_hook_map_fun_1403f25c0"
+      "decision_log_weapon_spread_recoil"
     ],
     "223": [
-      "future_hook_map_fun_1403f3090"
+      "decision_log_world_ray_trace_filter"
     ],
     "224": [
-      "future_hook_map_fun_14045b560"
+      "dll_v1_57"
     ],
     "225": [
-      "future_hook_map_fun_140519380"
+      "dll_v1_61"
     ],
     "226": [
-      "future_hook_map_fun_14051ee80"
+      "dll_v1_62"
     ],
     "227": [
-      "future_hook_map_portal_traverse_scene"
+      "dll_v1_65"
     ],
     "228": [
-      "goverlayrects"
+      "dll_v1_66"
     ],
     "229": [
-      "hand_collision_research_md_dynamic_knock"
+      "dll_v1_67"
     ],
     "230": [
-      "hand_collision_research_md_static_clamp"
+      "dll_v1_68"
     ],
     "231": [
-      "hud_overlay_assembly_md_draw_classification"
+      "dll_v1_69"
     ],
     "232": [
-      "hypotheses_archive_flataim_kpf"
+      "dll_v1_70"
     ],
     "233": [
-      "hypotheses_archive_h28"
+      "dll_v1_71"
     ],
     "234": [
-      "hypotheses_archive_h6"
+      "dll_v1_72"
     ],
     "235": [
-      "hypotheses_archive_hfa1"
+      "dll_v2_75_haptic"
     ],
     "236": [
-      "hypotheses_h0b"
+      "enemy_health_bracket_re"
     ],
     "237": [
-      "hypotheses_h1"
+      "enemy_health_bracket_re_hp_mechanics"
     ],
     "238": [
-      "hypotheses_h11"
+      "enemy_health_bracket_re_native_hud"
     ],
     "239": [
-      "hypotheses_h12"
+      "eye_center_pick_origin"
     ],
     "240": [
-      "hypotheses_h14"
+      "failure_agent_directory_mismatch"
     ],
     "241": [
-      "hypotheses_h15"
+      "failure_blender_4_emission"
     ],
     "242": [
-      "hypotheses_h16"
+      "failure_boot_install_crash"
     ],
     "243": [
-      "hypotheses_h17"
+      "failure_dark_culling_profile_config"
     ],
     "244": [
-      "hypotheses_h21"
+      "failure_emp_rifle_damage"
     ],
     "245": [
-      "hypotheses_h22"
+      "failure_fkey_hotkey_collision"
     ],
     "246": [
-      "hypotheses_h23"
+      "failure_laser_pistol_offset"
     ],
     "247": [
-      "hypotheses_h24"
+      "failure_lgpmnm_vhots_space"
     ],
     "248": [
-      "hypotheses_h26"
+      "failure_portal_relax_frontface"
     ],
     "249": [
-      "hypotheses_h27"
+      "failure_psi_amp_cable_transform"
     ],
     "250": [
-      "hypotheses_h4b"
+      "failure_registry_carrier_physics_fight"
     ],
     "251": [
-      "hypotheses_h6d"
+      "failure_registry_desktop_refresh_cap"
     ],
     "252": [
-      "hypotheses_h8"
+      "failure_registry_echo_suppressor_hang"
     ],
     "253": [
-      "hypotheses_h9"
+      "failure_registry_jump_crouch_verbs"
     ],
     "254": [
-      "kex_physics_srv_setvelocity"
+      "failure_registry_lgmd_assert_int3"
     ],
     "255": [
-      "kex_setconfigraw"
+      "failure_registry_lgmd_node_compaction"
     ],
     "256": [
-      "kpf_v1_75"
+      "failure_registry_logger_mutex_chug"
     ],
     "257": [
-      "marketing_teaser_draft_teaser"
+      "failure_registry_matrix_flicker_modpath"
     ],
     "258": [
-      "melee_damage_re_comblocked"
+      "failure_registry_object_direct_yaw"
     ],
     "259": [
-      "object_teleport"
+      "failure_registry_openxr_layer_limit"
     ],
     "260": [
-      "overlay_panel_index_map_koverlay_map"
+      "failure_registry_options_rml_sync"
     ],
     "261": [
-      "phase1_usage_manual_reload"
+      "failure_registry_quaternion_negation"
     ],
     "262": [
-      "phase1_usage_parachute_backup"
+      "failure_registry_reticle_roll_miss"
     ],
     "263": [
-      "phase1_usage_pitch_servo"
+      "failure_registry_seh_destructor_conflict"
     ],
     "264": [
-      "phase1_usage_renderview_override"
+      "failure_registry_smooth_turn_baseline"
     ],
     "265": [
-      "phase1_usage_seh_safety"
+      "failure_registry_squirrel_overlay_brackets"
     ],
     "266": [
-      "phase1_usage_snap_turn_v2"
+      "failure_registry_stock_melee_override_crash"
     ],
     "267": [
-      "phase1_usage_two_hand_support"
+      "failure_registry_two_hand_pistol_duplicate"
     ],
     "268": [
-      "phase2_ui_aim_project_mode"
+      "failure_registry_viewmodel_nut_replacement"
     ],
     "269": [
-      "phase2_ui_hmd_aim"
+      "failure_registry_weapon_flicker_dtsec"
     ],
     "270": [
-      "phase2_ui_selection_hand"
+      "failure_registry_world_scale_split"
     ],
     "271": [
-      "phase2_ui_ui_hand_priority"
+      "failure_registry_x64dbg_vr_crash"
     ],
     "272": [
-      "phase2_ui_vr_action_panel"
+      "failure_ss2vr_ln_mtl_missing"
     ],
     "273": [
-      "phase2_ui_vr_reticle"
+      "failure_stale_command_quit"
     ],
     "274": [
-      "phase2_ui_weapon_hand"
+      "feature_roadmap_action_menu"
     ],
     "275": [
-      "phase2_ui_world_aim_ray_trace"
+      "feature_roadmap_beam_opacity"
     ],
     "276": [
-      "physics_setvelocity"
+      "feature_roadmap_horizon_lock"
     ],
     "277": [
-      "pointrig_animation"
+      "feature_roadmap_locomotion_dir"
     ],
     "278": [
-      "property_get"
+      "feature_roadmap_player_height"
     ],
     "279": [
-      "re_findings_fun_1408db1d0"
+      "feature_roadmap_projectile_facing"
     ],
     "280": [
-      "re_findings_goverlayrects"
+      "feature_roadmap_two_hand_deny"
     ],
     "281": [
-      "re_findings_gunkick"
+      "feature_roadmap_weapon_scale"
     ],
     "282": [
-      "re_findings_gunstate_spread"
+      "flataim_handoff_echo_suppressor"
     ],
     "283": [
-      "re_findings_ss2_save_patcher"
+      "frob_archetype_corpses"
     ],
     "284": [
-      "shockgame_equipped"
+      "frob_archetype_nd"
     ],
     "285": [
-      "snap_turn_v3"
+      "frob_archetype_plot_items"
     ],
     "286": [
-      "ss2fa_alive"
+      "frob_target_library_controllers"
     ],
     "287": [
-      "ss2vr_aim"
+      "frob_target_library_deny_nd"
     ],
     "288": [
-      "ss2vr_aim_l"
+      "frob_target_library_recharging_station"
     ],
     "289": [
-      "ss2vr_phys_glove_enable"
+      "frob_target_library_usable_containers"
     ],
     "290": [
-      "ss2vr_phys_grab_enable"
+      "fun_1401b6310"
     ],
     "291": [
-      "teleport_locomotion_re"
+      "fun_1403f25c0"
     ],
     "292": [
-      "test_checklists_3ds_max_lgmd_no_edit_atek_round_trip"
+      "fun_1403f3090"
     ],
     "293": [
-      "test_checklists_additive_left_hand_viewmodel_spike"
+      "fun_140519380"
     ],
     "294": [
-      "test_checklists_damage_to_glitch_fx_test"
+      "funk_mesh"
     ],
     "295": [
-      "test_checklists_digital_glitch_fx_expansion_test"
+      "funkmaxexport_v0_6_6_autoextras"
     ],
     "296": [
-      "test_checklists_funkmax_custom_static_lgmd_export"
+      "funkmaxexport_v0_6_8_lgpmnmfix"
     ],
     "297": [
-      "test_checklists_inventory_dual_hand_ui_priority"
+      "funkmaxexport_v0_6_9_lgpmnmstatic"
     ],
     "298": [
-      "test_checklists_main_menu_controller_navigation_diagnostic"
+      "future_hook_map_fun_1403f25c0"
     ],
     "299": [
-      "test_checklists_native_draw_range_ui_panel_spike"
+      "future_hook_map_fun_1403f3090"
     ],
     "300": [
-      "test_checklists_snap_turn_blackout_comfort_test"
+      "future_hook_map_fun_14045b560"
     ],
     "301": [
-      "test_checklists_ss2vr_existing_save_patcher_smoke_test"
+      "future_hook_map_fun_140519380"
     ],
     "302": [
-      "test_checklists_ss2vr_weapon_handoff_probe"
+      "future_hook_map_fun_14051ee80"
     ],
     "303": [
-      "test_checklists_v111_offhand_viewmodel_animation_suppression"
+      "future_hook_map_portal_traverse_scene"
     ],
     "304": [
-      "test_checklists_v11_weapon_scale_rigid_wrench_melee_gesture"
+      "g_overlayrects"
     ],
     "305": [
-      "test_checklists_v129_pistol_muzzle_flash_follow"
+      "git_agent_brief"
     ],
     "306": [
-      "test_checklists_v15_weapon_wrench_interaction_filter"
+      "goverlayrects"
     ],
     "307": [
-      "test_checklists_vr_action_panel_diagnostic"
+      "h0b_native_suppression"
     ],
     "308": [
-      "test_checklists_vr_selection_bracket_prototype"
+      "h3_weapon_direction_sink"
     ],
     "309": [
-      "test_checklists_vr_target_healthbar_above_bracket"
+      "h6c_smooth_analog_turn"
     ],
     "310": [
-      "test_checklists_weapon_recoil_view_kick_diagnostic"
+      "hand_collision_research_md"
     ],
     "311": [
-      "uevr_stereo_lessons_uevr_stereo"
+      "hand_collision_research_md_dynamic_knock"
     ],
     "312": [
-      "vhot_02_vr_pivot"
+      "hand_collision_research_md_static_clamp"
     ],
     "313": [
-      "vhot_03_vr_support"
+      "hazard_meters"
     ],
     "314": [
-      "vhot_04_vr_reload"
+      "hud_parallax_parked_md_parallax"
     ],
     "315": [
-      "virtual_gamepad"
+      "hypotheses_archive_flataim_kpf"
     ],
     "316": [
-      "vr_body_holsters_player_body"
+      "hypotheses_archive_h28"
     ],
     "317": [
-      "vr_mod_ref_bendy"
+      "hypotheses_archive_h3v"
     ],
     "318": [
-      "vr_mod_ref_csvr"
+      "hypotheses_archive_h6"
     ],
     "319": [
+      "hypotheses_archive_hfa1"
+    ],
+    "320": [
+      "hypotheses_h10"
+    ],
+    "321": [
+      "hypotheses_h11"
+    ],
+    "322": [
+      "hypotheses_h12"
+    ],
+    "323": [
+      "hypotheses_h14"
+    ],
+    "324": [
+      "hypotheses_h15"
+    ],
+    "325": [
+      "hypotheses_h17"
+    ],
+    "326": [
+      "hypotheses_h19"
+    ],
+    "327": [
+      "hypotheses_h22_virtual_holsters"
+    ],
+    "328": [
+      "hypotheses_h26_hud_curvature"
+    ],
+    "329": [
+      "hypotheses_h27_native_overlay_rects"
+    ],
+    "330": [
+      "hypotheses_h34"
+    ],
+    "331": [
+      "hypotheses_h35"
+    ],
+    "332": [
+      "hypotheses_h6b"
+    ],
+    "333": [
+      "hypotheses_h6d"
+    ],
+    "334": [
+      "hypotheses_h8"
+    ],
+    "335": [
+      "hypotheses_md"
+    ],
+    "336": [
+      "index"
+    ],
+    "337": [
+      "kex_physics_srv_setvelocity"
+    ],
+    "338": [
+      "kex_setconfigraw"
+    ],
+    "339": [
+      "kpf_v1_57"
+    ],
+    "340": [
+      "kpf_v1_58"
+    ],
+    "341": [
+      "kpf_v1_59"
+    ],
+    "342": [
+      "kpf_v1_60"
+    ],
+    "343": [
+      "kpf_v1_61"
+    ],
+    "344": [
+      "kpf_v1_62"
+    ],
+    "345": [
+      "kpf_v1_63"
+    ],
+    "346": [
+      "kpf_v1_65"
+    ],
+    "347": [
+      "kpf_v1_66"
+    ],
+    "348": [
+      "kpf_v1_67"
+    ],
+    "349": [
+      "kpf_v1_68"
+    ],
+    "350": [
+      "kpf_v1_72"
+    ],
+    "351": [
+      "kpf_v1_73"
+    ],
+    "352": [
+      "kpf_v1_74"
+    ],
+    "353": [
+      "kpf_v1_75"
+    ],
+    "354": [
+      "kpf_v1_76"
+    ],
+    "355": [
+      "kpf_v1_77"
+    ],
+    "356": [
+      "kpf_v1_78"
+    ],
+    "357": [
+      "kpf_v1_79"
+    ],
+    "358": [
+      "kpf_v1_80"
+    ],
+    "359": [
+      "lgmd_v4_material_tail"
+    ],
+    "360": [
+      "maps_how_to_use_this_vault"
+    ],
+    "361": [
+      "marketing_teaser_draft_teaser"
+    ],
+    "362": [
+      "melee_damage_re_comblocked"
+    ],
+    "363": [
+      "melee_scaling_handover"
+    ],
+    "364": [
+      "native_crouch_direct"
+    ],
+    "365": [
+      "native_jump_bind"
+    ],
+    "366": [
+      "object_teleport"
+    ],
+    "367": [
+      "openxr_runtime"
+    ],
+    "368": [
+      "overlay_panel_index_map_koverlay_map"
+    ],
+    "369": [
+      "phase1_usage_manual_reload"
+    ],
+    "370": [
+      "phase1_usage_parachute_backup"
+    ],
+    "371": [
+      "phase1_usage_pitch_servo"
+    ],
+    "372": [
+      "phase1_usage_renderview_override"
+    ],
+    "373": [
+      "phase1_usage_seh_safety"
+    ],
+    "374": [
+      "phase1_usage_snap_turn_v2"
+    ],
+    "375": [
+      "phase1_usage_two_hand_support"
+    ],
+    "376": [
+      "phase2_ui_aim_project_mode"
+    ],
+    "377": [
+      "phase2_ui_hmd_aim"
+    ],
+    "378": [
+      "phase2_ui_selection_hand"
+    ],
+    "379": [
+      "phase2_ui_ui_hand_priority"
+    ],
+    "380": [
+      "phase2_ui_vr_action_panel"
+    ],
+    "381": [
+      "phase2_ui_vr_reticle"
+    ],
+    "382": [
+      "phase2_ui_weapon_hand"
+    ],
+    "383": [
+      "phase2_ui_world_aim_ray_trace"
+    ],
+    "384": [
+      "physics_setvelocity"
+    ],
+    "385": [
+      "player_turn_tilt"
+    ],
+    "386": [
+      "pointrig_animation"
+    ],
+    "387": [
+      "property_get"
+    ],
+    "388": [
+      "re_findings_frob_path"
+    ],
+    "389": [
+      "re_findings_save_patcher"
+    ],
+    "390": [
+      "re_findings_weapon_globals"
+    ],
+    "391": [
+      "roomscale_crouch_research"
+    ],
+    "392": [
+      "runbooks_readme"
+    ],
+    "393": [
+      "shockgame_equipped"
+    ],
+    "394": [
+      "ss2fa_alive"
+    ],
+    "395": [
+      "ss2vr_aim"
+    ],
+    "396": [
+      "ss2vr_aim_l"
+    ],
+    "397": [
+      "ss2vr_ln_crash_analysis"
+    ],
+    "398": [
+      "ss2vr_melee_compute_damage"
+    ],
+    "399": [
+      "ss2vr_phys_glove_enable"
+    ],
+    "400": [
+      "ss2vr_phys_grab_enable"
+    ],
+    "401": [
+      "teleport_locomotion_re"
+    ],
+    "402": [
+      "test_brief_v3_64_audio_backend"
+    ],
+    "403": [
+      "test_checklists_3ds_max_lgmd_no_edit_atek_round_trip"
+    ],
+    "404": [
+      "test_checklists_additive_left_hand_viewmodel_spike"
+    ],
+    "405": [
+      "test_checklists_curved_hud_cylinder_layer_spike"
+    ],
+    "406": [
+      "test_checklists_damage_to_glitch_fx_test"
+    ],
+    "407": [
+      "test_checklists_digital_glitch_fx_expansion_test"
+    ],
+    "408": [
+      "test_checklists_funkmax_custom_static_lgmd_export"
+    ],
+    "409": [
+      "test_checklists_inventory_dual_hand_ui_priority"
+    ],
+    "410": [
+      "test_checklists_main_menu_controller_navigation_diagnostic"
+    ],
+    "411": [
+      "test_checklists_native_draw_range_ui_panel_spike"
+    ],
+    "412": [
+      "test_checklists_snap_turn_blackout_comfort_test"
+    ],
+    "413": [
+      "test_checklists_ss2vr_existing_save_patcher_smoke_test"
+    ],
+    "414": [
+      "test_checklists_ss2vr_weapon_handoff_probe"
+    ],
+    "415": [
+      "test_checklists_v111_offhand_viewmodel_animation_suppression"
+    ],
+    "416": [
+      "test_checklists_v11_weapon_scale_rigid_wrench_melee_gesture"
+    ],
+    "417": [
+      "test_checklists_v129_pistol_muzzle_flash_follow"
+    ],
+    "418": [
+      "test_checklists_v15_weapon_wrench_interaction_filter"
+    ],
+    "419": [
+      "test_checklists_vr_action_panel_diagnostic"
+    ],
+    "420": [
+      "test_checklists_vr_selection_bracket_prototype"
+    ],
+    "421": [
+      "test_checklists_vr_target_healthbar_above_bracket"
+    ],
+    "422": [
+      "test_checklists_weapon_recoil_view_kick_diagnostic"
+    ],
+    "423": [
+      "uevr_stereo_lessons_rendering_modes"
+    ],
+    "424": [
+      "v1_56_jelly_step_2"
+    ],
+    "425": [
+      "v4_material_tail_repair"
+    ],
+    "426": [
+      "vhot_02_vr_pivot"
+    ],
+    "427": [
+      "vhot_03_vr_support"
+    ],
+    "428": [
+      "vhot_04_vr_reload"
+    ],
+    "429": [
+      "visual_inertia"
+    ],
+    "430": [
+      "vr_body_holsters_player_body"
+    ],
+    "431": [
+      "vr_depth_collision_brief_head_clamp"
+    ],
+    "432": [
+      "vr_latency_recovery_plan_render_view_authoritative"
+    ],
+    "433": [
+      "vr_mod_ref_bendy"
+    ],
+    "434": [
+      "vr_mod_ref_csvr"
+    ],
+    "435": [
       "vr_post_process_design_gpu_backend"
+    ],
+    "436": [
+      "vr_weapon_mesh_pipeline"
+    ],
+    "437": [
+      "weapon_model_spec"
     ]
   },
   "cohesion": {
-    "0": 0.1111111111111111,
-    "1": 0.13333333333333333,
-    "2": 0.15384615384615385,
-    "3": 0.18181818181818182,
-    "4": 0.25,
+    "0": 0.13333333333333333,
+    "1": 0.18181818181818182,
+    "2": 0.18181818181818182,
+    "3": 0.3333333333333333,
+    "4": 0.2857142857142857,
     "5": 0.2857142857142857,
-    "6": 0.3333333333333333,
+    "6": 0.2857142857142857,
     "7": 0.3333333333333333,
     "8": 0.3333333333333333,
-    "9": 0.3333333333333333,
-    "10": 0.3333333333333333,
+    "9": 0.4,
+    "10": 0.4,
     "11": 0.4,
     "12": 0.4,
     "13": 0.4,
     "14": 0.5,
-    "15": 0.6666666666666666,
+    "15": 0.5,
     "16": 0.5,
-    "17": 0.5,
+    "17": 0.6666666666666666,
     "18": 0.5,
     "19": 0.5,
     "20": 0.5,
     "21": 0.5,
-    "22": 0.6666666666666666,
-    "23": 1.0,
+    "22": 0.5,
+    "23": 0.6666666666666666,
     "24": 0.6666666666666666,
     "25": 0.6666666666666666,
     "26": 0.6666666666666666,
     "27": 0.6666666666666666,
     "28": 0.6666666666666666,
     "29": 0.6666666666666666,
-    "30": 0.6666666666666666,
+    "30": 1.0,
     "31": 0.6666666666666666,
-    "32": 1.0,
+    "32": 0.6666666666666666,
     "33": 0.6666666666666666,
     "34": 0.6666666666666666,
     "35": 0.6666666666666666,
     "36": 0.6666666666666666,
     "37": 0.6666666666666666,
-    "38": 0.6666666666666666,
+    "38": 1.0,
     "39": 0.6666666666666666,
     "40": 0.6666666666666666,
-    "41": 1.0,
-    "42": 1.0,
-    "43": 1.0,
-    "44": 1.0,
-    "45": 1.0,
-    "46": 1.0,
-    "47": 1.0,
-    "48": 1.0,
+    "41": 0.6666666666666666,
+    "42": 0.6666666666666666,
+    "43": 0.6666666666666666,
+    "44": 0.6666666666666666,
+    "45": 0.6666666666666666,
+    "46": 0.6666666666666666,
+    "47": 0.6666666666666666,
+    "48": 0.6666666666666666,
     "49": 1.0,
     "50": 1.0,
     "51": 1.0,
@@ -1494,47 +1856,150 @@
     "316": 1.0,
     "317": 1.0,
     "318": 1.0,
-    "319": 1.0
+    "319": 1.0,
+    "320": 1.0,
+    "321": 1.0,
+    "322": 1.0,
+    "323": 1.0,
+    "324": 1.0,
+    "325": 1.0,
+    "326": 1.0,
+    "327": 1.0,
+    "328": 1.0,
+    "329": 1.0,
+    "330": 1.0,
+    "331": 1.0,
+    "332": 1.0,
+    "333": 1.0,
+    "334": 1.0,
+    "335": 1.0,
+    "336": 1.0,
+    "337": 1.0,
+    "338": 1.0,
+    "339": 1.0,
+    "340": 1.0,
+    "341": 1.0,
+    "342": 1.0,
+    "343": 1.0,
+    "344": 1.0,
+    "345": 1.0,
+    "346": 1.0,
+    "347": 1.0,
+    "348": 1.0,
+    "349": 1.0,
+    "350": 1.0,
+    "351": 1.0,
+    "352": 1.0,
+    "353": 1.0,
+    "354": 1.0,
+    "355": 1.0,
+    "356": 1.0,
+    "357": 1.0,
+    "358": 1.0,
+    "359": 1.0,
+    "360": 1.0,
+    "361": 1.0,
+    "362": 1.0,
+    "363": 1.0,
+    "364": 1.0,
+    "365": 1.0,
+    "366": 1.0,
+    "367": 1.0,
+    "368": 1.0,
+    "369": 1.0,
+    "370": 1.0,
+    "371": 1.0,
+    "372": 1.0,
+    "373": 1.0,
+    "374": 1.0,
+    "375": 1.0,
+    "376": 1.0,
+    "377": 1.0,
+    "378": 1.0,
+    "379": 1.0,
+    "380": 1.0,
+    "381": 1.0,
+    "382": 1.0,
+    "383": 1.0,
+    "384": 1.0,
+    "385": 1.0,
+    "386": 1.0,
+    "387": 1.0,
+    "388": 1.0,
+    "389": 1.0,
+    "390": 1.0,
+    "391": 1.0,
+    "392": 1.0,
+    "393": 1.0,
+    "394": 1.0,
+    "395": 1.0,
+    "396": 1.0,
+    "397": 1.0,
+    "398": 1.0,
+    "399": 1.0,
+    "400": 1.0,
+    "401": 1.0,
+    "402": 1.0,
+    "403": 1.0,
+    "404": 1.0,
+    "405": 1.0,
+    "406": 1.0,
+    "407": 1.0,
+    "408": 1.0,
+    "409": 1.0,
+    "410": 1.0,
+    "411": 1.0,
+    "412": 1.0,
+    "413": 1.0,
+    "414": 1.0,
+    "415": 1.0,
+    "416": 1.0,
+    "417": 1.0,
+    "418": 1.0,
+    "419": 1.0,
+    "420": 1.0,
+    "421": 1.0,
+    "422": 1.0,
+    "423": 1.0,
+    "424": 1.0,
+    "425": 1.0,
+    "426": 1.0,
+    "427": 1.0,
+    "428": 1.0,
+    "429": 1.0,
+    "430": 1.0,
+    "431": 1.0,
+    "432": 1.0,
+    "433": 1.0,
+    "434": 1.0,
+    "435": 1.0,
+    "436": 1.0,
+    "437": 1.0
   },
   "gods": [
     {
-      "id": "ss2vr_weapon_probe_nut",
-      "label": "ss2vr_weapon_probe.nut",
-      "degree": 10
+      "id": "kex_screenflashcompositor",
+      "label": "Kex_ScreenFlashCompositor (0x27B830)",
+      "degree": 6
+    },
+    {
+      "id": "vr_findings_index",
+      "label": "VR Findings Index",
+      "degree": 6
+    },
+    {
+      "id": "maps_home",
+      "label": "SS2VR Docs \u2014 Home",
+      "degree": 6
     },
     {
       "id": "ss2vr_weapon_handoff_probe_kpf",
       "label": "ss2vr_weapon_handoff_probe.kpf",
-      "degree": 7
-    },
-    {
-      "id": "ss2vr_dll",
-      "label": "ss2vr.dll",
-      "degree": 5
+      "degree": 4
     },
     {
       "id": "gamepig_icebreaker",
       "label": "ICEBREAKER (Minigame)",
-      "degree": 5
-    },
-    {
-      "id": "funkmaxexport",
-      "label": "FunkMaxExport",
-      "degree": 5
-    },
-    {
-      "id": "build_history_ss2vr_weapon_handoff_probe_kpf",
-      "label": "ss2vr_weapon_handoff_probe.kpf",
-      "degree": 4
-    },
-    {
-      "id": "ss2vr_interact_nut",
-      "label": "ss2vr_interact.nut",
-      "degree": 4
-    },
-    {
-      "id": "interaction_squirrel_report_ss2vr_interact_nut",
-      "label": "ss2vr_interact.nut",
       "degree": 4
     },
     {
@@ -1543,23 +2008,27 @@
       "degree": 4
     },
     {
-      "id": "enemy_health_bracket_re",
-      "label": "Enemy Health Bracket RE",
+      "id": "hypotheses_funk_max_export",
+      "label": "FunkMaxExport",
+      "degree": 4
+    },
+    {
+      "id": "future_hook_map_fun_1405126e0",
+      "label": "PlayerTurnTilt (FUN_1405126e0)",
+      "degree": 3
+    },
+    {
+      "id": "melee_damage_re_fun_1401abf10",
+      "label": "ApplyWeaponHit (0x1ABF10)",
+      "degree": 3
+    },
+    {
+      "id": "melee_damage_re_parry_mechanic",
+      "label": "Physical Parry Mechanic",
       "degree": 3
     }
   ],
   "surprises": [
-    {
-      "source": "H3v: Visual-only inertia / Matrix flicker theories",
-      "target": "H31: Viewmodel pose bleed is from CameraObj-frame patching",
-      "source_files": [
-        "HYPOTHESES_ARCHIVE.md",
-        "HYPOTHESES.md"
-      ],
-      "confidence": "INFERRED",
-      "relation": "semantically_similar_to",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
-    },
     {
       "source": "ss2vr_hl",
       "target": "Climbable Sides Property",
@@ -1594,19 +2063,30 @@
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
     },
     {
-      "source": "Camera/Culling Baseline",
-      "target": "SceneTraversalBegin_SetCullCamera (0x45C150)",
+      "source": "Game-Event-Driven VR Effects",
+      "target": "Kex_ScreenFlashCompositor (0x27B830)",
       "source_files": [
-        "ACTIVE_BASELINE.md",
-        "ADDRESS_REGISTRY.md"
+        "GAME_EVENT_EFFECTS.md",
+        "GHIDRA_ANNOTATION_BACKLOG.md"
       ],
       "confidence": "INFERRED",
-      "relation": "references",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Game-Event-Driven VR Effects` unexpectedly reaches hub `Kex_ScreenFlashCompositor (0x27B830)`"
+    },
+    {
+      "source": "ss2vr_move.nut",
+      "target": "PlayerTurnTilt (FUN_1405126e0)",
+      "source_files": [
+        "phase1-usage.md",
+        "future-hook-map.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "shares_data_with",
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
     }
   ],
   "tokens": {
-    "input": 865295,
-    "output": 94213
+    "input": 2947,
+    "output": 1715
   }
 }
