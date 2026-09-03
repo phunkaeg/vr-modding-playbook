@@ -709,10 +709,24 @@ first complete packet, return **WAIT / no submit**, not a permanent session faul
 
 **Proof:** delayed-publication fault injection cannot produce old pixels with new pose/FOV, one fresh eye
 with one stale eye, or a mixed resource generation; logs show pair IDs never regress or mix contracts.
+The check that catches the cached-pair form is **submitted per-eye display time equals the display time
+that eye's pixels were rendered at** — which is only answerable if the producer kept it, which is the
+same discipline this recipe already asks for.
 
 **Trip hazard:** “latest left + latest right” is not a pair, and a fresh ticket does not make stale
 pixels fresh. See
 [09](09-d3d11-openxr-injection.md#the-unit-of-publication-is-the-pair-not-the-eye).
+
+**Audit this at ring-construction time, not when you see shear.** If a mod reaches alternate-eye
+*before* the view is head-driven, this defect is **latent and unfalsifiable by testing** — not by luck
+of timing but structurally. A newer pose describes the same picture, so nothing shears, every check
+passes, in headset too, and the fault activates later when an unrelated milestone lands. PreyVR was
+carrying exactly this defect with 20/20 green: `Publish(int eye)` stored the eye and nothing else, and
+submission labelled two images captured on *different frames* with one pose and one FOV read at
+submission time. It was found by reading the ring, one milestone before head tracking would have made
+it visible. Ask of any eye-identity ring: **does an entry carry the eye only, or the whole contract?**
+Carrying eye identity is necessary and not sufficient. (`LIVE`, PreyVR `838cc1a`; the mechanism is
+`AUTHOR`-grade from MonsterDeadWood C2VR and not independently replayed.)
 
 ## STR-003 — Projection companion bundle {#str-003}
 

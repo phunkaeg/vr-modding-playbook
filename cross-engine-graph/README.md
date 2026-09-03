@@ -1,32 +1,49 @@
 # Cross-Engine Docs Graph
 
-A knowledge graph over the **documentation** of three in-house VR conversions — SS2VR (Dark/KEX, D3D11),
-BioshockVR (Unreal 2.5 Vengeance, D3D11) and SOMAVR (HPL3, OpenGL) — built so that a question asked of
-one project can reach the others.
+A knowledge graph over the **documentation** of the eight in-house VR conversions, built so that a
+question asked of one project can reach the others.
 
 > **Scope warning.** This is not the playbook's coverage engine. The authoritative source and harvest
-> ledger is `..\sources.yml`, rendered in `..\docs\coverage.md`. This graph holds three projects only and
-> must never be used to conclude that no *other* project solved a problem.
+> ledger is `..\sources.yml`, rendered in `..\docs\coverage.md`. This graph holds in-house projects only
+> and must never be used to conclude that no *external* mod solved a problem.
 
-The **built reconciled graph** still has that three-project scope. The refresh pipeline is now configured
-for all eight in-house projects: SS2VR, BioShockVR, SOMAVR, PreyVR, DishonoredVR, FarCry2VR, SWAT4VR and
-Sims4VR. It produces separate semantic document graphs first; adding those five new graphs to semantic
-cross-project reconciliation is a distinct step, because a Graphify union does not discover shared concepts.
+**`fleet-graph.json` is the current artifact:** all eight projects (SS2VR, BioShockVR, SOMAVR, PreyVR,
+DishonoredVR, FarCry2VR, SWAT4VR, Sims4VR), 2,000 nodes, 880 intra-project links and **167 cross-project
+`same_concept_as` edges over 34 shared concepts**. Every project reaches all seven others. Coverage,
+project pairs and every rejection are itemised in [FLEET_RECONCILIATION.md](FLEET_RECONCILIATION.md).
+
+> **Read `links`, never `edges`.** These are NetworkX node-link files. Indexing `d["edges"]` returns
+> nothing and raises nothing, so a script that guesses reports **zero edges** and looks correct. That
+> has happened twice on this fleet in two different sessions, and both times a human was told the graph
+> was empty when it had hundreds of edges. Use `..\tools\graphio.py`, which raises instead:
+> `from graphio import load_graph`.
+
+### Superseded artifacts, kept for provenance
+
+| File | What it is | Why not to use it |
+|---|---|---|
+| `merged-graph.json` | mechanical union of three projects | 616 links, **1** of them cross-project — a query seeded in one project cannot reach another |
+| `reconciled-graph.json` | the three-project prototype, 27 Aug | IDs not namespaced: 6 unrelated node pairs silently fused, 1 self-loop, 1 duplicate row; 35 `same_concept_as` rows of which 33 are usable |
 
 ---
 
 ## Use this graph
 
-**Cross-project questions — use `reconciled-graph.json`:**
+**Cross-project questions — use `fleet-graph.json`:**
 
 ```
-graphify query "<question>" --graph "graphify-out\reconciled-graph.json" --budget 900
+graphify query "<question>" --graph "graphify-out\fleet-graph.json" --budget 900
 ```
+
+Cross-project edges carry `scope: cross`; a project's own edges carry `scope: intra`. Node IDs are
+namespaced `project::id` and every node has a `project` field, so an answer can always name *which*
+project it came from.
 
 **One project only — use its own graph** (smaller, no cross-links to distract):
 
 ```
-graphify query "<question>" --graph "per-project\<somavr|ss2vr|bioshockvr>\graphify-out\graph.json"
+graphify query "<question>" --graph "per-project\<project>\graphify-out\graph.json"
+#   project = somavr | ss2vr | bioshockvr | preyvr | dishonoredvr | farcry2vr | swat4vr | sims4vr
 graphify path    "A" "B"   --graph <path>      # how two things connect
 graphify explain "X"       --graph <path>      # a node and its neighbourhood
 graphify affected "X"      --graph <path> --depth 2   # what a change would touch
@@ -53,6 +70,12 @@ The PowerShell driver stages a curated corpus per project and incrementally refr
 
 # All eight projects. Existing manifests mean only changed documents are sent.
 .\update-fleet-docs.ps1
+
+# The same, then resolve shared concepts BETWEEN the projects and write
+# fleet-graph.json + FLEET_RECONCILIATION.md. Opt-in: it is the only stage that
+# reads every project at once, and the only one that produces an edge crossing a
+# project boundary (~$0.03 for the fleet).
+.\update-fleet-docs.ps1 -Reconcile
 
 # Upgrade the Graphify CLI and synchronize its Codex + Claude skills first,
 # normalize all eight project code graphs under that version while preserving
@@ -91,6 +114,32 @@ scripts cannot drift into different Graphify command lines.
 `-UpdateGraphify` runs `uv tool upgrade graphifyy`, reinstalls the matching `codex` and `claude`
 skills, and prints the resulting CLI version before graph extraction. Use
 `-GraphifyPlatform codex` if a machine should update only the Codex integration.
+
+### Cross-project reconciliation on its own
+
+```powershell
+..\graphify-key.bat python ..\tools\reconcile_fleet.py            # build fleet-graph.json
+python ..\tools\reconcile_fleet.py --offline                      # namespaced union + report, no model
+..\graphify-key.bat python ..\tools\reconcile_fleet.py --dry-run  # propose, write nothing
+```
+
+**Why this stage cannot be replaced by a union or by matching labels.** Measured on this corpus: across
+1,328 nodes only 7 normalised labels recurred between projects and 5 of those were document filenames —
+while 74 concept tokens (stereo, camera, pose, viewmodel, comfort…) appeared in all three. *The concepts
+recur; the vocabulary does not.* So the resolver reads ~2,000 short labels rather than 700k words of
+source, and every label it returns is validated against the real node set before an edge is written — a
+model that invents a label produces **no edge**, not a fake one.
+
+Namespacing is what makes the bookkeeping safe: once every ID is `project::id`, a same-project edge and
+a self-loop are the same impossible thing. The run exits non-zero if it produces **zero** cross-project
+edges, because a graph that silently answers every cross-project question with "nothing found" is worse
+than no graph at all.
+
+**Known limit:** the resolver runs in stratified passes (every pass carries a slice of every project), and
+a concept found in two passes can come back under two names — currently `Frustum and Culling Adjustment`
+vs `…Management`, and `Comfort Vignette` vs `Comfort Vignette / Blackout`. The *edges* are still correct;
+only the concept label fragments. Merge them by hand in the report, or raise `BATCH_LABELS` once the
+corpus justifies a single pass.
 
 `-NormalizeCode` runs `graphify extract --force --code-only` for every selected project before the
 semantic pass. Graphify 0.9.51+ carries the existing semantic tier forward during this rescan; the wrapper

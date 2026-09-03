@@ -90,7 +90,17 @@ param(
     # Graphify 0.9.53 re-queues those files, so two cheap incremental retries
     # normally close the gap without reprocessing successful documents.
     [ValidateRange(0, 5)]
-    [int] $SemanticRetries = 2
+    [int] $SemanticRetries = 2,
+
+    # After the per-project graphs are current, resolve shared concepts BETWEEN
+    # them and write cross-engine-graph\graphify-out\fleet-graph.json.
+    #
+    # This is opt-in because it is the only stage that reads every project at
+    # once and costs a separate model call (~$0.03 for the whole fleet). It is
+    # also the only stage that produces an edge crossing a project boundary: a
+    # union cannot, and exact label matching cannot either, because the concepts
+    # recur while the vocabulary does not.
+    [switch] $Reconcile
 )
 
 $ErrorActionPreference = 'Stop'
@@ -533,5 +543,42 @@ if ($StageOnly) {
     Write-Host "`nCorpus staged; no semantic provider was called." -ForegroundColor Yellow
 } else {
     Write-Host "`nPer-project semantic document graphs are current for the selected fleet entries." -ForegroundColor Green
-    Write-Host 'The reconciled cross-project graph remains a separate, explicit step; unioning graphs does not create cross-project concept edges.'
+}
+
+if ($Reconcile) {
+    if ($StageOnly -or $CodeOnly -or $WhatIfCost) {
+        Write-Host "`n-Reconcile skipped: no semantic pass ran, so the per-project graphs may be stale." -ForegroundColor Yellow
+    } else {
+        Write-Host "`n=== Fleet reconciliation ===" -ForegroundColor Cyan
+        $repoRoot   = Split-Path -Parent $PSScriptRoot
+        $reconciler = Join-Path $repoRoot 'tools\reconcile_fleet.py'
+        if (-not (Test-Path -LiteralPath $reconciler)) {
+            throw "reconciler not found: $reconciler"
+        }
+
+        # Must be the interpreter that has graphify's deps (the openai client),
+        # not whatever `python` resolves to on PATH.
+        $py = $null
+        if (Get-Command uv -ErrorAction SilentlyContinue) {
+            $uvDir = (uv tool dir 2>$null).Trim()
+            if ($uvDir) {
+                $candidate = Join-Path $uvDir 'graphifyy\Scripts\python.exe'
+                if (Test-Path -LiteralPath $candidate) { $py = $candidate }
+            }
+        }
+        if (-not $py) { $py = 'python' }
+
+        & $py $reconciler
+        $rc = $LASTEXITCODE
+        if ($rc -ne 0) {
+            # Exit 1 here means zero cross-project edges were produced. That is a
+            # graph which silently answers every cross-project question with
+            # "nothing found", so it must not pass quietly.
+            throw "fleet reconciliation failed (exit $rc) - see the output above"
+        }
+        Write-Host 'Fleet graph and coverage report written.' -ForegroundColor Green
+    }
+} else {
+    Write-Host 'Cross-project reconciliation did not run. Pass -Reconcile to build fleet-graph.json;'
+    Write-Host 'unioning graphs does not create cross-project concept edges.'
 }
