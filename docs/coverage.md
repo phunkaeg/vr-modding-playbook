@@ -23,6 +23,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | Source | What is sitting there |
 |---|---|---|
+| `packaging_deploy` | **Talemann-RE4** | Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game. |
 | `re_discovery` | **Dishonored-VR** | REGISTERED NOT REVIEWED 2026-09-02. ALREADY MINED by the in-house DishonoredVR project (2026-09-02), which took the render path instead and avoided its blockers - read for method and negative results, not as an open task. GingasVRFO/Dishonored-VR is a SEPARATE VR conversion of the SAME GAME as the in-house DishonoredVR project. A d3d9.dll proxy built on a FORKED DXVK, with true stereo, 6DoF, motion controls, roomscale and a hand-aimed Blink. DISCONTINUED and explicitly offered for pickup (author burned out on unreproducible reports). Its 13 numbered fork-patches read as a complete rung-2 development history: M2 frame-map instrumentation, M3 stereo splice per-eye draw replay, mirrored-VP skip, world-quad splice via a c6 identity test, depth-test state REPLACING that c6 heuristic, an explicit revert to proven M3.1, measured gates, live projection scales, live writable separation and convergence, per-draw splice verdicts, world-space UP effects (the fire fix), and the Blink marker. The real payload is dllmain.cpp (~23k lines of in-game research log); its negative results are worth more than its code. |
 | `re_discovery` | **Quake2Quest** | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
 | `re_discovery` | **quake2vr** | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
@@ -30,9 +31,11 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **Fallout-New-Vegas-FNVR** | NOT HARVESTABLE AS SHIPPED: 'Fallout New Virtual Reality' is a 12 KB FNVR.esp plus a 3 KB .7z - a plugin, not a native VR conversion, and no source. What IS readable in this directory is xNVSE, the New Vegas Script Extender, which is general modding tooling rather than a VR implementation. Extract the archive and re-assess only if the script-extender route to VR becomes relevant to a project. |
 | `stereo` | **GRAND-alien-isolation** | BINARY ONLY: XINPUT1_3.dll proxy. Built on Nibre's MotherVR. No source to read. |
 | `stereo` | **IRON-NEST-VR** | BINARY ONLY: managed code driving OpenXR and D3D11 directly via Silk.NET rather than through Unity XR. No source. |
+| `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
 | `stereo` | **ReclaimerVR** | NOT HARVESTABLE: the checkout contains a README and nothing else. Third Halo MCC entry by name only. |
 | `stereo` | **Sterallax6DOF-silksong** | NOT HARVESTABLE without RE: a single DLL, no source, no config, no readme. Retained in the ledger because 6DOF applied to a 2D game is a conversion class with no other example here - worth an RE pass if that class ever matters. |
 | `stereo` | **SubmersedVR** | NARROW PULL: produces no stereo, XR lifecycle or perf work; forces Seated and hard-snaps the rig each frame. |
+| `stereo` | **Talemann-RE4** | Not a stereo mod. REFramework supplies VR; this supplies the HANDS. Installed build is RE4VR_2.0_Setup.exe; the mod is ~31k lines of Lua under reframework/autorun plus JSON data under reframework/data/re4_vr. |
 | `stereo` | **XIII2003-vr-mod** | BINARY ONLY: ships D3DDrv.dll plus CONTRIBUTING/CREDITS/README and no source - an Unreal render-device replacement. This is the MOD repo of the six-repository family whose research repo (XIII2003-vr-external-research) is already harvested into ch18 #stock-cheat-commands, so the structure is documented even though the implementation is not. |
 | `ui_hud` | **MELE-VR** | HDR must be off or the headset image is blue/doubled (FAIL-STR-012). Binary only - no source. |
 
@@ -40,19 +43,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 21 | 14 | 21 | 16 |
-| `xr_lifecycle` | 6 | 7 | 0 | 34 | 44 |
-| `xr_input` | 4 | 0 | 4 | 34 | 49 |
-| `camera_tracking` | 12 | 13 | 1 | 25 | 40 |
-| `render_hazards` | 5 | 9 | 1 | 1 | 75 |
-| `ui_hud` | 5 | 13 | 5 | 28 | 40 |
-| `hands_interaction` | 6 | 9 | 5 | 23 | 48 |
-| `input_locomotion` | 2 | 4 | 1 | 1 | 83 |
-| `performance` | 8 | 7 | 3 | 29 | 44 |
-| `audio` | 1 | 1 | 0 | 38 | 51 |
-| `packaging_deploy` | 6 | 23 | 18 | 13 | 31 |
-| `re_discovery` | 14 | 13 | 5 | 21 | 38 |
-| `source_integration` | 2 | 8 | 7 | 32 | 42 |
+| `stereo` | 19 | 21 | 14 | 23 | 16 |
+| `xr_lifecycle` | 6 | 7 | 0 | 36 | 44 |
+| `xr_input` | 4 | 0 | 4 | 36 | 49 |
+| `camera_tracking` | 12 | 13 | 1 | 27 | 40 |
+| `render_hazards` | 5 | 9 | 1 | 3 | 75 |
+| `ui_hud` | 5 | 13 | 5 | 30 | 40 |
+| `hands_interaction` | 6 | 10 | 5 | 24 | 48 |
+| `input_locomotion` | 2 | 4 | 1 | 3 | 83 |
+| `performance` | 8 | 7 | 3 | 31 | 44 |
+| `audio` | 1 | 1 | 0 | 40 | 51 |
+| `packaging_deploy` | 6 | 23 | 18 | 15 | 31 |
+| `re_discovery` | 14 | 13 | 5 | 23 | 38 |
+| `source_integration` | 2 | 8 | 7 | 33 | 43 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -95,7 +98,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **condemned-vr** | external reference | LithTech Jupiter EX (Condemned: Criminal Origins) | native-injector | T2 | R1 · native re-entry | 17 | 213 | 132 | 32 | 2026-08-30 | ⚪ unpinned | 1F / 0P / 4S / 6NR / 2— |
 | **crysis_vrmod** | external reference | CryEngine 2 | native-injector | T3 | R1 · native re-entry | 17 | 813 | 695 | 18 | 2026-08-28 | ⚪ unpinned | 2F / 1P / 1S / 7NR / 2— |
 | **CSVR** | archived reference | GoldSrc / Xash3D | source-port | — | — | — | 1001 | 307 | 5 | 2026-03-09 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
-| **cyberpunk-vr-port** | external reference | REDengine 4 | native-injector | — | — | 17 | 467 | 291 | 91 | 2026-08-23 | 🟩 current | 1F / 4P / 0S / 3NR / 5— |
+| **cyberpunk-vr-port** | external reference | REDengine 4 | native-injector | — | — | 17 | 572 | 301 | 91 | 2026-09-05 | 🟥 source changed | 1F / 4P / 0S / 3NR / 5— |
 | **Dishonored-VR** | external reference | Unreal Engine 3 (Dishonored) | native-injector | ? | ? | 18 | 61 | 1 | 3 | 2026-09-04 | ⚪ unpinned | 0F / 0P / 0S / 11NR / 2— |
 | **Dishonored-VR-fork** | external reference | Unreal Engine 3 (Dishonored, 32-bit) | native-injector | T1 | R2 · per-draw replay | — | 59 | 1 | 1 | 2026-09-04 | 🟥 source changed | 0F / 0P / 0S / 13NR / 0— |
 | **DOOM-3-BFG-VR** | external reference | idTech 4 (Doom 3 BFG) | source-port | — | — | — | 2155 | 1348 | 83 | 2026-08-27 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
@@ -122,7 +125,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-BF3VR** | external reference | Frostbite 2 / Venice Unleashed (Battlefield 3) | native-injector | T1 | R4 · reconstruction | 14 | 55 | 4 | 44 | 2026-09-03 | 🟩 current | 2F / 4P / 0S / 1NR / 6— |
 | **MonsterDeadWood-C2VR** | external reference | CryEngine 3 (Crysis 2) | native-injector | T1 | R4 · reconstruction | 9 | 105 | 12 | 85 | 2026-09-03 | 🟩 current | 1F / 5P / 0S / 1NR / 6— |
 | **MonsterDeadWood-DiRT2VR** | external reference | EGO (DiRT 2) | native-injector | T1 | R1 · native re-entry | 17 | 44 | 4 | 36 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
-| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 63 | 9 | 47 | 2026-09-03 | 🟩 current | 0F / 5P / 0S / 1NR / 7— |
+| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 111 | 19 | 63 | 2026-09-05 | 🟥 source changed | 0F / 5P / 0S / 1NR / 7— |
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
@@ -139,6 +142,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **ravenfield-vr-mod** | external reference | Unity | managed-plugin | — | — | — | 40 | 10 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **Rea-Virtua-Cop-2-VR** | external reference | 1997 fixed-function | native-injector | — | — | 16 | 8 | 3 | 1 | 2026-08-21 | 🟩 current | 3F / 2P / 0S / 0NR / 8— |
 | **ReclaimerVR** | external reference | Blam / Saber (MCC) | native-injector | ? | ? | — | 1 | 0 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 0S / 1NR / 12— |
+| **REFramework** | external reference | RE Engine (multi-title) | framework | T3 | ? | — | 1374 | 1284 | 25 | 2026-09-05 | 🟥 source changed | 0F / 0P / 0S / 13NR / 0— |
 | **RepoXR** | external reference | Unity | managed-plugin | — | — | — | 146 | 132 | 3 | 2026-08-26 | 🟩 current | 1F / 1P / 1S / 1NR / 9— |
 | **RoR2VRMod** | external reference | Unity Mono | managed-plugin | — | — | 18 | 81 | 61 | 5 | 2026-01-20 | 🟩 current | 0F / 2P / 2S / 0NR / 9— |
 | **satisfactory-uevr-enhancements** | external reference | Unreal 5 | framework-companion | — | — | 18 | 433 | 18 | 5 | 2026-08-22 | 🟩 current | 0F / 2P / 0S / 0NR / 11— |
@@ -155,6 +159,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **Sterallax6DOF-silksong** | external reference | Unity (Silksong) | managed-plugin | ? | ? | — | 1 | 0 | 0 | 2026-08-02 | 🟩 current | 0F / 0P / 0S / 1NR / 12— |
 | **SubmersedVR** | external reference | Unity 2019.4 (Subnautica) | managed-plugin | — | — | — | 81 | 31 | 3 | 2026-08-27 | 🟩 current | 0F / 2P / 0S / 1NR / 10— |
 | **SystemReShock-UEVR-Plugin** | external reference | Unreal | framework-companion | — | — | — | 4760 | 4741 | 1 | 2026-05-22 | 🟩 current | 0F / 1P / 0S / 0NR / 12— |
+| **Talemann-RE4** | external reference | RE Engine (Resident Evil 4 Remake), via praydog's REFramework | framework-companion | T4 | — | — | 106 | 30 | 0 | 2026-09-05 | ⚪ unpinned | 0F / 1P / 0S / 11NR / 1— |
 | **TechtonicaVR** | external reference | Unity 2021.3.15f1 | framework-companion | — | — | — | 1777 | 288 | 6 | 2026-08-27 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **the-evil-within-vr-external-research** | external reference | id Tech 5 (The Evil Within) | framework-companion | — | — | 9 | 8 | 0 | 8 | 2026-08-29 | ⚪ unpinned | 1F / 0P / 1S / 9NR / 2— |
 | **thedarkmodvr** | external reference | idTech 4 (TDM) | source-port | — | — | — | 2604 | 2122 | 25 | 2026-05-22 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
@@ -180,14 +185,14 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 |---|---|---|---|---|---|---|---|
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:bf2f0979eebb5e8c` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:0a9b0627529d3583` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:3f0cb90ddf1f38fe` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:c292e94de61baae4` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:eaf67f5772b085aa` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:28a80b1df161f546` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:8adbd0b0371ede02` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:def823b54976b17f` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f31b82ea3ce79d04` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:762a48d6bc781596` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:06c92942551e51cd` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:2a21430f66e1dcdd` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:398b63376f7804d4` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:76c3eda1720b1c12` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:29b96e629c40579d` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:5dbc4303c1264b3d` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
 | **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | unknown |
@@ -203,7 +208,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **condemned-vr** | 2026-08-29 | `unknown` | `tree:375521a55d72feca` | `—` | ⚪ unpinned | unknown | unknown |
 | **crysis_vrmod** | 2026-08-28 | `unknown` | `tree:72edce18458cccd3` | `—` | ⚪ unpinned | unknown | unknown |
 | **CSVR** | 2026-08-25 | `tree:b317ecb80018cb2d` | `tree:b317ecb80018cb2d` | `—` | 🟩 current | unknown | unknown |
-| **cyberpunk-vr-port** | 2026-08-25 | `tree:22383c11593f8750` | `tree:22383c11593f8750` | `—` | 🟩 current | unknown | unknown |
+| **cyberpunk-vr-port** | 2026-08-25 | `tree:22383c11593f8750` | `tree:e4fe5418281f1c41` | `—` | 🟥 source changed | unknown | unknown |
 | **Dishonored-VR** | 2026-09-02 | `unknown` | `tree:ec8b8c0d1fa6e210` | `—` | ⚪ unpinned | unknown | zlib (DXVK) - covers fork-patches ONLY; dllmain.cpp is unlicensed |
 | **Dishonored-VR-fork** | 2026-09-04 | `tree:0d7e87ff7f68876e` | `tree:89e9c521e1893b4e` | `—` | 🟥 source changed | https://github.com/phunkaeg/Dishonored-VR | see LICENSE in tree |
 | **DOOM-3-BFG-VR** | 2026-08-27 | `tree:b68fb6734c12a28c` | `tree:b68fb6734c12a28c` | `—` | 🟩 current | unknown | unknown |
@@ -230,7 +235,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **MonsterDeadWood-BF3VR** | 2026-09-03 | `tree:a434e6fd4ed2c819` | `tree:a434e6fd4ed2c819` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-C2VR** | 2026-09-03 | `tree:5c9a476fdb91dfb4` | `tree:5c9a476fdb91dfb4` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-DiRT2VR** | 2026-09-03 | `tree:e1f675860774af3f` | `tree:e1f675860774af3f` | `—` | 🟩 current | unknown | unknown |
-| **MonsterDeadWood-FC2VR** | 2026-09-03 | `tree:0f01206573f0c260` | `tree:0f01206573f0c260` | `—` | 🟩 current | unknown | unknown |
+| **MonsterDeadWood-FC2VR** | 2026-09-03 | `tree:0f01206573f0c260` | `tree:6ddcccada41c56ca` | `—` | 🟥 source changed | unknown | unknown |
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | unknown |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | unknown |
@@ -247,6 +252,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **ravenfield-vr-mod** | 2026-08-26 | `tree:5ff2383f8ff12840` | `tree:5ff2383f8ff12840` | `4ed67514aa3302ba255b6ddb870854f9c992737e` | 🟩 current | https://github.com/GDani31/ravenfield-vr-mod | unknown |
 | **Rea-Virtua-Cop-2-VR** | 2026-08-25 | `tree:d5c76a58e1e614ca` | `tree:d5c76a58e1e614ca` | `—` | 🟩 current | unknown | unknown |
 | **ReclaimerVR** | 2026-08-26 | `tree:cf2ce2d8fb2ea250` | `tree:cf2ce2d8fb2ea250` | `9f746e07e6a34c5d23189bad1b2fb87b08d1c6e3` | 🟩 current | https://github.com/Nibre/ReclaimerVR | unknown |
+| **REFramework** | 2026-09-04 | `tree:168b893ee9b40862` | `tree:1c02807bf9e55ed3` | `—` | 🟥 source changed | https://github.com/praydog/REFramework | see LICENSE in tree |
 | **RepoXR** | 2026-08-26 | `tree:987e89a6065d2301` | `tree:987e89a6065d2301` | `15b4aec0e1411c7de5d9fdd184e02b8b1870119d` | 🟩 current | https://github.com/DaXcess/RepoXR | unknown |
 | **RoR2VRMod** | 2026-08-25 | `tree:19fb84a75b171a5f` | `tree:19fb84a75b171a5f` | `—` | 🟩 current | unknown | unknown |
 | **satisfactory-uevr-enhancements** | 2026-08-25 | `tree:33a7aa8069455a16` | `tree:33a7aa8069455a16` | `—` | 🟩 current | unknown | unknown |
@@ -263,6 +269,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Sterallax6DOF-silksong** | 2026-08-26 | `tree:d0f4634655052b15` | `tree:d0f4634655052b15` | `—` | 🟩 current | unknown | unknown |
 | **SubmersedVR** | 2026-08-27 | `tree:6f1c537947774a46` | `tree:6f1c537947774a46` | `—` | 🟩 current | unknown | unknown |
 | **SystemReShock-UEVR-Plugin** | 2026-08-25 | `tree:00679eccfd4d256f` | `tree:00679eccfd4d256f` | `—` | 🟩 current | unknown | unknown |
+| **Talemann-RE4** | 2026-09-04 | `unknown` | `tree:509eecb1574a62d1` | `—` | ⚪ unpinned | unknown | unknown |
 | **TechtonicaVR** | 2026-08-27 | `tree:9bd62050d21c6d75` | `tree:9bd62050d21c6d75` | `—` | 🟩 current | unknown | unknown |
 | **the-evil-within-vr-external-research** | 2026-08-29 | `unknown` | `tree:86941594e13fb4ae` | `—` | ⚪ unpinned | unknown | unknown |
 | **thedarkmodvr** | 2026-08-25 | `tree:7874ef99aa2ed9e7` | `tree:7874ef99aa2ed9e7` | `—` | 🟩 current | unknown | unknown |
@@ -305,16 +312,16 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 4058 | 349 | 2026-09-04 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 4059 | 350 | 2026-09-05 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4932 | 2585 | 2026-09-03 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 19207 | 2295 | 2026-09-03 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 1870 | 264 | 2026-09-04 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 19224 | 2295 | 2026-09-05 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 1872 | 264 | 2026-09-05 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 697 | 177 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
-| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5612 | 132 | 2026-09-03 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
-| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-03 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
+| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5613 | 132 | 2026-09-05 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
+| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-05 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
 | **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 160 | 18 | 2026-09-04 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 69 | 30 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 8NR / 0— |
-| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3556 | 295 | 2026-09-04 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
+| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3556 | 295 | 2026-09-05 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 
 ## Per-source area detail
 
@@ -1564,6 +1571,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
 
+#### REFramework
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
 #### RepoXR
 
 | Area | Review | Evidence | Note |
@@ -1850,6 +1875,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | — no entry — | — | — |
 | `packaging_deploy` | — no entry — | — | — |
 | `re_discovery` | — no entry — | — | — |
+| `source_integration` | — no entry — | — | — |
+
+#### Talemann-RE4
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | Not a stereo mod. REFramework supplies VR; this supplies the HANDS. Installed build is RE4VR_2.0_Setup.exe; the mod is ~31k lines of Lua under reframework/autorun plus JSON data under reframework/data/re4_vr. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟨 partial | `SOURCE` | harvested 2026-09-04 into ch02 #physical-reload and HAND-008/009/010. THE SHIPPED VERSION of what visceral-re2-vr-mod lists as planned. Physical reload across seven Lua modules (reload, reload2/3, reload4/5_dlc, reload_adv) plus holster, gestures and capacitive touch. Key findings taken: the mag DOCK is a named weapon joint plus a per-WeaponID offset, explicitly because starting at the hand cut the insertion path through the weapon mesh and drifted while walking; insert distance is per weapon CATEGORY with a per-weapon override, never one global; mag drop is two phases, an eased LOCAL slide out of the chamber then a CONTROLLED world fall (free gravity 'flies away'), with floor Y read off the player body root; holster is a Spine_1 joint plus offset and a box zone, with grab_trigger 0.333 below grab_release 0.363 for hysteresis. The per-weapon tables encode a taxonomy far wider than category: top-loaders with a chamber and no magazine (Red9, positive Y/Z and annotated as NOT a sign error), break actions whose slide joint is a pitch lever, rotary cycles whose slide joint turns, weapons the engine closes the slide for, and three distinct representations of a carried shell (static sub-mesh part, spawned entity, mesh clone). Ported from the same author's RE9 mod, so several modules carry their RE9 lineage in comments. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game. |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
 | `source_integration` | — no entry — | — | — |
 
 #### TechtonicaVR

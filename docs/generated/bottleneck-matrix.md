@@ -10,11 +10,11 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared |
 | **BN-OBS-001** — The active renderer and frame boundary are not owned | `both` | OBSERVE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
 | **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟥 active | 🟧 open | 🟥 active | 🟩 cleared | 🟩 cleared |
-| **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
+| **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
 | **BN-SFX-001** — A second eye may advance once-per-frame side effects | `both` | STEREO-SAFETY | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟩 cleared |
-| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟩 cleared | 🟥 active | 🟧 open | 🟧 open | 🟩 cleared |
+| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟧 open | 🟧 open | 🟩 cleared |
 | **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
-| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
+| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
 | **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟩 cleared | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
 | **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟥 active | 🟧 open | 🟧 open | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟩 cleared |
 | **BN-PERF-001** — The fresh-frame budget and dominant cost are not measured | `both` | PERFORMANCE | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟨 risk | 🟨 risk |
@@ -98,7 +98,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟩 cleared | `HEADSET` | KEX render/cull camera and Dark gameplay consumers are separated; remaining work is feature-level coverage. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | Player scene-node camera, transient per-eye matrices and foreground ownership are mapped. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | Player versus authored/secondary HPL frusta are classified and yielded to by state. |
-| **PreyVR** | 🟧 open | `STATIC` | ArkPlayerCamera, CSystem::m_ViewCamera and CRenderView copy-by-value seam are mapped; projection/cull behavior still needs live stereo proof. |
+| **PreyVR** | 🟧 open | `LIVE` | Authorities now separated live rather than statically: ArkPlayerCamera::UpdateView (R-009) is the upstream source, CRenderView::SetCamera copies by value and sits downstream of culling, and the cull frustum was measured following the aim ray rather than the view. Viewmodel authority traced to limb-IK targets (R-077/R-078); its producer is unnamed. Open until every authority and its invalidation conditions are recorded. |
 | **DishonoredVR** | 🟥 active | `LIVE` | Render camera isolated by return address (+0x2C48AE, which immediately builds camera/view/projection in FUN_006c4710 and is reached from the viewport draw) and separated LIVE from nine other per-frame GetPlayerViewPoint consumers; +0x250F25 is the tick-timing consumer that must stay on the body camera. Pose query dispatches through PlayerController vtable +0x3C4; camera location +0x330, integer rotator +0x33C. Camera DELIVERY - parameter or global - remains unknown. |
 | **FarCry2-VR** | 🟥 active | `LIVE` | The shipped rung-2 baseline has headset-proven 6DoF and authored-camera yielding, but the new WorldExec route has not yet proved that its second-pass camera mutation reaches the consuming draw. Treat the working route as the fallback, not evidence for the new route. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Exports and forward census reduce search cost; the stereo camera delivery/seam still needs completion. |
@@ -119,7 +119,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟩 cleared | `HEADSET` | Private per-eye targets with alternate-eye fills are the proven shipping route; native cubemap re-entry is a future opportunity. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | Per-draw private-eye replay is proven; rung-1 reflection/mirror re-entry remains optional research. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR is the selected route around expensive/side-effectful HPL re-entry. |
-| **PreyVR** | 🟥 active | `STATIC` | RenderWorld plus arbitrary-camera pass construction meet static preconditions; live viability, render-view pools and cost are open. |
+| **PreyVR** | 🟩 cleared | `HEADSET` | STEREO_ROUTE.md records the ladder, the rejected higher rungs, camera delivery, rollback and the A5 side-effect exit test. Rung 3 with native projection passed and stereo was confirmed in headset 2026-09-02 with depth and scale judged correct. Rung 1 cost remains unmeasured, but that is a rejected rung, not the selected one. |
 | **DishonoredVR** | 🟥 active | `STATIC` | No stereo route can be committed before camera ownership and D3D9 transport are proven. |
 | **FarCry2-VR** | 🟩 cleared | `HEADSET` | Per-draw stereo works; WorldExec native-stereo viability is the higher-rung investigation. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | Scene doubling and AFR are proven possible; the clean world/HUD seam and side-effect gate decide the final route. |
@@ -140,7 +140,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟩 cleared | `LIVE` | Current per-draw/AFR architecture avoids re-entering the complete simulation frame. |
 | **BioShockVR** | 🟩 cleared | `LIVE` | Private-eye replay is scoped to eligible rendering work; pair authority and fallbacks are explicit. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR deliberately avoids same-frame scene re-entry and banks temporal histories per eye. |
-| **PreyVR** | 🟥 active | `STATIC` | RenderWorld viability is not established; global-camera consumers and pooled render views make live ordering mandatory. |
+| **PreyVR** | 🟥 active | `STATIC` | Dormant rather than solved: the selected route is alternate-eye, which never runs RenderWorld twice, so the once-per-frame side-effect class is not currently exercised and nothing about it has been proven. It returns in full the moment native scene re-entry is attempted. |
 | **DishonoredVR** | 🟨 risk | `—` | UE3 scene entry has not yet reached a live repeat test. |
 | **FarCry2-VR** | 🟥 active | `LIVE` | M3 question 1 is now live: 3,521 PrepareFrameGraph+WorldExec replays produced a 1.915 draw ratio while the animator stayed at 1.0. This is strong side-effect separation, not the full exit proof: the zero-delta control and remaining audio/particle/query/allocation observers still decide safety. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | Scene re-entry passes the pixel proof; the explicit side-effect gate is still unrun and two camera consumers repeat. |
@@ -161,7 +161,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟩 cleared | `HEADSET` | D3D11 OpenXR transport and recovery are shipping. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | D3D11 private-HDR to OpenXR projection submission is sustained. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | OpenGL OpenXR handoff is proven; transfer cost remains a performance lane. |
-| **PreyVR** | 🟧 open | `STATIC` | D3D11 is compatible, but transport is downstream of the current native-stereo viability gate. |
+| **PreyVR** | 🟩 cleared | `HEADSET` | Game-image transport passes: per-eye images reach the runtime through an owned texture-array swapchain and were seen correctly in headset. Adapter LUID is resolved and matched to a DXGI index, swapchain format is chosen and logged (28->29 fixed double-encoded gamma, FAIL-STR-033), and the per-eye pose/FOV contract is stored with the pixels it describes (FAIL-STR-044). |
 | **DishonoredVR** | 🟥 active | `LIVE` | GAME-LESS PROBE (not in-game): Direct3DCreate9On12 -> UnwrapUnderlyingResource -> D3D12 -> OpenXR passes end to end on VirtualDesktopXR 1.0.10, with XR_KHR_D3D12_enable v9 among 31 extensions. Negative control recorded - plain Direct3DCreate9 refuses shared resources (0x8876086C). D3DFMT_A8R8G8B8 opens as DXGI_FORMAT_B8G8R8A8_UNORM unconverted; adapter LUIDs are per-boot handles. Completed-query median 0.224 ms is an IDLE-GPU FLOOR, not a budget. Remains active: known-colour transport only, never a game image. |
 | **FarCry2-VR** | 🟩 cleared | `HEADSET` | D3D10 via shared DXGI surface reaches OpenXR; descriptor/copy compatibility is proven. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | 9On12 reaches an owned D3D12 resource and XR bring-up passes without hardware; first headset submission remains. |
@@ -182,7 +182,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟧 open | `HEADSET` | Core stereo/culling are proven; reflections, portals, viewmodels and effects remain ownership-sensitive feature lanes. |
 | **BioShockVR** | 🟥 active | `LIVE` | Mono screen-space shadow/light/fog producer resources remain the dominant visual defect after geometry stereo. |
 | **SOMAVR** | 🟥 active | `LIVE` | Refraction/post-effect ownership, occlusion identities and OpenGL transfer timing are current T3 refinement lanes. |
-| **PreyVR** | 🟨 risk | `—` | Deferred CryEngine companions and render-view pools are not yet exercised by a second eye. |
+| **PreyVR** | 🟨 risk | `—` | The shipping route is alternate-eye, so per-eye render state is one engine frame per eye rather than two passes sharing state; deferred CryEngine companions remain unexercised by a second pass. One per-eye hazard is confirmed: motion blur read as a focus artifact on near objects and had to be disabled. |
 | **DishonoredVR** | 🟨 risk | `—` | Render-pass census is partial and downstream of transport/camera gates. |
 | **FarCry2-VR** | 🟥 active | `SOURCE` | The headset-proven rung-2 baseline still works. For the native route, classify output by frame/pass/resource generation rather than pointer identity, and prove OMSetRenderTargets interception with a positive control before treating the no-copy census as exhaustive; viewmodel ownership remains separate. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Hazard census is favorable, but the clean world/HUD M-C seam is unresolved. |
@@ -203,7 +203,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟩 cleared | `HEADSET` | AFR pair latching, render/game pose separation and recenter ownership are implemented. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | Pair authority and shared recenter/height baselines are explicit; feature consumers still require regression tests. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR history banking, pose latch, authored-state transitions and recenter generations are live. |
-| **PreyVR** | 🟨 risk | `—` | The downstream CRenderView seam avoids contaminating the cached aim ray, but no live eye pair exists. |
+| **PreyVR** | 🟥 active | `HEADSET` | Corrected -- a live eye pair exists and is stable. Eye identity travels on a lock-free ring (ordered) while poses use a latest-wins seqlock, and the per-eye pose/FOV contract is stored with its pixels. Positional 6DoF is built but has never run in a headset, so pose ownership is not yet proven end to end. |
 | **DishonoredVR** | 🟨 risk | `—` | No render-pose packet has reached a headset path. |
 | **FarCry2-VR** | 🟥 active | `SOURCE` | The working 6DoF baseline is headset-proven, but a native pair does not yet carry one atomic pixels+pose/FOV/contract/resource-generation publication. Current unsynchronised SharedSurface fallback cannot establish pair coherence. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Eye tagging is live and pair IDs are desk-tested; headset timing and final route are pending. |
@@ -224,7 +224,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟩 cleared | `HEADSET` | Squirrel verbs/native gameplay systems own locomotion and interactions; coverage continues feature by feature. |
 | **BioShockVR** | 🟧 open | `LIVE` | XInput/native camera and weapon endpoints are mapped; body-yaw snap turn and some action ownership remain active work. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | Native analog mover, action routes, focus-loss release and haptic bridge are working. |
-| **PreyVR** | 🟧 open | `LIVE` | Detached melee/use ray proofs pass; projectile and complete action-family ownership remain. |
+| **PreyVR** | 🟧 open | `LIVE` | Aim is confirmed detached live: a motion controller drives the native reticle ray and interaction endpoint, with the crosshair following it. Locomotion route resolved -- gEnv->pInput at gEnv+0x58 from our own verified accessor table, with the PostInputEvent vtable index measured by a setter/getter alignment probe rather than guessed. Action-family ownership and projectile proof remain. |
 | **DishonoredVR** | 🟨 risk | `—` | PlayerController action strings are static anchors only. |
 | **FarCry2-VR** | 🟥 active | `LIVE` | Native aim contract is read; viewmodel/muzzle alignment and final fire-direction delivery remain. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Console/FExec property bridge is proven; VR semantic ownership is downstream of headset stereo. |
@@ -245,7 +245,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟥 active | `HEADSET` | T3 feature completion now concentrates on frob coverage, weapon/assets, gravity glove, wrist HUD and physical interactions. |
 | **BioShockVR** | 🟥 active | `LIVE` | Viewmodel/arm ownership, native AimIK lifecycle and late-LDR HUD capture remain incomplete. |
 | **SOMAVR** | 🟧 open | `HEADSET` | Hands, HUD layers, subtitles and interaction lanes work; effect/state coverage continues. |
-| **PreyVR** | 🟧 open | `LIVE` | Detached aim/use/melee are partially proven; rendered first-person attachment override is still static/partial. |
+| **PreyVR** | 🟧 open | `LIVE` | Detached aim/use/melee proven live and the crosshair follows the controller. The rendered first-person attachment is traced to limb-IK targets whose layout is confirmed (R-078) and whose producer is not yet named -- writes at the known site are downstream of consumption, so they are accepted every frame and change nothing. |
 | **DishonoredVR** | 🟨 risk | `—` | Adaptation is intentionally downstream of transport, camera and stereo gates. |
 | **FarCry2-VR** | 🟥 active | `HEADSET` | The animator writer census found 106/101/101-bone rigs and a 101-bone poke moved a body plus shadow; first-person arms/viewmodel remain on a separate undiscovered path. |
 | **SWAT4-VR** | 🟨 risk | `—` | HUD/world separation and gameplay adaptation follow first headset pixels. |
@@ -266,7 +266,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟧 open | `LIVE` | Performance telemetry exists; debugger/logging distortion and fresh-frame cadence remain recurring acceptance concerns. |
 | **BioShockVR** | 🟥 active | `LIVE` | Two eye renders plus a desktop world render dominate; reusable buffers help, but eliminating the third world render is the architectural lever. KSA_XR independently corroborates the knowingly inefficient three-frame problem on Vulkan; Scrap Mechanic demonstrates the worked D3D11 answer by mirroring the finished left eye with one three-vertex fullscreen draw. |
 | **SOMAVR** | 🟥 active | `LIVE` | OpenGL-to-XR handoff cost, occlusion/query behavior and thermally valid device timing are being priced. |
-| **PreyVR** | 🟨 risk | `—` | Native scene re-entry cost is unknown until a live second pass exists. |
+| **PreyVR** | 🟨 risk | `—` | First real numbers exist: the naive per-eye path ran about 11Hz and the eye handoff took it to about 45Hz, judged comfortable in headset. Native scene re-entry cost is still unknown and no frame budget has been attributed by pass. |
 | **DishonoredVR** | 🟨 risk | `—` | Transport choice will determine synchronization and copy cost. |
 | **FarCry2-VR** | 🟥 active | `LIVE` | Frame pacing and 60-versus-90 cadence remain open alongside native-stereo work. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Flat noise floor and pacing census exist; headset fresh-frame cadence remains. |
@@ -287,7 +287,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟩 cleared | `SOURCE` | Packaging and self-identification are mature; each new feature still needs rollback/default validation. |
 | **BioShockVR** | 🟧 open | `SOURCE` | Canonical package path and guards exist; runtime/implicit-layer/startup variability remains a support surface. |
 | **SOMAVR** | 🟩 cleared | `SOURCE` | OpenXR/non-OpenXR build flavors, loader locality and runtime recovery are explicit. |
-| **PreyVR** | 🟨 risk | `—` | Landmark gates are designed, but the mod is not at release scope. |
+| **PreyVR** | 🟨 risk | `—` | Landmark gates fail closed but pin exactly one build: seven Steam/EGS function pairs show five distinct RVA deltas spanning 0x1590, so no arithmetic translation between storefront builds exists. A shippable install contract must detect the variant rather than assume one -- see RE-010. |
 | **DishonoredVR** | 🟨 risk | `—` | Exact binary hash is pinned; no releasable transport exists. |
 | **FarCry2-VR** | 🟧 open | `SOURCE` | Launch/build prerequisites and wrapper cleanup are explicit; feature path is still T1. |
 | **SWAT4-VR** | 🟧 open | `SOURCE` | Fresh-log launch and test config are disciplined; first headset and release defaults remain. |

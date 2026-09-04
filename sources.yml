@@ -2086,6 +2086,56 @@ external:
       packaging_deploy:  {review: not_reviewed}
       re_discovery:      {review: not_reviewed}
       source_integration: {review: not_reviewed}
+  - id: Talemann-RE4
+    tier: T4
+    root: "D:/Dev Debug/Other VR mods/Talemann-RE4"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-04
+    reviewed_revision: unknown
+    engine: RE Engine (Resident Evil 4 Remake), via praydog's REFramework
+    api: D3D12
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed, note: "Not a stereo mod. REFramework supplies VR; this supplies the HANDS. Installed build is RE4VR_2.0_Setup.exe; the mod is ~31k lines of Lua under reframework/autorun plus JSON data under reframework/data/re4_vr."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "harvested 2026-09-04 into ch02 #physical-reload and HAND-008/009/010. THE SHIPPED VERSION of what visceral-re2-vr-mod lists as planned. Physical reload across seven Lua modules (reload, reload2/3, reload4/5_dlc, reload_adv) plus holster, gestures and capacitive touch. Key findings taken: the mag DOCK is a named weapon joint plus a per-WeaponID offset, explicitly because starting at the hand cut the insertion path through the weapon mesh and drifted while walking; insert distance is per weapon CATEGORY with a per-weapon override, never one global; mag drop is two phases, an eased LOCAL slide out of the chamber then a CONTROLLED world fall (free gravity 'flies away'), with floor Y read off the player body root; holster is a Spine_1 joint plus offset and a box zone, with grab_trigger 0.333 below grab_release 0.363 for hysteresis. The per-weapon tables encode a taxonomy far wider than category: top-loaders with a chamber and no magazine (Red9, positive Y/Z and annotated as NOT a sign error), break actions whose slide joint is a pitch lever, rotary cycles whose slide joint turns, weapons the engine closes the slide for, and three distinct representations of a carried shell (static sub-mesh part, spawned entity, mesh clone). Ported from the same author's RE9 mod, so several modules carry their RE9 lineage in comments."}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed, note: "Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game."}
+      re_discovery:      {review: not_reviewed}
+  - id: REFramework
+    tier: T3
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/REFramework"
+    status: external_reference
+    upstream_url: https://github.com/praydog/REFramework
+    license: see LICENSE in tree
+    reviewed_at: 2026-09-04
+    reviewed_revision: "tree:168b893ee9b40862"
+    engine: RE Engine (multi-title)
+    api: D3D11/D3D12
+    vehicle: framework
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+      source_integration: {review: not_reviewed}
 not_a_source:
   - id: "Dishonored-VR-metalink-test"
     reason: "one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree"

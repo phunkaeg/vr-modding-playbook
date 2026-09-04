@@ -791,6 +791,160 @@ Expose those constants as commands, persisted preset keys and overlay sliders, a
 readout report the **peak measured value since the last call** — that is the number a user's "it didn't
 trigger" turns into. See [HAND-004](pattern-catalog.md#hand-004).
 
+## Physical reload: the anatomy, from two independent implementations {#physical-reload}
+
+Physical reload - eject the magazine, take a fresh one off the body, insert it, rack the slide -
+is the clearest [T4](08-project-process.md) feature there is, and until now the playbook had one
+sentence about it. Two mods have now built it properly and documented it unusually well:
+**Talemann's RE4VR 2.0** (RE Engine, REFramework, ~31,000 lines of Lua across seven reload files)
+and **cyberpunk-vr-port** (REDengine 4, a C++ plugin plus a CET Lua module, thirteen pistols and a
+revolver). They share no code, no engine and no framework. `[SOURCE]`
+
+They converge on three decisions and disagree usefully about a fourth.
+
+### 1. The insertion anchor belongs to the WEAPON, not to the hand
+
+Both start here, and RE4VR states the failure it fixes:
+
+> The magazine insert used to start at the **hand position**. If the hand is at an angle to the
+> chamber, the straight line runs through the middle of the weapon mesh - and while walking the path
+> is wrong as well. With a fixed point on the weapon skeleton the start is **always the same**,
+> independent of hand, view direction and walking speed.
+
+So the dock is a **named joint on the weapon plus a local offset**, per weapon:
+
+```lua
+M.dock_default = { joint = "_03", x = 0.0, y = -0.092, z = -0.061 }
+M.docks = {
+    [6000] = { joint = "_03", x = 0.0, y = -0.092, z = -0.061 },  -- Sentinel Nine
+    [4002] = { joint = "_03", x = 0.0, y =  0.064, z =  0.051 },  -- Red9: TOP-LOADER, so Y and Z
+    [6113] = { joint = "_03", x = 0.0, y =  0.064, z =  0.051 },  -- Samurai Edge, a Red9 clone
+}
+```
+
+Note the second comment in the real file: the positive signs on the Red9 are flagged as **not a sign
+error, explicitly confirmed** - because a top-loader takes its magazine from above. Data that looks
+like a bug and is not should say so where the next reader will look.
+
+Cyberpunk reaches the same place from the other end. Its rack axis is **the vector between two of
+the weapon's own slots** rather than the bone's local frame:
+
+> The barrel direction is the model-space vector between the front and back slide slots; the free
+> hand's travel **projected onto it** is exactly the along-barrel rack distance, because a rotation
+> preserves length - so the bone's own local frame never has to be reconstructed.
+
+That is the cheaper of the two derivations and it generalises: **if the weapon exposes two points on
+the axis you need, you never have to solve the bone's orientation at all.**
+
+### 2. Per-weapon *data* over one shared mechanism
+
+This playbook already has [per-item data is not per-item code](#per-item-data-not-code); both mods
+are a large worked example, and Cyberpunk's index file states the rule as a design constraint:
+
+> Adding a pistol should never mean editing `reload.lua`, the same reason the rig signatures moved
+> out to `reload/rigs.lua`.
+
+RE4VR keeps per-`WeaponID` tables and marks the intent inline - several are annotated *"(DATEN, nicht
+Logik)"*, data not logic. What lives in that data is the surprising part, because **the weapon
+taxonomy is much bigger than "pistol, shotgun, rifle"**. RE4VR carries separate per-weapon tables for:
+
+- **top-loaders** with no magazine at all, loading into a chamber (Red9);
+- **break actions** whose "slide" joint is a pitch lever, not a Z-slide;
+- **rotary cycles** whose slide joint is a rotating switch (Striker, `joint_01`);
+- weapons that need **no cycle after a shot**, and others that need none after a *tactical* insert;
+- three different ways a carried shell can exist - a static **sub-mesh part**, a **spawned** entity,
+  or a **mesh clone** - because the engine does not represent them the same way;
+- weapons where **the engine closes the slide itself**, so the mod must not;
+- weapons whose magazine joint hangs off **a different parent** than the rest.
+
+None of that is deducible from the weapon's category. It is per-weapon measurement, and the only
+sane place for it is a table.
+
+### 3. Grab thresholds need hysteresis, and zones need a body anchor
+
+RE4VR's magazine holster is a joint plus an offset plus a box, and two thresholds:
+
+```json
+{ "joint": "Spine_1", "off_x": 0.301, "off_y": -0.117, "off_z": 0.360,
+  "zx": 0.18, "zy": 0.2, "zz": -0.2,
+  "grab_trigger": 0.333, "grab_release": 0.363, "smooth": 0.8 }
+```
+
+`grab_release` is **above** `grab_trigger` on purpose: one threshold for both directions chatters at
+the boundary. Anchoring to `Spine_1` rather than to the camera is what makes the holster stay put
+when the player looks down - see [12](12-torso-calculations-and-ergonomics.md#body-model-sequencing).
+
+### 4. Where they disagree: how the magazine gets into the hand
+
+**RE4VR animates the existing magazine.** The mag joint is interpolated from its rest pose to an exit
+vector in **local** space over a slide duration, and only then does it fall in **world** space - and
+the fall is a *controlled* one, `fall_dist` over `fall_dur`, not free gravity, because "free
+gravitation accelerates without limit, so the magazine flies away". The floor is read from the player
+body's root so the magazine lands at the feet rather than at a fixed distance.
+
+**Cyberpunk spawns an entity** - and paid for it with a frame. That analysis is the single most
+transferable thing in either mod:
+
+> Everything this module computes is MODEL space, and that space is self-consistent by construction:
+> the base and every slot come out of the same game state in the same call, so the player's own
+> travel cancels out of all of it. One thing leaves that space - a spawned entity. It is placed by
+> `SetWorldTransform` against a transform the game state has, while the hand beside it is drawn from
+> the pose of the frame being rendered. **The two are a frame apart, and a frame apart IS speed**:
+> nothing standing still, a hand's width at a run. The weapon's own parts never had this - the rig
+> write puts them in the pose that the same frame draws - **so only entities need correcting.**
+
+Their first correction failed, and the reason is general: they led the placement by the **player
+root's smoothed velocity**, which is wrong twice over.
+
+- **The root is not the anchor.** Over a step or a kerb the character controller lifts the capsule
+  while the camera and skeleton are eased up after it, so the hand and the root are briefly going
+  different ways, and no amount of root velocity describes where the hand will be.
+- **A filter has its own lag.** Smoothed over three frames the estimate is right only while the speed
+  is steady - which is exactly the flat ground where the problem was already small, and never on the
+  bumps, where velocity changes faster than the filter follows.
+
+What worked: **lead by the last observed step of the very point being placed** - root motion, step
+easing, arm swing and whatever else caused it - and predict the next step as that one. Two details
+carry the idea:
+
+- **No `dt` appears anywhere.** A step is already a per-frame quantity, so a long frame carries
+  itself and a variable frame time cannot distort the answer.
+- **The second-order term is deliberately not taken.** Predicting the *change* in the step "buys a
+  little on a ramp and doubles the noise", and that noise is a difference of two anchors - which
+  shows up as the magazine shaking against a hand that is not.
+
+They also measure their own staleness rather than guessing it, by reading the same quantity at two
+points in the frame - the engine's player position at the store site, and the script's own read - so
+the difference between them "carries no systematic part at all and is time and nothing else".
+
+And they name why the obvious route cannot do it: the composed view position sits about a metre below
+the real camera, which put the gun 0.397 m from the hand holding it. **A round trip through that
+transform is exact because both directions share the error; a one-way use of it is not.** That is
+worth remembering well outside reload code.
+
+### What to steal, in order
+
+1. **Dock on the weapon, offset per weapon.** Cheapest fix, biggest visual payoff, and it removes the
+   walking artefact for free.
+2. **One mechanism, a table per weapon** - and expect the table to grow columns you did not predict.
+3. **Hysteresis on every grab threshold**, and body-anchored holster zones.
+4. **Keep the magazine in the same space as the hand** if you can. If it must become a world entity,
+   correct it by its own last step, and never by root velocity.
+5. **Measure travel from the weapon's own animation asset, not from one reload.** Cyberpunk reads the
+   Lexington's slide travel as 52.6 mm from `empty_reload` while the recorded takes only reach 44.7 -
+   "the asset supports 52.6 and the reload uses most of it".
+6. **Say which numbers are measured and which are transferred.** Their Lexington config marks the
+   wrist pose as transferred rather than measured, "because it is the one number here that no
+   measurement of this weapon could give" - the fingers are exact, the wrist is borrowed, and the
+   file says so.
+
+**Two traps worth naming before you hit them.** A part that rides on the slide is often **not on a
+fixed ratio** - the Lexington's `barrel_top` follows 1:1 to 29.5 mm and then stops while the slide
+runs on to 52.6, so it carries a `cap`, and a ratio fitted to the deep end "would lag visibly through
+the whole first inch". And a pose referenced by name but never loaded is a **silent** failure: it
+stays nil and every guard that reads it simply never fires. That one caught two weapons in Cyberpunk
+before the rule became "a new place to name a pose is a new line in the loader, in the same commit".
+
 ## A magnified optic has no exit pupil in VR, and the reticle stops being placeable {#scoped-optics}
 
 The best-argued design document in this survey, and it opens a topic nothing else here covers: what

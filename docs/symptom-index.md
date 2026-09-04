@@ -115,6 +115,9 @@ that the observation and the cause are usually in different chapters.
 | Two-process bridge: all checks pass, no message arrives | [TEST-016](pattern-catalog.md#test-016) — a self-test that only talks to itself |
 | A defect only a headset can see, that every desk test passes | [TEST-014](pattern-catalog.md#test-014) — make the fixture asymmetric where the headset is |
 | Choosing between alternate-eye and a same-frame two-view family | [STR-013](pattern-catalog.md#str-013) — per-view culling inverts the ranking |
+| Building physical reload, and wondering what it actually involves | [02](02-viewmodels-and-hands.md#physical-reload) — the anatomy, from two shipped implementations |
+| A magazine cuts through the weapon on the way in | [HAND-008](pattern-catalog.md#hand-008) — dock on the weapon, not the hand |
+| A held object lags or shakes against the hand while moving | [HAND-010](pattern-catalog.md#hand-010) — lead by its own step, never by root velocity |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

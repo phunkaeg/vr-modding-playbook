@@ -1720,6 +1720,82 @@ with mura. And note that a pure-translation eye offset puts the bullet a **fixed
 a one-eye-centred reticle at *every* range - so the error does not look like a scaling bug and will not
 be found by testing at distance.
 
+## HAND-008 — Dock the reload to the weapon, not to the hand {#hand-008}
+
+**Problem:** the magazine's insertion path starts at the controller, so it cuts through the weapon
+mesh whenever the hand is angled to the chamber, and drifts further wrong while the player walks.
+
+**Use when:** building any hand-driven insert - magazine, shell, speedloader, battery, cartridge.
+
+**Recipe:** define the dock as **a named joint on the weapon skeleton plus a local offset**, per
+weapon, and start the insertion there. The hand's job is to *trigger* the insert and to be within a
+distance threshold, not to supply the geometry. Where the weapon exposes two points on the axis you
+need, derive the axis from those instead of reconstructing a bone's local frame: the hand's travel
+projected onto that vector is the true along-axis distance, because rotation preserves length.
+
+**Proof:** the insert looks identical standing still, walking, and with the hand deliberately
+rotated. If it only looks right standing still, the path is still hand-derived somewhere.
+
+**Trip hazard:** the threshold is not one global number. RE4VR keeps an insert distance **per weapon
+category** with an optional **per-weapon override**, so tuning an SMG does not move every SMG.
+Top-loading weapons take the magazine from above and their offsets are legitimately positive where
+every other weapon's are negative - annotate that in the data, or someone will "fix" it.
+`[SOURCE]` Talemann RE4VR 2.0; cyberpunk-vr-port.
+
+## HAND-009 — A weapon taxonomy you did not predict, carried as data {#hand-009}
+
+**Problem:** physical reload is written for "the pistol", then a break-action, a top-loader or a
+rotary-cycle weapon arrives and the mechanism has nowhere to put the difference.
+
+**Use when:** the second weapon is about to be added - not the tenth.
+
+**Recipe:** one mechanism, one data file per weapon, and a **list of weapons that is itself data**.
+Adding a weapon must never mean editing the reload module. Expect the table to need columns for at
+least: whether the moving part slides, pivots or rotates; whether the weapon has a magazine, a
+chamber or a cylinder; whether the engine closes the slide itself; whether a cycle is required after
+a shot, and separately after a tactical insert; and how the carried round exists at all - a static
+sub-mesh part, a spawned entity, or a mesh clone.
+
+**Proof:** add a weapon with no change to the shared module, and confirm a weapon of a different
+class still behaves.
+
+**Trip hazard:** identify a rig by **more than its bone count**. Cyberpunk keyed rig signatures on
+(rig, bone count) and a new pistol with eleven bones silently un-registered the four pistols that
+shared that count - the signature now carries named bones at their indices. This is
+[two-part signature](11-re-anchoring-and-discovery.md#two-part-signature) in a different domain.
+And a genuinely different shape deserves its own file rather than another branch: their revolver was
+lifted out of a 3,400-line module because "a revolver is not it".
+`[SOURCE]` cyberpunk-vr-port; Talemann RE4VR 2.0.
+
+## HAND-010 — Correct a spawned entity by its own last step, never by root velocity {#hand-010}
+
+**Problem:** a held object that is a real world entity - a magazine, a grenade, a detached part -
+lags the hand at walking speed and shakes against it on rough ground.
+
+**Use when:** anything the mod places with a world transform has to appear held by a tracked hand.
+
+**Recipe:** first, notice that **model-space work does not have this problem**: the base and every
+slot come from the same game state in the same call, so the player's travel cancels. Only things
+placed in world space against the game's transform, while the hand is drawn from the rendered
+frame, are a frame behind. **A frame apart is speed.** Correct only those.
+
+Lead the placement by **the last observed step of the point being placed**, lightly smoothed, and
+predict the next step as that one. Take no `dt` - a step is already per-frame, so a long frame
+carries itself. Reject an implausible step (a teleport, a fast travel, a re-grab) rather than
+following it.
+
+**Proof:** the object holds position against the hand standing still, at a run, and over steps and
+kerbs. Rough ground is the test that matters; flat ground is where every wrong method also works.
+
+**Trip hazard:** do **not** lead by the player root's velocity. The root is not the anchor - over a
+step the controller lifts the capsule while the camera and skeleton ease after it, so hand and root
+briefly travel in different directions - and a filter over it has its own lag, which is right only
+while speed is steady. Do not take a second-order term either: it buys a little on a ramp and doubles
+the noise, and that noise is exactly what reads as shaking. Measure your own staleness rather than
+assuming it, by reading the same quantity at two points in the frame; and beware a transform whose
+error cancels in a round trip - it will hand you that error as a constant if you use it one way.
+`[SOURCE]` cyberpunk-vr-port.
+
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
 **Problem:** a visible controller/hand aligns, but weapon ray or muzzle does not.
@@ -2434,3 +2510,49 @@ when confidence is insufficient.
 **Proof:** every unsupported configuration fails before modifying the install.
 
 **Trip hazard:** “helpful” fallback selection creates an unreproducible hybrid.
+
+## RE-010 — One game, several binaries: storefront and patch variants {#re-010}
+
+**Problem:** the same game, bought from a different shop or patched a week later, is a *different
+binary*. Every RVA, every vtable slot and every struct offset the project holds was measured against
+one image, and nothing in the code says so. The mod then either crashes on a user's install or, worse,
+runs and writes to the wrong place.
+
+**Use when:** promoting any address to a hook table, importing an address map from another modder or
+from a reference build (an SDK, a leaked PDB, a sibling storefront), or planning what ships.
+
+**Recipe:**
+
+1. **Never translate an address by arithmetic.** There is no global delta between builds, and the
+   fleet has the measurement: seven Prey functions whose Steam **and** Epic addresses are both known
+   show **five distinct deltas spanning `0x1590`** — code was inserted and removed unevenly, so one
+   offset does not carry. Two of those seven pairs happen to share a delta, which is exactly how a
+   bogus shortcut comes to look convincing. Translate each function by **its own byte signature**,
+   confirmed on both images. `[LIVE]` PreyVR, `BUILD_BASELINE.md`.
+2. **Do not put a `[RIP+disp32]` operand in a signature.** The displacement encodes the *distance* to
+   a global, which moves whenever anything between the instruction and its target changes size. Such
+   a signature is exact for one build and worthless for translation. An audit of 22 promoted Prey
+   signatures found three carrying one. `[LIVE]` PreyVR.
+3. **Gate on the whole image, then on each landmark.** Hash the target file to identify the build,
+   and separately match exact bytes at each RVA you intend to hook, so a variant that slips past the
+   hash still cannot be instrumented at a plausible-looking wrong address. **Fail closed**: an
+   unrecognised build must disable hooks, not guess.
+4. **Verify a relationship, not a number, wherever one exists.** A vtable slot should *contain*
+   `imageBase + target`; a call site should be `0xE8` with `imageBase + rva + 5 + rel32` equal to the
+   target. These survive being checked against the wrong build by failing, which a bare address
+   comparison does not.
+5. **Ship variant detection, not a variant assumption.** The shipped mod resolves which build it is
+   on and selects that build's table, or refuses. A per-build table with an honest refusal is a mod
+   that works on two stores; a single hardcoded table is a mod that works on one and corrupts the
+   other.
+
+**Proof:** run a *foreign* build's address map against your binary and require it to **fail**. Far
+Cry 2 VR does exactly this: their verifier passes 7/7 on the Uplay/Steam map and **correctly fails
+7/7** on the GOG map — wrong vtable values, and call sites that are not even `0xE8`. That negative
+control is what makes the passing run mean something; without it the check may be accepting anything
+handed to it. `[LIVE]` FarCry2-vr, `verify_dunia_port_map.py`.
+
+**Trip hazard:** a reference build is an oracle, never a target. Chairloader's headers gave Prey
+14,622 Epic RVAs — enormously useful as *names and leads*, and unusable as addresses. The failure is
+seductive because copying one across often works by luck, and the resulting corruption appears
+somewhere unrelated. Related: [FAIL-RE-027](failure-atlas.md).
