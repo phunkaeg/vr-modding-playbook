@@ -1796,6 +1796,33 @@ assuming it, by reading the same quantity at two points in the frame; and beware
 error cancels in a round trip - it will hand you that error as a constant if you use it one way.
 `[SOURCE]` cyberpunk-vr-port.
 
+## HAND-011 — Census the arsenal before building the reload {#hand-011}
+
+**Problem:** a reload mechanism is designed against the weapon in hand, and the arsenal disagrees -
+some weapons recharge, some have no reload verb, some feed from the top, some must be racked only
+when empty, and one is a wrench.
+
+**Use when:** before the first line of reload code, and before promising a treatment to anyone.
+
+**Recipe:** write `docs/WEAPON_CENSUS.md` with a row for **every** weapon, in three tables that must
+be filled in order - what the flat game does, then the reload topology, then the VR treatment. See
+[the schema](02-viewmodels-and-hands.md#weapon-census). The load-bearing column is **implementation**:
+whether the engine merely plays an animation and changes a number (`counter`), actually models
+magazine state (`stateful`), regenerates the resource (`recharge`), draws each shot from inventory
+(`consume`), or has no reload at all (`none`). Key every row on the **engine's own identifier**.
+
+**Proof:** the count of censused weapons equals the count of weapons in the game, and the treatment
+column contains no value that Table A does not support. A `full` treatment on a `counter` weapon is
+a promise to invent state the engine does not have; say so in the row rather than discovering it in
+a headset.
+
+**Trip hazard:** a weapon that needs nothing still needs a row, or "no work required" and "nobody
+looked" become the same blank. Record how the enumeration was obtained and what it may have missed -
+a census with no stated lower bound reads as complete. And fill Table C last: a treatment chosen
+before the topology is known is how a magazine animation gets built for a weapon with no magazine.
+`[LIVE]` SS2VR's `manualReload` is the `gesture-native` tier working today, gated by a substring
+model filter to a single weapon family - which is exactly what a census exists to widen.
+
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
 **Problem:** a visible controller/hand aligns, but weapon ray or muzzle does not.

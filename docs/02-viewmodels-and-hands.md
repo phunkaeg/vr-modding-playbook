@@ -922,6 +922,49 @@ the real camera, which put the gun 0.397 m from the hand holding it. **A round t
 transform is exact because both directions share the error; a one-way use of it is not.** That is
 worth remembering well outside reload code.
 
+### The insertion itself: a line, a depth, and poses along it
+
+The magazine's path into the well is not a point-to-point animation and it is not a physics problem.
+Cyberpunk models it as **a measured straight line with the hand pose keyed to depth along it**, and
+the whole thing is per-weapon data:
+
+```lua
+wellAxis   = { 0.0002, -0.3285, -0.9445 },  -- unit, pointing OUT of the well
+insertRun  = 0.115,                          -- m the magazine travels, from the animation
+seatAt     = 0.70,                           -- catches at 70% in, and lets the hand go
+poseStages = {
+    { d = 0.115, pose = 'unity_mag_left_d115' },
+    { d = 0.080, pose = 'unity_mag_left_d080' },
+    { d = 0.050, pose = 'unity_mag_left_d050' },
+    { d = 0.025, pose = 'unity_mag_left_d025' },
+    { d = 0.000, pose = 'unity_mag_left_d000' },
+},
+```
+
+Four things in that block are worth copying exactly:
+
+- **The well is a line, and its straightness is measured rather than assumed.** They read the
+  magazine bone's own travel out of the game's insertion animation - 115 mm to the seat - and
+  checked it: *"every sample between 10 and 60 mm out lies within 1.6 deg of it."* A stated residual
+  is what makes "it is a straight line" a finding instead of a convenience.
+- **The pose is a function of depth, not a swap between two grips.** Their note on the recorded pose:
+  *"The animation does not swap between two grips, it rolls through them: fingers around the
+  magazine on the way in, palm on its base at the end."* Stages plus interpolation give you that
+  roll for free, and one pose cannot.
+- **The seat is short of the bottom.** `seatAt 0.70` catches the magazine at 70% and releases the
+  hand; it had been 0.80, and 80% *"meant pushing the magazine visibly too far into the well."* The
+  hand stops before the geometry does.
+- **The magnet is asymmetric on purpose.** The catch stays narrow, the release is 2.2x wider, and
+  the pull saturates sooner - because *"a weight that fades to nothing at the edge let a small
+  sideways move start a slide out of the well - less pull, more drift, less pull again."* A symmetric
+  attraction well has a runaway at its rim.
+
+**And the recorded pose is a starting point, not an answer.** Theirs is captured from the game's own
+reload and then *tuned in VR and baked back*, because **the animation's hand re-grips the magazine
+mid-motion and a tracked hand cannot** - so several joints are curled harder than the take has them.
+The tuning is **angle-scaled**, keeping the recorded direction of every joint and only moving further
+along it, which is what stops a hand-tuned pose from drifting into something the animation never did.
+
 ### What to steal, in order
 
 1. **Dock on the weapon, offset per weapon.** Cheapest fix, biggest visual payoff, and it removes the
@@ -944,6 +987,125 @@ runs on to 52.6, so it carries a `cap`, and a ratio fitted to the deep end "woul
 the whole first inch". And a pose referenced by name but never loaded is a **silent** failure: it
 stays nil and every guard that reads it simply never fires. That one caught two weapons in Cyberpunk
 before the rule became "a new place to name a pose is a new line in the loader, in the same commit".
+
+## The weapon census: fill this before you build a reload {#weapon-census}
+
+[Physical reload](#physical-reload) is a mechanism, and a mechanism built against one weapon will be
+rebuilt when the second arrives. **The arsenal is the input, and it has to be enumerated first** -
+because most of the design decisions are not choices at all, they are consequences of what the flat
+game already does.
+
+The fleet already writes a [render pass census](14-render-pass-hazard-atlas.md) and an ownership
+census. This is the same instrument pointed at weapons, and it goes in `docs/WEAPON_CENSUS.md`.
+
+**Every weapon gets a row, including the ones that need nothing.** A wrench does not reload; a wrench
+still gets a row saying so. Without it, "this weapon needs no work" and "nobody looked at this
+weapon" are the same empty space - which is
+[partial index silence](06-debugging-methodology.md#partial-index-silence) applied to an arsenal.
+
+### Table A — what the flat game does (observed, before any VR decision)
+
+| Weapon | Engine key | Class | Reload verb? | Implementation | Ammo model | Evidence |
+|---|---|---|---|---|---|---|
+
+- **Engine key** is the *engine's own* identifier - archetype id, `WeaponID`, model name, record hash -
+  never a display name we invented. Every per-weapon table downstream joins on this, and a table
+  keyed on anything else silently stops matching the day a name changes.
+- **Class:** `firearm` · `melee` · `energy` · `thrown` · `tool` · `none`
+- **Implementation** is the important column, and it is about what the *code* does, not what the
+  animation shows:
+  - `counter` - an animation plays and an ammo number changes. **No magazine state exists anywhere.**
+  - `stateful` - the engine actually models magazine and/or chamber contents per weapon.
+  - `recharge` - no reload verb at all; the resource returns over time, at a station, or on pickup.
+  - `consume` - each shot draws straight from inventory; there is no magazine step to physicalise.
+  - `none` - no reload concept.
+- **Ammo model:** `per-weapon reserve` · `shared pool` · `inventory item` · `n/a`. This decides
+  whether a partial magazine can be lost, which is a *gameplay* change and needs saying out loud.
+
+### Table B — reload topology (only for rows whose implementation is `stateful` or `counter`)
+
+| Weapon | Feed | Removable unit | Spent unit | Cycle after | Cycle kind | Dock joint | Evidence |
+|---|---|---|---|---|---|---|---|
+
+- **Feed:** `bottom` · `top` · `rear` · `side` · `break` · `cylinder` · `belt` · `tube` · `n/a`
+- **Removable unit:** `magazine` · `clip` · `charger` · `shell` · `cell` · `battery` · `none`
+- **Spent unit:** `object` (something exists that could be made to fall) · `abstract` (nothing
+  exists; a dropped magazine must be spawned or faked) · `unknown`. RE4VR needs three different
+  answers here across one arsenal - a static sub-mesh part, a spawned entity, and a mesh clone.
+- **Cycle after:** `none` · `always` · `empty-only`. **Cycle kind:** `slide` · `bolt` · `pump` ·
+  `lever` · `rotary` · `charging-handle` · `n/a`. These are two columns because *whether* you rack
+  and *what racking is* vary independently, and `empty-only` is the one most often missed - a mod
+  that always racks is wrong on every tactical reload.
+- **Dock joint** is the named joint the insertion starts from, per [HAND-008](pattern-catalog.md#hand-008).
+  Blank is a legitimate value meaning "not measured yet"; it is not the same as `n/a`.
+
+### Table C — the VR decision (fillable only once A and B are filled)
+
+| Weapon | Treatment | Why | Priority | Blocked on |
+|---|---|---|---|---|
+
+**Treatment:** `full` (take a unit off the body, insert, rack) · `simplified` (one gesture stands for
+the sequence) · `gesture-native` (a gesture fires the engine's own reload verb) · `button` · `none`.
+
+The order matters and is the whole point of the census. **A treatment is a consequence, not an
+opinion** - a `counter` weapon cannot be given a `full` treatment without inventing state the engine
+does not have, and a `recharge` weapon has nothing to physicalise at all. Filling Table C first is
+how a project ends up building a magazine animation for a weapon that has no magazine.
+
+### The tier below full physical, and it is already shipped
+
+**SS2VR's `manualReload` is the `gesture-native` treatment working today**, and it is worth reading
+before building anything larger, because it needs **no per-weapon geometry at all**. A three-state
+machine on the left hand, firing the engine's own console verbs:
+
+| State | Entry condition | Action |
+|---|---|---|
+| 0 → 1 *armed* | grip held, left hand inside `attach_radius 0.42 gu` of the weapon base and `under 0.45 gu` below it | record `startDrop`, haptic pulse |
+| 1 → 2 *pulled* | hand drops `pull_down 0.45 gu` below `startDrop` | fire `unload_gun` — **the eject** |
+| 2 → fire | hand rises `push_up 0.30 gu` from the deepest point **and** returns within `return_slack 0.18 gu` of the start | fire `reload_gun` — **the insert and slam** |
+
+Cancels on `timeout 1800 ms`, on the hand drifting past `detach_radius 0.95 gu`, on grip release, and
+on a `cooldown 900 ms`. Grip uses hysteresis exactly as RE4VR's holster does - `0.55` to arm, `0.30`
+to hold.
+
+Three things in it generalise past SS2:
+
+- **It measures the rise from the deepest point reached, not from where the gesture armed.** A
+  gesture that must go down and come back needs a running extreme, or a shallow pull followed by a
+  big rise reads as a complete motion.
+- **The eject and the insert are separate engine verbs** (`unload_gun`, `reload_gun`), fired at
+  separate moments, which is what lets the pull and the slam feel like two events rather than one.
+- **It is gated to one weapon family by a substring model filter** (default `atek`). That gate is
+  correct and it is also the ceiling: without a census there is nothing to widen it *to*, because
+  nobody has written down which of SS2's weapons reload the same way.
+
+So the census is not paperwork ahead of the fun part. **It is the thing that turns a working
+one-weapon gesture into an arsenal.**
+
+### The staircase from that gesture to a full physical reload
+
+Each rung is shippable on its own, and each is only reachable once the census says which weapons it
+applies to. Nothing here needs the rung above it to be designed yet.
+
+| Rung | What the player does | What the mod must own | New per-weapon data |
+|---|---|---|---|
+| **1 · gesture-native** *(SS2VR today)* | pull down at the grip, push back up | a hand-space gesture and two engine verbs | which weapons the filter allows |
+| **2 · eject becomes visible** | same gesture; the spent magazine falls | one spawned or animated object, released at the pull | the mag joint, and whether a spent unit exists at all |
+| **3 · the magazine comes off the body** | left hand grabs at a holster, then inserts | a body-anchored holster zone with grab hysteresis, and a held object | holster offset; which ammo type the weapon takes |
+| **4 · guided insertion** | the magazine is driven into the well by the hand | the well axis, depth-keyed poses, a seat point, an asymmetric magnet | `wellAxis`, `insertRun`, `seatAt`, pose stages |
+| **5 · the cycle** | rack, pump, lever or crank as the weapon requires | the moving part driven along its own axis, with travel and a stop | cycle kind, travel, rest and lock positions |
+
+**Rung 2 is the cheapest large win** and is worth taking before rung 3: it needs no holster, no
+grab, and no new input - the gesture already exists, and the only question the census has to answer
+is whether a spent magazine is an object that can be made to fall or an abstraction that has to be
+spawned. RE4VR's answer for that fall is a **controlled** one, not gravity: an eased local slide out
+of the chamber, then a fixed distance over a fixed duration, with the floor read from the player
+body's root - because free gravity accelerates without limit and the magazine flies away.
+
+**Rung 5 is where the census pays for itself twice**, because `cycle after` and `cycle kind` are
+independent columns: a weapon that racks only when empty and a weapon whose "slide" is a rotary
+switch are both ordinary entries in a table, and both are silent disasters in a mechanism that
+assumed a slide and assumed always.
 
 ## A magnified optic has no exit pupil in VR, and the reticle stops being placeable {#scoped-optics}
 

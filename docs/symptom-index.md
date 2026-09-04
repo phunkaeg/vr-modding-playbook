@@ -118,6 +118,8 @@ that the observation and the cause are usually in different chapters.
 | Building physical reload, and wondering what it actually involves | [02](02-viewmodels-and-hands.md#physical-reload) — the anatomy, from two shipped implementations |
 | A magazine cuts through the weapon on the way in | [HAND-008](pattern-catalog.md#hand-008) — dock on the weapon, not the hand |
 | A held object lags or shakes against the hand while moving | [HAND-010](pattern-catalog.md#hand-010) — lead by its own step, never by root velocity |
+| About to build physical reload, and unsure where to start | [HAND-011](pattern-catalog.md#hand-011) — census the arsenal first; the schema is in ch02 |
+| A reload gesture works on one weapon and not the rest | [HAND-011](pattern-catalog.md#hand-011) — the treatment must follow the implementation column |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
