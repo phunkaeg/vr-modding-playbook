@@ -900,6 +900,37 @@ VR's issue tracker is mostly install-time engineering, and the rules generalise
   Witcher 3 VR's honest framing is worth copying: reproduce bugs on a clean install before reporting,
   stated as *"a temporary development-scope limitation, not a restriction on using mods."*
 
+### The user's copy is not your copy {#ship-for-build-variants}
+
+Everything above assumes the stranger is running the binary you measured. Often they are not. The same
+game sold on Steam, Epic, GOG or Uplay — or patched after you started — is a **different image**, and
+every RVA, vtable slot and struct offset you hold was measured against exactly one of them.
+
+The fleet has this measured rather than assumed. Seven Prey functions whose Steam *and* Epic addresses
+are both known show **five distinct deltas spanning `0x1590`**: code was inserted and removed unevenly
+between the two, so there is no offset that carries a hook table from one to the other. Two of the
+seven pairs happen to share a delta, which is exactly how a false shortcut earns confidence before it
+corrupts something. Far Cry 2 VR ships against Uplay/Steam and treats the GOG build as a separate
+target: their verifier passes 7/7 on one map and **correctly fails 7/7** on the other.
+
+So a shipped mod owes the user three things:
+
+- **Identify the build before touching it.** Hash the target binary and match it against the builds you
+  actually validated. The install path often names the storefront; that is a hint, not an identity.
+- **Select a table, or refuse.** Per-build offset tables with an honest refusal is a mod that works on
+  two stores. One hardcoded table is a mod that works on one and writes to arbitrary addresses on the
+  other — and the crash will surface somewhere unrelated, on a machine you cannot see.
+- **Gate each hook as well as the image.** A per-landmark exact-byte check at the RVA you intend to
+  hook catches a variant that slipped past the hash, and fails closed rather than instrumenting a
+  plausible-looking wrong address.
+
+State the builds you support in the release notes, including the patch level, and say plainly that
+others are refused rather than untested. "Unsupported" that fails cleanly is a feature; "unsupported"
+that runs anyway is a bug report you will never be able to reproduce.
+
+Mechanics and the negative control that validates them: [RE-010](pattern-catalog.md#re-010).
+Symptoms: [FAIL-RE-027 and FAIL-RE-028](failure-atlas.md).
+
 ## Compatibility is a property of the *route*, not the headset
 
 "Which headsets are supported" is the wrong axis. The unit that actually works or fails is
