@@ -288,7 +288,7 @@ fleet:
     upstream_url: internal
     license: internal-unreleased
     reviewed_at: 2026-09-04
-    reviewed_revision: tree:9837fa8f868a2853
+    reviewed_revision: tree:86e9768fb217f5cc
     areas:
       stereo:            {review: full, evidence: HEADSET, note: "Stereo ladder rungs 0a-0c and 1-7 cleared, rung 8 partial: the headset found the first culling defect on 2026-09-04 - the vertical cull planes were paired with the opposite tangents, which a vertically symmetric substitute cannot show (FAIL-CAM-025) - fixed and confirmed in the headset the same day. Geometric stereo accepted in a headset 2026-09-03 on a Quest 3. Rung 7 is cleared on real optics: predicted principal-point offset 162.9 px, measured -163 px far and mid, -167 px near, i.e. the constant optics offset plus parallax only where there is depth."}
       xr_lifecycle:      {review: full, evidence: HEADSET, note: "Session IDLE through FOCUSED, two 2688x2880 sRGB swapchains, 561 and 588 frames submitted without error. Result-driven fallback proven: with no headset reachable the instance is created, xrGetSystem fails, and the flat path is untouched."}
