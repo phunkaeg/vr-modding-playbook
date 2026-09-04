@@ -1055,6 +1055,27 @@ Two rules, and the second is the one that generalises furthest:
 > opportunity for eye divergence; it is not divergence. Name instruments after what they measure, not
 > after what you hope they detect.
 
+## A liveness signal does not tell you WHICH thing is alive {#liveness-is-not-identity}
+
+"The process is presenting frames" answers *is it running*, never *what is on screen*. FarCry2-VR's
+`Start-Game` reported `state=MENU` from a liveness signal while the game was still on its **splash
+screen**, which presents at 1223 fps and satisfies every liveness test there is. The boot script then
+typed into it - with the one input API that screen cannot read.
+
+Two things follow, and the second is the reusable one:
+
+- **The input path is part of the screen's identity.** That splash reads window messages and needs the
+  window **focused** (three `PostMessage` keys were swallowed until `SetForegroundWindow`, after which
+  the identical call worked). The menus read **DirectInput** and ignore `PostMessage` entirely.
+  *Neither path alone gets from launch to gameplay*, so a driver that knows only one will stall on
+  whichever screen it cannot address, while every health check stays green.
+- **Take the screenshot before concluding anything.** One image separated *"the game failed to load a
+  level"* from *"we typed into the wrong screen with the wrong API"* - two diagnoses with no overlap,
+  and the cheap instrument settled it. `[LIVE]` FarCry2-VR, `5a981f9`.
+
+Identity needs a signal only that state emits: a window class, a title, a pixel signature, a log line
+the state writes on entry. Presenting frames is emitted by all of them.
+
 ## A correct percept built from two cancelling errors - do not tidy it up {#correct-by-cancellation}
 
 Swat4-VR's eye-separation and head-translation functions use **opposite right vectors**, `(+sin, -cos)`

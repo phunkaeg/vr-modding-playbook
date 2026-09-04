@@ -290,12 +290,12 @@ fleet:
     reviewed_at: 2026-09-04
     reviewed_revision: tree:9837fa8f868a2853
     areas:
-      stereo:            {review: full, evidence: HEADSET, note: "Stereo ladder rungs 0a-0c and 1-7 cleared, rung 8 partial. Geometric stereo accepted in a headset 2026-09-03 on a Quest 3. Rung 7 is cleared on real optics: predicted principal-point offset 162.9 px, measured -163 px far and mid, -167 px near, i.e. the constant optics offset plus parallax only where there is depth."}
+      stereo:            {review: full, evidence: HEADSET, note: "Stereo ladder rungs 0a-0c and 1-7 cleared, rung 8 partial: the headset found the first culling defect on 2026-09-04 - the vertical cull planes were paired with the opposite tangents, which a vertically symmetric substitute cannot show (FAIL-CAM-025) - fixed and confirmed in the headset the same day. Geometric stereo accepted in a headset 2026-09-03 on a Quest 3. Rung 7 is cleared on real optics: predicted principal-point offset 162.9 px, measured -163 px far and mid, -167 px near, i.e. the constant optics offset plus parallax only where there is depth."}
       xr_lifecycle:      {review: full, evidence: HEADSET, note: "Session IDLE through FOCUSED, two 2688x2880 sRGB swapchains, 561 and 588 frames submitted without error. Result-driven fallback proven: with no headset reachable the instance is created, xrGetSystem fails, and the flat path is untouched."}
       xr_input:          {review: not_reviewed, note: "Milestone 2, not started. vrInputSnapshot_t, VR_GetInput and VR_Haptic are stubs; no action sets, bindings, snap turn or aim decoupling exist."}
       camera_tracking:   {review: partial, evidence: LIVE, note: "Headset yaw composed once per frame onto the body after first-person eye placement, verified in the log and in pixels at 30.0 degrees, correlation 0.96. World scale is still open as H-005."}
       render_hazards:    {review: partial, evidence: SOURCE, note: "Census drafted from source; a RenderDoc capture of the flat build is still owed. Sky portal, cutscene camera and inventory views unexercised."}
-      ui_hud:            {review: full, evidence: HEADSET, note: "HUD layer v2 accepted in a headset 2026-09-04: body-locked quad in LOCAL space, coverage alpha via glBlendFuncSeparate, premultiplied submission, kill switch. Layer budget peak 2 of 16. The HUD is compiled into the client executable, which is why a cgame-only mod cannot own it."}
+      ui_hud:            {review: full, evidence: HEADSET, note: "HUD layer v2 accepted in a headset 2026-09-04: body-locked quad in LOCAL space, coverage alpha via glBlendFuncSeparate, premultiplied submission, kill switch. Layer budget peak 2 of 16. The HUD is compiled into the client executable, which is why a cgame-only mod cannot own it. Open: the flat menu draws on the layer with no cursor, because the engine hands the pointer to the OS whenever it ungrabs the mouse for a windowed menu (FAIL-HUD-011)."}
       hands_interaction: {review: not_reviewed, note: "Milestone 3, open."}
       input_locomotion:  {review: not_reviewed, note: "VR input must fit the existing usercmd with no protocol change."}
       performance:       {review: not_reviewed, note: "VR_Init sets com_maxfps 0 once a session exists so the runtime paces the frame; the substitute keeps a pinned cap."}
@@ -2060,7 +2060,37 @@ external:
       packaging_deploy: {review: not_reviewed}
       source_integration: {review: not_reviewed}
 
+  - id: Dishonored-VR-fork
+    tier: T1
+    stereo_rung: R2
+    root: "D:/Dev Debug/Other VR mods/Dishonored-VR-fork"
+    status: external_reference
+    upstream_url: https://github.com/phunkaeg/Dishonored-VR
+    license: see LICENSE in tree
+    reviewed_at: 2026-09-04
+    reviewed_revision: "tree:0d7e87ff7f68876e"
+    engine: Unreal Engine 3 (Dishonored, 32-bit)
+    api: D3D9
+    vehicle: native-injector
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-04. In-house fork of the shipped external mod, carrying local commits (Meta Link OpenXR backend selection; build.sh portability). The 52-patch upstream series is already distilled in ch17 #dishonored-splice; this tree adds the fork's own changes, which are not yet read."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+      source_integration: {review: not_reviewed}
 not_a_source:
+  - id: "Dishonored-VR-metalink-test"
+    reason: "one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree"
+  - id: "DishonoredVR-alpha"
+    reason: "binary alpha distribution (Binaries/, INSTALL.txt, a resolution .bat) - no source"
   - id: "Immersive HUD-5-1-4-1751974538"
     reason: "texture pack, not a mod"
   - id: "SS2 AE 1.3 nointro and scp beta8-3-1-3-1774982605"

@@ -623,7 +623,7 @@ Three rules, all cheap:
 Worth noting how this was found: **by review, not by the person who wrote it.** The failure mode was
 invisible from inside the workflow precisely because every signal it produced was green.
 
-## Test-artifact config files silently outrank your code defaults
+## Test-artifact config files silently outrank your code defaults {#test-artifact-config}
 
 A config file written by a smoke test, or left behind by a previous session, will be read at startup and
 **override the default you just changed in code** — so the new default appears not to work, and you debug
@@ -634,6 +634,21 @@ The rule that resolves it: **code owns defaults; test-artifact configs are delet
 tag the exceptions loudly — a file that is genuinely *user* data (tuning, calibration) must never be
 swept up by that cleanup. And per [07](07-engine-integration-safety.md), log the config's identity so you
 can see which file actually won.
+
+**Deleting at session end is not enough when the test and the player share one profile directory.**
+MoH-VR's automated runs archived their own cvars into the *play* profile - `sensitivity 0`,
+`in_nograb 1`, `com_maxfps 60` and the test window size - and the next headset session had **no mouse
+turn at all**. The engine was doing exactly what it was told by a file a test had written hours
+earlier.
+
+The fix is separation, not hygiene: **give the harness its own profile root** (`runtime/home-<flavor>-test`)
+so a test run cannot write into the profile a human plays from. Cleanup you have to remember is a
+cleanup that eventually does not happen; a separate directory cannot be forgotten. `[HEADSET]`
+MoH-VR 2026-09-04, DEC-016.
+
+Note the shape of the symptom: **the failure surfaced as a broken input device**, three layers away
+from the config system that caused it. When a setting is inexplicably wrong, find which file supplied
+it before debugging the subsystem that read it.
 
 ### A ported tool keeps the source project's identity at its edges {#ported-tool-identity}
 

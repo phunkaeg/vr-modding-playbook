@@ -1460,6 +1460,21 @@ and it is a good suspect, since
 so a project can spend a round trip disabling something that was never involved. See
 [XR-008](pattern-catalog.md#xr-008).
 
+## Once a session exists, the runtime owns the frame pacing {#runtime-owns-pacing}
+
+An engine frame cap and `xrWaitFrame` are two schedulers competing for the same frame. The runtime
+already blocks in `xrWaitFrame` until the compositor wants the next frame; an engine cap on top of
+that either fights it or silently caps the headset below its display rate.
+
+**Set the engine's cap to unlimited once an OpenXR session exists, and only then.** MoH-VR's
+`VR_Init` sets `com_maxfps 0` when the session is up, while the substitute-runtime path keeps its
+pinned cap - because a substitute is not pacing anything and an unpinned loop there just burns CPU
+and makes runs non-comparable. `[LIVE]` MoH-VR 2026-09-04.
+
+The same reasoning applies to any engine-side limiter you find: vsync, a sleep in the main loop, a
+"max foreground FPS" setting. In a VR session they are all downstream of the compositor, and the one
+that should win is the one holding the swapchain.
+
 ## What UE3 gives you for stereo, and the one thing it cannot express {#ue3-stereo-shape}
 
 Read from a UE3 licensee source tree and directly reusable by every UE3 target. `[SOURCE]`

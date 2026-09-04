@@ -15,3 +15,7 @@ cross-engine-graph/graphify_run.log
 secrets*
 *secret*
 site-public/
+
+# graphify query-feedback loop: per-machine learning signal, not shared state
+cross-engine-graph/graphify-out/.graphify_learning.json
+cross-engine-graph/graphify-out/reflections/

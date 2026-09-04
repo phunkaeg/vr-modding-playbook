@@ -65,6 +65,13 @@ game — [13](13-teardown-bioshock-vr.md)), and the shipped-mod source trees in
 - **SOMAVR ↔ PreyVR** — the two 64-bit targets. x64-only traps (REX prefixes) apply to both and to nobody else.
 - **MonsterDeadWood FC2VR ↔ FarCry2-VR** — same game, different retail bytes and graphics route. Flow the
   culling *method* across; never flow an RVA or ABI without proving it against the in-house executable.
+- **SoF-VR ↔ Medal-of-Honor-vr** — the id lineage, solved from **opposite ends**, which is what makes the
+  pair worth reading. SoF is id Tech 2 via Raven and is **RE-owned at the `ref_gl` module contract**: a
+  proxy DLL beside the original, no byte of the game patched. MoHAA is id Tech 3 via FAKK2 and is
+  **source-owned** through the OpenMoHAA fork. Both reach the same place — the world render is a callable
+  unit taking the camera as a parameter — so the *stereo* reasoning flows freely between them while the
+  *delivery* reasoning does not. SoF also proves the module-contract route survives a heavily forked
+  engine, which is the question MoHAA never had to ask. See [RE-008](pattern-catalog.md#re-008).
 
 ---
 
@@ -114,6 +121,8 @@ their own binaries. **Check here before starting that investigation.**
 | **DishonoredVR** | unresolved | `+0x2C59A0` is a reachability lead only; needs 59 callees walked | **Not open.** Side-effect gate never run by anyone |
 | **Swat4-VR** | unresolved | unresolved — 7,682 exported symbols make it fast to check | Open |
 | **BioshockVR** | unresolved | unresolved — the 1,822-entry native table is the obvious probe | On rung 2 (private eye targets + pair latching) |
+| **Medal-of-Honor-vr** | **Parameter** — `viewParms_t` is built per view and passed into `R_RenderView`; the VR layer sets four tangents on it | **PROVEN and shipping** — the engine's own portal/sky re-entry of `R_RenderView`, called twice from one prepared `tr.refdef` | Source-owned (OpenMoHAA fork). Counter proof: `renderScene` 63/s unchanged while `renderView` doubled to 126/s, disparity 0 at separation 0 and depth-dependent above it |
+| **SoF-VR** | **Parameter** — `refdef_t*` passed to the `RenderFrame` export (slot 16); the renderer copies 33 dwords out of it into `r_newrefdef` on entry | **Structurally free** — `RenderFrame` is the whole world render and the proxy owns the call site, so "render twice" is calling the export twice | Layout confirmed live 2026-09-04: `fov_y` residual 0.0000 vs `CalcFov`, prefix shift +1. Nothing written yet; M3 is the first reversible mutation |
 
 **The cheapest unanswered check for the last three:** find a repeat world-render the engine *already*
 performs — cubemap/reflection probes, portals, mirrors, security monitors, render-to-texture. SS2VR found
@@ -238,6 +247,8 @@ The two findings worth knowing before you touch anything:
 | Launch preconditions as test validity (affinity mask) | FarCry2-VR | `docs/DECISION_LOG.md` D-005 |
 | Config-key consumer check (found 10/15 dead) | Swat4-VR | `tools/check_config_keys.py` |
 | Verifying the baseline you're betting on | Swat4-VR | `docs/FAILURE_REGISTRY.md` F-0011 |
+| A headset substitute **inside the mod** (synthetic eye views, no runtime) plus pixel proofs that fail | Medal-of-Honor-vr | `code/vr/vr_null.c`, `tests/capture/measure_disparity.py`, `measure_yaw.py`, `measure_bands.py` |
+| Test runs given their own profile so archived cvars cannot reach the play session | Medal-of-Honor-vr | `docs/DECISION_LOG.md` DEC-016, `tools/run-test.ps1` |
 
 ---
 
@@ -251,6 +262,7 @@ first thing to search when something smells familiar.
 - `Swat4-VR\docs\FAILURE_REGISTRY.md`
 - `FarCry2-vr\docs\FAILURE_REGISTRY.md`
 - `PreyVR\docs\FAILURE_REGISTRY.md`
+- `Medal-of-Honor-vr\docs\FAILURE_REGISTRY.md` (with `HYPOTHESES.md` carrying the discriminators)
 - SOMAVR keeps its failures inline in `BUILD_HISTORY.md` and `HYPOTHESES.md`
 
 Distilled lessons from all of them live in `cross-engine-graph\harvest\*.md` — roughly 200 lessons, of

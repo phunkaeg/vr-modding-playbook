@@ -531,6 +531,39 @@ cancellation argument at the origin proves nothing. And if world-position probes
 **translated-world space**: many engines pre-subtract the view origin on the CPU for float precision, so
 the only probe that matches is `(0,0,0)`, which is precisely where the cancellation test degenerates.
 
+## RE-008 — A version field that passes is not an ABI that matches {#re-008}
+
+**Problem:** a module contract carries an explicit version number, the host checks it, the check
+passes - and the struct behind it is not the one your headers describe.
+
+**Use when:** proxying or re-implementing any module contract on a licensed or forked engine
+(`GetRefAPI`, `GetGameAPI`, `CreateInterface`, any exported factory).
+
+**Recipe:** treat the version field as a *name*, and measure the **size** separately. The `rep movsd`
+counts at the call boundary give it to you directly: the count is the struct size in dwords. Compare
+that against the reference header before trusting a single offset.
+
+Soldier of Fortune, measured against id's Quake 2 `API_VERSION 3`:
+
+| Struct | id Quake 2, API 3 | Raven SoF 1.07f | How measured |
+|---|---|---|---|
+| `refexport_t` | 22 dwords | **55 dwords** (220 B) | `mov ecx,0x37; rep movsd` into the hidden return pointer |
+| `refimport_t` | 16 dwords | **27 dwords** (108 B) | `mov ecx,0x1b; rep movsd` from the by-value arg |
+| `refdef_t` | 26 dwords (104 B) | **33 dwords** (132 B) | `mov ecx,0x21; rep movsd` from `fd` into `r_newrefdef` |
+
+The host still runs `re.api_version != API_VERSION` and still passes. **The version gate is intact
+and it is not a drift gate.**
+
+**Recipe, part two:** forward what you have not identified. Treat both tables as opaque `uint32_t[]`,
+copy the import table byte-for-byte, and replace only the export slots you have named with evidence.
+An unidentified slot forwarded unchanged is free; an unidentified slot *assumed* is a crash.
+
+**Proof:** the live export table reproduces the static prediction slot for slot, and a pure
+passthrough build (zero slots wrapped) is visually and numerically identical to stock. Confirm a
+struct layout by **residual against a known formula** rather than by eye - SoF's `refdef_t` was
+settled by a `fov_y` residual of 0.0000 against `CalcFov`, with `fov_x` exactly the install's `fov`
+cvar, which also fixed the prefix shift at +1. `[LIVE]` SoF-VR, `1973e88`.
+
 ## SRC-001 — Prepared frame, per-view render {#src-001}
 
 **Problem:** source-owned stereo calls a legacy frame function twice and
@@ -1065,6 +1098,30 @@ must not follow your gaze once placed.
 **Trip hazard:** a head-locked panel instead of a world-locked one, which reintroduces the discomfort the
 frozen-world trick exists to avoid.
 
+## HUD-004 — Composite an existing 2D pass into a transparent layer {#hud-004}
+
+**Problem:** an engine's 2D pass is written for an opaque backbuffer. Captured
+into an RGBA layer image its alpha is coverage-times-coverage, so translucent UI
+becomes too transparent and edges read as too bright.
+
+**Use when:** routing an engine's own 2D/HUD pass into a quad or overlay layer
+instead of rebuilding the UI in VR space.
+
+**Recipe:** clear the layer image to fully transparent each frame; while it is
+bound, blend with SEPARATE functions - colour keeps the engine's own factors,
+alpha accumulates coverage (`ONE`, `ONE_MINUS_SRC_ALPHA`). Submit the layer
+premultiplied and composite the desktop mirror the same way. Keep a kill switch
+that sends 2D back to the window.
+
+**Proof:** the alpha histogram of the layer image, not a screenshot: fully
+transparent where nothing drew, saturated under opaque elements, a partial band
+at edges and translucent panels. Squared alpha shows up as a missing saturated
+population.
+
+**Trip hazard:** one blend function for both channels squares the alpha of
+translucent UI. It reads as "the HUD is too faint" and invites a brightness fix
+that hides the real fault. See [04](04-ui-and-hud.md#hud-as-world-geometry).
+
 ## INPUT-004 — Invert the game's input conditioning instead of editing it {#input-004}
 
 **Problem:** you synthesize a stick vector - to redirect walking, to snap-turn, to drive a scripted move -
@@ -1390,6 +1447,29 @@ nothing to proxy and the route is a source port instead. The export table settle
 before any other work. And a shim is **reversible by renaming a file**, which is worth preserving - do
 not let it grow into a fork by accident.
 
+## CAM-016 — A cross product tells you both of its operands are directions {#cam-016}
+
+**Problem:** a camera-block offset is labelled "position" from context or from a plausible-looking
+triple of floats, and the stereo displacement is then applied to a direction vector - where a
+following `normalize` quietly undoes most of it.
+
+**Use when:** naming fields in a decompiled camera or view structure, before writing to any of them.
+
+**Recipe:** read the arithmetic, not the layout. `normalize(cross(a, b))` proves **both `a` and `b`
+are directions**, because a cross product of a point with anything is meaningless. A field that is
+read on every path and never written is a *derived* basis vector, not the thing you steer. The
+position is the field the basis block is *copied from*, and it is the one nothing else recomputes.
+
+**Proof:** displace the candidate and sample the whole chain, each link separately - the write
+landed, the rebuild consumed it, and it reached the block the GPU's view is built from. Three
+nested claims, each falsifiable on its own; a zero-displacement control must move nothing.
+
+**Trip hazard:** a wrong write here is nearly silent. FarCry2-VR displaced one component of a unit
+forward vector for **1,264 runs**: a few thousandths of a radian, largely cancelled by the
+`normalize` on the next line. The view never moved, and the missing-publish theory that followed was
+**a second explanation stacked on a first fault that was never the cause**. When a fix does nothing,
+re-derive the premise before you extend the model. `[LIVE]` FarCry2-VR, `d07fbac`/`5a981f9`.
+
 ## STR-009 — Drive per-eye adaptive state from one shared value {#str-009}
 
 **Problem:** an adaptive process runs independently per eye, so the two eyes disagree about the world
@@ -1482,6 +1562,28 @@ dropped counts: **lag 0-1 across 30,833 frames, 0 dropped**.
 **Verify off-headset first** - with nothing consuming the queue, lag equals the publish count, so
 comparing lag growth against rendered-frame growth tests whether the camera hook fires more than once
 per frame (**1.0019 publishes per rendered frame over 514 frames**).
+
+## STR-013 — On a per-view culling engine, two-view outranks alternate-eye {#str-013}
+
+**Problem:** the stereo rungs are ranked by implementation cost, so alternate-eye looks like the
+cheap way to get a second eye and a same-frame two-view family looks like the tidy one.
+
+**Use when:** the engine culls per view rather than once per frame - check before choosing a rung.
+
+**Recipe:** read the visibility code first. UE3's `PerformViewFrustumCulling` walks the octree with a
+**per-view bit**, tests each node against *that view's own* frustum, and culls a node away only when
+it is outside **every** view; each view also gets its own `PrimitiveVisibilityMap`. A two-view family
+therefore gets correct visibility for both eyes **for free**, and the union-frustum hazard does not
+apply to it at all.
+
+**Proof:** find the per-view bit and the "outside every view" condition in the culling walk; confirm
+each view owns its own visibility map. A `MaxViews == 2` special case for a shipped stereo mode
+(UE3 has one, `WITH_REALD`) is corroboration that the engine was built to do this.
+
+**Trip hazard:** the hazard **inverts**. Alternate-eye culls from **one** eye per frame, so it is the
+rung that inherits the union-frustum problem, not the one that avoids it. **Two-view is the safer
+rung, not merely the tidier one** - which reverses the usual ranking, and is worth knowing before
+building the cheaper thing twice. `[SOURCE]` DishonoredVR, `f4fb409`.
 
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
@@ -1857,6 +1959,83 @@ when the class is re-enabled.
 **Trip hazard:** a mask that only *hides* draws answers "which class" and not "why that class", so ship
 the verdict dump with it. And a class list that grows into a per-shader-id list is brittle across builds
 - [recognise a family by its constants](17-teardown-fc2vr-native-stereo.md#dishonored-splice).
+
+## TEST-014 — Make the substitute asymmetric wherever the headset is {#test-014}
+
+**Problem:** a substitute runtime or synthetic fixture is given tidy, symmetric numbers, so a whole
+class of pairing and sign defects is unfalsifiable in every test that does not involve a headset.
+
+**Use when:** building any off-headset fixture that stands in for runtime geometry - a substitute
+runtime, a synthetic trace, a projection unit test.
+
+**Recipe:** copy the **real** runtime's asymmetry into the fixture. A Quest 3 through VDXR is
+vertically asymmetric (up ~44 degrees, down ~-55) and horizontally asymmetric per eye. A fixture
+using +/-55 up and down is not a weaker test, it is a **blind** one: with equal tangents, swapping
+which tangent feeds which vertical clip plane changes nothing at all.
+
+**Proof:** deliberately transpose a tangent pair in the fixture and require the test to fail. If it
+passes, the fixture is symmetric somewhere it should not be.
+
+**Trip hazard:** two independent instances in one week. MoH-VR's vertical cull planes were paired
+with the opposite tangents; every desk test and the desktop mirror looked correct, and the headset
+showed an 11-degree wedge of missing ground when looking up ([FAIL-CAM-025](failure-atlas.md)).
+Separately, `xr-tape`'s own falsification matrix had a vertically symmetric nominal FOV - the
+substitute's shape, not VDXR's - and was recalibrated to real geometry for exactly this reason.
+**The fixture inherits the simplification of whatever it was modelled on**, and that simplification
+is invisible until real optics arrive. `[HEADSET]` MoH-VR 2026-09-04; `[LIVE]` xr-tape.
+
+## TEST-015 — Check the metric's premise before reporting its verdict {#test-015}
+
+**Problem:** an instrument computes a real number from real data, and the number answers a question
+the target does not pose - so it reports a confident **error** every run, and the error is believed.
+
+**Use when:** any audit that separates one thing from another by a measured gap: world vs viewmodel,
+foreground vs background, UI vs scene.
+
+**Recipe:** state the metric's precondition as an assertion the instrument evaluates **first**, and
+read the underlying comparison rather than a flag another stage set - so no report ordering can make
+it lie. If the precondition fails, report *"premise not satisfied"*, never a verdict.
+
+**Proof:** run the instrument against a target you know violates the premise and require it to
+abstain rather than to disagree.
+
+**Trip hazard:** SWAT 4's FOV audit split world from viewmodel **by geometry volume**, which needs
+two projection lanes to exist. Two headless runs found later projections **bit-identical to the first
+on 11,057 comparisons, different on zero** - one lane. The split was a lane against itself, 48/52
+rather than the orders-of-magnitude gap the metric assumes, and it had been firing a false error
+every run. **Keep the instrument, gate it** - it had caught a real bug once.
+
+The companion failure is a metric that is simply the wrong question. The same session's viewmodel
+probe asked which of two lanes is rigid on an engine that has one, and correctly refused to give a
+verdict; the detach built on its premise **could not have worked**, and only the gate around it
+turned that into a headless run instead of a headset trip and a wrong fix. **Build the gate rather
+than trusting the premise.** `[LIVE]` Swat4-VR, `7505207`.
+
+## TEST-016 — A self-test that only talks to itself proves only that it is consistent {#test-016}
+
+**Problem:** every static check passes, and the two halves of the system have never exchanged a
+byte - because each half inspected artifacts it created itself.
+
+**Use when:** any two-process bridge - driver and injected DLL, launcher and mod, host and probe -
+where both sides agree on a *convention* rather than on a *rendezvous*.
+
+**Recipe:** make the test assert the **shared** object, from the side that did not write it. The
+driver must read what the DLL wrote; the DLL must acknowledge what the driver sent. A check that
+"the file exists and parses" is satisfied by a file the checker just created, in a directory the
+other side has never heard of.
+
+**Proof:** run one side with the other deliberately absent and require the check to fail.
+
+**Trip hazard:** SS2VR's agent bridge had the driver and the DLL using **different agent
+directories**, so no command could ever arrive - and every static check passed, because each side
+inspected its own files. **A self-test that only talks to itself cannot detect a disagreement about
+the address.**
+
+The same bridge carried a second one worth naming: a **stale command file re-executed on every
+launch**, because the sequence counter resets when the DLL loads and the file does not. The stale
+command was `quit`, which is why the game "mysteriously exited under xr-sim" - a fault whose symptom
+names the wrong subsystem entirely. Refuse any command older than the bridge's own start.
+`[LIVE]` ss2vr-work, `04518f0`.
 
 ## PERF-001 — Frame budget ledger {#perf-001}
 

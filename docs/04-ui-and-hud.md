@@ -527,6 +527,25 @@ relative deltas onto it** - the same discipline as
 An absolute panel intersection is the only pointer definition that is stable under both tests. See
 [HUD-001](pattern-catalog.md#hud-001).
 
+## Maximum extent cannot tell you which coordinate space tiles are in {#extent-is-not-space}
+
+The tempting test for "are these HUD tiles in canvas space or screen space" is to compare the
+**furthest** tile against the canvas size. It does not work, because **tiles are allowed to hang off
+the edge** - the canvas clips them - so a 2% overshoot is normal and proves nothing.
+
+Swat4-VR's check called that overshoot a disagreement on a canvas whose 1920x1440 matched the
+configured viewport *exactly*. Replacing max-extent with **tile-centre containment** then read 68.4%
+and still disagreed at a 90% threshold - and measuring *why* found the real structure: **a third of
+this HUD is parked offscreen.** `FinalBlend13` draws at `y = -1440`, exactly one canvas height above
+the top, which is how a hidden panel hides.
+
+**The rule: require BOTH a majority of tile centres inside the canvas AND a far corner near the
+canvas size.** Neither alone is sound - parked tiles defeat the first, a coincidental corner defeats
+the second. `[LIVE]` Swat4-VR, `7505207`.
+
+A parked-offscreen convention is worth looking for on any engine before you conclude a HUD is
+mis-placed: exactly one canvas dimension of displacement is a hiding idiom, not a bug.
+
 ## A glyph fallback that renders a space deletes text silently {#silent-glyph-fallback}
 
 Any mod that draws its own text - a settings page, a debug readout, an in-headset tuning menu - inherits

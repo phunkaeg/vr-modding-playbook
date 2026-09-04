@@ -125,7 +125,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SWAT4-VR** | 🟥 active | `LIVE` | Scene doubling and AFR are proven possible; the clean world/HUD seam and side-effect gate decide the final route. |
 | **Sims4VR** | 🟥 active | `LIVE` | Multiple world traversals exist, but the reduced height/depth pass is not a borrowable second camera; a full-quality callable seam remains open. |
 | **SoF-VR** | 🟧 open | `STATIC` | R1 native re-entry is DECLARED, not proven: all ten ladder rungs are open and nothing has been written to a refdef yet. The route is cheap by construction, since everything camera-derived is recomputed from the refdef passed in, so per-eye culling should come free. |
-| **MoH-VR** | 🟩 cleared | `HEADSET` | Rungs 0a-0c and 1-7 cleared, 8 partial. Geometric stereo fuses in a headset; rung 7 cleared on real Quest 3 optics, predicted 162.9 px principal-point offset against a measured -163 px, with parallax appearing only where there is depth. |
+| **MoH-VR** | 🟩 cleared | `HEADSET` | Rungs 0a-0c and 1-7 cleared, 8 partial - the first culling defect was found in the headset on 2026-09-04 (vertical cull planes paired with the opposite tangents, invisible to a vertically symmetric substitute, FAIL-CAM-025) and confirmed fixed the same day. Geometric stereo fuses in a headset; rung 7 cleared on real Quest 3 optics, predicted 162.9 px principal-point offset against a measured -163 px, with parallax appearing only where there is depth. |
 
 ### BN-SFX-001 — A second eye may advance once-per-frame side effects
 
@@ -251,7 +251,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SWAT4-VR** | 🟨 risk | `—` | HUD/world separation and gameplay adaptation follow first headset pixels. |
 | **Sims4VR** | 🟥 active | `LIVE` | Dollhouse versus true-scale player embodiment is an unresolved design gate that controls scale, IPD and interaction. |
 | **SoF-VR** | 🟧 open | `STATIC` | The proxy sees every 2D call; the plan is a HUD quad from the backbuffer between the world render and end of frame. Not built. |
-| **MoH-VR** | 🟩 cleared | `HEADSET` | HUD layer v2 accepted in a headset: body-locked quad in LOCAL space, coverage alpha, premultiplied submission, kill switch, layer budget peak 2 of 16. The HUD compiles into the client executable, which is why a cgame-only mod cannot own it. |
+| **MoH-VR** | 🟩 cleared | `HEADSET` | HUD layer v2 accepted in a headset: body-locked quad in LOCAL space, coverage alpha, premultiplied submission, kill switch, layer budget peak 2 of 16. Remaining defect, not blocking: the flat menu has no cursor on the layer because the engine defers to the OS pointer when it ungrabs the mouse (FAIL-HUD-011). The HUD compiles into the client executable, which is why a cgame-only mod cannot own it. |
 
 ### BN-PERF-001 — The fresh-frame budget and dominant cost are not measured
 

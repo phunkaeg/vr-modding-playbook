@@ -1976,6 +1976,21 @@ And keep the caveat they kept: the answer arrived from a non-aliasing run, so **
 can reproduce it on demand.** Nothing there depends on the distinction only because vtable patching
 covers every instance regardless.
 
+## Guard bytes in a dispatch slot mean "never call this" - and they falsify a static claim {#guard-bytes-mean-never-call}
+
+A slot in an exported function table that comes back as `0xfefefefe`, `0xcccccccc` or `0xbaadf00d` is
+not a function. It is uninitialised MSVC debug fill: the factory never assigned it.
+
+That is useful twice over. **Defensively**, the slot must be flagged and passed through, never
+called and never assumed to be some function whose position you inferred from a reference header.
+**Evidentially**, it confirms a static claim *from the other side of the boundary* - SoF-VR predicted
+statically that `GetRefAPI` never assigns slots 26 and 32, and the client received guard bytes at
+exactly those two slots out of 54. A static prediction and a runtime observation agreeing on an
+**absence** is stronger evidence than either alone, and absences are otherwise hard to prove.
+
+Log the fill pattern rather than normalising it to null - `0xfefefefe` names the toolchain and the
+build flavour, and a slot that is genuinely null means something different. `[LIVE]` SoF-VR, M0.
+
 ## Section entropy tells you in seconds whether static analysis is possible {#entropy-triage}
 
 Before planning any reverse engineering, measure per-section Shannon entropy. Singularity's answer

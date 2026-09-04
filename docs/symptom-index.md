@@ -109,6 +109,12 @@ that the observation and the cause are usually in different chapters.
 | Can I avoid injecting into this game at all? | [CAM-015](pattern-catalog.md#cam-015) — proxy a published module contract if it exports one |
 | Testers disagree about how aiming should work | [INPUT-008](pattern-catalog.md#input-008) — split the axes and ship it as a setting |
 | How much engine work is a VR source port really? | [18](18-beyond-the-native-injector.md#source-port-vr-layer) — measured: ~13 globals, 23 files, head orientation read once |
+| A camera write runs for thousands of frames and moves nothing | [CAM-016](pattern-catalog.md#cam-016) — you are writing to a direction, not the position |
+| Module version check passes but the struct offsets are wrong | [RE-008](pattern-catalog.md#re-008) — count the `rep movsd`; the version is a name, not a size |
+| An audit reports the same error every run on something that is fine | [TEST-015](pattern-catalog.md#test-015) — check the metric's premise before its verdict |
+| Two-process bridge: all checks pass, no message arrives | [TEST-016](pattern-catalog.md#test-016) — a self-test that only talks to itself |
+| A defect only a headset can see, that every desk test passes | [TEST-014](pattern-catalog.md#test-014) — make the fixture asymmetric where the headset is |
+| Choosing between alternate-eye and a same-frame two-view family | [STR-013](pattern-catalog.md#str-013) — per-view culling inverts the ranking |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
