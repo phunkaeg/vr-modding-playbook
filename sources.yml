@@ -243,6 +243,66 @@ fleet:
       camera_tracking: {review: partial, evidence: STATIC}
       re_discovery:    {review: partial, evidence: STATIC}
 
+  - id: SoF-VR
+    display_name: SoF-VR
+    root: "D:/Dev Debug/SoF-VR"
+    status: active_mod
+    game: Soldier of Fortune Platinum (GOG)
+    engine: id Tech 2 / Raven fork
+    api: OpenGL 1.x
+    arch: x86
+    authority: hybrid-re+sdk-oracle
+    tier: pre-T1
+    tier_target: T2
+    stereo_rung: unproven
+    upstream_url: internal
+    license: internal-unreleased
+    reviewed_at: 2026-09-04
+    reviewed_revision: tree:381555bafe5d9010
+    areas:
+      stereo:            {review: not_reviewed, note: "Stereo ladder is authored with 10 rungs; every rung OPEN. R1 native re-entry is declared, not proven."}
+      xr_lifecycle:      {review: not_reviewed, note: "32-bit runtime shortlist checked; no session yet. Runtime choice OPEN until M5."}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: full, evidence: LIVE, note: "M2 confirmed refdef_t live: prefix shift +1, unique match, fov_y residual 0.0000 against CalcFov, fov_x exactly the install's fov cvar. Viewport, FOV, position and angles each carry a receipt. Two static inferences corrected (F-009): time is at +0x44 not +0x50, and +0x00 is written every frame."}
+      render_hazards:    {review: partial, evidence: LIVE, note: "M1 slot census: 52 wrapped slots, ABI-transparent, no crash or frame-rate change. Slot 16 is world-render only, absent through menu and loading, 1:1 with the frame bracket in gameplay."}
+      ui_hud:            {review: not_reviewed, note: "2D slots 17-43 are visible to the proxy; HUD quad planned from the backbuffer between RenderFrame and EndFrame."}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed, note: "refimport_t carries Cmd_ExecuteText and Cvar_Set, so the proxy can drive binds without RE of SoF.exe; the index map is OPEN."}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: partial, evidence: LIVE, note: "Ships as ref_vr.dll beside ref_gl.dll, selected by +set vid_ref vr. No byte of SoF.exe or ref_gl.dll is patched for T1."}
+      re_discovery:      {review: full, evidence: LIVE, note: "Live export table reproduces REF_API_DRIFT section 2 exactly across all 54 slots. Slots 26 and 32 return uninitialised debug fill, confirming from the client side that GetRefAPI never assigns them."}
+      source_integration: {review: partial, evidence: SOURCE, note: "SoF SDK (June 2000, 1.0x) and id's Quake 2 tree are oracles only. The shipped DLLs are 1.07f, so an SDK rebuild may not match retail behaviour or save format (FAIL-ACCESS-001 risk). Source lane is reserved for T3/T4."}
+  - id: Medal-of-Honor-vr
+    display_name: MoH-VR
+    root: "D:/Dev Debug/Medal-of-Honor-vr"
+    status: active_mod
+    game: Medal of Honor Allied Assault War Chest (GOG)
+    engine: id Tech 3 / FAKK2 via OpenMoHAA
+    api: OpenGL
+    arch: x64
+    authority: source-owned
+    tier: T1
+    tier_target: T3
+    stereo_rung: R1
+    upstream_url: internal
+    license: internal-unreleased
+    reviewed_at: 2026-09-04
+    reviewed_revision: tree:9837fa8f868a2853
+    areas:
+      stereo:            {review: full, evidence: HEADSET, note: "Stereo ladder rungs 0a-0c and 1-7 cleared, rung 8 partial. Geometric stereo accepted in a headset 2026-09-03 on a Quest 3. Rung 7 is cleared on real optics: predicted principal-point offset 162.9 px, measured -163 px far and mid, -167 px near, i.e. the constant optics offset plus parallax only where there is depth."}
+      xr_lifecycle:      {review: full, evidence: HEADSET, note: "Session IDLE through FOCUSED, two 2688x2880 sRGB swapchains, 561 and 588 frames submitted without error. Result-driven fallback proven: with no headset reachable the instance is created, xrGetSystem fails, and the flat path is untouched."}
+      xr_input:          {review: not_reviewed, note: "Milestone 2, not started. vrInputSnapshot_t, VR_GetInput and VR_Haptic are stubs; no action sets, bindings, snap turn or aim decoupling exist."}
+      camera_tracking:   {review: partial, evidence: LIVE, note: "Headset yaw composed once per frame onto the body after first-person eye placement, verified in the log and in pixels at 30.0 degrees, correlation 0.96. World scale is still open as H-005."}
+      render_hazards:    {review: partial, evidence: SOURCE, note: "Census drafted from source; a RenderDoc capture of the flat build is still owed. Sky portal, cutscene camera and inventory views unexercised."}
+      ui_hud:            {review: full, evidence: HEADSET, note: "HUD layer v2 accepted in a headset 2026-09-04: body-locked quad in LOCAL space, coverage alpha via glBlendFuncSeparate, premultiplied submission, kill switch. Layer budget peak 2 of 16. The HUD is compiled into the client executable, which is why a cgame-only mod cannot own it."}
+      hands_interaction: {review: not_reviewed, note: "Milestone 3, open."}
+      input_locomotion:  {review: not_reviewed, note: "VR input must fit the existing usercmd with no protocol change."}
+      performance:       {review: not_reviewed, note: "VR_Init sets com_maxfps 0 once a session exists so the runtime paces the frame; the substitute keeps a pinned cap."}
+      audio:             {review: partial, evidence: LIVE, note: "OpenAL dlopen'd through the System32 router; device opens and the default device is the Virtual Desktop audio endpoint. No spatialisation work yet."}
+      packaging_deploy:  {review: not_reviewed, note: "packaging/README.md only."}
+      re_discovery:      {review: partial, evidence: SOURCE, note: "RE is not the route: retail binaries are a behaviour reference, and the shipping binary is the fork build."}
+      source_integration: {review: full, evidence: SOURCE, note: "Every layer is source-owned through the OpenMoHAA fork. Frame loop, stereo loop, camera construction, projection, culling, renderer and UI all buildable and shippable under GPL-2.0. Fork maintenance contract written; the fork remote is not yet created on GitHub."}
 external:
   - id: Bioshock-Remastered-VR
     tier: T3

@@ -4,21 +4,21 @@ Legend: 🟥 **active critical path** · 🟧 **open, not current critical path*
 
 A green cell does not mean the subsystem is perfect. It means the named bottleneck no longer blocks the next gate.
 
-| Bottleneck | Applies to | Gate | SS2VR | BioShockVR | SOMAVR | PreyVR | DishonoredVR | FarCry2-VR | SWAT4-VR | Sims4VR |
-|---|---|---|---|---|---|---|---|---|---|---|
-| **BN-ACC-001** — Integration authority is not classified | `both` | ACCESS | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared |
-| **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟧 open |
-| **BN-OBS-001** — The active renderer and frame boundary are not owned | `both` | OBSERVE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared | 🟥 active |
-| **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟥 active | 🟧 open | 🟥 active |
-| **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active |
-| **BN-SFX-001** — A second eye may advance once-per-frame side effects | `both` | STEREO-SAFETY | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk |
-| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟩 cleared | 🟥 active | 🟧 open |
-| **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
-| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
-| **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟩 cleared | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
-| **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟥 active | 🟧 open | 🟧 open | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active |
-| **BN-PERF-001** — The fresh-frame budget and dominant cost are not measured | `both` | PERFORMANCE | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk |
-| **BN-PACK-001** — Build, version, install, and recovery contracts are not shippable | `both` | RELEASE | 🟩 cleared | 🟧 open | 🟩 cleared | 🟨 risk | 🟨 risk | 🟧 open | 🟧 open | 🟨 risk |
+| Bottleneck | Applies to | Gate | SS2VR | BioShockVR | SOMAVR | PreyVR | DishonoredVR | FarCry2-VR | SWAT4-VR | Sims4VR | SoF-VR | MoH-VR |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| **BN-ACC-001** — Integration authority is not classified | `both` | ACCESS | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared |
+| **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared |
+| **BN-OBS-001** — The active renderer and frame boundary are not owned | `both` | OBSERVE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
+| **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟥 active | 🟧 open | 🟥 active | 🟩 cleared | 🟩 cleared |
+| **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
+| **BN-SFX-001** — A second eye may advance once-per-frame side effects | `both` | STEREO-SAFETY | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟩 cleared |
+| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟩 cleared | 🟥 active | 🟧 open | 🟧 open | 🟩 cleared |
+| **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
+| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
+| **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟩 cleared | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
+| **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟥 active | 🟧 open | 🟧 open | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟩 cleared |
+| **BN-PERF-001** — The fresh-frame budget and dominant cost are not measured | `both` | PERFORMANCE | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟨 risk | 🟨 risk |
+| **BN-PACK-001** — Build, version, install, and recovery contracts are not shippable | `both` | RELEASE | 🟩 cleared | 🟧 open | 🟩 cleared | 🟨 risk | 🟨 risk | 🟧 open | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
 
 ## Bottleneck definitions
 
@@ -40,6 +40,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟩 cleared | `LIVE` | Native x86 injector against Dunia.dll; editor symbols are leads, not a shippable source route. |
 | **SWAT4-VR** | 🟩 cleared | `SOURCE` | Hybrid evidence route: shipped UnrealScript/SDK and exports are oracles; the deliverable remains a native injector. |
 | **Sims4VR** | 🟩 cleared | `LIVE` | Hybrid candidate: Python controls gameplay camera state; a future native D3D11 layer must own stereo and submission. |
+| **SoF-VR** | 🟩 cleared | `STATIC` | Hybrid: RE-owned at the ref_gl module contract, delivered as a proxy DLL selected by a cvar; the SoF SDK and id Quake 2 tree are oracles. No byte of SoF.exe or ref_gl.dll is patched for T1. |
+| **MoH-VR** | 🟩 cleared | `SOURCE` | Source-owned at every layer: the shipping binary is an OpenMoHAA fork built from source under GPL-2.0, not the retail executable. Retail supplies assets and a behaviour reference only. |
 
 ### BN-LOAD-001 — The active bytes and test session are not proven
 
@@ -59,6 +61,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟩 cleared | `LIVE` | Launch preconditions and build-time OpenXR option are logged; vanilla and mod recipes are distinct. |
 | **SWAT4-VR** | 🟩 cleared | `LIVE` | Fresh-log injected launch and test-artifact config identity are explicit. |
 | **Sims4VR** | 🟧 open | `LIVE` | Retail build and tool observations are pinned; there is no mod build yet because the project remains pre-feasibility. |
+| **SoF-VR** | 🟩 cleared | `LIVE` | M0 load proof: the identity line carries version, build, path and config; the original renderer loads from the same directory at the expected base and PE timestamp; clean detach. A vanilla control must now pass the renderer cvar explicitly, because the VR one is archived. |
+| **MoH-VR** | 🟩 cleared | `LIVE` | Retail hashes, prerequisites, flat build and launch each have a dated receipt; the port build is hash-identified and the retail install is never written to. |
 
 ### BN-OBS-001 — The active renderer and frame boundary are not owned
 
@@ -78,6 +82,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟩 cleared | `LIVE` | D3D10 bridge and WorldExec/pass dispatch are live-mapped. |
 | **SWAT4-VR** | 🟩 cleared | `LIVE` | UGameEngine::Draw and scene-node callbacks are hookable and counted; the world/HUD sub-seam remains a stereo question. |
 | **Sims4VR** | 🟥 active | `LIVE` | RenderDoc proves the pass graph, but no shippable engine/frame callback has been selected. |
+| **SoF-VR** | 🟩 cleared | `LIVE` | M1 census over 52 wrapped slots: slots 44 and 47 bracket every frame in every state with equal counts across 60+ buckets, and slot 16 is absent through menu and loading then holds 1:1 with the bracket in gameplay. The thunks are ABI-transparent - no crash, no frame-rate change. |
+| **MoH-VR** | 🟩 cleared | `LIVE` | Frame and render ownership mapped from source with line numbers, confirmed by measured per-second call counts across menu, loading and two maps. |
 
 ### BN-CAM-001 — Camera, projection, culling, and consumers are not separated
 
@@ -97,6 +103,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟥 active | `LIVE` | The shipped rung-2 baseline has headset-proven 6DoF and authored-camera yielding, but the new WorldExec route has not yet proved that its second-pass camera mutation reaches the consuming draw. Treat the working route as the fallback, not evidence for the new route. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Exports and forward census reduce search cost; the stereo camera delivery/seam still needs completion. |
 | **Sims4VR** | 🟥 active | `LIVE` | Python camera control is proven but too smoothed for head tracking; 30 native candidates remain ambiguous pending GPU-value correlation. |
+| **SoF-VR** | 🟩 cleared | `LIVE` | M2: refdef_t confirmed live over a 2000-frame window. Prefix shift +1, unique match, fov_y residual 0.0000 against CalcFov, and fov_x exactly the install fov cvar, which the probe did not know. Two static inferences corrected - time is at +0x44, and +0x00 is written every frame. |
+| **MoH-VR** | 🟩 cleared | `SOURCE` | Camera construction, FOV and first-person offset are source functions in the fork cgame; the retail cgame module is not used. |
 
 ### BN-STE-001 — The stereo production route is not selected by evidence
 
@@ -116,6 +124,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟩 cleared | `HEADSET` | Per-draw stereo works; WorldExec native-stereo viability is the higher-rung investigation. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | Scene doubling and AFR are proven possible; the clean world/HUD seam and side-effect gate decide the final route. |
 | **Sims4VR** | 🟥 active | `LIVE` | Multiple world traversals exist, but the reduced height/depth pass is not a borrowable second camera; a full-quality callable seam remains open. |
+| **SoF-VR** | 🟧 open | `STATIC` | R1 native re-entry is DECLARED, not proven: all ten ladder rungs are open and nothing has been written to a refdef yet. The route is cheap by construction, since everything camera-derived is recomputed from the refdef passed in, so per-eye culling should come free. |
+| **MoH-VR** | 🟩 cleared | `HEADSET` | Rungs 0a-0c and 1-7 cleared, 8 partial. Geometric stereo fuses in a headset; rung 7 cleared on real Quest 3 optics, predicted 162.9 px principal-point offset against a measured -163 px, with parallax appearing only where there is depth. |
 
 ### BN-SFX-001 — A second eye may advance once-per-frame side effects
 
@@ -135,6 +145,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟥 active | `LIVE` | M3 question 1 is now live: 3,521 PrepareFrameGraph+WorldExec replays produced a 1.915 draw ratio while the animator stayed at 1.0. This is strong side-effect separation, not the full exit proof: the zero-delta control and remaining audio/particle/query/allocation observers still decide safety. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | Scene re-entry passes the pixel proof; the explicit side-effect gate is still unrun and two camera consumers repeat. |
 | **Sims4VR** | 🟨 risk | `—` | Existing repeated passes prove re-entrancy, not that a new full-quality eye invocation is idempotent. |
+| **SoF-VR** | 🟧 open | `STATIC` | Nothing has been mutated yet, so no side-effect gate has been run. M3 is the first reversible write and carries the passthrough control M0 established. |
+| **MoH-VR** | 🟩 cleared | `LIVE` | Per-view ledger: controls A and B against treatments C and D, every once-per-frame counter identical while the view render doubled, disparity 0 at separation 0 and depth-dependent at 2.5 and 10. |
 
 ### BN-XR-001 — The game graphics path cannot yet deliver owned images to OpenXR
 
@@ -154,6 +166,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟩 cleared | `HEADSET` | D3D10 via shared DXGI surface reaches OpenXR; descriptor/copy compatibility is proven. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | 9On12 reaches an owned D3D12 resource and XR bring-up passes without hardware; first headset submission remains. |
 | **Sims4VR** | 🟧 open | `LIVE` | D3D11 makes the binding straightforward, but no mod-owned eye resource or XR host exists yet. |
+| **SoF-VR** | 🟧 open | `STATIC` | 32-bit runtime shortlist checked on this machine; the runtime choice is deliberately OPEN until M5. No instance, session or submitted frame yet. |
+| **MoH-VR** | 🟩 cleared | `HEADSET` | Session reaches FOCUSED on a Quest 3 through Virtual Desktop with two 2688x2880 sRGB swapchains and 561 plus 588 frames submitted without error. Result-driven fallback proven: with no headset the flat path is untouched. |
 
 ### BN-RND-001 — Per-eye render state is incomplete or misattributed
 
@@ -173,6 +187,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟥 active | `SOURCE` | The headset-proven rung-2 baseline still works. For the native route, classify output by frame/pass/resource generation rather than pointer identity, and prove OMSetRenderTargets interception with a positive control before treating the no-copy census as exhaustive; viewmodel ownership remains separate. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Hazard census is favorable, but the clean world/HUD M-C seam is unresolved. |
 | **Sims4VR** | 🟨 risk | `—` | Depth prepass, shadow atlas and reduced auxiliary pass are identified; per-eye policy is not designed. |
+| **SoF-VR** | 🟧 open | `LIVE` | 2D slots are enumerated and counted, but no pass policy is written; the render-pass census exists as a document, not a verdict. |
+| **MoH-VR** | 🟧 open | `SOURCE` | Census drafted from source and awaiting a RenderDoc capture. Sky portal, cutscene camera and inventory views are unexercised, which is exactly where a secondary view enters the eye pair wrongly. |
 
 ### BN-POSE-001 — Pose, frame, and eye-pair ownership are incoherent
 
@@ -192,6 +208,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟥 active | `SOURCE` | The working 6DoF baseline is headset-proven, but a native pair does not yet carry one atomic pixels+pose/FOV/contract/resource-generation publication. Current unsynchronised SharedSurface fallback cannot establish pair coherence. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Eye tagging is live and pair IDs are desk-tested; headset timing and final route are pending. |
 | **Sims4VR** | 🟨 risk | `—` | Python camera interpolation is explicitly unsuitable as the render-pose transport. |
+| **SoF-VR** | 🟧 open | `STATIC` | The refdef fields the pose lane needs are identified with receipts, but no pose has been composed onto them. |
+| **MoH-VR** | 🟥 active | `HEADSET` | Head composition proven: headset yaw composed once per frame onto the body after eye placement, verified in the log and measured in pixels at 30.0 degrees, correlation 0.96. World scale remains open as H-005 and is the live question. |
 
 ### BN-INP-001 — Native gameplay input, aim, and interaction ownership are unresolved
 
@@ -211,6 +229,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟥 active | `LIVE` | Native aim contract is read; viewmodel/muzzle alignment and final fire-direction delivery remain. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Console/FExec property bridge is proven; VR semantic ownership is downstream of headset stereo. |
 | **Sims4VR** | 🟨 risk | `—` | The intended dollhouse/giant experience must be chosen before VR interaction semantics are designed. |
+| **SoF-VR** | 🟧 open | `STATIC` | The renderer import table carries the command and cvar entry points, so the proxy can drive binds without RE of the executable; the index map is open. |
+| **MoH-VR** | 🟥 active | `SOURCE` | Milestone 2 and the current critical path. The input snapshot, getter and haptics are stubs - no action sets, bindings, snap turn or aim decoupling exist. Must fit the existing usercmd with no protocol change. |
 
 ### BN-UI-001 — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier
 
@@ -230,6 +250,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟥 active | `HEADSET` | The animator writer census found 106/101/101-bone rigs and a 101-bone poke moved a body plus shadow; first-person arms/viewmodel remain on a separate undiscovered path. |
 | **SWAT4-VR** | 🟨 risk | `—` | HUD/world separation and gameplay adaptation follow first headset pixels. |
 | **Sims4VR** | 🟥 active | `LIVE` | Dollhouse versus true-scale player embodiment is an unresolved design gate that controls scale, IPD and interaction. |
+| **SoF-VR** | 🟧 open | `STATIC` | The proxy sees every 2D call; the plan is a HUD quad from the backbuffer between the world render and end of frame. Not built. |
+| **MoH-VR** | 🟩 cleared | `HEADSET` | HUD layer v2 accepted in a headset: body-locked quad in LOCAL space, coverage alpha, premultiplied submission, kill switch, layer budget peak 2 of 16. The HUD compiles into the client executable, which is why a cgame-only mod cannot own it. |
 
 ### BN-PERF-001 — The fresh-frame budget and dominant cost are not measured
 
@@ -249,6 +271,8 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟥 active | `LIVE` | Frame pacing and 60-versus-90 cadence remain open alongside native-stereo work. |
 | **SWAT4-VR** | 🟧 open | `LIVE` | Flat noise floor and pacing census exist; headset fresh-frame cadence remains. |
 | **Sims4VR** | 🟨 risk | `—` | 8x MSAA main targets and multiple scene traversals are visible, but no VR workload has been measured. |
+| **SoF-VR** | 🟨 risk | `—` | 144 fps flat with 52 slots wrapped and no measurable cost, but the vsync cvar must go to zero before the XR lane, since the runtime paces the frame. |
+| **MoH-VR** | 🟨 risk | `—` | Frame-cap policy landed - the cap is released once a session exists so the runtime paces the frame - but no VR frame-time budget has been measured. |
 
 ### BN-PACK-001 — Build, version, install, and recovery contracts are not shippable
 
@@ -268,3 +292,5 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **FarCry2-VR** | 🟧 open | `SOURCE` | Launch/build prerequisites and wrapper cleanup are explicit; feature path is still T1. |
 | **SWAT4-VR** | 🟧 open | `SOURCE` | Fresh-log launch and test config are disciplined; first headset and release defaults remain. |
 | **Sims4VR** | 🟨 risk | `—` | Research target; distribution boundaries for Python/script replacement plus a native layer are not designed. |
+| **SoF-VR** | 🟧 open | `STATIC` | Delivery is a proxy DLL beside the stock renderer, selected by a cvar, with no installed file modified. Packaging itself is unbuilt. |
+| **MoH-VR** | 🟧 open | `SOURCE` | A source port ships a replacement executable, so packaging must carry GPL obligations and the fork maintenance contract; the fork remote does not exist on GitHub yet. |

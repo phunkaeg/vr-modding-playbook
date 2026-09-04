@@ -10,3 +10,5 @@
 | **FarCry2-VR** | active mod | Far Cry 2 | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | `D:\Dev Debug\FarCry2-vr\docs\` |
 | **SWAT4-VR** | active mod | SWAT 4 | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | `D:\Dev Debug\Swat4-VR\docs\` |
 | **Sims4VR** | research target | The Sims 4 | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | `D:\Dev Debug\Sims4VR\docs\` |
+| **SoF-VR** | active mod | Soldier of Fortune Platinum (GOG) | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | `D:\Dev Debug\SoF-VR\docs\` |
+| **MoH-VR** | active mod | Medal of Honor Allied Assault War Chest (GOG) | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | `D:\Dev Debug\Medal-of-Honor-vr\docs\` |

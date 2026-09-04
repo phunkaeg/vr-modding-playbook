@@ -59,19 +59,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 4 | 3 | 0 | 1 | 0 |
-| `xr_lifecycle` | 2 | 3 | 0 | 0 | 3 |
-| `xr_input` ⚠ | 0 | 3 | 1 | 0 | 4 |
-| `camera_tracking` | 5 | 3 | 0 | 0 | 0 |
-| `render_hazards` | 6 | 1 | 0 | 0 | 1 |
-| `ui_hud` | 2 | 1 | 0 | 0 | 5 |
-| `hands_interaction` | 3 | 1 | 0 | 0 | 4 |
-| `input_locomotion` | 4 | 1 | 1 | 0 | 2 |
-| `performance` ⚠ | 0 | 5 | 0 | 0 | 3 |
-| `audio` ⚠ | 0 | 2 | 0 | 1 | 5 |
-| `packaging_deploy` | 5 | 2 | 0 | 0 | 1 |
-| `re_discovery` | 7 | 1 | 0 | 0 | 0 |
-| `source_integration` ⚠ | 0 | 2 | 0 | 0 | 6 |
+| `stereo` | 5 | 3 | 0 | 2 | 0 |
+| `xr_lifecycle` | 3 | 3 | 0 | 1 | 3 |
+| `xr_input` ⚠ | 0 | 3 | 1 | 2 | 4 |
+| `camera_tracking` | 6 | 4 | 0 | 0 | 0 |
+| `render_hazards` | 6 | 3 | 0 | 0 | 1 |
+| `ui_hud` | 3 | 1 | 0 | 1 | 5 |
+| `hands_interaction` | 3 | 1 | 0 | 2 | 4 |
+| `input_locomotion` | 4 | 1 | 1 | 2 | 2 |
+| `performance` ⚠ | 0 | 5 | 0 | 2 | 3 |
+| `audio` ⚠ | 0 | 3 | 0 | 2 | 5 |
+| `packaging_deploy` | 5 | 3 | 0 | 1 | 1 |
+| `re_discovery` | 8 | 2 | 0 | 0 | 0 |
+| `source_integration` | 1 | 3 | 0 | 0 | 6 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -95,7 +95,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **crysis_vrmod** | external reference | CryEngine 2 | native-injector | T3 | R1 · native re-entry | 17 | 813 | 695 | 18 | 2026-08-28 | ⚪ unpinned | 2F / 1P / 1S / 7NR / 2— |
 | **CSVR** | archived reference | GoldSrc / Xash3D | source-port | — | — | — | 1001 | 307 | 5 | 2026-03-09 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **cyberpunk-vr-port** | external reference | REDengine 4 | native-injector | — | — | 17 | 467 | 291 | 91 | 2026-08-23 | 🟩 current | 1F / 4P / 0S / 3NR / 5— |
-| **Dishonored-VR** | external reference | Unreal Engine 3 (Dishonored) | native-injector | ? | ? | 18 | 57 | 1 | 1 | 2026-09-02 | ⚪ unpinned | 0F / 0P / 0S / 11NR / 2— |
+| **Dishonored-VR** | external reference | Unreal Engine 3 (Dishonored) | native-injector | ? | ? | 18 | 61 | 1 | 3 | 2026-09-04 | ⚪ unpinned | 0F / 0P / 0S / 11NR / 2— |
 | **DOOM-3-BFG-VR** | external reference | idTech 4 (Doom 3 BFG) | source-port | — | — | — | 2155 | 1348 | 83 | 2026-08-27 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
 | **edvr-unofficial-patch** | external reference | Cobra (Elite Dangerous: Odyssey) | native-injector | — | — | 14 | 185 | 147 | 17 | 2026-08-28 | ⚪ unpinned | 2F / 2P / 0S / 7NR / 2— |
 | **Fallout-New-Vegas-FNVR** | external reference | Gamebryo (Fallout New Vegas) | script-native-hybrid | — | — | 18 | 342 | 279 | 28 | 2026-08-29 | ⚪ unpinned | 0F / 0P / 1S / 10NR / 2— |
@@ -177,13 +177,15 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | Source | Reviewed at | Reviewed tree | Current tree | Reviewed Git commit | Result | Upstream | License |
 |---|---|---|---|---|---|---|---|
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:bf2f0979eebb5e8c` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:6b9cb84d884c327c` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:e2910271eb4f3c8b` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:237a43f7995d1ab2` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:0e355f2144bdbff3` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:85f3968d8f74a50e` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:585d04998b5ed86e` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:e4c5583252a7a45b` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:83960f3de3368478` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:3f0cb90ddf1f38fe` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:9837fa8f868a2853` | `tree:9837fa8f868a2853` | `—` | 🟩 current | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:ad25a9bff4e14b27` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f970070e6dbd9661` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:381555bafe5d9010` | `—` | 🟩 current | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:06c92942551e51cd` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:829be679091500e5` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:398b63376f7804d4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
 | **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | unknown |
@@ -200,7 +202,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **crysis_vrmod** | 2026-08-28 | `unknown` | `tree:72edce18458cccd3` | `—` | ⚪ unpinned | unknown | unknown |
 | **CSVR** | 2026-08-25 | `tree:b317ecb80018cb2d` | `tree:b317ecb80018cb2d` | `—` | 🟩 current | unknown | unknown |
 | **cyberpunk-vr-port** | 2026-08-25 | `tree:22383c11593f8750` | `tree:22383c11593f8750` | `—` | 🟩 current | unknown | unknown |
-| **Dishonored-VR** | 2026-09-02 | `unknown` | `tree:755ce3faa58130b9` | `—` | ⚪ unpinned | unknown | zlib (DXVK) - covers fork-patches ONLY; dllmain.cpp is unlicensed |
+| **Dishonored-VR** | 2026-09-02 | `unknown` | `tree:ec8b8c0d1fa6e210` | `—` | ⚪ unpinned | unknown | zlib (DXVK) - covers fork-patches ONLY; dllmain.cpp is unlicensed |
 | **DOOM-3-BFG-VR** | 2026-08-27 | `tree:b68fb6734c12a28c` | `tree:b68fb6734c12a28c` | `—` | 🟩 current | unknown | unknown |
 | **edvr-unofficial-patch** | 2026-08-28 | `unknown` | `tree:a27fb9fe577f1279` | `—` | ⚪ unpinned | unknown | unknown |
 | **Fallout-New-Vegas-FNVR** | 2026-08-29 | `unknown` | `tree:c979d571dbef665b` | `—` | ⚪ unpinned | unknown | unknown |
@@ -277,7 +279,11 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 
 ## Untracked directories
 
-None. Every directory under `Other VR mods/` is tracked or explicitly classified as not-a-source.
+**Present under `Other VR mods/`, absent from the ledger. `--check` fails until classified.**
+
+- `Dishonored-VR-fork` — 59 files, 1 code files
+- `Dishonored-VR-metalink-test` — 3 files, 0 code files
+- `DishonoredVR-alpha` — 16 files, 0 code files
 
 ### Deliberately not sources
 
@@ -298,14 +304,16 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3984 | 348 | 2026-09-03 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 4043 | 349 | 2026-09-04 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4932 | 2585 | 2026-09-03 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 19124 | 2286 | 2026-09-03 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 1859 | 264 | 2026-09-03 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
-| **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 268 | 69 | 2026-09-03 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
-| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5610 | 132 | 2026-09-03 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 19207 | 2295 | 2026-09-03 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 1861 | 264 | 2026-09-03 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 487 | 111 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
+| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5612 | 132 | 2026-09-03 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-03 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
-| **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 150 | 18 | 2026-09-03 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
+| **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 152 | 18 | 2026-09-04 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
+| **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 69 | 30 | 2026-09-04 | 🟩 current | 2F / 3P / 0S / 8NR / 0— |
+| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3344 | 237 | 2026-09-04 | 🟩 current | 4F / 4P / 0S / 5NR / 0— |
 
 ## Per-source area detail
 
@@ -365,6 +373,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `re_discovery` | 🟩 full | `LIVE` | Getter census (92,298 calls, 3 pairs) missed full rigs; the animator writer exposed contiguous 106/101/101-bone arrays. Canonical receipt: FarCry2-vr/docs/RE_FINDINGS.md. STARTUP STALL RESOLVED 2026-08-28 (supersedes the earlier caveat): reproduced on the COMPLETELY UNMODIFIED game - 126 threads, two burning 95 s and 86 s of CPU, working set flat at ~350 MB for over two minutes, never presented. Burning CPU while allocating nothing is a spin, not a deadlock, and vanilla loads none of our DLLs and no OpenXR loader, so it is the GAME's fault and not the mod's. Four theories died first. A peer report of the MODDED stall tracking a sleeping headset is recorded as POSSIBLY DISTINCT rather than merged. Their timing/stability numbers are usable again, with the vanilla stall named as an environment property. |
 | `source_integration` | — no entry — | — | — |
 
+#### Medal-of-Honor-vr
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟩 full | `HEADSET` | Stereo ladder rungs 0a-0c and 1-7 cleared, rung 8 partial. Geometric stereo accepted in a headset 2026-09-03 on a Quest 3. Rung 7 is cleared on real optics: predicted principal-point offset 162.9 px, measured -163 px far and mid, -167 px near, i.e. the constant optics offset plus parallax only where there is depth. |
+| `xr_lifecycle` | 🟩 full | `HEADSET` | Session IDLE through FOCUSED, two 2688x2880 sRGB swapchains, 561 and 588 frames submitted without error. Result-driven fallback proven: with no headset reachable the instance is created, xrGetSystem fails, and the flat path is untouched. |
+| `xr_input` | 🟥 not reviewed | `—` | Milestone 2, not started. vrInputSnapshot_t, VR_GetInput and VR_Haptic are stubs; no action sets, bindings, snap turn or aim decoupling exist. |
+| `camera_tracking` | 🟨 partial | `LIVE` | Headset yaw composed once per frame onto the body after first-person eye placement, verified in the log and in pixels at 30.0 degrees, correlation 0.96. World scale is still open as H-005. |
+| `render_hazards` | 🟨 partial | `SOURCE` | Census drafted from source; a RenderDoc capture of the flat build is still owed. Sky portal, cutscene camera and inventory views unexercised. |
+| `ui_hud` | 🟩 full | `HEADSET` | HUD layer v2 accepted in a headset 2026-09-04: body-locked quad in LOCAL space, coverage alpha via glBlendFuncSeparate, premultiplied submission, kill switch. Layer budget peak 2 of 16. The HUD is compiled into the client executable, which is why a cgame-only mod cannot own it. |
+| `hands_interaction` | 🟥 not reviewed | `—` | Milestone 3, open. |
+| `input_locomotion` | 🟥 not reviewed | `—` | VR input must fit the existing usercmd with no protocol change. |
+| `performance` | 🟥 not reviewed | `—` | VR_Init sets com_maxfps 0 once a session exists so the runtime paces the frame; the substitute keeps a pinned cap. |
+| `audio` | 🟨 partial | `LIVE` | OpenAL dlopen'd through the System32 router; device opens and the default device is the Virtual Desktop audio endpoint. No spatialisation work yet. |
+| `packaging_deploy` | 🟥 not reviewed | `—` | packaging/README.md only. |
+| `re_discovery` | 🟨 partial | `SOURCE` | RE is not the route: retail binaries are a behaviour reference, and the shipping binary is the fork build. |
+| `source_integration` | 🟩 full | `SOURCE` | Every layer is source-owned through the OpenMoHAA fork. Frame loop, stereo loop, camera construction, projection, culling, renderer and UI all buildable and shippable under GPL-2.0. Fork maintenance contract written; the fork remote is not yet created on GitHub. |
+
 #### PreyVR
 
 | Area | Review | Evidence | Note |
@@ -400,6 +426,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | — no entry — | — | — |
 | `re_discovery` | 🟨 partial | `STATIC` | — |
 | `source_integration` | — no entry — | — | — |
+
+#### SoF-VR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | Stereo ladder is authored with 10 rungs; every rung OPEN. R1 native re-entry is declared, not proven. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | 32-bit runtime shortlist checked; no session yet. Runtime choice OPEN until M5. |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟩 full | `LIVE` | M2 confirmed refdef_t live: prefix shift +1, unique match, fov_y residual 0.0000 against CalcFov, fov_x exactly the install's fov cvar. Viewport, FOV, position and angles each carry a receipt. Two static inferences corrected (F-009): time is at +0x44 not +0x50, and +0x00 is written every frame. |
+| `render_hazards` | 🟨 partial | `LIVE` | M1 slot census: 52 wrapped slots, ABI-transparent, no crash or frame-rate change. Slot 16 is world-render only, absent through menu and loading, 1:1 with the frame bracket in gameplay. |
+| `ui_hud` | 🟥 not reviewed | `—` | 2D slots 17-43 are visible to the proxy; HUD quad planned from the backbuffer between RenderFrame and EndFrame. |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | refimport_t carries Cmd_ExecuteText and Cvar_Set, so the proxy can drive binds without RE of SoF.exe; the index map is OPEN. |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟨 partial | `LIVE` | Ships as ref_vr.dll beside ref_gl.dll, selected by +set vid_ref vr. No byte of SoF.exe or ref_gl.dll is patched for T1. |
+| `re_discovery` | 🟩 full | `LIVE` | Live export table reproduces REF_API_DRIFT section 2 exactly across all 54 slots. Slots 26 and 32 return uninitialised debug fill, confirming from the client side that GetRefAPI never assigns them. |
+| `source_integration` | 🟨 partial | `SOURCE` | SoF SDK (June 2000, 1.0x) and id's Quake 2 tree are oracles only. The shipped DLLs are 1.07f, so an SDK rebuild may not match retail behaviour or save format (FAIL-ACCESS-001 risk). Source lane is reserved for T3/T4. |
 
 #### SOMAVR
 
