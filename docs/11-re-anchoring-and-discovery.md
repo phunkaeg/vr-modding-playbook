@@ -538,7 +538,10 @@ Use this ladder:
 2. **Live writer.** Put a hardware write watchpoint on one known live record.
    Record the instruction and full register context. This crosses virtual-
    dispatch holes that can make a static call graph look complete when it is
-   not.
+   not. The mechanics - and the three ways a data watchpoint fails without
+   reporting anything - are [RE-009](pattern-catalog.md#re-009); a write
+   breakpoint traps *after* the store, so the address you capture is the
+   instruction following the writer.
 3. **Writer census.** Intercept the writer briefly; collect record bases only.
    Sort and group them by the proven stride. A contiguous run is a candidate
    array. Far Cry 2 ignored runs shorter than four because its shared matrix

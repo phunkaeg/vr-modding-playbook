@@ -564,6 +564,62 @@ struct layout by **residual against a known formula** rather than by eye - SoF's
 settled by a `fov_y` residual of 0.0000 against `CalcFov`, with `fov_x` exactly the install's `fov`
 cvar, which also fixed the prefix shift at +1. `[LIVE]` SoF-VR, `1973e88`.
 
+## RE-009 — Data write watchpoints: name the producer, not the consumer {#re-009}
+
+**Problem:** you need to know *what writes* an address. The address is computed at runtime, so a
+static search does not converge, and the writer is not a function entry, so there is nothing to hook
+in the ordinary way. [RE-005](#re-005) covers the *execution* side of the same hardware; this is the
+data side, and its failure modes are different and quieter.
+
+**Use when:** [chapter 11's writer census](11-re-anchoring-and-discovery.md#writer-census) step 2 -
+"put a hardware write watchpoint on one known live record" - or any time a value you can read is
+being recomputed underneath you and you need the code that owns it. Especially when the only site
+you hold turns out to be **downstream of consumption**, where writes land and do nothing.
+
+**Recipe:** four `SPEC` facts do most of the work, and three of them fail silently if you get them
+wrong.
+
+1. **`LEN` is not in numeric order.** `00` is one byte, `01` is two, **`11` is four and `10` is
+   eight**. Transposing the last two watches the wrong width and reports confidently. (Intel SDM
+   Vol. 3B, DR7 layout.) `[SPEC]`
+2. **A data breakpoint must be aligned to its own length or it does not fire.** A 4-byte watch on an
+   unaligned address is not an error anywhere - it simply never triggers, and the run reports "nothing
+   writes this". Refuse an unaligned request rather than arming it. `[SPEC]`
+3. **Inside a vectored/structured handler, your `DR6` and `DR7` edits are dropped unless the resumed
+   context asks for debug registers.** `CONTEXT_DEBUG_REGISTERS` is not part of the context a handler
+   is normally handed, and `ContextFlags` is what selects which parts are restored. This one is
+   nastier than it looks: `EFLAGS.RF` **is** in the default context, so
+   [FAIL-RE-022](failure-atlas.md)'s fix appears to work while the paired `DR6` clear
+   silently does not - and `DR6` is sticky, so every later trap is attributed to a slot that did not
+   fire. `[SPEC]` for the `ContextFlags` rule; `[INFERENCE]` for the consequence, which is reasoned
+   from it rather than observed.
+4. **A write breakpoint is a trap, not a fault.** It reports *after* the store retires, so the
+   captured instruction pointer is the instruction **following** the writer. Publish which convention
+   you are reporting, so the offset is not applied twice or not at all.
+
+Then: bound the capture, and **account for thread coverage**. Debug registers are per-thread, so a
+producer on a thread you never armed is invisible. Report armed and missed thread counts alongside the
+result; without them an empty result cannot be read as evidence of absence. Re-arm after the target
+spawns its workers.
+
+**Proof:** distinct writer addresses, reduced to module-relative offsets and folded by frequency - one
+writer means a producer, several usually means a shared helper, in which case the return addresses
+name the real owner. The armed/missed thread counts and a foreign-trap counter travel with the result:
+foreign traps mean something else owns the registers, which in practice means a debugger is attached
+and the numbers are not yours.
+
+**Trip hazard:** every silent failure above returns a plausible value instead of an error, which is
+the [FAIL-RE-010](failure-atlas.md) family - a measurement that cannot show the thing it
+claims to test. Extract the bit encoding somewhere it can be unit-tested; it is small, total, and has
+no runtime dependency, so there is no reason for it to live only in code that has to be running to be
+checked. Also inherit [RE-005](#re-005)'s etiquette in full - four slots, shared, saved and restored.
+
+**Status:** the mechanics here are `SPEC`, and the technique has a `LIVE` precedent in Far Cry 2's
+bone-writer census. The PreyVR instrument that prompted this entry (hunting the hand-IK producer) is
+**built and unit-tested but has not yet been fired at a running target**, so nothing here is graded
+`LIVE` on that project.
+
+
 ## SRC-001 — Prepared frame, per-view render {#src-001}
 
 **Problem:** source-owned stereo calls a legacy frame function twice and
