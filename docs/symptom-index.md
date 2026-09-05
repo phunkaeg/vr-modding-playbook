@@ -121,6 +121,8 @@ that the observation and the cause are usually in different chapters.
 | About to build physical reload, and unsure where to start | [HAND-011](pattern-catalog.md#hand-011) — census the arsenal first; the schema is in ch02 |
 | A reload gesture works on one weapon and not the rest | [HAND-011](pattern-catalog.md#hand-011) — the treatment must follow the implementation column |
 | An animation event fires at the wrong moment for a reload | [02](02-viewmodels-and-hands.md#weapon-census) — an `eject` in a `shoot` clip is a casing |
+| Automation stops for a whole session after one early error | [TEST-017](pattern-catalog.md#test-017) — the catch disabled it; a caught exception is not a handled one |
+| A harness works for you and is dead for someone else | [07](07-engine-integration-safety.md#fault-permanence) — check whether it depends on a diagnostic flag |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
@@ -268,3 +270,9 @@ that the observation and the cause are usually in different chapters.
 | I don't know whether to reconstruct or to hook the camera | [16](16-teardown-virtua-cop-2-vr.md#when-to-reach-for-this-and-when-not-to) — four preconditions with a fast test each, and the frustum-culling ceiling that decides it |
 | My reconstructed scene is empty where I turn my head | [16](16-teardown-virtua-cop-2-vr.md#the-hard-ceiling-you-get-what-was-submitted-and-nothing-else) — not a bug. Everything outside the original frustum was culled and never submitted |
 | I want to see a whole project end to end | [13](13-teardown-bioshock-vr.md) |
+
+## Console command startup faults
+
+| What you're seeing | Go to |
+|---|---|
+| Verified executor calls address zero during loading, same command succeeds later | [07: subsystem readiness](07-engine-integration-safety.md#subsystem-readiness) — capture the return site and observe the downstream callback/table initialization; executor availability is not subsystem readiness (SS2VR v3.72) |

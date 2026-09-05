@@ -2136,7 +2136,134 @@ external:
       packaging_deploy:  {review: not_reviewed}
       re_discovery:      {review: not_reviewed}
       source_integration: {review: not_reviewed}
+  - id: "HIGGS 1.10.10-43930-1-10-10-1768263289"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/SkyrimVR mods/HIGGS 1.10.10-43930-1-10-10-1768263289"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and to the physical-reload work."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+  - id: "VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/SkyrimVR mods/VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. VRIK Player Avatar. Full-body IK avatar and, more importantly here, the mod that established the BODY-ANCHORED HOLSTER paradigm most VR mods now copy - which ch02's holster guidance and RE4VR's Spine_1 anchoring both descend from. Ships Scripts/, meshes/, an .esp."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+  - id: "PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/SkyrimVR mods/PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Physics-driven body and hand collision on top of HIGGS. Carries a Source/ tree."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+  - id: "SkyrimVR FBT 185070 1.0.3 2026-07-22T11-37Z HZCMOyLlG"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/SkyrimVR mods/SkyrimVR FBT 185070 1.0.3 2026-07-22T11-37Z HZCMOyLlG"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. Full-body tracking support (SKSE plugin only, no source in the tree)."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+  - id: "FUS"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/SkyrimVR mods/FUS"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. A Wabbajack modlist/preset rather than a mod: README, images, a bundled openvr_api.dll and a Mantella folder. Kept as a source only because it names a working VR mod stack."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
 not_a_source:
+  - id: "Fallout4VR mods"
+    reason: "empty directory - no files present"
   - id: "Dishonored-VR-metalink-test"
     reason: "one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree"
   - id: "DishonoredVR-alpha"

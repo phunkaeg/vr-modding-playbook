@@ -597,6 +597,50 @@ diagnostics alive in the meantime.
   isolate per-eye resource lifetime from swapchain teardown — not to swallow the exception. A revert
   knob (chapter above) is what makes this a one-line containment instead of a lost build.
 
+## Classify a fault before deciding how long it lasts {#fault-permanence}
+
+A mod's fault policy is usually one policy: something went wrong, so stop. That is wrong in both
+directions at once - it retires the mod on a fault that would have cleared by itself, and it keeps
+retrying one that never will.
+
+**There are at least three classes, and they want different answers.** `[AUTHOR]` SS2VR's harness,
+v3.71:
+
+| Class | Example | Right response |
+|---|---|---|
+| **transient** | a subsystem is not initialised *yet* | retry, **rate-limited** - theirs is at most once per second |
+| **structural** | a signature did not match; the executor faulted | **latch off permanently for this process** - it will not become true later |
+| **absent** | the first packet has not arrived | return WAIT and submit nothing, per [FAIL-XR-023](failure-atlas.md) - neither retry storm nor latch |
+
+A rate limit is what makes the transient case safe to retry at all: without one, "not ready yet"
+becomes a hot loop that competes with the very initialisation it is waiting for.
+
+### The catch that cost the session
+
+The sharper half of the same work. `[AUTHOR]` SS2VR sent a `set` command before the Dark Engine's
+configuration table had initialised, which called through a **null function pointer**. The exception
+*was* caught - and the catch **disabled automation for the whole session**. The crash was prevented
+and the session was still lost.
+
+**A caught exception is not a handled one.** Ask what the recovery policy costs, because that cost is
+paid every time the guard fires, and a guard that quietly retires a subsystem is indistinguishable
+from the subsystem never having worked. The fix was not a better catch: **wait for verified
+initialisation, then execute once** - and keep a read-only subset alive during the unsafe window, so
+the harness can still answer `@status` while it is not yet safe to write. *Available-for-reading
+during startup, refusing to write* is a better shape than *entirely absent until ready*.
+
+### A control plane must not depend on a diagnostic being switched on
+
+The same release fixed agent polling that **only worked when frametime logging and the flight
+recorder were enabled**. A control plane whose liveness rides on a diagnostic flag is a control plane
+that disappears exactly when someone turns the noise off - and the failure looks like the bridge
+being broken, not like a coupling.
+
+Two flags that can each be on or off make **four** configurations, and the fleet keeps finding that
+only one or two get tested. Theirs were verified across all four. See
+[three configurations](08-project-process.md#three-configurations) for the same shape at the
+project level.
+
 ## "Installed at a verified-correct address and never fires" = you hooked a wrapper
 
 A specific, repeating failure with a specific cause. Your hook installs cleanly, at an address you have
@@ -882,3 +926,28 @@ Prove your code is live with a **load banner** from the script/asset itself, not
 (*SS2VR/FlatAim: multiple entries on "assumed loaded but wasn't" — mod table order, KPF
 presence, save-embedded order.*) The script's own "I loaded, version X" print is the only
 proof.
+
+## Execution readiness includes the called subsystem {#subsystem-readiness}
+
+**Symptom:** a verified native console executor calls address zero during startup, yet the same
+command works later. The engine object/vtable, renderer or XR session can exist before the subsystem
+used by the command. Neither a valid executor address nor a native status reply proves that dependency.
+
+**Cheap discriminant:** capture the null call's return address, follow it to the indirect callback
+load, and observe that callback/storage read-only during a clean startup. Compare the identical command
+before and after initialization. Gate on the confirmed dependency, behind instruction signatures and
+guarded reads. Defer without consuming the command's sequence; distinguish pending from completed
+acknowledgments. Do not replace the native call contract or add a fixed startup sleep without evidence.
+
+**SS2VR v3.72, 2026-09-05 (phase 5.6.1):** `ReadConfigFile` was valid while Dark's config hash table
+was still zero. Early `set` reached hash lookup `0x8E0890`, loaded `[table+0x18]`, and called null;
+return site `0x8E08BA`, table RVA `0x127A150`. It reproduced with XR disabled. A read-only readiness
+gate fixed the reproducer in XR-off and xr-sim-on startups, with exact config-value readback and once-only
+dispatch. This does not establish readiness for unrelated commands such as save loading.
+Evidence: `D:/Dev Debug/ss2vr-work/docs/AGENT_EXECUTOR_RE.md` and `docs/AGENT_HARNESS.md`.
+
+Instrumentation caveat: Frida's exception observer localized the call, but that instrumented early run
+exited before the application's normal SEH completion. Validate containment/fixes again without observer
+detours. The installed Frida MCP's `execute_in_session` unloads scripts after each short invocation;
+use an explicitly retained SDK script for asynchronous observation, and isolated Python mode for helpers.
+

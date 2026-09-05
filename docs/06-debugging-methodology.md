@@ -1076,6 +1076,21 @@ Two things follow, and the second is the reusable one:
 Identity needs a signal only that state emits: a window class, a title, a pixel signature, a log line
 the state writes on entry. Presenting frames is emitted by all of them.
 
+**And whether the target needs window focus is a per-target question, not a rule.** The fleet now has
+three answers and they disagree, which is the finding:
+
+- **FarCry2-VR:** the splash screen reads window messages and **needs focus** - three `PostMessage`
+  keys were swallowed until `SetForegroundWindow`, after which the identical call worked. Its menus
+  read DirectInput and ignore `PostMessage` entirely.
+- **Swat4-VR:** a focus precondition, missed three separate times (`F-0028`), voided everything
+  measured in the window where an ad-hoc command sequence skipped the launcher's focus step.
+- **SS2VR:** `[AUTHOR]` keyboard focus is **not** required while the game keeps producing frames -
+  the main menu works without it.
+
+So "does this need focus?" belongs in the project's own notes with a receipt, and a harness ported
+between projects must re-answer it rather than inherit it. It is also worth asking **per screen**
+rather than per game: FarCry2's answer differs between its splash and its menus.
+
 ## A correct percept built from two cancelling errors - do not tidy it up {#correct-by-cancellation}
 
 Swat4-VR's eye-separation and head-translation functions use **opposite right vectors**, `(+sin, -cos)`

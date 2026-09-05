@@ -2196,6 +2196,36 @@ command was `quit`, which is why the game "mysteriously exited under xr-sim" - a
 names the wrong subsystem entirely. Refuse any command older than the bridge's own start.
 `[LIVE]` ss2vr-work, `04518f0`.
 
+## TEST-017 — Give a harness a fault taxonomy, not a kill switch {#test-017}
+
+**Problem:** a control plane, bridge or injected harness treats every fault the same way, so it
+either retires itself on a condition that would have cleared, or retries one that never will.
+
+**Use when:** any long-lived in-process harness - agent bridge, control plane, automation hook.
+
+**Recipe:** classify first, then choose permanence.
+
+- **transient** (a subsystem not initialised yet): retry, and **rate-limit it** - without a limit,
+  "not ready" is a hot loop competing with the initialisation it waits on.
+- **structural** (signature mismatch, executor fault, wrong build): **latch off for this process.**
+  It will not become true later, and retrying hides it.
+- **absent** (no packet yet): return WAIT and do nothing - neither retry nor latch
+  ([FAIL-XR-023](failure-atlas.md)).
+
+Then keep a **read-only subset alive during the unsafe window**. Answering status while refusing to
+write is a better shape than being absent until ready, and it is what lets a caller tell "not yet"
+apart from "gone".
+
+**Proof:** force each class and confirm the response differs - a transient fault recovers on its own,
+a structural one stays off and says why, and the read-only path answers throughout.
+
+**Trip hazard:** **a caught exception is not a handled one.** SS2VR caught a null-pointer call from a
+`set` issued before the engine's config table existed - and the catch disabled automation for the
+entire session. The crash was prevented and the session was still lost. Ask what the recovery policy
+*costs*, because a guard that quietly retires a subsystem is indistinguishable from that subsystem
+never having worked. And do not let the control plane depend on a diagnostic being enabled: theirs
+polled only while frametime logging and the flight recorder were on. `[AUTHOR]` SS2VR v3.71/v3.72.
+
 ## PERF-001 — Frame budget ledger {#perf-001}
 
 **Problem:** average FPS looks correct while the compositor reuses stale frames.
