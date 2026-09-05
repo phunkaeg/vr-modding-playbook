@@ -1095,6 +1095,100 @@ alternative to a dedicated magazine holster - the same gesture, and the arsenal 
 It also detects seated play from **HMD height** (`< 110` units) and extends grab range from 100 to
 150 units, which is a better answer than asking the player to declare a mode.
 
+## What a mature physical grab actually contains {#grab-depth}
+
+HIGGS is the reference implementation of physical grabbing in a shipped VR title, and its 593-line
+configuration is the most complete statement of the problem the fleet has found. Its Papyrus API is
+the other half: the vocabulary it exposes is as instructive as the tuning. `[SOURCE]`
+
+### The hand needs a frame, not a position
+
+The first three settings are `PalmVector`, `PointingVector` and `PalmPosition`. **Grab logic is
+undefined without a palm direction** - "is the object in front of the hand", "is the palm facing it",
+"where does a held object sit" are all questions about a frame, and a controller pose alone does not
+answer them. Define it once, per controller model, and everything downstream gets simpler.
+
+### Two cast tiers and a cone, then speed picks the mode
+
+- **Near cast** (`NearCastRadius` / `NearCastDistance`) for a direct grab, **far cast**
+  (`FarCastRadius` / `FarCastDistance`) for a pull, plus `WidePullGrabRadius` for the forgiving case.
+- **`CastDirectionRequiredHalfAngle`** gates selection by a cone, not by distance alone. Heisenberg
+  reaches the same place with a required dot product.
+- **Hand *speed* selects the interaction**: `lootSpeedThreshold` and `lootToGrabSpeedThreshold`
+  separate a quick swipe (loot it) from a slow approach (grab it), with `lootToGrabLeewayTime`
+  covering the boundary. Speed is an input channel, and almost nothing in the fleet uses it.
+
+### Constraint stiffness is contextual, not one number
+
+[HAND-012](pattern-catalog.md#hand-012) says ramp the grip. HIGGS goes further: the tau it uses
+depends on **what is being held and what is happening to it**.
+
+| Setting | When it applies |
+|---|---|
+| `grabConstraintAngularTauBodyStart` | the first moments of a grab |
+| `grabConstraintAngularTauBody` | steady state |
+| `grabConstraintCollidingAngularTau` | **while the held object is in contact with the world** |
+| `grabConstraintAngularTauActor` | the held thing is an actor, not an object |
+
+The colliding case is the one worth stealing outright: **soften the constraint while the object is
+colliding**, and a held object stops fighting the world instead of tunnelling through it. There are
+matching linear settings, plus `grabbedObjectMinInertia` and `grabbedObjectMaxInertiaRatio` to keep a
+pathological inertia tensor from destabilising the solver, and explicit recovery velocities for how
+fast a displaced object returns to where the hand wants it.
+
+### Grabbing from a pile must not explode the pile
+
+`GrabFreezeNearbyVelocityTime`, `NearbyGrabBodyRadius`, `NearbyGrabMaxLinearVelocity`,
+`NearbyGrabMaxAngularVelocity` and matching damping: **when a grab starts, nearby dynamic bodies are
+briefly damped and speed-clamped.** Without it, reaching into clutter launches the clutter, and the
+player is holding what they wanted in a room that has just exploded.
+
+### Mass propagates back to the player
+
+`slowMovementWhenObjectIsHeld` with mass proportion, exponent, maximum reduction and a fade-out;
+`jumpHeightMassProportion` and its siblings; haptic strength with a `GrabHapticMassExponent`.
+**Holding something heavy slows you down and lowers your jump.** That is embodiment as a rule rather
+than as animation, and nothing in the fleet currently does it.
+
+Grabbing also makes noise the AI can hear (`UseLoudSoundGrab` / `Drop` / `Pull`), which is the same
+idea pointed at stealth.
+
+### Physical grab needed the engine's physics loop fixed first
+
+`EnableHavokFix`, `minPhysicsFrameRate`, `maxNumPhysicsStepsPerUpdate`,
+`MaxNumEntitiesPerSimulationIslandToCheck`, `EnableShadowUpdateFix`. **A mature physical-interaction
+layer is downstream of physics stepping being sane**, and that is a prerequisite to check before
+promising the feature, not a polish item afterwards.
+
+### An interaction framework needs a public off switch
+
+Its API exposes `DisableHand` / `EnableHand` / `IsDisabled` and, separately,
+`DisableWeaponCollision` / `EnableWeaponCollision`. **Any system that owns the hands must let another
+system take them**, per hand, and must expose whether it currently has them. Without that, two mods
+fight and neither can detect it. `useVrikWeaponTransform` is the same courtesy in the other
+direction: explicit interop with the body mod rather than a race.
+
+### The event vocabulary is the design
+
+HIGGS's Papyrus events are worth copying verbatim as a starting taxonomy:
+
+`OnObjectPulled` · `OnObjectGrabbed` · `OnObjectDropped` · `OnObjectStashed` · `OnObjectConsumed` ·
+`OnStartTwoHanding` · `OnStopTwoHanding`
+
+**Pulled is not Grabbed** (summoned to the hand versus taken by it) and **Stashed is not Dropped**
+(put away versus released). Two-handing is a first-class *state* with enter and exit events, not a
+per-frame query. And `GetGrabbedNodeName` answers **which node of the object is held** - grabbing a
+rifle by its barrel is not grabbing it by its grip, and a physical reload needs to know which.
+
+### Body zones: anchored to the HMD, or to the skeleton?
+
+HIGGS defines its shoulder and **mouth** zones as offsets from the **HMD**
+(`RightShoulderHmdOffset`, `MouthHmdOffset`, each with a radius); RE4VR anchors its magazine holster
+to `Spine_1` on the **skeleton**. Both ship, and the tradeoff is real: an HMD-anchored zone follows
+the head and is always reachable in the same way, a skeleton-anchored zone stays put when the player
+looks around and is more honest about where the body is. **Choose deliberately and write down which**,
+because the failure looks identical either way - a zone that is hard to hit.
+
 ## The weapon census: fill this before you build a reload {#weapon-census}
 
 [Physical reload](#physical-reload) is a mechanism, and a mechanism built against one weapon will be

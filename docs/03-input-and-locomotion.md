@@ -4,6 +4,35 @@ Getting controller input into a game that only understands mouse + keyboard. The
 of techniques from crude to clean; know where each rung lands you and that **exactly one rung
 drives any given control**.
 
+
+## A stroke grammar multiplies one button into a menu you never open {#stroke-grammar}
+
+VR controllers run out of buttons long before a mod runs out of actions, and the usual answers are a
+radial menu (a modal interruption) or a chord (unlearnable). VRIK's answer is neither. `[SOURCE]`
+
+**One gesture button, plus a stick or trackpad stroke, gives thirteen actions per hand:**
+
+- the press alone;
+- press **+ Up / Down / Left / Right / Forward / Back** - six single strokes;
+- press **+ Up,Down / Down,Up / Left,Right / Right,Left / Forward,Back / Back,Forward** - six
+  out-and-return strokes.
+
+Twenty-six actions across two hands, with **no menu, no dwell and no visual**, because the strokes
+are cardinal and the hand already knows where the stick is. The gesture button itself is rebindable
+across nine physical inputs (thumbstick press, trigger, grip, X/A, Y/B, trackpad variants), so the
+grammar survives a controller that lacks any one of them.
+
+Three details that make it work:
+
+- **Blocking the game's own binding.** A gesture button also means something to the game, so VRIK
+  optionally suppresses that input for half a second when a gesture starts - and, per
+  [HAND-013](pattern-catalog.md#hand-013), replays it if no gesture matched.
+- **Degrading by controller capability.** Hands animate from capacitive touch sensors where they
+  exist; where they do not (Oculus controllers have no grip touch), a compatibility mode synthesises
+  the fist from a top button plus trigger. **The fidelity degrades, the feature does not disappear.**
+- **Palm orientation as a trigger.** VRIK shows the compass on *"left palm points upward"* - checking
+  your wrist. A diegetic, zero-button UI gesture, and the same idea works for any glanceable readout.
+
 ## The input ladder (crude → clean)
 
 1. **Synthetic key presses.** Translate stick/buttons into `SendInput` keyboard events. Works

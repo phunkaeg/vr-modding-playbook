@@ -34,7 +34,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **FUS** | REGISTERED NOT REVIEWED 2026-09-05. A Wabbajack modlist/preset rather than a mod: README, images, a bundled openvr_api.dll and a Mantella folder. Kept as a source only because it names a working VR mod stack. |
 | `stereo` | **Fallout-New-Vegas-FNVR** | NOT HARVESTABLE AS SHIPPED: 'Fallout New Virtual Reality' is a 12 KB FNVR.esp plus a 3 KB .7z - a plugin, not a native VR conversion, and no source. What IS readable in this directory is xNVSE, the New Vegas Script Extender, which is general modding tooling rather than a VR implementation. Extract the archive and re-assess only if the script-extender route to VR becomes relevant to a project. |
 | `stereo` | **GRAND-alien-isolation** | BINARY ONLY: XINPUT1_3.dll proxy. Built on Nibre's MotherVR. No source to read. |
-| `stereo` | **HIGGS 1.10.10-43930-1-10-10-1768263289** | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and the physical-reload work. Heisenberg's own config credits it as the origin of the DYNAMIC motor-driven held body (HAND-012), so higgs_vr.ini and its Source/ tree are the highest-value unread material in this folder. |
+| `stereo` | **HIGGS 1.10.10-43930-1-10-10-1768263289** | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Read 2026-09-05: higgs_vr.ini (593 settings) and the Papyrus API. The C++ core is binary. |
 | `stereo` | **IRON-NEST-VR** | BINARY ONLY: managed code driving OpenXR and D3D11 directly via Silk.NET rather than through Unity XR. No source. |
 | `stereo` | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Physics-driven body and hand collision on top of HIGGS. Carries a Source/ tree. |
 | `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
@@ -203,8 +203,8 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:f739d4177dd41381` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:35ab1dc2354b0092` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:dc89034fd00b40f2` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:4bed00793619f33b` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:03b2dbee4c8387e4` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:56d747d7621d4a87` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:410d40f2deeee1d5` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f31b82ea3ce79d04` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:762a48d6bc781596` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:3ce075f4d3c87a95` | `—` | 🟥 source changed | internal | internal-unreleased |
@@ -347,7 +347,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-05 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
 | **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 160 | 18 | 2026-09-04 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 69 | 30 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 8NR / 0— |
-| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3580 | 300 | 2026-09-05 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
+| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3601 | 305 | 2026-09-05 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 
 ## Per-source area detail
 
@@ -1169,7 +1169,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and the physical-reload work. Heisenberg's own config credits it as the origin of the DYNAMIC motor-driven held body (HAND-012), so higgs_vr.ini and its Source/ tree are the highest-value unread material in this folder. |
+| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Read 2026-09-05: higgs_vr.ini (593 settings) and the Papyrus API. The C++ core is binary. |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
@@ -2255,7 +2255,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
 | `render_hazards` | 🟥 not reviewed | `—` | — |
 | `ui_hud` | 🟥 not reviewed | `—` | — |
-| `hands_interaction` | 🟨 partial | `SOURCE` | harvested 2026-09-05 into ch02 #holsters-and-grab and HAND-013, from SKSE/Plugins/vrikslots.ini. The canonical holster data model: FOURTEEN anatomical slots (hips, thighs, calves, upper arms, forearms, shoulders, stomach, chest), each carrying a pose (posX/Y/Z plus rotA..rotI, a raw 3x3 matrix written by the in-game calibration UI), a hand assignment that is CROSS-BODY by default (left hip is right-hand-only), and a six-way accept-list (small/medium/large/ranged/shield/torch). Also taken: activation/release hysteresis via slotChangeDistanceMultiplier 1.75, hover spheres gated to sheathed-but-not-combat, per-slot hover haptics with an enable-when-EMPTY third state, and repeatBlockedInputs - replaying a grip the mod consumed but did not act on. Plugin is binary; vrikgestures.ini (1124 lines) is unread. |
+| `hands_interaction` | 🟨 partial | `SOURCE` | harvested 2026-09-05 into ch02 #holsters-and-grab and HAND-013, from SKSE/Plugins/vrikslots.ini. The canonical holster data model: FOURTEEN anatomical slots (hips, thighs, calves, upper arms, forearms, shoulders, stomach, chest), each carrying a pose (posX/Y/Z plus rotA..rotI, a raw 3x3 matrix written by the in-game calibration UI), a hand assignment that is CROSS-BODY by default (left hip is right-hand-only), and a six-way accept-list (small/medium/large/ranged/shield/torch). Also taken: activation/release hysteresis via slotChangeDistanceMultiplier 1.75, hover spheres gated to sheathed-but-not-combat, per-slot hover haptics with an enable-when-EMPTY third state, and repeatBlockedInputs - replaying a grip the mod consumed but did not act on. Plugin is binary. vrikgestures.ini read 2026-09-05 -> ch03 #stroke-grammar and INPUT-009: one rebindable gesture button plus a stick stroke yields 13 actions per hand (press, six cardinal directions, six out-and-return pairs), 26 across two hands, with no menu and no dwell; the button is selectable from nine physical inputs; the game binding is suppressed during a gesture and replayed if none matched; hand animation degrades by controller capability rather than disappearing; and palm orientation is used as a zero-button UI trigger. |
 | `input_locomotion` | 🟥 not reviewed | `—` | — |
 | `performance` | 🟥 not reviewed | `—` | — |
 | `audio` | 🟥 not reviewed | `—` | — |

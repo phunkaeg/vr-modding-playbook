@@ -1301,6 +1301,30 @@ experience from head-yaw-and-pitch, and a single "decoupled aim" boolean cannot 
 list is not a substitute for a sane default - pick one, and let the setting exist for the players it does
 not suit.
 
+## INPUT-009 — Multiply a button with a stroke grammar instead of a menu {#input-009}
+
+**Problem:** the mod needs more actions than the controller has buttons, and the alternatives are a
+radial menu that interrupts play or a chord nobody remembers.
+
+**Use when:** any VR mod that has run out of inputs - which is most of them by the second milestone.
+
+**Recipe:** take **one** rebindable gesture button and read a **stroke** alongside it: the press
+alone, six cardinal directions, and six out-and-return pairs gives thirteen actions per hand and
+twenty-six across two, with no menu, no dwell and no visual. Cardinal strokes are learnable because
+the hand already knows where the stick is.
+
+Make the gesture button itself selectable from every plausible physical input, so the grammar
+survives a controller missing any one of them.
+
+**Proof:** a wearer performs each stroke without looking, and the game's own binding for that button
+still works when no gesture matched.
+
+**Trip hazard:** the gesture button usually means something to the game as well. **Suppress that
+input while a gesture is in progress, and replay it if no gesture matched** - a press that silently
+does nothing is the worst outcome of the three. Degrade by controller capability rather than
+disabling: where capacitive touch is absent, synthesise the hand pose from a button and trigger
+instead of dropping hand animation. `[SOURCE]` VRIK.
+
 ## CFG-003 — Write the config before the process starts {#cfg-003}
 
 **Problem:** a setting VR needs cannot be made to stick, because the game rewrites its config at exit with
@@ -1583,6 +1607,8 @@ handling rather than a shared number. See
 [02 · the weapon's own FoV](02-viewmodels-and-hands.md),
 [13 · BioShock's foreground projection](13-teardown-bioshock-vr.md) and
 [17 · FC2VR's DrawNearFov](17-teardown-fc2vr-native-stereo.md).
+
+**Confirmed on a third engine tree 2026-09-05.** Prey (CryEngine) shows the same split: with the world frustum correctly declared and stereo fusing, the weapon model still reads at a visibly different field. Three unrelated trees now - UE2.5 twice, Dunia, CryEngine - so treat the split as the default expectation rather than a per-engine quirk, and check it as soon as stereo fuses.
 
 **Proof:** two shots. Park the hand, change the world FOV, and see whether the viewmodel holds its size —
 if it does, the near pass has its own projection and must not inherit your declaration. Then the depth
@@ -1876,6 +1902,32 @@ on a desk; both stacks ship an in-headset placement mode for exactly this, and t
 stored as raw matrix floats precisely because no one hand-edits it. And **give back input you
 intercepted but did not use**, or a grip that lands near a holster and activates nothing will simply
 be eaten. `[SOURCE]` VRIK; Heisenberg; FRIK.
+
+## HAND-014 — Give the hand a frame, and let speed and distance pick the interaction {#hand-014}
+
+**Problem:** grab logic is written against the controller's position, so "is the palm facing it",
+"is it in front of the hand" and "where does a held thing sit" have no defined answer, and every
+interaction ends up sharing one distance threshold.
+
+**Use when:** before the first grab, pull, press or holster check.
+
+**Recipe:** define the hand's **frame** first - a palm vector, a pointing vector and a palm position
+offset, per controller model. Then separate the interactions along the axes you now have:
+
+- **distance**, in tiers: a near cast for a direct grab, a far cast for a pull, and a wider forgiving
+  radius for the marginal case;
+- **direction**, as a cone - a required half-angle or dot product, so an object behind the hand is
+  never selected;
+- **speed** - a quick swipe and a slow approach are different intents, and a leeway time covers the
+  boundary between them.
+
+**Proof:** each interaction can be triggered deliberately and none of them fires for the others.
+
+**Trip hazard:** grabbing from clutter must **briefly damp and speed-clamp nearby dynamic bodies**, or
+reaching into a pile launches the pile. And check the engine's physics stepping before promising any
+of this - HIGGS ships fixes for Havok step count, minimum physics frame rate and simulation-island
+size, which says a mature grab layer is downstream of a sane physics loop rather than independent of
+it. `[SOURCE]` HIGGS; Heisenberg.
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 

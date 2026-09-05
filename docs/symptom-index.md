@@ -126,6 +126,9 @@ that the observation and the cause are usually in different chapters.
 | Building holsters, and unsure of the data model | [HAND-013](pattern-catalog.md#hand-013) — a pose, a hand, and an accept-list |
 | A held object jitters, lags, or will not collide | [HAND-012](pattern-catalog.md#hand-012) — three routes, and each fails a different test |
 | A grabbed object snaps into the hand or stretches away | [HAND-012](pattern-catalog.md#hand-012) — ramp the grip, clamp the motor |
+| Out of buttons on the controller | [INPUT-009](pattern-catalog.md#input-009) — a stroke grammar gives 13 actions per hand |
+| Grab, pull and press keep triggering each other | [HAND-014](pattern-catalog.md#hand-014) — split by distance tier, cone and hand speed |
+| Reaching into clutter launches the clutter | [HAND-014](pattern-catalog.md#hand-014) — damp the neighbours while a grab starts |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
