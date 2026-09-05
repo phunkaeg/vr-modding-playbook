@@ -5,6 +5,30 @@ of techniques from crude to clean; know where each rung lands you and that **exa
 drives any given control**.
 
 
+## Measure gesture velocity in ROOM space, or walking becomes a gesture {#roomspace-velocity}
+
+A hand-speed threshold read from world-space controller poses fires when the **player** moves, not
+when the **hand** does. Walk forward briskly and every velocity-gated gesture in the mod is armed.
+
+PLANCK names the fix in the setting itself: `yankRequiredHandSpeedRoomspace`. **The velocity that
+means intent is the hand's velocity relative to the play space**, with the player's own locomotion -
+stick movement, teleport, vehicle, animation-driven motion - removed first. `[SOURCE]`
+
+This applies to every speed-gated interaction the fleet is likely to build:
+
+- HIGGS separates a quick swipe that loots from a slow approach that grabs by hand speed;
+- SS2VR's `manualReload` gates on a downward *displacement*, which has the same exposure over a long
+  enough window;
+- any throw, swing, yank, shove or melee-velocity check.
+
+**Displacement thresholds have the same problem as velocity ones**, and are easier to get wrong
+because the window hides it: a 0.45-unit downward pull is unambiguous over 200 ms and meaningless
+over two seconds of walking downhill. Where a gesture is a displacement, either bound its duration or
+measure it in room space too.
+
+The cheap check: perform the gesture standing still, then walk while deliberately holding the hand
+still relative to your body. The second must not fire.
+
 ## A stroke grammar multiplies one button into a menu you never open {#stroke-grammar}
 
 VR controllers run out of buttons long before a mod runs out of actions, and the usual answers are a

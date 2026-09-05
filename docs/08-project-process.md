@@ -623,6 +623,35 @@ Three rules, all cheap:
 Worth noting how this was found: **by review, not by the person who wrote it.** The failure mode was
 invisible from inside the workflow precisely because every signal it produced was green.
 
+## Classify the executable before you inject into it {#loader-preflight}
+
+A loader that attaches to whatever it finds will eventually attach to something it cannot support,
+and the failure surfaces as a crash the user reports as *your* bug. F4SEVR's loader is a compact
+reference for the alternative, and it is all static: **map the target read-only and read it before
+launching anything.** `[SOURCE]`
+
+**Classify the image by its PE sections.** A `UPX0` section means the executable is packed; a Steam
+DRM section means it is wrapped. The classification has four outcomes - normal, Steam, packed,
+unknown - and the packed case is **refused by name**: *"Packed versions of Fallout are not
+supported."* A refusal that names the reason is a support ticket that never gets filed.
+
+**Compare versions three ways, not two.** Most loaders check "is this the version I know" and emit
+one message. F4SEVR distinguishes:
+
+| Case | Message |
+|---|---|
+| runtime **older** than supported | you are out of date, update the game |
+| runtime **newer** than supported | *"You are using a newer version than this version supports... please be patient while we update our code"* |
+| right runtime, **wrong branch** | you have the beta build of the extender; here is the release one |
+
+Each is actionable and each names a different fix. The middle case is the one usually missed, and it
+is the one that happens to every user on the day the game updates - so it is worth writing before
+that day. This is [refuse, don't guess](#hard-fail-preconditions) applied at the loader.
+
+**Read the version from the version resource, not from a hash of the whole file.** A hash changes for
+reasons that do not matter; the version resource is what the vendor increments deliberately. Keep the
+hash for [build identity](#sibling-build-identity) and use the version for compatibility.
+
 ## Test-artifact config files silently outrank your code defaults {#test-artifact-config}
 
 A config file written by a smoke test, or left behind by a previous session, will be read at startup and

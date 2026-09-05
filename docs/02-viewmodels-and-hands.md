@@ -1189,6 +1189,71 @@ the head and is always reachable in the same way, a skeleton-anchored zone stays
 looks around and is more honest about where the body is. **Choose deliberately and write down which**,
 because the failure looks identical either way - a zone that is hard to hit.
 
+## Driving a body with physics: blend, clamp, and give up gracefully {#physics-bodies}
+
+PLANCK drives NPC bodies with active ragdoll so the player can shove, grab, drag and yank them. Its
+758-line configuration is the fleet's best statement of what that costs, and most of it generalises
+to any physics-driven object. `[SOURCE]`
+
+### Blend between animation and physics; never swap
+
+Every transition in and out of physics control has its own blend time - `blendInWhenAddingToWorld`
+and `blendInTime`, `addToWorldSnapTime`, `blendWhenGettingUp` and `getUpBlendInTime`, and separate
+fade in/out for the computed world-from-model transform. **A hard swap between animation-driven and
+physics-driven is visible every time**, and there are more transition points than the obvious one.
+
+And the constraint parameters are **per phase, not per object**: `poweredTau`, `poweredMaxForce` and
+`poweredDaming` while driven, a wholly separate `getUpTau` / `getUpMaxForce` set while standing up.
+
+### Clamp everything, then guard for divergence anyway
+
+`ragdollBoneMaxLinearVelocity` and `ragdollBoneMaxAngularVelocity` cap the solver's output, the same
+discipline HIGGS applies to a held object. Beyond that:
+
+- **`maxAllowedDistBeforeWarp`** with `doWarp`, `warpDisableActorTime` and
+  `disableWarpWhenGettingUp` - when a body drifts further from where it should be than any recovery
+  will fix, **warp it back and disable it briefly** rather than letting the solver keep trying.
+- **`playerActorCollisionPhaseThrough*`** - when the player and a body intersect too deeply to
+  resolve, **phase through with an alpha fade** instead of pushing. A separate, larger threshold
+  applies in combat.
+
+Both are the same idea: **decide in advance what to do when physics cannot win**, because it
+sometimes cannot, and the alternative is a body that vibrates in a wall.
+
+### Physics is a distance-gated feature
+
+`activeRagdollStartDistance` / `activeRagdollEndDistance`, plus `minFramesBetweenActorAdds` to spread
+the cost of activation. Active physics is an LOD like any other, and the enable band has hysteresis
+for the same reason every other threshold in this chapter does.
+
+### Every physical event needs a cooldown
+
+Contact is continuous, so a physical interaction generates events at frame rate unless told not to.
+PLANCK carries cooldowns for hits (three of them, including a fallback), shoves, shove *collisions*,
+bumps and aggression, plus lingering ignore windows: `thrownObjectIgnoreHitTime` and
+`droppedActorIgnoreCollisionTime` stop a thing you just released from immediately hitting you.
+
+### Exclusion lists belong to subsystems, not to the mod
+
+Its API exposes **three separate ignore lists** - `AddIgnoredActor`, `AddAggressionIgnoredActor`, and
+`AddRagdollCollisionIgnoredActor`. An actor can be exempt from *aggression* while still being
+physically collidable, or exempt from ragdoll collision while still reacting. **One global "ignore
+this" would collapse three questions into one**, and the mod would then have no way to express the
+common cases.
+
+### Physical interaction needs a consequence model, not just a simulation
+
+This is the part a rendering-focused mod will not expect. Grabbing an NPC in PLANCK **accumulates
+aggression over time**, with three thresholds (`aggressionRequiredGrabTimeLow` / `High` / `Assault`),
+dialogue at each, a cooldown, a maximum accumulation, and a relationship-rank gate. It **costs
+stamina**, with a higher cost for hostiles and a sound on depletion. Holding a heavy actor **slows
+the player**, scaled by race size and health.
+
+And intent is inferred rather than assumed: **`aggressionRequiredHandWithinHmdConeHalfAngle`** means
+an NPC only takes offence if your hand is within a cone of where you are looking. *Brushing past
+someone while looking elsewhere is not an assault* - which is exactly the false positive a naive
+implementation ships.
+
 ## The weapon census: fill this before you build a reload {#weapon-census}
 
 [Physical reload](#physical-reload) is a mechanism, and a mechanism built against one weapon will be

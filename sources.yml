@@ -2199,7 +2199,7 @@ external:
     api: D3D11
     vehicle: framework-companion
     areas:
-      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Physics-driven body and hand collision on top of HIGGS. Carries a Source/ tree."}
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the single most transferable finding here, and it exposes SS2VR manualReload displacement threshold; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary."}
       xr_lifecycle:      {review: not_reviewed}
       xr_input:          {review: not_reviewed}
       camera_tracking:   {review: not_reviewed}
@@ -2330,7 +2330,7 @@ external:
       camera_tracking:   {review: not_reviewed}
       render_hazards:    {review: not_reviewed}
       ui_hud:            {review: not_reviewed}
-      hands_interaction: {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. F4SEVR 0.6.21, the script extender the other two load under. Carries a src/ tree (392 files) - the only Fallout-side source in this folder - and is the framework rather than an interaction mod."}
+      hands_interaction: {review: not_reviewed, note: "F4SEVR 0.6.21. src/ read selectively 2026-09-05 (150 .h / 144 .cpp; f4se_loader_common) -> ch08 #loader-preflight and PACK-004. The transferable part is the LOADER, not the game layer: IdentifyEXE maps the target read-only and classifies it by PE section (a UPX0 section means packed, a Steam section means wrapped; four outcomes, and the packed case is refused BY NAME), then compares versions three ways - older, NEWER than supported, and right version but wrong build branch - each with its own actionable message. The newer-than-supported case is the one that happens to every user the day the game updates. Version comes from the version resource rather than a file hash. The game-structure layer (BS*/Game*) was not read."}
       input_locomotion:  {review: not_reviewed}
       performance:       {review: not_reviewed}
       audio:             {review: not_reviewed}

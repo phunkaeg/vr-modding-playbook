@@ -1325,6 +1325,26 @@ does nothing is the worst outcome of the three. Degrade by controller capability
 disabling: where capacitive touch is absent, synthesise the hand pose from a button and trigger
 instead of dropping hand animation. `[SOURCE]` VRIK.
 
+## INPUT-010 — Gate gestures on room-space motion, not world-space {#input-010}
+
+**Problem:** a speed or displacement threshold reads the controller's world pose, so the player's own
+locomotion satisfies it and gestures fire while walking.
+
+**Use when:** any interaction gated on how fast or how far a hand moved - throw, swing, yank, shove,
+loot-versus-grab, or a pull-and-slam reload.
+
+**Recipe:** compute hand motion **relative to the play space**, with the player's locomotion removed:
+stick movement, teleport, vehicle motion and animation-driven displacement. PLANCK names the axis in
+the setting itself - `yankRequiredHandSpeedRoomspace`.
+
+**Proof:** perform the gesture standing still and it fires; then walk while holding the hand still
+relative to the body, and it must not.
+
+**Trip hazard:** **displacement thresholds have the same exposure and hide it better.** A 0.45-unit
+downward pull is unambiguous over 200 ms and meaningless over two seconds of walking downhill, so a
+displacement gesture needs either a bounded duration or the same room-space treatment. `[SOURCE]`
+PLANCK; the same axis underlies HIGGS's loot-versus-grab speed split.
+
 ## CFG-003 — Write the config before the process starts {#cfg-003}
 
 **Problem:** a setting VR needs cannot be made to stick, because the game rewrites its config at exit with
@@ -1928,6 +1948,35 @@ reaching into a pile launches the pile. And check the engine's physics stepping 
 of this - HIGGS ships fixes for Havok step count, minimum physics frame rate and simulation-island
 size, which says a mature grab layer is downstream of a sane physics loop rather than independent of
 it. `[SOURCE]` HIGGS; Heisenberg.
+
+## HAND-015 — Blend into physics, clamp it, and decide what happens when it loses {#hand-015}
+
+**Problem:** a body or object handed to physics pops on the transition, explodes when the solver
+cannot converge, or vibrates in geometry forever.
+
+**Use when:** anything driven by a physics constraint rather than by animation - a held object, a
+ragdoll, a dragged actor, a detached part.
+
+**Recipe:** three rules, in order.
+
+- **Blend, never swap**, and find *all* the transitions: entering physics, leaving it, getting up,
+  and recomputing the object's world-from-model transform each have their own blend time. Constraint
+  parameters are **per phase** too - a driven body and a body standing up want different tau and
+  force limits.
+- **Clamp the solver's output** - maximum linear and angular velocity per bone or body, plus inertia
+  bounds - so one bad frame cannot become a launch.
+- **Decide in advance what to do when physics cannot win.** Two answers both worth having: **warp
+  back** when a body drifts further than any recovery will close, disabling it briefly; and **phase
+  through with an alpha fade** when two bodies intersect too deeply to resolve, with a larger
+  threshold in combat than out of it.
+
+**Proof:** force each failure - drive an object into a wall, into another body, and to the far side
+of the level - and confirm each degrades the way you chose rather than the way the solver chooses.
+
+**Trip hazard:** physics is a **distance-gated LOD**, so give the enable band hysteresis and spread
+activation cost across frames. And every physical event needs a **cooldown**, because contact is
+continuous: hits, shoves, bumps and their consequences all fire at frame rate otherwise, and a thing
+you just released needs an ignore window so it cannot immediately hit you. `[SOURCE]` PLANCK; HIGGS.
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
@@ -2598,6 +2647,30 @@ VR runtime while the game is running and confirm the mod disarms rather than han
 **Trip hazard:** it may not reproduce on your machine - it depends on which threads happen to be alive
 at exit - so treat the contract as the authority rather than a clean test. And `(void)lpvReserved;`
 discards the one parameter that distinguishes the two cases; if you see that line, you have this bug.
+
+## PACK-004 — Classify the target executable before injecting {#pack-004}
+
+**Problem:** the loader attaches to whatever it is pointed at, and an unsupported executable becomes
+a crash the user reports as the mod's fault.
+
+**Use when:** any installer, loader or injector that attaches to a game the user supplies.
+
+**Recipe:** map the executable **read-only** and inspect it before launching anything.
+
+- **Classify by PE section.** A `UPX0` section means packed; a Steam DRM section means wrapped. Four
+  outcomes - normal, wrapped, packed, unknown - and **refuse the ones you cannot support by name**.
+- **Compare versions three ways.** Older than supported, *newer* than supported, and right version
+  but wrong build branch are three different user actions and deserve three different messages. The
+  newer-than-supported case is the one that happens to everyone the day the game updates.
+- **Take the version from the version resource**, and keep any file hash for build identity rather
+  than for compatibility - a hash changes for reasons that do not matter.
+
+**Proof:** point the loader at a packed build, an older build and a newer build, and confirm each is
+refused with its own message rather than attaching and failing later.
+
+**Trip hazard:** a refusal is only useful if it names the fix. *"Unsupported executable"* sends the
+user to a forum; *"packed versions are not supported"* and *"you are using a newer version than this
+build supports"* do not. `[SOURCE]` F4SEVR loader.
 
 ## CFG-001 — One owner per setting, or write both together {#cfg-001}
 
