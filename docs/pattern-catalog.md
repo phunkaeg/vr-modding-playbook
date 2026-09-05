@@ -1333,17 +1333,27 @@ locomotion satisfies it and gestures fire while walking.
 **Use when:** any interaction gated on how fast or how far a hand moved - throw, swing, yank, shove,
 loot-versus-grab, or a pull-and-slam reload.
 
-**Recipe:** compute hand motion **relative to the play space**, with the player's locomotion removed:
-stick movement, teleport, vehicle motion and animation-driven displacement. PLANCK names the axis in
-the setting itself - `yankRequiredHandSpeedRoomspace`.
+**Recipe:** prefer, in this order:
+
+1. **A difference between two points that both move with the player** - hand to hand, hand to HMD,
+   hand to a body joint, hand to a point on a held weapon. Locomotion, turning and the play-space
+   origin all cancel for free, and no correction code exists to get wrong.
+2. **Room-space motion** - the hand relative to the play space, with stick movement, teleport,
+   vehicle and animation-driven displacement removed. PLANCK names this axis in the setting itself,
+   `yankRequiredHandSpeedRoomspace`.
+3. **World-space motion**, only when the other end of the measurement genuinely is the world.
+
+SS2VR's `manualReload` is the reference for (1): its whole gesture is `rightHand.z - leftHand.z` and
+the horizontal distance between the two hands, so the player can walk, run and turn through the
+entire gesture without touching it.
 
 **Proof:** perform the gesture standing still and it fires; then walk while holding the hand still
 relative to the body, and it must not.
 
-**Trip hazard:** **displacement thresholds have the same exposure and hide it better.** A 0.45-unit
-downward pull is unambiguous over 200 ms and meaningless over two seconds of walking downhill, so a
-displacement gesture needs either a bounded duration or the same room-space treatment. `[SOURCE]`
-PLANCK; the same axis underlies HIGGS's loot-versus-grab speed split.
+**Trip hazard:** **displacement thresholds have the same exposure and hide it better** - a pull that
+is unambiguous over 200 ms is meaningless over two seconds of walking downhill, so a world-space
+displacement gesture needs either a bounded duration or one of the formulations above. `[SOURCE]`
+PLANCK; SS2VR; the same axis underlies HIGGS's loot-versus-grab speed split.
 
 ## CFG-003 — Write the config before the process starts {#cfg-003}
 

@@ -14,19 +14,39 @@ PLANCK names the fix in the setting itself: `yankRequiredHandSpeedRoomspace`. **
 means intent is the hand's velocity relative to the play space**, with the player's own locomotion -
 stick movement, teleport, vehicle, animation-driven motion - removed first. `[SOURCE]`
 
-This applies to every speed-gated interaction the fleet is likely to build:
+**Displacement thresholds have the same exposure as velocity ones**, and hide it better, because the
+window conceals it: a downward pull that is unambiguous over 200 ms is meaningless over two seconds
+of walking downhill.
 
-- HIGGS separates a quick swipe that loots from a slow approach that grabs by hand speed;
-- SS2VR's `manualReload` gates on a downward *displacement*, which has the same exposure over a long
-  enough window;
-- any throw, swing, yank, shove or melee-velocity check.
+### Three formulations, and the third is the strongest
 
-**Displacement thresholds have the same problem as velocity ones**, and are easier to get wrong
-because the window hides it: a 0.45-unit downward pull is unambiguous over 200 ms and meaningless
-over two seconds of walking downhill. Where a gesture is a displacement, either bound its duration or
-measure it in room space too.
+| Formulation | Immune to | Still exposed to |
+|---|---|---|
+| absolute pose in **world** space | nothing | player locomotion, teleport, vehicles |
+| velocity in **room** space | locomotion | nothing much - but needs the play-space origin |
+| **difference between two tracked points** | locomotion, orientation, *and* the origin | nothing |
 
-The cheap check: perform the gesture standing still, then walk while deliberately holding the hand
+SS2VR reached the third independently, and it is worth reading as the reference form. Its
+`manualReload` never asks where a hand *is*:
+
+```squirrel
+local dx = leftPose.wox - rightPose.wox;
+local dy = leftPose.woy - rightPose.woy;
+local horizontal = sqrt(dx * dx + dy * dy);
+local drop      = rightPose.woz - leftPose.woz;   // right hand minus LEFT hand
+```
+
+Every quantity is **hand relative to hand**. Both hands translate together when the player walks, so
+locomotion cancels exactly - and so does turning, and so does any change to the play-space origin.
+Its magwell variant is the same idea against a better anchor: the off-hand's distance to an *authored
+point on the weapon*, which moves with the weapon.
+
+**The rule that generalises: measure between two things that move with the player.** Two hands, a
+hand and the HMD, a hand and a body joint, a hand and a point on a held weapon - all of these cancel
+locomotion for free. A hand and a *world* position does not, and that is the only case that needs
+room-space treatment at all.
+
+The cheap check either way: perform the gesture standing still, then walk while holding the hand
 still relative to your body. The second must not fire.
 
 ## A stroke grammar multiplies one button into a menu you never open {#stroke-grammar}
