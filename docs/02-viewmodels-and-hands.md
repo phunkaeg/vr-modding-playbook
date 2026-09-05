@@ -500,7 +500,30 @@ a_poseAlignerEnable / ForceLock / ForceNoIntersections / ...   (7 cvars)
 ```
 
 `IKLIMB_LEFTHAND` / `IKLIMB_RIGHTHAND` alongside `CreateIKLimb` is a **named per-hand IK facility with a
-factory entry point** — an override the engine already honours, reachable without hooking anything.
+factory entry point**.
+
+!!! failure "The 'reachable without hooking anything' half of that was wrong — corrected 2026-09-05"
+
+    PreyVR pursued it and it does not hold on this target. `[HEADSET]`
+
+    - The `*_IKTarget` transforms the facility exposes are a **per-cycle scratch buffer**, refreshed by a
+      `memcpy` at the start of every cycle. Writing them reliably — 60 applies at the last writer in the
+      cycle, animator confirmed live — moved **nothing**, because nothing consumes them.
+    - The cvars that look like the control surface are **inert**. `ca_useADIKTargets 0`, `ca_NoAnim 1`
+      and `ca_DebugADIKTargets 1` all reach the engine and do nothing; so do `i_offset_front/right/up`
+      and `g_detachCamera`. Prey's release build keeps GameSDK and animation-debug registrations whose
+      implementations were stripped, while renderer `r_*` cvars work normally.
+    - What *did* work was **hooking the consumer**: `CCharInstance::SkinningTransformationsComputation`,
+      which reads the finished absolute joints and converts them against the inverse bind pose.
+      Substituting its *input* gives independent per-hand control that holds.
+
+    **The transferable lesson is the one this section already teaches, arriving the hard way:** the
+    lineage oracle found the right *shape* — a named per-hand limb facility really is there — and the
+    conclusion that it was therefore *drivable* was an inference nobody had tested. A facility existing
+    in the strings says nothing about whether its control surface survived the release build.
+
+    Where the producer side is a pipeline that recomputes every level each frame, **stop climbing it and
+    hook the consumer.** There is exactly one consumer per frame and nothing overwrites after it.
 
 **The transferable lesson is about method, not CryEngine.** A lineage oracle gave the wrong *names* and
 still found the right *thing*, because what transferred was the shape — a two-bone solve, a limb concept,
