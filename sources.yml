@@ -2149,7 +2149,7 @@ external:
     api: D3D11
     vehicle: framework-companion
     areas:
-      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and to the physical-reload work."}
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and the physical-reload work. Heisenberg's own config credits it as the origin of the DYNAMIC motor-driven held body (HAND-012), so higgs_vr.ini and its Source/ tree are the highest-value unread material in this folder."}
       xr_lifecycle:      {review: not_reviewed}
       xr_input:          {review: not_reviewed}
       camera_tracking:   {review: not_reviewed}
@@ -2180,7 +2180,7 @@ external:
       camera_tracking:   {review: not_reviewed}
       render_hazards:    {review: not_reviewed}
       ui_hud:            {review: not_reviewed}
-      hands_interaction: {review: not_reviewed}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "harvested 2026-09-05 into ch02 #holsters-and-grab and HAND-013, from SKSE/Plugins/vrikslots.ini. The canonical holster data model: FOURTEEN anatomical slots (hips, thighs, calves, upper arms, forearms, shoulders, stomach, chest), each carrying a pose (posX/Y/Z plus rotA..rotI, a raw 3x3 matrix written by the in-game calibration UI), a hand assignment that is CROSS-BODY by default (left hip is right-hand-only), and a six-way accept-list (small/medium/large/ranged/shield/torch). Also taken: activation/release hysteresis via slotChangeDistanceMultiplier 1.75, hover spheres gated to sheathed-but-not-combat, per-slot hover haptics with an enable-when-EMPTY third state, and repeatBlockedInputs - replaying a grip the mod consumed but did not act on. Plugin is binary; vrikgestures.ini (1124 lines) is unread."}
       input_locomotion:  {review: not_reviewed}
       performance:       {review: not_reviewed}
       audio:             {review: not_reviewed}
@@ -2261,9 +2261,107 @@ external:
       audio:             {review: not_reviewed}
       packaging_deploy:  {review: not_reviewed}
       re_discovery:      {review: not_reviewed}
+  - id: "FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/Fallout4VR mods/FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN"
+    status: external_reference
+    upstream_url: https://github.com/rollingrock/Fallout-4-VR-Body
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. FRIK - the Fallout 4 VR body and holster mod, VRIK's counterpart. Distribution is binary (F4SE plugin plus meshes/materials, 73 MB); the SOURCE is upstream on GitHub and the runtime config lives in Documents\\My Games\\Fallout4VR\\FRIK_Config, so neither is in this tree. Only README.txt has been read."}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+  - id: "Heisenberg - Physical Interactions 99105 0.8.6 2026-08-02T10-39Z Q8oKHMMng"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/Fallout4VR mods/Heisenberg - Physical Interactions 99105 0.8.6 2026-08-02T10-39Z Q8oKHMMng"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "harvested 2026-09-05 into ch02 #holsters-and-grab and HAND-012/013, from its 906-line annotated F4SE/Plugins/Heisenberg_F4VR.ini (25 sections). Taken: the DYNAMIC motor-driven held body (credited in its own comments as 'HIGGS-style', object stays dynamic, never keyframed while the motor is active), grip tau ramping 0.10 -> 0.65 over 0.30 s so a grab does not snap, soft 6-DOF limits capping 40 units of stretch and 90 degrees of twist to stop runaway, storage zones with an IN-HEADSET config mode, activators with a two-radius design (25 cm pointing pose, 8 cm activation), SmartGrab context retrieval that pulls ammo when the magazine is below 30%, and seated-mode detection from HMD height under 110 units with extended reach. The plugin itself is binary."}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+  - id: "Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/Fallout4VR mods/Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. F4SEVR 0.6.21, the script extender the other two load under. Carries a src/ tree (392 files) - the only Fallout-side source in this folder - and is the framework rather than an interaction mod."}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+  - id: "Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/Fallout4VR mods/Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-05. A single 694 MB Wabbajack modlist archive, not a mod. Kept as a source only because it names a working Fallout 4 VR stack."}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
 not_a_source:
-  - id: "Fallout4VR mods"
-    reason: "empty directory - no files present"
   - id: "Dishonored-VR-metalink-test"
     reason: "one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree"
   - id: "DishonoredVR-alpha"

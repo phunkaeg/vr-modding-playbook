@@ -23,6 +23,9 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | Source | What is sitting there |
 |---|---|---|
+| `hands_interaction` | **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | REGISTERED NOT REVIEWED 2026-09-05. FRIK - the Fallout 4 VR body and holster mod, VRIK's counterpart. Distribution is binary (F4SE plugin plus meshes/materials, 73 MB); the SOURCE is upstream on GitHub and the runtime config lives in Documents\My Games\Fallout4VR\FRIK_Config, so neither is in this tree. Only README.txt has been read. |
+| `hands_interaction` | **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | REGISTERED NOT REVIEWED 2026-09-05. F4SEVR 0.6.21, the script extender the other two load under. Carries a src/ tree (392 files) - the only Fallout-side source in this folder - and is the framework rather than an interaction mod. |
+| `hands_interaction` | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | REGISTERED NOT REVIEWED 2026-09-05. A single 694 MB Wabbajack modlist archive, not a mod. Kept as a source only because it names a working Fallout 4 VR stack. |
 | `packaging_deploy` | **Talemann-RE4** | Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game. |
 | `re_discovery` | **Dishonored-VR** | REGISTERED NOT REVIEWED 2026-09-02. ALREADY MINED by the in-house DishonoredVR project (2026-09-02), which took the render path instead and avoided its blockers - read for method and negative results, not as an open task. GingasVRFO/Dishonored-VR is a SEPARATE VR conversion of the SAME GAME as the in-house DishonoredVR project. A d3d9.dll proxy built on a FORKED DXVK, with true stereo, 6DoF, motion controls, roomscale and a hand-aimed Blink. DISCONTINUED and explicitly offered for pickup (author burned out on unreproducible reports). Its 13 numbered fork-patches read as a complete rung-2 development history: M2 frame-map instrumentation, M3 stereo splice per-eye draw replay, mirrored-VP skip, world-quad splice via a c6 identity test, depth-test state REPLACING that c6 heuristic, an explicit revert to proven M3.1, measured gates, live projection scales, live writable separation and convergence, per-draw splice verdicts, world-space UP effects (the fire fix), and the Blink marker. The real payload is dllmain.cpp (~23k lines of in-game research log); its negative results are worth more than its code. |
 | `re_discovery` | **Quake2Quest** | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
@@ -31,7 +34,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **FUS** | REGISTERED NOT REVIEWED 2026-09-05. A Wabbajack modlist/preset rather than a mod: README, images, a bundled openvr_api.dll and a Mantella folder. Kept as a source only because it names a working VR mod stack. |
 | `stereo` | **Fallout-New-Vegas-FNVR** | NOT HARVESTABLE AS SHIPPED: 'Fallout New Virtual Reality' is a 12 KB FNVR.esp plus a 3 KB .7z - a plugin, not a native VR conversion, and no source. What IS readable in this directory is xNVSE, the New Vegas Script Extender, which is general modding tooling rather than a VR implementation. Extract the archive and re-assess only if the script-extender route to VR becomes relevant to a project. |
 | `stereo` | **GRAND-alien-isolation** | BINARY ONLY: XINPUT1_3.dll proxy. Built on Nibre's MotherVR. No source to read. |
-| `stereo` | **HIGGS 1.10.10-43930-1-10-10-1768263289** | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and to the physical-reload work. |
+| `stereo` | **HIGGS 1.10.10-43930-1-10-10-1768263289** | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and the physical-reload work. Heisenberg's own config credits it as the origin of the DYNAMIC motor-driven held body (HAND-012), so higgs_vr.ini and its Source/ tree are the highest-value unread material in this folder. |
 | `stereo` | **IRON-NEST-VR** | BINARY ONLY: managed code driving OpenXR and D3D11 directly via Silk.NET rather than through Unity XR. No source. |
 | `stereo` | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Physics-driven body and hand collision on top of HIGGS. Carries a Source/ tree. |
 | `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
@@ -48,19 +51,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 21 | 14 | 28 | 16 |
-| `xr_lifecycle` | 6 | 7 | 0 | 41 | 44 |
-| `xr_input` | 4 | 0 | 4 | 41 | 49 |
-| `camera_tracking` | 12 | 13 | 1 | 32 | 40 |
-| `render_hazards` | 5 | 9 | 1 | 8 | 75 |
-| `ui_hud` | 5 | 13 | 5 | 35 | 40 |
-| `hands_interaction` | 6 | 10 | 5 | 29 | 48 |
-| `input_locomotion` | 2 | 4 | 1 | 8 | 83 |
-| `performance` | 8 | 7 | 3 | 36 | 44 |
-| `audio` | 1 | 1 | 0 | 45 | 51 |
-| `packaging_deploy` | 6 | 23 | 18 | 20 | 31 |
-| `re_discovery` | 14 | 13 | 5 | 28 | 38 |
-| `source_integration` | 2 | 8 | 7 | 33 | 48 |
+| `stereo` | 19 | 21 | 14 | 32 | 16 |
+| `xr_lifecycle` | 6 | 7 | 0 | 45 | 44 |
+| `xr_input` | 4 | 0 | 4 | 45 | 49 |
+| `camera_tracking` | 12 | 13 | 1 | 36 | 40 |
+| `render_hazards` | 5 | 9 | 1 | 12 | 75 |
+| `ui_hud` | 5 | 13 | 5 | 39 | 40 |
+| `hands_interaction` | 6 | 12 | 5 | 31 | 48 |
+| `input_locomotion` | 2 | 4 | 1 | 12 | 83 |
+| `performance` | 8 | 7 | 3 | 40 | 44 |
+| `audio` | 1 | 1 | 0 | 49 | 51 |
+| `packaging_deploy` | 6 | 23 | 18 | 24 | 31 |
+| `re_discovery` | 14 | 13 | 5 | 32 | 38 |
+| `source_integration` | 2 | 8 | 7 | 33 | 52 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -108,10 +111,12 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **Dishonored-VR-fork** | external reference | Unreal Engine 3 (Dishonored, 32-bit) | native-injector | T1 | R2 · per-draw replay | — | 59 | 1 | 1 | 2026-09-04 | 🟥 source changed | 0F / 0P / 0S / 13NR / 0— |
 | **DOOM-3-BFG-VR** | external reference | idTech 4 (Doom 3 BFG) | source-port | — | — | — | 2155 | 1348 | 83 | 2026-08-27 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
 | **edvr-unofficial-patch** | external reference | Cobra (Elite Dangerous: Odyssey) | native-injector | — | — | 14 | 185 | 147 | 17 | 2026-08-28 | ⚪ unpinned | 2F / 2P / 0S / 7NR / 2— |
+| **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | external reference | Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 392 | 294 | 5 | 2024-06-25 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **Fallout-New-Vegas-FNVR** | external reference | Gamebryo (Fallout New Vegas) | script-native-hybrid | — | — | 18 | 342 | 279 | 28 | 2026-08-29 | ⚪ unpinned | 0F / 0P / 1S / 10NR / 2— |
 | **fear-vr** | external reference | LithTech Jupiter EX | native-injector | T3 | R1 · native re-entry | 17 | 163 | 82 | 32 | 2026-08-22 | 🟩 current | 7F / 3P / 0S / 1NR / 2— |
 | **FEAR2VR** | external reference | LithTech Jupiter EX (F.E.A.R. 2) | native-injector | — | — | 6 | 330 | 294 | 17 | 2026-08-28 | ⚪ unpinned | 2F / 2P / 1S / 6NR / 2— |
 | **ForerunnerVR** | external reference | Blam / Saber (MCC) | native-injector | — | — | — | 101 | 87 | 3 | 2026-08-26 | 🟩 current | 1F / 1P / 1S / 0NR / 10— |
+| **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | external reference | Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 128 | 0 | 1 | 2026-08-18 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **FUS** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 66 | 0 | 4 | 2026-09-05 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **gmcl_openvr** | external reference | Source (Garry's Mod) | script-native-hybrid | — | — | — | 82 | 24 | 1 | 2026-08-27 | 🟩 current | 0F / 2P / 1S / 0NR / 10— |
 | **goldeneye-omniport** | external reference | N64 decompilation (GoldenEye 007) | source-port | — | — | 18 | 2309 | 2045 | 24 | 2026-08-28 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
@@ -120,12 +125,14 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **GTA-VRV-Patcher** | external reference | RAGE | framework-companion | — | — | — | 29 | 12 | 2 | 2026-08-26 | 🟩 current | 1F / 0P / 0S / 0NR / 12— |
 | **GTFO_VR_Plugin** | external reference | Unity IL2CPP | managed-plugin | — | — | 18 | 251 | 148 | 2 | 2026-08-23 | 🟩 current | 1F / 2P / 1S / 1NR / 8— |
 | **Halo-MCC-VR** | external reference | Blam / Saber | native-injector | — | — | 18 | 148 | 93 | 36 | 2026-08-23 | 🟥 source changed | 2F / 3P / 0S / 2NR / 6— |
+| **Heisenberg - Physical Interactions 99105 0.8.6 2026-08-02T10-39Z Q8oKHMMng** | external reference | Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 45 | 0 | 1 | 2026-08-02 | ⚪ unpinned | 0F / 1P / 0S / 11NR / 1— |
 | **HIGGS 1.10.10-43930-1-10-10-1768263289** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 6 | 0 | 0 | 2026-01-13 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **IRON-NEST-VR** | external reference | Unity | managed-plugin | ? | ? | — | 14 | 0 | 1 | 2026-07-01 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
 | **JKXR** | external reference | id Tech 3 / OpenJK | source-port | — | — | 18 | 2548 | 1969 | 70 | 2026-08-23 | 🟩 current | 1F / 4P / 0S / 2NR / 6— |
 | **KSA_XR** | external reference | Brutal (RocketWerkz) | managed-plugin | — | — | — | 19 | 8 | 3 | 2026-08-26 | 🟩 current | 1F / 2P / 1S / 0NR / 9— |
 | **l4d2vr** | external reference | Source (Left 4 Dead 2) | native-injector | — | — | — | 42 | 23 | 3 | 2026-08-27 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
 | **Luke-Ross-REAL-mods** | external reference | multiple (CP2077, HZD, Mafia DE 1/2, GTAV, NOLF2) | native-injector | — | — | — | 3 | 0 | 0 | 2023-03-13 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
+| **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | external reference | Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 1 | 0 | 0 | 2026-08-28 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **manhunt-2003-vr-modding-notes** | external reference | RenderWare (Manhunt 2003) | native-injector | — | — | 7 | 10 | 0 | 9 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
 | **MELE-VR** | external reference | UE3 (Mass Effect Legendary) | native-injector | ? | ? | — | 18 | 0 | 3 | 2026-08-23 | 🟩 current | 0F / 2P / 0S / 1NR / 10— |
 | **mirrors-edge-vr-mod** | external reference | Unreal Engine 3.536 (Mirror's Edge, 2008) | native-injector | T1 | — | 9 | 37 | 17 | 9 | 2026-08-30 | 🟥 source changed | 2F / 0P / 2S / 8NR / 1— |
@@ -179,7 +186,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **VirtualFortress2** | external reference | Source (Team Fortress 2) | source-port | — | — | — | 4613 | 3839 | 22 | 2026-08-27 | 🟩 current | 0F / 0P / 3S / 0NR / 10— |
 | **visceral-re2-vr-mod** | external reference | RE Engine (Resident Evil 2, 2019) | framework-companion | T2 | — | 2 | 14 | 5 | 5 | 2026-08-30 | 🟥 source changed | 0F / 0P / 2S / 9NR / 2— |
 | **Vostok-VR-Mod** | external reference | Godot 4 | native-injector | — | — | — | 78 | 14 | 10 | 2026-08-26 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
-| **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 20 | 0 | 0 | 2026-07-12 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
+| **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 20 | 0 | 0 | 2026-07-12 | ⚪ unpinned | 0F / 1P / 0S / 11NR / 1— |
 | **WeWereInVR** | external reference | Unity (We Were Here) | managed-plugin | — | — | 18 | 33 | 17 | 3 | 2026-08-28 | ⚪ unpinned | 1F / 2P / 0S / 8NR / 2— |
 | **White_Knuckle_VR** | external reference | Unity | managed-plugin | — | — | 18 | 4 | 0 | 3 | 2026-08-22 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
 | **witcher3-vr** | external reference | REDengine 3 | native-injector | — | — | 18 | 79 | 51 | 8 | 2026-08-22 | 🟥 source changed | 1F / 3P / 0S / 3NR / 6— |
@@ -196,7 +203,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:f739d4177dd41381` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:35ab1dc2354b0092` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:dc89034fd00b40f2` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:8adbd0b0371ede02` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:4bed00793619f33b` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:03b2dbee4c8387e4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f31b82ea3ce79d04` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:762a48d6bc781596` | `—` | 🟥 source changed | internal | internal-unreleased |
@@ -223,10 +230,12 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Dishonored-VR-fork** | 2026-09-04 | `tree:0d7e87ff7f68876e` | `tree:89e9c521e1893b4e` | `—` | 🟥 source changed | https://github.com/phunkaeg/Dishonored-VR | see LICENSE in tree |
 | **DOOM-3-BFG-VR** | 2026-08-27 | `tree:b68fb6734c12a28c` | `tree:b68fb6734c12a28c` | `—` | 🟩 current | unknown | unknown |
 | **edvr-unofficial-patch** | 2026-08-28 | `unknown` | `tree:a27fb9fe577f1279` | `—` | ⚪ unpinned | unknown | unknown |
+| **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | 2026-09-05 | `unknown` | `tree:1346c9ecdc86400f` | `—` | ⚪ unpinned | unknown | unknown |
 | **Fallout-New-Vegas-FNVR** | 2026-08-29 | `unknown` | `tree:c979d571dbef665b` | `—` | ⚪ unpinned | unknown | unknown |
 | **fear-vr** | 2026-08-29 | `tree:7437c5bc33a9688d` | `tree:7437c5bc33a9688d` | `—` | 🟩 current | unknown | unknown |
 | **FEAR2VR** | 2026-08-28 | `unknown` | `tree:25ecac968c4146d1` | `—` | ⚪ unpinned | unknown | unknown |
 | **ForerunnerVR** | 2026-08-26 | `tree:6c2023683d68eff9` | `tree:6c2023683d68eff9` | `ae37120becad289ed404bb7b848367e923033bf8` | 🟩 current | https://github.com/LivingFray/ForerunnerVR | unknown |
+| **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | 2026-09-05 | `unknown` | `tree:ff5f7db0f385d23d` | `—` | ⚪ unpinned | https://github.com/rollingrock/Fallout-4-VR-Body | unknown |
 | **FUS** | 2026-09-05 | `unknown` | `tree:4d835bf05872284e` | `—` | ⚪ unpinned | unknown | unknown |
 | **gmcl_openvr** | 2026-08-27 | `tree:d9da74ebf2d2629d` | `tree:d9da74ebf2d2629d` | `—` | 🟩 current | unknown | unknown |
 | **goldeneye-omniport** | 2026-08-28 | `unknown` | `tree:3d329e089afebd29` | `—` | ⚪ unpinned | unknown | unknown |
@@ -235,12 +244,14 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **GTA-VRV-Patcher** | 2026-08-26 | `tree:c597e6967613fc1c` | `tree:c597e6967613fc1c` | `225df5859976d5f485ed8fddf029ea5e8fbe6c2f` | 🟩 current | https://github.com/FranciscoManzanilla/GTA-VRV-Patcher | unknown |
 | **GTFO_VR_Plugin** | 2026-08-25 | `tree:3b8bc8dedc3cb478` | `tree:3b8bc8dedc3cb478` | `—` | 🟩 current | unknown | unknown |
 | **Halo-MCC-VR** | 2026-08-25 | `tree:fe9e1846706a63da` | `tree:eb934c8e30b766b5` | `—` | 🟥 source changed | https://github.com/pancreations/Halo-MCC-VR | MIT |
+| **Heisenberg - Physical Interactions 99105 0.8.6 2026-08-02T10-39Z Q8oKHMMng** | 2026-09-05 | `unknown` | `tree:58a5b1f5db6072ee` | `—` | ⚪ unpinned | unknown | unknown |
 | **HIGGS 1.10.10-43930-1-10-10-1768263289** | 2026-09-05 | `unknown` | `tree:11ade5e7d012caae` | `—` | ⚪ unpinned | unknown | unknown |
 | **IRON-NEST-VR** | 2026-08-26 | `tree:e65f3b7698f9edea` | `tree:e65f3b7698f9edea` | `—` | 🟩 current | unknown | unknown |
 | **JKXR** | 2026-08-25 | `tree:5c5bd57858afdbe2` | `tree:5c5bd57858afdbe2` | `—` | 🟩 current | unknown | unknown |
 | **KSA_XR** | 2026-08-26 | `tree:09b84dde7a415db5` | `tree:09b84dde7a415db5` | `8467599b9389652d4a74d50f965b829dd3dee43e` | 🟩 current | https://github.com/Ybalrid/KSA_XR | unknown |
 | **l4d2vr** | 2026-08-27 | `tree:0a633263d8116124` | `tree:0a633263d8116124` | `—` | 🟩 current | unknown | unknown |
 | **Luke-Ross-REAL-mods** | unknown | `tree:06153e074416cd40` | `tree:06153e074416cd40` | `—` | 🟩 current | unknown | unknown |
+| **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | 2026-09-05 | `unknown` | `tree:35b3173db0af61f0` | `—` | ⚪ unpinned | unknown | unknown |
 | **manhunt-2003-vr-modding-notes** | 2026-08-29 | `unknown` | `tree:e8d969134352da0f` | `—` | ⚪ unpinned | unknown | unknown |
 | **MELE-VR** | 2026-08-28 | `tree:b8d87bff0fecabf1` | `tree:b8d87bff0fecabf1` | `—` | 🟩 current | unknown | unknown |
 | **mirrors-edge-vr-mod** | 2026-08-29 | `tree:a64e71450006b5d5` | `tree:ba6ab5363d9090ac` | `—` | 🟥 source changed | unknown | unknown |
@@ -308,7 +319,6 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 ### Deliberately not sources
 
-- `Fallout4VR mods` — empty directory - no files present
 - `Dishonored-VR-metalink-test` — one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree
 - `DishonoredVR-alpha` — binary alpha distribution (Binaries/, INSTALL.txt, a resolution .bat) - no source
 - `Immersive HUD-5-1-4-1751974538` — texture pack, not a mod
@@ -337,7 +347,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-05 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
 | **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 160 | 18 | 2026-09-04 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 69 | 30 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 8NR / 0— |
-| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3556 | 295 | 2026-09-05 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
+| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3580 | 300 | 2026-09-05 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 
 ## Per-source area detail
 
@@ -885,6 +895,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `re_discovery` | 🟥 not reviewed | `—` | — |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
+#### Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | — |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. F4SEVR 0.6.21, the script extender the other two load under. Carries a src/ tree (392 files) - the only Fallout-side source in this folder - and is the framework rather than an interaction mod. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
+| `source_integration` | — no entry — | — | — |
+
 #### Fallout-New-Vegas-FNVR
 
 | Area | Review | Evidence | Note |
@@ -955,6 +983,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | — no entry — | — | — |
 | `packaging_deploy` | 🟧 skimmed | `SOURCE` | A Debug Emu build config swaps the VR backend for an emulated one drawing to a separate window - the cheapest of the three headset substitutes found in this batch (see TEST-001). |
 | `re_discovery` | 🟨 partial | `SOURCE` | Per-title modules for a multi-engine container; launcher+payload split handles anti-cheat-disabled launch and injection. Style rule: mirror the original codebase's own symbol/file names in a per-title blam/ directory. |
+| `source_integration` | — no entry — | — | — |
+
+#### FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | — |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. FRIK - the Fallout 4 VR body and holster mod, VRIK's counterpart. Distribution is binary (F4SE plugin plus meshes/materials, 73 MB); the SOURCE is upstream on GitHub and the runtime config lives in Documents\My Games\Fallout4VR\FRIK_Config, so neither is in this tree. Only README.txt has been read. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
 | `source_integration` | — no entry — | — | — |
 
 #### FUS
@@ -1101,11 +1147,29 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `re_discovery` | 🟨 partial | `AUTHOR` | — |
 | `source_integration` | — no entry — | — | — |
 
+#### Heisenberg - Physical Interactions 99105 0.8.6 2026-08-02T10-39Z Q8oKHMMng
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | — |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟨 partial | `SOURCE` | harvested 2026-09-05 into ch02 #holsters-and-grab and HAND-012/013, from its 906-line annotated F4SE/Plugins/Heisenberg_F4VR.ini (25 sections). Taken: the DYNAMIC motor-driven held body (credited in its own comments as 'HIGGS-style', object stays dynamic, never keyframed while the motor is active), grip tau ramping 0.10 -> 0.65 over 0.30 s so a grab does not snap, soft 6-DOF limits capping 40 units of stretch and 90 degrees of twist to stop runaway, storage zones with an IN-HEADSET config mode, activators with a two-radius design (25 cm pointing pose, 8 cm activation), SmartGrab context retrieval that pulls ammo when the magazine is below 30%, and seated-mode detection from HMD height under 110 units with extended reach. The plugin itself is binary. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
+| `source_integration` | — no entry — | — | — |
+
 #### HIGGS 1.10.10-43930-1-10-10-1768263289
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and to the physical-reload work. |
+| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Directly relevant to HAND-008/009/010 and the physical-reload work. Heisenberg's own config credits it as the origin of the DYNAMIC motor-driven held body (HAND-012), so higgs_vr.ini and its Source/ tree are the highest-value unread material in this folder. |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
@@ -1207,6 +1271,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | — no entry — | — | — |
 | `packaging_deploy` | 🟧 skimmed | `STATIC` | STATIC harvest done (ch08 #host-settings-policy): one binary reading per-game data overrides at RealRepo/<GAMECODE>/settings/. CP2077 option.replace forces aim assist, additive camera movement, sway, motion blur, DoF, film grain, chromatic aberration and lens flares OFF while KEEPING anisotropy 16, TextureQuality High and ContactShadows on. HZD graphicsconfig.ini sets a SQUARE 2700x2700 at AspectRatio 1:1 with UpscaleMethod Off - independent corroboration of the square-backbuffer finding in chapter 13, different author and engine. MDE1/1st_person/tables.sds ships a replacement data table to enable the game's OWN first-person mode instead of hooking the camera. dbghelp.dll is the proxy vector. Distribution is .rar archives; no source. |
 | `re_discovery` | — no entry — | — | — |
+| `source_integration` | — no entry — | — | — |
+
+#### Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | — |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. A single 694 MB Wabbajack modlist archive, not a mod. Kept as a source only because it names a working Fallout 4 VR stack. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
 | `source_integration` | — no entry — | — | — |
 
 #### manhunt-2003-vr-modding-notes
@@ -2173,7 +2255,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
 | `render_hazards` | 🟥 not reviewed | `—` | — |
 | `ui_hud` | 🟥 not reviewed | `—` | — |
-| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟨 partial | `SOURCE` | harvested 2026-09-05 into ch02 #holsters-and-grab and HAND-013, from SKSE/Plugins/vrikslots.ini. The canonical holster data model: FOURTEEN anatomical slots (hips, thighs, calves, upper arms, forearms, shoulders, stomach, chest), each carrying a pose (posX/Y/Z plus rotA..rotI, a raw 3x3 matrix written by the in-game calibration UI), a hand assignment that is CROSS-BODY by default (left hip is right-hand-only), and a six-way accept-list (small/medium/large/ranged/shield/torch). Also taken: activation/release hysteresis via slotChangeDistanceMultiplier 1.75, hover spheres gated to sheathed-but-not-combat, per-slot hover haptics with an enable-when-EMPTY third state, and repeatBlockedInputs - replaying a grip the mod consumed but did not act on. Plugin is binary; vrikgestures.ini (1124 lines) is unread. |
 | `input_locomotion` | 🟥 not reviewed | `—` | — |
 | `performance` | 🟥 not reviewed | `—` | — |
 | `audio` | 🟥 not reviewed | `—` | — |

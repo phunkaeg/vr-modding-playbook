@@ -988,6 +988,113 @@ the whole first inch". And a pose referenced by name but never loaded is a **sil
 stays nil and every guard that reads it simply never fires. That one caught two weapons in Cyberpunk
 before the rule became "a new place to name a pose is a new line in the loader, in the same commit".
 
+## Holsters and physical grab, from the two native-VR interaction stacks {#holsters-and-grab}
+
+Skyrim VR and Fallout 4 VR shipped *as* VR, so their mod scenes never had to solve stereo - they went
+straight to the interaction layer and stayed there for years. That makes them the best available
+references for [rungs 2-4](#weapon-census) of the reload staircase, and the two stacks are
+independent solutions to the same problems: **VRIK + HIGGS + PLANCK** on Skyrim, **FRIK + Heisenberg**
+on Fallout 4. `[SOURCE]` (annotated configuration; the plugins themselves are binary, and FRIK's code
+is upstream at `github.com/rollingrock/Fallout-4-VR-Body`).
+
+### There are three ways to put an object in a hand, and they fail differently
+
+This is the taxonomy the fleet was missing. All three are in use across the mods now surveyed:
+
+| Route | How | Cost |
+|---|---|---|
+| **kinematic, local** | animate the object's existing joint in the weapon's own frame | cannot collide with the world; needs no correction at all |
+| **kinematic, world** | place a spawned entity by world transform each frame | **a frame behind the drawn hand** - see [HAND-010](pattern-catalog.md#hand-010) |
+| **dynamic, motor-driven** | keep the body DYNAMIC and drive it at the hand with a 6-DOF spring | collides naturally; needs tuning, and can run away |
+
+RE4VR takes the first, cyberpunk-vr-port the second, and **HIGGS took the third** - Heisenberg's
+config still names it *"HIGGS-style HeldBody grab (object stays DYNAMIC)"*, with a hard guard beside
+it: *"never KEYFRAME the grabbed body while motor constraint is active."*
+
+Two things make the dynamic route work, and both are counter-intuitive:
+
+- **The grip firms up over time.** Angular tau ramps from `0.10` at grab onset to `0.65` steady state
+  over `0.30 s`, linear likewise. A spring that starts at full strength snaps the object into the
+  hand; one that starts soft is what makes a grab feel like a grab.
+- **The spring is clamped, not trusted.** Soft 6-DOF limits cap drift at `40` game units of stretch
+  and `90` degrees of twist, *"to prevent runaway stretch/twist"*. A motor chasing a fast hand
+  through geometry will otherwise find a configuration it cannot leave.
+
+Note what the dynamic route buys for free: **it does not care that its target is a frame old**,
+because it is chasing rather than being placed. The frame-lag problem that cost cyberpunk-vr-port two
+attempts is a property of kinematic world placement, not of held objects in general.
+
+### The holster data model, as VRIK settled it
+
+VRIK enumerates **fourteen anatomical slots** rather than arbitrary offsets:
+
+> 1=Left Hip, 2=Right Hip, 3=Left Thigh, 4=Right Thigh, 5=Left Calf, 6=Right Calf,
+> 7=Left Upper Arm, 8=Right Upper Arm, 9=Left Forearm, 10=Right Forearm,
+> 11=Left Shoulder, 12=Right Shoulder, 13=Stomach, 14=Chest
+
+and each slot carries, as data: **a pose** (`posX/Y/Z` plus `rotA..rotI`, a raw 3x3 matrix), **which
+hand may reach it** (`0=both, 1=left only, 2=right only`), and **which item classes it accepts**
+(small / medium / large / ranged / shield / torch).
+
+**The hand assignment is cross-body by default, and that is the finding.** Slot 1 (Left Hip) is
+right-hand-only; slot 2 (Right Hip) is left-hand-only. Anatomy, encoded per slot rather than assumed
+by the mechanism - and it is the sort of thing a mod invents wrongly and never revisits.
+
+The rotation is stored as nine raw floats because **nothing hand-edits it** - see the calibration
+point below.
+
+### Hysteresis on the grab threshold, now on three engines independently
+
+The fleet has hit this from three directions and every one of them separated entry from exit:
+
+| Mod | Enter | Leave |
+|---|---|---|
+| VRIK slots | `slotActivationDistance` | **x1.75** (`slotChangeDistanceMultiplier`) |
+| RE4VR mag holster | grip `0.333` | grip `0.363` |
+| SS2VR `manualReload` | grip `0.55` | grip `0.30` |
+
+Three mods, three engines, three teams, same discipline. **Treat a single threshold on a grab as a
+defect on sight.**
+
+### An invisible zone needs a discoverability channel, and it should be conditional
+
+A holster the player cannot see is a holster they cannot find. VRIK answers with both channels and
+gates each one:
+
+- **Hover spheres** with configurable scale, opacity and colour - shown **while sheathed**, hidden
+  **in combat** by default. Visible when you are looking for them, gone when you are busy.
+- **Haptics on hover**, per slot, with a three-state switch: disable / enable / **enable when
+  empty**. Feedback about an *affordance* rather than about an object.
+
+Heisenberg's activators do the same in distance instead of state: **a pointing radius of ~25 cm where
+the hand pose changes, and an activation radius of ~8 cm where the action fires**. The hand tells you
+what is about to happen before it happens.
+
+### Calibrate anything spatial from inside the headset
+
+Both stacks ship an in-headset placement mode, and it is the only honest way to answer "where should
+this zone be" - a body-relative offset that reads well on a desk is wrong on a person.
+
+> Heisenberg: *"hold A to enter. Controls: R-Trigger=set position, L-Stick=radius, B=save, A=exit."*
+> Its activators have a second one: *"hold right thumbstick near activator to set activation point."*
+
+That is also why VRIK stores nine raw rotation floats: the values are written by a UI and read by
+code, and no one is expected to type them.
+
+### Two smaller rules worth taking outright
+
+**Give back input you intercepted but did not use.** VRIK's `repeatBlockedInputs` replays a grip or
+trigger press that was captured by holster logic and then did not activate a holster. A mod that sits
+on the input path owes the game every event it does not consume, and the bug it prevents - a
+grip that does nothing because the mod ate it - is nearly impossible to diagnose from the game side.
+
+**Retrieval can be context-aware instead of positional.** Heisenberg's `SmartGrab` reaches behind the
+head and returns *the item you probably need*, chosen from game state: a stimpak below 50% health,
+RadAway above 25% rads, and **ammo when the magazine is below 30%**. For a reload that is a real
+alternative to a dedicated magazine holster - the same gesture, and the arsenal decides what arrives.
+It also detects seated play from **HMD height** (`< 110` units) and extends grab range from 100 to
+150 units, which is a better answer than asking the player to declare a mode.
+
 ## The weapon census: fill this before you build a reload {#weapon-census}
 
 [Physical reload](#physical-reload) is a mechanism, and a mechanism built against one weapon will be

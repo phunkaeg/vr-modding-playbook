@@ -1823,6 +1823,60 @@ before the topology is known is how a magazine animation gets built for a weapon
 `[LIVE]` SS2VR's `manualReload` is the `gesture-native` tier working today, gated by a substring
 model filter to a single weapon family - which is exactly what a census exists to widen.
 
+## HAND-012 — Choose how an object is held before you tune how it feels {#hand-012}
+
+**Problem:** an object in the player's hand jitters, lags, clips through geometry or refuses to
+collide - and the tuning that would fix it depends on a choice nobody made explicitly.
+
+**Use when:** anything is held: a magazine, a grenade, a torch, a detached part, a thrown item.
+
+**Recipe:** pick one of three routes deliberately.
+
+- **Kinematic, local** - animate the object's existing joint in its parent's frame. Perfectly stable,
+  needs no correction, and **cannot collide with the world**. Right for a magazine sliding into a
+  well.
+- **Kinematic, world** - place a spawned entity by world transform each frame. Collides if you make
+  it, and is **a frame behind the drawn hand**; correct it per [HAND-010](#hand-010).
+- **Dynamic, motor-driven** - keep the body dynamic and drive it toward the hand with a 6-DOF spring.
+  Collides naturally, and **does not care that its target is a frame old** because it is chasing
+  rather than being placed.
+
+**Proof:** hold the object still, walk, run, and push it into a wall. Each route fails a different
+one of those, so the failure identifies the route rather than the tuning.
+
+**Trip hazard:** the dynamic route needs two things that are easy to omit. **Ramp the grip**: tau
+from ~0.1 at onset to ~0.65 steady over ~0.3 s, or the object snaps into the hand. **Clamp the
+motor**: soft 6-DOF limits on stretch and twist, or a spring chasing a fast hand through geometry
+finds a configuration it cannot leave. And never keyframe a body while its motor constraint is
+active - pick one authority. `[SOURCE]` HIGGS / Heisenberg; contrast RE4VR and cyberpunk-vr-port.
+
+## HAND-013 — A holster is a pose, a hand, and an accept-list {#hand-013}
+
+**Problem:** holsters are added as body-relative offsets, and then every question after the first -
+which hand reaches this one, what fits in it, how does the player find it - has nowhere to live.
+
+**Use when:** putting anything on the player's body: weapons, magazines, tools, quick items.
+
+**Recipe:** make each slot a data row with **a pose** (position and rotation), **a hand assignment**
+(both / left only / right only) and **an accept-list** of item classes. VRIK's fourteen anatomical
+slots - hips, thighs, calves, upper arms, forearms, shoulders, stomach, chest - are a good starting
+enumeration, and its default hand assignment is **cross-body**: left hip is right-hand-only. Copy
+that; a same-side default is wrong for the way people actually draw.
+
+Give the zone a **discoverability channel and gate it by context**: a hover indicator shown while
+weapons are sheathed and hidden in combat, and haptics on hover with an *only when empty* state, so
+the feedback is about the affordance rather than the contents.
+
+**Proof:** a wearer finds each slot without being told where it is, and the wrong hand cannot reach a
+cross-body slot.
+
+**Trip hazard:** **hysteresis is mandatory** - entry and exit distances must differ, and three mods
+on three engines independently chose to separate them. **Calibrate the pose in the headset**, never
+on a desk; both stacks ship an in-headset placement mode for exactly this, and the rotation ends up
+stored as raw matrix floats precisely because no one hand-edits it. And **give back input you
+intercepted but did not use**, or a grip that lands near a holster and activates nothing will simply
+be eaten. `[SOURCE]` VRIK; Heisenberg; FRIK.
+
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
 **Problem:** a visible controller/hand aligns, but weapon ray or muzzle does not.
