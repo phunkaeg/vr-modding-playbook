@@ -1640,6 +1640,16 @@ handling rather than a shared number. See
 
 **Confirmed on a third engine tree 2026-09-05.** Prey (CryEngine) shows the same split: with the world frustum correctly declared and stereo fusing, the weapon model still reads at a visibly different field. Three unrelated trees now - UE2.5 twice, Dunia, CryEngine - so treat the split as the default expectation rather than a per-engine quirk, and check it as soon as stereo fuses.
 
+**Assert declared-against-rendered IN-PROCESS, because nothing outside can.** There are three
+frustums in play and an OpenXR API layer can only see two of them - the one the runtime located and the
+one you declared. The projection the engine actually rendered with never crosses the OpenXR boundary,
+so `xr-tape`'s `submitted_fov_matches_located` cannot see it, and for an injector that check *failing*
+is its correct state anyway. A mod that can rewrite the projection on any path therefore owes itself an
+in-process comparison, in **tangent** space, made at the point the declaration is bound to the pixels it
+describes. PreyVR shipped a synthetic 50 degree half-angle render under a 60 degree declaration with the
+trace looking exactly as it should throughout; the assert is a few lines and would have caught it on the
+first frame. `[LIVE]` PreyVR 2026-09-05, `FAIL-STR-048`.
+
 **Proof:** two shots. Park the hand, change the world FOV, and see whether the viewmodel holds its size —
 if it does, the near pass has its own projection and must not inherit your declaration. Then the depth
 discriminator: a frustum mismatch offsets **every** object by the same angle regardless of depth, while
