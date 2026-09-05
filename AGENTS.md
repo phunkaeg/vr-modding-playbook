@@ -43,6 +43,19 @@ fleet hit it and none recognised it first time.
 They are never the same record. Cite the qualified form for failures. IDs are permanent and
 are never recycled; a retired pattern keeps its ID and gains a status note.
 
+**Several agents write to this repository at once, so re-read the ID ceiling immediately before
+you allocate one** — not from earlier in your session, and not from a number you were told.
+
+```bash
+grep -o "FAIL-CAM-[0-9]*" docs/failure-atlas.md | sort -u | tail -1
+```
+
+`git pull` does not protect you here: fleet agents commit straight into this working copy rather
+than through the remote, so a colliding row can appear between your first read and your write with
+no divergence to fetch. `tools/verify.py` catches the duplicate — this only saves you the
+renumbering. (*Measured 2026-09-05: `FAIL-RE-024` was allocated twice in one afternoon, once by a
+session that had read the ceiling forty minutes earlier.*)
+
 ## Three orthogonal axes
 
 Knowing one tells you little about the others, and conflating them causes bad estimates:
