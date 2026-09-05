@@ -2361,6 +2361,31 @@ external:
       audio:             {review: not_reviewed}
       packaging_deploy:  {review: not_reviewed}
       re_discovery:      {review: not_reviewed}
+  - id: "Buffout4 NG-64880-1-38-3-1785297452"
+    tier: T4
+    stereo_rung: unknown
+    root: "D:/Dev Debug/Other VR mods/Fallout4VR mods/Buffout4 NG-64880-1-38-3-1785297452"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-05
+    reviewed_revision: unknown
+    engine: Creation Engine (Fallout 4 / Fallout 4 VR) - a NATIVE VR title, not a conversion
+    api: D3D11
+    vehicle: framework-companion
+    areas:
+      stereo:            {review: not_reviewed}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed, note: "Not an interaction mod - it is the FIELD OPERATIONS layer, and included in the interaction-coverage comparison for contrast."}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: partial, evidence: SOURCE, note: "harvested 2026-09-05 into ch07 #engine-hardening. Five patches replace bespoke allocators with the OS ones - global memory manager, Scaleform, small-block, Havok memory system, texture streamer local heap - plus MemoryManagerDebug which traces allocations to ATTRIBUTE faults to modules, and MaxStdIO raising the CRT 512-handle limit to 2048. Reasonable engineering for 2008 hardware, now slower and more fragile than the default allocator, and several fleet targets are that vintage."}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: partial, evidence: SOURCE, note: "harvested 2026-09-05 into ch06 #symbolised-crash-reports and TEST-018. Ships the GAME's PDBs (Fallout4.pdb 65 MB, Fallout4VR.pdb 30 MB, both genuine Microsoft C/C++ MSF 7.00) beside msdia140.dll, Microsoft's Debug Interface Access library, and resolves the crash stack AT FAULT TIME so reports name functions rather than addresses. Two config options worth copying with it: Symcache so symbolisation is not repeated work, and WaitForDebugger which attaches a debugger WHEN A CRASH OCCURS rather than at startup, turning an unreproducible field crash into a live session. Also a 22-entry engine defect registry where every fix is individually toggleable (a bisection axis) and carries its cause in one sentence, sometimes with a link to the community report - including SafeExit, which fixes crashes caused by PLUGIN HOOKS at shutdown. And a [Warnings] tier that fires where malformed data is ACCEPTED rather than where it later crashes."}
 not_a_source:
   - id: "Dishonored-VR-metalink-test"
     reason: "one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree"

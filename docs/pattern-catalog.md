@@ -2401,6 +2401,31 @@ entire session. The crash was prevented and the session was still lost. Ask what
 never having worked. And do not let the control plane depend on a diagnostic being enabled: theirs
 polled only while frametime logging and the flight recorder were on. `[AUTHOR]` SS2VR v3.71/v3.72.
 
+## TEST-018 — Symbolise the crash before the user has to {#test-018}
+
+**Problem:** an injected mod faults inside the game's code, so every crash report is a column of
+addresses, and the first hour of every investigation is spent turning them into names.
+
+**Use when:** the mod is about to reach anyone who cannot attach a debugger - which is the first
+external tester, not the first release.
+
+**Recipe:** install a crash handler that resolves the stack **at fault time**. Where symbols for the
+target exist, ship them and read them at runtime - Buffout 4 NG carries the game's own PDBs beside
+`msdia140.dll`, Microsoft's Debug Interface Access library, for exactly this. Where they do not,
+**symbolise your own module anyway**: the question is usually *"was it us"*, and a named frame in
+your DLL answers it in seconds.
+
+Add two things while you are there: a **symbol cache** directory so the work is not repeated, and a
+**wait-for-debugger-on-crash** switch - not at startup, at the fault, which turns an unreproducible
+field crash into a live session.
+
+**Proof:** force a fault in your own code and confirm the report names the function; force one in
+game code and confirm the report says so rather than blaming yours.
+
+**Trip hazard:** a report that names only *your* frames will be read as *"the mod crashed"* even when
+your frame is three levels below the real cause, so record the full stack and mark which frames are
+yours rather than filtering to them. `[SOURCE]` Buffout 4 NG.
+
 ## PERF-001 — Frame budget ledger {#perf-001}
 
 **Problem:** average FPS looks correct while the compositor reuses stale frames.

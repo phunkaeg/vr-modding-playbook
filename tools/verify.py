@@ -300,6 +300,11 @@ def main() -> int:
     results = []
     if not args.portable:
         results.append(run("source coverage ledger", [py, "tools/coverage.py", "--check"]))
+        # Generated from external mod configs. The generator returns 0 and says so
+        # when those trees are absent, so this cannot fail on a machine that has
+        # the playbook but not the reference corpus.
+        results.append(run("interaction coverage",
+                           [py, "tools/interaction_coverage.py", "--check"]))
     results.extend([
         run("bottleneck ledger", [py, "tools/bottlenecks.py", "--check"]),
         run("retrieval ID integrity", [py, "tools/playbook_integrity.py", "--check"]),

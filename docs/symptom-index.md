@@ -132,6 +132,9 @@ that the observation and the cause are usually in different chapters.
 | A gesture fires while the player is walking | [INPUT-010](pattern-catalog.md#input-010) — measure hand motion in room space |
 | A physics body pops, explodes, or vibrates in a wall | [HAND-015](pattern-catalog.md#hand-015) — blend, clamp, and choose the losing case |
 | Users report crashes on a build you never supported | [PACK-004](pattern-catalog.md#pack-004) — classify the exe before injecting |
+| Crash reports from testers are just addresses | [TEST-018](pattern-catalog.md#test-018) — symbolise at fault time |
+| A crash bisects to somewhere unrelated to its cause | [07](07-engine-integration-safety.md#engine-hardening) — warn where bad data is accepted, not where it faults |
+| Building an interaction layer, and unsure what it needs to expose | [interaction-coverage](generated/interaction-coverage.md) — what four shipped VR mods found necessary |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

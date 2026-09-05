@@ -597,6 +597,62 @@ diagnostics alive in the meantime.
   isolate per-eye resource lifetime from swapchain teardown — not to swallow the exception. A revert
   knob (chapter above) is what makes this a one-line containment instead of a lost build.
 
+## The hardening layer an old engine eventually needs {#engine-hardening}
+
+Once a mod ships to people who are not you, a third category of work appears beside features and
+bugs: **the engine's own defects, which are now yours to route around.** Buffout 4 NG is the mature
+form of that layer and its 39-line config is a good statement of the shape. `[SOURCE]`
+
+### A defect registry where every entry names its cause and is individually switchable
+
+Twenty-two named fixes, each one line, each saying what it fixes:
+
+```toml
+UnalignedLoad = true    # Fixes a crash related to SIMD intrinsics with an aligned move on unaligned memory
+SafeExit      = true    # Fixes crashes related to exiting the game caused erroneously by F4SE plugin hooks
+CellInit      = true    # Fixes a crash where a form does not get converted to a form pointer on unloaded cells
+InteriorNavCut = true   # ...persists throughout all interior cells. https://simsettlements.com/...
+```
+
+Two things make this more than a changelog. **Each fix is a toggle**, so it is a bisection axis in
+the sense of [config bisection](08-project-process.md#config-bisection) - a user with a crash can be
+asked to flip one. And **each carries its cause in one sentence**, sometimes with a link to the
+community report, so the registry doubles as the engine's failure atlas. Our own
+[failure atlas](failure-atlas.md) is the same instrument pointed at the fleet rather than at one
+engine.
+
+`SafeExit` deserves its own note: **it fixes crashes caused by plugin hooks like ours**, at shutdown.
+A framework mature enough to route around its own extensions is a good model for a fleet whose mods
+all inject.
+
+### A warnings tier: say it before it crashes
+
+The category most mods lack.
+
+```toml
+[Warnings]
+CreateTexture2D   = true  # Warns when a call to CreateTexture2D fails
+ImageSpaceAdapter = true  # Warns on bad IMAD definitions which will corrupt your memory and crash your game
+```
+
+**A warning fires where the bad data is introduced; the crash happens later somewhere unrelated.**
+That distance is the whole cost of diagnosing it. Any place your mod tolerates a failed call or
+accepts data it knows is malformed is a candidate - the warning costs a branch and saves the session
+where someone bisects a crash that had nothing to do with where it landed.
+
+### Old engines ship allocators that the OS now beats
+
+Five of its patches replace a bespoke allocator with the operating system's: the global memory
+manager, the Scaleform allocator, the small-block allocator, the Havok memory system and the texture
+streamer's local heap. A sixth, `MemoryManagerDebug`, **traces allocations to attribute faults to
+modules** - which is the "whose bug is this" question again.
+
+These were reasonable engineering in 2008 and are now slower and more fragile than the default
+allocator, and several fleet targets are that vintage. It is not free - it changes allocation
+behaviour under you - but on an engine that is crashing in its own heap it is the shorter path.
+`MaxStdIO = 2048` is the same shape at a smaller scale: the CRT's 512-handle default is a limit the
+engine was never designed to reach, and modding reaches it.
+
 ## Classify a fault before deciding how long it lasts {#fault-permanence}
 
 A mod's fault policy is usually one policy: something went wrong, so stop. That is wrong in both

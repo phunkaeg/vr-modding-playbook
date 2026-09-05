@@ -23,6 +23,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | Source | What is sitting there |
 |---|---|---|
+| `hands_interaction` | **Buffout4 NG-64880-1-38-3-1785297452** | Not an interaction mod - it is the FIELD OPERATIONS layer, and included in the interaction-coverage comparison for contrast. |
 | `hands_interaction` | **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | REGISTERED NOT REVIEWED 2026-09-05. FRIK - the Fallout 4 VR body and holster mod, VRIK's counterpart. Distribution is binary (F4SE plugin plus meshes/materials, 73 MB); the SOURCE is upstream on GitHub and the runtime config lives in Documents\My Games\Fallout4VR\FRIK_Config, so neither is in this tree. Only README.txt has been read. |
 | `hands_interaction` | **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | F4SEVR 0.6.21. src/ read selectively 2026-09-05 (150 .h / 144 .cpp; f4se_loader_common) -> ch08 #loader-preflight and PACK-004. The transferable part is the LOADER, not the game layer: IdentifyEXE maps the target read-only and classifies it by PE section (a UPX0 section means packed, a Steam section means wrapped; four outcomes, and the packed case is refused BY NAME), then compares versions three ways - older, NEWER than supported, and right version but wrong build branch - each with its own actionable message. The newer-than-supported case is the one that happens to every user the day the game updates. Version comes from the version resource rather than a file hash. The game-structure layer (BS*/Game*) was not read. |
 | `hands_interaction` | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | REGISTERED NOT REVIEWED 2026-09-05. A single 694 MB Wabbajack modlist archive, not a mod. Kept as a source only because it names a working Fallout 4 VR stack. |
@@ -51,19 +52,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 21 | 14 | 32 | 16 |
-| `xr_lifecycle` | 6 | 7 | 0 | 45 | 44 |
-| `xr_input` | 4 | 0 | 4 | 45 | 49 |
-| `camera_tracking` | 12 | 13 | 1 | 36 | 40 |
-| `render_hazards` | 5 | 9 | 1 | 12 | 75 |
-| `ui_hud` | 5 | 13 | 5 | 39 | 40 |
-| `hands_interaction` | 6 | 12 | 5 | 31 | 48 |
-| `input_locomotion` | 2 | 4 | 1 | 12 | 83 |
-| `performance` | 8 | 7 | 3 | 40 | 44 |
-| `audio` | 1 | 1 | 0 | 49 | 51 |
-| `packaging_deploy` | 6 | 23 | 18 | 24 | 31 |
-| `re_discovery` | 14 | 13 | 5 | 32 | 38 |
-| `source_integration` | 2 | 8 | 7 | 33 | 52 |
+| `stereo` | 19 | 21 | 14 | 33 | 16 |
+| `xr_lifecycle` | 6 | 7 | 0 | 46 | 44 |
+| `xr_input` | 4 | 0 | 4 | 46 | 49 |
+| `camera_tracking` | 12 | 13 | 1 | 37 | 40 |
+| `render_hazards` | 5 | 9 | 1 | 13 | 75 |
+| `ui_hud` | 5 | 13 | 5 | 40 | 40 |
+| `hands_interaction` | 6 | 12 | 5 | 32 | 48 |
+| `input_locomotion` | 2 | 4 | 1 | 13 | 83 |
+| `performance` | 8 | 8 | 3 | 40 | 44 |
+| `audio` | 1 | 1 | 0 | 50 | 51 |
+| `packaging_deploy` | 6 | 23 | 18 | 25 | 31 |
+| `re_discovery` | 14 | 14 | 5 | 32 | 38 |
+| `source_integration` | 2 | 8 | 7 | 33 | 53 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -102,6 +103,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **BL1GOTYVR** | external reference | Unreal Engine 3 (Borderlands GOTY Enhanced, 2019) | native-injector | T2 | — | 9 | 74 | 66 | 4 | 2026-08-30 | ⚪ unpinned | 0F / 0P / 4S / 7NR / 2— |
 | **black-mesa-l4d2vr** | external reference | Source (Black Mesa) | native-injector | — | — | 9 | 1780 | 1370 | 89 | 2026-08-28 | ⚪ unpinned | 1F / 5P / 0S / 5NR / 2— |
 | **bo1-vr** | external reference | Treyarch T5 (Black Ops) | native-injector | — | — | — | 177 | 72 | 49 | 2026-08-27 | 🟩 current | 2F / 2P / 0S / 0NR / 9— |
+| **Buffout4 NG-64880-1-38-3-1785297452** | external reference | Creation Engine (Fallout 4 / Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 7 | 0 | 1 | 2026-07-29 | ⚪ unpinned | 0F / 2P / 0S / 10NR / 1— |
 | **CallOfDuty4_VR** | external reference | IW (CoD4) | source-port | — | — | 18 | 1125 | 1030 | 27 | 2026-08-22 | 🟩 current | 2F / 3P / 1S / 1NR / 6— |
 | **condemned-vr** | external reference | LithTech Jupiter EX (Condemned: Criminal Origins) | native-injector | T2 | R1 · native re-entry | 17 | 213 | 132 | 32 | 2026-08-30 | ⚪ unpinned | 1F / 0P / 4S / 6NR / 2— |
 | **crysis_vrmod** | external reference | CryEngine 2 | native-injector | T3 | R1 · native re-entry | 17 | 813 | 695 | 18 | 2026-08-28 | ⚪ unpinned | 2F / 1P / 1S / 7NR / 2— |
@@ -202,8 +204,8 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 |---|---|---|---|---|---|---|---|
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:f739d4177dd41381` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:35ab1dc2354b0092` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:dc89034fd00b40f2` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:e2ffac45aec60060` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:cc0feb54ce2f4edd` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:a6a8e3a75a83a32d` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:a42cedad42680e70` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f31b82ea3ce79d04` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:762a48d6bc781596` | `—` | 🟥 source changed | internal | internal-unreleased |
@@ -221,6 +223,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **BL1GOTYVR** | 2026-08-29 | `unknown` | `tree:3e8e104d25c19bb5` | `—` | ⚪ unpinned | unknown | unknown |
 | **black-mesa-l4d2vr** | 2026-08-28 | `unknown` | `tree:58c62c9565e8c260` | `—` | ⚪ unpinned | unknown | unknown |
 | **bo1-vr** | 2026-08-27 | `tree:f5a5f9cf94ed8e4f` | `tree:f5a5f9cf94ed8e4f` | `—` | 🟩 current | unknown | unknown |
+| **Buffout4 NG-64880-1-38-3-1785297452** | 2026-09-05 | `unknown` | `tree:c5822dd551ad3a17` | `—` | ⚪ unpinned | unknown | unknown |
 | **CallOfDuty4_VR** | 2026-08-25 | `tree:146efc09f95cba26` | `tree:146efc09f95cba26` | `—` | 🟩 current | unknown | unknown |
 | **condemned-vr** | 2026-08-29 | `unknown` | `tree:375521a55d72feca` | `—` | ⚪ unpinned | unknown | unknown |
 | **crysis_vrmod** | 2026-08-28 | `unknown` | `tree:72edce18458cccd3` | `—` | ⚪ unpinned | unknown | unknown |
@@ -731,6 +734,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | — no entry — | — | — |
 | `packaging_deploy` | — no entry — | — | — |
 | `re_discovery` | 🟨 partial | `SOURCE` | Hand-written asm detours against LTCG non-standard calling conventions on a CEG-protected exe. Rule harvested: hook UPSTREAM of where the engine caches vieworg into lighting/PVS globals. |
+| `source_integration` | — no entry — | — | — |
+
+#### Buffout4 NG-64880-1-38-3-1785297452
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | — |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | Not an interaction mod - it is the FIELD OPERATIONS layer, and included in the interaction-coverage comparison for contrast. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟨 partial | `SOURCE` | harvested 2026-09-05 into ch07 #engine-hardening. Five patches replace bespoke allocators with the OS ones - global memory manager, Scaleform, small-block, Havok memory system, texture streamer local heap - plus MemoryManagerDebug which traces allocations to ATTRIBUTE faults to modules, and MaxStdIO raising the CRT 512-handle limit to 2048. Reasonable engineering for 2008 hardware, now slower and more fragile than the default allocator, and several fleet targets are that vintage. |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟨 partial | `SOURCE` | harvested 2026-09-05 into ch06 #symbolised-crash-reports and TEST-018. Ships the GAME's PDBs (Fallout4.pdb 65 MB, Fallout4VR.pdb 30 MB, both genuine Microsoft C/C++ MSF 7.00) beside msdia140.dll, Microsoft's Debug Interface Access library, and resolves the crash stack AT FAULT TIME so reports name functions rather than addresses. Two config options worth copying with it: Symcache so symbolisation is not repeated work, and WaitForDebugger which attaches a debugger WHEN A CRASH OCCURS rather than at startup, turning an unreproducible field crash into a live session. Also a 22-entry engine defect registry where every fix is individually toggleable (a bisection axis) and carries its cause in one sentence, sometimes with a link to the community report - including SafeExit, which fixes crashes caused by PLUGIN HOOKS at shutdown. And a [Warnings] tier that fires where malformed data is ACCEPTED rather than where it later crashes. |
 | `source_integration` | — no entry — | — | — |
 
 #### CallOfDuty4_VR

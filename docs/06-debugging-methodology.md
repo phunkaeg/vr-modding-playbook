@@ -1035,6 +1035,30 @@ This is the general form of [assert the gap](#assert-the-gap) and the answer to
 [the self-referential test](#assert-the-gap): a witness outside the derivation is the only thing that can
 falsify a convention.
 
+## Symbolise your own crash reports {#symbolised-crash-reports}
+
+An injected mod crashes inside the game's code, so its crash report is a list of addresses in a
+module nobody has symbols for. The user pastes it, and the first hour goes on turning numbers into
+names - every time.
+
+**Buffout 4 NG ships the game's PDBs and resolves the stack at crash time.** `[SOURCE]` Its plugin
+folder carries `Fallout4.pdb` (65 MB) and `Fallout4VR.pdb` (30 MB) - genuine `Microsoft C/C++ MSF
+7.00` files - alongside **`msdia140.dll`**, Microsoft's Debug Interface Access library, which reads
+PDBs at runtime. The crash handler walks the stack and names the functions.
+
+Two options in its config are worth copying with it:
+
+- **`Symcache`** - a symbol cache directory, so symbolisation is not repeated work.
+- **`WaitForDebugger`** - *wait for a debugger to attach **when a crash occurs***. Not at startup:
+  at the fault. That converts an unreproducible field crash into a live debugging session, and it is
+  a two-line feature.
+
+For the fleet this is cheaper than it looks. Several targets have public symbols or a DRM-free twin;
+where they do not, **the same handler with only your own module symbolised is still worth having**,
+because the question is usually "was it us" and a named frame in *your* DLL answers it immediately.
+Pair it with [dump the running image](11-re-anchoring-and-discovery.md#dump-the-running-image) when
+the executable is packed.
+
 ## A metric that cannot come back bad is not a metric {#metric-cannot-fail}
 
 Three of Swat4-VR's four judder instruments were measuring something other than their name, and all three
