@@ -48,6 +48,13 @@ DOC_EXT = {".md", ".txt", ".rst", ".adoc"}
 SKIP_DIRS = {
     ".git", "node_modules", "obj", "bin", "packages", ".vs", "build",
     "target", "vendor", "vendor-local", "__pycache__",
+    # Scratch and log directories. The fingerprint below includes st_mtime_ns,
+    # so a directory a project rewrites while it works makes the ledger stale on
+    # every run and `verify.py` unpassable for anyone whose sibling happens to be
+    # building. Measured: ss2vr-work/tmp/executor-*.ps1 changed between two
+    # consecutive coverage runs three seconds apart, while its git tree was
+    # stable - so the failure had nothing to do with the change under test.
+    "tmp", "temp", ".tmp", "logs", ".cache",
 }
 REVIEW_VALUES = ("full", "partial", "skimmed", "not_reviewed")
 EVIDENCE_VALUES = ("SPEC", "SOURCE", "STATIC", "LIVE", "HEADSET", "AUTHOR", "INFERENCE")

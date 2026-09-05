@@ -1052,6 +1052,46 @@ opinion** - a `counter` weapon cannot be given a `full` treatment without invent
 does not have, and a `recharge` weapon has nothing to physicalise at all. Filling Table C first is
 how a project ends up building a magazine animation for a weapon that has no magazine.
 
+### Two traps the fleet's first real census hit, on its first pass
+
+SS2VR's census is the worked example, and both of its early corrections generalise. `[SOURCE]`
+
+**An `eject` event is not necessarily a magazine.** The Anniversary Edition's animation table fires
+an `eject` event, which reads like exactly the hook a physical reload wants. It is not: **every
+`eject` fires inside a `shoot` animation and no `reload` animation contains one.** It is the spent
+casing leaving on firing. Magazine removal is expressed purely as joint translation, with no event at
+all. A feature that hooks `eject` expecting a magazine fires once per shot and never on a reload.
+**Check which animation an event belongs to before believing its name.**
+
+**Searching by the name a human uses will lose weapons.** The census's own rule is to key every row
+on the engine's identifier, and the reason showed up immediately: SS2's Laser Sabre has the archetype
+`Electro Shock`. Searching the gamesys for *rapier*, *sabre* or *laser melee* returns nothing, and the
+tempting conclusion - that the weapon does not exist - is wrong. The display name lives in the
+remaster's script layer, the archetype in the engine. **An empty search for a display name is
+evidence about the name, not about the arsenal.**
+
+**And a remaster's script layer can add what the original engine never had.** SS2's Dark gamesys gives
+the roster, the ids and the ammo items; the AE's Squirrel adds weapon models *and animations* on top.
+Reload topology - which joint moves, how far, whether anything cycles - lives entirely in that second
+layer. **Either source alone under-describes the arsenal**, and the census needs a source column
+saying which answered what.
+
+The payoff is concrete. Read out of the AE table, SS2's arsenal is not one mechanism:
+
+| Weapon | Magazine joint | Travel | Cycles during reload? |
+|---|---|---|---|
+| Pistol | `joint2` | X 0 → **−2.00** | no - the slide has a single key |
+| Assault Rifle | **`joint3`** | X 0 → **+5.00** | **yes**, slide −0.25 |
+| Stasis Field Generator | translator + **30 deg rotation** | short | rotary, not a slide |
+| Shotgun | none - shell-by-shell | — | pump, and it is in `shoot` |
+| Fusion Cannon | none moves | — | no part moves at all |
+| Laser Pistol | — | — | **no reload animation exists** |
+
+**The magazine joint index is not constant, and the travel is not even the same sign.** A mechanism
+written against the Pistol and pointed at the Assault Rifle drives the wrong joint the wrong way.
+That is [HAND-009](pattern-catalog.md#hand-009) arriving one week early, for free, because the table
+was read before the code was written.
+
 ### The tier below full physical, and it is already shipped
 
 **SS2VR's `manualReload` is the `gesture-native` treatment working today**, and it is worth reading
