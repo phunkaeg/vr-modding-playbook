@@ -1640,6 +1640,23 @@ handling rather than a shared number. See
 
 **Confirmed on a third engine tree 2026-09-05.** Prey (CryEngine) shows the same split: with the world frustum correctly declared and stereo fusing, the weapon model still reads at a visibly different field. Three unrelated trees now - UE2.5 twice, Dunia, CryEngine - so treat the split as the default expectation rather than a per-engine quirk, and check it as soon as stereo fuses.
 
+**Look for a cvar before you build a hook.** The split is usually described as something to
+reverse-engineer, and on CryEngine it is simply exposed. Prey ships the whole near-render family as
+console variables -- `r_DrawNearFoV` ("Sets the FoV for drawing of near objects"), `r_NoDrawNear`,
+`r_DrawNearZRange` and `r_DrawNearFarPlane` -- so correcting the viewmodel projection costs one
+command and no code. Found by string search in the shipped DLL with no game running, after a wearer
+reported the weapon looking like it was rendered at a different field; setting it to the world's own
+measured vertical FOV made the weapon and the world agree, with the world visibly unchanged. That
+last part is the proof the cvar reaches the pass you think it does: **one pass changes and the other
+does not.** `[HEADSET]` PreyVR 2026-09-05.
+
+Two things travel with it. The near pass owns **everything drawn close** -- both arms and the body,
+not just the weapon -- so its camera is the wrong lever for independent per-hand control, however
+tempting it looks once you find it; that is a bone-level problem and moving the near camera produces
+the whole-torso-swings-with-the-gun look. And the shipped value is tuned for a flat screen, so a VR
+build should set this at startup rather than treat it as a debug toggle: the default is wrong for VR
+by construction.
+
 **Assert declared-against-rendered IN-PROCESS, because nothing outside can.** There are three
 frustums in play and an OpenXR API layer can only see two of them - the one the runtime located and the
 one you declared. The projection the engine actually rendered with never crosses the OpenXR boundary,
