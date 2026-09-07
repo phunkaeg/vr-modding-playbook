@@ -49,6 +49,124 @@ room-space treatment at all.
 The cheap check either way: perform the gesture standing still, then walk while holding the hand
 still relative to your body. The second must not fire.
 
+## Specifying a physical locomotion verb: shock2quest's hand climbing {#physical-locomotion-verb}
+
+Hand-over-hand climbing, mantling and vaulting, shipped in nine staged changes. The transferable part
+is not the climbing — it is **how a physical verb gets specified, capped, forgiven and shown**, and
+every one of those has a named failure it prevents. `[SOURCE]`
+
+### The bench landed before the feature, with a station that must fail
+
+PR 1 of nine was a **scene, not a feature**: `debug_ladder`, with **one station per climbing shape** —
+a low mantle block, a short 4-foot ladder, an arch carrying a 16-foot ladder on *both* faces, a ledge,
+a stack of eleven separate rungs, and **a plain non-climbable wall**. Two things make it work:
+
+- **It is built from the shipped ladder templates**, so *"colliders and the climbable flag are the
+  production ones"* — the bench is not testing fixtures the author also wrote.
+- **The wall is a station.** The end-to-end case tops out on every block *and* is blocked by the wall,
+  so the suite has a case that must say no from the first day. See
+  [TEST-023](pattern-catalog.md#test-023).
+
+PR 2 was the physics query **alone** — *"A hand can now ask the world 'is there something climbable
+here?' — query only. No controller wiring and no body motion."* The mechanism landed before anything
+could move.
+
+### Authored per-face data, not a bounding box
+
+A grip qualifies in one of two classes, and they have different rules:
+
+- **`Ladder`** — the collider is in the climbable group **and** the *touched face's* bit is set in the
+  entity's authored `PropPhysAttr.climbable` mask. *"So a ladder is no longer grippable over its whole
+  bounding box."*
+- **`Ledge`** — any other solid, player-blocking surface whose contact normal is walkable and whose
+  contact point is more than a step height above the feet. This is the mantle hold. A wall face, and
+  the floor you are standing on, return nothing.
+
+The mask is six bits over the OBB faces **in the authoring tool's own Z-up frame**, so it has to be
+permuted through the importer's axis convention before it means anything — a table where being wrong
+gives you a ladder that is climbable on the wrong side, which looks like a physics bug.
+
+### The caps are the design, not the tuning
+
+Letting go throws the body: the anchor hand's travel **relative to the pawn** *is* the pull, averaged
+over the last four frames. Four constraints around it, each preventing something specific:
+
+| Constraint | Value | What it prevents |
+|---|---|---|
+| magnitude ceiling | 12 wu/s | an unbounded haul |
+| **upward** component | capped at **the ordinary jump's own launch speed** | *"a haul can never rise higher — nor fall further — than a jump"* — the game scores falls, and a new verb must not escape its damage model |
+| deadzone | 0.5 wu/s | *"letting go slowly is just letting go"* |
+| time base | **the physics step, not the wall clock** | *"the throw matches the pull at 72/90/120 Hz, not only at 60"* |
+
+The second row is the one to copy. **A new locomotion verb that can exceed the envelope of an existing
+one silently escapes every system tuned against it** — fall damage here, but equally sightlines,
+audio occlusion and AI reachability.
+
+A stretch break or a vanished hold launches **nothing**, per hand: *"that 'pull' was the body failing
+to follow"* — and a handoff to the other hand is not a release.
+
+### A predicate with a state-at-acquisition term
+
+`vault_ready` is pure, and its middle clause is the whole design: the anchor grip is a walkable
+`Ledge`, **the eye was BELOW the lip when the hold was taken**, and it is now above it.
+
+> *"The middle clause is what keeps leaning on a chest-high crate from being a mantle — the vault has
+> to be pulled for."*
+
+**A dynamic verb needs a term recorded when the gesture started**, or a static pose that happens to
+satisfy the end state triggers it. And when the top-out planner finds no landing, *nothing changes and
+the player keeps pulling hand over hand* — the verb fails back into the state it came from rather
+than into a broken one. While a scripted top-out runs it **owns the body outright**: no grip can be
+taken and no capsule resized.
+
+### Forgiveness is two mechanisms, not one
+
+Grip acquisition needed both, and they were added for two different misses:
+
+- **Spatial.** A hand just below and in front of a mantle corner could not grab the top, because the
+  nearest contact was the vertical wall. The query now searches a bounded **0.3 wu** reach for a
+  nearby walkable lip, still validating approach and clearance.
+- **Temporal.** Squeezing slightly *before* reaching the surface lost the grab entirely. A squeeze now
+  stays **eligible for 150 ms**, so arriving during that window still acquires.
+
+### Show the hold
+
+A cyan marker above each gripping fist, held until release or break — added because there was *"no
+visible distinction between a missed grab and a held hand whose downward pull was blocked by the
+deck."* **Those two states feel identical and have opposite fixes.**
+
+### Crouch moves the rig, and the resize has an anchor
+
+Two findings that generalise to any capsule-resizing mod:
+
+- **Capping the eye is not crouching.** Their crouch lowered the rendered eye without lowering the
+  hands, so the hands read as too high. The fix applies **one head-resolved translation to both eyes,
+  both hands, and the gameplay head pose**.
+- **The resize anchor depends on what the body is attached to.** While hanging, the capsule swaps
+  anchored on the **body centre**, because the ordinary feet-planted shift (0.64 wu) is *larger than
+  the grip's entire stretch tolerance* (0.6 wu) — planting the feet would drag the hand off its hold.
+  Once the feet are back on something the feet-planted path takes over, because a centre-anchored
+  expansion there drives the standing capsule through the floor. They record which way a crouch was
+  made so it is undone the same way.
+
+### And the same week, the melee rule was re-derived on the same principle
+
+Free-swing damage had read the weapon's **centre-of-mass velocity as a raw magnitude**, at a threshold
+*below walking pace*, so walking into a creature with a wrench out billed a hit. Three defects, each
+named separately:
+
+| Old | Why it was wrong |
+|---|---|
+| centre-of-mass velocity, no `ω × r` | *"a wrist flick moves the head fast while the centre barely moves — it under-read the exact gesture the rule measures"* |
+| weapon velocity alone | *"walking billed a hit; a creature charging onto a held blade billed nothing"* |
+| raw magnitude, unprojected | *"motion along a surface is fast but closes on nothing"* |
+
+It now measures **the closing speed of the two bodies, at the point where they touched, along the
+surface they touched on.** That is [INPUT-012](pattern-catalog.md#input-012) and
+[room-space motion](#roomspace-velocity) arriving at the same place from a different direction:
+measure the quantity the rule is actually about, between the two things it is about, projected onto
+the axis that matters.
+
 ## A stroke grammar multiplies one button into a menu you never open {#stroke-grammar}
 
 VR controllers run out of buttons long before a mod runs out of actions, and the usual answers are a

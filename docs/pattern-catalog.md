@@ -1379,6 +1379,41 @@ the dangerous part, a table that can silently swallow a press, reviewable by its
 resolves to nothing must be [audibly distinguishable from a refusal](20-audio-and-haptics.md#cue-policy-three-outcomes),
 or it reads as a dead button. `[SOURCE]` shock2quest.
 
+## INPUT-012 — Specify a physical verb by its caps, its acquisition state and its failure {#input-012}
+
+**Problem:** a physical locomotion or combat verb — climb, vault, throw, swing — is built from the
+gesture outward, so it triggers on static poses, escapes the envelope of the verbs it sits beside, and
+behaves differently at 72 and 120 Hz.
+
+**Use when:** adding any verb the player performs with their body rather than a button.
+
+**Recipe:** write four things down before the gesture code.
+
+- **What it measures, and between what.** Not a raw speed: the quantity the rule is about, between the
+  two bodies it is about, projected onto the axis that matters. A swing bills the **closing speed at
+  the contact point along the contact normal**, not the weapon's centre-of-mass magnitude — otherwise
+  walking into something bills a hit, and a creature charging onto a held blade bills nothing.
+  Motion measured relative to the player, per [INPUT-010](#input-010).
+- **Its caps, against the verbs beside it.** Cap the new verb inside the envelope of the existing one
+  it most resembles — shock2quest caps a climb-throw's *upward* component at the ordinary jump's
+  launch speed, so *"a haul can never rise higher, nor fall further, than a jump"* and the game's own
+  fall scoring still applies. Add a deadzone so a slow release is just a release.
+- **A state-at-acquisition term.** A dynamic verb needs something recorded when the gesture *began*,
+  or a static pose satisfying the end state triggers it: their vault requires the eye to have been
+  **below** the lip when the hold was taken, *"which is what keeps leaning on a chest-high crate from
+  being a mantle."*
+- **What happens when it cannot complete.** Fail back into the state you came from. When their top-out
+  planner finds no landing, nothing changes and the player keeps climbing.
+
+**Proof:** the verb triggers deliberately and not from a static pose; it cannot exceed the neighbouring
+verb's envelope; and it behaves the same at 72, 90 and 120 Hz.
+
+**Trip hazard:** **express gesture-derived velocity in the simulation's own time unit, not the wall
+clock.** One sample of travel per update becomes one physics step of flight, or the verb is
+refresh-rate dependent and tuned for whoever's headset the author owns. And distinguish a *break* from
+a *release*: a hold that vanished, or a body that failed to follow, must launch nothing.
+`[SOURCE]` shock2quest.
+
 ## CFG-003 — Write the config before the process starts {#cfg-003}
 
 **Problem:** a setting VR needs cannot be made to stick, because the game rewrites its config at exit with
@@ -2702,6 +2737,37 @@ cheap, not to be the gate — anything it certifies still needs one real-runtime
 is called done. And when you vendor a shared tool, the fork is now a second instrument: SOMAVR's
 vendored xr-sim passing while the shared one failed was only legible because both were named.
 `[LIVE]` SOMAVR; `[SOURCE]` SoF-VR.
+
+## TEST-023 — Build the bench first, one station per shape, one that must fail {#test-023}
+
+**Problem:** a feature is built and then tested against whatever the level happens to contain, so the
+shapes it does not handle are discovered by a player and the suite has no case that says no.
+
+**Use when:** the feature has to work against a *family* of world geometry or content — climbable
+surfaces, weapon models, UI panel types, interactable classes.
+
+**Recipe:** ship the **test scene before the feature**, with **one station per shape** the feature must
+handle, and **at least one station it must refuse**. shock2quest's `debug_ladder` was the first of
+nine changes: a mantle block, a short ladder, an arch carrying a ladder on both faces, a ledge, a stack
+of separate rungs, and a plain non-climbable wall.
+
+Two rules make it evidence rather than decoration:
+
+- **Build it from shipped content**, not from fixtures you authored — theirs uses the game's own ladder
+  templates, so *"colliders and the climbable flag are the production ones."* A bench made of your own
+  assumptions tests your assumptions.
+- **Land the query before the behaviour.** Their second change was the physics grip probe alone —
+  *"query only. No controller wiring and no body motion"* — so the thing that decides *whether* was
+  reviewable before the thing that decides *what happens*.
+
+**Proof:** the suite passes on every station and **fails on the refusing one**, from the first commit
+that has a suite at all.
+
+**Trip hazard:** headless coverage on a bench proves the **mechanism**, never the **feel**.
+shock2quest says so explicitly in the same PRs — *"headless interaction coverage does not establish
+comfortable headset reach; the lip tolerance still needs hands-on tuning"* — and separately marks
+crouch and hanging as unverified on the headset while the render smoke check passed. Keep those two
+verdicts apart in the record. `[SOURCE]` shock2quest.
 
 ## PERF-001 — Frame budget ledger {#perf-001}
 

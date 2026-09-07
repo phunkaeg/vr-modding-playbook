@@ -219,7 +219,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:22d5f3e3f1b84962` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:b6c488176ce7dbd4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:1f22adffff74afbc` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:ba546aa6a51107e3` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:ae4ad0b390ce6229` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:7d2686182cac76b9` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
@@ -355,7 +355,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3853 | 359 | 2026-09-07 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3854 | 360 | 2026-09-08 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4912 | 2582 | 2026-09-07 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
 | **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 18123 | 1450 | 2026-09-07 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
 | **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2736 | 846 | 2026-09-07 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
@@ -1890,7 +1890,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 |---|---|---|---|
 | `stereo` | 🟥 not reviewed | `—` | — |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | — |
-| `xr_input` | 🟨 partial | `SOURCE` | harvested 2026-09-07 into ch03 #context-by-hand and INPUT-011: four face buttons bound raw by hand and physical position, meaning resolved per hand against what that hand holds, symmetric across hands, every action targeting the hand that pressed. Locomotion work not read: climbing holds, mantle lips, ladder tops and vaulting all landed since the last review. |
+| `xr_input` | 🟨 partial | `SOURCE` | harvested 2026-09-07 into ch03 #context-by-hand and INPUT-011: four face buttons bound raw by hand and physical position, meaning resolved per hand against what that hand holds, symmetric across hands, every action targeting the hand that pressed. LOCOMOTION harvested 2026-09-07 into ch03 #physical-locomotion-verb, INPUT-012 and TEST-023: a nine-PR hand-climbing campaign whose first change was the BENCH (debug_ladder, one station per climbing shape including a non-climbable wall, built from shipped ladder templates) and whose second was the physics grip query ALONE, query-only with no body motion. Grip qualifies on the AUTHORED per-face climbable mask rather than the collider bounding box, permuted from the tool Z-up frame into the engine Y-up one. Release throws the body by the anchor hand travel RELATIVE TO THE PAWN over four frames, capped in magnitude and - the transferable cap - capped upward at the ordinary jump launch speed so a haul can never rise higher nor fall further than a jump, because the game scores falls. Velocity is expressed in PHYSICS STEPS so the throw matches the pull at 72/90/120 Hz. The vault predicate carries a state-at-acquisition term (the eye was BELOW the lip when the hold was taken) which is what stops leaning on a crate being a mantle, and a failed top-out plan changes nothing rather than breaking. Grip forgiveness is two mechanisms, spatial (0.3 wu lip search) and temporal (squeeze eligible 150 ms). Capsule resize is anchored on the body CENTRE while hanging because the feet-planted shift exceeds the grip stretch tolerance, and on the feet when grounded. Crouch applies one head-resolved translation to eyes, hands and gameplay head. Same week, melee billing moved from raw centre-of-mass speed to CLOSING speed at the contact point along the contact normal. They mark headless coverage as proving mechanism and NOT comfort, explicitly. |
 | `camera_tracking` | — no entry — | — | — |
 | `render_hazards` | — no entry — | — | — |
 | `ui_hud` | 🟩 full | `SOURCE` | Harvested 2026-08-25 into ch04: world-locking, honest panel basis, shared pointer arbitration, input edges and zero-quaternion guards. |

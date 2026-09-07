@@ -151,6 +151,11 @@ that the observation and the cause are usually in different chapters.
 | Out of buttons, and hands need different meanings | [INPUT-011](pattern-catalog.md#input-011) — bind by hand and position, resolve by what it holds |
 | A physical control is reported dead but the log says it declined | [20](20-audio-and-haptics.md#cue-policy-three-outcomes) — a refusal must be audible |
 | Building physical reload for System Shock 2 specifically | [02](02-viewmodels-and-hands.md#s2q-clip-insert) — shock2quest shipped one, same game, readable source |
+| Adding climbing, vaulting or any body-performed verb | [INPUT-012](pattern-catalog.md#input-012) — caps, acquisition state, and the failure case |
+| A feature must handle a family of world shapes | [TEST-023](pattern-catalog.md#test-023) — bench first, one station each, one that must fail |
+| A gesture behaves differently on a different headset | [03](03-input-and-locomotion.md#physical-locomotion-verb) — express it in physics steps, not seconds |
+| Walking into an enemy deals melee damage | [03](03-input-and-locomotion.md#physical-locomotion-verb) — bill closing speed at the contact, not raw weapon velocity |
+| Crouching lowers the view but not the hands | [03](03-input-and-locomotion.md#physical-locomotion-verb) — one head-resolved translation for the whole rig |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
