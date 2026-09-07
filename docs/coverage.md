@@ -27,9 +27,12 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `hands_interaction` | **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | REGISTERED NOT REVIEWED 2026-09-05. FRIK - the Fallout 4 VR body and holster mod, VRIK's counterpart. Distribution is binary (F4SE plugin plus meshes/materials, 73 MB); the SOURCE is upstream on GitHub and the runtime config lives in Documents\My Games\Fallout4VR\FRIK_Config, so neither is in this tree. Only README.txt has been read. |
 | `hands_interaction` | **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | F4SEVR 0.6.21. src/ read selectively 2026-09-05 (150 .h / 144 .cpp; f4se_loader_common) -> ch08 #loader-preflight and PACK-004. The transferable part is the LOADER, not the game layer: IdentifyEXE maps the target read-only and classifies it by PE section (a UPX0 section means packed, a Steam section means wrapped; four outcomes, and the packed case is refused BY NAME), then compares versions three ways - older, NEWER than supported, and right version but wrong build branch - each with its own actionable message. The newer-than-supported case is the one that happens to every user the day the game updates. Version comes from the version resource rather than a file hash. The game-structure layer (BS*/Game*) was not read. |
 | `hands_interaction` | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | REGISTERED NOT REVIEWED 2026-09-05. A single 694 MB Wabbajack modlist archive, not a mod. Kept as a source only because it names a working Fallout 4 VR stack. |
+| `hands_interaction` | **StalkerVR-code** | THE REASON THIS WAS SEPARATED. gamedata/configs/vr/weapon_grip_vr.ltx is ~97 KB of PER-WEAPON GRIP DATA and handpose_vr.ltx ~29 KB of hand poses - the shape HAND-008 and HAND-009 argue for, shipped, on an engine nobody here has touched. The 3D_SIGHTS and 3DSS_Vanilla mods add per-weapon sight and model-swap tables (~34 KB and ~34 KB) beside them. |
+| `packaging_deploy` | **StalkerVR-code** | JSGME-managed mod stack; fsgame.ltx, commandline.txt and the launcher config were copied because they describe how the build is wired. |
 | `packaging_deploy` | **Talemann-RE4** | Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game. |
 | `re_discovery` | **Dishonored-VR** | REGISTERED NOT REVIEWED 2026-09-02. ALREADY MINED by the in-house DishonoredVR project (2026-09-02), which took the render path instead and avoided its blockers - read for method and negative results, not as an open task. GingasVRFO/Dishonored-VR is a SEPARATE VR conversion of the SAME GAME as the in-house DishonoredVR project. A d3d9.dll proxy built on a FORKED DXVK, with true stereo, 6DoF, motion controls, roomscale and a hand-aimed Blink. DISCONTINUED and explicitly offered for pickup (author burned out on unreproducible reports). Its 13 numbered fork-patches read as a complete rung-2 development history: M2 frame-map instrumentation, M3 stereo splice per-eye draw replay, mirrored-VP skip, world-quad splice via a c6 identity test, depth-test state REPLACING that c6 heuristic, an explicit revert to proven M3.1, measured gates, live projection scales, live writable separation and convergence, per-draw splice verdicts, world-space UP effects (the fire fix), and the Blink marker. The real payload is dllmain.cpp (~23k lines of in-game research log); its negative results are worth more than its code. |
 | `re_discovery` | **Quake2Quest** | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
+| `re_discovery` | **StalkerVR-code** | bin/AnomalyDX11.pdb ships SYMBOLS for the VR engine build, so TEST-018 crash symbolisation applies to this target directly. Not copied - it lives in the install. |
 | `re_discovery` | **quake2vr** | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
 | `stereo` | **Dishonored-VR-fork** | REGISTERED NOT REVIEWED 2026-09-04. In-house fork of the shipped external mod, carrying local commits (Meta Link OpenXR backend selection; build.sh portability). The 52-patch upstream series is already distilled in ch17 #dishonored-splice; this tree adds the fork's own changes, which are not yet read. |
 | `stereo` | **FUS** | REGISTERED NOT REVIEWED 2026-09-05. A Wabbajack modlist/preset rather than a mod: README, images, a bundled openvr_api.dll and a Mantella folder. Kept as a source only because it names a working VR mod stack. |
@@ -41,30 +44,33 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
 | `stereo` | **ReclaimerVR** | NOT HARVESTABLE: the checkout contains a README and nothing else. Third Halo MCC entry by name only. |
 | `stereo` | **SkyrimVR FBT 185070 1.0.3 2026-07-22T11-37Z HZCMOyLlG** | REGISTERED NOT REVIEWED 2026-09-05. Full-body tracking support (SKSE plugin only, no source in the tree). |
+| `stereo` | **StalkerVR-code** | REGISTERED NOT REVIEWED 2026-09-07. The VR code and design of a S.T.A.L.K.E.R. Anthology VR build, separated from its 32 GB install: 43 files, 339 KB of Lua and .ltx. See PROVENANCE.md in the tree for what was left behind and why. Tier and stereo rung are deliberately ABSENT rather than guessed, and the vehicle is INFERRED - nothing here has been read beyond listings and sizes. The evidence does say the VR support is an engine fork rather than an injector: bin/AnomalyDX11.exe is replaced with 'AnomalyDX11 - original.exe' preserved beside it, and bin/openxr_loader.dll is native. |
 | `stereo` | **Sterallax6DOF-silksong** | NOT HARVESTABLE without RE: a single DLL, no source, no config, no readme. Retained in the ledger because 6DOF applied to a 2D game is a conversion class with no other example here - worth an RE pass if that class ever matters. |
 | `stereo` | **SubmersedVR** | NARROW PULL: produces no stereo, XR lifecycle or perf work; forces Seated and hard-snaps the rig each frame. |
 | `stereo` | **Talemann-RE4** | Not a stereo mod. REFramework supplies VR; this supplies the HANDS. Installed build is RE4VR_2.0_Setup.exe; the mod is ~31k lines of Lua under reframework/autorun plus JSON data under reframework/data/re4_vr. |
 | `stereo` | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | REGISTERED NOT REVIEWED 2026-09-05. VRIK Player Avatar. Full-body IK avatar and, more importantly here, the mod that established the BODY-ANCHORED HOLSTER paradigm most VR mods now copy - which ch02's holster guidance and RE4VR's Spine_1 anchoring both descend from. Ships Scripts/, meshes/, an .esp. |
 | `stereo` | **XIII2003-vr-mod** | BINARY ONLY: ships D3DDrv.dll plus CONTRIBUTING/CREDITS/README and no source - an Unreal render-device replacement. This is the MOD repo of the six-repository family whose research repo (XIII2003-vr-external-research) is already harvested into ch18 #stock-cheat-commands, so the structure is documented even though the implementation is not. |
 | `ui_hud` | **MELE-VR** | HDR must be off or the headset image is blue/doubled (FAIL-STR-012). Binary only - no source. |
+| `ui_hud` | **StalkerVR-code** | Three vr_ui_* script overrides for the main menu and the load/save dialogs - a flat menu adapted for VR rather than replaced. |
+| `xr_input` | **StalkerVR-code** | vr_input_callbacks.script (5 KB) and vr_radial_quickslots.script (5 KB) plus the Radial_Quickslots JSGME mod - the quick-access equivalent of INPUT-009's stroke grammar. |
 
 ## External coverage by area
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 21 | 14 | 33 | 16 |
-| `xr_lifecycle` | 6 | 7 | 0 | 46 | 44 |
-| `xr_input` | 4 | 0 | 4 | 46 | 49 |
-| `camera_tracking` | 12 | 13 | 1 | 37 | 40 |
-| `render_hazards` | 5 | 9 | 1 | 13 | 75 |
-| `ui_hud` | 5 | 13 | 5 | 40 | 40 |
-| `hands_interaction` | 6 | 12 | 5 | 32 | 48 |
-| `input_locomotion` | 2 | 4 | 1 | 13 | 83 |
-| `performance` | 8 | 8 | 3 | 40 | 44 |
-| `audio` | 1 | 1 | 0 | 50 | 51 |
-| `packaging_deploy` | 6 | 23 | 18 | 25 | 31 |
-| `re_discovery` | 14 | 14 | 5 | 32 | 38 |
-| `source_integration` | 2 | 8 | 7 | 33 | 53 |
+| `stereo` | 19 | 21 | 14 | 34 | 16 |
+| `xr_lifecycle` | 6 | 7 | 0 | 47 | 44 |
+| `xr_input` | 4 | 0 | 4 | 47 | 49 |
+| `camera_tracking` | 12 | 13 | 1 | 38 | 40 |
+| `render_hazards` | 5 | 9 | 1 | 14 | 75 |
+| `ui_hud` | 5 | 13 | 5 | 41 | 40 |
+| `hands_interaction` | 6 | 12 | 5 | 33 | 48 |
+| `input_locomotion` | 2 | 4 | 1 | 14 | 83 |
+| `performance` | 8 | 8 | 3 | 41 | 44 |
+| `audio` | 1 | 1 | 0 | 51 | 51 |
+| `packaging_deploy` | 6 | 23 | 18 | 26 | 31 |
+| `re_discovery` | 14 | 14 | 5 | 33 | 38 |
+| `source_integration` | 2 | 8 | 7 | 33 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -174,6 +180,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **Snowrunner-VR** | external reference | SnowRunner (Steam) | native-injector | T2 | R3 · alternate-eye | 19 | 57 | 50 | 2 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
 | **SonsVR_Mod** | external reference | Unity HDRP (Sons of the Forest) | managed-plugin | — | — | — | 32 | 22 | 1 | 2026-08-27 | 🟩 current | 1F / 2P / 0S / 0NR / 10— |
 | **SPT-VR** | external reference | Unity | managed-plugin | — | — | 18 | 149 | 88 | 2 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
+| **StalkerVR-code** | external reference | X-Ray (S.T.A.L.K.E.R. Anomaly) - a NEW ENGINE FAMILY for this fleet | source-port | — | — | — | 44 | 0 | 3 | 2026-09-07 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **Sterallax6DOF-silksong** | external reference | Unity (Silksong) | managed-plugin | ? | ? | — | 1 | 0 | 0 | 2026-08-02 | 🟩 current | 0F / 0P / 0S / 1NR / 12— |
 | **SubmersedVR** | external reference | Unity 2019.4 (Subnautica) | managed-plugin | — | — | — | 81 | 31 | 3 | 2026-08-27 | 🟩 current | 0F / 2P / 0S / 1NR / 10— |
 | **SystemReShock-UEVR-Plugin** | external reference | Unreal | framework-companion | — | — | — | 4760 | 4741 | 1 | 2026-05-22 | 🟩 current | 0F / 1P / 0S / 0NR / 12— |
@@ -206,7 +213,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:35ab1dc2354b0092` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:05de572c6a5f86b5` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:63c86bec10424c19` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:48fcd168c273534b` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:99c3fffab98b3d59` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f31b82ea3ce79d04` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:762a48d6bc781596` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:3ce075f4d3c87a95` | `—` | 🟥 source changed | internal | internal-unreleased |
@@ -294,6 +301,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Snowrunner-VR** | 2026-08-29 | `unknown` | `tree:0d822ae5b0b2ac8d` | `—` | ⚪ unpinned | unknown | unknown |
 | **SonsVR_Mod** | 2026-08-27 | `tree:6db3fde18d9a2cc3` | `tree:6db3fde18d9a2cc3` | `—` | 🟩 current | unknown | unknown |
 | **SPT-VR** | 2026-08-25 | `tree:3e000668126c723f` | `tree:3e000668126c723f` | `—` | 🟩 current | unknown | unknown |
+| **StalkerVR-code** | 2026-09-07 | `unknown` | `tree:7890e014622e9839` | `—` | ⚪ unpinned | unknown | unknown |
 | **Sterallax6DOF-silksong** | 2026-08-26 | `tree:d0f4634655052b15` | `tree:d0f4634655052b15` | `—` | 🟩 current | unknown | unknown |
 | **SubmersedVR** | 2026-08-27 | `tree:6f1c537947774a46` | `tree:6f1c537947774a46` | `—` | 🟩 current | unknown | unknown |
 | **SystemReShock-UEVR-Plugin** | 2026-08-25 | `tree:00679eccfd4d256f` | `tree:00679eccfd4d256f` | `—` | 🟩 current | unknown | unknown |
@@ -322,7 +330,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 ### Deliberately not sources
 
-- `StalkerVR` — a 32 GB S.T.A.L.K.E.R. Anomaly INSTALL (X-Ray engine) that happens to contain a VR build, plus a 32 GB .7z duplicate of the same tree - registering it as a source would make every coverage.py run walk 64 GB of game assets. Classified like 'SS2 OG'. THE VALUABLE PART IS SMALL AND WORTH REGISTERING ON ITS OWN IF X-RAY EVER BECOMES A TARGET: Anthology_VR/gamedata/scripts holds eight readable Lua files (vr_autoload_settings, vr_input_callbacks, vr_item_device_mod, vr_mod_mcm, vr_radial_quickslots, and three vr_ui_* menu/dialog overrides) with configs/mod_system_vr.ltx and a configs/vr/ directory beside them; bin/ carries a native openxr_loader.dll, an ENGINE FORK (AnomalyDX11.exe with 'AnomalyDX11 - original.exe' preserved alongside) and AnomalyDX11.pdb - shipped symbols, so TEST-018 crash symbolisation applies directly; and MODS/ holds JSGME-managed interaction mods including 3D_SIGHTS, 3DSS_Vanilla and Radial_Quickslots. Not reviewed: only directory listings have been read.
+- `StalkerVR` — the 32 GB S.T.A.L.K.E.R. Anthology VR INSTALL, plus a 32 GB .7z of itself. Fingerprinting 64 GB of game assets on every coverage.py run buys nothing, so the install is classified like 'SS2 OG' and its VR code/design was separated into the StalkerVR-code source instead - 43 files, 339 KB, see PROVENANCE.md there. Left in place here and NOT copied: the assets, ~40 unrelated content mods (quests, furniture, balance, shaders, translations), and three files worth knowing about - bin/AnomalyDX11.exe (the VR engine build, original preserved beside it), bin/AnomalyDX11.pdb (shipped symbols) and bin/openxr_loader.dll.
 - `Dishonored-VR-metalink-test` — one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree
 - `DishonoredVR-alpha` — binary alpha distribution (Binaries/, INSTALL.txt, a resolution .bat) - no source
 - `Immersive HUD-5-1-4-1751974538` — texture pack, not a mod
@@ -345,7 +353,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3803 | 354 | 2026-09-07 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4912 | 2582 | 2026-09-03 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
 | **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 18085 | 1446 | 2026-09-05 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2059 | 345 | 2026-09-07 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2065 | 346 | 2026-09-07 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 474 | 97 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
 | **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5620 | 133 | 2026-09-07 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-05 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
@@ -2013,6 +2021,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | — no entry — | — | — |
 | `packaging_deploy` | 🟧 skimmed | `AUTHOR` | README only; 33k lines of C# unread |
 | `re_discovery` | — no entry — | — | — |
+| `source_integration` | — no entry — | — | — |
+
+#### StalkerVR-code
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-07. The VR code and design of a S.T.A.L.K.E.R. Anthology VR build, separated from its 32 GB install: 43 files, 339 KB of Lua and .ltx. See PROVENANCE.md in the tree for what was left behind and why. Tier and stereo rung are deliberately ABSENT rather than guessed, and the vehicle is INFERRED - nothing here has been read beyond listings and sizes. The evidence does say the VR support is an engine fork rather than an injector: bin/AnomalyDX11.exe is replaced with 'AnomalyDX11 - original.exe' preserved beside it, and bin/openxr_loader.dll is native. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | vr_input_callbacks.script (5 KB) and vr_radial_quickslots.script (5 KB) plus the Radial_Quickslots JSGME mod - the quick-access equivalent of INPUT-009's stroke grammar. |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | Three vr_ui_* script overrides for the main menu and the load/save dialogs - a flat menu adapted for VR rather than replaced. |
+| `hands_interaction` | 🟥 not reviewed | `—` | THE REASON THIS WAS SEPARATED. gamedata/configs/vr/weapon_grip_vr.ltx is ~97 KB of PER-WEAPON GRIP DATA and handpose_vr.ltx ~29 KB of hand poses - the shape HAND-008 and HAND-009 argue for, shipped, on an engine nobody here has touched. The 3D_SIGHTS and 3DSS_Vanilla mods add per-weapon sight and model-swap tables (~34 KB and ~34 KB) beside them. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | JSGME-managed mod stack; fsgame.ltx, commandline.txt and the launcher config were copied because they describe how the build is wired. |
+| `re_discovery` | 🟥 not reviewed | `—` | bin/AnomalyDX11.pdb ships SYMBOLS for the VR engine build, so TEST-018 crash symbolisation applies to this target directly. Not copied - it lives in the install. |
 | `source_integration` | — no entry — | — | — |
 
 #### Sterallax6DOF-silksong

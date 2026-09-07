@@ -2386,9 +2386,32 @@ external:
       audio:             {review: not_reviewed}
       packaging_deploy:  {review: not_reviewed}
       re_discovery:      {review: partial, evidence: SOURCE, note: "harvested 2026-09-05 into ch06 #symbolised-crash-reports and TEST-018. Ships the GAME's PDBs (Fallout4.pdb 65 MB, Fallout4VR.pdb 30 MB, both genuine Microsoft C/C++ MSF 7.00) beside msdia140.dll, Microsoft's Debug Interface Access library, and resolves the crash stack AT FAULT TIME so reports name functions rather than addresses. Two config options worth copying with it: Symcache so symbolisation is not repeated work, and WaitForDebugger which attaches a debugger WHEN A CRASH OCCURS rather than at startup, turning an unreproducible field crash into a live session. Also a 22-entry engine defect registry where every fix is individually toggleable (a bisection axis) and carries its cause in one sentence, sometimes with a link to the community report - including SafeExit, which fixes crashes caused by PLUGIN HOOKS at shutdown. And a [Warnings] tier that fires where malformed data is ACCEPTED rather than where it later crashes."}
+  - id: "StalkerVR-code"
+    root: "D:/Dev Debug/Other VR mods/StalkerVR-code"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-07
+    reviewed_revision: unknown
+    engine: X-Ray (S.T.A.L.K.E.R. Anomaly) - a NEW ENGINE FAMILY for this fleet
+    api: D3D11 (DX8/9/10 builds also present)
+    vehicle: source-port
+    areas:
+      stereo:            {review: not_reviewed, note: "REGISTERED NOT REVIEWED 2026-09-07. The VR code and design of a S.T.A.L.K.E.R. Anthology VR build, separated from its 32 GB install: 43 files, 339 KB of Lua and .ltx. See PROVENANCE.md in the tree for what was left behind and why. Tier and stereo rung are deliberately ABSENT rather than guessed, and the vehicle is INFERRED - nothing here has been read beyond listings and sizes. The evidence does say the VR support is an engine fork rather than an injector: bin/AnomalyDX11.exe is replaced with 'AnomalyDX11 - original.exe' preserved beside it, and bin/openxr_loader.dll is native."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed, note: "vr_input_callbacks.script (5 KB) and vr_radial_quickslots.script (5 KB) plus the Radial_Quickslots JSGME mod - the quick-access equivalent of INPUT-009's stroke grammar."}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed, note: "Three vr_ui_* script overrides for the main menu and the load/save dialogs - a flat menu adapted for VR rather than replaced."}
+      hands_interaction: {review: not_reviewed, note: "THE REASON THIS WAS SEPARATED. gamedata/configs/vr/weapon_grip_vr.ltx is ~97 KB of PER-WEAPON GRIP DATA and handpose_vr.ltx ~29 KB of hand poses - the shape HAND-008 and HAND-009 argue for, shipped, on an engine nobody here has touched. The 3D_SIGHTS and 3DSS_Vanilla mods add per-weapon sight and model-swap tables (~34 KB and ~34 KB) beside them."}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed, note: "JSGME-managed mod stack; fsgame.ltx, commandline.txt and the launcher config were copied because they describe how the build is wired."}
+      re_discovery:      {review: not_reviewed, note: "bin/AnomalyDX11.pdb ships SYMBOLS for the VR engine build, so TEST-018 crash symbolisation applies to this target directly. Not copied - it lives in the install."}
 not_a_source:
   - id: "StalkerVR"
-    reason: "a 32 GB S.T.A.L.K.E.R. Anomaly INSTALL (X-Ray engine) that happens to contain a VR build, plus a 32 GB .7z duplicate of the same tree - registering it as a source would make every coverage.py run walk 64 GB of game assets. Classified like 'SS2 OG'. THE VALUABLE PART IS SMALL AND WORTH REGISTERING ON ITS OWN IF X-RAY EVER BECOMES A TARGET: Anthology_VR/gamedata/scripts holds eight readable Lua files (vr_autoload_settings, vr_input_callbacks, vr_item_device_mod, vr_mod_mcm, vr_radial_quickslots, and three vr_ui_* menu/dialog overrides) with configs/mod_system_vr.ltx and a configs/vr/ directory beside them; bin/ carries a native openxr_loader.dll, an ENGINE FORK (AnomalyDX11.exe with 'AnomalyDX11 - original.exe' preserved alongside) and AnomalyDX11.pdb - shipped symbols, so TEST-018 crash symbolisation applies directly; and MODS/ holds JSGME-managed interaction mods including 3D_SIGHTS, 3DSS_Vanilla and Radial_Quickslots. Not reviewed: only directory listings have been read."
+    reason: "the 32 GB S.T.A.L.K.E.R. Anthology VR INSTALL, plus a 32 GB .7z of itself. Fingerprinting 64 GB of game assets on every coverage.py run buys nothing, so the install is classified like 'SS2 OG' and its VR code/design was separated into the StalkerVR-code source instead - 43 files, 339 KB, see PROVENANCE.md there. Left in place here and NOT copied: the assets, ~40 unrelated content mods (quests, furniture, balance, shaders, translations), and three files worth knowing about - bin/AnomalyDX11.exe (the VR engine build, original preserved beside it), bin/AnomalyDX11.pdb (shipped symbols) and bin/openxr_loader.dll."
   - id: "Dishonored-VR-metalink-test"
     reason: "one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree"
   - id: "DishonoredVR-alpha"
