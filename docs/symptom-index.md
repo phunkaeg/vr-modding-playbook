@@ -135,6 +135,14 @@ that the observation and the cause are usually in different chapters.
 | Crash reports from testers are just addresses | [TEST-018](pattern-catalog.md#test-018) — symbolise at fault time |
 | A crash bisects to somewhere unrelated to its cause | [07](07-engine-integration-safety.md#engine-hardening) — warn where bad data is accepted, not where it faults |
 | Building an interaction layer, and unsure what it needs to expose | [interaction-coverage](generated/interaction-coverage.md) — what four shipped VR mods found necessary |
+| Yaw right, pitch and roll inverted | [CAM-017](pattern-catalog.md#cam-017) — a missing yaw conjugation; do not flip signs |
+| Weapon swings to the wrong side when the player turns around | [CAM-017](pattern-catalog.md#cam-017) — a world-oriented column |
+| An instrument says 'no change' and the wearer says otherwise | [TEST-019](pattern-catalog.md#test-019) — compare at the effect's scale; give it a NO case |
+| An experiment installs cleanly and measures nothing | [TEST-020](pattern-catalog.md#test-020) — arm and value separate; refuse the wrong precondition by name |
+| A headset run is the only way to tell two causes apart | [TEST-021](pattern-catalog.md#test-021) — pre-register the owner for every outcome |
+| Every write matches, nothing on screen changes | [02](02-viewmodels-and-hands.md#identity-latch) — the pinned object was recreated |
+| Two builds share a timestamp | [08](08-project-process.md#sibling-build-identity) — hash the file and its size; never the timestamp |
+| An export name looked like the seam and was not | [11](11-re-anchoring-and-discovery.md#export-bracket) — a bracket exists; what passes through it is a separate question |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

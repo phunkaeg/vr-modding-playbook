@@ -2039,6 +2039,50 @@ This matters far more in VR than flat, because in flat the eye is always on the 
 construction. In VR the player will look at the sight from the side constantly — and a sight that
 tracks correctly under off-axis viewing is one of the cheapest large wins in weapon handling.
 
+## The transform's reference frame is not the one you think: a family of three {#frame-family}
+
+One week, three projects, three distinct ways a hand or weapon transform was composed in the wrong
+frame - and each has a signature that names it. [FAIL-HAND-037](failure-atlas.md) is the per-eye
+member; these are its siblings.
+
+**Rotation and position in different frames: right yaw, inverted pitch and roll.** PreyVR's wrist lane
+projected the position delta onto the body basis before displacing a joint, and composed the turn
+*raw*, in world terms. A displacement and a turn from the same controller in the same instant were
+read against two different bases. The wearer's report was exact: *"yaw correct, pitch and roll
+inverted."* **Conjugating a rotation by a yaw preserves its own Z term and rotates the other two, so a
+missing yaw conversion reads as correct yaw with wrong pitch and roll - and at 180 degrees both come
+back cleanly inverted, which also looks like a Z-axis handedness flip.** Sign flips would have matched
+the report and failed off-axis. The fix is a frame conversion taking the *same* `bodyYaw` the position
+lane uses, so the two cannot drift apart again; the tests assert the inversion signature *and* that
+both lanes agree for an arbitrary axis, which no pair of sign flips satisfies. The confirming run is
+the falsification: **body yaw moved from 80 to 143 degrees during it and stayed correct**, which is what
+separates a frame correction from a fitted pair of flips. `[HEADSET]` PreyVR R-101.
+
+**A fixed placement written in a world-oriented column swings on every turn.** PreyVR's per-frame
+render-matrix override works - 511 applications in 4 s, held while the wearer walked and turned - and
+its translation column is **world-oriented**. The wearer proved it with a control nobody had planned:
+`X=400` pushed the weapon away; after turning the character 180 degrees the same offset pushed it
+backwards into the body. So a fixed placement must be rotated through the body basis before it is
+written, or the weapon swings to the wrong side on every turn - plausible until someone turns around.
+**A world-space controller delta needs no conversion at all**, which is the simpler path and the one
+to build on. `[HEADSET]` PreyVR R-100.
+
+**An unconjugated arm target reads as a distant one.** MoH-VR's gun arm pointed almost vertically up
+and barely moved with the hand. A direction that hardly changes with hand motion means a *far*
+target; the shoulder-to-target distance, once printed, said the target was in the wrong space. With
+the conjugation in place the residual went from 71/133 degrees to **0** - and the two candidate
+conjugations were measured head to head rather than chosen. `[HEADSET]` MoH-VR F-005, H-020.
+
+**And a transported basis must keep its magnitude.** FarCry2-VR's camera fields `+0x3B8`/`+0x3C4` are
+the engine's live vectors and nothing guarantees they are unit length - `CameraRebuild` normalises
+only the cross product it derives and copies the vectors themselves through raw. So the eye rotation
+is applied by *rotating* them, because a rotation is an isometry, rather than by building a fresh
+unit basis - which would silently change a magnitude the engine was carrying, a second variable in an
+experiment meant to have one. The desk test asserts the isometry on a deliberately non-unit vector.
+`[STATIC]` FarCry2-VR step 6.
+
+Recipe: [CAM-017](pattern-catalog.md#cam-017).
+
 ## Latching onto a mesh you identified at runtime needs three states, not two {#identity-latch}
 
 Picking "the gun and the arms" out of a per-frame draw list and holding onto them is a standing problem
@@ -2074,6 +2118,17 @@ two-state latch has nowhere to put the difference.
 The hold-down before latching and the long timeout before dropping are both doing real work: the first
 stops a transient frame from being latched, the second stops a legitimate interruption from breaking a
 correct latch. Neither is a magic number - they are the two directions the latch can be wrong in.
+
+**PreyVR's instance is the whole trap in one sentence: the first-person arms are a different
+`ICharacterInstance` after every weapon change, so a pinned pointer dies at the next equip - and the
+lane then reports perfect health.** 270 of 270 matched conversions applied at the controller sync
+rate, zero refusals, while writing continuously to a rig that was not on screen. No counter in the set
+could distinguish it, because the writes really were landing on a real rig with real hand joints. A
+wearer changing weapons is what exposed it. The pair that *would* have named it - `handMatched=0`
+with `handSkipped` climbing - was in the log and went unread for most of a session. The same
+behaviour had been recorded a day earlier for the weapon lane and filed as a weapon anecdote rather
+than the character-lifetime rule it is. `[HEADSET]` PreyVR F-009; see
+[an object pointer is not an identity](11-re-anchoring-and-discovery.md#pointer-not-identity).
 
 ## Weapon scopes: a second camera on a panel, staged in three steps
 

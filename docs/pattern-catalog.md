@@ -1580,6 +1580,38 @@ forward vector for **1,264 runs**: a few thousandths of a radian, largely cancel
 **a second explanation stacked on a first fault that was never the cause**. When a fix does nothing,
 re-derive the premise before you extend the model. `[LIVE]` FarCry2-VR, `d07fbac`/`5a981f9`.
 
+## CAM-017 — Diagnose a frame mismatch by its signature before touching a sign {#cam-017}
+
+**Problem:** a controller-driven rotation or placement is *almost* right, and the temptation is to flip
+signs until the wearer's report matches - which fits the report and fails off-axis.
+
+**Use when:** any transform composed from a tracked pose and applied to a bone, a weapon or a camera,
+the moment a wearer says a component is inverted or something swings when they turn.
+
+**Recipe:** read the signature first; each names a different missing conversion.
+
+| Wearer reports | Signature of | Fix |
+|---|---|---|
+| yaw right, **pitch and roll inverted** | the rotation composed in world while the position was in the body basis | conjugate the rotation by the *same* body yaw the position lane uses |
+| placement **swings to the other side when they turn around** | a fixed offset written into a world-oriented column | rotate the offset through the body basis, or use a world-space delta which needs none |
+| a per-eye offset that **does not change with distance** | a per-eye camera reference leaking into a model-space transform | anchor the conversion at the origin ([FAIL-HAND-037](failure-atlas.md)) |
+| an arm that **barely moves with the hand** | an unconjugated target, which reads as a distant one | print the shoulder-to-target distance; conjugate |
+
+The first row's mechanism is the one to remember: conjugating a rotation by a yaw preserves its own Z
+term and rotates the other two, so the missing conjugation shows as correct yaw with wrong pitch and
+roll, and at 180 degrees both invert cleanly - which also looks like a handedness flip.
+
+**Proof:** the confirming run must vary the body yaw *materially* - PreyVR's moved from 80 to 143
+degrees and stayed correct - and the tests must assert the signature **and** that both lanes agree for
+an arbitrary axis, which no pair of sign flips satisfies. Where two conjugations are candidates,
+measure them head to head (MoH-VR: 71/133 degrees residual against 0).
+
+**Trip hazard:** when a transform is *transported* rather than rebuilt, preserve what the engine was
+carrying. FarCry2-VR rotates its camera's live basis vectors rather than constructing a fresh unit
+basis, because nothing guarantees they are unit length and a rebuild would silently change a
+magnitude - a second variable in a one-variable experiment. `[HEADSET]` PreyVR, MoH-VR; `[STATIC]`
+FarCry2-VR.
+
 ## STR-009 — Drive per-eye adaptive state from one shared value {#str-009}
 
 **Problem:** an adaptive process runs independently per eye, so the two eyes disagree about the world
@@ -2418,6 +2450,18 @@ entire session. The crash was prevented and the session was still lost. Ask what
 never having worked. And do not let the control plane depend on a diagnostic being enabled: theirs
 polled only while frametime logging and the flight recorder were on. `[AUTHOR]` SS2VR v3.71/v3.72.
 
+**A second instance, one week later, from SOMAVR - and it is the *expected-transient* case.** A 125 ms
+first-eye transition into a Read object correctly rejected the cached pair base, and continuous
+same-frame stereo classified that expected abort as an eye-sequence fault and **disabled itself
+permanently**. The replay owner now stays armed after `expected_pair_abort_retry_next_frame`; genuine
+unexplained eye/pose mismatches still invalidate caches and fail closed. Same release: one transient
+`thread_open` race while installing a single optics patch **rolled back the entire comfort bridge**,
+restoring head bob, terminal takeover and depth-of-field blur at once. Fixed by giving each lane its
+own failure domain - an optional optics failure can no longer remove an already-installed camera
+suppression - and by reporting **requested versus installed** per lane at startup and in the
+summary. *A failure domain the size of the whole feature turns one flaky call into a full regression.*
+`[LIVE]` SOMAVR 0.95.6.
+
 ## TEST-018 — Symbolise the crash before the user has to {#test-018}
 
 **Problem:** an injected mod faults inside the game's code, so every crash report is a column of
@@ -2442,6 +2486,107 @@ game code and confirm the report says so rather than blaming yours.
 **Trip hazard:** a report that names only *your* frames will be read as *"the mod crashed"* even when
 your frame is three levels below the real cause, so record the full stack and mark which frames are
 yours rather than filtering to them. `[SOURCE]` Buffout 4 NG.
+
+## TEST-019 — Give every instrument a NO case, and compare at the effect's own scale {#test-019}
+
+**Problem:** an instrument reports a confident verdict from data that cannot support it - a
+whole-frame statistic that cannot see a local change, a comparison that ignores one of its outcomes,
+or a check whose expected value came from the code under test.
+
+**Use when:** any pass/fail readout that a build decision or a headset trip will rest on.
+
+**Recipe:** three questions, before trusting the number.
+
+- **Can it say no?** Force the case the instrument exists to catch and require it to report it. A
+  verdict with two buckets and a third it may ignore is where the wrong yes comes from; require the
+  alternatives to *disagree with each other*, and require *neither* to lose before it speaks.
+- **Does the expected value share a producer with the measured one?** If the check builds its own
+  target from the same code, a wrong input scores a perfect solver. The witness must come from
+  somewhere the code under test cannot reach - see [external witness](06-debugging-methodology.md#external-witness).
+- **Is the metric at the scale of the effect?** A highlight moving one row is a few hundred pixels in a
+  million; a whole-frame mean is identical to two decimal places. For small local effects compare the
+  image, and against scene animation compare **connected clusters and judge the largest**, reporting
+  the rest as animation. Luminance answers "is the screen black" and nothing finer.
+
+**Proof:** the instrument has flipped to NO on a deliberately broken input at least once, on record.
+
+**Trip hazard:** a low reading is not automatically noise. PreyVR read 186 applications per 4 s as
+nothing happening when 511 was healthy - the number was the finding (the target was not drawn) and it
+was reported as an absence. *When an instrument reports a number, ask what it is blind to before
+asking what it says.* `[LIVE]` `[HEADSET]` PreyVR, Swat4-VR, MoH-VR, one week.
+
+## TEST-020 — Arm and value are separate keys, and the report names what was patched {#test-020}
+
+**Problem:** an experiment installs perfectly and measures nothing, and reads as a failed experiment
+rather than as a wrong renderer, wrong build, wrong value or wrong path.
+
+**Use when:** any hook, patch or override that can be armed.
+
+**Recipe:**
+
+- **Separate arming from value**, so the armed path can run at **zero delta**. The armed zero-delta run
+  proves the plumbing is inert independently of the value; without it, anything measured in the
+  treatment run is unattributable. Make zero an *explicit early-out*, not arithmetic - `0 * right` is
+  only harmless while `right` is finite, and a NaN attitude would otherwise poison the origin.
+- **Refuse to arm on the wrong precondition, by name.** FarCry2-VR's D3D9 lane refuses under D3D10.1,
+  because the D3D9 world render is never called there and arming would install and measure nothing -
+  a mistake that project had already published twice.
+- **Print the address actually patched**, not a literal, so a wrong profile cannot read as the right
+  one; and carry the profile name on the status line so `install=0` is never mistaken for a statement
+  about the engine.
+- **Assert the invariant the seam rests on.** SoF-VR's wrapper mutates a *copy* of the caller's
+  struct; it asserts the caller's is byte-identical afterwards and logs an alarm if not, rather than
+  assuming the premise its whole route depends on.
+- **Report what the target wrote back.** The same wrapper records which dwords the renderer writes
+  into the struct it was handed - free evidence for the next milestone, because a private per-eye
+  copy changes where those writes land.
+
+**Proof:** an armed zero-delta run is bit-identical to unarmed; a wrong-renderer or wrong-build launch
+is refused with the reason; the log names the address, the profile and the delta on every arm.
+
+**Trip hazard:** a *silently successful* command is the same failure one layer up. MoH-VR's
+`cheats 1` looked correct on the command line and did nothing in the headset: every `EV_CHEAT`
+command checks `thereisnomonkey` first and, when it is 0, resets `cheats` and refuses. And a numeric
+reader that parses base 10 rejects `0x40` as trailing garbage - correct for a pixel count, fatal for
+an offset, because the override silently falls back to the table while the user believes it took.
+Base 0 is not the fix: it reads a leading-zero literal as octal and returns a *different, plausible*
+address. Require the `0x` prefix and refuse everything else. `[LIVE]` FarCry2-VR; `[STATIC]` SoF-VR M3;
+`[HEADSET]` MoH-VR.
+
+## TEST-021 — Pre-register the owner for every outcome, then run once {#test-021}
+
+**Problem:** a live run returns a result and the argument about what it means starts *afterwards* -
+which is when the interpretation is chosen to fit, and when a run that could have been decisive comes
+back ambiguous.
+
+**Use when:** a defect admits more than one owner and a headset session is the only way to
+distinguish them.
+
+**Recipe:** before the run, write the **table**: every outcome the witness can produce, and for each
+one the owner it implicates and the next action. The run is then decisive by construction, because no
+result is unassigned. SOMAVR's arm witness is the reference shape. The left-eye arm lags the right eye
+under locomotion, and endpoint IK tuning cannot say why, so the witness snapshots the shared arm root
+and both clavicle-to-wrist chains before and after each viewport render, plus the final deform
+palette, and the table reads:
+
+| Witness says | Owner | Next |
+|---|---|---|
+| coherent node inputs, **different** final palettes | HPL's render-time bone update | that function |
+| coherent palettes, eye disagreement still visible | sub-mesh CPU skinning or VBO consumption | one rung later |
+| **different** node inputs between passes | CPU animation / bridge last-writer | existing diagnosis |
+| eye/pose mismatch | an AFR transaction fault, not the arm solver | pair policy |
+| palettes unavailable | retained mesh identity incomplete at that boundary | identity/lifetime work, not IK |
+
+**Proof:** every row of the table names a different next action, and the witness is bounded and
+read-only - theirs samples the first eight eligible pairs and every thirtieth after, and never writes
+a matrix.
+
+**Trip hazard:** a table with two rows that lead to the same action is one row, and a witness whose
+outcomes overlap needs a better boundary, not a longer run. This is
+[observation boundary](06-debugging-methodology.md#observation-boundary) taken to its conclusion, and
+it was built explicitly on the FarCry2-VR lesson that
+[correct endpoints do not prove correct deformation](12-torso-calculations-and-ergonomics.md#endpoint-is-not-the-mesh).
+`[STATIC]` SOMAVR 0.95.8 - built and desk-verified, not yet run.
 
 ## PERF-001 — Frame budget ledger {#perf-001}
 

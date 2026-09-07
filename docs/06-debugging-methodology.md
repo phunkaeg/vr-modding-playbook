@@ -1059,6 +1059,55 @@ because the question is usually "was it us" and a named frame in *your* DLL answ
 Pair it with [dump the running image](11-re-anchoring-and-discovery.md#dump-the-running-image) when
 the executable is packed.
 
+## Compare at the granularity of the effect, and give every instrument a way to say no {#instrument-granularity}
+
+Three projects hit the same wall in one week, from three directions, and each wrote the rule down.
+Together they are one rule with three faces. `[LIVE]` `[HEADSET]`
+
+**A whole-frame statistic cannot see a local effect.** PreyVR called a menu unresponsive four times
+on `meanLumaL`. A highlight moving one row changes a few hundred pixels out of 1.1 million, so the
+mean is identical to two decimal places - *"identical at luma 22.16" was never evidence.* Reading the
+capture instead of its statistic showed the selection seven rows down over a blurred game world.
+Their rule: **for anything whose visible effect is small and local - a highlight, a reticle, a hand at
+the frame edge - compare the image, not a whole-frame number. Luminance is fit for "is the screen
+black" and nothing finer.** The same session read 186 applications per 4 s as noise when 511 was
+the healthy rate; the low number *was* the finding (the target character was not being drawn), and it
+was reported as nothing happening.
+
+**A bucket the instrument is allowed to ignore is where the wrong yes comes from.** Swat4-VR's actor
+verdict weighed *camera-locked* against *pawn-locked* and ignored the third bucket, so 32 against
+15,572 printed *"CAMERA-LOCKED - this is the seam."* Their material-slot search accepted the first
+pointer whose name merely *differed* from the wrapper's - which is `UObject::Outer`, the package,
+identical for every material in the game. Both now require the alternatives to **disagree with each
+other**, and the actor verdict requires *neither* to lose before it says anything. Three instruments
+in two days measured something real without answering the question, and the author's rule is worth
+quoting: *"an instrument needs a case that makes it say NO."*
+
+**A check that builds its own expectation validates the solver, not the input.** MoH-VR's headless
+arm case scored the swing against a target *built by the same code*, so a target mapped into the
+wrong space still measured 0 degrees - and the headset showed the gun arm pointing at the ceiling
+(`F-005`). *"The check validated the solver, not its input."* This is
+[external witness](#external-witness) from the other side: if the expected value and the measured
+value share a producer, the comparison is a tautology.
+
+**And scene animation defeats a whole-frame diff.** MoH-VR's reticle check compared two captures by
+bounding box until instructors who breathe and shift produced 1,711 scatter clusters, largest 36 px.
+It now finds **connected clusters and judges the largest one**, reporting the rest as scene animation,
+and draws the mark at a 5-degree half-angle against the 1.2 of play so it is unmistakably the biggest
+thing that changed. The check is also deliberately left **unarmed**: a held weapon sways, so two armed
+runs would no longer produce comparable frames.
+
+See [TEST-019](pattern-catalog.md#test-019).
+
+### A throwaway probe re-commits the hazard the shipped code already fixed
+
+PreyVR's `RenderFrameTable` reads the joint-name table under a seqlock because the character pointer
+is not atomically paired with its name array. An ad-hoc probe, written in a hurry to chase a
+different bug, read the same two things without the lock, spliced two rigs, and reported the hand
+rig's index 45 as a face joint. Validating each dump rejected 12 of 400 reads. **A probe that
+bypasses the production accessor inherits every race the accessor was written to close**, and a
+probe is exactly the code nobody reviews. `[LIVE]`
+
 ## A metric that cannot come back bad is not a metric {#metric-cannot-fail}
 
 Three of Swat4-VR's four judder instruments were measuring something other than their name, and all three

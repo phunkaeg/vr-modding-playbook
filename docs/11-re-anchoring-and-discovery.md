@@ -1918,6 +1918,44 @@ head-look *inside cutscenes*, measured twice.
 
 See [HOOK-006](pattern-catalog.md#hook-006) and [CAM-014](pattern-catalog.md#cam-014).
 
+## An export's name proves a bracket exists, not what passes through it {#export-bracket}
+
+Swat4-VR's three commits in one night are the arc in miniature. `[STATIC]` then `[LIVE]` then `[STATIC]`
+
+1. The export table carried `??0FActorSceneNode@@QAE@PAVUViewport@@PAVFRenderTarget@@PAVAActor@@...` -
+   UE2 renders a single actor through its own scene node, and that node re-issues the projection. So
+   *"the weapon is an `FActorSceneNode`"*: the bit-identical second projection had a name.
+2. A headless run named what actually came through it: `OfficerRedOne0`, `OfficerBlueTwo0` and their
+   colleagues at FOV 43 - **the squad portraits on the HUD**, not the first-person weapon. 16,660
+   nodes, 0 transforms through the proxy, rotations tracking neither camera nor pawn. Cleanly dead,
+   which is the point of testing it cheaply.
+3. Ghidra on `FPlayerSceneNode::Render` settled the structure: pre-render interactions, then
+   `FLevelSceneNode::Render`, then post-render, and **no separate weapon call anywhere** - the weapon
+   is one actor among many inside the level render. The static call graph could go no further because
+   UE2 dispatches the actor loop through virtuals; **the export table could**:
+   `?Render@FDynamicActor@@...` is the per-actor render proxy, one call per actor drawn, with the actor
+   reachable from `this`. That build *names* what comes through and modifies nothing - *"the last two
+   times I acted on a structure I had inferred rather than read, the structure was wrong."*
+
+Two discriminators from the same work generalise past UE2:
+
+- **The pointee's name must vary between instances.** Finding the `AActor*` inside `FDynamicActor` by
+  scanning for a pointer to a named object is not enough - a slot holding the level, the class or the
+  outer package has a name too, and it is the *same* name every time. Require the candidate slot's
+  pointee name to **differ across instances**, refuse to settle from a scene with one repeated actor,
+  and say so rather than locking in a slot the evidence cannot distinguish. This is
+  [two-part signature](#two-part-signature) with *variance* as the second part.
+- **A wrapper's `GetName` is the wrapper's name.** `Modifier.uc`: a `FinalBlend` *wraps* the texture
+  it decorates, so `GetName` on what `DrawTile` hands you returns `FinalBlend13` and
+  `HUD.CenterReticle` stays inside it - no string test could ever have matched. Follow the wrapper's
+  pointer to the wrapped object, found by signature with **three independent wrappers required to
+  agree**, and depth-bound the chain, because a Modifier may wrap a Modifier and a cycle hangs the
+  render thread.
+
+Two toolkit traps on the way, both cheap to lose an hour to: `switch_program` returned success while
+the current program stayed the previous one (`open_program` worked); and every export in this build is
+a **five-byte `jmp` thunk**, so the function body is not at the export RVA.
+
 ## An object pointer is not an identity when the object can be recreated {#pointer-not-identity}
 
 Mirror's Edge VR logged `Direct3DCreate9` twice per run and got two different answers about whether that

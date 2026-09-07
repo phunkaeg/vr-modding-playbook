@@ -422,6 +422,18 @@ the difference between inheriting a corpus and inheriting a hypothesis.
 
 `[LIVE]`
 
+**Two builds can share a PE timestamp and be different images.** FarCry2-VR's build profile identifies
+`Dunia.dll` by **SHA-256 prefix and file size, never by timestamp**, because the Modernized Edition is
+a different image carrying the same timestamp - the exact trap. Hash the **file on disk**, not the
+loaded image: the image has relocations applied and its import table written, so a memory hash
+depends on where Windows chose to load it, while the file hash reproduces what `sha256sum` gives the
+user and what the address registry records. Unknown images are **refused by name** rather than
+falling back to a default, and `Offset.*` config keys override any entry without a rebuild. The test
+asserts the refusals as hard as the matches, because *a wrong-image build does not crash - it hooks
+plausible addresses inside unrelated functions.* They ship their verified UPLAY/Steam set, the GOG set
+so a user on that image is refused rather than mis-hooked, and Modernized with no offsets so it
+resolves to a name and then fails completeness. `[LIVE]` FarCry2-VR rule 10.
+
 ## An instrument's controls must be reachable from inside the headset {#headset-reachable-controls}
 
 One project bound a headset viewer's image cycling and quit to console keystrokes. **With an HMD on you
@@ -864,6 +876,20 @@ later visual regression erase which earlier transport/ownership stages were alre
 Track performance as evidence, not only polish. Record original draws, private draws per eye,
 copies, source age, and rejected view groups. A new effect that coincides with hundreds of
 extra replayed draws is an ownership clue before it is an optimization task.
+
+### Order-dependent bring-up belongs in a script, not in memory {#bringup-script}
+
+PreyVR baked its VR startup into `Invoke-PreyVRStartup.ps1` after three order-dependent steps had each
+cost a headset session: `xr.srgb` before `xr.start` (the swapchain format is fixed at creation, so
+gamma asked for afterwards returns an error - see [first pixels](09-d3d11-openxr-injection.md#first-pixels-gamma)),
+`view.recenter` before `view.apply`, and `xr.native` defaulting off. The script also added `-Headset`,
+because the launcher had been pinning `XR_RUNTIME_JSON` to the substitute runtime **unconditionally**
+- correct for unattended capture, and it would have taken the game away from a real headset.
+
+MoH-VR's launcher grew `-Arm`, `-Counters` and `-Cvars` for the same reason, and found a PowerShell
+trap on the way: **`powershell -File` flattens array arguments**, so `@('+set','vr_arms','1')` arrives
+as bare tokens and the strays bind to the next positional parameter. The documented command failed
+outright; `name=value,name=value` survives `-File` intact. `[LIVE]` both.
 
 ## Packaging & backup hygiene
 

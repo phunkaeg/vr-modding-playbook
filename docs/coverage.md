@@ -204,13 +204,13 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 |---|---|---|---|---|---|---|---|
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:f739d4177dd41381` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:35ab1dc2354b0092` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:cc0feb54ce2f4edd` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:05de572c6a5f86b5` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:63c86bec10424c19` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:9f41b68e8917a71e` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:48fcd168c273534b` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f31b82ea3ce79d04` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:762a48d6bc781596` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:3ce075f4d3c87a95` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:ce6b7a4c38c959b2` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:fa8edf9400d9e3cc` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:5dbc4303c1264b3d` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
@@ -322,6 +322,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 ### Deliberately not sources
 
+- `StalkerVR` — a 32 GB S.T.A.L.K.E.R. Anomaly INSTALL (X-Ray engine) that happens to contain a VR build, plus a 32 GB .7z duplicate of the same tree - registering it as a source would make every coverage.py run walk 64 GB of game assets. Classified like 'SS2 OG'. THE VALUABLE PART IS SMALL AND WORTH REGISTERING ON ITS OWN IF X-RAY EVER BECOMES A TARGET: Anthology_VR/gamedata/scripts holds eight readable Lua files (vr_autoload_settings, vr_input_callbacks, vr_item_device_mod, vr_mod_mcm, vr_radial_quickslots, and three vr_ui_* menu/dialog overrides) with configs/mod_system_vr.ltx and a configs/vr/ directory beside them; bin/ carries a native openxr_loader.dll, an ENGINE FORK (AnomalyDX11.exe with 'AnomalyDX11 - original.exe' preserved alongside) and AnomalyDX11.pdb - shipped symbols, so TEST-018 crash symbolisation applies directly; and MODS/ holds JSGME-managed interaction mods including 3D_SIGHTS, 3DSS_Vanilla and Radial_Quickslots. Not reviewed: only directory listings have been read.
 - `Dishonored-VR-metalink-test` — one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree
 - `DishonoredVR-alpha` — binary alpha distribution (Binaries/, INSTALL.txt, a resolution .bat) - no source
 - `Immersive HUD-5-1-4-1751974538` — texture pack, not a mod
@@ -341,12 +342,12 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3800 | 351 | 2026-09-05 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3803 | 354 | 2026-09-07 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4912 | 2582 | 2026-09-03 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
 | **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 18085 | 1446 | 2026-09-05 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 1932 | 280 | 2026-09-05 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2059 | 345 | 2026-09-07 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 474 | 97 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
-| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5619 | 132 | 2026-09-05 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
+| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5620 | 133 | 2026-09-07 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-05 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
 | **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 160 | 18 | 2026-09-04 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 69 | 30 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 8NR / 0— |

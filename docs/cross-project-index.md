@@ -65,6 +65,15 @@ game — [13](13-teardown-bioshock-vr.md)), and the shipped-mod source trees in
 - **SOMAVR ↔ PreyVR** — the two 64-bit targets. x64-only traps (REX prefixes) apply to both and to nobody else.
 - **MonsterDeadWood FC2VR ↔ FarCry2-VR** — same game, different retail bytes and graphics route. Flow the
   culling *method* across; never flow an RVA or ABI without proving it against the in-house executable.
+  **Done right on 2026-09-05:** the vtable region between his GOG image and the UPLAY/Steam one shifts by an
+  *exactly constant* `+0x88274` - both known slots agree - so his `DUNIA_VTABLE_RVA` predicts ours as a
+  **value, not a window**. Read back from the shipping `Dunia.dll`, `+0x14` holds `PrepareFrameGraph` and
+  `+0x18` `WorldExec` exactly as he documents, plus six D3D9 renderer slots we did not have. Prediction from
+  his source, confirmed against our bytes, no run. Two things his contract does that ours did not:
+  transport the camera basis by the relative rotation, and verify the rebuilt view against the desired eye
+  view with a fail-open guard - which `pose_agreement.h` had been built for and never wired to. And a
+  worry that cost two misdiagnoses evaporated: *his kernel calls `CameraRebuild` itself*, so whether the
+  engine calls it under D3D9 never mattered.
 - **SoF-VR ↔ Medal-of-Honor-vr** — the id lineage, solved from **opposite ends**, which is what makes the
   pair worth reading. SoF is id Tech 2 via Raven and is **RE-owned at the `ref_gl` module contract**: a
   proxy DLL beside the original, no byte of the game patched. MoHAA is id Tech 3 via FAKK2 and is
@@ -114,7 +123,7 @@ their own binaries. **Check here before starting that investigation.**
 
 | Project | Camera arrives as | World-render re-entrancy | State |
 |---|---|---|---|
-| **SS2VR** | **Parameter** — `Kex_RenderFrame` builds it on its own stack, passes by pointer to `0x45C470` | **PROVEN** — `Kex_RenderCubemapSixFaces` → `Kex_RenderWorldFromCamera_Probe` **6× per frame in stock gameplay** | Best case in the fleet. The borrow-and-restore bug family does not apply |
+| **SS2VR** | **Parameter plus globals (STATIC)** - camera argument to 0x45C470 publishes culling globals | **LIVE bounded sustained pairs**, v3.79: 5,401 same-frame pairs across seven runs; 1920x1080 and owned 2560x1440 outputs while desktop stays 1920x1080 | Ten sampled zero controls byte-identical, including flashing lights and animated screens; sampled draw ledgers 91..417 draws/eye. Larger-target restricted parallax error 0.217px. Reuse targets; sample first/middle/last instead of blocking readbacks every frame. 0x279240 reset requires arming after refresh; preserve world depth before weapon clear. Camera motion requires GPU evidence: acknowledged input did not reliably move it. v3.80 full GPU buffers exposed shared uViewOrigin despite separated views (0.105 GU error at 0.210 GU spacing); v3.81 scoped/guarded correction passed 606 more pairs, error <0.0000043 GU, five sampled zero controls exact. Restore the shared origin after EACH eye; verify inverse(view).translation independently, not just matrix deltas. Four further paired BFS/GPU observations establish exact center and eye cell-set controls at two camera directions (7 then 3 cells). The culling frustum is centered without stereo expansion, yet neither live pose misses cells. A captured-geometry yaw sweep predicts edge omissions; independent 3D portal rays are required to reject numerical polygon-clipping false positives before using those predictions. v3.82 now reproduces the predicted omissions: six BFS/GPU pairs at two measured edge poses have exact center controls, missing eye-required cells, complete zero controls and swapped requirements under reversed spacing. Independent actual-portal rays validate all six witnesses; retained world depth cannot certify final dynamic occlusion. Use bounded one-shot game-thread input staging with later camera receipts when UI taps are intermittent. Next fix upstream visibility for both eyes, including recursive portal windows; do not assume outer-plane expansion alone suffices. Static follow-up confirms AE eight-field octagon bounds and inlined union, but root-only widening is not a general displaced-eye doorway solution: it cannot make disjoint center-projected portal windows overlap. A staggered-doorway fixture still fails at 100x center-frustum width while the shifted eye sees through. Preserve this counterexample when evaluating conservative culling. [Edge receipts](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_VISIBILITY.md>). Full scene/culling, arbitrary XR aspect/FoV and XR integration remain open. Independent process watchdog prevents stalled tool/approval waits leaving the game running. [Receipts and limits](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_CONTINUOUS_STEREO.md>) |
 | **PreyVR** | **Parameter** — `CreateGeneralPassRenderingInfo(const CCamera&,…)` @ `0x1E5B30`; `CRenderView::SetCamera` copies **by value** | `C3DEngine::RenderWorld` @ `0x21F520`, zero direct xrefs — all virtual dispatch, `IProcess` idx 3, vtable `+0x18` | **H-009: preconditions met, viability not established.** Nothing called yet |
 | **FarCry2-VR** | **Global** — must borrow and restore | `WorldExec` @ `0x342360` — 37 pass dispatches, **no simulation** | M3 Q1 live: 3,521 prepare+execute replays, 1.915× draws, animator 1.0×. Camera delivery, zero-delta control and capture/publication remain open |
 | **SOMAVR** | **Parameter** — `iRenderer::Render(…, cFrustum* apFrustum, …)`, `mpCurrentFrustum` assigned from the argument every call | unresolved | **But their own AFR path mutates the frustum in place** — F-19 and F-20 are that defect family, self-inflicted |
@@ -123,12 +132,13 @@ their own binaries. **Check here before starting that investigation.**
 | **BioshockVR** | unresolved | unresolved — the 1,822-entry native table is the obvious probe | On rung 2 (private eye targets + pair latching) |
 | **Medal-of-Honor-vr** | **Parameter** — `viewParms_t` is built per view and passed into `R_RenderView`; the VR layer sets four tangents on it | **PROVEN and shipping** — the engine's own portal/sky re-entry of `R_RenderView`, called twice from one prepared `tr.refdef` | Source-owned (OpenMoHAA fork). Counter proof: `renderScene` 63/s unchanged while `renderView` doubled to 126/s, disparity 0 at separation 0 and depth-dependent above it |
 | **SoF-VR** | **Parameter** — `refdef_t*` passed to the `RenderFrame` export (slot 16); the renderer copies 33 dwords out of it into `r_newrefdef` on entry | **Structurally free** — `RenderFrame` is the whole world render and the proxy owns the call site, so "render twice" is calling the export twice | Layout confirmed live 2026-09-04: `fov_y` residual 0.0000 vs `CalcFov`, prefix shift +1. Nothing written yet; M3 is the first reversible mutation |
+| **Sims4VR** | **Parameter** — a per-draw constant-buffer write (`cbuffer0`): the same object in the same frame receives two different view-projections, so the delivery is copy-by-value and the borrow/restore/freeze-observers family does not apply | **Structurally present, not independently controllable** — world geometry is traversed three times per frame (depth prepass, 2048x6144 shadow atlas, main view) with three matrices, but every second traversal found so far shares the main camera's basis | Rung 1 selected by evidence, rung 2 declared fallback; nothing exercised. Cost unmeasured, and the main path is 8x MSAA so a per-eye render inherits a resolve |
 
 **The cheapest unanswered check for the last three:** find a repeat world-render the engine *already*
-performs — cubemap/reflection probes, portals, mirrors, security monitors, render-to-texture. SS2VR found
-theirs while looking for something else, and it delivered both the re-entrancy proof and a reference
-implementation of what to save and restore. Note the caveat from Cyberpunk: an existing repeat render is
-often a **reduced** pass set — *proof, not vehicle*.
+performs — cubemap/reflection probes, portals, mirrors, security monitors, render-to-texture. Verify
+that it reaches actual GPU scene draws: SS2VR's earlier six-call interpretation was lighting visibility,
+not complete rendering ([AE boundary receipts](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_INVESTIGATION.md>)).
+Even an existing GPU repeat render can be a **reduced** pass set — *proof, not vehicle*.
 
 ## Per-eye alignment — solved, do not re-derive
 
