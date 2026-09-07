@@ -1612,6 +1612,36 @@ basis, because nothing guarantees they are unit length and a rebuild would silen
 magnitude - a second variable in a one-variable experiment. `[HEADSET]` PreyVR, MoH-VR; `[STATIC]`
 FarCry2-VR.
 
+## CAM-018 — Derive world scale from shipped content, not from a sibling {#cam-018}
+
+**Problem:** world scale is taken from the engine's tooling, a sibling project on the same engine, or
+a measurement made before the projection was verified — and every consumer of that constant inherits
+the error.
+
+**Use when:** before IPD, arm length, holster placement or locomotion speed is tuned against it.
+
+**Recipe:** measure **authored content whose real dimensions are known** — a door, a corridor width,
+a character's height — from the game's own files. Then check it in a headset against a real object.
+
+Rank the evidence honestly:
+
+| Source | Weight |
+|---|---|
+| shipped content with known real dimensions | **strongest** |
+| a headset check on your own target | strong |
+| a sibling project's headset-confirmed value on the same engine tree | **a prior, not a fact** |
+| the engine's own editor/physics tooling | weak — often a default nobody set |
+| anything measured before the projection was verified | **discard it** |
+
+**Proof:** the derived value survives a headset check, and the numbers it disagrees with are recorded
+with it rather than deleted — that record is what stops someone re-adopting the sibling's number.
+
+**Trip hazard:** the fleet's measured spread on one engine tree is 50 / 65 / 78.74 units per metre —
+tooling, sibling, derived — and the derived one won. **Content authors pick a unit convention per
+title and the engine does not enforce one.** A frustum error also contaminates a scale reading
+invisibly, so any value measured before the projection was proven has to go, however plausible.
+`[HEADSET]` Swat4-VR, against BioshockVR on the same UE2.5 tree.
+
 ## STR-009 — Drive per-eye adaptive state from one shared value {#str-009}
 
 **Problem:** an adaptive process runs independently per eye, so the two eyes disagree about the world
@@ -2587,6 +2617,33 @@ outcomes overlap needs a better boundary, not a longer run. This is
 it was built explicitly on the FarCry2-VR lesson that
 [correct endpoints do not prove correct deformation](12-torso-calculations-and-ergonomics.md#endpoint-is-not-the-mesh).
 `[STATIC]` SOMAVR 0.95.8 - built and desk-verified, not yet run.
+
+## TEST-022 — Pin the instrument's identity as hard as the target's {#test-022}
+
+**Problem:** a result is attributed to the mod when the variable was the tool — a substitute runtime,
+a checker, a harness — and nothing in the record says which build of it ran.
+
+**Use when:** any result that a substitute runtime, simulator or external checker produced.
+
+**Recipe:** record the **commit or version of every instrument** beside the build identity of the
+thing under test, in the result itself. SOMAVR's entry names `xr-sim 9155410` and `xr-tape 52d3fac`
+next to its own version, which is what turned *"the menu edge does not fire"* into *"the shared
+runtime regressed and our vendored copy did not."*
+
+Then treat the substitute's verdicts as bounded in **both** directions:
+
+- it can be **more permissive** than production — accepting an API version the real runtime refuses;
+- it can be **broken where production is fine** — reporting `changedSinceLastSync` as always false so
+  no edge ever fires.
+
+**Proof:** a green run names the instrument versions that produced it. When two builds of one
+instrument disagree on the same client, that disagreement is the finding.
+
+**Trip hazard:** *"substitute green is not a pass."* A substitute exists to make a class of question
+cheap, not to be the gate — anything it certifies still needs one real-runtime confirmation before it
+is called done. And when you vendor a shared tool, the fork is now a second instrument: SOMAVR's
+vendored xr-sim passing while the shared one failed was only legible because both were named.
+`[LIVE]` SOMAVR; `[SOURCE]` SoF-VR.
 
 ## PERF-001 — Frame budget ledger {#perf-001}
 

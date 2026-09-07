@@ -1180,6 +1180,14 @@ passed.** They pinned it with a test asserting the two stay opposite.
 A cancelling pair is a debt, not a bug: record where it is, assert it stays, and close it when the second
 inversion is found - never by making the two sides agree.
 
+**Pin it by test, or the next tidy-up will re-break it.** Swat4-VR resolved exactly this on
+2026-09-02: A/B'd live, the arithmetic's prediction (`ipd -0.0648`) is *visibly flipped* and the
+shipped sign is right, so `eyeOffsetUU` keeps `(+sin, -cos)` while `headOffsetUU` keeps Epic's
+`(-sin, +cos)`. **Both are confirmed and they disagree** — a second inversion exists somewhere and is
+still unlocated, because the eye chain traces left-to-left at every link. What makes this safe to ship
+is the last line of their entry: *"Pinned by test so a tidy-up cannot unify them."* A cancelling pair
+with no test around it is a latent regression waiting for someone tidy. `[HEADSET]`
+
 ## Declare the exact set each fault must flip {#falsification-exactness}
 
 [The section above](#self-proving-instrument) says make the instrument fail on demand. This is the next

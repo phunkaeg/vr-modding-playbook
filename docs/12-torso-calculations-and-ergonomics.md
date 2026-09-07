@@ -472,6 +472,28 @@ to the **engine's** eye rather than to the player's. **A hand-held object that m
 attached to the wrong origin** - recentring changes the relationship between the two, so it is the
 cheapest test there is for this class of bug, and it costs one button press.
 
+### A sibling's measured number is a prior, not a fact {#scale-is-per-game}
+
+Two fleet projects on the **same engine tree** now have world scales that differ by 21%, and a third
+number came from the engine's own tooling. `[HEADSET]`
+
+| Source | Units per metre | Status |
+|---|---:|---|
+| Swat4-VR, derived from **shipped door dimensions** (1 UU = 1/2 inch) | **78.74** | confirmed in a headset 2026-09-01 |
+| BioshockVR, same UE2.5 Vengeance tree | 65 | confirmed in a headset, **for that game** |
+| SWAT 4's own Havok tooltip | 50 | wrong |
+
+Swat4-VR's conclusion is the transferable one: **the derived value beat both the sibling's
+headset-confirmed number and the engine's own tooling.** A number another project measured in a
+headset is strong evidence about *their* game and weak evidence about yours — content authors pick a
+unit convention per title, and an engine tree does not enforce one.
+
+**Derive it from shipped content you can measure.** A door, a corridor, a character's height: these
+are authored to real dimensions and are in the game's own files. That beats a tooltip, a sibling, and
+any reading taken through an unverified frustum — Swat4-VR discarded every earlier reading for exactly
+that reason, because a frustum error contaminates a scale measurement invisibly. See
+[CAM-018](pattern-catalog.md#cam-018).
+
 ## The engine's eye height is measured from the capsule centre, not the floor {#eye-height-datum}
 
 A world-scale trap with a wrong conclusion waiting at the end of it, and the numbers are small enough to

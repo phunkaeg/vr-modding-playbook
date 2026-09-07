@@ -288,6 +288,33 @@ the game actually renders"), and Crysis VR keeps the viewmodel's near FOV in ste
 The honest fallback while that track is open is what they shipped: **auto-widen off by default -
 correct geometry in a theater window** beats a wide image with a void in it.
 
+## A CPU visibility tracker that alternates per render is a stereo hazard {#cpu-visibility-history}
+
+The hazard census looks for temporal effects in the *renderer*. This one is in the **culling**, it is
+on the CPU, and it survives a per-call render-list clear — so a census that checks for TAA, SSR and
+history buffers will report clean and still be wrong. `[SOURCE]`
+
+SOMAVR found it in HPL2's released source while studying HPL3. `cRenderSettings` owns **one**
+`cVisibleRCNodeTracker`, and its **two** node sets alternate on every call to
+`CheckForVisibleObjectsAddToListAndRenderZ` via `SwitchAndClearVisibleNodeSet()`. With sequential eyes
+sharing those settings:
+
+- **eye zero reads the previous pair's eye-one set**;
+- **eye one reads eye zero's current-pair set**.
+
+That is asymmetric, cross-eye coherent-occlusion history *even though the render list itself is
+cleared per call*. It presents exactly as the SS2VR symptom — geometry missing from one eye — and no
+amount of frustum widening fixes it, because the frustum is not what is wrong.
+
+**Two coupled histories, not one.** GPU occlusion-query results and this CPU tracker are separate
+owners and either alone reproduces the symptom. The safe first native-stereo experiment must **bank
+the tracker per eye, or disable coherent occlusion culling for both passes** — and the honest state
+until then is *open, high risk*, which is how SOMAVR records it.
+
+**Look for this shape rather than this symbol.** Any "visible set" that is double-buffered so this
+frame can consult the last one is the same hazard under another name, and it is invisible to a
+renderer-only census. Add it to [the catalogue of shared structures a second view must borrow](#the-catalogue-of-shared-engine-structures-a-second-view-must-borrow).
+
 ## Shadow cascades: one eye is the authority, the other reuses
 
 Cascaded shadow maps are computed *from the view*, which makes them a per-eye quantity in the same way a

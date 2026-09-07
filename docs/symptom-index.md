@@ -143,6 +143,10 @@ that the observation and the cause are usually in different chapters.
 | Every write matches, nothing on screen changes | [02](02-viewmodels-and-hands.md#identity-latch) — the pinned object was recreated |
 | Two builds share a timestamp | [08](08-project-process.md#sibling-build-identity) — hash the file and its size; never the timestamp |
 | An export name looked like the seam and was not | [11](11-re-anchoring-and-discovery.md#export-bracket) — a bracket exists; what passes through it is a separate question |
+| Adopting a world scale from another project on the same engine | [CAM-018](pattern-catalog.md#cam-018) — derive it from shipped content; a sibling's number is a prior |
+| Missing geometry in one eye, and the hazard census says clean | [14](14-render-pass-hazard-atlas.md#cpu-visibility-history) — look in the culling, not the renderer |
+| A green run under the substitute, refused by the real runtime | [TEST-022](pattern-catalog.md#test-022) — pin the instrument's version too |
+| Native re-entry survives a few frames then wedges | [17](17-teardown-fc2vr-native-stereo.md) — something advanced twice per frame |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

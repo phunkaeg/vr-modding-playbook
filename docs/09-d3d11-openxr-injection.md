@@ -2179,6 +2179,28 @@ reset
 Note the header carries the **noise floor** for the comparison it sets up, so a reader can tell a pass
 from a coincidence — [A5](a5-flat-harness-stats.md)'s discipline applied to a headless VR test.
 
+### Two more instances, one week, and they fail in opposite directions {#substitute-two-faults}
+
+The substitute is not simply "weaker". It can be **more permissive** than production *and*
+independently **broken** where production is fine, and the same week produced one of each. `[LIVE]`
+
+**More permissive — SoF-VR.** Their probe asked for `XR_CURRENT_API_VERSION`. Virtual Desktop is a
+**1.0** runtime and refuses a 1.1 instance; xr-sim accepted it and hid the fault for a session. Their
+rule, adopted from the failure: **ask for 1.0, not `XR_CURRENT_API_VERSION`** — and, more usefully,
+*"xr-sim green is not a pass."*
+
+**Broken where production is not — SOMAVR.** The shared xr-sim assigns `XR_FALSE` to
+`XrActionStateBoolean::changedSinceLastSync` **unconditionally**, so a menu edge never fires: the
+control channel acknowledged `btn menu down/up` and the client still reported `menu-edge: no`. The
+tell is that **SOMAVR's own vendored copy passed the identical 600-frame client** — two builds of the
+same instrument disagreeing is the cheapest possible signal that the instrument, not the mod, is the
+variable.
+
+Both point the same way: **pin and record the substitute's identity the way you pin the target's.**
+SOMAVR names the commit of both tools in its result (`xr-sim 9155410`, `xr-tape 52d3fac`), which is
+what makes "our vendored copy passes and the shared one does not" a finding rather than a mystery.
+See [TEST-022](pattern-catalog.md#test-022).
+
 ## Every toggle that starts a subsystem must be able to stop it {#symmetric-toggle}
 
 Their `vrcam on` started VR; `vrcam off` only cleared the camera mode. Once an OpenXR session was
