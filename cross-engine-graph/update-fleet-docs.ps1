@@ -570,8 +570,27 @@ if ($Reconcile) {
         }
         if (-not $py) { $py = 'python' }
 
-        & $py $reconciler
-        $rc = $LASTEXITCODE
+        # The reconciler reads GEMINI_API_KEY from its OWN environment, and
+        # run-graphify.ps1 only sets it for the child it launches - so this block
+        # inherits nothing and the reconciler exited 1 before printing a line.
+        # Measured 2026-09-07: seven graphs refreshed successfully and the run
+        # still failed here, with no output to say why.
+        if (-not $env:GEMINI_API_KEY) {
+            $keyFile = Join-Path $env:LOCALAPPDATA 'graphify\gemini.key'
+            if (-not (Test-Path -LiteralPath $keyFile)) {
+                throw "-Reconcile needs a Gemini key at $keyFile (see graphify-key.bat)."
+            }
+            # Process scope only, and never printed.
+            $env:GEMINI_API_KEY = (Get-Content -LiteralPath $keyFile -TotalCount 1).Trim()
+            $keyWasSet = $true
+        }
+
+        try {
+            & $py $reconciler
+            $rc = $LASTEXITCODE
+        } finally {
+            if ($keyWasSet) { Remove-Item Env:\GEMINI_API_KEY -ErrorAction SilentlyContinue }
+        }
         if ($rc -ne 0) {
             # Exit 1 here means zero cross-project edges were produced. That is a
             # graph which silently answers every cross-project question with

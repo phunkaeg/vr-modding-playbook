@@ -1,0 +1,820 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "stereo_implementation_strategy",
+        "label": "Stereo Implementation Strategy (R1/T1)",
+        "nodes": [
+          "stereo_rung_r1",
+          "completeness_tier_t1",
+          "renderframe_slot_16"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "STEREO_ROUTE.md"
+      },
+      {
+        "id": "frame_loop_slots",
+        "label": "Core Renderer Frame Loop",
+        "nodes": [
+          "beginframe_slot_44",
+          "renderframe_slot_16",
+          "endframe_slot_47"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "REF_API_DRIFT.md"
+      },
+      {
+        "id": "project_governance",
+        "label": "Project Governance and Rules",
+        "nodes": [
+          "claude_md",
+          "agents_md",
+          "conventions_md",
+          "index_md"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CLAUDE.md"
+      },
+      {
+        "id": "render_loop_cadence",
+        "label": "Frame Boundary and Render Cadence",
+        "nodes": [
+          "address_registry_addr_004"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ADDRESS_REGISTRY.md"
+      },
+      {
+        "id": "vr_integration_milestones",
+        "label": "VR Integration Milestones",
+        "nodes": [
+          "current_state_m0",
+          "current_state_m1",
+          "current_state_m2",
+          "current_state_m3"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CURRENT_STATE.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "address_registry_addr_001",
+      "label": "GetRefAPI",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "getrefapi",
+      "rationale": "Single export from ref_gl.dll; returns the refexport_t table.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_addr_003",
+      "label": "r_newrefdef",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "r_newrefdef",
+      "rationale": "Internal renderer copy of the refdef_t struct (33 dwords).",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_addr_004",
+      "label": "slot 16 RenderFrame",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "slot 16 renderframe",
+      "rationale": "Main world-render entry point; identified as the primary seam for VR integration (CAM-015).",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_ref_gl_dll",
+      "label": "ref_gl.dll",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "ref_gl.dll",
+      "rationale": "Original renderer module, image base 0x30000000, single export GetRefAPI.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_sof_exe",
+      "label": "SoF.exe",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "sof.exe",
+      "rationale": "Host executable, 32-bit, image base 0x20000000.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "authority_map_gamex86_dll",
+      "label": "gamex86.dll",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "gamex86.dll",
+      "rationale": "Game logic module; source available in SDK but binary is authoritative.",
+      "source_file": "AUTHORITY_MAP.md"
+    },
+    {
+      "id": "authority_map_player_dll",
+      "label": "player.dll",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "player.dll",
+      "rationale": "Player/weapon module; runs on both client and server.",
+      "source_file": "AUTHORITY_MAP.md"
+    },
+    {
+      "id": "current_state_m1",
+      "label": "M1 - Slot Census",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "concept",
+      "norm_label": "m1 - slot census",
+      "rationale": "Milestone confirming the cadence of BeginFrame, RenderFrame, and EndFrame.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "openxr_runtime",
+      "label": "OpenXR Runtime (32-bit)",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "openxr runtime (32-bit)",
+      "rationale": "Required for VR transport; must support 32-bit apps (Virtual Desktop, Oculus, PimaxXR).",
+      "source_file": "PORT_BRIEF.md"
+    },
+    {
+      "id": "ref_gl_dll",
+      "label": "ref_gl.dll",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "ref_gl.dll",
+      "rationale": "Original OpenGL renderer module; target for proxying.",
+      "source_file": "TARGET_PROFILE.md"
+    },
+    {
+      "id": "ref_vr_dll",
+      "label": "ref_vr.dll",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "ref_vr.dll",
+      "rationale": "The proxy renderer module that implements the VR logic and forwards to ref_gl.dll.",
+      "source_file": "README.md"
+    },
+    {
+      "id": "refexport_t",
+      "label": "refexport_t",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "refexport_t",
+      "rationale": "Extended to 55 dwords in SoF vs 22 in id Tech 2.",
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "id": "renderframe_slot_16",
+      "label": "RenderFrame (Slot 16)",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "renderframe (slot 16)",
+      "rationale": "Primary world rendering entry point; identified at RVA 0xDFE0.",
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "id": "sof_exe",
+      "label": "SoF.exe",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "sof.exe",
+      "rationale": "Main game executable (x86).",
+      "source_file": "TARGET_PROFILE.md"
+    },
+    {
+      "id": "address_registry_addr_002",
+      "label": "ri (refimport_t)",
+      "_origin": "semantic",
+      "community": 11,
+      "file_type": "code",
+      "norm_label": "ri (refimport_t)",
+      "rationale": "Import table copy (27 dwords) used by the renderer to call engine functions.",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "verification": "unverified"
+    },
+    {
+      "id": "current_state_m0",
+      "label": "M0 - Load Proof",
+      "_origin": "semantic",
+      "community": 13,
+      "file_type": "concept",
+      "norm_label": "m0 - load proof",
+      "rationale": "Milestone confirming the proxy loads and the export table matches static analysis.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "port_brief_sof_platinum",
+      "label": "Soldier of Fortune Platinum Edition (GOG)",
+      "_origin": "semantic",
+      "community": 17,
+      "file_type": "document",
+      "norm_label": "soldier of fortune platinum edition (gog)",
+      "rationale": "Target game for the VR mod, codebase 1.07f.",
+      "source_file": "PORT_BRIEF.md"
+    },
+    {
+      "id": "beginframe_slot_44",
+      "label": "BeginFrame (Slot 44)",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "beginframe (slot 44)",
+      "rationale": "Frame start; identified at RVA 0x10D50.",
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "id": "endframe_slot_47",
+      "label": "EndFrame (Slot 47)",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "endframe (slot 47)",
+      "rationale": "Frame end/SwapBuffers; identified at RVA 0x1C640.",
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "id": "vr_integration_design_frame",
+      "label": "VR Integration Design",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "vr integration design",
+      "rationale": "Architectural plan for the proxy frame loop and stereo rendering.",
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "id": "completeness_tier_t1",
+      "label": "T1 (Stereo + Head Rotation)",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "t1 (stereo + head rotation)",
+      "rationale": "Initial target milestone for release.",
+      "source_file": "PORT_BRIEF.md"
+    },
+    {
+      "id": "stereo_rung_r1",
+      "label": "R1 Native Re-entry",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "r1 native re-entry",
+      "rationale": "Selected stereo strategy: calling RenderFrame twice per frame.",
+      "source_file": "STEREO_ROUTE.md"
+    },
+    {
+      "id": "readme_sof_vr",
+      "label": "SoF-VR Project",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "document",
+      "norm_label": "sof-vr project",
+      "rationale": "OpenXR VR mod for Soldier of Fortune using a proxy renderer approach.",
+      "source_file": "README.md"
+    },
+    {
+      "id": "current_state_m2",
+      "label": "M2 - refdef probe",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "m2 - refdef probe",
+      "rationale": "Milestone confirming the refdef_t layout (HYP-002) under live motion.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "hypotheses_hyp_002",
+      "label": "refdef_t Layout Hypothesis",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "refdef_t layout hypothesis",
+      "rationale": "Hypothesis that refdef_t is id layout shifted by one dword; confirmed in M2.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "current_state_m3",
+      "label": "M3 - Reversible Mutation",
+      "_origin": "semantic",
+      "community": 7,
+      "file_type": "concept",
+      "norm_label": "m3 - reversible mutation",
+      "rationale": "Next milestone: shifting vieworg to prove the parameter seam works without touching the caller's struct.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "decision_log_d_001",
+      "label": "Proxy Renderer Delivery",
+      "_origin": "semantic",
+      "community": 7,
+      "file_type": "rationale",
+      "norm_label": "proxy renderer delivery",
+      "rationale": "Decision to deliver as ref_vr.dll via +set vid_ref vr to keep the install untouched.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "experiments_exp_001",
+      "label": "OpenXR 32-bit Reachability",
+      "_origin": "semantic",
+      "community": 8,
+      "file_type": "concept",
+      "norm_label": "openxr 32-bit reachability",
+      "rationale": "Experiment confirming 32-bit processes can reach VirtualDesktopXR and xr-sim runtimes.",
+      "source_file": "EXPERIMENTS.md"
+    },
+    {
+      "id": "decision_log_d_005",
+      "label": "Symmetric Covering Frustum",
+      "_origin": "semantic",
+      "community": 8,
+      "file_type": "rationale",
+      "norm_label": "symmetric covering frustum",
+      "rationale": "Decision to render a symmetric frustum and submit it to OpenXR to avoid convergence issues.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "hyp_002_refdef_layout",
+      "label": "HYP-002: refdef_t Layout",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "concept",
+      "norm_label": "hyp-002: refdef_t layout",
+      "rationale": "Hypothesis regarding the exact field offsets in the extended refdef_t struct, confirmed live in M2.",
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "id": "ref_api_drift_contract",
+      "label": "Ref API Drift Analysis",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "document",
+      "norm_label": "ref api drift analysis",
+      "rationale": "Detailed analysis of Raven's extension of the Quake 2 API_VERSION 3 contract.",
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "id": "refdef_t",
+      "label": "refdef_t",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "refdef_t",
+      "rationale": "The primary data structure containing camera orientation and scene parameters.",
+      "source_file": "CAMERA_FINDINGS.md"
+    },
+    {
+      "id": "camera_findings_md",
+      "label": "CAMERA_FINDINGS.md",
+      "community": 1,
+      "file_type": "document",
+      "norm_label": "camera_findings.md",
+      "rationale": "Documents the identification of the camera via the refdef_t argument in export slot 16.",
+      "source_file": "CAMERA_FINDINGS.md"
+    },
+    {
+      "id": "render_pass_census_md",
+      "label": "RENDER_PASS_CENSUS.md",
+      "community": 10,
+      "file_type": "document",
+      "norm_label": "render_pass_census.md",
+      "rationale": "Inventories engine render passes and assigns per-eye stereo policies.",
+      "source_file": "RENDER_PASS_CENSUS.md"
+    },
+    {
+      "id": "stereo_ladder_md",
+      "label": "STEREO_LADDER.md",
+      "community": 10,
+      "file_type": "document",
+      "norm_label": "stereo_ladder.md",
+      "rationale": "Outlines the 10-rung proof ladder for achieving geometric stereo rendering.",
+      "source_file": "STEREO_LADDER.md"
+    },
+    {
+      "id": "conventions_md",
+      "label": "CONVENTIONS.md",
+      "community": 12,
+      "file_type": "document",
+      "norm_label": "conventions.md",
+      "rationale": "Defines evidence grades, ID namespaces, and documentation ownership rules.",
+      "source_file": "CONVENTIONS.md"
+    },
+    {
+      "id": "failure_registry_md",
+      "label": "FAILURE_REGISTRY.md",
+      "community": 14,
+      "file_type": "document",
+      "norm_label": "failure_registry.md",
+      "rationale": "Logs disproven routes and misdiagnoses to prevent re-derivation of failures.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "input_ownership_md",
+      "label": "INPUT_OWNERSHIP.md",
+      "community": 15,
+      "file_type": "document",
+      "norm_label": "input_ownership.md",
+      "rationale": "Maps physical VR actions to engine semantic commands via the command funnel.",
+      "source_file": "INPUT_OWNERSHIP.md"
+    },
+    {
+      "id": "ownership_census_md",
+      "label": "OWNERSHIP_CENSUS.md",
+      "community": 16,
+      "file_type": "document",
+      "norm_label": "ownership_census.md",
+      "rationale": "Analyzes which components read or mutate the refdef_t struct during RenderFrame.",
+      "source_file": "OWNERSHIP_CENSUS.md"
+    },
+    {
+      "id": "recovery_matrix_md",
+      "label": "RECOVERY_MATRIX.md",
+      "community": 18,
+      "file_type": "document",
+      "norm_label": "recovery_matrix.md",
+      "rationale": "Defines proxy behavior for lifecycle events like focus loss or runtime failure.",
+      "source_file": "RECOVERY_MATRIX.md"
+    },
+    {
+      "id": "tool_preflight_md",
+      "label": "TOOL_PREFLIGHT.md",
+      "community": 19,
+      "file_type": "document",
+      "norm_label": "tool_preflight.md",
+      "rationale": "Status and bitness/API compatibility check for the reverse engineering toolkit.",
+      "source_file": "TOOL_PREFLIGHT.md"
+    },
+    {
+      "id": "agents_md",
+      "label": "AGENTS.md",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "agents.md",
+      "rationale": "Defines the MCP roster, playbook doors, and engine source oracles for the project.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "claude_md",
+      "label": "CLAUDE.md",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "claude.md",
+      "rationale": "Authoritative project rules, hard constraints, and target facts for the SoF-VR mod.",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "index_md",
+      "label": "index.md",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "index.md",
+      "rationale": "Central index mapping project documents to the global VR modding playbook.",
+      "source_file": "index.md"
+    },
+    {
+      "id": "baseline_receipt_md",
+      "label": "BASELINE_RECEIPT.md",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "baseline_receipt.md",
+      "rationale": "Records the status of the vanilla game baseline and the requirements for the first session.",
+      "source_file": "BASELINE_RECEIPT.md"
+    },
+    {
+      "id": "test_checklists_md",
+      "label": "TEST_CHECKLISTS.md",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "test_checklists.md",
+      "rationale": "Provides milestone-based verification steps for flat and headset gates.",
+      "source_file": "TEST_CHECKLISTS.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "address_registry_sof_exe",
+      "target": "address_registry_ref_gl_dll",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "address_registry_sof_exe",
+      "target": "authority_map_gamex86_dll",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORITY_MAP.md"
+    },
+    {
+      "source": "address_registry_sof_exe",
+      "target": "authority_map_player_dll",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AUTHORITY_MAP.md"
+    },
+    {
+      "source": "ref_vr_dll",
+      "target": "renderframe_slot_16",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "STEREO_ROUTE.md"
+    },
+    {
+      "source": "sof_exe",
+      "target": "ref_gl_dll",
+      "relation": "calls",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "source": "experiments_exp_001",
+      "target": "decision_log_d_005",
+      "relation": "conceptually_related_to",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "EXPERIMENTS.md"
+    },
+    {
+      "source": "readme_sof_vr",
+      "target": "completeness_tier_t1",
+      "relation": "conceptually_related_to",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "readme_sof_vr",
+      "target": "stereo_rung_r1",
+      "relation": "conceptually_related_to",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "ref_api_drift_contract",
+      "target": "hyp_002_refdef_layout",
+      "relation": "conceptually_related_to",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "source": "current_state_m2",
+      "target": "hypotheses_hyp_002",
+      "relation": "implements",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "address_registry_addr_001",
+      "target": "address_registry_addr_004",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "address_registry_ref_gl_dll",
+      "target": "address_registry_addr_001",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "current_state_m1",
+      "target": "address_registry_addr_004",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "ref_vr_dll",
+      "target": "ref_gl_dll",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "source": "ref_vr_dll",
+      "target": "openxr_runtime",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "source": "renderframe_slot_16",
+      "target": "refdef_t",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "source": "vr_integration_design_frame",
+      "target": "beginframe_slot_44",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "source": "vr_integration_design_frame",
+      "target": "endframe_slot_47",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "source": "address_registry_addr_004",
+      "target": "address_registry_addr_003",
+      "relation": "shares_data_with",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "ref_vr_dll",
+      "target": "refexport_t",
+      "relation": "implements",
+      "_origin": "semantic",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "source": "current_state_m3",
+      "target": "decision_log_d_001",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "camera_findings_md",
+      "target": "refdef_t",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CAMERA_FINDINGS.md"
+    },
+    {
+      "source": "claude_md",
+      "target": "agents_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "source": "index_md",
+      "target": "claude_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.md"
+    },
+    {
+      "source": "stereo_ladder_md",
+      "target": "render_pass_census_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "STEREO_LADDER.md"
+    },
+    {
+      "source": "test_checklists_md",
+      "target": "baseline_receipt_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "stereo_implementation_strategy",
+      "label": "Stereo Implementation Strategy (R1/T1)",
+      "nodes": [
+        "stereo_rung_r1",
+        "completeness_tier_t1",
+        "renderframe_slot_16"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "STEREO_ROUTE.md"
+    },
+    {
+      "id": "frame_loop_slots",
+      "label": "Core Renderer Frame Loop",
+      "nodes": [
+        "beginframe_slot_44",
+        "renderframe_slot_16",
+        "endframe_slot_47"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "REF_API_DRIFT.md"
+    },
+    {
+      "id": "project_governance",
+      "label": "Project Governance and Rules",
+      "nodes": [
+        "claude_md",
+        "agents_md",
+        "conventions_md",
+        "index_md"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "render_loop_cadence",
+      "label": "Frame Boundary and Render Cadence",
+      "nodes": [
+        "address_registry_addr_004"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "vr_integration_milestones",
+      "label": "VR Integration Milestones",
+      "nodes": [
+        "current_state_m0",
+        "current_state_m1",
+        "current_state_m2",
+        "current_state_m3"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    }
+  ],
+  "built_at_commit": "f164879b6778539de63099302a3d994db92f21ce"
+}

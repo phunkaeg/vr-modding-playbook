@@ -4,26 +4,51 @@
   "graph": {
     "hyperedges": [
       {
-        "id": "camera_discovery_flow",
-        "label": "Camera Discovery and Validation Flow",
+        "id": "stereo_rendering_feasibility",
+        "label": "Stereo Rendering Feasibility Evidence",
         "nodes": [
-          "address_registry_camera_py_api",
-          "address_registry_cbuffer0_layout",
+          "current_state_gate_verdict",
+          "address_registry_cbuffer0",
+          "address_registry_reflection_install"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "CURRENT_STATE.md"
+      },
+      {
+        "id": "camera_discovery_flow",
+        "label": "Camera Discovery & Validation Flow",
+        "nodes": [
+          "address_registry_python_api",
+          "address_registry_cbuffer0",
           "address_registry_cb2_pos",
           "address_registry_static_global_candidate"
         ],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
+        "confidence_score": 0.95,
         "source_file": "ADDRESS_REGISTRY.md"
+      },
+      {
+        "id": "camera_re_investigation",
+        "label": "Camera and View RE Investigation",
+        "nodes": [
+          "current_state_2026_08_25",
+          "current_state_2026_08_27_closed",
+          "current_state_2026_09_02_t8"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CURRENT_STATE.md"
       },
       {
         "id": "openxr_testing_stack",
         "label": "OpenXR Testing Stack",
         "nodes": [
           "tools_xrprobe",
-          "xr_sim",
-          "xr_tape"
+          "xr_sim"
         ],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
@@ -44,11 +69,36 @@
         "source_file": "AGENTS.md"
       },
       {
-        "id": "static_analysis_targets",
-        "label": "Static Analysis Targets",
+        "id": "sims4vr_capture_test_suite",
+        "label": "Sims4VR Capture Analysis Suite",
         "nodes": [
-          "ts4_x64_exe",
-          "simulation_x64_dll"
+          "next_tests_t1_cas",
+          "next_tests_t2_resolution",
+          "next_tests_t3_walls",
+          "next_tests_t6_msaa",
+          "next_tests_t8_mirror"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "NEXT_TESTS.md"
+      },
+      {
+        "id": "sims4vr_failure_patterns",
+        "label": "Sims4VR Failure and Standing Rules",
+        "nodes": [
+          "failure_registry_geometry_checks",
+          "failure_registry_event_pump",
+          "failure_registry_launcher_defects",
+          "failure_registry_renderdoc_mcp",
+          "failure_registry_srgb_swapchain",
+          "failure_registry_asymmetric_frustum",
+          "failure_registry_headset_controls",
+          "failure_registry_hardware_diagnosis",
+          "failure_registry_frida_api",
+          "failure_registry_hot_path_hooks",
+          "failure_registry_recorder_vs_detector",
+          "failure_registry_backtrace_reliability"
         ],
         "relation": "form",
         "confidence": "EXTRACTED",
@@ -59,9 +109,7 @@
         "id": "stereo_feasibility_flow",
         "label": "Stereo Feasibility Verification",
         "nodes": [
-          "next_tests_t8",
-          "playbook_handover_mirror_reflection",
-          "stereo_route_rung_ladder"
+          "playbook_handover_mirror_reflection"
         ],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
@@ -69,29 +117,18 @@
         "source_file": "PLAYBOOK_HANDOVER.md"
       },
       {
-        "id": "world_render_reentrancy_proof",
-        "label": "World Render Re-entrancy Proof",
+        "id": "stereo_implementation_ladder",
+        "label": "Stereo Implementation Ladder",
         "nodes": [
-          "current_state_mirror_reflection",
-          "current_state_pass_24",
-          "current_state_pass_28"
-        ],
-        "relation": "form",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "CURRENT_STATE.md"
-      },
-      {
-        "id": "ui_handling_strategy",
-        "label": "UI Identification and Rendering Strategy",
-        "nodes": [
-          "current_state_ui_mirror_strategy",
-          "ts4_x64_exe"
+          "stereo_route_ladder",
+          "stereo_route_rung_1",
+          "prior_art_fear_vr",
+          "prior_art_somavr"
         ],
         "relation": "implement",
-        "confidence": "INFERRED",
-        "confidence_score": 0.8,
-        "source_file": "CURRENT_STATE.md"
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "STEREO_ROUTE.md"
       },
       {
         "id": "vr_validation_flow",
@@ -123,506 +160,12 @@
   },
   "nodes": [
     {
-      "id": "address_registry_cb2_pos",
-      "label": "cb2[0].xyz Camera World Position",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 0,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "cb2[0].xyz camera world position",
-      "rationale": "Identified via vertex shader disassembly; superior scan seed for camera position.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "address_registry_cbuffer0_layout",
-      "label": "Shader Constant Buffer 0 Layout",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 0,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "shader constant buffer 0 layout",
-      "rationale": "Verified from RenderDoc captures; contains world matrix and world-view-projection.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "address_registry_gameplay_camera_data",
-      "label": "EA::Sims4::Persistence::GameplayCameraData",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 0,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "ea::sims4::persistence::gameplaycameradata",
-      "rationale": "64-byte protobuf-backed struct for save-game data, not live render camera.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "current_state_gate_verdict",
-      "label": "Feasibility Gate: GO",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 0,
-      "contributor": null,
-      "file_type": "rationale",
-      "norm_label": "feasibility gate: go",
-      "rationale": "Engine renders world multiple times per frame; camera is a per-draw parameter in cbuffer0.",
-      "source_file": "CURRENT_STATE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "address_registry_camera_struct_x",
-      "label": "Camera struct: X offset",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 11,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "camera struct: x offset",
-      "rationale": "Inherited from original mod; currently unverified and doubtful.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "address_registry_camera_struct_y",
-      "label": "Camera struct: Y offset",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 12,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "camera struct: y offset",
-      "rationale": "Inherited from original mod; currently unverified and doubtful.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "address_registry_camera_struct_z",
-      "label": "Camera struct: Z offset",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 13,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "camera struct: z offset",
-      "rationale": "Inherited from original mod; currently unverified and doubtful.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "current_state_ui_mirror_strategy",
-      "label": "UI Mirroring Strategy",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 17,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "ui mirroring strategy",
-      "rationale": "Recommended to mirror flat window as world-space quad to preserve mouse hit-testing.",
-      "source_file": "CURRENT_STATE.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "address_registry_camera_py_api",
-      "label": "Python camera API surface",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 6,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "python camera api surface",
-      "rationale": "Verified live 2026-08-25; used for ground-truth but sparse updates make it unsuitable for 90Hz tracking.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "address_registry_static_global_candidate",
-      "label": "Static global camera candidate",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 6,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "static global camera candidate",
-      "rationale": "One of 30 survivors in a differential scan; must be re-derived per build.",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "frida",
-      "label": "Frida",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "frida",
-      "rationale": "Dynamic instrumentation tool used for live process analysis and bypassing launcher-based injection issues.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "simulation_x64_dll",
-      "label": "Simulation_x64.dll",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "simulation_x64.dll",
-      "rationale": "Unpacked DLL containing gameplay logic, Python bindings, and RTTI.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "ts4_x64_exe",
-      "label": "TS4_x64.exe",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "ts4_x64.exe",
-      "rationale": "The main game executable, confirmed to be packed/encrypted at rest on disk but unblocked via memory dumping.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "tools_xrprobe",
-      "label": "xrprobe",
-      "_origin": "semantic",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "xrprobe",
-      "rationale": "A native OpenXR client probe used to verify the contract and frame loop logic.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "xr_sim",
-      "label": "xr-sim",
-      "_origin": "semantic",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "xr-sim",
-      "rationale": "Substitute OpenXR runtime used for testing without a headset.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "xr_tape",
-      "label": "xr-tape",
-      "_origin": "semantic",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "xr-tape",
-      "rationale": "An OpenXR API layer used for recording and validating OpenXR traces from outside the process.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "decision_log_d004",
-      "label": "D-004: VR Backend Interface",
-      "_origin": "semantic",
-      "community": 1,
-      "file_type": "document",
-      "norm_label": "d-004: vr backend interface",
-      "rationale": "Decides to implement an IVR-style interface before OpenXR calls to allow for future backend flexibility/emulation.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "decision_log_d007",
-      "label": "D-007: Standalone xr-sim Migration",
-      "_origin": "semantic",
-      "community": 1,
-      "file_type": "document",
-      "norm_label": "d-007: standalone xr-sim migration",
-      "rationale": "Migrates dependency to the standalone xr-sim project and introduces the xrprobe tool.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "decision_log_d008",
-      "label": "D-008: Manual API Layer Hosting",
-      "_origin": "semantic",
-      "community": 1,
-      "file_type": "document",
-      "norm_label": "d-008: manual api layer hosting",
-      "rationale": "Enables xrprobe to host API layers like xr-tape without depending on the Khronos loader.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "testing_desk_assertions",
-      "label": "Desk Assertions (ch09)",
-      "_origin": "semantic",
-      "community": 10,
-      "file_type": "code",
-      "norm_label": "desk assertions (ch09)",
-      "rationale": "Mathematical guards (IPD, FOV, handedness) to detect misalignment before headset testing.",
-      "source_file": "TESTING.md"
-    },
-    {
-      "id": "playbook_handover_vertex_recovery",
-      "label": "Vertex-Based Projection Recovery",
-      "_origin": "semantic",
-      "community": 10,
-      "file_type": "concept",
-      "norm_label": "vertex-based projection recovery",
-      "rationale": "Recovering FOV and handedness from vertex data (object-to-clip solve) bypasses unreadable constant buffers.",
-      "source_file": "PLAYBOOK_HANDOVER.md"
-    },
-    {
-      "id": "decision_log_d002",
-      "label": "D-002: Layouts over Addresses",
-      "_origin": "semantic",
-      "community": 18,
-      "file_type": "document",
-      "norm_label": "d-002: layouts over addresses",
-      "rationale": "Prioritizes recording struct layouts and discovery methods over hardcoded addresses to survive live-service patches.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "decision_log_d005",
-      "label": "D-005: Host Settings Policy",
-      "_origin": "semantic",
-      "community": 19,
-      "file_type": "document",
-      "norm_label": "d-005: host settings policy",
-      "rationale": "Defines which game settings to force off (motion blur, etc.) and which to keep (anisotropic filtering) for VR comfort.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "next_tests_t1",
-      "label": "Test T1: Create-a-Sim",
-      "_origin": "semantic",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "test t1: create-a-sim",
-      "source_file": "NEXT_TESTS.md"
-    },
-    {
-      "id": "next_tests_t8",
-      "label": "Test T8: Mirror Camera Search",
-      "_origin": "semantic",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "test t8: mirror camera search",
-      "source_file": "NEXT_TESTS.md"
-    },
-    {
-      "id": "testing_ivr_interface",
-      "label": "IVR Interface Seam",
-      "_origin": "semantic",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "ivr interface seam",
-      "rationale": "Abstracting the VR backend behind an interface allows for headset-free simulation and testing.",
-      "source_file": "TESTING.md"
-    },
-    {
-      "id": "playbook_handover_mirror_reflection",
-      "label": "Mirror Reflection Repeat Render",
-      "_origin": "semantic",
-      "community": 2,
-      "file_type": "concept",
-      "norm_label": "mirror reflection repeat render",
-      "rationale": "Sims 4 renders mirror reflections as a full scene render from a second, independently positioned camera, proving re-entrancy.",
-      "source_file": "PLAYBOOK_HANDOVER.md"
-    },
-    {
-      "id": "stereo_route_rung_ladder",
-      "label": "Stereo Rung Ladder (STR-006)",
-      "_origin": "semantic",
-      "community": 2,
-      "file_type": "concept",
-      "norm_label": "stereo rung ladder (str-006)",
-      "rationale": "Architecture should support multiple selectable rungs (Mono, Tracked, AER, Re-entry, Reprojection) to de-risk development.",
-      "source_file": "STEREO_ROUTE.md"
-    },
-    {
-      "id": "prior_art_fear_vr",
-      "label": "fear-vr Smallest Safe Hook",
-      "_origin": "semantic",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "fear-vr smallest safe hook",
-      "rationale": "Hooking below client updates but above pure engine world render to avoid double-executing simulation logic.",
-      "source_file": "PRIOR_ART.md"
-    },
-    {
-      "id": "decision_log_d006",
-      "label": "D-006: Adopt SOMAVR XRSim",
-      "_origin": "semantic",
-      "community": 20,
-      "file_type": "document",
-      "norm_label": "d-006: adopt somavr xrsim",
-      "rationale": "Initial adoption of an existing substitute OpenXR runtime to test the mod without a headset.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "next_tests_t2",
-      "label": "Test T2: Resolution Change",
-      "_origin": "semantic",
-      "community": 21,
-      "file_type": "code",
-      "norm_label": "test t2: resolution change",
-      "source_file": "NEXT_TESTS.md"
-    },
-    {
-      "id": "playbook_handover_frida_dump",
-      "label": "Frida Memory Image Dump",
-      "_origin": "semantic",
-      "community": 22,
-      "file_type": "concept",
-      "norm_label": "frida memory image dump",
-      "rationale": "Dumping virtual address space via Frida bypasses binary packing and enables static analysis.",
-      "source_file": "PLAYBOOK_HANDOVER.md"
-    },
-    {
-      "id": "playbook_handover_instance_format",
-      "label": "Instance Format Structural Rule",
-      "_origin": "semantic",
-      "community": 23,
-      "file_type": "concept",
-      "norm_label": "instance format structural rule",
-      "rationale": "Yaw-only instance data (cos, sin) cannot express mirroring, proving reflection must occur at the camera level.",
-      "source_file": "PLAYBOOK_HANDOVER.md"
-    },
-    {
-      "id": "current_state_cb2",
-      "label": "Constant Buffer 2 (cb2)",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "constant buffer 2 (cb2)",
-      "rationale": "160-byte buffer containing camera world position (cb2[0]) and view-projection rows (cb2[5..8]).",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_event_8335",
-      "label": "Event 8335 (Camera Switch)",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "event 8335 (camera switch)",
-      "rationale": "The specific CPU write/Map event where the reflection camera is installed between passes.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_pass_24",
-      "label": "Main View Pass (Pass 24)",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "main view pass (pass 24)",
-      "rationale": "Primary world shading pass into RT ::106.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_pass_28",
-      "label": "Reflection Pass (Pass 28)",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "reflection pass (pass 28)",
-      "rationale": "Secondary world render pass for mirrors, using a different camera position in cb2.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_mirror_reflection",
-      "label": "Mirror Reflection Pass",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "concept",
-      "norm_label": "mirror reflection pass",
-      "rationale": "Identified as a full scene re-render from an independent camera, providing the necessary proof for world-render re-entrancy (Rung 1).",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "renderdoc_mcp",
-      "label": "RenderDoc MCP",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "code",
-      "norm_label": "renderdoc mcp",
-      "rationale": "Tool used for frame capture and analysis; noted for several defects in constant buffer reflection and state reporting.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "decision_log_d001",
-      "label": "D-001: God-view and Stereo Policy",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "document",
-      "norm_label": "d-001: god-view and stereo policy",
-      "rationale": "Establishes the core project goal: god-view VR with real per-eye stereo, rejecting alternate-eye hacks.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "decision_log_d003",
-      "label": "D-003: Project Gate Passed",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "document",
-      "norm_label": "d-003: project gate passed",
-      "rationale": "Confirms engine re-entrancy via RenderDoc analysis, proving the engine can render multiple views per frame.",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "failure_registry_constant_buffer_probe",
-      "label": "Constant-Buffer Probe Failure",
-      "_origin": "semantic",
-      "community": 8,
-      "file_type": "rationale",
-      "norm_label": "constant-buffer probe failure",
-      "rationale": "Calling ID3D11Buffer::GetDesc on every Map call in a hot-path hook killed game performance due to tens of thousands of COM calls per second.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_zero_result_diagnostic",
-      "label": "Zero-Result Diagnostic Rule",
-      "_origin": "semantic",
-      "community": 8,
-      "file_type": "rationale",
-      "norm_label": "zero-result diagnostic rule",
-      "rationale": "An instrument returning 'nothing found' must explain why (e.g., via histograms) to distinguish between broken instruments and missing data.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "next_tests_t3",
-      "label": "Test T3: Walls-up A/B",
-      "_origin": "semantic",
-      "community": 9,
-      "file_type": "code",
-      "norm_label": "test t3: walls-up a/b",
-      "source_file": "NEXT_TESTS.md"
-    },
-    {
-      "id": "next_tests_t4",
-      "label": "Test T4: Main Menu Control",
-      "_origin": "semantic",
-      "community": 9,
-      "file_type": "code",
-      "norm_label": "test t4: main menu control",
-      "source_file": "NEXT_TESTS.md"
-    },
-    {
       "id": "readme_convexvr_mod",
       "label": "Original Sims4-VR Mod",
+      "_origin": "semantic",
       "author": "convexvr",
       "captured_at": null,
-      "community": 3,
+      "community": 2,
       "contributor": null,
       "file_type": "code",
       "norm_label": "original sims4-vr mod",
@@ -634,9 +177,10 @@
     {
       "id": "agents_cross_engine_docs_graph",
       "label": "Cross-Engine Docs Graph",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 14,
+      "community": 13,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "cross-engine docs graph",
@@ -648,9 +192,10 @@
     {
       "id": "agents_ghidra",
       "label": "Ghidra",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 15,
+      "community": 14,
       "contributor": null,
       "file_type": "code",
       "norm_label": "ghidra",
@@ -662,9 +207,10 @@
     {
       "id": "agents_xr_sim",
       "label": "xr-sim",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 16,
+      "community": 15,
       "contributor": null,
       "file_type": "code",
       "norm_label": "xr-sim",
@@ -676,9 +222,10 @@
     {
       "id": "agents_re_mcp_toolkit",
       "label": "RE MCP Toolkit",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 2,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "re mcp toolkit",
@@ -690,9 +237,10 @@
     {
       "id": "agents_vr_re_workflow",
       "label": "VR RE Workflow",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 2,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "vr re workflow",
@@ -704,9 +252,10 @@
     {
       "id": "readme_sims4vr",
       "label": "Sims4VR",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 2,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "sims4vr",
@@ -718,9 +267,10 @@
     {
       "id": "claude_project_rules",
       "label": "Project Rules",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 3,
+      "community": 2,
       "contributor": null,
       "file_type": "document",
       "norm_label": "project rules",
@@ -732,6 +282,7 @@
     {
       "id": "agents_renderdoc",
       "label": "RenderDoc",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
       "community": 7,
@@ -746,6 +297,7 @@
     {
       "id": "agents_xr_tape",
       "label": "xr-tape",
+      "_origin": "semantic",
       "author": null,
       "captured_at": null,
       "community": 7,
@@ -756,55 +308,718 @@
       "source_file": "AGENTS.md",
       "source_location": null,
       "source_url": null
-    }
-  ],
-  "links": [
+    },
     {
-      "source": "playbook_handover_mirror_reflection",
-      "target": "stereo_route_rung_ladder",
-      "relation": "implements",
+      "id": "decision_log_d002",
+      "label": "D-002: Layouts over Addresses",
       "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.9,
+      "community": 26,
+      "file_type": "document",
+      "norm_label": "d-002: layouts over addresses",
+      "rationale": "Prioritizes recording struct layouts and discovery methods over hardcoded addresses to survive live-service patches.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "decision_log_d005",
+      "label": "D-005: Host Settings Policy",
+      "_origin": "semantic",
+      "community": 27,
+      "file_type": "document",
+      "norm_label": "d-005: host settings policy",
+      "rationale": "Defines which game settings to force off (motion blur, etc.) and which to keep (anisotropic filtering) for VR comfort.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "decision_log_d006",
+      "label": "D-006: Adopt SOMAVR XRSim",
+      "_origin": "semantic",
+      "community": 28,
+      "file_type": "document",
+      "norm_label": "d-006: adopt somavr xrsim",
+      "rationale": "Initial adoption of an existing substitute OpenXR runtime to test the mod without a headset.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "decision_log_d008",
+      "label": "D-008: Manual API Layer Hosting",
+      "_origin": "semantic",
+      "community": 29,
+      "file_type": "document",
+      "norm_label": "d-008: manual api layer hosting",
+      "rationale": "Enables xrprobe to host API layers like xr-tape without depending on the Khronos loader.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "tools_xrprobe",
+      "label": "xrprobe",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "xrprobe",
+      "rationale": "A native OpenXR client probe used to verify the contract and frame loop logic.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "xr_sim",
+      "label": "xr-sim",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "xr-sim",
+      "rationale": "Substitute OpenXR runtime used for testing without a headset.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "decision_log_d004",
+      "label": "D-004: VR Backend Interface",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "d-004: vr backend interface",
+      "rationale": "Decides to implement an IVR-style interface before OpenXR calls to allow for future backend flexibility/emulation.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "decision_log_d007",
+      "label": "D-007: Standalone xr-sim Migration",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "document",
+      "norm_label": "d-007: standalone xr-sim migration",
+      "rationale": "Migrates dependency to the standalone xr-sim project and introduces the xrprobe tool.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "playbook_handover_frida_dump",
+      "label": "Frida Memory Image Dump",
+      "_origin": "semantic",
+      "community": 44,
+      "file_type": "concept",
+      "norm_label": "frida memory image dump",
+      "rationale": "Dumping virtual address space via Frida bypasses binary packing and enables static analysis.",
       "source_file": "PLAYBOOK_HANDOVER.md"
     },
     {
-      "source": "prior_art_fear_vr",
-      "target": "stereo_route_rung_ladder",
-      "relation": "references",
+      "id": "playbook_handover_instance_format",
+      "label": "Instance Format Structural Rule",
       "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.9,
-      "source_file": "PRIOR_ART.md"
+      "community": 45,
+      "file_type": "concept",
+      "norm_label": "instance format structural rule",
+      "rationale": "Yaw-only instance data (cos, sin) cannot express mirroring, proving reflection must occur at the camera level.",
+      "source_file": "PLAYBOOK_HANDOVER.md"
     },
     {
-      "source": "current_state_event_8335",
-      "target": "current_state_cb2",
-      "relation": "calls",
+      "id": "playbook_handover_mirror_reflection",
+      "label": "Mirror Reflection Repeat Render",
       "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "rationale": "CPU write event that updates the camera buffer.",
+      "community": 46,
+      "file_type": "concept",
+      "norm_label": "mirror reflection repeat render",
+      "rationale": "Sims 4 renders mirror reflections as a full scene render from a second, independently positioned camera, proving re-entrancy.",
+      "source_file": "PLAYBOOK_HANDOVER.md"
+    },
+    {
+      "id": "testing_ivr_interface",
+      "label": "IVR Interface Seam",
+      "_origin": "semantic",
+      "community": 47,
+      "file_type": "code",
+      "norm_label": "ivr interface seam",
+      "rationale": "Abstracting the VR backend behind an interface allows for headset-free simulation and testing.",
+      "source_file": "TESTING.md"
+    },
+    {
+      "id": "decision_log_d001",
+      "label": "D-001: God-view and Stereo Policy",
+      "_origin": "semantic",
+      "community": 8,
+      "file_type": "document",
+      "norm_label": "d-001: god-view and stereo policy",
+      "rationale": "Establishes the core project goal: god-view VR with real per-eye stereo, rejecting alternate-eye hacks.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "decision_log_d003",
+      "label": "D-003: Project Gate Passed",
+      "_origin": "semantic",
+      "community": 8,
+      "file_type": "document",
+      "norm_label": "d-003: project gate passed",
+      "rationale": "Confirms engine re-entrancy via RenderDoc analysis, proving the engine can render multiple views per frame.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "testing_desk_assertions",
+      "label": "Desk Assertions (ch09)",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "desk assertions (ch09)",
+      "rationale": "Mathematical guards (IPD, FOV, handedness) to detect misalignment before headset testing.",
+      "source_file": "TESTING.md"
+    },
+    {
+      "id": "playbook_handover_vertex_recovery",
+      "label": "Vertex-Based Projection Recovery",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "concept",
+      "norm_label": "vertex-based projection recovery",
+      "rationale": "Recovering FOV and handedness from vertex data (object-to-clip solve) bypasses unreadable constant buffers.",
+      "source_file": "PLAYBOOK_HANDOVER.md"
+    },
+    {
+      "id": "next_tests_t1_cas",
+      "label": "T1 \u2014 Create-a-Sim Test",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "t1 \u2014 create-a-sim test",
+      "rationale": "Determined that CAS reuses the main view rather than providing an independent camera.",
+      "source_file": "NEXT_TESTS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "next_tests_t8_mirror",
+      "label": "T8 \u2014 Mirror/Repeat Render Search",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "t8 \u2014 mirror/repeat render search",
+      "rationale": "Search for engine-performed repeat renders with different cameras. Mirrors identified as proof of re-entrancy.",
+      "source_file": "NEXT_TESTS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "next_tests_t9_intervention",
+      "label": "T9 \u2014 Camera Drive Intervention",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "t9 \u2014 camera drive intervention",
+      "rationale": "First intervention test to prove the engine can be made to render another pose by rewriting constant buffers.",
+      "source_file": "NEXT_TESTS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "stereo_route_ladder",
+      "label": "Stereo Route Ladder (STR-006)",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "stereo route ladder (str-006)",
+      "rationale": "Architecture should be a runtime-selectable ladder of rungs (0-4) where each rung de-risks the next.",
+      "source_file": "STEREO_ROUTE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "stereo_route_rung_1",
+      "label": "Rung 1 \u2014 Native Scene Re-entry",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "rung 1 \u2014 native scene re-entry",
+      "rationale": "Primary target route. Requires re-entrant world execute and camera delivery. Preconditions met via mirror evidence.",
+      "source_file": "STEREO_ROUTE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "prior_art_fear_vr",
+      "label": "fear-vr (LithTech) Prior Art",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "paper",
+      "norm_label": "fear-vr (lithtech) prior art",
+      "rationale": "Demonstrates 'world twice, everything else once' pattern and the 'smallest safe hook' argument.",
+      "source_file": "PRIOR_ART.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "prior_art_somavr",
+      "label": "SOMAVR (HPL3) Prior Art",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "paper",
+      "norm_label": "somavr (hpl3) prior art",
+      "rationale": "Confirmed stack-walking to find camera owners and the strategy of alternating native frustums.",
+      "source_file": "PRIOR_ART.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_hot_path_hooks",
+      "label": "Hot-path hook performance",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "hot-path hook performance",
+      "rationale": "Filters in hot-path hooks must be O(1) and allocation-free after first observation. Use caching.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_renderdoc_mcp",
+      "label": "RenderDoc MCP defects and traps",
+      "author": null,
+      "captured_at": null,
+      "community": 0,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "renderdoc mcp defects and traps",
+      "rationale": "Multiple defects identified in RenderDoc MCP (cbuffer zeros, missing offsets, inconsistent vsout ordering). Never trust a vertex pairing that hasn't been tested.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_asymmetric_frustum",
+      "label": "Asymmetric Frustum (Real vs Simulator)",
+      "author": null,
+      "captured_at": null,
+      "community": 30,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "asymmetric frustum (real vs simulator)",
+      "rationale": "When a substitute runtime is simpler than the real one, its simplifications are untested assumptions in code.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_backtrace_reliability",
+      "label": "Backtrace reliability on x64",
+      "author": null,
+      "captured_at": null,
+      "community": 31,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "backtrace reliability on x64",
+      "rationale": "Treat backtrace frames past the last constant frame as unverified stack litter.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_event_pump",
+      "label": "Frame loop event pump defect",
+      "author": null,
+      "captured_at": null,
+      "community": 32,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "frame loop event pump defect",
+      "rationale": "An instrument cannot check the thing it forgot to do. External observers are required to notice contracts the process never entered.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_frida_api",
+      "label": "Frida 17 API Assumptions",
+      "author": null,
+      "captured_at": null,
+      "community": 33,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "frida 17 api assumptions",
+      "rationale": "Test agents against sacrificial processes before pointing them at scarce-uptime targets.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_geometry_checks",
+      "label": "Geometry checks that had never been seen to fail",
+      "author": null,
+      "captured_at": null,
+      "community": 34,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "geometry checks that had never been seen to fail",
+      "rationale": "A check that has never failed is decoration. Checks must have a falsification mode before being trusted.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_hardware_diagnosis",
+      "label": "Hardware vs Code Diagnosis",
+      "author": null,
+      "captured_at": null,
+      "community": 35,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "hardware vs code diagnosis",
+      "rationale": "Establish that hardware is present before reading code when symptoms split along hardware boundaries.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_headset_controls",
+      "label": "Headset-reachable controls",
+      "author": null,
+      "captured_at": null,
+      "community": 36,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "headset-reachable controls",
+      "rationale": "Any control on an instrument a person operates while wearing a headset must be reachable from inside it.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_launcher_defects",
+      "label": "Launcher defects (Invoke-XrTape.ps1)",
+      "author": null,
+      "captured_at": null,
+      "community": 37,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "launcher defects (invoke-xrtape.ps1)",
+      "rationale": "A negative result from a launcher is only evidence if the thing being launched actually ran.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_recorder_vs_detector",
+      "label": "Recorder-not-detector design",
+      "author": null,
+      "captured_at": null,
+      "community": 39,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "recorder-not-detector design",
+      "rationale": "Shipping raw evidence out for offline analysis allows diagnosing bugs that would be invisible to in-process detectors.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_srgb_swapchain",
+      "label": "Washed-out image (sRGB/Linear mismatch)",
+      "author": null,
+      "captured_at": null,
+      "community": 40,
+      "contributor": null,
+      "file_type": "rationale",
+      "norm_label": "washed-out image (srgb/linear mismatch)",
+      "rationale": "A green suite plus an unhappy human means the suite is not measuring the thing. Colour, comfort and scale are outside contract checkers.",
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "next_tests_t2_resolution",
+      "label": "T2 \u2014 Resolution Change Test",
+      "author": null,
+      "captured_at": null,
+      "community": 41,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "t2 \u2014 resolution change test",
+      "rationale": "Confirmed 1024x512 pool is policy (fixed), but main chain is parameterised (scales).",
+      "source_file": "NEXT_TESTS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "next_tests_t3_walls",
+      "label": "T3 \u2014 Walls-up A/B Test",
+      "author": null,
+      "captured_at": null,
+      "community": 42,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "t3 \u2014 walls-up a/b test",
+      "rationale": "Confirmed ::287 is a wall-related mask, but height encoding is camera-derived, not wall-state derived.",
+      "source_file": "NEXT_TESTS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "next_tests_t6_msaa",
+      "label": "T6 \u2014 MSAA Off Test",
+      "author": null,
+      "captured_at": null,
+      "community": 43,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "t6 \u2014 msaa off test",
+      "rationale": "Confirmed MSAA is a user-controllable lever (edgesmoothing). Recommended to be forced off for VR.",
+      "source_file": "NEXT_TESTS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "address_registry_cb2_pos",
+      "label": "Camera World Position (cb2[0])",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "camera world position (cb2[0])",
+      "rationale": "Identified via vertex shader disassembly as the source for view vector calculation; superior scan seed.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_cbuffer0",
+      "label": "Shader Constant Buffer 0 (cb0)",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "shader constant buffer 0 (cb0)",
+      "rationale": "Primary delivery mechanism for world matrix and world-view-projection rows 0-7.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_reflection_install",
+      "label": "Reflection Camera Install Site",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "reflection camera install site",
+      "rationale": "Divergent stack frame identifying the installation of a reflection camera pass.",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "TS4_x64.exe+0x138983a"
+    },
+    {
+      "id": "address_registry_world_scale",
+      "label": "World Scale (1:1)",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "world scale (1:1)",
+      "rationale": "Measured 1 game unit \u2248 1 metre; eye offset for 64mm IPD is \u00b10.032 world units.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "current_state_gate_verdict",
+      "label": "Feasibility Gate: GO",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "feasibility gate: go",
+      "rationale": "Confirmed engine renders world multiple times per frame (main pass vs. reduced quality second pass).",
       "source_file": "CURRENT_STATE.md"
     },
     {
-      "source": "frida",
-      "target": "ts4_x64_exe",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
+      "id": "address_registry_gameplay_camera_data",
+      "label": "EA::Sims4::Persistence::GameplayCameraData",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "ea::sims4::persistence::gameplaycameradata",
+      "rationale": "64-byte protobuf-backed struct used for save-game persistence, not live rendering.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_md",
+      "label": "ADDRESS_REGISTRY.md",
+      "community": 11,
+      "file_type": "document",
+      "norm_label": "address_registry.md",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_static_global_candidate",
+      "label": "Static Global Camera Candidate",
+      "community": 12,
+      "file_type": "code",
+      "norm_label": "static global camera candidate",
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "TS4_x64.exe+0x295ed70"
+    },
+    {
+      "id": "current_state_2026_08_25",
+      "label": "Sharpened 2026-08-25: ::287 is a shading INPUT",
+      "community": 16,
+      "file_type": "document",
+      "norm_label": "sharpened 2026-08-25: ::287 is a shading input",
+      "rationale": "Identifies ::287 as a wall-height/cutaway mask auxiliary input rather than a second view.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_08_27_capture_complete",
+      "label": "2026-08-27 \u2014 the capture programme is COMPLETE",
+      "community": 17,
+      "file_type": "document",
+      "norm_label": "2026-08-27 \u2014 the capture programme is complete",
+      "rationale": "Summarizes results of T1-T6 tests confirming world-render re-entrancy and parameterized camera delivery.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_08_27_ghidra_ini",
+      "label": "2026-08-27 \u2014 Ghidra + on-disk config",
+      "community": 18,
+      "file_type": "document",
+      "norm_label": "2026-08-27 \u2014 ghidra + on-disk config",
+      "rationale": "Discovers existing free-camera and FPS camera controllers in the engine via INI files and strings.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_08_27_occlusion_probe",
+      "label": "::329 \u2014 a fifth world traversal (Occlusion Probe)",
+      "community": 19,
+      "file_type": "document",
+      "norm_label": "::329 \u2014 a fifth world traversal (occlusion probe)",
+      "rationale": "Identifies a 16x16 target as an occlusion/visibility probe using the main camera basis.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_08_27_t2",
+      "label": "2026-08-27 \u2014 T2 answered: the pool is a wall, the main chain is a door",
+      "community": 20,
+      "file_type": "document",
+      "norm_label": "2026-08-27 \u2014 t2 answered: the pool is a wall, the main chain is a door",
+      "rationale": "Establishes that the main render path is resolution-parameterized while auxiliary pools are fixed policy.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_08_30_harness",
+      "label": "2026-08-30 \u2014 a working test harness",
+      "community": 21,
+      "file_type": "document",
+      "norm_label": "2026-08-30 \u2014 a working test harness",
+      "rationale": "Reports successful stereo pair generation via game's camera API and measures world-scale parallax.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_08_31_rung0",
+      "label": "Rung 0 built and passing \u00b7 2026-08-31",
+      "community": 22,
+      "file_type": "document",
+      "norm_label": "rung 0 built and passing \u00b7 2026-08-31",
+      "rationale": "Ships sims4vr_xrprobe.exe, verifying OpenXR D3D11 contract and asymmetric FOV handling.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_08_31_t7",
+      "label": "T7 \u2014 the game's projection is measured",
+      "community": 23,
+      "file_type": "document",
+      "norm_label": "t7 \u2014 the game's projection is measured",
+      "rationale": "Measures FOV, znear, and confirms the view basis is mirrored (det(V) = -1).",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_09_01_headset",
+      "label": "First headset session \u00b7 2026-09-01",
+      "community": 24,
+      "file_type": "document",
+      "norm_label": "first headset session \u00b7 2026-09-01",
+      "rationale": "Verifies vertical asymmetry in real runtimes (VirtualDesktopXR) and confirms world_scale = 1.0.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_ui_mirror_strategy",
+      "label": "UI Mirroring Strategy",
+      "community": 25,
+      "file_type": "concept",
+      "norm_label": "ui mirroring strategy",
+      "rationale": "Recommended approach: mirror flat window as world-space quad to preserve mouse hit-testing.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "failure_registry_md",
+      "label": "FAILURE_REGISTRY.md",
+      "community": 38,
+      "file_type": "document",
+      "norm_label": "failure_registry.md",
       "source_file": "FAILURE_REGISTRY.md"
     },
     {
-      "source": "next_tests_t8",
-      "target": "playbook_handover_mirror_reflection",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "NEXT_TESTS.md"
+      "id": "cb2_buffer",
+      "label": "Camera Constant Buffer (cb2)",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "camera constant buffer (cb2)",
+      "rationale": "Constant buffer slot 2 used for camera delivery; identified as a window into a larger ring buffer.",
+      "source_file": "CURRENT_STATE.md"
     },
+    {
+      "id": "re_09",
+      "label": "RE-09 (Repeat Render Gate)",
+      "community": 4,
+      "file_type": "concept",
+      "norm_label": "re-09 (repeat render gate)",
+      "rationale": "Precondition for Rung 1: finding an existing repeat render with an independent camera.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_md",
+      "label": "CURRENT_STATE.md",
+      "community": 4,
+      "file_type": "document",
+      "norm_label": "current_state.md",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "stereo_route_rung1",
+      "label": "Stereo Route Rung 1",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "stereo route rung 1",
+      "rationale": "Native re-entry route based on world-render re-entrancy.",
+      "source_file": "STEREO_ROUTE.md"
+    },
+    {
+      "id": "current_state_2026_08_27_closed",
+      "label": "2026-08-27 \u2014 the 'borrow a view' family is CLOSED",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "2026-08-27 \u2014 the 'borrow a view' family is closed",
+      "rationale": "Exhausts the candidate list for existing independent views (CAS, thumbnails, etc.) and confirms the need to build a custom view.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "current_state_2026_09_02_t8",
+      "label": "T8 ANSWERED \u2014 YES. The engine re-renders the world from a second camera",
+      "community": 5,
+      "file_type": "document",
+      "norm_label": "t8 answered \u2014 yes. the engine re-renders the world from a second camera",
+      "rationale": "Final confirmation that mirror reflections use a full scene render from an independent camera, proving re-entrancy.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "address_registry_python_api",
+      "label": "Python Camera API",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "python camera api",
+      "rationale": "Provides ground truth via camera._camera_position, but is a sparse mirror unsuitable for 90Hz tracking.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_camera_struct",
+      "label": "Camera Struct (Legacy)",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "camera struct (legacy)",
+      "rationale": "Inherited from original mod; offsets +96, +100, +104 are unverified and doubtful in the current build.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    }
+  ],
+  "links": [
     {
       "source": "tools_xrprobe",
       "target": "xr_sim",
@@ -813,15 +1028,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "DECISION_LOG.md"
-    },
-    {
-      "source": "current_state_mirror_reflection",
-      "target": "current_state_pass_28",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
     },
     {
       "source": "decision_log_d001",
@@ -833,76 +1039,22 @@
       "source_file": "DECISION_LOG.md"
     },
     {
-      "source": "next_tests_t1",
-      "target": "playbook_handover_mirror_reflection",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "NEXT_TESTS.md"
-    },
-    {
-      "source": "testing_ivr_interface",
-      "target": "stereo_route_rung_ladder",
-      "relation": "implements",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "TESTING.md"
-    },
-    {
-      "source": "address_registry_cbuffer0_layout",
-      "target": "ts4_x64_exe",
+      "source": "agents_vr_re_workflow",
+      "target": "agents_re_mcp_toolkit",
       "relation": "references",
       "_origin": "semantic",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "ADDRESS_REGISTRY.md"
+      "source_file": "AGENTS.md"
     },
     {
-      "source": "address_registry_gameplay_camera_data",
-      "target": "simulation_x64_dll",
+      "source": "claude_project_rules",
+      "target": "agents_vr_re_workflow",
       "relation": "references",
       "_origin": "semantic",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "ADDRESS_REGISTRY.md"
-    },
-    {
-      "source": "current_state_gate_verdict",
-      "target": "address_registry_cbuffer0_layout",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "current_state_pass_24",
-      "target": "current_state_cb2",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "current_state_pass_28",
-      "target": "current_state_cb2",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "decision_log_d003",
-      "target": "renderdoc_mcp",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DECISION_LOG.md"
+      "source_file": "CLAUDE.md"
     },
     {
       "source": "decision_log_d007",
@@ -914,58 +1066,22 @@
       "source_file": "DECISION_LOG.md"
     },
     {
-      "source": "decision_log_d008",
-      "target": "xr_tape",
+      "source": "readme_sims4vr",
+      "target": "readme_convexvr_mod",
       "relation": "references",
       "_origin": "semantic",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "DECISION_LOG.md"
+      "source_file": "README.md"
     },
     {
-      "source": "tools_xrprobe",
-      "target": "xr_tape",
+      "source": "readme_sims4vr",
+      "target": "agents_vr_re_workflow",
       "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "source": "ts4_x64_exe",
-      "target": "simulation_x64_dll",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "source": "address_registry_camera_py_api",
-      "target": "address_registry_static_global_candidate",
-      "relation": "shares_data_with",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "ADDRESS_REGISTRY.md"
-    },
-    {
-      "source": "failure_registry_constant_buffer_probe",
-      "target": "failure_registry_zero_result_diagnostic",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "INFERRED",
-      "confidence_score": 0.7,
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "source": "next_tests_t3",
-      "target": "next_tests_t4",
-      "relation": "shares_data_with",
       "_origin": "semantic",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
-      "source_file": "NEXT_TESTS.md"
+      "source_file": "AGENTS.md"
     },
     {
       "source": "testing_desk_assertions",
@@ -977,13 +1093,13 @@
       "source_file": "TESTING.md"
     },
     {
-      "source": "address_registry_cb2_pos",
-      "target": "address_registry_cbuffer0_layout",
+      "source": "agents_xr_tape",
+      "target": "agents_renderdoc",
       "relation": "conceptually_related_to",
       "_origin": "semantic",
       "confidence": "INFERRED",
       "confidence_score": 0.9,
-      "source_file": "ADDRESS_REGISTRY.md"
+      "source_file": "AGENTS.md"
     },
     {
       "source": "decision_log_d004",
@@ -995,68 +1111,189 @@
       "source_file": "DECISION_LOG.md"
     },
     {
-      "source": "agents_vr_re_workflow",
-      "target": "agents_re_mcp_toolkit",
+      "source": "address_registry_reflection_install",
+      "target": "address_registry_cbuffer0",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "prior_art_fear_vr",
+      "target": "stereo_route_rung_1",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "PRIOR_ART.md"
+    },
+    {
+      "source": "prior_art_somavr",
+      "target": "stereo_route_rung_1",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "PRIOR_ART.md"
+    },
+    {
+      "source": "failure_registry_hot_path_hooks",
+      "target": "next_tests_t9_intervention",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "next_tests_t1_cas",
+      "target": "stereo_route_rung_1",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "NEXT_TESTS.md"
+    },
+    {
+      "source": "current_state_2026_08_27_closed",
+      "target": "stereo_route_rung1",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
+      "source_file": "CURRENT_STATE.md"
     },
     {
-      "source": "claude_project_rules",
-      "target": "agents_vr_re_workflow",
+      "source": "current_state_gate_verdict",
+      "target": "address_registry_cbuffer0",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "CLAUDE.md"
+      "source_file": "CURRENT_STATE.md"
     },
     {
-      "source": "readme_sims4vr",
-      "target": "readme_convexvr_mod",
+      "source": "current_state_md",
+      "target": "cb2_buffer",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "README.md"
+      "source_file": "CURRENT_STATE.md"
     },
     {
-      "source": "readme_sims4vr",
-      "target": "agents_vr_re_workflow",
+      "source": "current_state_md",
+      "target": "re_09",
       "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "next_tests_t8_mirror",
+      "target": "stereo_route_rung_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "NEXT_TESTS.md"
+    },
+    {
+      "source": "next_tests_t9_intervention",
+      "target": "stereo_route_rung_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "NEXT_TESTS.md"
+    },
+    {
+      "source": "stereo_route_ladder",
+      "target": "stereo_route_rung_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "STEREO_ROUTE.md"
+    },
+    {
+      "source": "address_registry_cbuffer0",
+      "target": "address_registry_cb2_pos",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "address_registry_cb2_pos",
+      "target": "address_registry_world_scale",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "address_registry_python_api",
+      "target": "address_registry_camera_struct",
+      "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
-      "source_file": "AGENTS.md"
+      "source_file": "ADDRESS_REGISTRY.md"
     },
     {
-      "source": "agents_xr_tape",
-      "target": "agents_renderdoc",
+      "source": "failure_registry_renderdoc_mcp",
+      "target": "next_tests_t8_mirror",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "current_state_2026_09_02_t8",
+      "target": "stereo_route_rung1",
       "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.9,
-      "source_file": "AGENTS.md"
+      "source_file": "CURRENT_STATE.md"
     }
   ],
   "hyperedges": [
     {
-      "id": "camera_discovery_flow",
-      "label": "Camera Discovery and Validation Flow",
+      "id": "stereo_rendering_feasibility",
+      "label": "Stereo Rendering Feasibility Evidence",
       "nodes": [
-        "address_registry_camera_py_api",
-        "address_registry_cbuffer0_layout",
+        "current_state_gate_verdict",
+        "address_registry_cbuffer0",
+        "address_registry_reflection_install"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "camera_discovery_flow",
+      "label": "Camera Discovery & Validation Flow",
+      "nodes": [
+        "address_registry_python_api",
+        "address_registry_cbuffer0",
         "address_registry_cb2_pos",
         "address_registry_static_global_candidate"
       ],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
+      "confidence_score": 0.95,
       "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "camera_re_investigation",
+      "label": "Camera and View RE Investigation",
+      "nodes": [
+        "current_state_2026_08_25",
+        "current_state_2026_08_27_closed",
+        "current_state_2026_09_02_t8"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
     },
     {
       "id": "openxr_testing_stack",
       "label": "OpenXR Testing Stack",
       "nodes": [
         "tools_xrprobe",
-        "xr_sim",
-        "xr_tape"
+        "xr_sim"
       ],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
@@ -1077,11 +1314,36 @@
       "source_file": "AGENTS.md"
     },
     {
-      "id": "static_analysis_targets",
-      "label": "Static Analysis Targets",
+      "id": "sims4vr_capture_test_suite",
+      "label": "Sims4VR Capture Analysis Suite",
       "nodes": [
-        "ts4_x64_exe",
-        "simulation_x64_dll"
+        "next_tests_t1_cas",
+        "next_tests_t2_resolution",
+        "next_tests_t3_walls",
+        "next_tests_t6_msaa",
+        "next_tests_t8_mirror"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "NEXT_TESTS.md"
+    },
+    {
+      "id": "sims4vr_failure_patterns",
+      "label": "Sims4VR Failure and Standing Rules",
+      "nodes": [
+        "failure_registry_geometry_checks",
+        "failure_registry_event_pump",
+        "failure_registry_launcher_defects",
+        "failure_registry_renderdoc_mcp",
+        "failure_registry_srgb_swapchain",
+        "failure_registry_asymmetric_frustum",
+        "failure_registry_headset_controls",
+        "failure_registry_hardware_diagnosis",
+        "failure_registry_frida_api",
+        "failure_registry_hot_path_hooks",
+        "failure_registry_recorder_vs_detector",
+        "failure_registry_backtrace_reliability"
       ],
       "relation": "form",
       "confidence": "EXTRACTED",
@@ -1092,9 +1354,7 @@
       "id": "stereo_feasibility_flow",
       "label": "Stereo Feasibility Verification",
       "nodes": [
-        "next_tests_t8",
-        "playbook_handover_mirror_reflection",
-        "stereo_route_rung_ladder"
+        "playbook_handover_mirror_reflection"
       ],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
@@ -1102,29 +1362,18 @@
       "source_file": "PLAYBOOK_HANDOVER.md"
     },
     {
-      "id": "world_render_reentrancy_proof",
-      "label": "World Render Re-entrancy Proof",
+      "id": "stereo_implementation_ladder",
+      "label": "Stereo Implementation Ladder",
       "nodes": [
-        "current_state_mirror_reflection",
-        "current_state_pass_24",
-        "current_state_pass_28"
-      ],
-      "relation": "form",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "ui_handling_strategy",
-      "label": "UI Identification and Rendering Strategy",
-      "nodes": [
-        "current_state_ui_mirror_strategy",
-        "ts4_x64_exe"
+        "stereo_route_ladder",
+        "stereo_route_rung_1",
+        "prior_art_fear_vr",
+        "prior_art_somavr"
       ],
       "relation": "implement",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "CURRENT_STATE.md"
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "STEREO_ROUTE.md"
     },
     {
       "id": "vr_validation_flow",
@@ -1153,5 +1402,5 @@
       "source_file": "TESTING.md"
     }
   ],
-  "built_at_commit": "4eef472859c07914a20b9cea76bc0d70870f1f5f"
+  "built_at_commit": "f164879b6778539de63099302a3d994db92f21ce"
 }

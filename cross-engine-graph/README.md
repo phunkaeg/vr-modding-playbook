@@ -1,16 +1,19 @@
 # Cross-Engine Docs Graph
 
-A knowledge graph over the **documentation** of the eight in-house VR conversions, built so that a
+A knowledge graph over the **documentation** of the ten in-house VR conversions, built so that a
 question asked of one project can reach the others.
 
 > **Scope warning.** This is not the playbook's coverage engine. The authoritative source and harvest
 > ledger is `..\sources.yml`, rendered in `..\docs\coverage.md`. This graph holds in-house projects only
 > and must never be used to conclude that no *external* mod solved a problem.
 
-**`fleet-graph.json` is the current artifact:** all eight projects (SS2VR, BioShockVR, SOMAVR, PreyVR,
-DishonoredVR, FarCry2VR, SWAT4VR, Sims4VR), 2,000 nodes, 880 intra-project links and **167 cross-project
-`same_concept_as` edges over 34 shared concepts**. Every project reaches all seven others. Coverage,
-project pairs and every rejection are itemised in [FLEET_RECONCILIATION.md](FLEET_RECONCILIATION.md).
+**`fleet-graph.json` is the current artifact:** all **ten** projects (SS2VR, BioShockVR, SOMAVR, PreyVR,
+DishonoredVR, FarCry2VR, SWAT4VR, Sims4VR, MoH-VR, SoF-VR), 2,239 nodes, 940 intra-project links and **126 cross-project
+`same_concept_as` edges over 34 shared concepts**. No project is isolated, but **coverage is uneven**:
+SS2VR and SOMAVR reach seven others, while MoH-VR and SoF-VR — added 2026-09-07 with 39 and 46 nodes —
+reach four each, because their documentation is younger and smaller. A thin result for a young project
+is a statement about its corpus. Coverage, project pairs and every rejection are itemised in
+[FLEET_RECONCILIATION.md](FLEET_RECONCILIATION.md).
 
 > **Read `links`, never `edges`.** These are NetworkX node-link files. Indexing `d["edges"]` returns
 > nothing and raises nothing, so a script that guesses reports **zero edges** and looks correct. That
@@ -44,6 +47,7 @@ project it came from.
 ```
 graphify query "<question>" --graph "per-project\<project>\graphify-out\graph.json"
 #   project = somavr | ss2vr | bioshockvr | preyvr | dishonoredvr | farcry2vr | swat4vr | sims4vr
+#             | mohvr | sofvr
 graphify path    "A" "B"   --graph <path>      # how two things connect
 graphify explain "X"       --graph <path>      # a node and its neighbourhood
 graphify affected "X"      --graph <path> --depth 2   # what a change would touch
@@ -68,7 +72,7 @@ The PowerShell driver stages a curated corpus per project and incrementally refr
 # Free sizing pass: no staging, writes, API calls or cost.
 .\update-fleet-docs.ps1 -WhatIfCost
 
-# All eight projects. Existing manifests mean only changed documents are sent.
+# All ten projects. Existing manifests mean only changed documents are sent.
 .\update-fleet-docs.ps1
 
 # The same, then resolve shared concepts BETWEEN the projects and write
@@ -78,8 +82,8 @@ The PowerShell driver stages a curated corpus per project and incrementally refr
 .\update-fleet-docs.ps1 -Reconcile
 
 # Upgrade the Graphify CLI and synchronize its Codex + Claude skills first,
-# normalize all eight project code graphs under that version while preserving
-# their semantic tiers, then update all eight semantic document graphs.
+# normalize all ten project code graphs under that version while preserving
+# their semantic tiers, then update all ten semantic document graphs.
 .\update-fleet-docs.ps1 -UpdateGraphify -NormalizeCode
 
 # A selected subset, or a deliberate clean re-extraction.

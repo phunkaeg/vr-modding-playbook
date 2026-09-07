@@ -22,7 +22,7 @@ wrong move, and reading several is a sign you skipped the routing below.
 | **A target whose engine/API you know** | `python tools/prior_art.py <engine> <api>` | Matching prior art from 113 tracked sources, with what was harvested and what is thin |
 | **Maths you are about to write yourself** | `docs/a1`–`a5` | Working code with the test that catches the error. Rotation, pose pipeline, stereo projection, hook safety, noise floor. |
 | **A term used oddly** | [`docs/glossary.md`](docs/glossary.md) | Camera, pose, stereo, lifecycle, render and evidence vocabulary |
-| **"Did another project already hit this?"** | `graphify explain "<concept>" --graph cross-engine-graph/graphify-out/fleet-graph.json` | 2,032 nodes over **eight** projects' documentation, joined by 192 cross-project links across 32 named concepts |
+| **"Did another project already hit this?"** | `graphify explain "<concept>" --graph cross-engine-graph/graphify-out/fleet-graph.json` | 2,239 nodes over **all ten** projects' documentation, joined by 126 cross-project links across 34 named concepts |
 
 **On that graph, in short.** Start with `explain` on a **concept name**, not `query` on a sentence:
 seed matching is lexical and unstemmed, so a plain-English question lands on whatever noun happens to
@@ -35,11 +35,11 @@ never *what the answer was*, so treat every hit as a lead and read the document 
 Cross-project edges are graded `INFERRED` and carry the concept and the reason, so you can reject a
 bad link on sight.
 
-**Two absences it will not announce.** It indexes **documentation, not code**, and it covers **eight
-of the ten fleet projects — MoH-VR and SoF-VR are not in it at all**, so a miss on those two is a
-statement about the graph and not about the fleet. It is also a **snapshot**: absence means nobody
-wrote it down, or wrote it after the build. Rebuild and extension instructions are in
-[`cross-engine-graph/README.md`](cross-engine-graph/README.md).
+**What it will not announce.** It indexes **documentation, not code**, and it is a **snapshot**:
+absence means nobody wrote it down, or wrote it after the build. Coverage is uneven — MoH-VR (39
+nodes) and SoF-VR (46) joined on 2026-09-07 and have far smaller corpora than SS2VR (659), so a
+thin result for a young project is a statement about its documentation. Rebuild and extension
+instructions are in [`cross-engine-graph/README.md`](cross-engine-graph/README.md).
 
 **If the first stereo image will not fuse**, skip all of the above and go straight to the
 [five-minute alignment diagnosis](docs/09-d3d11-openxr-injection.md). Every project in the

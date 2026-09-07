@@ -3,39 +3,42 @@
     "0": [
       "cd3d9renderer_rt_endframe",
       "frame_observer_bootstrap_md",
-      "openxr_runtime",
+      "preydll_arkplayercamera_updateview",
       "preydll_c3dengine_renderworld",
       "preydll_c3dengine_updaterenderingcamera",
-      "preydll_crenderview_setcamera",
+      "preydll_ccamera_updatefrustum",
+      "preydll_crenderview_setpreviousframecamera",
       "preydll_csystem_render",
+      "preydll_irenderer_getrenderviewforthread",
+      "preydll_srenderingpassinfo",
+      "preydll_srenderingpassinfo_creategeneralpasseenderinginfo",
       "preyvr_dll",
-      "preyvr_xr_session_probe",
-      "research_log",
-      "stereo_render_architecture",
-      "virtualdesktopxr"
+      "r_030_set_camera",
+      "r_048_ccamera_layout",
+      "stereo_render_architecture"
     ],
     "1": [
-      "address_registry_r044",
-      "address_registry_r054",
-      "address_registry_r057",
-      "address_registry_r058",
-      "address_registry_r059",
-      "address_registry_r060",
-      "address_registry_r064",
-      "address_registry_r071",
-      "address_registry_r072",
-      "address_registry_r073"
+      "alternate_eye_rendering",
+      "arkplayer_updatecachedreticleviewposanddir",
+      "c3dengine_prepareocclusion",
+      "crenderview_setcamera",
+      "csystem_m_viewcamera",
+      "csystem_render",
+      "fail_str_033",
+      "hypotheses_h011",
+      "live_submission_test_protocol_md",
+      "playbook_handover_2026_09_02_md"
     ],
     "2": [
-      "c3dengine_renderworld",
-      "cd3d9renderer_rt_renderscene",
-      "cryengine_source_findings_md",
-      "crygame_ce3",
-      "f_014_crash",
-      "f_015_deadlock",
-      "f_016_leak",
-      "failure_registry_md",
-      "fun_1802114d0"
+      "cryengine_adik",
+      "preydll_0x1807dd2a0",
+      "preydll_0x180f50000",
+      "preydll_0x180f7e210",
+      "preydll_0x8297e0",
+      "preydll_0x877600",
+      "preydll_0x877b50",
+      "re_h021_absolute_wrist_arm_chain_weapon_aim_2026_09_07",
+      "research_log"
     ],
     "3": [
       "captures_traces_2026_08_01_prey_multiview_probe_render_view",
@@ -47,23 +50,15 @@
       "captures_traces_2026_08_29_prey_hurdle1_live_capture_h_008"
     ],
     "4": [
-      "ghidra_sync_initialized3d11deviceandswapchain",
-      "ghidra_sync_preydll_dll",
-      "ghidra_sync_preyvr_egs_dll",
-      "handover_2026_08_03_h001",
-      "handover_2026_08_07_preyvr_dll",
-      "head_tracking_scope_m1",
-      "head_tracking_scope_r030"
+      "research_log_2026_08_23_hurdles",
+      "research_log_2026_08_29_hurdle_1",
+      "research_log_adapter_luid_probe",
+      "research_log_capture_a",
+      "review_xrsim_launch_audit",
+      "sixdof_route_m1",
+      "sixdof_route_m2"
     ],
     "5": [
-      "alternate_eye_rendering",
-      "csystem_m_viewcamera",
-      "csystem_render",
-      "fail_str_033",
-      "live_submission_test_protocol_md",
-      "playbook_handover_2026_09_02_md"
-    ],
-    "6": [
       "captures_traces_2026-08-01-prey-wrench-a0b_arkplayer",
       "captures_traces_2026-08-01-prey-wrench-a0b_arkwrenchcomponent_gethits",
       "captures_traces_2026-08-01-prey-wrench-a0b_baseline_swing",
@@ -71,41 +66,49 @@
       "captures_traces_2026-08-01-prey-wrench-a0b_preydll_dll",
       "captures_traces_2026-08-01-prey-wrench-a0b_synthetic_swing"
     ],
+    "6": [
+      "build_baseline_chairloader",
+      "build_baseline_egs_preydll_dll",
+      "build_baseline_prey_exe",
+      "build_baseline_preydll_dll",
+      "failure_registry_f004"
+    ],
     "7": [
-      "cd3d9renderer_vtable",
-      "crenderer_getrenderviewforthread",
-      "crenderer_vtable",
-      "research_log_h007",
-      "research_log_r033"
+      "hypotheses_h021",
+      "re_h005_render_chr",
+      "re_h005_skinning_computation",
+      "re_h005b_ik_solver_2bones",
+      "re_h005b_render_object"
     ],
     "8": [
-      "arkplayer_updatecachedreticleviewposanddir",
-      "ccamera_layout",
-      "crenderview_setcamera",
-      "h_008_camera_contamination"
+      "address_registry_fob_nearest",
+      "address_registry_hand_rig_101",
+      "address_registry_renderchr",
+      "address_registry_renderchr_predicate"
     ],
     "9": [
+      "c3dengine_renderworld",
+      "cd3d9renderer_rt_renderscene",
+      "cryengine_source_findings_md",
+      "crygame_ce3"
+    ],
+    "10": [
       "captures_traces_2026_07_31_prey_detached_aim_probe_arkplayer_updatecachedreticleviewposanddir",
       "test_plan_a0a",
       "test_plan_a0b",
       "vr_mechanics_risk_zero_g"
     ],
-    "10": [
+    "11": [
       "captures_traces_2026_07_31_prey_endscene_present_cadence_endscene",
       "captures_traces_2026_07_31_prey_endscene_present_cadence_present",
       "captures_traces_2026_08_01_prey_frame_observer_smoke_preyvr_dll",
       "captures_traces_2026_08_15_prey_lookingglass_second_scene_looking_glass"
     ],
-    "11": [
-      "prior_art_fc2vr_fc2vr",
-      "prior_art_fc2vr_native_stereo",
-      "prior_art_fc2vr_primary_baseline_contamination",
-      "research_log_h001"
-    ],
     "12": [
-      "address_registry_r067",
-      "address_registry_r068",
-      "ccamera_layout_ccamera"
+      "failure_registry_f013",
+      "failure_registry_f014",
+      "failure_registry_f015",
+      "failure_registry_f016"
     ],
     "13": [
       "captures_traces_2026_07_31_prey_wrench_hit_query_reticle_ray",
@@ -113,42 +116,44 @@
       "captures_traces_2026_08_01_prey_interaction_a0_arkplayer_interaction"
     ],
     "14": [
+      "prior_art_fc2vr_fc2vr",
+      "prior_art_fc2vr_native_stereo",
+      "prior_art_fc2vr_primary_baseline_contamination"
+    ],
+    "15": [
+      "re_h005c_selection_origin_input_2026_09_05_analog_locomotion",
+      "re_h005c_selection_origin_input_2026_09_05_sinputevent_abi",
+      "re_h018_static_gaps_2026_09_06_action_map_manager"
+    ],
+    "16": [
+      "re_h005c_selection_origin_input_2026_09_05_near_predicate",
+      "re_h005c_selection_origin_input_2026_09_05_renderchr_entry",
+      "re_h018_static_gaps_2026_09_06_attachment_render"
+    ],
+    "17": [
       "system_vtable_isystem",
       "system_vtable_isystem_getglobalenvironment",
       "system_vtable_isystem_getviewcamera"
     ],
-    "15": [
-      "xrsim_integration_b1",
-      "xrsim_integration_xr_sim",
-      "xrsim_integration_xr_tape"
-    ],
-    "16": [
-      "address_registry_r001",
-      "address_registry_r025"
-    ],
-    "17": [
-      "address_registry_r009",
-      "address_registry_r010"
-    ],
     "18": [
-      "address_registry_r016",
-      "address_registry_r039"
+      "address_registry_carkweapon_attachtohand",
+      "address_registry_setattabsolutedefault"
     ],
     "19": [
-      "address_registry_r030",
-      "address_registry_r048"
+      "address_registry_inputchar",
+      "address_registry_ui_listener_oninputeventui"
     ],
     "20": [
+      "arkplayer_reticle_cache",
+      "preydll_0x1694bc0"
+    ],
+    "21": [
       "arkplayertargetselector",
       "live_interaction_a0_protocol_md"
     ],
-    "21": [
+    "22": [
       "arkwrenchcomponent_gethits",
       "iarkplayer_getreticleviewpositionanddir"
-    ],
-    "22": [
-      "build_baseline_md",
-      "chairloader"
     ],
     "23": [
       "captures_traces_2026_08_29_prey_hurdle1_live_capture_f_010",
@@ -167,184 +172,312 @@
       "engine_crenderview_setcamera"
     ],
     "27": [
-      "ghidra_sync_cd3d9renderer_rt_endframe",
-      "head_tracking_scope_culling_issue"
+      "head_tracking_scope_head_tracking",
+      "units_per_metre"
     ],
     "28": [
+      "hypotheses_h017",
+      "re_h005b_set_att_absolute_default"
+    ],
+    "29": [
       "live_multiview_probe_protocol_md",
       "preyrendererframeprobe"
     ],
-    "29": [
-      "preydll_cd3d9renderer_rt_renderscene",
-      "stereo_route"
-    ],
     "30": [
+      "openxr_runtime",
+      "preyvr_xr_session_probe"
+    ],
+    "31": [
       "preydll_csystem",
       "preydll_genv"
     ],
-    "31": [
-      "research_log_a0_interaction",
-      "research_log_a0b_wrench"
-    ],
     "32": [
-      "research_log_r026",
-      "research_log_r030"
+      "r_001_d3d_loader",
+      "r_025_init_d3d11"
     ],
     "33": [
-      "address_registry_r002"
+      "r_003_rt_endframe",
+      "r_005_renderer_singleton"
     ],
     "34": [
-      "address_registry_r003"
+      "r_039_isystem_global",
+      "r_044_genv_global"
     ],
     "35": [
-      "address_registry_r005"
+      "re_h011_near_pass_stereo_2026_09_05_near_view_info",
+      "re_h011_near_pass_stereo_2026_09_05_translation_clear"
     ],
     "36": [
-      "address_registry_r026"
+      "re_h013_input_consumer_2026_09_06_exclusive_listener",
+      "re_h013_input_consumer_2026_09_06_launcher_handler"
     ],
     "37": [
-      "address_registry_r029"
+      "research_log_h005_skinning",
+      "research_log_ik_lineage"
     ],
     "38": [
-      "address_registry_r033"
+      "address_registry_cactionmapmanager_oninputevent"
     ],
     "39": [
-      "address_registry_r056"
+      "address_registry_ik_solver2bones"
     ],
     "40": [
-      "address_registry_r061"
+      "address_registry_md"
     ],
     "41": [
-      "address_registry_r062"
+      "address_registry_r056"
     ],
     "42": [
-      "address_registry_r063"
-    ],
-    "43": [
-      "address_registry_r065"
-    ],
-    "44": [
-      "address_registry_r069"
-    ],
-    "45": [
-      "address_registry_r070"
-    ],
-    "46": [
-      "address_registry_r074"
-    ],
-    "47": [
       "agents_md"
     ],
-    "48": [
+    "43": [
       "architecture_ownership_lanes"
     ],
-    "49": [
+    "44": [
+      "build_baseline_comdat_folding_hazard"
+    ],
+    "45": [
+      "build_baseline_re_010"
+    ],
+    "46": [
+      "build_baseline_rex_prefix_hazard"
+    ],
+    "47": [
+      "build_baseline_rip_relative_hazard"
+    ],
+    "48": [
       "captures_traces_2026_08_01_prey_device_creation_map_creation_func"
     ],
-    "50": [
+    "49": [
       "captures_traces_2026_08_29_prey_hurdle1_live_capture_genv"
     ],
+    "50": [
+      "ccamera_layout"
+    ],
     "51": [
-      "engine_arkplayercamera_updateview"
+      "ccamera_layout_ccamera"
     ],
     "52": [
-      "engine_genv"
+      "chairloader"
     ],
     "53": [
-      "f_005_non_reproducible_build"
+      "engine_arkplayercamera_updateview"
     ],
     "54": [
-      "ghidra_sync_cd3d9renderer_rt_beginframe"
+      "engine_genv"
     ],
     "55": [
-      "ghidra_sync_crenderer_getrenderviewforthread"
+      "f005_build_reproducibility"
     ],
     "56": [
-      "ghidra_sync_prey_exe"
+      "failure_registry_f001"
     ],
     "57": [
-      "h_001"
+      "failure_registry_f002"
     ],
     "58": [
-      "h_008"
+      "failure_registry_f005"
     ],
     "59": [
-      "handover_2026_08_03_r026"
+      "failure_registry_f009"
     ],
     "60": [
-      "headless_testing"
+      "ghidra_sync_md"
     ],
     "61": [
-      "hypotheses_md"
+      "h007_recursive_views"
     ],
     "62": [
-      "ianimationposemodifier_ik2segments"
+      "h008_camera_contamination"
     ],
     "63": [
-      "live_a0b_wrench_protocol_md"
+      "handover_2026_08_03_h001"
     ],
     "64": [
-      "live_capture_plan_md"
+      "handover_2026_08_03_r026"
     ],
     "65": [
-      "openxr_api"
+      "handover_2026_08_07_preyvr_dll"
     ],
     "66": [
-      "preydll_ccamera_updatefrustum"
+      "handover_h005_hand_rig_takeover"
     ],
     "67": [
-      "project_readme_preyvr"
+      "handover_h005b_model_frame_and_arm_chain"
     ],
     "68": [
-      "r_override_dxgi_adapter"
+      "handover_h005c_selection_origin_and_input"
     ],
     "69": [
-      "readme_preyvr"
+      "handover_h011_near_pass_stereo"
     ],
     "70": [
-      "research_log_cd3d9renderer"
+      "handover_h013_input_consumer"
     ],
     "71": [
-      "runtime_baseline"
+      "handover_h018_static_gaps"
     ],
     "72": [
-      "smoke_build"
+      "handover_h021_static_verification"
     ],
     "73": [
-      "submission_contract"
+      "headless_testing"
     ],
     "74": [
-      "system_vtable"
+      "hypotheses_h004"
     ],
     "75": [
-      "trace_2026_08_01_stereo_recon"
+      "hypotheses_h005"
     ],
     "76": [
-      "vr_mechanics_risk_cinematic"
+      "hypotheses_h013"
     ],
     "77": [
+      "hypotheses_h014"
+    ],
+    "78": [
+      "hypotheses_h015"
+    ],
+    "79": [
+      "hypotheses_h016"
+    ],
+    "80": [
+      "hypotheses_h019"
+    ],
+    "81": [
+      "hypotheses_h020"
+    ],
+    "82": [
+      "live_a0b_wrench_protocol_md"
+    ],
+    "83": [
+      "live_capture_plan_md"
+    ],
+    "84": [
+      "openxr_api"
+    ],
+    "85": [
+      "preydll_c3dengine_m_renderingcamera"
+    ],
+    "86": [
+      "preydll_cd3d9renderer_r_drawnearfov_latched"
+    ],
+    "87": [
+      "preydll_iinput_postinputevent"
+    ],
+    "88": [
+      "preydll_ik_target_producer_steady"
+    ],
+    "89": [
+      "preydll_skinning_consumer_entry"
+    ],
+    "90": [
+      "preyvr_controller"
+    ],
+    "91": [
+      "preyvr_xr_adapter_probe"
+    ],
+    "92": [
+      "preyvr_xrframe"
+    ],
+    "93": [
+      "preyvr_xrswapchain"
+    ],
+    "94": [
+      "project_readme_preyvr"
+    ],
+    "95": [
+      "r_013_get_reticle_ray"
+    ],
+    "96": [
+      "r_026_render_view_block"
+    ],
+    "97": [
+      "r_029_looking_glass_cvar"
+    ],
+    "98": [
+      "r_033_render_view_pool"
+    ],
+    "99": [
+      "r_040_get_view_camera"
+    ],
+    "100": [
+      "r_overridedxgiadapter"
+    ],
+    "101": [
+      "re_h005c_selection_origin_input_2026_09_05_native_camera_getter"
+    ],
+    "102": [
+      "re_h018_static_gaps_2026_09_06_ik_limb_leaf"
+    ],
+    "103": [
+      "readme_preyvr"
+    ],
+    "104": [
+      "research_log_capture_b"
+    ],
+    "105": [
+      "research_log_pdb_headers"
+    ],
+    "106": [
+      "runtime_baseline"
+    ],
+    "107": [
+      "sixdof_route_m3"
+    ],
+    "108": [
+      "sixdof_route_m4"
+    ],
+    "109": [
+      "sixdof_route_m5"
+    ],
+    "110": [
+      "smoke_build"
+    ],
+    "111": [
+      "stereo_route"
+    ],
+    "112": [
+      "submission_contract"
+    ],
+    "113": [
+      "system_vtable"
+    ],
+    "114": [
+      "trace_2026_08_01_stereo_recon"
+    ],
+    "115": [
+      "virtualdesktopxr"
+    ],
+    "116": [
+      "vr_mechanics_risk_cinematic"
+    ],
+    "117": [
       "vr_mechanics_risk_looking_glass"
+    ],
+    "118": [
+      "xrsim_integration_md"
     ]
   },
   "cohesion": {
-    "0": 0.16666666666666666,
+    "0": 0.13333333333333333,
     "1": 0.2,
     "2": 0.2222222222222222,
     "3": 0.3333333333333333,
-    "4": 0.2857142857142857,
+    "4": 0.3333333333333333,
     "5": 0.3333333333333333,
-    "6": 0.3333333333333333,
+    "6": 0.4,
     "7": 0.4,
     "8": 0.5,
     "9": 0.5,
     "10": 0.5,
     "11": 0.5,
-    "12": 0.6666666666666666,
+    "12": 0.5,
     "13": 0.6666666666666666,
     "14": 0.6666666666666666,
     "15": 0.6666666666666666,
-    "16": 1.0,
-    "17": 1.0,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
     "18": 1.0,
     "19": 1.0,
     "20": 1.0,
@@ -404,17 +537,63 @@
     "74": 1.0,
     "75": 1.0,
     "76": 1.0,
-    "77": 1.0
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0
   },
   "gods": [
     {
-      "id": "ghidra_sync_preydll_dll",
-      "label": "PreyDll.dll (Steam)",
+      "id": "research_log_2026_08_29_hurdle_1",
+      "label": "Hurdle 1 Pass",
+      "degree": 6
+    },
+    {
+      "id": "preydll_c3dengine_renderworld",
+      "label": "C3DEngine::RenderWorld",
       "degree": 5
     },
     {
-      "id": "address_registry_r054",
-      "label": "C3DEngine::RenderWorld",
+      "id": "csystem_m_viewcamera",
+      "label": "CSystem::m_ViewCamera",
       "degree": 5
     },
     {
@@ -423,28 +602,23 @@
       "degree": 4
     },
     {
-      "id": "preydll_c3dengine_renderworld",
-      "label": "C3DEngine::RenderWorld",
+      "id": "preydll_0x877b50",
+      "label": "Prey_ProcessAnimationDrivenIK",
+      "degree": 4
+    },
+    {
+      "id": "preydll_c3dengine_updaterenderingcamera",
+      "label": "C3DEngine::UpdateRenderingCamera",
       "degree": 4
     },
     {
       "id": "preyvr_dll",
       "label": "PreyVR.dll",
-      "degree": 4
-    },
-    {
-      "id": "crenderer_getrenderviewforthread",
-      "label": "CRenderer::GetRenderViewForThread",
-      "degree": 4
-    },
-    {
-      "id": "openxr_runtime",
-      "label": "OpenXR Runtime",
       "degree": 3
     },
     {
-      "id": "address_registry_r057",
-      "label": "C3DEngine::UpdateRenderingCamera",
+      "id": "test_plan_a0a",
+      "label": "A0a: Detached Aim Ray",
       "degree": 3
     },
     {
@@ -453,70 +627,70 @@
       "degree": 3
     },
     {
-      "id": "prior_art_fc2vr_fc2vr",
-      "label": "FC2VR (Far Cry 2 VR Mod)",
+      "id": "captures_traces_2026_08_29_prey_hurdle1_live_capture_c3dengine_renderworld",
+      "label": "C3DEngine::RenderWorld",
       "degree": 3
     }
   ],
   "surprises": [
     {
-      "source": "H-001: Stereo Path Investigation",
-      "target": "PreyDll.dll (Steam)",
+      "source": "H-011: Near Pass Stereo",
+      "target": "Hurdle 1 Pass",
       "source_files": [
-        "HANDOVER-2026-08-03.md",
-        "GHIDRA_SYNC.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "conceptually_related_to",
-      "why": "connects across different repos/directories; peripheral node `H-001: Stereo Path Investigation` unexpectedly reaches hub `PreyDll.dll (Steam)`"
-    },
-    {
-      "source": "PreyVR.dll (0.3.0)",
-      "target": "PreyDll.dll (Steam)",
-      "source_files": [
-        "HANDOVER-2026-08-07-HARDENING.md",
-        "GHIDRA_SYNC.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `PreyVR.dll (0.3.0)` unexpectedly reaches hub `PreyDll.dll (Steam)`"
-    },
-    {
-      "source": "R-030: CRenderView::SetCamera",
-      "target": "PreyDll.dll (Steam)",
-      "source_files": [
-        "HEAD_TRACKING_SCOPE.md",
-        "GHIDRA_SYNC.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `R-030: CRenderView::SetCamera` unexpectedly reaches hub `PreyDll.dll (Steam)`"
-    },
-    {
-      "source": "F-014: Render Thread Crash",
-      "target": "C3DEngine::RenderWorld",
-      "source_files": [
-        "FAILURE_REGISTRY.md",
-        "CRYENGINE_SOURCE_FINDINGS.md"
+        "HYPOTHESES.md",
+        "RESEARCH_LOG.md"
       ],
       "confidence": "INFERRED",
       "relation": "conceptually_related_to",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `H-011: Near Pass Stereo` unexpectedly reaches hub `Hurdle 1 Pass`"
+    },
+    {
+      "source": "CRenderView::SetCamera",
+      "target": "CSystem::m_ViewCamera",
+      "source_files": [
+        "CRYENGINE_SOURCE_FINDINGS.md",
+        "HEAD_TRACKING_SCOPE.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `CRenderView::SetCamera` unexpectedly reaches hub `CSystem::m_ViewCamera`"
     },
     {
       "source": "Alternate-eye Rendering",
       "target": "CSystem::m_ViewCamera",
       "source_files": [
         "PLAYBOOK_HANDOVER_2026-09-02.md",
-        "LIVE_CAMERA_A1_PROTOCOL.md"
+        "HEAD_TRACKING_SCOPE.md"
       ],
       "confidence": "INFERRED",
       "relation": "conceptually_related_to",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `Alternate-eye Rendering` unexpectedly reaches hub `CSystem::m_ViewCamera`"
+    },
+    {
+      "source": "M1: The View Seam",
+      "target": "Hurdle 1 Pass",
+      "source_files": [
+        "SIXDOF_ROUTE.md",
+        "RESEARCH_LOG.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `M1: The View Seam` unexpectedly reaches hub `Hurdle 1 Pass`"
+    },
+    {
+      "source": "Stereo Render Architecture",
+      "target": "C3DEngine::RenderWorld",
+      "source_files": [
+        "STEREO_RENDER_ARCHITECTURE.md",
+        "ADDRESS_REGISTRY.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `Stereo Render Architecture` unexpectedly reaches hub `C3DEngine::RenderWorld`"
     }
   ],
   "tokens": {
-    "input": 3141,
-    "output": 2002
+    "input": 22498,
+    "output": 1738
   }
 }

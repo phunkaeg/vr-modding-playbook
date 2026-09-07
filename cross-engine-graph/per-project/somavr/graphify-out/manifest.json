@@ -1,27 +1,27 @@
 {
   "ADDRESS_REGISTRY.md": {
-    "mtime": 1788267396.6030111,
-    "seen": 1788403297.256641,
-    "ast_hash": "9a43913065fec4646d249f02af6bfa66",
-    "semantic_hash": "9a43913065fec4646d249f02af6bfa66"
+    "mtime": 1788532418.4682317,
+    "seen": 1788746444.8007157,
+    "ast_hash": "bd720ae502e6d785020ff260fa5a00b9",
+    "semantic_hash": "bd720ae502e6d785020ff260fa5a00b9"
   },
   "ARCHITECTURE.md": {
     "mtime": 1788233353.7767792,
     "seen": 1788403297.256641,
     "ast_hash": "c20c44e0e4c20eac1bdcb163836800f1",
-    "semantic_hash": "c20c44e0e4c20eac1bdcb163836800f1"
-  },
-  "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md": {
-    "mtime": 1784771987.6291213,
-    "seen": 1787797068.0993092,
-    "ast_hash": "9eb3e0dacb593b3b97c7c3307b69a0c2",
     "semantic_hash": ""
   },
+  "AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md": {
+    "mtime": 1788532439.4772267,
+    "seen": 1788746444.8007157,
+    "ast_hash": "1c76f4868e78e5180d41ff5326fe5caa",
+    "semantic_hash": "1c76f4868e78e5180d41ff5326fe5caa"
+  },
   "BUILD_HISTORY.md": {
-    "mtime": 1788394339.5508819,
-    "seen": 1788403297.256641,
-    "ast_hash": "49a5c80bd73337a9b510186059572a85",
-    "semantic_hash": "49a5c80bd73337a9b510186059572a85"
+    "mtime": 1788532587.528881,
+    "seen": 1788746444.8007157,
+    "ast_hash": "309eafa99b93e92c44a6d871f8c792da",
+    "semantic_hash": "309eafa99b93e92c44a6d871f8c792da"
   },
   "COMFORT_AND_FOCUS_RE.md": {
     "mtime": 1784771987.68151,
@@ -36,22 +36,22 @@
     "semantic_hash": "8463f6b5fd97642014977e06988fa39c"
   },
   "CURRENT_STATE.md": {
-    "mtime": 1784771987.7270372,
-    "seen": 1787797068.0993092,
-    "ast_hash": "ca3a89ad5596e2bba4444c4afa3348d5",
-    "semantic_hash": ""
+    "mtime": 1788532469.245639,
+    "seen": 1788746444.8007157,
+    "ast_hash": "016490266b5179fc1ebf5a318abaa047",
+    "semantic_hash": "016490266b5179fc1ebf5a318abaa047"
   },
   "FEATURE_TRACEABILITY.md": {
-    "mtime": 1784771987.7490592,
-    "seen": 1787797068.0993092,
-    "ast_hash": "0ba57543d626546d2495aceb8c48aab2",
-    "semantic_hash": ""
+    "mtime": 1788532425.413575,
+    "seen": 1788746444.8007157,
+    "ast_hash": "b0acba1c05735515ff766a24989bceff",
+    "semantic_hash": "b0acba1c05735515ff766a24989bceff"
   },
   "FUTURE_SYSTEMS_RE.md": {
-    "mtime": 1784771987.7951918,
-    "seen": 1787797068.0993092,
-    "ast_hash": "082aae0ab08a006990a83abffb30e0d2",
-    "semantic_hash": ""
+    "mtime": 1786067819.4314356,
+    "seen": 1788746444.8007157,
+    "ast_hash": "b438bcb5f0876d4bb7a1a70b0420bf6a",
+    "semantic_hash": "b438bcb5f0876d4bb7a1a70b0420bf6a"
   },
   "GHIDRA_SYNC.md": {
     "mtime": 1784771987.8167093,
@@ -72,10 +72,10 @@
     "semantic_hash": "051fd802c973c6386f1b2789b545b735"
   },
   "NEXT_LIVE_EVIDENCE.md": {
-    "mtime": 1788394149.6869383,
-    "seen": 1788403297.256641,
-    "ast_hash": "404feffe7263d55caa61ac99f1bce220",
-    "semantic_hash": "404feffe7263d55caa61ac99f1bce220"
+    "mtime": 1788532471.699516,
+    "seen": 1788746444.8007157,
+    "ast_hash": "8c12125f2b8db4ee77cfba3e4125b507",
+    "semantic_hash": "8c12125f2b8db4ee77cfba3e4125b507"
   },
   "RUNTIME_ANALYSIS_0.5.1.md": {
     "mtime": 1784771987.9018164,
@@ -126,10 +126,10 @@
     "semantic_hash": "4e72b6dc6e291729f8ed9a2f83bf9699"
   },
   "USER_GUIDE.md": {
-    "mtime": 1784771988.1158795,
-    "seen": 1787797068.0993092,
-    "ast_hash": "1e6046dc346560d6a991d32873a25f18",
-    "semantic_hash": ""
+    "mtime": 1788393849.2862928,
+    "seen": 1788746444.8007157,
+    "ast_hash": "5a9949d6da8b834f4885bc36d0836b79",
+    "semantic_hash": "5a9949d6da8b834f4885bc36d0836b79"
   },
   "VR_COMPATIBILITY_RE.md": {
     "mtime": 1787744553.0661688,
@@ -144,10 +144,10 @@
     "semantic_hash": "b5a1c46c4c2ce6f1766cd939e0ce9d16"
   },
   "AGENTS.md": {
-    "mtime": 1788249824.0654361,
-    "seen": 1788403297.256641,
-    "ast_hash": "05b76b0ba3d9e28f87591005c301b16a",
-    "semantic_hash": "05b76b0ba3d9e28f87591005c301b16a"
+    "mtime": 1788421392.910751,
+    "seen": 1788746444.8007157,
+    "ast_hash": "6ee83b78068aac72bbb5f68060bec362",
+    "semantic_hash": "6ee83b78068aac72bbb5f68060bec362"
   },
   "BIOSHOCK_VR_TRANSFER_AUDIT.md": {
     "mtime": 1786062008.4256155,
@@ -234,10 +234,10 @@
     "semantic_hash": "894c30592088a6008436a8a5b21df7b9"
   },
   "XRSIM_INTEGRATION_ASSESSMENT.md": {
-    "mtime": 1788125636.7070916,
-    "seen": 1788403297.256641,
-    "ast_hash": "87bbe7337abc9202914f107644e7e5b6",
-    "semantic_hash": "87bbe7337abc9202914f107644e7e5b6"
+    "mtime": 1788440424.3428655,
+    "seen": 1788746444.8007157,
+    "ast_hash": "82874010289e0917862f678f80c4a8a9",
+    "semantic_hash": "82874010289e0917862f678f80c4a8a9"
   },
   "XRTAPE_FIRST_RUN.md": {
     "mtime": 1788215024.7413638,

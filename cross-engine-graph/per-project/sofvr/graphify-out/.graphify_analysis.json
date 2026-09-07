@@ -1,0 +1,225 @@
+{
+  "communities": {
+    "0": [
+      "address_registry_addr_001",
+      "address_registry_addr_003",
+      "address_registry_addr_004",
+      "address_registry_ref_gl_dll",
+      "address_registry_sof_exe",
+      "authority_map_gamex86_dll",
+      "authority_map_player_dll",
+      "current_state_m1"
+    ],
+    "1": [
+      "camera_findings_md",
+      "openxr_runtime",
+      "ref_gl_dll",
+      "ref_vr_dll",
+      "refdef_t",
+      "refexport_t",
+      "renderframe_slot_16",
+      "sof_exe"
+    ],
+    "2": [
+      "agents_md",
+      "claude_md",
+      "index_md"
+    ],
+    "3": [
+      "beginframe_slot_44",
+      "endframe_slot_47",
+      "vr_integration_design_frame"
+    ],
+    "4": [
+      "completeness_tier_t1",
+      "readme_sof_vr",
+      "stereo_rung_r1"
+    ],
+    "5": [
+      "baseline_receipt_md",
+      "test_checklists_md"
+    ],
+    "6": [
+      "current_state_m2",
+      "hypotheses_hyp_002"
+    ],
+    "7": [
+      "current_state_m3",
+      "decision_log_d_001"
+    ],
+    "8": [
+      "decision_log_d_005",
+      "experiments_exp_001"
+    ],
+    "9": [
+      "hyp_002_refdef_layout",
+      "ref_api_drift_contract"
+    ],
+    "10": [
+      "render_pass_census_md",
+      "stereo_ladder_md"
+    ],
+    "11": [
+      "address_registry_addr_002"
+    ],
+    "12": [
+      "conventions_md"
+    ],
+    "13": [
+      "current_state_m0"
+    ],
+    "14": [
+      "failure_registry_md"
+    ],
+    "15": [
+      "input_ownership_md"
+    ],
+    "16": [
+      "ownership_census_md"
+    ],
+    "17": [
+      "port_brief_sof_platinum"
+    ],
+    "18": [
+      "recovery_matrix_md"
+    ],
+    "19": [
+      "tool_preflight_md"
+    ]
+  },
+  "cohesion": {
+    "0": 0.25,
+    "1": 0.25,
+    "2": 0.6666666666666666,
+    "3": 0.6666666666666666,
+    "4": 0.6666666666666666,
+    "5": 1.0,
+    "6": 1.0,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0
+  },
+  "gods": [
+    {
+      "id": "ref_vr_dll",
+      "label": "ref_vr.dll",
+      "degree": 4
+    },
+    {
+      "id": "address_registry_addr_004",
+      "label": "slot 16 RenderFrame",
+      "degree": 3
+    },
+    {
+      "id": "address_registry_sof_exe",
+      "label": "SoF.exe",
+      "degree": 3
+    },
+    {
+      "id": "ref_gl_dll",
+      "label": "ref_gl.dll",
+      "degree": 2
+    },
+    {
+      "id": "refdef_t",
+      "label": "refdef_t",
+      "degree": 2
+    },
+    {
+      "id": "renderframe_slot_16",
+      "label": "RenderFrame (Slot 16)",
+      "degree": 2
+    },
+    {
+      "id": "address_registry_addr_001",
+      "label": "GetRefAPI",
+      "degree": 2
+    },
+    {
+      "id": "address_registry_ref_gl_dll",
+      "label": "ref_gl.dll",
+      "degree": 2
+    },
+    {
+      "id": "vr_integration_design_frame",
+      "label": "VR Integration Design",
+      "degree": 2
+    },
+    {
+      "id": "readme_sof_vr",
+      "label": "SoF-VR Project",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ref_vr.dll",
+      "target": "refexport_t",
+      "source_files": [
+        "README.md",
+        "REF_API_DRIFT.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "M3 - Reversible Mutation",
+      "target": "Proxy Renderer Delivery",
+      "source_files": [
+        "CURRENT_STATE.md",
+        "DECISION_LOG.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "ref_vr.dll",
+      "target": "OpenXR Runtime (32-bit)",
+      "source_files": [
+        "README.md",
+        "PORT_BRIEF.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "ref_vr.dll",
+      "target": "ref_gl.dll",
+      "source_files": [
+        "README.md",
+        "TARGET_PROFILE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "ref_vr.dll",
+      "target": "RenderFrame (Slot 16)",
+      "source_files": [
+        "README.md",
+        "REF_API_DRIFT.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories"
+    }
+  ],
+  "tokens": {
+    "input": 19359,
+    "output": 2489
+  }
+}

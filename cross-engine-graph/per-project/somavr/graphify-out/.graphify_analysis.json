@@ -1,128 +1,123 @@
 {
   "communities": {
     "0": [
-      "build_history_0_22_0",
-      "build_history_0_51_0",
-      "feature_locomotion",
-      "feature_terminal_overlay",
-      "hpl_camera_bridge",
-      "hpl_camera_math",
-      "hpl_hud_bridge",
-      "hpl_input_bridge",
-      "hypotheses_s11_frustum_tracking_audio",
-      "hypotheses_s14_shadow_jitter",
-      "openxr_gl_bridge",
-      "openxr_runtime",
-      "runtime_analysis_0_5_1",
-      "runtime_analysis_0_5_2",
-      "test_checklists_hud_layer",
-      "test_checklists_physical_manipulation"
-    ],
-    "1": [
-      "gdi32_swapbuffers",
-      "hpl_grab_bridge",
-      "hypotheses_s12_controller_translation",
-      "hypotheses_s13_native_torque",
-      "openxr_api",
-      "prior_art_sweep_2026_09_01_md",
-      "review_handover_2026_08_07_md",
-      "smoke_test_matrix_md",
-      "somavr_dll",
-      "test_checklists_interaction_polish",
-      "test_checklists_physics_input"
-    ],
-    "2": [
-      "architecture_dllmain",
-      "architecture_hplgrabbridge",
-      "architecture_hplinteractionbridge",
-      "architecture_openglhooks",
-      "architecture_openxrglbridge",
-      "architecture_openxrinput",
-      "architecture_openxrruntime",
-      "bioshock_vr_audit",
-      "feature_entity_calibration_profiles",
-      "feature_xr_focus_pacing"
-    ],
-    "3": [
       "afr",
+      "gdi32_swapbuffers",
+      "hpl3_engine",
       "hpl3_posteffectcomposite_render",
       "hpl_comfort_bridge",
       "hpl_stereo",
       "native_stereo",
+      "openxr_api",
+      "prior_art_sweep_2026_09_01_md",
+      "review_handover_2026_08_07_md",
+      "runtime_analysis_0_5_3_md",
       "session_handover_2026_08_22_md",
+      "smoke_test_matrix_md",
+      "somavr_dll",
+      "somavr_injector",
       "test_checklists_comfort_focus",
       "test_checklists_md"
     ],
-    "4": [
-      "build_history_0_31_0",
-      "build_history_0_38_0",
-      "build_history_0_44_0",
-      "build_history_0_58_0",
-      "build_history_0_61_0",
-      "build_history_0_62_0",
-      "hpl3_engine",
-      "runtime_analysis_0_5_3_md"
-    ],
-    "5": [
-      "build_history_0_64_0",
-      "hpl_interaction_bridge",
-      "hypotheses_s22_native_picker",
-      "openxr_interaction_reticle",
-      "soma_get_closest_entity",
-      "test_checklists_depth_reticle",
-      "test_checklists_semantic_reticle"
-    ],
-    "6": [
-      "hpl_arm_ik",
-      "hpl_physical_body_follow",
-      "hpl_read_presentation",
-      "hpl_terminal_pointer",
-      "next_live_evidence_md",
-      "openxr_gl_transfer",
-      "somavr_0_95_6"
-    ],
-    "7": [
+    "1": [
+      "architecture_hplarmrenderdiagnostics",
+      "architecture_hplcompatibilityprobe",
+      "architecture_hplgrabbridge",
       "architecture_hplhandsbridge",
       "architecture_hplhandsmath",
+      "architecture_hplinteractionbridge",
+      "architecture_hplnativelocomotion",
       "architecture_hplplayerstate",
+      "architecture_openglhooks",
+      "architecture_openxrruntime",
+      "bioshock_vr_audit",
+      "feature_entity_calibration_profiles",
+      "feature_xr_focus_pacing",
+      "hpl3_mesh_entity_update_graphics",
+      "hpl3_node3d_setmatrix"
+    ],
+    "2": [
       "feature_authored_state_compatibility",
       "feature_visible_hands",
-      "future_systems_re"
+      "hpl_camera_bridge",
+      "hpl_camera_get_frustum",
+      "hpl_camera_math",
+      "hpl_frustum_setup_perspective_proj",
+      "hypotheses_s11_frustum_tracking_audio",
+      "hypotheses_s14_shadow_jitter",
+      "runtime_analysis_0_5_1",
+      "runtime_analysis_0_5_2"
     ],
-    "8": [
+    "3": [
       "feature_afr_stereo",
       "feature_dual_render",
-      "feature_head_tracking",
-      "feature_injection",
-      "feature_xr_bootstrap",
-      "feature_xr_gl_submission"
+      "feature_locomotion",
+      "hpl_input_bridge",
+      "opengl_hooks",
+      "openxr_gl_bridge",
+      "openxr_runtime",
+      "test_checklists_physical_manipulation"
     ],
-    "9": [
-      "0_68_1_input_phase_safety",
-      "0_68_2_native_phase_recovery",
-      "hpl3_script_icharacterbody_move",
-      "soma_cluxplayer_onanaloginput",
-      "soma_getclosestentity"
+    "4": [
+      "next_live_evidence_hpl_arm_render_pair",
+      "next_live_evidence_hpl_comfort_bridge",
+      "next_live_evidence_hpl_dual_render",
+      "next_live_evidence_somavr_ini",
+      "next_live_evidence_somavr_latest",
+      "next_live_evidence_test_checklists"
     ],
-    "10": [
+    "5": [
+      "build_history_0_65_0_physical_interaction_polish",
+      "build_history_0_65_1_object_rotation_fix",
+      "build_history_0_66_0_interaction_stability",
+      "build_history_0_67_0_native_manipulation_overlay",
+      "build_history_0_68_0_interaction_correction"
+    ],
+    "6": [
+      "build_history_0_95_8_arm_palette_evidence",
+      "hpl3_arm_deformation",
+      "openxr_ninja_build",
+      "soma_nosteam_exe",
+      "xr_sim"
+    ],
+    "7": [
       "c_camera_get_frustum",
       "c_frustum_setup_perspective_proj",
       "hypotheses_s3_camera_uniform_stacks",
       "hypotheses_s4_hmd_orientation",
       "hypotheses_s5_alternating_eye_renders"
     ],
-    "11": [
-      "future_systems_re_capture_strategy",
-      "hpl3_guiset_render",
-      "hpl3_scene_renderscreengui",
-      "hplhudbridge",
-      "xrcompositionlayerquad"
+    "8": [
+      "hpl_grab_bridge",
+      "hypotheses_s12_controller_translation",
+      "hypotheses_s13_native_torque",
+      "test_checklists_interaction_polish",
+      "test_checklists_physics_input"
     ],
-    "12": [
+    "9": [
+      "xrsim_integration_assessment_depth_composition",
+      "xrsim_integration_assessment_openxr_runtime",
+      "xrsim_integration_assessment_somavr_render_math",
+      "xrsim_integration_assessment_somavr_xrsim_smoke",
+      "xrsim_integration_assessment_xr_sim"
+    ],
+    "10": [
+      "build_history_0_12_0_native_interaction",
+      "build_history_0_20_0_depth_reticle",
+      "build_history_0_21_0_semantic_reticle",
+      "somavr_hplinteractionbridge"
+    ],
+    "11": [
       "contact_haptics_re_hpl3_cphysicsworldnewton_update",
       "contact_haptics_re_hpl3_csurfacedata_onimpact",
       "contact_haptics_re_hpl3_csurfacedata_onslide",
       "contact_haptics_re_hplcontacthapticsbridge"
+    ],
+    "12": [
+      "current_state_0_95_8_arm_palette_evidence",
+      "current_state_0_9_0_calibration_haptics",
+      "current_state_hpl3_re_0x1401fe1a0",
+      "current_state_hpl3_re_0x140338900"
     ],
     "13": [
       "future_hook_map_playerhandshandler",
@@ -131,748 +126,856 @@
       "future_hook_map_somavr_injector_exe"
     ],
     "14": [
-      "agents_md",
-      "graphify_skill",
-      "re_mcp_toolkit"
+      "0_68_1_input_phase_safety",
+      "0_68_2_native_phase_recovery",
+      "soma_cluxplayer_onanaloginput"
     ],
     "15": [
-      "architecture_hplinputbridge",
-      "architecture_hplnativelocomotion",
-      "architecture_hplstatuspanelbridge"
+      "address_registry_cmeshentity_setvisible",
+      "address_registry_csubmeshentity_setvisible",
+      "address_registry_hpl3_scene_renderviewport"
     ],
     "16": [
-      "build_history_0_65_1",
-      "build_history_0_66_0",
-      "build_history_0_67_0"
+      "build_history_0_15_0_hud_layer",
+      "build_history_0_22_0_physical_manipulation",
+      "somavr_hplhudbridge"
     ],
     "17": [
-      "build_history_0_76_0_fullscale_wrist_position",
-      "build_history_0_77_0_arm_ik_authored_interactions",
-      "hpl3_node3d_applypostanimtransform"
+      "build_history_0_16_0_controller_hands",
+      "build_history_0_7_0_controller_prototype",
+      "somavr_hplinputbridge"
     ],
     "18": [
+      "build_history_0_32_0_viewport_depth",
+      "build_history_0_7_2_render_state_policy",
+      "somavr_hplplayerstate"
+    ],
+    "19": [
+      "build_history_0_35_0_dual_render_probe",
+      "build_history_0_40_0_dual_render_temporal_probe",
+      "build_history_0_45_0_continuous_dual_render"
+    ],
+    "20": [
       "future_hook_map_hplcamerabridge",
       "future_hook_map_openxr_runtime",
       "future_hook_map_openxrglbridge"
     ],
-    "19": [
+    "21": [
+      "future_systems_re_capture_strategy",
+      "hplhudbridge",
+      "xrcompositionlayerquad"
+    ],
+    "22": [
       "hpl_hands_bridge",
       "test_checklists_controller_flashlight",
       "test_checklists_controller_hands"
     ],
-    "20": [
+    "23": [
       "hypotheses_s16_deferred_reconstruction_mono",
       "runtime_analysis_0_5_4",
       "runtime_analysis_0_5_5"
     ],
-    "21": [
-      "address_registry_cmeshentity_setvisible",
-      "address_registry_csubmeshentity_setvisible"
+    "24": [
+      "openxr_interaction_reticle",
+      "test_checklists_depth_reticle",
+      "test_checklists_semantic_reticle"
     ],
-    "22": [
+    "25": [
+      "address_registry_cmeshentity_updategraphicsforframe",
+      "address_registry_csubmeshentity_updategraphicsforframe"
+    ],
+    "26": [
       "address_registry_cphysicsworldnewton_update",
       "address_registry_csurfacedata_onimpact"
     ],
-    "23": [
-      "address_registry_hpl3_renderer_renderpostposteffects",
-      "address_registry_hpl3_scene_renderviewport"
-    ],
-    "24": [
-      "build_history_0_29_0",
-      "hpl_presentation_bridge"
-    ],
-    "25": [
-      "build_history_0_71_0_native_semantic_input",
-      "cluxplayer_onanaloginput"
-    ],
-    "26": [
-      "build_history_0_80_0_body_anchored_hands",
-      "hpl3_node3d_setmatrix"
-    ],
     "27": [
-      "build_history_0_82_0_torso_ergonomics",
-      "build_history_0_83_0_root_palm_terminal"
+      "address_registry_hpl3_renderer_renderpostposteffects",
+      "address_registry_hpl3_rendererdeferred_renderssao"
     ],
     "28": [
-      "build_history_0_95_5_torso_terminal_remap",
-      "build_history_0_95_6_regression_recovery"
+      "build_history_0_13_0_hands_identity",
+      "somavr_hplhandsbridge"
     ],
     "29": [
-      "current_state_md",
-      "openxr_gl_transfer_re_md"
+      "build_history_0_29_0_presentation_optics",
+      "somavr_hplpresentationbridge"
     ],
     "30": [
+      "build_history_0_3_0_xrframe",
+      "somavr_openxrglbridge"
+    ],
+    "31": [
+      "build_history_0_4_0_hplcamera",
+      "somavr_hplcamerabridge"
+    ],
+    "32": [
+      "build_history_0_5_1_compatprobe",
+      "somavr_hplcompatibilityprobe"
+    ],
+    "33": [
+      "build_history_0_60_0_evidence_capture",
+      "build_history_0_61_0_native_manipulation"
+    ],
+    "34": [
+      "build_history_0_64_0_dual_hand_interaction",
+      "build_history_0_64_1_dual_hand_interaction_fix"
+    ],
+    "35": [
+      "build_history_0_6_0_input_foundation",
+      "somavr_openxrinput"
+    ],
+    "36": [
+      "build_history_0_94_0_afr_pair_coherence",
+      "build_history_0_95_6_regression_recovery"
+    ],
+    "37": [
+      "build_history_0_95_7_arm_pass_evidence",
+      "hpl_arm_render_pair"
+    ],
+    "38": [
+      "current_state_0_32_hplplayerstate",
+      "current_state_0_58_hpl2_csurfacedata_onimpact"
+    ],
+    "39": [
+      "current_state_0_81_cnode3d_setmatrix",
+      "current_state_hpl_arm_hierarchy"
+    ],
+    "40": [
+      "current_state_0_90_opengl_openxr_handoff",
+      "current_state_openxr_gl_transfer_re"
+    ],
+    "41": [
+      "current_state_0_95_3_cmeshentity_setvisible",
+      "current_state_0_95_3_iluxentity_setactive"
+    ],
+    "42": [
+      "current_state_0_95_5_comfort_bridge",
+      "current_state_fade_camera_aspect_multiplier"
+    ],
+    "43": [
       "future_hook_map_cluxplayer",
       "future_hook_map_icharacterbody_move"
     ],
-    "31": [
+    "44": [
       "future_systems_re_md",
       "v0_14_0_native_locomotion"
     ],
-    "32": [
-      "g_flssaotemporalsamplephase",
-      "hpl3_rendererdeferred_renderssao"
-    ],
-    "33": [
+    "45": [
       "hpl3_gui_set_render",
       "v0_68_0_native_analog_terminal"
     ],
-    "34": [
-      "hpl3_node3d_setposttransform",
-      "soma_iluxentity_setmatrix"
-    ],
-    "35": [
-      "hpl_compatibility_probe",
-      "opengl_hooks"
-    ],
-    "36": [
+    "46": [
       "hypotheses_s19_vertical_projection_asymmetry",
       "runtime_analysis_0_5_6"
     ],
-    "37": [
+    "47": [
       "hypotheses_s21_global_crosshair_callback",
       "lux_player_global_set_crosshair_state"
     ],
-    "38": [
+    "48": [
+      "hypotheses_s22_native_picker",
+      "soma_get_closest_entity"
+    ],
+    "49": [
       "hypotheses_s6_openxr_locomotion",
       "i_character_body_move"
     ],
-    "39": [
+    "50": [
       "native_stereo_feasibility_occlusion_queries",
       "openxr_gl_transfer_re_audit"
     ],
-    "40": [
+    "51": [
       "playbook_audit_2026_08_27_elbow_pole",
       "playbook_audit_2026_08_29_basis_validation"
     ],
-    "41": [
+    "52": [
       "review_handover_2026_08_07",
       "review_remediation_2026_08_07"
     ],
-    "42": [
+    "53": [
       "soma_imguimanager_updateinput",
       "v0_63_0_diegetic_terminal_takeover"
     ],
-    "43": [
+    "54": [
       "0_25_0_head_volume_spectator_and_cpu_telemetry"
     ],
-    "44": [
+    "55": [
       "0_26_0_gpu_and_depth_capability"
     ],
-    "45": [
+    "56": [
       "0_27_0_gameplay_coherence"
     ],
-    "46": [
+    "57": [
       "0_28_0_authored_comfort"
     ],
-    "47": [
+    "58": [
       "0_29_0_presentation_and_optics"
     ],
-    "48": [
+    "59": [
       "0_30_0_screen_materials"
     ],
-    "49": [
+    "60": [
       "0_31_0_tools_gameplay_imgui_and_render_transaction"
     ],
-    "50": [
+    "61": [
       "0_32_0_viewport_ownership_depth_and_release_safety"
     ],
-    "51": [
+    "62": [
       "0_33_0_depth_submission_and_xr_resource_recovery"
     ],
-    "52": [
+    "63": [
       "0_34_0_subtitle_presentation_and_paused_menu_layer"
     ],
-    "53": [
+    "64": [
       "0_35_0_same_frame_dual_render_probe"
     ],
-    "54": [
+    "65": [
       "0_36_0_two_hand_tools_and_grab_rotation"
     ],
-    "55": [
+    "66": [
       "0_37_0_post_effect_resource_ownership"
     ],
-    "56": [
+    "67": [
       "0_38_0_diegetic_terminal_pointer"
     ],
-    "57": [
+    "68": [
       "0_39_0_vr_control_panel"
     ],
-    "58": [
+    "69": [
       "0_40_0_dual_render_temporal_probe"
     ],
-    "59": [
+    "70": [
       "0_41_0_roomscale_body_reconciliation"
     ],
-    "60": [
+    "71": [
       "0_42_0_native_gameplay_haptics"
     ],
-    "61": [
+    "72": [
       "0_43_0_scripted_presentation"
     ],
-    "62": [
+    "73": [
       "0_44_0_inventory_presentation"
     ],
-    "63": [
+    "74": [
       "0_45_0_continuous_dual_render"
     ],
-    "64": [
+    "75": [
       "0_46_0_per_eye_view_history"
     ],
-    "65": [
+    "76": [
       "0_47_0_all_stereo_view_history"
     ],
-    "66": [
+    "77": [
       "0_48_0_controller_profiles"
     ],
-    "67": [
+    "78": [
       "0_49_0_readiness_and_presets"
     ],
-    "68": [
+    "79": [
       "0_50_0_curved_hud"
     ],
-    "69": [
+    "80": [
       "0_51_0_comfort_vignette"
     ],
-    "70": [
+    "81": [
       "0_52_0_per_eye_imagetrail"
     ],
-    "71": [
+    "82": [
       "0_53_0_tonemapping_frame_owner"
     ],
-    "72": [
+    "83": [
       "0_54_0_per_eye_temporal_ssao_history"
     ],
-    "73": [
+    "84": [
       "0_55_0_ssao_same_pose_frame_owner"
     ],
-    "74": [
+    "85": [
       "0_56_0_authored_camera_handoff"
     ],
-    "75": [
+    "86": [
       "0_57_0_fixed_foveation"
     ],
-    "76": [
+    "87": [
       "0_59_0_live_usability"
     ],
-    "77": [
+    "88": [
       "0_60_0_evidence_capture"
     ],
-    "78": [
+    "89": [
       "0_61_0_native_manipulation"
     ],
-    "79": [
+    "90": [
       "0_62_0_physical_hinges_and_stutter"
     ],
-    "80": [
+    "91": [
       "0_63_0_diegetic_terminals"
     ],
-    "81": [
+    "92": [
       "0_64_0_dual_hand_interaction"
     ],
-    "82": [
+    "93": [
       "0_64_1_dual_hand_interaction_startup_fix"
     ],
-    "83": [
+    "94": [
       "0_65_0_physical_interaction_polish"
     ],
-    "84": [
+    "95": [
       "0_65_1_object_rotation_fix"
     ],
-    "85": [
+    "96": [
       "0_66_0_interaction_stability"
     ],
-    "86": [
+    "97": [
       "0_67_0_native_manipulation_overlay"
     ],
-    "87": [
+    "98": [
       "0_68_0_interaction_correction"
     ],
-    "88": [
+    "99": [
       "0_70_0_input_terminal_recovery"
     ],
-    "89": [
+    "100": [
       "address_registry_cluxinputhandler_setrumble"
     ],
-    "90": [
+    "101": [
       "address_registry_cluxplayer_onanaloginput"
     ],
-    "91": [
+    "102": [
       "address_registry_hpl3_guiset_render"
     ],
-    "92": [
+    "103": [
       "address_registry_hpl3_imgui_sendmousevirtualposition"
     ],
-    "93": [
+    "104": [
       "address_registry_hpl3_pidcontrollervec3_output"
     ],
-    "94": [
-      "address_registry_hpl3_posteffect_tonemapping_advanceframestate"
-    ],
-    "95": [
-      "address_registry_hpl3_rendererdeferred_renderssao"
-    ],
-    "96": [
-      "address_registry_iluxentity_setactive"
-    ],
-    "97": [
-      "address_registry_iluxentity_setmatrix"
-    ],
-    "98": [
-      "architecture_hplcamerabridge"
-    ],
-    "99": [
-      "build_history_0_19_0"
-    ],
-    "100": [
-      "build_history_0_20_0"
-    ],
-    "101": [
-      "build_history_0_21_0"
-    ],
-    "102": [
-      "build_history_0_23_0"
-    ],
-    "103": [
-      "build_history_0_24_0"
-    ],
-    "104": [
-      "build_history_0_25_0"
-    ],
     "105": [
-      "build_history_0_26_0"
+      "address_registry_hpl3_posteffect_imagetrail_rendereffect"
     ],
     "106": [
-      "build_history_0_27_0"
+      "address_registry_hpl3_posteffect_tonemapping_rendereffect"
     ],
     "107": [
-      "build_history_0_28_0"
+      "address_registry_hpl3_script_iphysicsbody_addimpulse"
     ],
     "108": [
-      "build_history_0_30_0"
+      "address_registry_iluxentity_setactive"
     ],
     "109": [
-      "build_history_0_32_0"
+      "address_registry_soma_iluxentity_setmatrix"
     ],
     "110": [
-      "build_history_0_33_0"
+      "address_registry_soma_nosteam_exe"
     ],
     "111": [
-      "build_history_0_34_0"
+      "agents_graphify"
     ],
     "112": [
-      "build_history_0_35_0"
+      "agents_mcp_roster"
     ],
     "113": [
-      "build_history_0_36_0"
+      "agents_playbook"
     ],
     "114": [
-      "build_history_0_37_0"
+      "agents_xr_tape"
     ],
     "115": [
-      "build_history_0_39_0"
+      "architecture_hplarmikmath"
     ],
     "116": [
-      "build_history_0_40_0"
+      "architecture_hplcamerabridge"
     ],
     "117": [
-      "build_history_0_41_0"
+      "architecture_hplhudbridge"
     ],
     "118": [
-      "build_history_0_42_0"
+      "build_history_0_10_0_tracking_accessibility"
     ],
     "119": [
-      "build_history_0_43_0"
+      "build_history_0_11_0_spatial_ownership"
     ],
     "120": [
-      "build_history_0_45_0"
+      "build_history_0_14_0_native_locomotion"
     ],
     "121": [
-      "build_history_0_46_0"
+      "build_history_0_17_0_physics_input"
     ],
     "122": [
-      "build_history_0_47_0"
+      "build_history_0_18_0_interaction_polish"
     ],
     "123": [
-      "build_history_0_48_0"
+      "build_history_0_19_0_comfort_focus"
     ],
     "124": [
-      "build_history_0_49_0"
+      "build_history_0_1_0_bootstrap"
     ],
     "125": [
-      "build_history_0_50_0"
+      "build_history_0_23_0_controller_flashlight"
     ],
     "126": [
-      "build_history_0_52_0"
+      "build_history_0_24_0_roomscale_safety"
     ],
     "127": [
-      "build_history_0_53_0"
+      "build_history_0_25_0_volume_spectator_telemetry"
     ],
     "128": [
-      "build_history_0_54_0"
+      "build_history_0_26_0_gpu_depth_probe"
     ],
     "129": [
-      "build_history_0_55_0"
+      "build_history_0_27_0_gameplay_coherence"
     ],
     "130": [
-      "build_history_0_56_0"
+      "build_history_0_28_0_authored_comfort"
     ],
     "131": [
-      "build_history_0_57_0"
+      "build_history_0_2_0_xrprobe"
     ],
     "132": [
-      "build_history_0_59_0"
+      "build_history_0_2_1_xrpathguard"
     ],
     "133": [
-      "build_history_0_60_0"
+      "build_history_0_2_2_xrloaderpath"
     ],
     "134": [
-      "build_history_0_63_0"
+      "build_history_0_2_3_xroneshot"
     ],
     "135": [
-      "build_history_0_64_1"
+      "build_history_0_2_4_xrsessiononeshot"
     ],
     "136": [
-      "build_history_0_65_0"
+      "build_history_0_2_5_xrframeprobe"
     ],
     "137": [
-      "build_history_0_68_0_interaction_correction"
+      "build_history_0_2_6_xrhold"
     ],
     "138": [
-      "build_history_0_68_1_input_phase_safety"
+      "build_history_0_2_7_xrmanual"
     ],
     "139": [
-      "build_history_0_68_2_native_phase_recovery"
+      "build_history_0_30_0_screen_effects"
     ],
     "140": [
-      "build_history_0_69_0_authored_hands_probe"
+      "build_history_0_31_0_tools_hud"
     ],
     "141": [
-      "build_history_0_70_0_input_terminal_recovery"
+      "build_history_0_33_0_depth_resources"
     ],
     "142": [
-      "build_history_0_72_0_terminal_layer_dump"
+      "build_history_0_34_0_subtitles_menus"
     ],
     "143": [
-      "build_history_0_73_0_terminal_retention_grab_move"
+      "build_history_0_36_0_two_hand_tools"
     ],
     "144": [
-      "build_history_0_74_0_native_terminal_wrist_re"
+      "build_history_0_37_0_post_resource_probe"
     ],
     "145": [
-      "build_history_0_75_0_terminal_dirtyrect_wrist_candidate"
+      "build_history_0_38_0_terminal_pointer"
     ],
     "146": [
-      "build_history_0_77_1_hand_seed_terminal_fallback"
+      "build_history_0_39_0_vr_control_panel"
     ],
     "147": [
-      "build_history_0_77_2_hand_identity_recovery"
+      "build_history_0_3_1_cameramap"
     ],
     "148": [
-      "build_history_0_78_0_arm_pose_shutdown_safety"
+      "build_history_0_41_0_roomscale_body_reconciliation"
     ],
     "149": [
-      "build_history_0_78_1_startup_pause_gate"
+      "build_history_0_42_0_native_gameplay_haptics"
     ],
     "150": [
-      "build_history_0_79_0_hands_terminal_menu"
+      "build_history_0_43_0_scripted_presentation"
     ],
     "151": [
-      "build_history_0_80_1_hmd_shoulder_rig"
+      "build_history_0_44_0_inventory_presentation"
     ],
     "152": [
-      "build_history_0_81_0_stable_hands_ui"
+      "build_history_0_46_0_per_eye_view_history"
     ],
     "153": [
-      "build_history_0_84_0_body_follow_presentation"
+      "build_history_0_47_0_stereo_view_history"
     ],
     "154": [
-      "build_history_0_84_1_hand_scale_retention_fix"
+      "build_history_0_48_0_controller_profile_diagnostics"
     ],
     "155": [
-      "build_history_0_85_0_terminal_hands_read_latch"
+      "build_history_0_49_0_readiness_presets"
     ],
     "156": [
-      "build_history_0_86_0_interaction_presence"
+      "build_history_0_50_0_curved_hud"
     ],
     "157": [
-      "build_history_0_87_0_reliability_profiles"
+      "build_history_0_51_0_comfort_vignette"
     ],
     "158": [
-      "build_history_0_88_0_release_integrity"
+      "build_history_0_52_0_per_eye_image_trail"
     ],
     "159": [
-      "build_history_0_89_0_frame_contract"
+      "build_history_0_53_0_tone_mapping_frame_owner"
     ],
     "160": [
-      "build_history_0_90_0_gl_transfer_audit"
+      "build_history_0_54_0_per_eye_ssao_history"
     ],
     "161": [
-      "build_history_0_91_0_review_hardening"
+      "build_history_0_55_0_ssao_frame_owner"
     ],
     "162": [
-      "build_history_0_92_0_native_stereo_evidence"
+      "build_history_0_56_0_authored_camera_handoff"
     ],
     "163": [
-      "build_history_0_93_0_playbook_hardening"
+      "build_history_0_57_0_fixed_foveation"
     ],
     "164": [
-      "build_history_0_94_0_afr_pair_coherence"
+      "build_history_0_58_0_grab_contact_haptics"
     ],
     "165": [
-      "build_history_0_95_0_freshness_elbow"
+      "build_history_0_59_0_live_usability"
     ],
     "166": [
-      "build_history_0_95_1_basis_guard"
+      "build_history_0_5_0_afrstereo"
     ],
     "167": [
-      "build_history_0_95_2_playbook_conformance"
+      "build_history_0_5_10_poselatch"
     ],
     "168": [
-      "build_history_0_95_3_recovery_cleanup"
+      "build_history_0_5_11_recenter"
     ],
     "169": [
-      "build_history_0_95_4_rig_terminal_read"
+      "build_history_0_5_2_audiopost"
     ],
     "170": [
-      "build_history_md"
+      "build_history_0_5_3_shadowjitter"
     ],
     "171": [
-      "claude_md"
+      "build_history_0_5_4_renderdiag"
     ],
     "172": [
-      "crash_f10_dual_render_2026_09_01_md"
+      "build_history_0_5_5_reconstruct"
     ],
     "173": [
-      "current_state"
+      "build_history_0_5_6_stability"
     ],
     "174": [
-      "f08_fix"
+      "build_history_0_5_7_fullcenter"
     ],
     "175": [
-      "f11_f12_audit"
+      "build_history_0_5_8_onekey"
     ],
     "176": [
-      "f17_verification"
+      "build_history_0_5_9_rotationfix"
     ],
     "177": [
-      "f19_stereo_apply_fix"
+      "build_history_0_62_0_physical_hinges"
     ],
     "178": [
-      "f20_stereo_hold_fix"
+      "build_history_0_63_0_diegetic_terminals"
     ],
     "179": [
-      "f21_stale_pair_rejection"
+      "build_history_0_77_0_arm_ik_authored_interactions"
     ],
     "180": [
-      "feature_traceability"
+      "build_history_0_7_1_gameplay_actions"
     ],
     "181": [
-      "future_hook_map_cluxvoicehandler"
+      "build_history_0_83_0_root_palm_terminal"
     ],
     "182": [
-      "future_hook_map_fmod_listener"
+      "build_history_0_89_0_frame_contract"
     ],
     "183": [
-      "future_hook_map_somavr"
+      "build_history_0_8_0_resilience_comfort"
     ],
     "184": [
-      "hpl3_posteffect_imagetrail_rendereffect"
+      "build_history_0_92_0_native_stereo_evidence"
     ],
     "185": [
-      "hpl3_posteffect_tonemapping_advanceframestate"
+      "build_history_0_95_4_rig_terminal_read"
     ],
     "186": [
-      "hpl_opengl_notes_c_camera"
+      "build_history_0_95_5_torso_terminal_remap"
     ],
     "187": [
-      "hpl_opengl_notes_c_glsl_program"
+      "build_history_0_9_0_calibration_haptics"
     ],
     "188": [
-      "hypotheses_s12_safe_dual_rendering"
+      "claude_md"
     ],
     "189": [
-      "hypotheses_s1_openxr_opengl"
+      "crash_f10_dual_render_2026_09_01_md"
     ],
     "190": [
-      "hypotheses_s21_semantic_camera"
+      "current_state"
     ],
     "191": [
-      "hypotheses_s2_main_camera_path"
+      "current_state_0_47_hpl3_posteffect_renderone"
     ],
     "192": [
-      "hypotheses_s7_soma_hands"
+      "current_state_0_67_mvmoveadd"
     ],
     "193": [
-      "hypotheses_s8_gui_set_pass"
+      "current_state_0_78_soma_getgamepaused"
     ],
     "194": [
-      "hypotheses_s9_temporal_optical_effects"
+      "current_state_0_87_crash_handler"
     ],
     "195": [
-      "luxplayer_global_setcrosshairstate"
+      "current_state_playbook_audit_2026_08_29"
     ],
     "196": [
-      "native_stereo_feasibility_cpu_visibility_history"
+      "current_state_tools_xrsim"
     ],
     "197": [
-      "native_stereo_feasibility_k_render_viewport_rva"
+      "f08_fix"
     ],
     "198": [
-      "native_stereo_feasibility_k_render_world_rva"
+      "f11_f12_audit"
     ],
     "199": [
-      "native_stereo_feasibility_refraction_scratch"
+      "f17_verification"
     ],
     "200": [
-      "openxr"
+      "f19_stereo_apply_fix"
     ],
     "201": [
-      "playbook_audit_2026_08_27_freshness_ledger"
+      "f20_stereo_hold_fix"
     ],
     "202": [
-      "playbook_handover_2026_09_02_md"
+      "f21_stale_pair_rejection"
     ],
     "203": [
-      "private_fbo_remapping"
+      "feature_authored_camera"
     ],
     "204": [
-      "readme_md"
+      "feature_physical_manipulation"
     ],
     "205": [
-      "test_checklists_afrstereo"
+      "feature_traceability"
     ],
     "206": [
-      "test_checklists_audiopost"
+      "future_hook_map_cluxvoicehandler"
     ],
     "207": [
-      "test_checklists_calibration_haptics"
+      "future_hook_map_fmod_listener"
     ],
     "208": [
-      "test_checklists_cameramap"
+      "future_hook_map_somavr"
     ],
     "209": [
-      "test_checklists_compatprobe"
+      "future_systems_re"
     ],
     "210": [
-      "test_checklists_fullcenter"
+      "ghidra_sync_md"
     ],
     "211": [
-      "test_checklists_gameplay_actions"
+      "hpl_opengl_notes_c_camera"
     ],
     "212": [
-      "test_checklists_hands_identity"
+      "hpl_opengl_notes_c_glsl_program"
     ],
     "213": [
-      "test_checklists_hplcamera"
+      "hypotheses_s12_safe_dual_rendering"
     ],
     "214": [
-      "test_checklists_input_foundation"
+      "hypotheses_s1_openxr_opengl"
     ],
     "215": [
-      "test_checklists_native_interaction"
+      "hypotheses_s21_semantic_camera"
     ],
     "216": [
-      "test_checklists_native_locomotion"
+      "hypotheses_s2_main_camera_path"
     ],
     "217": [
-      "test_checklists_onekey"
+      "hypotheses_s7_soma_hands"
     ],
     "218": [
-      "test_checklists_poselatch"
+      "hypotheses_s8_gui_set_pass"
     ],
     "219": [
-      "test_checklists_recenter"
+      "hypotheses_s9_temporal_optical_effects"
     ],
     "220": [
-      "test_checklists_reconstruct"
+      "luxplayer_global_setcrosshairstate"
     ],
     "221": [
-      "test_checklists_render_state_policy"
+      "native_stereo_feasibility_cpu_visibility_history"
     ],
     "222": [
-      "test_checklists_renderdiag"
+      "native_stereo_feasibility_k_render_viewport_rva"
     ],
     "223": [
-      "test_checklists_rotationfix"
+      "native_stereo_feasibility_k_render_world_rva"
     ],
     "224": [
-      "test_checklists_runtime_resilience"
+      "native_stereo_feasibility_refraction_scratch"
     ],
     "225": [
-      "test_checklists_shadowjitter"
+      "next_live_evidence_hpl_arm_ik"
     ],
     "226": [
-      "test_checklists_spatial_ownership"
+      "next_live_evidence_hpl_physical_body_follow"
     ],
     "227": [
-      "test_checklists_stability"
+      "next_live_evidence_hpl_read_presentation"
     ],
     "228": [
-      "test_checklists_tracking_accessibility"
+      "next_live_evidence_openxr_gl_transfer"
     ],
     "229": [
-      "test_checklists_xrframe"
+      "next_live_evidence_terminal_scissor_remap"
     ],
     "230": [
-      "test_checklists_xrhold"
+      "openxr"
     ],
     "231": [
-      "test_checklists_xrmanual"
+      "openxr_gl_transfer_re_md"
     ],
     "232": [
-      "torso_reference_frames"
+      "playbook_audit_2026_08_27_freshness_ledger"
     ],
     "233": [
-      "user_guide_somavr"
+      "playbook_handover_2026_09_02_md"
     ],
     "234": [
-      "v0_16_0_controller_hands"
+      "private_fbo_remapping"
     ],
     "235": [
-      "v0_24_0_roomscale_safety"
+      "readme_md"
     ],
     "236": [
-      "v0_27_0_flashlight_gameplay"
+      "test_checklists_afrstereo"
     ],
     "237": [
-      "v0_46_0_per_eye_previous_view"
+      "test_checklists_audiopost"
     ],
     "238": [
-      "v0_58_0_native_grab_haptics"
+      "test_checklists_calibration_haptics"
     ],
     "239": [
-      "v0_62_0_physical_hinge_timing"
+      "test_checklists_cameramap"
     ],
     "240": [
-      "v0_65_1_object_rotation"
+      "test_checklists_compatprobe"
     ],
     "241": [
-      "vr_compatibility_re_somavr"
+      "test_checklists_fullcenter"
     ],
     "242": [
-      "xr_khr_composition_layer_cylinder"
+      "test_checklists_gameplay_actions"
     ],
     "243": [
-      "xrsim_integration_assessment_somavr"
+      "test_checklists_hands_identity"
     ],
     "244": [
+      "test_checklists_hplcamera"
+    ],
+    "245": [
+      "test_checklists_hud_layer"
+    ],
+    "246": [
+      "test_checklists_input_foundation"
+    ],
+    "247": [
+      "test_checklists_native_interaction"
+    ],
+    "248": [
+      "test_checklists_native_locomotion"
+    ],
+    "249": [
+      "test_checklists_onekey"
+    ],
+    "250": [
+      "test_checklists_poselatch"
+    ],
+    "251": [
+      "test_checklists_recenter"
+    ],
+    "252": [
+      "test_checklists_reconstruct"
+    ],
+    "253": [
+      "test_checklists_render_state_policy"
+    ],
+    "254": [
+      "test_checklists_renderdiag"
+    ],
+    "255": [
+      "test_checklists_rotationfix"
+    ],
+    "256": [
+      "test_checklists_runtime_resilience"
+    ],
+    "257": [
+      "test_checklists_shadowjitter"
+    ],
+    "258": [
+      "test_checklists_spatial_ownership"
+    ],
+    "259": [
+      "test_checklists_stability"
+    ],
+    "260": [
+      "test_checklists_tracking_accessibility"
+    ],
+    "261": [
+      "test_checklists_xrframe"
+    ],
+    "262": [
+      "test_checklists_xrhold"
+    ],
+    "263": [
+      "test_checklists_xrmanual"
+    ],
+    "264": [
+      "torso_reference_frames"
+    ],
+    "265": [
+      "user_guide_somavr"
+    ],
+    "266": [
+      "v0_16_0_controller_hands"
+    ],
+    "267": [
+      "v0_24_0_roomscale_safety"
+    ],
+    "268": [
+      "v0_27_0_flashlight_gameplay"
+    ],
+    "269": [
+      "v0_46_0_per_eye_previous_view"
+    ],
+    "270": [
+      "v0_58_0_native_grab_haptics"
+    ],
+    "271": [
+      "v0_62_0_physical_hinge_timing"
+    ],
+    "272": [
+      "v0_65_1_object_rotation"
+    ],
+    "273": [
+      "vr_compatibility_re_somavr"
+    ],
+    "274": [
+      "xr_khr_composition_layer_cylinder"
+    ],
+    "275": [
       "xrtape_first_run_somavr"
     ]
   },
   "cohesion": {
-    "0": 0.14166666666666666,
-    "1": 0.18181818181818182,
+    "0": 0.11764705882352941,
+    "1": 0.14285714285714285,
     "2": 0.2,
     "3": 0.25,
-    "4": 0.25,
-    "5": 0.2857142857142857,
-    "6": 0.2857142857142857,
-    "7": 0.3333333333333333,
-    "8": 0.3333333333333333,
+    "4": 0.3333333333333333,
+    "5": 0.4,
+    "6": 0.4,
+    "7": 0.5,
+    "8": 0.4,
     "9": 0.4,
     "10": 0.5,
-    "11": 0.4,
+    "11": 0.5,
     "12": 0.5,
     "13": 0.5,
     "14": 0.6666666666666666,
@@ -880,12 +983,12 @@
     "16": 0.6666666666666666,
     "17": 0.6666666666666666,
     "18": 0.6666666666666666,
-    "19": 1.0,
+    "19": 0.6666666666666666,
     "20": 0.6666666666666666,
-    "21": 1.0,
+    "21": 0.6666666666666666,
     "22": 1.0,
-    "23": 1.0,
-    "24": 1.0,
+    "23": 0.6666666666666666,
+    "24": 0.6666666666666666,
     "25": 1.0,
     "26": 1.0,
     "27": 1.0,
@@ -1105,32 +1208,58 @@
     "241": 1.0,
     "242": 1.0,
     "243": 1.0,
-    "244": 1.0
+    "244": 1.0,
+    "245": 1.0,
+    "246": 1.0,
+    "247": 1.0,
+    "248": 1.0,
+    "249": 1.0,
+    "250": 1.0,
+    "251": 1.0,
+    "252": 1.0,
+    "253": 1.0,
+    "254": 1.0,
+    "255": 1.0,
+    "256": 1.0,
+    "257": 1.0,
+    "258": 1.0,
+    "259": 1.0,
+    "260": 1.0,
+    "261": 1.0,
+    "262": 1.0,
+    "263": 1.0,
+    "264": 1.0,
+    "265": 1.0,
+    "266": 1.0,
+    "267": 1.0,
+    "268": 1.0,
+    "269": 1.0,
+    "270": 1.0,
+    "271": 1.0,
+    "272": 1.0,
+    "273": 1.0,
+    "274": 1.0,
+    "275": 1.0
   },
   "gods": [
     {
       "id": "somavr_dll",
       "label": "somavr.dll",
-      "degree": 7
+      "degree": 8
     },
     {
-      "id": "somavr_0_95_6",
-      "label": "SOMAVR 0.95.6-regression-recovery",
-      "degree": 6
-    },
-    {
-      "id": "hpl_grab_bridge",
-      "label": "HPLGrabBridge",
+      "id": "architecture_hplplayerstate",
+      "label": "HPLPlayerState",
       "degree": 5
     },
     {
-      "id": "hpl_input_bridge",
-      "label": "HPLInputBridge",
+      "id": "hpl_camera_bridge",
+      "label": "HPLCameraBridge",
       "degree": 5
     },
     {
-      "id": "architecture_openxrruntime",
-      "label": "OpenXRRuntime",
+      "id": "next_live_evidence_somavr_latest",
+      "label": "SOMAVR Latest (0.95.8-arm-palette-evidence)",
       "degree": 5
     },
     {
@@ -1139,85 +1268,90 @@
       "degree": 4
     },
     {
-      "id": "hpl_hud_bridge",
-      "label": "HPL HUD Bridge",
-      "degree": 4
-    },
-    {
-      "id": "hpl_camera_bridge",
-      "label": "HPLCameraBridge",
-      "degree": 4
-    },
-    {
-      "id": "soma_cluxplayer_onanaloginput",
-      "label": "cLuxPlayer::OnAnalogInput",
+      "id": "hpl_grab_bridge",
+      "label": "HPLGrabBridge",
       "degree": 4
     },
     {
       "id": "session_handover_2026_08_22_md",
       "label": "Session Handover \u2014 external review session, 2026-08-22",
       "degree": 4
+    },
+    {
+      "id": "architecture_hplhandsbridge",
+      "label": "HPLHandsBridge",
+      "degree": 4
+    },
+    {
+      "id": "build_history_0_95_8_arm_palette_evidence",
+      "label": "0.95.8-arm-palette-evidence",
+      "degree": 4
+    },
+    {
+      "id": "hpl_input_bridge",
+      "label": "HPLInputBridge",
+      "degree": 3
     }
   ],
   "surprises": [
     {
-      "source": "FEATURE.LOCOMOTION",
-      "target": "HPLInputBridge",
+      "source": "OpenGLHooks",
+      "target": "OpenXRRuntime",
       "source_files": [
         "FEATURE_TRACEABILITY.md",
         "COMFORT_AND_FOCUS_RE.md"
       ],
       "confidence": "INFERRED",
-      "relation": "implements",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `FEATURE.LOCOMOTION` unexpectedly reaches hub `HPLInputBridge`"
-    },
-    {
-      "source": "HPLGrabBridge",
-      "target": "somavr.dll",
-      "source_files": [
-        "HYPOTHESES.md",
-        "SESSION_HANDOVER_2026-08-22.md"
-      ],
-      "confidence": "INFERRED",
-      "relation": "participate_in",
+      "relation": "calls",
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
-    },
-    {
-      "source": "0.18.0 Grab Rotation, Physical Throw, And Crosshair Filter",
-      "target": "HPLGrabBridge",
-      "source_files": [
-        "TEST_CHECKLISTS.md",
-        "HYPOTHESES.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `0.18.0 Grab Rotation, Physical Throw, And Crosshair Filter` unexpectedly reaches hub `HPLGrabBridge`"
-    },
-    {
-      "source": "0.17.0 Physics Input And Native Grab",
-      "target": "HPLGrabBridge",
-      "source_files": [
-        "TEST_CHECKLISTS.md",
-        "HYPOTHESES.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories; peripheral node `0.17.0 Physics Input And Native Grab` unexpectedly reaches hub `HPLGrabBridge`"
     },
     {
       "source": "somavr.dll",
       "target": "gdi32!SwapBuffers",
       "source_files": [
-        "SESSION_HANDOVER_2026-08-22.md",
+        "FEATURE_TRACEABILITY.md",
         "UEVR_LEARNINGS.md"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "connects across different repos/directories; peripheral node `gdi32!SwapBuffers` unexpectedly reaches hub `somavr.dll`"
+    },
+    {
+      "source": "SOMAVR Code Review Handover",
+      "target": "somavr.dll",
+      "source_files": [
+        "REVIEW_HANDOVER_2026-08-07.md",
+        "FEATURE_TRACEABILITY.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `SOMAVR Code Review Handover` unexpectedly reaches hub `somavr.dll`"
+    },
+    {
+      "source": "SOMAVR Smoke Test Matrix",
+      "target": "somavr.dll",
+      "source_files": [
+        "SMOKE_TEST_MATRIX.md",
+        "FEATURE_TRACEABILITY.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `SOMAVR Smoke Test Matrix` unexpectedly reaches hub `somavr.dll`"
+    },
+    {
+      "source": "somavr.dll",
+      "target": "OpenXR API",
+      "source_files": [
+        "FEATURE_TRACEABILITY.md",
+        "README.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "implements",
+      "why": "connects across different repos/directories; peripheral node `OpenXR API` unexpectedly reaches hub `somavr.dll`"
     }
   ],
   "tokens": {
-    "input": 10655,
-    "output": 2061
+    "input": 173216,
+    "output": 26231
   }
 }

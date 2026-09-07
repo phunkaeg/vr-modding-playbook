@@ -1,115 +1,183 @@
 {
   "communities": {
     "0": [
-      "address_registry_cb2_pos",
-      "address_registry_cbuffer0_layout",
-      "address_registry_gameplay_camera_data",
-      "current_state_gate_verdict",
-      "frida",
-      "simulation_x64_dll",
-      "ts4_x64_exe"
+      "failure_registry_hot_path_hooks",
+      "failure_registry_renderdoc_mcp",
+      "next_tests_t1_cas",
+      "next_tests_t8_mirror",
+      "next_tests_t9_intervention",
+      "prior_art_fear_vr",
+      "prior_art_somavr",
+      "stereo_route_ladder",
+      "stereo_route_rung_1"
     ],
     "1": [
-      "decision_log_d004",
-      "decision_log_d007",
-      "decision_log_d008",
-      "tools_xrprobe",
-      "xr_sim",
-      "xr_tape"
+      "address_registry_cb2_pos",
+      "address_registry_cbuffer0",
+      "address_registry_reflection_install",
+      "address_registry_world_scale",
+      "current_state_gate_verdict"
     ],
     "2": [
-      "next_tests_t1",
-      "next_tests_t8",
-      "playbook_handover_mirror_reflection",
-      "prior_art_fear_vr",
-      "stereo_route_rung_ladder",
-      "testing_ivr_interface"
-    ],
-    "3": [
       "agents_re_mcp_toolkit",
       "agents_vr_re_workflow",
       "claude_project_rules",
       "readme_convexvr_mod",
       "readme_sims4vr"
     ],
+    "3": [
+      "decision_log_d004",
+      "decision_log_d007",
+      "tools_xrprobe",
+      "xr_sim"
+    ],
     "4": [
-      "current_state_cb2",
-      "current_state_event_8335",
-      "current_state_mirror_reflection",
-      "current_state_pass_24",
-      "current_state_pass_28"
+      "cb2_buffer",
+      "current_state_md",
+      "re_09"
     ],
     "5": [
-      "decision_log_d001",
-      "decision_log_d003",
-      "renderdoc_mcp"
+      "current_state_2026_08_27_closed",
+      "current_state_2026_09_02_t8",
+      "stereo_route_rung1"
     ],
     "6": [
-      "address_registry_camera_py_api",
-      "address_registry_static_global_candidate"
+      "address_registry_camera_struct",
+      "address_registry_python_api"
     ],
     "7": [
       "agents_renderdoc",
       "agents_xr_tape"
     ],
     "8": [
-      "failure_registry_constant_buffer_probe",
-      "failure_registry_zero_result_diagnostic"
+      "decision_log_d001",
+      "decision_log_d003"
     ],
     "9": [
-      "next_tests_t3",
-      "next_tests_t4"
-    ],
-    "10": [
       "playbook_handover_vertex_recovery",
       "testing_desk_assertions"
     ],
+    "10": [
+      "address_registry_gameplay_camera_data"
+    ],
     "11": [
-      "address_registry_camera_struct_x"
+      "address_registry_md"
     ],
     "12": [
-      "address_registry_camera_struct_y"
+      "address_registry_static_global_candidate"
     ],
     "13": [
-      "address_registry_camera_struct_z"
-    ],
-    "14": [
       "agents_cross_engine_docs_graph"
     ],
-    "15": [
+    "14": [
       "agents_ghidra"
     ],
-    "16": [
+    "15": [
       "agents_xr_sim"
     ],
+    "16": [
+      "current_state_2026_08_25"
+    ],
     "17": [
-      "current_state_ui_mirror_strategy"
+      "current_state_2026_08_27_capture_complete"
     ],
     "18": [
-      "decision_log_d002"
+      "current_state_2026_08_27_ghidra_ini"
     ],
     "19": [
-      "decision_log_d005"
+      "current_state_2026_08_27_occlusion_probe"
     ],
     "20": [
-      "decision_log_d006"
+      "current_state_2026_08_27_t2"
     ],
     "21": [
-      "next_tests_t2"
+      "current_state_2026_08_30_harness"
     ],
     "22": [
-      "playbook_handover_frida_dump"
+      "current_state_2026_08_31_rung0"
     ],
     "23": [
+      "current_state_2026_08_31_t7"
+    ],
+    "24": [
+      "current_state_2026_09_01_headset"
+    ],
+    "25": [
+      "current_state_ui_mirror_strategy"
+    ],
+    "26": [
+      "decision_log_d002"
+    ],
+    "27": [
+      "decision_log_d005"
+    ],
+    "28": [
+      "decision_log_d006"
+    ],
+    "29": [
+      "decision_log_d008"
+    ],
+    "30": [
+      "failure_registry_asymmetric_frustum"
+    ],
+    "31": [
+      "failure_registry_backtrace_reliability"
+    ],
+    "32": [
+      "failure_registry_event_pump"
+    ],
+    "33": [
+      "failure_registry_frida_api"
+    ],
+    "34": [
+      "failure_registry_geometry_checks"
+    ],
+    "35": [
+      "failure_registry_hardware_diagnosis"
+    ],
+    "36": [
+      "failure_registry_headset_controls"
+    ],
+    "37": [
+      "failure_registry_launcher_defects"
+    ],
+    "38": [
+      "failure_registry_md"
+    ],
+    "39": [
+      "failure_registry_recorder_vs_detector"
+    ],
+    "40": [
+      "failure_registry_srgb_swapchain"
+    ],
+    "41": [
+      "next_tests_t2_resolution"
+    ],
+    "42": [
+      "next_tests_t3_walls"
+    ],
+    "43": [
+      "next_tests_t6_msaa"
+    ],
+    "44": [
+      "playbook_handover_frida_dump"
+    ],
+    "45": [
       "playbook_handover_instance_format"
+    ],
+    "46": [
+      "playbook_handover_mirror_reflection"
+    ],
+    "47": [
+      "testing_ivr_interface"
     ]
   },
   "cohesion": {
-    "0": 0.2857142857142857,
-    "1": 0.3333333333333333,
-    "2": 0.3333333333333333,
-    "3": 0.4,
-    "4": 0.4,
+    "0": 0.2222222222222222,
+    "1": 0.4,
+    "2": 0.4,
+    "3": 0.5,
+    "4": 0.6666666666666666,
     "5": 0.6666666666666666,
     "6": 1.0,
     "7": 1.0,
@@ -128,38 +196,37 @@
     "20": 1.0,
     "21": 1.0,
     "22": 1.0,
-    "23": 1.0
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0
   },
   "gods": [
     {
-      "id": "address_registry_cbuffer0_layout",
-      "label": "Shader Constant Buffer 0 Layout",
-      "degree": 3
-    },
-    {
-      "id": "ts4_x64_exe",
-      "label": "TS4_x64.exe",
-      "degree": 3
-    },
-    {
-      "id": "tools_xrprobe",
-      "label": "xrprobe",
-      "degree": 3
-    },
-    {
-      "id": "playbook_handover_mirror_reflection",
-      "label": "Mirror Reflection Repeat Render",
-      "degree": 3
-    },
-    {
-      "id": "stereo_route_rung_ladder",
-      "label": "Stereo Rung Ladder (STR-006)",
-      "degree": 3
-    },
-    {
-      "id": "current_state_cb2",
-      "label": "Constant Buffer 2 (cb2)",
-      "degree": 3
+      "id": "stereo_route_rung_1",
+      "label": "Rung 1 \u2014 Native Scene Re-entry",
+      "degree": 6
     },
     {
       "id": "agents_vr_re_workflow",
@@ -167,8 +234,13 @@
       "degree": 3
     },
     {
-      "id": "simulation_x64_dll",
-      "label": "Simulation_x64.dll",
+      "id": "address_registry_cbuffer0",
+      "label": "Shader Constant Buffer 0 (cb0)",
+      "degree": 3
+    },
+    {
+      "id": "tools_xrprobe",
+      "label": "xrprobe",
       "degree": 2
     },
     {
@@ -177,8 +249,28 @@
       "degree": 2
     },
     {
-      "id": "xr_tape",
-      "label": "xr-tape",
+      "id": "readme_sims4vr",
+      "label": "Sims4VR",
+      "degree": 2
+    },
+    {
+      "id": "address_registry_cb2_pos",
+      "label": "Camera World Position (cb2[0])",
+      "degree": 2
+    },
+    {
+      "id": "stereo_route_rung1",
+      "label": "Stereo Route Rung 1",
+      "degree": 2
+    },
+    {
+      "id": "next_tests_t8_mirror",
+      "label": "T8 \u2014 Mirror/Repeat Render Search",
+      "degree": 2
+    },
+    {
+      "id": "next_tests_t9_intervention",
+      "label": "T9 \u2014 Camera Drive Intervention",
       "degree": 2
     }
   ],
@@ -195,6 +287,28 @@
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link"
     },
     {
+      "source": "fear-vr (LithTech) Prior Art",
+      "target": "Rung 1 \u2014 Native Scene Re-entry",
+      "source_files": [
+        "PRIOR_ART.md",
+        "STEREO_ROUTE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "semantically_similar_to",
+      "why": "connects across different repos/directories; semantically similar concepts with no structural link; peripheral node `fear-vr (LithTech) Prior Art` unexpectedly reaches hub `Rung 1 \u2014 Native Scene Re-entry`"
+    },
+    {
+      "source": "SOMAVR (HPL3) Prior Art",
+      "target": "Rung 1 \u2014 Native Scene Re-entry",
+      "source_files": [
+        "PRIOR_ART.md",
+        "STEREO_ROUTE.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "semantically_similar_to",
+      "why": "connects across different repos/directories; semantically similar concepts with no structural link; peripheral node `SOMAVR (HPL3) Prior Art` unexpectedly reaches hub `Rung 1 \u2014 Native Scene Re-entry`"
+    },
+    {
       "source": "Sims4VR",
       "target": "VR RE Workflow",
       "source_files": [
@@ -206,41 +320,19 @@
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
     },
     {
-      "source": "Shader Constant Buffer 0 Layout",
-      "target": "TS4_x64.exe",
-      "source_files": [
-        "ADDRESS_REGISTRY.md",
-        "CURRENT_STATE.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories"
-    },
-    {
-      "source": "Feasibility Gate: GO",
-      "target": "Shader Constant Buffer 0 Layout",
+      "source": "T8 ANSWERED \u2014 YES. The engine re-renders the world from a second camera",
+      "target": "Stereo Route Rung 1",
       "source_files": [
         "CURRENT_STATE.md",
-        "ADDRESS_REGISTRY.md"
+        "STEREO_ROUTE.md"
       ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories"
-    },
-    {
-      "source": "EA::Sims4::Persistence::GameplayCameraData",
-      "target": "Simulation_x64.dll",
-      "source_files": [
-        "ADDRESS_REGISTRY.md",
-        "CURRENT_STATE.md"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "references",
-      "why": "connects across different repos/directories"
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
     }
   ],
   "tokens": {
-    "input": 4704,
-    "output": 1104
+    "input": 82013,
+    "output": 9277
   }
 }

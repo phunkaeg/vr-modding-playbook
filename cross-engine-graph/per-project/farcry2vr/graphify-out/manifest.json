@@ -1,9 +1,9 @@
 {
   "ADDRESS_REGISTRY.md": {
-    "mtime": 1788394201.799289,
-    "seen": 1788403494.8829665,
-    "ast_hash": "999c565e254fadfcc187fcceac99ce1f",
-    "semantic_hash": "999c565e254fadfcc187fcceac99ce1f"
+    "mtime": 1788563697.0994506,
+    "seen": 1788746567.0350113,
+    "ast_hash": "73f5eb80d7e74d88f203fc3791d02d79",
+    "semantic_hash": "73f5eb80d7e74d88f203fc3791d02d79"
   },
   "CONVENTIONS.md": {
     "mtime": 1786791319.6695755,
@@ -15,7 +15,7 @@
     "mtime": 1788394222.7808156,
     "seen": 1788403494.8829665,
     "ast_hash": "ee6d5662a562c8e3b22476d675f6c07f",
-    "semantic_hash": "ee6d5662a562c8e3b22476d675f6c07f"
+    "semantic_hash": ""
   },
   "DECISION_LOG.md": {
     "mtime": 1785996986.5272748,
@@ -27,7 +27,7 @@
     "mtime": 1785804835.2965062,
     "seen": 1788403494.8829665,
     "ast_hash": "726535b8d8d3549c0e05bcff58835a8b",
-    "semantic_hash": "726535b8d8d3549c0e05bcff58835a8b"
+    "semantic_hash": ""
   },
   "DROP_REVIEW_FC2VR_20260903.md": {
     "mtime": 1788394438.8414302,
@@ -42,10 +42,10 @@
     "semantic_hash": "59bcf55cbaef34db890e71e53b47bb48"
   },
   "FAILURE_REGISTRY.md": {
-    "mtime": 1788393618.2684677,
-    "seen": 1788403494.8829665,
-    "ast_hash": "34bbeb210e321c69d245569eeb1d166b",
-    "semantic_hash": "34bbeb210e321c69d245569eeb1d166b"
+    "mtime": 1788532294.4968336,
+    "seen": 1788746567.0350113,
+    "ast_hash": "a7008c027b6c94d730e7938d87dff97a",
+    "semantic_hash": "a7008c027b6c94d730e7938d87dff97a"
   },
   "GAMEPLAY_VR_RISK.md": {
     "mtime": 1785798560.2165155,
@@ -207,7 +207,7 @@
     "mtime": 1787808180.993497,
     "seen": 1788403631.043448,
     "ast_hash": "60e700db4b5b7cd6c87bd1d7498901b9",
-    "semantic_hash": "60e700db4b5b7cd6c87bd1d7498901b9"
+    "semantic_hash": ""
   },
   "INSTALLATION.md": {
     "mtime": 1788150696.0005856,
@@ -219,7 +219,7 @@
     "mtime": 1788394438.185842,
     "seen": 1788403631.043448,
     "ast_hash": "b09ba51850dcf5fe5349fc250361e3fc",
-    "semantic_hash": "b09ba51850dcf5fe5349fc250361e3fc"
+    "semantic_hash": ""
   },
   "index.md": {
     "mtime": 1788151082.4737291,
@@ -256,5 +256,11 @@
     "seen": 1788403766.3915973,
     "ast_hash": "e0c0a81c545e3eafd84535db6279d235",
     "semantic_hash": "e0c0a81c545e3eafd84535db6279d235"
+  },
+  "HANDOVER_MOTION_CONTROLLER_HANDS.md": {
+    "mtime": 1788743526.334873,
+    "seen": 1788746567.0350113,
+    "ast_hash": "2e45af35e5902df4a34f580094b05120",
+    "semantic_hash": "2e45af35e5902df4a34f580094b05120"
   }
 }

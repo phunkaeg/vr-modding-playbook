@@ -1,0 +1,572 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "stereo_validation_suite",
+        "label": "Stereo Validation Suite",
+        "nodes": [
+          "per_view_ledger_zero_delta_test",
+          "stereo_ladder_rung_1",
+          "stereo_route_r1_native_reentry"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "STEREO_LADDER.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "agents_md",
+      "label": "AGENTS.md",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "agents.md",
+      "rationale": "Primary routing and playbook instructions for the project.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "authority_map_md",
+      "label": "AUTHORITY_MAP.md",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "authority_map.md",
+      "rationale": "Integration authority map confirming source-owned route for all layers.",
+      "source_file": "AUTHORITY_MAP.md"
+    },
+    {
+      "id": "current_state_md",
+      "label": "Current State",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "current state",
+      "rationale": "Tracking project progress through PORT and SRC gates.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "decision_log_md",
+      "label": "Decision Log",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "decision log",
+      "rationale": "Permanent record of architectural and design decisions.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "failure_registry_md",
+      "label": "Failure Registry",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "failure registry",
+      "rationale": "Registry of in-game and headset failures mapped to playbook IDs.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "hypotheses_md",
+      "label": "Hypotheses",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "hypotheses",
+      "rationale": "Falsifiable questions and experimental results.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "f_001",
+      "label": "F-001: Ground Culling",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "rationale",
+      "norm_label": "f-001: ground culling",
+      "rationale": "Asymmetric frustum pairing error (H-015).",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "concept_src_001",
+      "label": "Prepared Frame Once, Per-View Render",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "prepared frame once, per-view render",
+      "rationale": "cgame builds one scene; the renderer renders it once per eye by re-entering R_RenderView.",
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "id": "research_jkxr_seam_notes",
+      "label": "JKXR Seam Harvest",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "document",
+      "norm_label": "jkxr seam harvest",
+      "source_file": "research/jkxr-seam-notes.md"
+    },
+    {
+      "id": "research_lineage",
+      "label": "Engine Lineage",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "document",
+      "norm_label": "engine lineage",
+      "source_file": "research/lineage.md"
+    },
+    {
+      "id": "vr_integration_design",
+      "label": "VR Integration Design",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "document",
+      "norm_label": "vr integration design",
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "id": "dec_001",
+      "label": "DEC-001: Fork OpenMoHAA",
+      "_origin": "semantic",
+      "community": 10,
+      "file_type": "rationale",
+      "norm_label": "dec-001: fork openmohaa",
+      "rationale": "Decision to fork rather than inject due to monolithic binary structure.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "dec_018",
+      "label": "DEC-018: Aim through Eye-Information Channel",
+      "_origin": "semantic",
+      "community": 11,
+      "file_type": "rationale",
+      "norm_label": "dec-018: aim through eye-information channel",
+      "rationale": "Routing controller aim through existing CG_EyeAngles to avoid protocol changes.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "dec_019",
+      "label": "DEC-019: Hand-held Weapon Model",
+      "_origin": "semantic",
+      "community": 12,
+      "file_type": "rationale",
+      "norm_label": "dec-019: hand-held weapon model",
+      "rationale": "Overriding weapon attachment to follow tracked hand grip/aim poses.",
+      "source_file": "DECISION_LOG.md"
+    },
+    {
+      "id": "h_002",
+      "label": "H-002: Stereo Re-entry",
+      "_origin": "semantic",
+      "community": 13,
+      "file_type": "rationale",
+      "norm_label": "h-002: stereo re-entry",
+      "rationale": "Confirmed that R_RenderView can be re-entered for stereo without side effects.",
+      "source_file": "HYPOTHESES.md"
+    },
+    {
+      "id": "input_ownership_head_rotation",
+      "label": "Head Rotation Input",
+      "_origin": "semantic",
+      "community": 14,
+      "file_type": "concept",
+      "norm_label": "head rotation input",
+      "rationale": "Maps VR head pose to cg.refdefViewAngles/viewaxis while body keeps mouse yaw.",
+      "source_file": "INPUT_OWNERSHIP.md"
+    },
+    {
+      "id": "per_view_ledger_zero_delta_test",
+      "label": "Zero-Delta Test",
+      "_origin": "semantic",
+      "community": 15,
+      "file_type": "concept",
+      "norm_label": "zero-delta test",
+      "rationale": "Validation method to ensure once-per-frame counters remain identical between flat and VR paths.",
+      "source_file": "PER_VIEW_LEDGER.md"
+    },
+    {
+      "id": "pose_ownership_transform_chain",
+      "label": "Transform Chain",
+      "_origin": "semantic",
+      "community": 16,
+      "file_type": "concept",
+      "norm_label": "transform chain",
+      "rationale": "Defines the flow from OpenXR pose to game-specific id Tech 3 coordinate space.",
+      "source_file": "POSE_OWNERSHIP.md"
+    },
+    {
+      "id": "project_readme",
+      "label": "Medal of Honor: Allied Assault VR README",
+      "_origin": "semantic",
+      "community": 17,
+      "file_type": "document",
+      "norm_label": "medal of honor: allied assault vr readme",
+      "source_file": "_project/README.md"
+    },
+    {
+      "id": "render_pass_census_p10_hud",
+      "label": "P-10 2D HUD",
+      "_origin": "semantic",
+      "community": 18,
+      "file_type": "concept",
+      "norm_label": "p-10 2d hud",
+      "rationale": "Rendered once per frame to a head-locked quad layer, separate from world views.",
+      "source_file": "RENDER_PASS_CENSUS.md"
+    },
+    {
+      "id": "research_arms_body_leads",
+      "label": "Arms and Body Research",
+      "_origin": "semantic",
+      "community": 19,
+      "file_type": "document",
+      "norm_label": "arms and body research",
+      "source_file": "research/arms-body-leads.md"
+    },
+    {
+      "id": "concept_src_002",
+      "label": "VR-Independent Engine Changes",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "concept",
+      "norm_label": "vr-independent engine changes",
+      "rationale": "Changes the engine was missing that VR revealed, compiled unconditionally but default-off.",
+      "source_file": "UPSTREAM_MAINTENANCE.md"
+    },
+    {
+      "id": "test_checklists",
+      "label": "Test Checklists",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "test checklists",
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "id": "upstream_maintenance",
+      "label": "Upstream Maintenance",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "upstream maintenance",
+      "source_file": "UPSTREAM_MAINTENANCE.md"
+    },
+    {
+      "id": "research_retail_binary_notes",
+      "label": "Retail Binary Notes",
+      "_origin": "semantic",
+      "community": 20,
+      "file_type": "document",
+      "norm_label": "retail binary notes",
+      "source_file": "research/retail-binary-notes.md"
+    },
+    {
+      "id": "stereo_route_r1_native_reentry",
+      "label": "R1: Native Re-entry",
+      "_origin": "semantic",
+      "community": 21,
+      "file_type": "concept",
+      "norm_label": "r1: native re-entry",
+      "rationale": "Selected stereo route; engine renders each eye with its own R_RenderView call.",
+      "source_file": "STEREO_ROUTE.md"
+    },
+    {
+      "id": "openmohaa_fork",
+      "label": "OpenMoHAA Fork (a2f34019)",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "openmohaa fork (a2f34019)",
+      "rationale": "The baseline source code for the VR port.",
+      "source_file": "SOURCE_BASELINE.md"
+    },
+    {
+      "id": "openxr_runtime",
+      "label": "OpenXR Runtime",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "concept",
+      "norm_label": "openxr runtime",
+      "rationale": "External dependency (e.g., Virtual Desktop) providing tracking and swapchains.",
+      "source_file": "TARGET_PROFILE.md"
+    },
+    {
+      "id": "recovery_matrix_policy",
+      "label": "Recovery Matrix Policy",
+      "_origin": "semantic",
+      "community": 3,
+      "file_type": "concept",
+      "norm_label": "recovery matrix policy",
+      "rationale": "Defines system behavior during lifecycle failures (e.g., session loss, headset off).",
+      "source_file": "RECOVERY_MATRIX.md"
+    },
+    {
+      "id": "claude_agents",
+      "label": "AGENTS.md",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "document",
+      "norm_label": "agents.md",
+      "rationale": "Contains routing rules and playbook instructions for the repository.",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "docs_current_state",
+      "label": "CURRENT_STATE.md",
+      "_origin": "semantic",
+      "community": 4,
+      "file_type": "document",
+      "norm_label": "current_state.md",
+      "rationale": "Tracks the earliest uncleared gate and active bottlenecks.",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "input_ownership_m2_aim_pose",
+      "label": "M2 Controller Aim Pose",
+      "_origin": "semantic",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "m2 controller aim pose",
+      "rationale": "Decouples aim from head using vr_aimMode 1; reaches server via CL_EyeInfo.",
+      "source_file": "INPUT_OWNERSHIP.md"
+    },
+    {
+      "id": "port_brief_milestone_2",
+      "label": "Milestone 2 (T2)",
+      "_origin": "semantic",
+      "community": 5,
+      "file_type": "concept",
+      "norm_label": "milestone 2 (t2)",
+      "rationale": "6DoF head translation and motion controllers; aim decoupled from view.",
+      "source_file": "PORT_BRIEF.md"
+    },
+    {
+      "id": "port_brief_milestone_1",
+      "label": "Milestone 1 (T1)",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "milestone 1 (t1)",
+      "rationale": "Stereo view with head rotation driving camera; stock input unchanged.",
+      "source_file": "PORT_BRIEF.md"
+    },
+    {
+      "id": "stereo_ladder_rung_1",
+      "label": "Rung 1: Runtime Transport",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "concept",
+      "norm_label": "rung 1: runtime transport",
+      "rationale": "Proves OpenXR instance/session creation and basic image submission.",
+      "source_file": "STEREO_LADDER.md"
+    },
+    {
+      "id": "concept_xr_001",
+      "label": "Capability from Results, not Requests",
+      "_origin": "semantic",
+      "community": 9,
+      "file_type": "concept",
+      "norm_label": "capability from results, not requests",
+      "rationale": "VR hooks stay on original branch if OpenXR calls fail or vr_enable is 0.",
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "id": "readme",
+      "label": "README.md",
+      "community": 7,
+      "file_type": "document",
+      "norm_label": "readme.md",
+      "rationale": "The playbook paper trail for the port, defining the gate table and document purposes.",
+      "source_file": "README.md"
+    },
+    {
+      "id": "render_ownership_map",
+      "label": "Render Ownership Map (SRC-02)",
+      "community": 7,
+      "file_type": "document",
+      "norm_label": "render ownership map (src-02)",
+      "rationale": "Defines ownership of frame, view, culling, and passes in OpenMoHAA at fork commit a2f34019.",
+      "source_file": "RENDER_OWNERSHIP_MAP.md"
+    },
+    {
+      "id": "concept_stereo_trip_hazard",
+      "label": "SRC-001 Trip Hazard",
+      "community": 8,
+      "file_type": "concept",
+      "norm_label": "src-001 trip hazard",
+      "rationale": "Legacy stereo path causes double-execution of simulation-sensitive logic (snapshot processing, prediction) because CL_CGameRendering updates cl.oldServerTime after the first eye.",
+      "source_file": "RENDER_OWNERSHIP_MAP.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "vr_integration_design",
+      "target": "concept_src_001",
+      "relation": "implements",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_INTEGRATION_DESIGN.md"
+    },
+    {
+      "source": "input_ownership_m2_aim_pose",
+      "target": "port_brief_milestone_2",
+      "relation": "participate_in",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "INPUT_OWNERSHIP.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "current_state_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "source": "claude_agents",
+      "target": "docs_current_state",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "authority_map_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "decision_log_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "failure_registry_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "hypotheses_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "f_001",
+      "target": "hypotheses_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "openmohaa_fork",
+      "target": "openxr_runtime",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TARGET_PROFILE.md"
+    },
+    {
+      "source": "recovery_matrix_policy",
+      "target": "openxr_runtime",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RECOVERY_MATRIX.md"
+    },
+    {
+      "source": "research_lineage",
+      "target": "research_jkxr_seam_notes",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/lineage.md"
+    },
+    {
+      "source": "test_checklists",
+      "target": "upstream_maintenance",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TEST_CHECKLISTS.md"
+    },
+    {
+      "source": "upstream_maintenance",
+      "target": "concept_src_002",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "UPSTREAM_MAINTENANCE.md"
+    },
+    {
+      "source": "port_brief_milestone_1",
+      "target": "stereo_ladder_rung_1",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "STEREO_LADDER.md"
+    },
+    {
+      "source": "research_jkxr_seam_notes",
+      "target": "concept_src_001",
+      "relation": "semantically_similar_to",
+      "_origin": "semantic",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "research/jkxr-seam-notes.md"
+    },
+    {
+      "source": "readme",
+      "target": "render_ownership_map",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "stereo_validation_suite",
+      "label": "Stereo Validation Suite",
+      "nodes": [
+        "per_view_ledger_zero_delta_test",
+        "stereo_ladder_rung_1",
+        "stereo_route_r1_native_reentry"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "STEREO_LADDER.md"
+    }
+  ],
+  "built_at_commit": "f164879b6778539de63099302a3d994db92f21ce"
+}

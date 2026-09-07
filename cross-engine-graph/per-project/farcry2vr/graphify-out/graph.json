@@ -43,18 +43,6 @@
         "source_file": "CLAUDE.md"
       },
       {
-        "id": "stereo_rendering_flow",
-        "label": "Stereo Rendering Pipeline",
-        "nodes": [
-          "current_state_worldexec",
-          "current_state_frustum_mismatch",
-          "current_state_shared_surface_bridge"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 0.9
-      },
-      {
         "id": "weapon_system_mechanics",
         "label": "Weapon System Mechanics",
         "nodes": [
@@ -80,6 +68,21 @@
         "confidence": "EXTRACTED",
         "confidence_score": 0.95,
         "source_file": "archive/HANDOVER.md"
+      },
+      {
+        "id": "native_stereo_pipeline",
+        "label": "Native Stereo Pipeline",
+        "nodes": [
+          "address_registry_cameracopy",
+          "address_registry_camerarebuild",
+          "address_registry_viewbuilder",
+          "address_registry_prepareframegraph",
+          "address_registry_worldexec"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "ADDRESS_REGISTRY.md"
       },
       {
         "id": "player_rig_structure",
@@ -135,6 +138,18 @@
         "source_file": "runbooks/apitrace.md"
       },
       {
+        "id": "anchor_ladder_rungs",
+        "label": "Anchor Ladder Rungs",
+        "nodes": [
+          "address_registry_fce_api",
+          "address_registry_weapon_registerfields"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "ADDRESS_REGISTRY.md"
+      },
+      {
         "id": "authored_state_signals",
         "label": "Authored State Detection Signals",
         "nodes": [
@@ -146,19 +161,6 @@
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
         "source_file": "RE_FINDINGS.md"
-      },
-      {
-        "id": "camera_math_trio",
-        "label": "Camera Management Trio",
-        "nodes": [
-          "camera_copy",
-          "camera_rebuild",
-          "view_builder"
-        ],
-        "relation": "form",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "CURRENT_STATE.md"
       },
       {
         "id": "camera_offset_mechanisms",
@@ -173,6 +175,19 @@
         "source_file": "RE_FINDINGS.md"
       },
       {
+        "id": "camera_rotation_conventions",
+        "label": "Dunia Euler Conventions",
+        "nodes": [
+          "fc2vr_quatfromeulerxyz",
+          "fc2vr_buildmatrixfromeuler",
+          "aim_angles"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CURRENT_STATE.md"
+      },
+      {
         "id": "camera_system_flow",
         "label": "Camera State to GPU Flow",
         "nodes": [
@@ -184,18 +199,6 @@
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
         "source_file": "RE_FINDINGS.md"
-      },
-      {
-        "id": "d3d10_renderer_interface",
-        "label": "D3D10 Renderer Interface",
-        "nodes": [
-          "world_exec_d3d10",
-          "prepare_frame_graph_d3d10"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "CURRENT_STATE.md"
       },
       {
         "id": "native_stereo_render_loop",
@@ -228,25 +231,12 @@
         "id": "viewmodel_decoupling_flow",
         "label": "Viewmodel Decoupling Flow",
         "nodes": [
-          "bone_80_palm",
           "handover_viewmodel_and_aim_animator_hook"
         ],
         "relation": "implement",
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
         "source_file": "HANDOVER_VIEWMODEL_AND_AIM.md"
-      },
-      {
-        "id": "stereo_rendering_strategies",
-        "label": "Stereo Rendering Strategies",
-        "nodes": [
-          "scene_reentry",
-          "alternate_eye_rendering"
-        ],
-        "relation": "form",
-        "confidence": "INFERRED",
-        "confidence_score": 0.8,
-        "source_file": "DE_RISKING_BATTERY.md"
       },
       {
         "id": "headless_automation_stack",
@@ -262,36 +252,31 @@
         "source_file": "runbooks/headless-harness.md"
       },
       {
-        "id": "vr_input_pipeline",
-        "label": "VR Input to Bone Pipeline",
+        "id": "renderer_detection_failures",
+        "label": "Renderer Detection & Startup Failures",
         "nodes": [
-          "bone_80_palm",
-          "arm_ik_solver",
-          "farcry2vr_dll"
+          "failure_registry_f003",
+          "failure_registry_f004",
+          "failure_registry_f008"
         ],
-        "relation": "participate_in",
+        "relation": "form",
         "confidence": "INFERRED",
         "confidence_score": 0.85,
-        "source_file": "CURRENT_STATE.md"
+        "source_file": "FAILURE_REGISTRY.md"
       }
-    ]
+    ],
+    "_unverified_semantic_shrink": {
+      "CURRENT_STATE.md": [
+        22,
+        11
+      ],
+      "DE_RISKING_BATTERY.md": [
+        2,
+        1
+      ]
+    }
   },
   "nodes": [
-    {
-      "id": "address_registry_md",
-      "label": "Address Registry",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 1,
-      "contributor": null,
-      "file_type": "document",
-      "norm_label": "address registry",
-      "rationale": null,
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
     {
       "id": "re_findings_aimangles",
       "label": "AimAngles",
@@ -428,42 +413,12 @@
       "source_url": null
     },
     {
-      "id": "dunia_dll_camera_object",
-      "label": "Camera Object Layout",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 22,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "camera object layout",
-      "rationale": "Decompiled from CameraRebuild; defines offsets for position (+0x1F0) and view matrix (+0x30)",
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "dunia_world_space",
-      "label": "Dunia World Space",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 22,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "dunia world space",
-      "rationale": "Z-up, radians, 1 unit = 1 metre (confirmed physically)",
-      "source_file": "CONVENTIONS.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
       "id": "re_findings_aim_takeover",
       "label": "Aim Takeover (outB)",
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 27,
+      "community": 31,
       "contributor": null,
       "file_type": "code",
       "norm_label": "aim takeover (outb)",
@@ -478,7 +433,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 27,
+      "community": 31,
       "contributor": null,
       "file_type": "code",
       "norm_label": "fc2vr_player_fireweapon",
@@ -493,7 +448,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 28,
+      "community": 32,
       "contributor": null,
       "file_type": "code",
       "norm_label": "first-person camera offset (mgr+0xc4)",
@@ -508,71 +463,11 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 28,
+      "community": 32,
       "contributor": null,
       "file_type": "code",
       "norm_label": "weapon camera offset (+0x6c)",
       "rationale": "Falsified as a viewmodel transform; it actually moves the camera while a weapon is held.",
-      "source_file": "RE_FINDINGS.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "re_findings_bridge_sync",
-      "label": "Bridge Synchronization",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 53,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "bridge synchronization",
-      "rationale": "Identified as a performance risk (SYNC=NONE) causing stale/torn frames as flat FPS exceeds HMD refresh.",
-      "source_file": "RE_FINDINGS.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "re_findings_displacement_signal",
-      "label": "Displacement Signal",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 54,
-      "contributor": null,
-      "file_type": "concept",
-      "norm_label": "displacement signal",
-      "rationale": "Validated as a superior discriminator for authored camera states compared to roll or instantaneous speed.",
-      "source_file": "RE_FINDINGS.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "re_findings_fov_horizontal",
-      "label": "Horizontal FOV (+0x2C)",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 55,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "horizontal fov (+0x2c)",
-      "rationale": "Arithmetic resolution of 16:9 aspect ratio confirms +0x2C is horizontal, correcting previous documentation.",
-      "source_file": "RE_FINDINGS.md",
-      "source_location": null,
-      "source_url": null
-    },
-    {
-      "id": "re_findings_xinput_seam",
-      "label": "XInput Seam",
-      "_origin": "semantic",
-      "author": null,
-      "captured_at": null,
-      "community": 56,
-      "contributor": null,
-      "file_type": "code",
-      "norm_label": "xinput seam",
-      "rationale": "Confirmed polling at ~430 Hz on user 0; identified as the rung-3 input injection point.",
       "source_file": "RE_FINDINGS.md",
       "source_location": null,
       "source_url": null
@@ -583,7 +478,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 4,
       "contributor": null,
       "file_type": "code",
       "norm_label": "authored-state detector",
@@ -598,7 +493,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 4,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "malaria attack",
@@ -613,7 +508,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 4,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "sprint gait",
@@ -628,7 +523,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 4,
       "contributor": null,
       "file_type": "document",
       "norm_label": "validity contract",
@@ -638,12 +533,87 @@
       "source_url": null
     },
     {
+      "id": "dunia_world_space",
+      "label": "Dunia World Space",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 42,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "dunia world space",
+      "rationale": "Z-up, radians, 1 unit = 1 metre (confirmed physically)",
+      "source_file": "CONVENTIONS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "re_findings_bridge_sync",
+      "label": "Bridge Synchronization",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 57,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "bridge synchronization",
+      "rationale": "Identified as a performance risk (SYNC=NONE) causing stale/torn frames as flat FPS exceeds HMD refresh.",
+      "source_file": "RE_FINDINGS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "re_findings_displacement_signal",
+      "label": "Displacement Signal",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 58,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "displacement signal",
+      "rationale": "Validated as a superior discriminator for authored camera states compared to roll or instantaneous speed.",
+      "source_file": "RE_FINDINGS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "re_findings_fov_horizontal",
+      "label": "Horizontal FOV (+0x2C)",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 59,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "horizontal fov (+0x2c)",
+      "rationale": "Arithmetic resolution of 16:9 aspect ratio confirms +0x2C is horizontal, correcting previous documentation.",
+      "source_file": "RE_FINDINGS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "re_findings_xinput_seam",
+      "label": "XInput Seam",
+      "_origin": "semantic",
+      "author": null,
+      "captured_at": null,
+      "community": 60,
+      "contributor": null,
+      "file_type": "code",
+      "norm_label": "xinput seam",
+      "rationale": "Confirmed polling at ~430 Hz on user 0; identified as the rung-3 input injection point.",
+      "source_file": "RE_FINDINGS.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
       "id": "troubleshooting_symptom_classes",
       "label": "Known Symptom Classes",
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 63,
+      "community": 67,
       "contributor": null,
       "file_type": "document",
       "norm_label": "known symptom classes",
@@ -653,108 +623,10 @@
       "source_url": null
     },
     {
-      "id": "runbooks_apitrace_apitrace",
-      "label": "apitrace",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "apitrace",
-      "rationale": "Lighter instrument for D3D10.1 call streaming; avoids address-space exhaustion in 32-bit targets compared to RenderDoc.",
-      "source_file": "runbooks/apitrace.md"
-    },
-    {
-      "id": "runbooks_apitrace_farcry2_exe",
-      "label": "FarCry2.exe",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "farcry2.exe",
-      "source_file": "runbooks/apitrace.md"
-    },
-    {
-      "id": "runbooks_apitrace_find_matrices",
-      "label": "find_matrices",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "find_matrices",
-      "rationale": "Tool used to locate projection and view matrices in trace streams.",
-      "source_file": "runbooks/apitrace.md"
-    },
-    {
-      "id": "runbooks_apitrace_systemdetection_dll",
-      "label": "systemdetection.dll",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "systemdetection.dll",
-      "rationale": "Performs logical processor count check that crashes on 32-core systems without affinity masking.",
-      "source_file": "runbooks/apitrace.md"
-    },
-    {
-      "id": "runbooks_apitrace_trace_farcry2_ps1",
-      "label": "Trace-FarCry2.ps1",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "trace-farcry2.ps1",
-      "rationale": "Orchestrates apitrace launch with affinity mask inheritance and framerate capping.",
-      "source_file": "runbooks/apitrace.md"
-    },
-    {
-      "id": "runbooks_injection_farcry2vr_dll",
-      "label": "farcry2vr.dll",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "farcry2vr.dll",
-      "source_file": "runbooks/injection.md"
-    },
-    {
-      "id": "runbooks_injection_fc2vr_inject_exe",
-      "label": "fc2vr_inject.exe",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "fc2vr_inject.exe",
-      "rationale": "Injector that applies mandatory CPU affinity mask at process creation to bypass systemdetection.dll crash.",
-      "source_file": "runbooks/injection.md"
-    },
-    {
-      "id": "runbooks_xr_tape_xr_tape",
-      "label": "xr-tape",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "xr-tape",
-      "rationale": "OpenXR API layer for recording and validating stereo submission metrics.",
-      "source_file": "runbooks/xr-tape.md"
-    },
-    {
-      "id": "runbooks_xrsim_xrsim",
-      "label": "xrsim",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "xrsim",
-      "rationale": "32-bit OpenXR simulated runtime used to exercise VR paths without physical hardware.",
-      "source_file": "runbooks/xrsim.md"
-    },
-    {
-      "id": "runbooks_apitrace_affinity_mask",
-      "label": "CPU Affinity Mask (0x7FFFFFFF)",
-      "_origin": "semantic",
-      "community": 0,
-      "file_type": "concept",
-      "norm_label": "cpu affinity mask (0x7fffffff)",
-      "rationale": "Required to prevent x86 shift overflow in systemdetection.dll on 32-core machines.",
-      "source_file": "runbooks/apitrace.md"
-    },
-    {
       "id": "dunia_dll",
       "label": "Dunia.dll",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "dunia.dll",
       "rationale": "Main engine module; exports FCE_* C API.",
@@ -764,101 +636,228 @@
       "id": "engine_dunia_exports_fce_exports",
       "label": "Dunia FCE Exports",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "dunia fce exports",
       "rationale": "Named export table from Dunia.dll providing high-level engine API access.",
       "source_file": "engine/DUNIA_EXPORTS.md"
     },
     {
-      "id": "farcry2vr_dll",
-      "label": "farcry2vr.dll",
+      "id": "farcry2_exe",
+      "label": "FarCry2.exe",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
-      "norm_label": "farcry2vr.dll",
-      "rationale": "The 32-bit DLL being built and injected into the game.",
-      "source_file": "CURRENT_STATE.md"
+      "norm_label": "farcry2.exe",
+      "rationale": "32-bit host executable; requires 4GB/LAA patch.",
+      "source_file": "CLAUDE.md"
     },
     {
       "id": "fce_camera_getpos",
       "label": "FCE_Camera_GetPos",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
       "norm_label": "fce_camera_getpos",
       "source_file": "engine/DUNIA_EXPORTS.md"
     },
     {
-      "id": "openxr_runtime",
-      "label": "OpenXR Runtime",
+      "id": "re_mcp_toolkit",
+      "label": "re-mcp-toolkit",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
-      "norm_label": "openxr runtime",
-      "rationale": "Virtual Desktop 32-bit manifest used for VR session management.",
-      "source_file": "CURRENT_STATE.md"
+      "norm_label": "re-mcp-toolkit",
+      "rationale": "Skill required for using reverse-engineering MCP tools.",
+      "source_file": "AGENTS.md"
     },
     {
-      "id": "startup_watchdog",
-      "label": "Startup Watchdog",
+      "id": "trace_farcry2_ps1",
+      "label": "scripts/Trace-FarCry2.ps1",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
-      "norm_label": "startup watchdog",
-      "rationale": "Diagnostic tool to identify the cause of intermittent startup stalls (NEVER_DREW vs PRESENT_STALL).",
-      "source_file": "CURRENT_STATE.md"
+      "norm_label": "scripts/trace-farcry2.ps1",
+      "rationale": "Script to launch apitrace with mandatory affinity mask.",
+      "source_file": "CLAUDE.md"
     },
     {
-      "id": "xr_sim",
-      "label": "Xr-sim",
+      "id": "xr_tape",
+      "label": "xr-tape",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "code",
-      "norm_label": "xr-sim",
-      "rationale": "Standalone OpenXR simulator used for headless testing and sequence validation.",
-      "source_file": "CURRENT_STATE.md"
+      "norm_label": "xr-tape",
+      "rationale": "OpenXR API layer for recording and checking submissions.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "agents_codex",
+      "label": "AGENTS.md",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "agents.md",
+      "rationale": "Codex-specific project rules and MCP roster.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "claude_rules",
+      "label": "CLAUDE.md",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "claude.md",
+      "rationale": "Authoritative project rules and orientation order.",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "cross_engine_graph",
+      "label": "Cross-Engine Docs Graph",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "cross-engine docs graph",
+      "rationale": "Prior art from SS2VR, BioshockVR, and SOMAVR.",
+      "source_file": "AGENTS.md"
     },
     {
       "id": "engine_player_rig_map_bone_map",
       "label": "Player Rig Bone Map",
       "_origin": "semantic",
-      "community": 1,
+      "community": 0,
       "file_type": "document",
       "norm_label": "player rig bone map",
       "rationale": "Mapping of 106 bones in the player skeleton for VR hand/arm tracking.",
       "source_file": "engine/PLAYER_RIG_MAP.md"
     },
     {
-      "id": "arm_ik_solver",
-      "label": "Arm IK Solver",
+      "id": "runbooks_apitrace_apitrace",
+      "label": "apitrace",
       "_origin": "semantic",
-      "community": 11,
+      "community": 1,
       "file_type": "code",
-      "norm_label": "arm ik solver",
-      "rationale": "Calculates elbow position and swings arm geometry to match hand poses.",
-      "source_file": "CURRENT_STATE.md"
+      "norm_label": "apitrace",
+      "rationale": "Lighter instrument for D3D10.1 call streaming; avoids address-space exhaustion in 32-bit targets compared to RenderDoc.",
+      "source_file": "runbooks/apitrace.md"
     },
     {
-      "id": "handover_viewmodel_and_aim_animator_hook",
-      "label": "Animator Hook (FUN_100D7B10)",
+      "id": "runbooks_apitrace_farcry2_exe",
+      "label": "FarCry2.exe",
       "_origin": "semantic",
-      "community": 11,
+      "community": 1,
       "file_type": "code",
-      "norm_label": "animator hook (fun_100d7b10)",
-      "rationale": "Shared matrix helper that writes bone matrices; hooking here allows per-bone transform overrides during evaluation.",
-      "source_file": "HANDOVER_VIEWMODEL_AND_AIM.md",
-      "source_location": "0xD7B10"
+      "norm_label": "farcry2.exe",
+      "source_file": "runbooks/apitrace.md"
     },
     {
-      "id": "bone_80_palm",
-      "label": "Bone 80 (Right Palm)",
+      "id": "runbooks_apitrace_find_matrices",
+      "label": "find_matrices",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "find_matrices",
+      "rationale": "Tool used to locate projection and view matrices in trace streams.",
+      "source_file": "runbooks/apitrace.md"
+    },
+    {
+      "id": "runbooks_apitrace_systemdetection_dll",
+      "label": "systemdetection.dll",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "systemdetection.dll",
+      "rationale": "Performs logical processor count check that crashes on 32-core systems without affinity masking.",
+      "source_file": "runbooks/apitrace.md"
+    },
+    {
+      "id": "runbooks_apitrace_trace_farcry2_ps1",
+      "label": "Trace-FarCry2.ps1",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "trace-farcry2.ps1",
+      "rationale": "Orchestrates apitrace launch with affinity mask inheritance and framerate capping.",
+      "source_file": "runbooks/apitrace.md"
+    },
+    {
+      "id": "runbooks_injection_farcry2vr_dll",
+      "label": "farcry2vr.dll",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "farcry2vr.dll",
+      "source_file": "runbooks/injection.md"
+    },
+    {
+      "id": "runbooks_injection_fc2vr_inject_exe",
+      "label": "fc2vr_inject.exe",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "fc2vr_inject.exe",
+      "rationale": "Injector that applies mandatory CPU affinity mask at process creation to bypass systemdetection.dll crash.",
+      "source_file": "runbooks/injection.md"
+    },
+    {
+      "id": "runbooks_xr_tape_xr_tape",
+      "label": "xr-tape",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "xr-tape",
+      "rationale": "OpenXR API layer for recording and validating stereo submission metrics.",
+      "source_file": "runbooks/xr-tape.md"
+    },
+    {
+      "id": "runbooks_xrsim_xrsim",
+      "label": "xrsim",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "xrsim",
+      "rationale": "32-bit OpenXR simulated runtime used to exercise VR paths without physical hardware.",
+      "source_file": "runbooks/xrsim.md"
+    },
+    {
+      "id": "runbooks_apitrace_affinity_mask",
+      "label": "CPU Affinity Mask (0x7FFFFFFF)",
+      "_origin": "semantic",
+      "community": 1,
+      "file_type": "concept",
+      "norm_label": "cpu affinity mask (0x7fffffff)",
+      "rationale": "Required to prevent x86 shift overflow in systemdetection.dll on 32-core machines.",
+      "source_file": "runbooks/apitrace.md"
+    },
+    {
+      "id": "id3d10device",
+      "label": "ID3D10Device",
       "_origin": "semantic",
       "community": 11,
       "file_type": "concept",
-      "norm_label": "bone 80 (right palm)",
-      "rationale": "The specific bone index where the weapon is attached and driven by VR controllers.",
-      "source_file": "CURRENT_STATE.md"
+      "norm_label": "id3d10device",
+      "rationale": "Core graphics device interface required for the eye-image bridge and frame inspector.",
+      "source_file": "archive/NEEDS_USER_INPUT.md"
+    },
+    {
+      "id": "archive_needs_user_input",
+      "label": "Needs User Input (Archived)",
+      "_origin": "semantic",
+      "community": 11,
+      "file_type": "document",
+      "norm_label": "needs user input (archived)",
+      "rationale": "Historical record of manual testing requirements and early D3D10 device resolution methods.",
+      "source_file": "archive/NEEDS_USER_INPUT.md"
+    },
+    {
+      "id": "archive_probe_plan",
+      "label": "Probe Plan (Archived)",
+      "_origin": "semantic",
+      "community": 11,
+      "file_type": "document",
+      "norm_label": "probe plan (archived)",
+      "rationale": "Catalogue of data extraction targets (P-01 to P-22) for VR capability unlocking.",
+      "source_file": "archive/PROBE_PLAN.md"
     },
     {
       "id": "doc_index",
@@ -920,64 +919,23 @@
       "source_file": "RE_FINDINGS.md"
     },
     {
-      "id": "archive_handover_b1_32bit_openxr",
-      "label": "32-bit OpenXR Runtime",
-      "_origin": "semantic",
-      "community": 17,
-      "file_type": "concept",
-      "norm_label": "32-bit openxr runtime",
-      "rationale": "Confirmed viable via Virtual Desktop's dedicated 32-bit manifest and successful sibling project (BioshockVR).",
-      "source_file": "archive/HANDOVER.md"
-    },
-    {
-      "id": "archive_handover_f001_motion_comp_layer",
-      "label": "Motion Compensation Layer Hazard",
-      "_origin": "semantic",
-      "community": 17,
-      "file_type": "concept",
-      "norm_label": "motion compensation layer hazard",
-      "rationale": "A 32-bit specific implicit layer that causes crashes; must be disabled via environment variable before xrCreateInstance.",
-      "source_file": "archive/HANDOVER.md"
-    },
-    {
-      "id": "archive_handover_d3d10_creation_globals",
-      "label": "Dunia D3D10 Creation Globals",
-      "_origin": "semantic",
-      "community": 18,
-      "file_type": "code",
-      "norm_label": "dunia d3d10 creation globals",
-      "rationale": "Dunia uses a hand-rolled dynamic import layer (GetProcAddress into globals) for D3D10/DXGI, allowing interception by swapping globals.",
-      "source_file": "archive/HANDOVER.md"
-    },
-    {
-      "id": "archive_handover_dunia_draw_hook",
-      "label": "Dunia Draw Hook",
-      "_origin": "semantic",
-      "community": 18,
-      "file_type": "code",
-      "norm_label": "dunia draw hook",
-      "rationale": "Intercepts Dunia's own virtual render-device vtable at slot +0xE0 instead of D3D10 directly to avoid the per-frame vtable restoration race.",
-      "source_file": "archive/HANDOVER.md"
-    },
-    {
-      "id": "archive_handover_dunia_camera_write",
-      "label": "Dunia Camera Write",
+      "id": "alternate_eye_rendering",
+      "label": "Alternate-Eye Rendering",
       "_origin": "semantic",
       "community": 19,
-      "file_type": "code",
-      "norm_label": "dunia camera write",
-      "rationale": "Implemented via call-site retargeting of FC2VR_BuildRenderView_Game at Dunia+0x34619E rather than a trampoline.",
-      "source_file": "archive/HANDOVER.md"
+      "file_type": "concept",
+      "norm_label": "alternate-eye rendering",
+      "rationale": "Considered viable because Far Cry 2 lacks a velocity buffer/temporal history (pre-temporal renderer).",
+      "source_file": "DECISION_LOG.md"
     },
     {
-      "id": "archive_handover_hotkey_f10",
-      "label": "F10 Hotkey Action",
+      "id": "decision_log",
+      "label": "Decision Log",
       "_origin": "semantic",
       "community": 19,
-      "file_type": "code",
-      "norm_label": "f10 hotkey action",
-      "rationale": "Used to arm the camera write manually because automatic gates (bootstrap or frame count) failed due to engine initialization and variable frame rates.",
-      "source_file": "archive/HANDOVER.md"
+      "file_type": "document",
+      "norm_label": "decision log",
+      "source_file": "DECISION_LOG.md"
     },
     {
       "id": "re_findings_camera_rebuild",
@@ -1060,49 +1018,70 @@
       "source_file": "RE_FINDINGS.md"
     },
     {
-      "id": "current_state_shared_surface_bridge",
-      "label": "Shared Surface Bridge",
+      "id": "archive_handover_b1_32bit_openxr",
+      "label": "32-bit OpenXR Runtime",
       "_origin": "semantic",
       "community": 20,
-      "file_type": "code",
-      "norm_label": "shared surface bridge",
-      "rationale": "Connects Far Cry 2's D3D10.1 image to private D3D11 device for OpenXR. Uses DXGI shared handle and keyed mutex.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_viewmodel_lever",
-      "label": "Viewmodel Lever Falsification",
-      "_origin": "semantic",
-      "community": 20,
-      "file_type": "rationale",
-      "norm_label": "viewmodel lever falsification",
-      "rationale": "weapon+0x6C moves the camera, not the weapon mesh. SetWeaponCameraOffset is a camera knob, not a viewmodel control.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "scene_reentry",
-      "label": "Scene Re-entry (DR-6)",
-      "_origin": "semantic",
-      "community": 21,
       "file_type": "concept",
-      "norm_label": "scene re-entry (dr-6)",
-      "rationale": "Strategy of calling the scene-draw entry twice per frame to achieve stereo rendering.",
-      "source_file": "DE_RISKING_BATTERY.md"
+      "norm_label": "32-bit openxr runtime",
+      "rationale": "Confirmed viable via Virtual Desktop's dedicated 32-bit manifest and successful sibling project (BioshockVR).",
+      "source_file": "archive/HANDOVER.md"
     },
     {
-      "id": "de_risking_battery",
-      "label": "De-Risking Battery",
+      "id": "archive_handover_f001_motion_comp_layer",
+      "label": "Motion Compensation Layer Hazard",
+      "_origin": "semantic",
+      "community": 20,
+      "file_type": "concept",
+      "norm_label": "motion compensation layer hazard",
+      "rationale": "A 32-bit specific implicit layer that causes crashes; must be disabled via environment variable before xrCreateInstance.",
+      "source_file": "archive/HANDOVER.md"
+    },
+    {
+      "id": "archive_handover_d3d10_creation_globals",
+      "label": "Dunia D3D10 Creation Globals",
       "_origin": "semantic",
       "community": 21,
-      "file_type": "document",
-      "norm_label": "de-risking battery",
-      "source_file": "DE_RISKING_BATTERY.md"
+      "file_type": "code",
+      "norm_label": "dunia d3d10 creation globals",
+      "rationale": "Dunia uses a hand-rolled dynamic import layer (GetProcAddress into globals) for D3D10/DXGI, allowing interception by swapping globals.",
+      "source_file": "archive/HANDOVER.md"
+    },
+    {
+      "id": "archive_handover_dunia_draw_hook",
+      "label": "Dunia Draw Hook",
+      "_origin": "semantic",
+      "community": 21,
+      "file_type": "code",
+      "norm_label": "dunia draw hook",
+      "rationale": "Intercepts Dunia's own virtual render-device vtable at slot +0xE0 instead of D3D10 directly to avoid the per-frame vtable restoration race.",
+      "source_file": "archive/HANDOVER.md"
+    },
+    {
+      "id": "archive_handover_dunia_camera_write",
+      "label": "Dunia Camera Write",
+      "_origin": "semantic",
+      "community": 22,
+      "file_type": "code",
+      "norm_label": "dunia camera write",
+      "rationale": "Implemented via call-site retargeting of FC2VR_BuildRenderView_Game at Dunia+0x34619E rather than a trampoline.",
+      "source_file": "archive/HANDOVER.md"
+    },
+    {
+      "id": "archive_handover_hotkey_f10",
+      "label": "F10 Hotkey Action",
+      "_origin": "semantic",
+      "community": 22,
+      "file_type": "code",
+      "norm_label": "f10 hotkey action",
+      "rationale": "Used to arm the camera write manually because automatic gates (bootstrap or frame count) failed due to engine initialization and variable frame rates.",
+      "source_file": "archive/HANDOVER.md"
     },
     {
       "id": "dunia_engine",
       "label": "Dunia Engine",
       "_origin": "semantic",
-      "community": 23,
+      "community": 24,
       "file_type": "concept",
       "norm_label": "dunia engine",
       "rationale": "A heavily forked CryEngine 1 used in Far Cry 2.",
@@ -1112,7 +1091,7 @@
       "id": "renderdoc_runbook",
       "label": "runbooks/renderdoc-capture.md",
       "_origin": "semantic",
-      "community": 23,
+      "community": 24,
       "file_type": "document",
       "norm_label": "runbooks/renderdoc-capture.md",
       "rationale": "Retired/Negative result: RenderDoc does not support D3D9/D3D10.",
@@ -1122,27 +1101,17 @@
       "id": "gameplay_vr_risk_healing",
       "label": "Healing Mechanics Risk",
       "_origin": "semantic",
-      "community": 24,
+      "community": 26,
       "file_type": "concept",
       "norm_label": "healing mechanics risk",
       "rationale": "Architectural tier-1 risk due to complex first-person animations breaking VR ownership contracts.",
       "source_file": "GAMEPLAY_VR_RISK.md"
     },
     {
-      "id": "failure_registry_f006",
-      "label": "F-006: Thread Suspension Risk",
-      "_origin": "semantic",
-      "community": 24,
-      "file_type": "rationale",
-      "norm_label": "f-006: thread suspension risk",
-      "rationale": "Suspending all threads to patch code caused deadlocks; x86 aligned stores are atomic and didn't need it.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
       "id": "handover_native_stereo_d3d10_camerarebuild",
       "label": "CameraRebuild",
       "_origin": "semantic",
-      "community": 25,
+      "community": 29,
       "file_type": "code",
       "norm_label": "camerarebuild",
       "rationale": "Derives matrices inside the camera object; identified by semantic fingerprint.",
@@ -1153,7 +1122,7 @@
       "id": "handover_native_stereo_d3d10_viewbuilder",
       "label": "ViewBuilder",
       "_origin": "semantic",
-      "community": 25,
+      "community": 29,
       "file_type": "code",
       "norm_label": "viewbuilder",
       "rationale": "Publishes derived camera matrices into the shader constant block.",
@@ -1164,7 +1133,7 @@
       "id": "handover_viewmodel_and_aim_player_fire_path",
       "label": "FC2VR_Player_FireWeapon",
       "_origin": "semantic",
-      "community": 26,
+      "community": 30,
       "file_type": "code",
       "norm_label": "fc2vr_player_fireweapon",
       "rationale": "Actual player fire path found via stack capture at ConsumeAmmo; bypasses AI AimAngles.",
@@ -1175,7 +1144,7 @@
       "id": "handover_viewmodel_and_aim_shot_direction_provider",
       "label": "Shot Direction Provider",
       "_origin": "semantic",
-      "community": 26,
+      "community": 30,
       "file_type": "code",
       "norm_label": "shot direction provider",
       "rationale": "Function providing the world-space unit vector for projectiles; target for aim takeover.",
@@ -1183,130 +1152,29 @@
       "source_location": "0x112600"
     },
     {
-      "id": "farcry2_exe",
-      "label": "FarCry2.exe",
+      "id": "archive_readme",
+      "label": "Archive README",
       "_origin": "semantic",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "farcry2.exe",
-      "rationale": "32-bit host executable; requires 4GB/LAA patch.",
-      "source_file": "CLAUDE.md"
-    },
-    {
-      "id": "re_mcp_toolkit",
-      "label": "re-mcp-toolkit",
-      "_origin": "semantic",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "re-mcp-toolkit",
-      "rationale": "Skill required for using reverse-engineering MCP tools.",
-      "source_file": "AGENTS.md"
-    },
-    {
-      "id": "trace_farcry2_ps1",
-      "label": "scripts/Trace-FarCry2.ps1",
-      "_origin": "semantic",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "scripts/trace-farcry2.ps1",
-      "rationale": "Script to launch apitrace with mandatory affinity mask.",
-      "source_file": "CLAUDE.md"
-    },
-    {
-      "id": "xr_tape",
-      "label": "xr-tape",
-      "_origin": "semantic",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "xr-tape",
-      "rationale": "OpenXR API layer for recording and checking submissions.",
-      "source_file": "AGENTS.md"
-    },
-    {
-      "id": "agents_codex",
-      "label": "AGENTS.md",
-      "_origin": "semantic",
-      "community": 3,
+      "community": 38,
       "file_type": "document",
-      "norm_label": "agents.md",
-      "rationale": "Codex-specific project rules and MCP roster.",
-      "source_file": "AGENTS.md"
+      "norm_label": "archive readme",
+      "source_file": "archive/README.md"
     },
     {
-      "id": "claude_rules",
-      "label": "CLAUDE.md",
+      "id": "authored_state_detector",
+      "label": "Authored State Detector",
       "_origin": "semantic",
-      "community": 3,
-      "file_type": "document",
-      "norm_label": "claude.md",
-      "rationale": "Authoritative project rules and orientation order.",
-      "source_file": "CLAUDE.md"
-    },
-    {
-      "id": "cross_engine_graph",
-      "label": "Cross-Engine Docs Graph",
-      "_origin": "semantic",
-      "community": 3,
-      "file_type": "document",
-      "norm_label": "cross-engine docs graph",
-      "rationale": "Prior art from SS2VR, BioshockVR, and SOMAVR.",
-      "source_file": "AGENTS.md"
-    },
-    {
-      "id": "current_state_aim_contract",
-      "label": "Aim Contract",
-      "_origin": "semantic",
-      "community": 31,
+      "community": 39,
       "file_type": "concept",
-      "norm_label": "aim contract",
-      "rationale": "aimTarget = origin + ( Quat_XYZ(AimAngles) \u00b7 forward ) \u00d7 AimDistance. Confirms (pitch, roll, yaw) order.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_frustum_mismatch",
-      "label": "Frustum Mismatch Resolution",
-      "_origin": "semantic",
-      "community": 32,
-      "file_type": "rationale",
-      "norm_label": "frustum mismatch resolution",
-      "rationale": "Diagnosed as projection error where symmetric game view was mapped to asymmetric mirrored XR frustums. Fixed by declaring actual rendered tangent-space FOV.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_input_funnel",
-      "label": "Internal Input Funnel",
-      "_origin": "semantic",
-      "community": 33,
-      "file_type": "code",
-      "norm_label": "internal input funnel",
-      "rationale": "FUN_102C99E0 polls XInput. Injected input enters at FUN_102C97D0/FUN_102C95D0, inheriting engine arbitration.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_md",
-      "label": "CURRENT_STATE.md",
-      "_origin": "semantic",
-      "community": 34,
-      "file_type": "document",
-      "norm_label": "current_state.md",
-      "rationale": "Central tracking document for project phase, build identity, and active baseline configuration.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "current_state_worldexec",
-      "label": "WorldExec Hook Point",
-      "_origin": "semantic",
-      "community": 35,
-      "file_type": "code",
-      "norm_label": "worldexec hook point",
-      "rationale": "FUN_10342360 confirmed as native-stereo hook point. Below client update, above world render.",
-      "source_file": "CURRENT_STATE.md"
+      "norm_label": "authored state detector",
+      "rationale": "Classifier using roll, FOV, and speed to detect scripted sequences.",
+      "source_file": "archive/NEEDS_USER_INPUT.md"
     },
     {
       "id": "drop_review_fc2vr",
       "label": "MonsterDeadWood FC2VR Drop Review",
       "_origin": "semantic",
-      "community": 36,
+      "community": 40,
       "file_type": "document",
       "norm_label": "monsterdeadwood fc2vr drop review",
       "source_file": "DROP_REVIEW_FC2VR_20260903.md"
@@ -1315,7 +1183,7 @@
       "id": "dunia_handoff",
       "label": "Dunia Hand-off",
       "_origin": "semantic",
-      "community": 37,
+      "community": 41,
       "file_type": "document",
       "norm_label": "dunia hand-off",
       "source_file": "DUNIA_HANDOFF.md"
@@ -1324,181 +1192,16 @@
       "id": "engine_reference_tools_corpus",
       "label": "Reference Corpus",
       "_origin": "semantic",
-      "community": 38,
+      "community": 43,
       "file_type": "document",
       "norm_label": "reference corpus",
       "source_file": "engine/REFERENCE_TOOLS.md"
     },
     {
-      "id": "failure_registry_f001",
-      "label": "F-001: 32-bit OpenXR Motion Compensation Crash",
-      "_origin": "semantic",
-      "community": 39,
-      "file_type": "rationale",
-      "norm_label": "f-001: 32-bit openxr motion compensation crash",
-      "rationale": "Inherited failure where a 32-bit implicit layer crashes Virtual Desktop. Produced rule to disable the layer process-locally.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "camera_copy",
-      "label": "CameraCopy",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "cameracopy",
-      "rationale": "Saves and restores camera state for stereo rendering.",
-      "source_file": "CURRENT_STATE.md",
-      "source_location": "0x3679F0"
-    },
-    {
-      "id": "camera_rebuild",
-      "label": "CameraRebuild",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "camerarebuild",
-      "rationale": "Derives matrices inside the camera object; specific to D3D10 path.",
-      "source_file": "CURRENT_STATE.md",
-      "source_location": "0x40C800"
-    },
-    {
-      "id": "prepare_frame_graph_d3d10",
-      "label": "PrepareFrameGraph (D3D10)",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "prepareframegraph (d3d10)",
-      "rationale": "The D3D10 renderer setup step required before WorldExec.",
-      "source_file": "CURRENT_STATE.md",
-      "source_location": "0x356BC0"
-    },
-    {
-      "id": "view_builder",
-      "label": "ViewBuilder",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "viewbuilder",
-      "rationale": "Publishes camera matrices to the shader constant block.",
-      "source_file": "CURRENT_STATE.md",
-      "source_location": "0x379070"
-    },
-    {
-      "id": "world_exec_d3d10",
-      "label": "WorldExec (D3D10)",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "worldexec (d3d10)",
-      "rationale": "The D3D10 renderer entry point for pass dispatch.",
-      "source_file": "CURRENT_STATE.md",
-      "source_location": "0x355F60"
-    },
-    {
-      "id": "m3_gate",
-      "label": "M3 Gate",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "concept",
-      "norm_label": "m3 gate",
-      "rationale": "A critical validation gate determining if the world can render twice without doubling simulation/AI/audio.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "native_stereo_plan",
-      "label": "Native Stereo Plan",
-      "_origin": "semantic",
-      "community": 4,
-      "file_type": "concept",
-      "norm_label": "native stereo plan",
-      "rationale": "The strategy for achieving VR stereo by re-running the engine's world render with offset cameras.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "failure_registry_f002",
-      "label": "F-002: D3D Hook Re-entrancy",
-      "_origin": "semantic",
-      "community": 40,
-      "file_type": "rationale",
-      "norm_label": "f-002: d3d hook re-entrancy",
-      "rationale": "Mod's own D3D calls re-entered its hooks. Required InternalD3DCallGuard.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f003",
-      "label": "F-003: DXGI Renderer Init Race",
-      "_origin": "semantic",
-      "community": 41,
-      "file_type": "rationale",
-      "norm_label": "f-003: dxgi renderer init race",
-      "rationale": "Waiting on dxgi.dll was insufficient because systemdetection.dll loads it early for probes.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f004",
-      "label": "F-004: Data Scan COM Crash",
-      "_origin": "semantic",
-      "community": 42,
-      "file_type": "rationale",
-      "norm_label": "f-004: data scan com crash",
-      "rationale": "Scanning .data for COM objects hit stale/freed pointers. Produced rule to wait for human trigger (F10).",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f005",
-      "label": "F-005: Frame Count vs Wall Clock",
-      "_origin": "semantic",
-      "community": 43,
-      "file_type": "rationale",
-      "norm_label": "f-005: frame count vs wall clock",
-      "rationale": "Using frame counts for delays failed due to extreme FPS variance (menu vs gameplay).",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f007",
-      "label": "F-007: Affine Residual Gate Failure",
-      "_origin": "semantic",
-      "community": 44,
-      "file_type": "rationale",
-      "norm_label": "f-007: affine residual gate failure",
-      "rationale": "The projection gate failed to catch a mirrored world because it didn't measure the determinant.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f008",
-      "label": "F-008: Config-Dependent Filename Drift",
-      "_origin": "semantic",
-      "community": 45,
-      "file_type": "rationale",
-      "norm_label": "f-008: config-dependent filename drift",
-      "rationale": "Debug builds appended 'd' to the loader name, which the hardcoded code path missed.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f010",
-      "label": "F-010: CMakeCache Wipe Disabling VR",
-      "_origin": "semantic",
-      "community": 46,
-      "file_type": "rationale",
-      "norm_label": "f-010: cmakecache wipe disabling vr",
-      "rationale": "Wiping the cache reverted FC2VR_ENABLE_OPENXR to OFF, resulting in a binary with only stubs.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f011",
-      "label": "F-011: Intermittent Startup Stall",
-      "_origin": "semantic",
-      "community": 47,
-      "file_type": "rationale",
-      "norm_label": "f-011: intermittent startup stall",
-      "rationale": "A critical intermittent fault where the mod/game presents no frames. Led to the creation of StartupWatchdog and established that the fault exists in vanilla.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
       "id": "fc2vr_inject",
       "label": "FC2VR Injector",
       "_origin": "semantic",
-      "community": 48,
+      "community": 51,
       "file_type": "code",
       "norm_label": "fc2vr injector",
       "rationale": "Handles 32-bit injection, CPU affinity masking (32-processor limit fix), and synchronization with the DLL via HookReadyEvent.",
@@ -1508,65 +1211,38 @@
       "id": "gameplay_vr_risk_malaria",
       "label": "Malaria/Damage Effects Risk",
       "_origin": "semantic",
-      "community": 49,
+      "community": 52,
       "file_type": "concept",
       "norm_label": "malaria/damage effects risk",
       "rationale": "Architectural tier-1 risk; vision impairment mechanics act as nausea triggers in VR.",
       "source_file": "GAMEPLAY_VR_RISK.md"
     },
     {
-      "id": "affine_residual_gate",
-      "label": "Affine Residual Gate",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "concept",
-      "norm_label": "affine residual gate",
-      "rationale": "Mathematical gate using max(affinity, orthonormality) to detect incorrect FOV or near/far reconstruction.",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "alternate_eye_rendering",
-      "label": "Alternate-Eye Rendering",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "concept",
-      "norm_label": "alternate-eye rendering",
-      "rationale": "Considered viable because Far Cry 2 lacks a velocity buffer/temporal history (pre-temporal renderer).",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
-      "id": "current_state",
-      "label": "Current State",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "document",
-      "norm_label": "current state",
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "id": "decision_log",
-      "label": "Decision Log",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "document",
-      "norm_label": "decision log",
-      "source_file": "DECISION_LOG.md"
-    },
-    {
       "id": "gameplay_vr_risk_vehicles",
       "label": "Vehicle Mechanics Risk",
       "_origin": "semantic",
-      "community": 50,
+      "community": 53,
       "file_type": "concept",
       "norm_label": "vehicle mechanics risk",
       "rationale": "Architectural tier-1 risk involving vection, seated/standing mismatch, and parallel camera modes.",
       "source_file": "GAMEPLAY_VR_RISK.md"
     },
     {
+      "id": "handover_viewmodel_and_aim_animator_hook",
+      "label": "Animator Hook (FUN_100D7B10)",
+      "_origin": "semantic",
+      "community": 54,
+      "file_type": "code",
+      "norm_label": "animator hook (fun_100d7b10)",
+      "rationale": "Shared matrix helper that writes bone matrices; hooking here allows per-bone transform overrides during evaluation.",
+      "source_file": "HANDOVER_VIEWMODEL_AND_AIM.md",
+      "source_location": "0xD7B10"
+    },
+    {
       "id": "hypotheses_h008",
       "label": "H-008: 32-bit Address Space Room",
       "_origin": "semantic",
-      "community": 51,
+      "community": 55,
       "file_type": "concept",
       "norm_label": "h-008: 32-bit address space room",
       "rationale": "Confirmed that LARGEADDRESSAWARE allows ~831MB contiguous block above 2GB for D3D11 bridge and eye targets.",
@@ -1576,67 +1252,17 @@
       "id": "project_phases_p3",
       "label": "Phase P3: Tracked Mono",
       "_origin": "semantic",
-      "community": 52,
+      "community": 56,
       "file_type": "concept",
       "norm_label": "phase p3: tracked mono",
       "rationale": "Milestone where head tracking is functional at correct scale with horizon level.",
       "source_file": "PROJECT_PHASES.md"
     },
     {
-      "id": "runbooks_apitrace_renderdoc",
-      "label": "RenderDoc",
-      "_origin": "semantic",
-      "community": 57,
-      "file_type": "code",
-      "norm_label": "renderdoc",
-      "rationale": "Documented address-space hazard for 32-bit targets; cannot capture D3D10/10.1.",
-      "source_file": "runbooks/apitrace.md"
-    },
-    {
-      "id": "runbooks_flat_harness_command_file",
-      "label": "CommandFile.cpp",
-      "_origin": "semantic",
-      "community": 58,
-      "file_type": "code",
-      "norm_label": "commandfile.cpp",
-      "rationale": "Polls command.txt to allow scriptable control without headset focus.",
-      "source_file": "runbooks/flat-harness.md"
-    },
-    {
-      "id": "runbooks_headless_harness_dinput_hook",
-      "label": "DInputHook.cpp",
-      "_origin": "semantic",
-      "community": 59,
-      "file_type": "code",
-      "norm_label": "dinputhook.cpp",
-      "rationale": "Patches COM vtables in dinput8.dll to inject input state into the game's device-state reading path.",
-      "source_file": "runbooks/headless-harness.md"
-    },
-    {
-      "id": "src_common",
-      "label": "src/common/",
-      "_origin": "semantic",
-      "community": 61,
-      "file_type": "code",
-      "norm_label": "src/common/",
-      "rationale": "Pure, desk-testable logic (math, poses) without native pointers.",
-      "source_file": "CLAUDE.md"
-    },
-    {
-      "id": "src_dll",
-      "label": "src/dll/",
-      "_origin": "semantic",
-      "community": 62,
-      "file_type": "code",
-      "norm_label": "src/dll/",
-      "rationale": "Injected DLL split by lane.",
-      "source_file": "CLAUDE.md"
-    },
-    {
       "id": "private_d3d11_device",
       "label": "Private D3D11 Device",
       "_origin": "semantic",
-      "community": 7,
+      "community": 6,
       "file_type": "concept",
       "norm_label": "private d3d11 device",
       "rationale": "A secondary device owned by the mod to host the OpenXR session and swapchains.",
@@ -1646,7 +1272,7 @@
       "id": "xr_khr_d3d11_enable",
       "label": "XR_KHR_D3D11_enable",
       "_origin": "semantic",
-      "community": 7,
+      "community": 6,
       "file_type": "concept",
       "norm_label": "xr_khr_d3d11_enable",
       "source_file": "engine/D3D9_OPENXR_NOTES.md"
@@ -1655,7 +1281,7 @@
       "id": "engine_d3d9_openxr_notes_d3d9_openxr",
       "label": "D3D9/D3D10 to OpenXR Bridge",
       "_origin": "semantic",
-      "community": 7,
+      "community": 6,
       "file_type": "document",
       "norm_label": "d3d9/d3d10 to openxr bridge",
       "rationale": "Strategic design for bridging legacy APIs (D3D9/D3D10) to OpenXR using a private D3D11 device.",
@@ -1665,17 +1291,86 @@
       "id": "engine_dunia_engine_profile_dunia",
       "label": "Dunia Engine Profile",
       "_origin": "semantic",
-      "community": 7,
+      "community": 6,
       "file_type": "document",
       "norm_label": "dunia engine profile",
       "rationale": "Core engine classification and technical constraints for Far Cry 2 (Dunia engine).",
       "source_file": "engine/DUNIA_ENGINE_PROFILE.md"
     },
     {
+      "id": "runbooks_apitrace_renderdoc",
+      "label": "RenderDoc",
+      "_origin": "semantic",
+      "community": 61,
+      "file_type": "code",
+      "norm_label": "renderdoc",
+      "rationale": "Documented address-space hazard for 32-bit targets; cannot capture D3D10/10.1.",
+      "source_file": "runbooks/apitrace.md"
+    },
+    {
+      "id": "runbooks_flat_harness_command_file",
+      "label": "CommandFile.cpp",
+      "_origin": "semantic",
+      "community": 62,
+      "file_type": "code",
+      "norm_label": "commandfile.cpp",
+      "rationale": "Polls command.txt to allow scriptable control without headset focus.",
+      "source_file": "runbooks/flat-harness.md"
+    },
+    {
+      "id": "runbooks_headless_harness_dinput_hook",
+      "label": "DInputHook.cpp",
+      "_origin": "semantic",
+      "community": 63,
+      "file_type": "code",
+      "norm_label": "dinputhook.cpp",
+      "rationale": "Patches COM vtables in dinput8.dll to inject input state into the game's device-state reading path.",
+      "source_file": "runbooks/headless-harness.md"
+    },
+    {
+      "id": "runbooks_readme",
+      "label": "Runbooks README",
+      "_origin": "semantic",
+      "community": 64,
+      "file_type": "document",
+      "norm_label": "runbooks readme",
+      "source_file": "runbooks/README.md"
+    },
+    {
+      "id": "src_common",
+      "label": "src/common/",
+      "_origin": "semantic",
+      "community": 65,
+      "file_type": "code",
+      "norm_label": "src/common/",
+      "rationale": "Pure, desk-testable logic (math, poses) without native pointers.",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "src_dll",
+      "label": "src/dll/",
+      "_origin": "semantic",
+      "community": 66,
+      "file_type": "code",
+      "norm_label": "src/dll/",
+      "rationale": "Injected DLL split by lane.",
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "viewmodel_probe",
+      "label": "Viewmodel Probe",
+      "_origin": "semantic",
+      "community": 68,
+      "file_type": "concept",
+      "norm_label": "viewmodel probe",
+      "rationale": "Method using weapon-inspect animations to isolate viewmodel memory and aim rays.",
+      "source_file": "archive/NEEDS_USER_INPUT.md"
+    },
+    {
       "id": "engine_dunia_render_device_render_abstraction",
       "label": "Dunia Render Device",
       "_origin": "semantic",
-      "community": 8,
+      "community": 7,
       "file_type": "code",
       "norm_label": "dunia render device",
       "rationale": "The engine's internal render abstraction, identified as the primary anchor for render hooks.",
@@ -1685,7 +1380,7 @@
       "id": "fc2vr_renderdevice_draw",
       "label": "FC2VR_RenderDevice_Draw",
       "_origin": "semantic",
-      "community": 8,
+      "community": 7,
       "file_type": "code",
       "norm_label": "fc2vr_renderdevice_draw",
       "rationale": "Hooked draw call at offset 0xE0 in the Dunia render device vtable.",
@@ -1696,7 +1391,7 @@
       "id": "fc2vr_scenerenderloop",
       "label": "FC2VR_SceneRenderLoop",
       "_origin": "semantic",
-      "community": 8,
+      "community": 7,
       "file_type": "code",
       "norm_label": "fc2vr_scenerenderloop",
       "rationale": "The frame's render spine (Dunia RVA 0x345C70).",
@@ -1706,7 +1401,7 @@
       "id": "engine_render_pass_hazards_hazard_atlas",
       "label": "Render Pass Hazard Atlas",
       "_origin": "semantic",
-      "community": 8,
+      "community": 7,
       "file_type": "document",
       "norm_label": "render pass hazard atlas",
       "rationale": "Classification of Dunia's rendering passes to determine stereo architecture viability.",
@@ -1716,7 +1411,7 @@
       "id": "handover_native_stereo_d3d10_prepareframegraph",
       "label": "PrepareFrameGraph",
       "_origin": "semantic",
-      "community": 9,
+      "community": 8,
       "file_type": "code",
       "norm_label": "prepareframegraph",
       "rationale": "Frame-graph setup that must be replayed before each eye render to avoid no-op dispatches.",
@@ -1727,7 +1422,7 @@
       "id": "handover_native_stereo_d3d10_worldexec",
       "label": "WorldExec (D3D10)",
       "_origin": "semantic",
-      "community": 9,
+      "community": 8,
       "file_type": "code",
       "norm_label": "worldexec (d3d10)",
       "rationale": "Identified as the correct D3D10.1 world renderer candidate via xrefs to executePass and vtable structure (+0x18).",
@@ -1738,7 +1433,7 @@
       "id": "native_stereo_plan_m3_gate",
       "label": "M3 Gate (Native Stereo)",
       "_origin": "semantic",
-      "community": 9,
+      "community": 8,
       "file_type": "concept",
       "norm_label": "m3 gate (native stereo)",
       "rationale": "Three-part validation: 1. No double simulation, 2. No pool exhaustion, 3. No shared-buffer overwrites.",
@@ -1748,72 +1443,395 @@
       "id": "readme_dunia_vtable_hooking",
       "label": "Dunia Render Device VTable Hooking",
       "_origin": "semantic",
-      "community": 9,
+      "community": 8,
       "file_type": "concept",
       "norm_label": "dunia render device vtable hooking",
       "rationale": "Dunia restores D3D dispatch tables every frame, necessitating hooks on Dunia's own vtable (0xE45A30) instead of D3D core.",
       "source_file": "README.md"
     },
     {
-      "id": "id3d10device",
-      "label": "ID3D10Device",
+      "id": "monsterdeadwood_port_map",
+      "label": "MonsterDeadWood Port Map",
+      "author": "MonsterDeadWood",
+      "captured_at": null,
+      "community": 5,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "monsterdeadwood port map",
+      "rationale": "Reference corpus used for initial RVA identification; verified structurally but not runtime-live for D3D10.",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "openxr_runtime",
+      "label": "OpenXR Runtime",
+      "author": null,
+      "captured_at": null,
+      "community": 23,
+      "contributor": null,
+      "file_type": "concept",
+      "norm_label": "openxr runtime",
+      "rationale": null,
+      "source_file": null,
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "de_risking_battery_md",
+      "label": "DE_RISKING_BATTERY.md",
+      "author": null,
+      "captured_at": null,
+      "community": 23,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "de_risking_battery.md",
+      "rationale": null,
+      "source_file": "DE_RISKING_BATTERY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "failure_registry_md",
+      "label": "FAILURE_REGISTRY.md",
+      "author": null,
+      "captured_at": null,
+      "community": 49,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "failure_registry.md",
+      "rationale": null,
+      "source_file": "FAILURE_REGISTRY.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "current_state_md",
+      "label": "CURRENT_STATE.md",
+      "author": null,
+      "captured_at": null,
+      "community": 5,
+      "contributor": null,
+      "file_type": "document",
+      "norm_label": "current_state.md",
+      "rationale": null,
+      "source_file": "CURRENT_STATE.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "id": "aim_angles",
+      "label": "AimAngles (pawn+0x44)",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "aimangles (pawn+0x44)",
+      "rationale": "float3 (pitch, roll, yaw). Confirmed to move aim vertically despite engine usually writing only yaw.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "fc2vr_quatfromeulerxyz",
+      "label": "FC2VR_QuatFromEulerXYZ (0x677C0)",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "fc2vr_quatfromeulerxyz (0x677c0)",
+      "rationale": "Euler to quaternion conversion using (pitch, roll, yaw) order.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "authored_camera_yield",
+      "label": "Authored Camera Yielding",
       "community": 10,
       "file_type": "concept",
-      "norm_label": "id3d10device",
-      "rationale": "Core graphics device interface required for the eye-image bridge and frame inspector.",
-      "source_file": "archive/NEEDS_USER_INPUT.md"
+      "norm_label": "authored camera yielding",
+      "rationale": "Logic to stop head tracking during engine-authored sequences (e.g., malaria attacks) based on roll thresholds.",
+      "source_file": "CURRENT_STATE.md"
     },
     {
-      "id": "archive_needs_user_input",
-      "label": "Needs User Input (Archived)",
-      "community": 10,
-      "file_type": "document",
-      "norm_label": "needs user input (archived)",
-      "rationale": "Historical record of manual testing requirements and early D3D10 device resolution methods.",
-      "source_file": "archive/NEEDS_USER_INPUT.md"
+      "id": "address_registry_camerarebuild",
+      "label": "CameraRebuild",
+      "community": 17,
+      "file_type": "code",
+      "norm_label": "camerarebuild",
+      "rationale": "Derives matrices inside the camera object from position and direction inputs.",
+      "source_file": "ADDRESS_REGISTRY.md"
     },
     {
-      "id": "archive_probe_plan",
-      "label": "Probe Plan (Archived)",
-      "community": 10,
-      "file_type": "document",
-      "norm_label": "probe plan (archived)",
-      "rationale": "Catalogue of data extraction targets (P-01 to P-22) for VR capability unlocking.",
-      "source_file": "archive/PROBE_PLAN.md"
+      "id": "address_registry_viewbuilder",
+      "label": "ViewBuilder",
+      "community": 17,
+      "file_type": "code",
+      "norm_label": "viewbuilder",
+      "rationale": "Publishes derived camera matrices to the shader constant block (GPU).",
+      "source_file": "ADDRESS_REGISTRY.md"
     },
     {
-      "id": "archive_readme",
-      "label": "Archive README",
-      "community": 29,
-      "file_type": "document",
-      "norm_label": "archive readme",
-      "source_file": "archive/README.md"
+      "id": "address_registry_fc2vr_weapon_storecameraoffset",
+      "label": "FC2VR_Weapon_StoreCameraOffset",
+      "community": 18,
+      "file_type": "code",
+      "norm_label": "fc2vr_weapon_storecameraoffset",
+      "rationale": "Writes the viewmodel offset to weapon object +0x6C.",
+      "source_file": "ADDRESS_REGISTRY.md"
     },
     {
-      "id": "authored_state_detector",
-      "label": "Authored State Detector",
-      "community": 30,
+      "id": "address_registry_weapon_registerfields",
+      "label": "Weapon::RegisterFields",
+      "community": 18,
+      "file_type": "code",
+      "norm_label": "weapon::registerfields",
+      "rationale": "Engine reflection table defining the weapon object layout.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f003",
+      "label": "F-003: Weak Signal Renderer Detection",
+      "community": 25,
+      "file_type": "rationale",
+      "norm_label": "f-003: weak signal renderer detection",
+      "rationale": "Waiting on dxgi.dll is a weak signal because systemdetection.dll loads it during startup probes before the renderer exists.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f004",
+      "label": "F-004: Blind-scanning .data for COM Objects",
+      "community": 25,
+      "file_type": "rationale",
+      "norm_label": "f-004: blind-scanning .data for com objects",
+      "rationale": "Scanning memory for COM objects hits stale/freed pointers that pass structural checks but crash on QueryInterface.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f006",
+      "label": "F-006: Thread Suspension Deadlock",
+      "community": 26,
+      "file_type": "rationale",
+      "norm_label": "f-006: thread suspension deadlock",
+      "rationale": "Suspending all threads to patch code during startup is more dangerous than the race condition it attempts to solve.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f008",
+      "label": "F-008: Build-Config Dependent Filename Stall",
+      "community": 27,
+      "file_type": "rationale",
+      "norm_label": "f-008: build-config dependent filename stall",
+      "rationale": "Hardcoded Release filenames in Debug builds caused silent loader failures because the OpenXR SDK appends 'd' to Debug binaries.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f010",
+      "label": "F-010: CMakeCache Deletion Silent Feature Removal",
+      "community": 27,
+      "file_type": "rationale",
+      "norm_label": "f-010: cmakecache deletion silent feature removal",
+      "rationale": "Wiping CMakeCache reverted FC2VR_ENABLE_OPENXR to OFF, resulting in a 'green' build that contained only stubs.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "handover_motion_controller_hands_aim_pose",
+      "label": "Aim Pose",
+      "community": 28,
       "file_type": "concept",
-      "norm_label": "authored state detector",
-      "rationale": "Classifier using roll, FOV, and speed to detect scripted sequences.",
-      "source_file": "archive/NEEDS_USER_INPUT.md"
+      "norm_label": "aim pose",
+      "rationale": "Controls projectile direction; distinct from grip pose.",
+      "source_file": "HANDOVER_MOTION_CONTROLLER_HANDS.md"
     },
     {
-      "id": "runbooks_readme",
-      "label": "Runbooks README",
-      "community": 60,
-      "file_type": "document",
-      "norm_label": "runbooks readme",
-      "source_file": "runbooks/README.md"
-    },
-    {
-      "id": "viewmodel_probe",
-      "label": "Viewmodel Probe",
-      "community": 64,
+      "id": "handover_motion_controller_hands_grip_pose",
+      "label": "Grip Pose",
+      "community": 28,
       "file_type": "concept",
-      "norm_label": "viewmodel probe",
-      "rationale": "Method using weapon-inspect animations to isolate viewmodel memory and aim rays.",
-      "source_file": "archive/NEEDS_USER_INPUT.md"
+      "norm_label": "grip pose",
+      "rationale": "Controls hand model and weapon placement.",
+      "source_file": "HANDOVER_MOTION_CONTROLLER_HANDS.md"
+    },
+    {
+      "id": "address_registry_d3d10_renderer_vtable",
+      "label": "D3D10 Renderer Vtable",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "d3d10 renderer vtable",
+      "rationale": "Vtable for the D3D10.1 renderer implementation.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_d3d9_renderer_vtable",
+      "label": "D3D9 Renderer Vtable",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "d3d9 renderer vtable",
+      "rationale": "Vtable for the D3D9 renderer implementation.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_prepareframegraph",
+      "label": "PrepareFrameGraph",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "prepareframegraph",
+      "rationale": "Renderer vtable slot +0x14. Frame setup step.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_worldexec",
+      "label": "WorldExec",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "worldexec",
+      "rationale": "Renderer vtable slot +0x18. Dispatches the pass list for rendering.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "worldexec",
+      "label": "WorldExec (0x342360)",
+      "community": 33,
+      "file_type": "code",
+      "norm_label": "worldexec (0x342360)",
+      "rationale": "Confirmed native-stereo hook point; contains no simulation/AI, allowing per-eye repetition.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "viewmodel_pass",
+      "label": "Viewmodel Render Pass",
+      "community": 33,
+      "file_type": "concept",
+      "norm_label": "viewmodel render pass",
+      "rationale": "199-call pass that rebinds world RT/depth; weapon placement comes from this pass's view buffer.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "address_registry_cameracopy",
+      "label": "CameraCopy",
+      "community": 34,
+      "file_type": "code",
+      "norm_label": "cameracopy",
+      "rationale": "Used to save and restore camera state during stereo rendering.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_fc2_dll",
+      "label": "FC2.dll",
+      "community": 35,
+      "file_type": "code",
+      "norm_label": "fc2.dll",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_input_setaxis",
+      "label": "Input::SetAxis",
+      "community": 36,
+      "file_type": "code",
+      "norm_label": "input::setaxis",
+      "rationale": "Locomotion injection seam (LX, LY, RX, RY, LT, RT).",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_systemdetection_dll",
+      "label": "systemdetection.dll",
+      "community": 37,
+      "file_type": "code",
+      "norm_label": "systemdetection.dll",
+      "rationale": "Module responsible for the >=32-logical-processor crash.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f001",
+      "label": "F-001: 32-bit OpenXR-MotionCompensation Layer Crash",
+      "community": 44,
+      "file_type": "rationale",
+      "norm_label": "f-001: 32-bit openxr-motioncompensation layer crash",
+      "rationale": "32-bit OpenXR clients fail when the 64-bit motion compensation layer is disabled but the 32-bit one remains enabled in the registry.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f002",
+      "label": "F-002: D3D Hook Re-entrancy",
+      "community": 45,
+      "file_type": "rationale",
+      "norm_label": "f-002: d3d hook re-entrancy",
+      "rationale": "Internal mod D3D calls (OpenXR blits) re-entered the mod's own global hooks, causing recursion.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f005",
+      "label": "F-005: Frame Count vs Wall Clock",
+      "community": 46,
+      "file_type": "rationale",
+      "norm_label": "f-005: frame count vs wall clock",
+      "rationale": "Frame rates vary 20x between menu and gameplay; frame-based delays fire too early in menus.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f007",
+      "label": "F-007: Affine Residual Gate Mirrored World Failure",
+      "community": 47,
+      "file_type": "rationale",
+      "norm_label": "f-007: affine residual gate mirrored world failure",
+      "rationale": "The gate failed to detect mirrored worlds because residuals were invariant under z-reflection; only the determinant changes sign.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f009",
+      "label": "F-009: Teardown-only Counter Reporting",
+      "community": 48,
+      "file_type": "rationale",
+      "norm_label": "f-009: teardown-only counter reporting",
+      "rationale": "Counters logged only at shutdown provide stale or zero data if the process is terminated or the session is long-running.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "input_funnel",
+      "label": "Internal Input Funnel (0x102C99E0)",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "internal input funnel (0x102c99e0)",
+      "rationale": "Normalised input funnel above XInput; target for VR input injection.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "weapon_0x6c",
+      "label": "Weapon Camera Offset (weapon+0x6C)",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "weapon camera offset (weapon+0x6c)",
+      "rationale": "Falsified as a viewmodel mesh lever; confirmed as a camera offset applied while armed.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "fc2vr_buildmatrixfromeuler",
+      "label": "FC2VR_BuildMatrixFromEuler (0x50990)",
+      "community": 50,
+      "file_type": "code",
+      "norm_label": "fc2vr_buildmatrixfromeuler (0x50990)",
+      "rationale": "Matrix builder using (roll, pitch, yaw) order; yaws from +X.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "id": "address_registry_dunia_dll",
+      "label": "Dunia.dll",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "dunia.dll",
+      "rationale": "Core engine module for Far Cry 2 (Dunia Engine). Preferred base 0x10000000.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_farcry2_exe",
+      "label": "FarCry2.exe",
+      "community": 9,
+      "file_type": "code",
+      "norm_label": "farcry2.exe",
+      "rationale": "Host executable. Large Address Aware (LAA) in the Remastered pack.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "id": "address_registry_fce_api",
+      "label": "FCE_* API",
+      "community": 9,
+      "file_type": "concept",
+      "norm_label": "fce_* api",
+      "rationale": "Named exports from Dunia.dll providing engine/editor functionality.",
+      "source_file": "ADDRESS_REGISTRY.md"
     }
   ],
   "links": [
@@ -1845,24 +1863,6 @@
       "source_file": "engine/DUNIA_RENDER_DEVICE.md"
     },
     {
-      "source": "farcry2vr_dll",
-      "target": "openxr_runtime",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "farcry2vr_dll",
-      "target": "startup_watchdog",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
       "source": "fc2vr_scenerenderloop",
       "target": "engine_dunia_render_device_render_abstraction",
       "relation": "calls",
@@ -1879,51 +1879,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "HANDOVER_VIEWMODEL_AND_AIM.md"
-    },
-    {
-      "source": "native_stereo_plan",
-      "target": "camera_copy",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "native_stereo_plan",
-      "target": "camera_rebuild",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "native_stereo_plan",
-      "target": "prepare_frame_graph_d3d10",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "native_stereo_plan",
-      "target": "view_builder",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "native_stereo_plan",
-      "target": "world_exec_d3d10",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
     },
     {
       "source": "re_findings_affinity_workaround",
@@ -2009,17 +1964,6 @@
       "source_file": "archive/HANDOVER.md"
     },
     {
-      "source": "dunia_dll_camera_object",
-      "target": "dunia_world_space",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CONVENTIONS.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
       "source": "engine_d3d9_openxr_notes_d3d9_openxr",
       "target": "engine_dunia_engine_profile_dunia",
       "relation": "conceptually_related_to",
@@ -2085,17 +2029,6 @@
       "source_file": "RE_FINDINGS.md"
     },
     {
-      "source": "address_registry_md",
-      "target": "dunia_dll",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "ADDRESS_REGISTRY.md",
-      "source_location": null,
-      "weight": 1.0
-    },
-    {
       "source": "agents_codex",
       "target": "claude_rules",
       "relation": "references",
@@ -2132,6 +2065,15 @@
       "source_file": "AGENTS.md"
     },
     {
+      "source": "archive_needs_user_input",
+      "target": "id3d10device",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "archive/NEEDS_USER_INPUT.md"
+    },
+    {
       "source": "claude_rules",
       "target": "dunia_dll",
       "relation": "references",
@@ -2148,33 +2090,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "CLAUDE.md"
-    },
-    {
-      "source": "current_state",
-      "target": "affine_residual_gate",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "current_state",
-      "target": "alternate_eye_rendering",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "de_risking_battery",
-      "target": "scene_reentry",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DE_RISKING_BATTERY.md"
     },
     {
       "source": "decision_log",
@@ -2220,24 +2135,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "engine/DUNIA_EXPORTS.md"
-    },
-    {
-      "source": "farcry2vr_dll",
-      "target": "dunia_dll",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
-      "source": "farcry2vr_dll",
-      "target": "xr_sim",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
     },
     {
       "source": "findings_index",
@@ -2379,15 +2276,6 @@
       "source_file": "RE_FINDINGS.md"
     },
     {
-      "source": "arm_ik_solver",
-      "target": "bone_80_palm",
-      "relation": "shares_data_with",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
-    },
-    {
       "source": "handover_native_stereo_d3d10_worldexec",
       "target": "handover_native_stereo_d3d10_prepareframegraph",
       "relation": "shares_data_with",
@@ -2414,15 +2302,6 @@
       "confidence_score": 0.8,
       "rationale": "Explains why RenderDoc fails on Dunia's D3D9/10 implementation.",
       "source_file": "runbooks/renderdoc-capture.md"
-    },
-    {
-      "source": "current_state_viewmodel_lever",
-      "target": "current_state_shared_surface_bridge",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "CURRENT_STATE.md"
     },
     {
       "source": "gameplay_vr_risk_healing",
@@ -2463,15 +2342,6 @@
       "source_file": "engine/PLAYER_RIG_MAP.md"
     },
     {
-      "source": "handover_viewmodel_and_aim_animator_hook",
-      "target": "bone_80_palm",
-      "relation": "calls",
-      "_origin": "semantic",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "HANDOVER_VIEWMODEL_AND_AIM.md"
-    },
-    {
       "source": "engine_render_pass_hazards_hazard_atlas",
       "target": "engine_dunia_render_device_render_abstraction",
       "relation": "conceptually_related_to",
@@ -2481,13 +2351,13 @@
       "source_file": "engine/RENDER_PASS_HAZARDS.md"
     },
     {
-      "source": "native_stereo_plan",
-      "target": "m3_gate",
-      "relation": "conceptually_related_to",
+      "source": "archive_probe_plan",
+      "target": "id3d10device",
+      "relation": "references",
       "_origin": "semantic",
       "confidence": "INFERRED",
       "confidence_score": 0.9,
-      "source_file": "CURRENT_STATE.md"
+      "source_file": "archive/PROBE_PLAN.md"
     },
     {
       "source": "re_findings_gamerprofile_xml",
@@ -2517,20 +2387,166 @@
       "source_file": "runbooks/xrsim.md"
     },
     {
-      "source": "archive_needs_user_input",
-      "target": "id3d10device",
+      "source": "failure_registry_f008",
+      "target": "failure_registry_f010",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "source": "address_registry_camerarebuild",
+      "target": "address_registry_viewbuilder",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Rebuild derives matrices; ViewBuilder publishes them to the GPU.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "address_registry_fc2vr_weapon_storecameraoffset",
+      "target": "address_registry_weapon_registerfields",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "rationale": "Writes to the weapon object at offset +0x6C.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "monsterdeadwood_port_map",
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "address_registry_d3d10_renderer_vtable",
+      "target": "address_registry_prepareframegraph",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "archive/NEEDS_USER_INPUT.md"
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "slot +0x14"
     },
     {
-      "source": "archive_probe_plan",
-      "target": "id3d10device",
+      "source": "address_registry_d3d10_renderer_vtable",
+      "target": "address_registry_worldexec",
       "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "slot +0x18"
+    },
+    {
+      "source": "address_registry_d3d9_renderer_vtable",
+      "target": "address_registry_prepareframegraph",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "slot +0x14"
+    },
+    {
+      "source": "address_registry_d3d9_renderer_vtable",
+      "target": "address_registry_worldexec",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md",
+      "source_location": "slot +0x18"
+    },
+    {
+      "source": "address_registry_dunia_dll",
+      "target": "address_registry_fce_api",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "address_registry_farcry2_exe",
+      "target": "address_registry_dunia_dll",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "current_state_md",
+      "target": "weapon_0x6c",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "de_risking_battery_md",
+      "target": "openxr_runtime",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DE_RISKING_BATTERY.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "fc2vr_quatfromeulerxyz",
+      "target": "aim_angles",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "input_funnel",
+      "target": "current_state_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "handover_motion_controller_hands_aim_pose",
+      "target": "handover_motion_controller_hands_grip_pose",
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "HANDOVER_MOTION_CONTROLLER_HANDS.md"
+    },
+    {
+      "source": "authored_camera_yield",
+      "target": "aim_angles",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "rationale": "Yielding logic uses camera roll/pitch to detect engine takeovers.",
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "address_registry_prepareframegraph",
+      "target": "address_registry_worldexec",
+      "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.9,
-      "source_file": "archive/PROBE_PLAN.md"
+      "rationale": "PrepareFrameGraph sets up the pass list that WorldExec consumes.",
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "worldexec",
+      "target": "viewmodel_pass",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "failure_registry_f003",
+      "target": "failure_registry_f004",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "FAILURE_REGISTRY.md"
     }
   ],
   "hyperedges": [
@@ -2574,18 +2590,6 @@
       "source_file": "CLAUDE.md"
     },
     {
-      "id": "stereo_rendering_flow",
-      "label": "Stereo Rendering Pipeline",
-      "nodes": [
-        "current_state_worldexec",
-        "current_state_frustum_mismatch",
-        "current_state_shared_surface_bridge"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 0.9
-    },
-    {
       "id": "weapon_system_mechanics",
       "label": "Weapon System Mechanics",
       "nodes": [
@@ -2611,6 +2615,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 0.95,
       "source_file": "archive/HANDOVER.md"
+    },
+    {
+      "id": "native_stereo_pipeline",
+      "label": "Native Stereo Pipeline",
+      "nodes": [
+        "address_registry_cameracopy",
+        "address_registry_camerarebuild",
+        "address_registry_viewbuilder",
+        "address_registry_prepareframegraph",
+        "address_registry_worldexec"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "ADDRESS_REGISTRY.md"
     },
     {
       "id": "player_rig_structure",
@@ -2666,6 +2685,18 @@
       "source_file": "runbooks/apitrace.md"
     },
     {
+      "id": "anchor_ladder_rungs",
+      "label": "Anchor Ladder Rungs",
+      "nodes": [
+        "address_registry_fce_api",
+        "address_registry_weapon_registerfields"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
       "id": "authored_state_signals",
       "label": "Authored State Detection Signals",
       "nodes": [
@@ -2677,19 +2708,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "RE_FINDINGS.md"
-    },
-    {
-      "id": "camera_math_trio",
-      "label": "Camera Management Trio",
-      "nodes": [
-        "camera_copy",
-        "camera_rebuild",
-        "view_builder"
-      ],
-      "relation": "form",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
     },
     {
       "id": "camera_offset_mechanisms",
@@ -2704,6 +2722,19 @@
       "source_file": "RE_FINDINGS.md"
     },
     {
+      "id": "camera_rotation_conventions",
+      "label": "Dunia Euler Conventions",
+      "nodes": [
+        "fc2vr_quatfromeulerxyz",
+        "fc2vr_buildmatrixfromeuler",
+        "aim_angles"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CURRENT_STATE.md"
+    },
+    {
       "id": "camera_system_flow",
       "label": "Camera State to GPU Flow",
       "nodes": [
@@ -2715,18 +2746,6 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "RE_FINDINGS.md"
-    },
-    {
-      "id": "d3d10_renderer_interface",
-      "label": "D3D10 Renderer Interface",
-      "nodes": [
-        "world_exec_d3d10",
-        "prepare_frame_graph_d3d10"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CURRENT_STATE.md"
     },
     {
       "id": "native_stereo_render_loop",
@@ -2759,25 +2778,12 @@
       "id": "viewmodel_decoupling_flow",
       "label": "Viewmodel Decoupling Flow",
       "nodes": [
-        "bone_80_palm",
         "handover_viewmodel_and_aim_animator_hook"
       ],
       "relation": "implement",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "HANDOVER_VIEWMODEL_AND_AIM.md"
-    },
-    {
-      "id": "stereo_rendering_strategies",
-      "label": "Stereo Rendering Strategies",
-      "nodes": [
-        "scene_reentry",
-        "alternate_eye_rendering"
-      ],
-      "relation": "form",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "DE_RISKING_BATTERY.md"
     },
     {
       "id": "headless_automation_stack",
@@ -2793,18 +2799,18 @@
       "source_file": "runbooks/headless-harness.md"
     },
     {
-      "id": "vr_input_pipeline",
-      "label": "VR Input to Bone Pipeline",
+      "id": "renderer_detection_failures",
+      "label": "Renderer Detection & Startup Failures",
       "nodes": [
-        "bone_80_palm",
-        "arm_ik_solver",
-        "farcry2vr_dll"
+        "failure_registry_f003",
+        "failure_registry_f004",
+        "failure_registry_f008"
       ],
-      "relation": "participate_in",
+      "relation": "form",
       "confidence": "INFERRED",
       "confidence_score": 0.85,
-      "source_file": "CURRENT_STATE.md"
+      "source_file": "FAILURE_REGISTRY.md"
     }
   ],
-  "built_at_commit": "4eef472859c07914a20b9cea76bc0d70870f1f5f"
+  "built_at_commit": "f164879b6778539de63099302a3d994db92f21ce"
 }

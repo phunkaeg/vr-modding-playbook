@@ -69,11 +69,16 @@
         "source_file": "ADDRESS_REGISTRY.md"
       },
       {
-        "id": "census_suite",
-        "label": "Forward Census Suite",
+        "id": "forward_census_suite",
+        "label": "The Forward Census",
         "nodes": [
           "forward_plan_c1",
-          "forward_plan_c4"
+          "forward_plan_c2",
+          "forward_plan_c3",
+          "forward_plan_c4",
+          "forward_plan_c5",
+          "forward_plan_c6",
+          "forward_plan_c8"
         ],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
@@ -153,13 +158,25 @@
         "label": "Machine-Checkable Testing Rigor",
         "nodes": [
           "testing_mutate_py",
-          "testing_exit_counters",
-          "next_test_step0"
+          "testing_exit_counters"
         ],
         "relation": "participate_in",
         "confidence": "INFERRED",
         "confidence_score": 0.8,
         "source_file": "TESTING.md"
+      },
+      {
+        "id": "viewmodel_aim_seams",
+        "label": "Viewmodel/Aim Seams",
+        "nodes": [
+          "next_test_step_0",
+          "next_test_step_3",
+          "next_test_step_4"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "FORWARD_PLAN.md"
       }
     ]
   },
@@ -185,7 +202,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": "2026-08-16",
-      "community": 6,
+      "community": 7,
       "contributor": null,
       "file_type": "document",
       "norm_label": "alternate-eye rendering",
@@ -200,7 +217,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 11,
+      "community": 12,
       "contributor": null,
       "file_type": "code",
       "norm_label": "on12::presenttoxr()",
@@ -215,7 +232,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 11,
+      "community": 12,
       "contributor": null,
       "file_type": "code",
       "norm_label": "openxr_loader.dll",
@@ -230,7 +247,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 29,
+      "community": 27,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "use9on12",
@@ -305,7 +322,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 7,
       "contributor": null,
       "file_type": "code",
       "norm_label": "b1frameid()",
@@ -320,7 +337,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 6,
+      "community": 7,
       "contributor": null,
       "file_type": "concept",
       "norm_label": "b1 doubling",
@@ -328,6 +345,76 @@
       "source_file": "ENGINE_NOTES_SWAT4.md",
       "source_location": null,
       "source_url": null
+    },
+    {
+      "id": "apitrace",
+      "label": "apitrace",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "apitrace",
+      "rationale": "Tool for capturing D3D call streams; preferred over RenderDoc for Swat4.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "swat4_exe",
+      "label": "Swat4.exe",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "swat4.exe",
+      "rationale": "UE2.0 executable, 32-bit.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "swat4x_exe",
+      "label": "Swat4X.exe",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "swat4x.exe",
+      "rationale": "UE2.5 executable, primary target.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "xr_tape",
+      "label": "xr-tape",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "xr-tape",
+      "rationale": "OpenXR API layer for recording and checking mod submissions.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "cross_engine_graph",
+      "label": "Cross-Engine Docs Graph",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "concept",
+      "norm_label": "cross-engine docs graph",
+      "rationale": "A graph indexing prior art from SS2VR, BioshockVR, and SOMAVR.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "re_mcp_toolkit",
+      "label": "re-mcp-toolkit",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "concept",
+      "norm_label": "re-mcp-toolkit",
+      "rationale": "A skill/toolkit containing pairing tables and preflight instructions for RE tools.",
+      "source_file": "AGENTS.md"
+    },
+    {
+      "id": "agents_md",
+      "label": "AGENTS.md",
+      "_origin": "semantic",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "agents.md",
+      "rationale": "Agent rules and MCP roster for Codex/Claude in the Swat4VR project.",
+      "source_file": "AGENTS.md"
     },
     {
       "id": "address_registry_engine_dll",
@@ -380,10 +467,30 @@
       "source_file": "ADDRESS_REGISTRY.md"
     },
     {
+      "id": "conventions_engine_rotation",
+      "label": "Engine Rotation (FRotator)",
+      "_origin": "semantic",
+      "community": 10,
+      "file_type": "code",
+      "norm_label": "engine rotation (frotator)",
+      "rationale": "Verified as 65536 units per turn via live memory read of FPlayerSceneNode constructor.",
+      "source_file": "CONVENTIONS.md"
+    },
+    {
+      "id": "conventions_world_scale",
+      "label": "World Scale (78.74 UU/m)",
+      "_origin": "semantic",
+      "community": 10,
+      "file_type": "concept",
+      "norm_label": "world scale (78.74 uu/m)",
+      "rationale": "Derived from four shipped imperial constants (door height, pawn radius/height) and movement speed; beats the engine's documented value of 50.",
+      "source_file": "CONVENTIONS.md"
+    },
+    {
       "id": "engine_uviewport_exec",
       "label": "UViewport::Exec",
       "_origin": "semantic",
-      "community": 10,
+      "community": 11,
       "file_type": "code",
       "norm_label": "uviewport::exec",
       "source_file": "ADDRESS_REGISTRY.md"
@@ -392,7 +499,7 @@
       "id": "decision_log_d0003",
       "label": "Two-half Architecture",
       "_origin": "semantic",
-      "community": 10,
+      "community": 11,
       "file_type": "concept",
       "norm_label": "two-half architecture",
       "rationale": "Injected DLL for low-level XR/D3D tasks; UnrealScript package for game semantics.",
@@ -402,7 +509,7 @@
       "id": "engine_notes_swat4_vengeance",
       "label": "Vengeance Engine (UE2.5)",
       "_origin": "semantic",
-      "community": 12,
+      "community": 13,
       "file_type": "concept",
       "norm_label": "vengeance engine (ue2.5)",
       "rationale": "The core engine technology for SWAT 4, sharing lineage with BioShock.",
@@ -412,7 +519,7 @@
       "id": "sef_mod",
       "label": "SWAT: Elite Force (SEF)",
       "_origin": "semantic",
-      "community": 12,
+      "community": 13,
       "file_type": "concept",
       "norm_label": "swat: elite force (sef)",
       "rationale": "Open-source overhaul that defines the modern standard install and configuration layout.",
@@ -422,7 +529,7 @@
       "id": "failure_registry_f0001",
       "label": "F-0001: Engine.dll export RVA is a thunk",
       "_origin": "semantic",
-      "community": 13,
+      "community": 14,
       "file_type": "document",
       "norm_label": "f-0001: engine.dll export rva is a thunk",
       "rationale": "Rule: Resolve export, follow jmp, validate target as function entry. Never hook Engine.dll export address directly because incremental linking uses jump-thunks that miss internal calls.",
@@ -432,7 +539,7 @@
       "id": "failure_registry_f0007",
       "label": "F-0007: IDirect3D9::CreateDevice hook silent",
       "_origin": "semantic",
-      "community": 13,
+      "community": 14,
       "file_type": "document",
       "norm_label": "f-0007: idirect3d9::createdevice hook silent",
       "rationale": "Rule: Resolve engine-facing D3D9 functions from the actual device the game uses, not a convenience device. D3D9 provides different implementations (Present/Draw) based on presentation parameters.",
@@ -442,7 +549,7 @@
       "id": "failure_registry_f0013",
       "label": "F-0013: UViewport::Exec 'this' pointer offset",
       "_origin": "semantic",
-      "community": 14,
+      "community": 15,
       "file_type": "document",
       "norm_label": "f-0013: uviewport::exec 'this' pointer offset",
       "rationale": "Rule: In multiple-inheritance, exported methods expect the subobject pointer, not the base object pointer. Prefer calling through vtable slots.",
@@ -452,7 +559,7 @@
       "id": "failure_registry_f0019",
       "label": "F-0019: Vtable location vs target",
       "_origin": "semantic",
-      "community": 14,
+      "community": 15,
       "file_type": "document",
       "norm_label": "f-0019: vtable location vs target",
       "rationale": "Rule: COM identity is where vtable entries point. D3D9 uses heap vtables. Print values before theorizing.",
@@ -462,7 +569,7 @@
       "id": "failure_registry_f0018",
       "label": "F-0018: D3D9 device hooks never fired",
       "_origin": "semantic",
-      "community": 15,
+      "community": 16,
       "file_type": "document",
       "norm_label": "f-0018: d3d9 device hooks never fired",
       "rationale": "Rule: Do not build on D3D9 observer until resolved. Engine hooks (Draw) are independent of D3D9 layer hooks.",
@@ -472,95 +579,17 @@
       "id": "failure_registry_f0025",
       "label": "F-0025: 9On12 Device Creation Failure",
       "_origin": "semantic",
-      "community": 15,
+      "community": 16,
       "file_type": "document",
       "norm_label": "f-0025: 9on12 device creation failure",
       "rationale": "Rule: Invert ownership\u2014let 9On12 create the D3D12 device and adopt it, rather than handing it a pre-created one. Simulator environment (LUIDs) is part of the simulation.",
       "source_file": "FAILURE_REGISTRY.md"
     },
     {
-      "id": "forward_plan_c4",
-      "label": "C4: Eye Height & Location Census",
-      "_origin": "semantic",
-      "community": 16,
-      "file_type": "code",
-      "norm_label": "c4: eye height & location census",
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
-      "id": "forward_plan_h8_interaction",
-      "label": "H8: Interaction Ray",
-      "_origin": "semantic",
-      "community": 16,
-      "file_type": "concept",
-      "norm_label": "h8: interaction ray",
-      "rationale": "Uses SwatGamePlayerController.uc UpdateFocus; identified as running at 5Hz via timer.",
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
-      "id": "forward_plan_h3",
-      "label": "H3: Head Tracking",
-      "_origin": "semantic",
-      "community": 17,
-      "file_type": "concept",
-      "norm_label": "h3: head tracking",
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
-      "id": "forward_plan_monotracked",
-      "label": "MonoTracked Rung",
-      "_origin": "semantic",
-      "community": 17,
-      "file_type": "concept",
-      "norm_label": "monotracked rung",
-      "rationale": "Intermediate step between Mono (M-B) and Stereo (M-C) to validate tracking and scale without stereo variables.",
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
-      "id": "vengeance_findings_viewmodel_fov",
-      "label": "Viewmodel FOV Formula",
-      "_origin": "semantic",
-      "community": 18,
-      "file_type": "concept",
-      "norm_label": "viewmodel fov formula",
-      "rationale": "Hand/weapon offset scaled by 90/FirstPersonFOV; formula found in Pawn.uc.",
-      "source_file": "VENGEANCE_SHARED_FINDINGS.md"
-    },
-    {
-      "id": "next_test_step0",
-      "label": "Step 0: Desk Probe",
-      "_origin": "semantic",
-      "community": 18,
-      "file_type": "document",
-      "norm_label": "step 0: desk probe",
-      "rationale": "Determines if viewmodel is glued to CAMERA or PAWN to decide if 'detach' work is necessary.",
-      "source_file": "NEXT_TEST.md"
-    },
-    {
-      "id": "playbook_handover_hud_cropping",
-      "label": "HUD Cropping vs Scaling",
-      "_origin": "semantic",
-      "community": 19,
-      "file_type": "concept",
-      "norm_label": "hud cropping vs scaling",
-      "rationale": "Screen-space HUD is cropped when game FOV > headset FOV; fix by scaling at tile-draw call.",
-      "source_file": "PLAYBOOK_HANDOVER_2026-09-02.md"
-    },
-    {
-      "id": "next_test_step2",
-      "label": "Step 2: HUD Scale",
-      "_origin": "semantic",
-      "community": 19,
-      "file_type": "document",
-      "norm_label": "step 2: hud scale",
-      "rationale": "Independent test for UI scaling; uses UCanvas extent identification as a gate.",
-      "source_file": "NEXT_TEST.md"
-    },
-    {
       "id": "playbook_handover_d3d9on12_ownership",
       "label": "D3D9On12 Device Ownership",
       "_origin": "semantic",
-      "community": 20,
+      "community": 18,
       "file_type": "concept",
       "norm_label": "d3d9on12 device ownership",
       "rationale": "Game must own the D3D9 device; the mod adopts the underlying D3D12 device/queue from it.",
@@ -570,7 +599,7 @@
       "id": "readme_r1_derisking",
       "label": "R1: D3D9 to OpenXR Interop",
       "_origin": "semantic",
-      "community": 20,
+      "community": 18,
       "file_type": "concept",
       "norm_label": "r1: d3d9 to openxr interop",
       "rationale": "Falsified D3D9Ex substitution due to D3DPOOL_MANAGED usage; validated Route B (D3D9 -> 9On12 -> D3D12).",
@@ -580,17 +609,64 @@
       "id": "conventions_engine_fov",
       "label": "Engine FOV (Horizontal)",
       "_origin": "semantic",
-      "community": 21,
+      "community": 19,
       "file_type": "code",
       "norm_label": "engine fov (horizontal)",
       "rationale": "Verified as horizontal degrees via projection matrix m00 analysis and ini cross-check.",
       "source_file": "CONVENTIONS.md"
     },
     {
+      "id": "address_registry_md",
+      "label": "ADDRESS_REGISTRY.md",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "address_registry.md",
+      "source_file": "VR_FINDINGS_INDEX.md"
+    },
+    {
+      "id": "build_history_md",
+      "label": "BUILD_HISTORY.md",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "build_history.md",
+      "rationale": "Build tracking, versioning contract, and hash logs.",
+      "source_file": "BUILD_HISTORY.md"
+    },
+    {
+      "id": "current_state_md",
+      "label": "CURRENT_STATE.md",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "current_state.md",
+      "source_file": "VR_FINDINGS_INDEX.md"
+    },
+    {
+      "id": "failure_registry_md",
+      "label": "FAILURE_REGISTRY.md",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "failure_registry.md",
+      "source_file": "VR_FINDINGS_INDEX.md"
+    },
+    {
+      "id": "vr_findings_index_md",
+      "label": "VR_FINDINGS_INDEX.md",
+      "_origin": "semantic",
+      "community": 2,
+      "file_type": "document",
+      "norm_label": "vr_findings_index.md",
+      "rationale": "Central index mapping topics to specific documentation owners.",
+      "source_file": "VR_FINDINGS_INDEX.md"
+    },
+    {
       "id": "conventions_handedness",
       "label": "Left-handed Coordinate System",
       "_origin": "semantic",
-      "community": 22,
+      "community": 20,
       "file_type": "concept",
       "norm_label": "left-handed coordinate system",
       "rationale": "Decoded from the D3D9 projection matrix.",
@@ -600,7 +676,7 @@
       "id": "decision_log_d0009",
       "label": "Exported Name Resolution",
       "_origin": "semantic",
-      "community": 23,
+      "community": 21,
       "file_type": "concept",
       "norm_label": "exported name resolution",
       "rationale": "Engine.dll exports ~7.6k symbols; using GetProcAddress + thunk following is more robust than byte patterns.",
@@ -610,7 +686,7 @@
       "id": "derisking_battery_r1",
       "label": "R1 \u2014 OpenXR D3D9 Interop",
       "_origin": "semantic",
-      "community": 24,
+      "community": 22,
       "file_type": "concept",
       "norm_label": "r1 \u2014 openxr d3d9 interop",
       "rationale": "Validated Direct3DCreate9On12 as the primary transport mechanism for D3D9 frames to OpenXR swapchains.",
@@ -620,7 +696,7 @@
       "id": "derisking_battery_r2",
       "label": "R2 \u2014 32-bit OpenXR Runtime Support",
       "_origin": "semantic",
-      "community": 25,
+      "community": 23,
       "file_type": "concept",
       "norm_label": "r2 \u2014 32-bit openxr runtime support",
       "rationale": "Confirmed 32-bit OpenXR apps run under VirtualDesktopXR; SteamVR remains a secondary target.",
@@ -630,7 +706,7 @@
       "id": "derisking_battery_r3",
       "label": "R3 \u2014 Renderer Pipeline Analysis",
       "_origin": "semantic",
-      "community": 26,
+      "community": 24,
       "file_type": "concept",
       "norm_label": "r3 \u2014 renderer pipeline analysis",
       "rationale": "Identified hybrid pipeline (fixed-function + shaders) using apitrace; RTCShader.dll handles programmable path.",
@@ -640,7 +716,7 @@
       "id": "derisking_battery_r4",
       "label": "R4 \u2014 Scene-Draw Re-entry",
       "_origin": "semantic",
-      "community": 27,
+      "community": 25,
       "file_type": "concept",
       "norm_label": "r4 \u2014 scene-draw re-entry",
       "rationale": "Confirmed UGameEngine::Draw can be called twice per frame to produce stereo pixels.",
@@ -650,7 +726,7 @@
       "id": "derisking_battery_r6",
       "label": "R6 \u2014 Threading Model",
       "_origin": "semantic",
-      "community": 28,
+      "community": 26,
       "file_type": "concept",
       "norm_label": "r6 \u2014 threading model",
       "rationale": "Verified engine is single-threaded across render seams, simplifying re-entrancy.",
@@ -660,7 +736,7 @@
       "id": "failure_registry_f0002",
       "label": "F-0002: Camera seam has no standard prologue",
       "_origin": "semantic",
-      "community": 30,
+      "community": 28,
       "file_type": "document",
       "norm_label": "f-0002: camera seam has no standard prologue",
       "rationale": "Rule: Do not derive function starts by prologue scanning (no 55 8B EC). Use export table or CC-padding between functions.",
@@ -670,7 +746,7 @@
       "id": "failure_registry_f0003",
       "label": "F-0003: Intermittent CreateDevice failure with VR",
       "_origin": "semantic",
-      "community": 31,
+      "community": 29,
       "file_type": "document",
       "norm_label": "f-0003: intermittent createdevice failure with vr",
       "rationale": "Rule: Sample repeatedly and report rate (FLAKY: n/5) when results vary with ambient machine state.",
@@ -680,7 +756,7 @@
       "id": "failure_registry_f0004",
       "label": "F-0004: Vtable provenance false alarm",
       "_origin": "semantic",
-      "community": 32,
+      "community": 30,
       "file_type": "document",
       "norm_label": "f-0004: vtable provenance false alarm",
       "rationale": "Rule: Provenance is about where function pointers point, not where the pointer array (vtable) lives (which can be on the heap).",
@@ -690,7 +766,7 @@
       "id": "failure_registry_f0005",
       "label": "F-0005: Overstating 'MANAGED' asset path",
       "_origin": "semantic",
-      "community": 33,
+      "community": 31,
       "file_type": "document",
       "norm_label": "f-0005: overstating 'managed' asset path",
       "rationale": "Rule: 'X happens' != 'X is the norm'. Use subset counters to support claims about subsets.",
@@ -700,7 +776,7 @@
       "id": "failure_registry_f0006",
       "label": "F-0006: Wrong Swat4X.ini path",
       "_origin": "semantic",
-      "community": 34,
+      "community": 32,
       "file_type": "document",
       "norm_label": "f-0006: wrong swat4x.ini path",
       "rationale": "Rule: CWD, not the exe folder, determines which files UE2 loads. Mod must log config identity (path, mtime, hash).",
@@ -710,7 +786,7 @@
       "id": "failure_registry_f0008",
       "label": "F-0008: Bidirectional GUI Resolution Field",
       "_origin": "semantic",
-      "community": 35,
+      "community": 33,
       "file_type": "document",
       "norm_label": "f-0008: bidirectional gui resolution field",
       "rationale": "Rule: Read the whole class, not just the getter. A getter proves a field is written to, not that it isn't also read from (bidirectional).",
@@ -720,7 +796,7 @@
       "id": "failure_registry_f0009",
       "label": "F-0009: R6 verdict inverted data",
       "_origin": "semantic",
-      "community": 36,
+      "community": 34,
       "file_type": "document",
       "norm_label": "f-0009: r6 verdict inverted data",
       "rationale": "Rule: Capture live, report at exit. DLL_PROCESS_DETACH samples a half-torn-down process (e.g., window already destroyed).",
@@ -730,7 +806,7 @@
       "id": "failure_registry_f0010",
       "label": "F-0010: Swallowed engine exceptions",
       "_origin": "semantic",
-      "community": 37,
+      "community": 35,
       "file_type": "document",
       "norm_label": "f-0010: swallowed engine exceptions",
       "rationale": "Rule: One fault disables the bridge for the session. Fail closed and diagnose offline. Read past our own frames in engine crash history.",
@@ -740,7 +816,7 @@
       "id": "failure_registry_f0011",
       "label": "F-0011: .gitignore excluded src/game/",
       "_origin": "semantic",
-      "community": 38,
+      "community": 36,
       "file_type": "document",
       "norm_label": "f-0011: .gitignore excluded src/game/",
       "rationale": "Rule: Anchor ignore rules (e.g., /game/). Verify repository content with git ls-files, not just commit success.",
@@ -750,10 +826,30 @@
       "id": "failure_registry_f0012",
       "label": "F-0012: Disk full from apitrace",
       "_origin": "semantic",
-      "community": 39,
+      "community": 37,
       "file_type": "document",
       "norm_label": "f-0012: disk full from apitrace",
       "rationale": "Rule: Check free space and pin output path for unbounded captures. A full disk causes silent write failures in unrelated components (config corruption).",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f0014",
+      "label": "F-0014: B1 precondition gate failure",
+      "_origin": "semantic",
+      "community": 38,
+      "file_type": "document",
+      "norm_label": "f-0014: b1 precondition gate failure",
+      "rationale": "Rule: Gates must assert required rates, not just non-zero. Reset cumulative counters on arm for point-in-time measurements.",
+      "source_file": "FAILURE_REGISTRY.md"
+    },
+    {
+      "id": "failure_registry_f0015",
+      "label": "F-0015: Screenshot timing bug",
+      "_origin": "semantic",
+      "community": 39,
+      "file_type": "document",
+      "norm_label": "f-0015: screenshot timing bug",
+      "rationale": "Rule: Sample the proof after the thing it proves. Human observation (flicker) trumps silent instrument reporting no change.",
       "source_file": "FAILURE_REGISTRY.md"
     },
     {
@@ -795,30 +891,10 @@
       "source_file": "CURRENT_STATE.md"
     },
     {
-      "id": "failure_registry_f0014",
-      "label": "F-0014: B1 precondition gate failure",
-      "_origin": "semantic",
-      "community": 40,
-      "file_type": "document",
-      "norm_label": "f-0014: b1 precondition gate failure",
-      "rationale": "Rule: Gates must assert required rates, not just non-zero. Reset cumulative counters on arm for point-in-time measurements.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
-      "id": "failure_registry_f0015",
-      "label": "F-0015: Screenshot timing bug",
-      "_origin": "semantic",
-      "community": 41,
-      "file_type": "document",
-      "norm_label": "f-0015: screenshot timing bug",
-      "rationale": "Rule: Sample the proof after the thing it proves. Human observation (flicker) trumps silent instrument reporting no change.",
-      "source_file": "FAILURE_REGISTRY.md"
-    },
-    {
       "id": "failure_registry_f0016",
       "label": "F-0016: Python append-truncation bug",
       "_origin": "semantic",
-      "community": 42,
+      "community": 40,
       "file_type": "document",
       "norm_label": "f-0016: python append-truncation bug",
       "rationale": "Rule: Never write to a file while still reading it in the same expression. Assert on preserved content, not just added content.",
@@ -828,7 +904,7 @@
       "id": "failure_registry_f0017",
       "label": "F-0017: Command file overwrite",
       "_origin": "semantic",
-      "community": 43,
+      "community": 41,
       "file_type": "document",
       "norm_label": "f-0017: command file overwrite",
       "rationale": "Rule: Polled files are lossy. Wait for consumption or queue commands. Verify all commands echoed, not just the last one.",
@@ -838,7 +914,7 @@
       "id": "failure_registry_f0020",
       "label": "F-0020: Burst comparator lag-1 vs lag-2",
       "_origin": "semantic",
-      "community": 44,
+      "community": 42,
       "file_type": "document",
       "norm_label": "f-0020: burst comparator lag-1 vs lag-2",
       "rationale": "Rule: Work out expected signal (lag-2 for alternation) before writing tests. A 'measures nothing' verdict needs scrutiny.",
@@ -848,7 +924,7 @@
       "id": "failure_registry_f0021",
       "label": "F-0021: Burst crash in-mission",
       "_origin": "semantic",
-      "community": 45,
+      "community": 43,
       "file_type": "document",
       "norm_label": "f-0021: burst crash in-mission",
       "rationale": "Rule: One mutation at a time. Framebuffer readback is a mutation (stalls pipeline). Menu success != in-mission success.",
@@ -858,7 +934,7 @@
       "id": "failure_registry_f0022",
       "label": "F-0022: /OPT:ICF folding misdiagnosis",
       "_origin": "semantic",
-      "community": 46,
+      "community": 44,
       "file_type": "document",
       "norm_label": "f-0022: /opt:icf folding misdiagnosis",
       "rationale": "Rule: Verification instruments must be as capable as the mechanism under test (e.g., follow multiple thunk hops).",
@@ -868,7 +944,7 @@
       "id": "failure_registry_f0023",
       "label": "F-0023: git checkout destroyed work",
       "_origin": "semantic",
-      "community": 47,
+      "community": 45,
       "file_type": "document",
       "norm_label": "f-0023: git checkout destroyed work",
       "rationale": "Rule: Restore from in-memory original, not git HEAD, during mutation testing to preserve uncommitted work.",
@@ -878,7 +954,7 @@
       "id": "failure_registry_f0024",
       "label": "F-0024: OpenXR event pump deadlock",
       "_origin": "semantic",
-      "community": 48,
+      "community": 46,
       "file_type": "document",
       "norm_label": "f-0024: openxr event pump deadlock",
       "rationale": "Rule: A gate must not be the only caller of the thing that opens it. Pump events before checking session status.",
@@ -888,47 +964,17 @@
       "id": "failure_registry_f0026",
       "label": "F-0026: Stale Build Injection",
       "_origin": "semantic",
-      "community": 49,
+      "community": 47,
       "file_type": "document",
       "norm_label": "f-0026: stale build injection",
       "rationale": "Stale DLLs from different configurations were being injected because launcher defaults pointed to non-produced directories.",
       "source_file": "FAILURE_REGISTRY.md"
     },
     {
-      "id": "autotest_census_parse",
-      "label": "census_parse.py",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "code",
-      "norm_label": "census_parse.py",
-      "rationale": "Gates runs based on proven mission entry and valid projection data.",
-      "source_file": "AUTOTEST.md"
-    },
-    {
-      "id": "autotest_orchestrator",
-      "label": "autotest.ps1",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "code",
-      "norm_label": "autotest.ps1",
-      "rationale": "Orchestrates unattended testing, map loading, and census validation.",
-      "source_file": "AUTOTEST.md"
-    },
-    {
-      "id": "autotest_xr_tape",
-      "label": "xr-tape",
-      "_origin": "semantic",
-      "community": 5,
-      "file_type": "code",
-      "norm_label": "xr-tape",
-      "rationale": "External API layer for recording and checking OpenXR submissions.",
-      "source_file": "AUTOTEST.md"
-    },
-    {
       "id": "failure_registry_f0027",
       "label": "F-0027: Swapchain Rebuild Thrash",
       "_origin": "semantic",
-      "community": 50,
+      "community": 48,
       "file_type": "document",
       "norm_label": "f-0027: swapchain rebuild thrash",
       "rationale": "Comparing game format against runtime-chosen format caused per-frame swapchain rebuilds when they didn't match.",
@@ -938,7 +984,7 @@
       "id": "failure_registry_f0028",
       "label": "F-0028: Focus-Induced False Hangs",
       "_origin": "semantic",
-      "community": 51,
+      "community": 49,
       "file_type": "document",
       "norm_label": "f-0028: focus-induced false hangs",
       "rationale": "UE2.5 stops rendering when unfocused, leading to misdiagnosis of hangs and engine properties.",
@@ -948,44 +994,17 @@
       "id": "failure_registry_f0029",
       "label": "F-0029: Alt-Tab D3DPOOL_DEFAULT Fatal",
       "_origin": "semantic",
-      "community": 52,
+      "community": 50,
       "file_type": "document",
       "norm_label": "f-0029: alt-tab d3dpool_default fatal",
       "rationale": "Resources in D3DPOOL_DEFAULT must be released before Reset; failure to do so freezes the game on regaining focus.",
       "source_file": "FAILURE_REGISTRY.md"
     },
     {
-      "id": "forward_plan_c1",
-      "label": "C1: Rotation Range Census",
-      "_origin": "semantic",
-      "community": 53,
-      "file_type": "code",
-      "norm_label": "c1: rotation range census",
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
-      "id": "forward_plan_h1",
-      "label": "H1: Mono Frame in Headset",
-      "_origin": "semantic",
-      "community": 54,
-      "file_type": "concept",
-      "norm_label": "h1: mono frame in headset",
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
-      "id": "forward_plan_h2",
-      "label": "H2: Real Stereo (M-C)",
-      "_origin": "semantic",
-      "community": 55,
-      "file_type": "concept",
-      "norm_label": "h2: real stereo (m-c)",
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
       "id": "handover_interop_9on12",
       "label": "D3D9On12 Interop",
       "_origin": "semantic",
-      "community": 56,
+      "community": 57,
       "file_type": "concept",
       "norm_label": "d3d9on12 interop",
       "rationale": "Chosen because D3D9Ex rejects D3DPOOL_MANAGED, which 98% of SWAT 4 textures use.",
@@ -995,37 +1014,47 @@
       "id": "milestones_m1_2",
       "label": "M1.2: Observation",
       "_origin": "semantic",
-      "community": 57,
+      "community": 58,
       "file_type": "concept",
       "norm_label": "m1.2: observation",
       "rationale": "Achieved via Engine.dll exports rather than D3D9 hooks.",
       "source_file": "MILESTONES.md"
     },
     {
-      "id": "next_test_step1",
-      "label": "Step 1: Roll Fix",
+      "id": "autotest_census_parse",
+      "label": "census_parse.py",
       "_origin": "semantic",
-      "community": 58,
-      "file_type": "document",
-      "norm_label": "step 1: roll fix",
-      "rationale": "First behavioral change to test; ensures vertical edges stay fusible during head tilt.",
-      "source_file": "NEXT_TEST.md"
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "census_parse.py",
+      "rationale": "Gates runs based on proven mission entry and valid projection data.",
+      "source_file": "AUTOTEST.md"
     },
     {
-      "id": "next_test_step3",
-      "label": "Step 3: Reticle onto Gun",
+      "id": "autotest_orchestrator",
+      "label": "autotest.ps1",
       "_origin": "semantic",
-      "community": 59,
-      "file_type": "document",
-      "norm_label": "step 3: reticle onto gun",
-      "rationale": "Depends on head rotation; ensures crosshair stays on world point gun is pointing at.",
-      "source_file": "NEXT_TEST.md"
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "autotest.ps1",
+      "rationale": "Orchestrates unattended testing, map loading, and census validation.",
+      "source_file": "AUTOTEST.md"
+    },
+    {
+      "id": "autotest_xr_tape",
+      "label": "xr-tape",
+      "_origin": "semantic",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "xr-tape",
+      "rationale": "External API layer for recording and checking OpenXR submissions.",
+      "source_file": "AUTOTEST.md"
     },
     {
       "id": "playbook_handover_cancelling_errors",
       "label": "Correctness by Cancellation",
       "_origin": "semantic",
-      "community": 60,
+      "community": 62,
       "file_type": "concept",
       "norm_label": "correctness by cancellation",
       "rationale": "Opposite right-vectors in eyeOffsetUU and headOffsetUU result in correct percept; do not 'tidy' without locating the second inversion.",
@@ -1035,17 +1064,27 @@
       "id": "playbook_handover_device_loss",
       "label": "Device Loss Recovery",
       "_origin": "semantic",
-      "community": 61,
+      "community": 63,
       "file_type": "concept",
       "norm_label": "device loss recovery",
       "rationale": "Poll state from Present, not TestCooperativeLevel, as the engine may stop calling the latter.",
       "source_file": "PLAYBOOK_HANDOVER_2026-09-02.md"
     },
     {
+      "id": "playbook_handover_hud_cropping",
+      "label": "HUD Cropping vs Scaling",
+      "_origin": "semantic",
+      "community": 64,
+      "file_type": "concept",
+      "norm_label": "hud cropping vs scaling",
+      "rationale": "Screen-space HUD is cropped when game FOV > headset FOV; fix by scaling at tile-draw call.",
+      "source_file": "PLAYBOOK_HANDOVER_2026-09-02.md"
+    },
+    {
       "id": "playbook_handover_openxr_fov",
       "label": "OpenXR FOV Submission Law",
       "_origin": "semantic",
-      "community": 62,
+      "community": 65,
       "file_type": "concept",
       "norm_label": "openxr fov submission law",
       "rationale": "FOV describes the rendered frustum, it does not request it; incorrect declaration causes divergence.",
@@ -1055,7 +1094,7 @@
       "id": "playbook_handover_struct_offsets",
       "label": "Signature-based Offset Discovery",
       "_origin": "semantic",
-      "community": 63,
+      "community": 66,
       "file_type": "concept",
       "norm_label": "signature-based offset discovery",
       "rationale": "Use float/int patterns (e.g., {0,0,W,H}) to find UCanvas dimensions rather than hardcoded offsets.",
@@ -1065,7 +1104,7 @@
       "id": "re_plan_anchor_ladder",
       "label": "RE Anchor Ladder",
       "_origin": "semantic",
-      "community": 64,
+      "community": 67,
       "file_type": "concept",
       "norm_label": "re anchor ladder",
       "rationale": "Prioritizes reflection (R1) and native tables (R1b) over byte-patterns (R6).",
@@ -1075,7 +1114,7 @@
       "id": "testing_exit_counters",
       "label": "Exit Counters vs Entry Counters",
       "_origin": "semantic",
-      "community": 65,
+      "community": 68,
       "file_type": "concept",
       "norm_label": "exit counters vs entry counters",
       "rationale": "Distinguishes between 'hook never fired' and 'hook fired but bailed' by counting at every exit point.",
@@ -1085,7 +1124,7 @@
       "id": "testing_mutate_py",
       "label": "Mutation Testing (mutate.py)",
       "_origin": "semantic",
-      "community": 66,
+      "community": 69,
       "file_type": "code",
       "norm_label": "mutation testing (mutate.py)",
       "rationale": "Proves a test suite can fail; identifies vacuous tests that pass for the wrong reasons.",
@@ -1095,17 +1134,27 @@
       "id": "vengeance_findings_scenenode",
       "label": "FPlayerSceneNode Camera Extraction",
       "_origin": "semantic",
-      "community": 67,
+      "community": 70,
       "file_type": "concept",
       "norm_label": "fplayerscenenode camera extraction",
       "rationale": "Constructor provides Location, Rotation, and FOV directly as arguments.",
       "source_file": "VENGEANCE_SHARED_FINDINGS.md"
     },
     {
+      "id": "vengeance_findings_viewmodel_fov",
+      "label": "Viewmodel FOV Formula",
+      "_origin": "semantic",
+      "community": 71,
+      "file_type": "concept",
+      "norm_label": "viewmodel fov formula",
+      "rationale": "Hand/weapon offset scaled by 90/FirstPersonFOV; formula found in Pawn.uc.",
+      "source_file": "VENGEANCE_SHARED_FINDINGS.md"
+    },
+    {
       "id": "address_registry_d3d9_dll",
       "label": "d3d9.dll",
       "_origin": "semantic",
-      "community": 7,
+      "community": 8,
       "file_type": "code",
       "norm_label": "d3d9.dll",
       "rationale": "System DLL; RVAs are per-device and must be resolved from the game's own vtable.",
@@ -1115,7 +1164,7 @@
       "id": "address_registry_ud3drenderdevice",
       "label": "UD3DRenderDevice",
       "_origin": "semantic",
-      "community": 7,
+      "community": 8,
       "file_type": "code",
       "norm_label": "ud3drenderdevice",
       "rationale": "Holds the IDirect3DDevice9 pointer at offset +0x4770.",
@@ -1125,7 +1174,7 @@
       "id": "address_registry_swat4x_exe",
       "label": "swat4x.exe",
       "_origin": "semantic",
-      "community": 8,
+      "community": 9,
       "file_type": "code",
       "norm_label": "swat4x.exe",
       "rationale": "Primary executable for SWAT 4 1.1 / TSS build; not LARGEADDRESSAWARE.",
@@ -1135,136 +1184,142 @@
       "id": "claude_rules",
       "label": "Project Rules",
       "_origin": "semantic",
-      "community": 8,
+      "community": 9,
       "file_type": "document",
       "norm_label": "project rules",
       "rationale": "Authoritative rules on evidence, truth, and SWAT 4 specifics.",
       "source_file": "CLAUDE.md"
     },
     {
-      "id": "conventions_engine_rotation",
-      "label": "Engine Rotation (FRotator)",
-      "_origin": "semantic",
-      "community": 9,
+      "id": "next_test_step_0",
+      "label": "Step 0: Viewmodel Probe",
+      "community": 17,
       "file_type": "code",
-      "norm_label": "engine rotation (frotator)",
-      "rationale": "Verified as 65536 units per turn via live memory read of FPlayerSceneNode constructor.",
-      "source_file": "CONVENTIONS.md"
+      "norm_label": "step 0: viewmodel probe",
+      "rationale": "Determines if viewmodel is locked to camera or pawn.",
+      "source_file": "NEXT_TEST.md"
     },
     {
-      "id": "conventions_world_scale",
-      "label": "World Scale (78.74 UU/m)",
-      "_origin": "semantic",
-      "community": 9,
+      "id": "next_test_step_4",
+      "label": "Step 4: Viewmodel Detach",
+      "community": 17,
+      "file_type": "code",
+      "norm_label": "step 4: viewmodel detach",
+      "source_file": "NEXT_TEST.md"
+    },
+    {
+      "id": "forward_plan_c4",
+      "label": "C4: Eye Height & Actor Location",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "c4: eye height & actor location",
+      "rationale": "Scans AActor memory for camera offsets to find eye height and the Location field anchor.",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "swatgameplayercontroller_uc_updatefocus",
+      "label": "SwatGamePlayerController::UpdateFocus",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "swatgameplayercontroller::updatefocus",
+      "rationale": "UnrealScript function handling the interaction/pick ray.",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "forward_plan_monotracked",
+      "label": "MonoTracked Rung",
+      "community": 5,
       "file_type": "concept",
-      "norm_label": "world scale (78.74 uu/m)",
-      "rationale": "Derived from four shipped imperial constants (door height, pawn radius/height) and movement speed; beats the engine's documented value of 50.",
-      "source_file": "CONVENTIONS.md"
+      "norm_label": "monotracked rung",
+      "rationale": "A gap-filling rung between Mono (M-B) and Stereo (M-C) to validate camera maths without stereo variables.",
+      "source_file": "FORWARD_PLAN.md"
     },
     {
-      "id": "apitrace",
-      "label": "apitrace",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "apitrace",
-      "rationale": "Tool for capturing D3D call streams; preferred over RenderDoc for Swat4.",
-      "source_file": "AGENTS.md"
-    },
-    {
-      "id": "swat4_exe",
-      "label": "Swat4.exe",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "swat4.exe",
-      "rationale": "UE2.0 executable, 32-bit.",
-      "source_file": "AGENTS.md"
-    },
-    {
-      "id": "swat4x_exe",
-      "label": "Swat4X.exe",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "swat4x.exe",
-      "rationale": "UE2.5 executable, primary target.",
-      "source_file": "AGENTS.md"
-    },
-    {
-      "id": "xr_tape",
-      "label": "xr-tape",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "xr-tape",
-      "rationale": "OpenXR API layer for recording and checking mod submissions.",
-      "source_file": "AGENTS.md"
-    },
-    {
-      "id": "cross_engine_graph",
-      "label": "Cross-Engine Docs Graph",
-      "community": 0,
+      "id": "forward_plan_the_ladder",
+      "label": "The Ladder (H1-H9)",
+      "community": 5,
       "file_type": "concept",
-      "norm_label": "cross-engine docs graph",
-      "rationale": "A graph indexing prior art from SS2VR, BioshockVR, and SOMAVR.",
-      "source_file": "AGENTS.md"
+      "norm_label": "the ladder (h1-h9)",
+      "rationale": "Organises VR development work by resource consumption (headset trips vs static analysis).",
+      "source_file": "FORWARD_PLAN.md"
     },
     {
-      "id": "re_mcp_toolkit",
-      "label": "re-mcp-toolkit",
-      "community": 0,
+      "id": "forward_plan_c1",
+      "label": "C1: Rotation Range",
+      "community": 51,
+      "file_type": "code",
+      "norm_label": "c1: rotation range",
+      "rationale": "Samples FRotator units to detect engine pitch clamping.",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "forward_plan_c2",
+      "label": "C2: FOV States",
+      "community": 52,
+      "file_type": "code",
+      "norm_label": "c2: fov states",
+      "rationale": "Determines if projection matrices must be dynamic (ironsights/zoom).",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "forward_plan_c3",
+      "label": "C3: Axis Mapping",
+      "community": 53,
+      "file_type": "code",
+      "norm_label": "c3: axis mapping",
+      "rationale": "Histogram of movement vs yaw to determine engine-to-OpenXR coordinate conversion.",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "forward_plan_c5",
+      "label": "C5: Frame Cadence",
+      "community": 54,
+      "file_type": "code",
+      "norm_label": "c5: frame cadence",
+      "rationale": "Measures delivered cadence (wall time) as a baseline for stereo performance costs.",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "forward_plan_c6",
+      "label": "C6: Projection Kind",
+      "community": 55,
+      "file_type": "code",
+      "norm_label": "c6: projection kind",
+      "rationale": "Uses projection matrix properties (w-term) to distinguish HUD from world rendering.",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "forward_plan_c8",
+      "label": "C8: x87 Precision Trap",
+      "community": 56,
+      "file_type": "code",
+      "norm_label": "c8: x87 precision trap",
+      "rationale": "Detects if D3D9 has set 24-bit float precision, which causes pose math drift.",
+      "source_file": "FORWARD_PLAN.md"
+    },
+    {
+      "id": "next_test_step_1",
+      "label": "Step 1: Roll Fix",
+      "community": 59,
       "file_type": "concept",
-      "norm_label": "re-mcp-toolkit",
-      "rationale": "A skill/toolkit containing pairing tables and preflight instructions for RE tools.",
-      "source_file": "AGENTS.md"
+      "norm_label": "step 1: roll fix",
+      "source_file": "NEXT_TEST.md"
     },
     {
-      "id": "agents_md",
-      "label": "AGENTS.md",
-      "community": 0,
-      "file_type": "document",
-      "norm_label": "agents.md",
-      "rationale": "Agent rules and MCP roster for Codex/Claude in the Swat4VR project.",
-      "source_file": "AGENTS.md"
+      "id": "next_test_step_2",
+      "label": "Step 2: HUD Scale",
+      "community": 60,
+      "file_type": "code",
+      "norm_label": "step 2: hud scale",
+      "source_file": "NEXT_TEST.md"
     },
     {
-      "id": "address_registry_md",
-      "label": "ADDRESS_REGISTRY.md",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "address_registry.md",
-      "source_file": "VR_FINDINGS_INDEX.md"
-    },
-    {
-      "id": "build_history_md",
-      "label": "BUILD_HISTORY.md",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "build_history.md",
-      "rationale": "Build tracking, versioning contract, and hash logs.",
-      "source_file": "BUILD_HISTORY.md"
-    },
-    {
-      "id": "current_state_md",
-      "label": "CURRENT_STATE.md",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "current_state.md",
-      "source_file": "VR_FINDINGS_INDEX.md"
-    },
-    {
-      "id": "failure_registry_md",
-      "label": "FAILURE_REGISTRY.md",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "failure_registry.md",
-      "source_file": "VR_FINDINGS_INDEX.md"
-    },
-    {
-      "id": "vr_findings_index_md",
-      "label": "VR_FINDINGS_INDEX.md",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "vr_findings_index.md",
-      "rationale": "Central index mapping topics to specific documentation owners.",
-      "source_file": "VR_FINDINGS_INDEX.md"
+      "id": "next_test_step_3",
+      "label": "Step 3: Reticle Aim Gain",
+      "community": 61,
+      "file_type": "code",
+      "norm_label": "step 3: reticle aim gain",
+      "source_file": "NEXT_TEST.md"
     }
   ],
   "links": [
@@ -1345,15 +1400,6 @@
       "source_file": "FAILURE_REGISTRY.md"
     },
     {
-      "source": "forward_plan_monotracked",
-      "target": "forward_plan_h3",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
       "source": "sef_mod",
       "target": "engine_notes_swat4_vengeance",
       "relation": "implements",
@@ -1397,6 +1443,60 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "ADDRESS_REGISTRY.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "apitrace",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "cross_engine_graph",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "re_mcp_toolkit",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "swat4_exe",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "swat4x_exe",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
+    },
+    {
+      "source": "agents_md",
+      "target": "xr_tape",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md"
     },
     {
       "source": "current_state_sequential_reentry",
@@ -1450,15 +1550,6 @@
       "source_file": "FAILURE_REGISTRY.md"
     },
     {
-      "source": "forward_plan_h8_interaction",
-      "target": "forward_plan_c4",
-      "relation": "references",
-      "_origin": "semantic",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "FORWARD_PLAN.md"
-    },
-    {
       "source": "tools_pixel_proof",
       "target": "current_state_sequential_reentry",
       "relation": "references",
@@ -1466,6 +1557,42 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "CURRENT_STATE.md"
+    },
+    {
+      "source": "vr_findings_index_md",
+      "target": "address_registry_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_FINDINGS_INDEX.md"
+    },
+    {
+      "source": "vr_findings_index_md",
+      "target": "build_history_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_FINDINGS_INDEX.md"
+    },
+    {
+      "source": "vr_findings_index_md",
+      "target": "current_state_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_FINDINGS_INDEX.md"
+    },
+    {
+      "source": "vr_findings_index_md",
+      "target": "failure_registry_md",
+      "relation": "references",
+      "_origin": "semantic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "VR_FINDINGS_INDEX.md"
     },
     {
       "source": "conventions_world_scale",
@@ -1486,15 +1613,6 @@
       "source_file": "ENGINE_NOTES_SWAT4.md",
       "source_location": null,
       "weight": 1.0
-    },
-    {
-      "source": "vengeance_findings_viewmodel_fov",
-      "target": "next_test_step0",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "VENGEANCE_SHARED_FINDINGS.md"
     },
     {
       "source": "engine_notes_swat4_b1",
@@ -1526,15 +1644,6 @@
       "source_file": "PLAYBOOK_HANDOVER_2026-09-02.md"
     },
     {
-      "source": "playbook_handover_hud_cropping",
-      "target": "next_test_step2",
-      "relation": "conceptually_related_to",
-      "_origin": "semantic",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "PLAYBOOK_HANDOVER_2026-09-02.md"
-    },
-    {
       "source": "decision_log_d0003",
       "target": "engine_uviewport_exec",
       "relation": "references",
@@ -1544,84 +1653,39 @@
       "source_file": "DECISION_LOG.md"
     },
     {
-      "source": "agents_md",
-      "target": "apitrace",
+      "source": "next_test_step_4",
+      "target": "next_test_step_0",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
+      "rationale": "Viewmodel detach is gated by the results of the Step 0 probe.",
+      "source_file": "NEXT_TEST.md"
     },
     {
-      "source": "agents_md",
-      "target": "cross_engine_graph",
-      "relation": "references",
+      "source": "forward_plan_monotracked",
+      "target": "forward_plan_the_ladder",
+      "relation": "implements",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
+      "source_file": "FORWARD_PLAN.md"
     },
     {
-      "source": "agents_md",
-      "target": "re_mcp_toolkit",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
+      "source": "swatgameplayercontroller_uc_updatefocus",
+      "target": "forward_plan_c4",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "rationale": "Interaction ray distance needs conversion via C4's world scale.",
+      "source_file": "FORWARD_PLAN.md"
     },
     {
-      "source": "agents_md",
-      "target": "swat4_exe",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
-    },
-    {
-      "source": "agents_md",
-      "target": "swat4x_exe",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
-    },
-    {
-      "source": "agents_md",
-      "target": "xr_tape",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
-    },
-    {
-      "source": "vr_findings_index_md",
-      "target": "address_registry_md",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "VR_FINDINGS_INDEX.md"
-    },
-    {
-      "source": "vr_findings_index_md",
-      "target": "build_history_md",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "VR_FINDINGS_INDEX.md"
-    },
-    {
-      "source": "vr_findings_index_md",
-      "target": "current_state_md",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "VR_FINDINGS_INDEX.md"
-    },
-    {
-      "source": "vr_findings_index_md",
-      "target": "failure_registry_md",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "VR_FINDINGS_INDEX.md"
+      "source": "forward_plan_c4",
+      "target": "forward_plan_the_ladder",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "rationale": "C4 provides eye height and actor offsets required for H4 and H5.",
+      "source_file": "FORWARD_PLAN.md"
     }
   ],
   "hyperedges": [
@@ -1691,11 +1755,16 @@
       "source_file": "ADDRESS_REGISTRY.md"
     },
     {
-      "id": "census_suite",
-      "label": "Forward Census Suite",
+      "id": "forward_census_suite",
+      "label": "The Forward Census",
       "nodes": [
         "forward_plan_c1",
-        "forward_plan_c4"
+        "forward_plan_c2",
+        "forward_plan_c3",
+        "forward_plan_c4",
+        "forward_plan_c5",
+        "forward_plan_c6",
+        "forward_plan_c8"
       ],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
@@ -1775,14 +1844,26 @@
       "label": "Machine-Checkable Testing Rigor",
       "nodes": [
         "testing_mutate_py",
-        "testing_exit_counters",
-        "next_test_step0"
+        "testing_exit_counters"
       ],
       "relation": "participate_in",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "TESTING.md"
+    },
+    {
+      "id": "viewmodel_aim_seams",
+      "label": "Viewmodel/Aim Seams",
+      "nodes": [
+        "next_test_step_0",
+        "next_test_step_3",
+        "next_test_step_4"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "FORWARD_PLAN.md"
     }
   ],
-  "built_at_commit": "4eef472859c07914a20b9cea76bc0d70870f1f5f"
+  "built_at_commit": "f164879b6778539de63099302a3d994db92f21ce"
 }

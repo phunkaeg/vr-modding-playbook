@@ -1,0 +1,158 @@
+{
+  "ADDRESS_REGISTRY.md": {
+    "mtime": 1788346155.8436704,
+    "seen": 1788746681.8643322,
+    "ast_hash": "4bc3f632eb37d30b68512482b1fee920",
+    "semantic_hash": "4bc3f632eb37d30b68512482b1fee920"
+  },
+  "AUTHORITY_MAP.md": {
+    "mtime": 1788346083.2676125,
+    "seen": 1788746681.8643322,
+    "ast_hash": "5e4d693dbc07ab634bf83c36a6a2f6c3",
+    "semantic_hash": "5e4d693dbc07ab634bf83c36a6a2f6c3"
+  },
+  "CURRENT_STATE.md": {
+    "mtime": 1788470179.4696162,
+    "seen": 1788746681.8643322,
+    "ast_hash": "389b1868511b6309956652b8f187a35d",
+    "semantic_hash": "389b1868511b6309956652b8f187a35d"
+  },
+  "DECISION_LOG.md": {
+    "mtime": 1788421545.3403084,
+    "seen": 1788746681.8643322,
+    "ast_hash": "59a7fd634d6acae7b5ee9bebe53ce2d9",
+    "semantic_hash": "59a7fd634d6acae7b5ee9bebe53ce2d9"
+  },
+  "EXPERIMENTS.md": {
+    "mtime": 1788440168.9244194,
+    "seen": 1788746681.8643322,
+    "ast_hash": "815bcd2e811786f986dba6e9ebc62d6b",
+    "semantic_hash": "815bcd2e811786f986dba6e9ebc62d6b"
+  },
+  "HYPOTHESES.md": {
+    "mtime": 1788470121.876655,
+    "seen": 1788746681.8643322,
+    "ast_hash": "b63c89b316a564d61350d1bf5ae2e780",
+    "semantic_hash": "b63c89b316a564d61350d1bf5ae2e780"
+  },
+  "PORT_BRIEF.md": {
+    "mtime": 1788346058.4031634,
+    "seen": 1788746681.8643322,
+    "ast_hash": "cc9e06bca54f3b6d9325cdbb7278552a",
+    "semantic_hash": "cc9e06bca54f3b6d9325cdbb7278552a"
+  },
+  "README.md": {
+    "mtime": 1788345843.4288585,
+    "seen": 1788746681.8643322,
+    "ast_hash": "c9d728e1dfe9876316989aeb47358ba0",
+    "semantic_hash": "c9d728e1dfe9876316989aeb47358ba0"
+  },
+  "REF_API_DRIFT.md": {
+    "mtime": 1788470114.036915,
+    "seen": 1788746681.8643322,
+    "ast_hash": "e2e60b4aaffada4bfbd59cd159570b61",
+    "semantic_hash": "e2e60b4aaffada4bfbd59cd159570b61"
+  },
+  "STEREO_ROUTE.md": {
+    "mtime": 1788421572.629109,
+    "seen": 1788746681.8643322,
+    "ast_hash": "aa8f460f339fc937f6cbdbf4419199f1",
+    "semantic_hash": "aa8f460f339fc937f6cbdbf4419199f1"
+  },
+  "TARGET_PROFILE.md": {
+    "mtime": 1788375158.8838565,
+    "seen": 1788746681.8643322,
+    "ast_hash": "c111f664b6b4c2220678af910f10c3c7",
+    "semantic_hash": "c111f664b6b4c2220678af910f10c3c7"
+  },
+  "VR_INTEGRATION_DESIGN.md": {
+    "mtime": 1788440180.3857589,
+    "seen": 1788746681.8643322,
+    "ast_hash": "dd7671e9d2959a337812801077e94521",
+    "semantic_hash": "dd7671e9d2959a337812801077e94521"
+  },
+  "AGENTS.md": {
+    "mtime": 1788421606.8701735,
+    "seen": 1788746696.6310904,
+    "ast_hash": "72ccad0b362c287a354e36debdc2d325",
+    "semantic_hash": "72ccad0b362c287a354e36debdc2d325"
+  },
+  "BASELINE_RECEIPT.md": {
+    "mtime": 1788346436.400381,
+    "seen": 1788746696.6310904,
+    "ast_hash": "8a0368ac1a3cda7ebf4b55c1c91f1baf",
+    "semantic_hash": "8a0368ac1a3cda7ebf4b55c1c91f1baf"
+  },
+  "CAMERA_FINDINGS.md": {
+    "mtime": 1788346370.6706445,
+    "seen": 1788746696.6310904,
+    "ast_hash": "e5e61d59670c4c15caef2f431c0357cd",
+    "semantic_hash": "e5e61d59670c4c15caef2f431c0357cd"
+  },
+  "CLAUDE.md": {
+    "mtime": 1788345865.4013627,
+    "seen": 1788746696.6310904,
+    "ast_hash": "bc1cacb812f7618283257a6a3b14cfb0",
+    "semantic_hash": "bc1cacb812f7618283257a6a3b14cfb0"
+  },
+  "CONVENTIONS.md": {
+    "mtime": 1788346452.3544023,
+    "seen": 1788746696.6310904,
+    "ast_hash": "ef768ae52b06fc65faf754d08f0f44fb",
+    "semantic_hash": "ef768ae52b06fc65faf754d08f0f44fb"
+  },
+  "FAILURE_REGISTRY.md": {
+    "mtime": 1788470130.2589073,
+    "seen": 1788746696.6310904,
+    "ast_hash": "1dff869d6a7ab60deff26ed22937de30",
+    "semantic_hash": "1dff869d6a7ab60deff26ed22937de30"
+  },
+  "INPUT_OWNERSHIP.md": {
+    "mtime": 1788346406.3952441,
+    "seen": 1788746696.6310904,
+    "ast_hash": "ee423c4a0c3d556602c1ea6ad0a1ee26",
+    "semantic_hash": "ee423c4a0c3d556602c1ea6ad0a1ee26"
+  },
+  "OWNERSHIP_CENSUS.md": {
+    "mtime": 1788346390.2497091,
+    "seen": 1788746696.6310904,
+    "ast_hash": "6f886ee98024e1e41135aa072ae44830",
+    "semantic_hash": "6f886ee98024e1e41135aa072ae44830"
+  },
+  "RECOVERY_MATRIX.md": {
+    "mtime": 1788346314.6216657,
+    "seen": 1788746696.6310904,
+    "ast_hash": "0299369e779ca24b4706c5d2b53c8732",
+    "semantic_hash": "0299369e779ca24b4706c5d2b53c8732"
+  },
+  "RENDER_PASS_CENSUS.md": {
+    "mtime": 1788346294.976303,
+    "seen": 1788746696.6310904,
+    "ast_hash": "21c787deded4f66a99ea488350144e73",
+    "semantic_hash": "21c787deded4f66a99ea488350144e73"
+  },
+  "STEREO_LADDER.md": {
+    "mtime": 1788421555.2141225,
+    "seen": 1788746696.6310904,
+    "ast_hash": "8579775aaf8fe984064c95fc29dc2a90",
+    "semantic_hash": "8579775aaf8fe984064c95fc29dc2a90"
+  },
+  "TEST_CHECKLISTS.md": {
+    "mtime": 1788487314.5591025,
+    "seen": 1788746696.6310904,
+    "ast_hash": "d601a7cd212af989ae9d19f746d8bc8c",
+    "semantic_hash": "d601a7cd212af989ae9d19f746d8bc8c"
+  },
+  "TOOL_PREFLIGHT.md": {
+    "mtime": 1788440202.1417215,
+    "seen": 1788746696.6310904,
+    "ast_hash": "59fe409e5671372f7a82f5f1da82f4b8",
+    "semantic_hash": "59fe409e5671372f7a82f5f1da82f4b8"
+  },
+  "index.md": {
+    "mtime": 1788440229.4613142,
+    "seen": 1788746696.6310904,
+    "ast_hash": "4db7ed5ef1f54e50326924fd2b8a2f7f",
+    "semantic_hash": "4db7ed5ef1f54e50326924fd2b8a2f7f"
+  }
+}
