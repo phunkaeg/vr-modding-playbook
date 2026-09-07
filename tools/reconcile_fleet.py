@@ -70,6 +70,8 @@ PROJECTS: dict[str, str] = {
     "farcry2vr":    "Far Cry 2 - Dunia engine, D3D10 (D3D9 selectable), x86, stereo R2 per-draw replay",
     "swat4vr":      "SWAT 4 - Unreal 2.5 Vengeance, D3D9, x86, stereo route unproven",
     "sims4vr":      "The Sims 4 - EA custom engine, D3D11, x64, script-owned, stereo route unproven",
+    "mohvr":        "Medal of Honor Allied Assault - id Tech 3 / FAKK2 via OpenMoHAA, OpenGL, x64, source-owned, stereo R1 native re-entry",
+    "sofvr":        "Soldier of Fortune - id Tech 2 / Raven fork, OpenGL 1.x, x86, RE-owned at the ref_gl module contract, stereo R1 declared",
 }
 
 SEP = "::"

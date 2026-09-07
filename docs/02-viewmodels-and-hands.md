@@ -529,6 +529,31 @@ factory entry point**.
 still found the right *thing*, because what transferred was the shape — a two-bone solve, a limb concept,
 a definition format — not the symbols. Expect the vocabulary to fail and the structure to hold.
 
+### Three engines, three different reasons the native solver was unreachable
+
+The check is always the same and the answer never is, so **run it before budgeting an elbow**. `[SOURCE]`
+
+| Engine | The facility is there | Why it is still unreachable |
+|---|---|---|
+| CryEngine (PreyVR) | `IKLIMB_LEFTHAND` / `CreateIKLimb`, a per-hand factory | its control surface was **stripped from the release build** — the targets are a per-cycle scratch buffer and the cvars are inert |
+| id Tech 3 / FAKK2 (MoH-VR) | `skelBone_IKshoulder` / `IKelbow` / `IKwrist`, with segment lengths and an elbow angle | **the player's rig does not use it.** `USarmyplyr.skd`, the skeleton the `_fps` models share with the world model, has 58 bones and not one is an IK bone |
+| HPL3 (SOMAVR) | a 34-node released hierarchy | the three solved hinges are **not every bone consumed by skinning**, so correct endpoints do not prove correct deformation ([12](12-torso-calculations-and-ergonomics.md#endpoint-is-not-the-mesh)) |
+
+MoH-VR's is the one worth copying as a *method*, because it is a correction of their own earlier claim
+and it narrowed rather than reversed it: *"The earlier note claimed there is no IK in `code/skeletor/`.
+There is… What is true is narrower and was worth measuring rather than asserting."* **"The engine has no
+IK" and "this rig has no IK bones" are different sentences with different consequences** — the first
+sends you to build a solver, the second sends you to check the other rigs first. Count the bones in the
+skeleton you will actually drive.
+
+MoH-VR reached that check by **routing through this chapter before starting the work rather than
+afterwards** (`docs/research/arms-body-leads.md`, written 2026-09-05 *"before any arms work, so the next
+session starts from the playbook rather than from the source"*). The output is a table mapping each rule
+here onto their engine, and it settled feasibility statically: `refEntity_t` carries `bone_tag`/`bone_quat`
+into the skeletor's own `SetPose`, which is the same mechanism the game's own NPC aiming uses, so
+first-person arms can be posed client-side **with no protocol change** — and the elbow is theirs to solve
+because the native solver is unreachable for that rig. No game, no headset, one session.
+
 !!! warning "Grade this as a lead, not a fact, for any Dunia target"
 
     Far Cry 1's `CryAnimation` is a **source oracle** for the Dunia lineage, not Dunia itself — Dunia

@@ -120,6 +120,8 @@ $fleet = @(
     [pscustomobject]@{ Id = 'farcry2vr';    Name = 'FarCry2VR';    Root = 'D:\Dev Debug\FarCry2-vr';   IncludeCaptures = $false; GraphTarget = 'D:\Dev Debug\FarCry2-vr';                         GraphOut = 'D:\Dev Debug\FarCry2-vr';             PreStage = $null }
     [pscustomobject]@{ Id = 'swat4vr';      Name = 'SWAT4VR';      Root = 'D:\Dev Debug\Swat4-VR';     IncludeCaptures = $false; GraphTarget = 'D:\Dev Debug\Swat4-VR';                           GraphOut = 'D:\Dev Debug\Swat4-VR';               PreStage = $null }
     [pscustomobject]@{ Id = 'sims4vr';      Name = 'Sims4VR';      Root = 'D:\Dev Debug\Sims4VR';      IncludeCaptures = $false; GraphTarget = 'D:\Dev Debug\Sims4VR';                            GraphOut = 'D:\Dev Debug\Sims4VR';                PreStage = $null }
+    [pscustomobject]@{ Id = 'mohvr';        Name = 'MoH-VR';       Root = 'D:\Dev Debug\Medal-of-Honor-vr'; IncludeCaptures = $false; GraphTarget = 'D:\Dev Debug\Medal-of-Honor-vr';                 GraphOut = 'D:\Dev Debug\Medal-of-Honor-vr';      PreStage = $null }
+    [pscustomobject]@{ Id = 'sofvr';        Name = 'SoF-VR';       Root = 'D:\Dev Debug\SoF-VR';            IncludeCaptures = $false; GraphTarget = 'D:\Dev Debug\SoF-VR';                            GraphOut = 'D:\Dev Debug\SoF-VR';                 PreStage = $null }
 )
 
 $knownIds = @($fleet.Id)
