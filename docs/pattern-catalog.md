@@ -1355,6 +1355,30 @@ is unambiguous over 200 ms is meaningless over two seconds of walking downhill, 
 displacement gesture needs either a bounded duration or one of the formulations above. `[SOURCE]`
 PLANCK; SS2VR; the same axis underlies HIGGS's loot-versus-grab speed split.
 
+## INPUT-011 — Bind by hand and position, resolve by context {#input-011}
+
+**Problem:** controller buttons are bound to global actions, so a press means the same thing whichever
+hand made it and whatever that hand is holding — which runs out of buttons immediately and does the
+wrong thing for a dual-wielding player.
+
+**Use when:** the mod has more contextual actions than the controller has buttons, which is by the
+second milestone.
+
+**Recipe:** bind **raw, by hand and physical position** — left-lower, left-upper, right-lower,
+right-upper — never by the vendor's letter. Then resolve what a press *means* per hand, against what
+that hand currently holds, in one table. Keep the layout **symmetric across hands** so a left-handed
+player gets the same map, and make every action **target the hand that pressed** rather than a
+hand-agnostic "currently wielded" lookup.
+
+**Proof:** a dual-wielding player operates each hand's item independently, and swapping hands swaps
+the meanings with them.
+
+**Trip hazard:** ship the **resolver with its cells empty** first. shock2quest landed the dispatch
+with the gun and psi-amp rows resolving to `None`, then filled them one change at a time — which keeps
+the dangerous part, a table that can silently swallow a press, reviewable by itself. And a cell that
+resolves to nothing must be [audibly distinguishable from a refusal](20-audio-and-haptics.md#cue-policy-three-outcomes),
+or it reads as a dead button. `[SOURCE]` shock2quest.
+
 ## CFG-003 — Write the config before the process starts {#cfg-003}
 
 **Problem:** a setting VR needs cannot be made to stick, because the game rewrites its config at exit with
@@ -2076,6 +2100,40 @@ of the level - and confirm each degrades the way you chose rather than the way t
 activation cost across frames. And every physical event needs a **cooldown**, because contact is
 continuous: hits, shoves, bumps and their consequences all fire at frame rate otherwise, and a thing
 you just released needs an ignore window so it cannot immediately hit you. `[SOURCE]` PLANCK; HIGGS.
+
+## HAND-016 — Derive the anchor from the art, then re-place it against the wield {#hand-016}
+
+**Problem:** a per-weapon interaction anchor — a magazine well, a charging handle, a holster mount —
+is taken from the model's geometry and is wrong in the hand, because the frame the artist authored in
+is not the frame the weapon is wielded in.
+
+**Use when:** any per-weapon point a hand has to reach.
+
+**Recipe:** two passes, and the second is not optional.
+
+1. **Derive from the asset, headlessly.** Dump every sub-object with its model-space bounds. Where the
+   art names the part (`@s02_cli` for a clip, `@01_core` for a core), take that part's **centre**;
+   otherwise take a defensible landmark — the underside of the grip or receiver.
+2. **Re-place every value against the rendered wield**, with an overlay showing the zone. shock2quest
+   did this and it moved their values: *"the pistol's model origin renders at the wrist, so its
+   dump-derived anchor sat behind the hand."*
+
+Key the table on the **engine's own model name**, lowercased, and fall back to the model origin for
+anything absent — an unanchored weapon then behaves as it did before rather than breaking.
+
+**Proof — and this is the part that is usually skipped.** A test that steers the hand to the anchor and
+succeeds is equally consistent with the anchor doing nothing. Add the **negative control**: carry the
+same object to the point **mirrored across the model origin** — twice the anchor offset, along the
+same ray — and assert nothing happens there. That proves the *zone moved*, not that the origin still
+works.
+
+**Trip hazard:** record the omissions and distinguish their kinds. shock2quest's table leaves out the
+energy weapons because they **recharge**, `sfg_h` because its dump shows a stray part 5 m off the
+model and the derivation is **not trusted**, and two more that are simply **not measured**. Three
+different absences, three different next actions — collapse them into a blank and the census
+[cannot tell "needs nothing" from "nobody looked"](02-viewmodels-and-hands.md#weapon-census). Expose
+the resolved anchor over your control plane if you have one, so a test can assert it in world space
+rather than inferring it from behaviour. `[SOURCE]` shock2quest.
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 

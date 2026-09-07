@@ -1036,6 +1036,67 @@ the whole first inch". And a pose referenced by name but never loaded is a **sil
 stays nil and every guard that reads it simply never fires. That one caught two weapons in Cyberpunk
 before the rule became "a new place to name a pose is a new line in the loader, in the same commit".
 
+### A third implementation, and it is the same game SS2VR is modding {#s2q-clip-insert}
+
+**shock2quest** — a Dark-engine *recreation* in Rust — shipped a physical clip-insert reload with
+per-model magazine anchors. It is the closest prior art this fleet has, because it is **System Shock
+2**, the source is readable, and its pistol anchor is keyed on `atek_h`: the same model SS2VR's own
+`manualReload` gesture is gated to. `[SOURCE]`
+
+**The gesture.** Squeeze a clip out of the inventory strip with the free hand, bring it to the gun the
+other hand holds, and it goes in **instantly**. Their sentence is the design rule:
+
+> *"The motion is the reload cost, so there is no authored `reload_time` hold on this path."*
+
+The flat game's reload timer exists to price an action the player did not physically perform. Once
+they perform it, charging them twice is the bug — the weapon's own reload cue is the confirmation.
+
+**The anchors are a five-row table, and the omissions carry reasons:**
+
+```rust
+static MAGAZINE_ANCHORS: Lazy<HashMap<&str, Vector3<f32>>> = ... HashMap::from([
+    ("atek_h", vec3(-0.20, -0.15, 0.0)),   // pistol  — the grip
+    ("ar15_h", vec3(-0.04, -0.20, 0.0)),   // rifle   — centre of the clip part `@s02_cli`
+    ("sg_h",   vec3( 0.08, -0.10, 0.0)),   // shotgun — the loading port
+    ("gren_h", vec3( 0.10, -0.05, 0.0)),   // launcher— the drum
+    ("fsn_h",  vec3(-0.65,  0.0,  0.0)),   // fusion  — centre of `@01_core`
+]);   // anything absent falls back to the model origin
+```
+
+Keyed on the engine's own `PropModelName`, lowercased. Three kinds of absence are distinguished in
+the comment above it, which is the [weapon census](#weapon-census)'s discipline in code: the energy
+weapons **recharge** and take no clip; `sfg_h` is **not trusted**, because its dump shows a stray part
+5 m off the model; `al_h` and `viro_h` are **not measured yet**.
+
+**How they were derived — and then corrected.** A headless dump (`--debug-subobjects`) prints every
+sub-object with its model-space bounds. Where the art has a clip part, the anchor is that part's
+centre; otherwise the underside of the grip or receiver. **Then every value was re-placed against the
+rendered wield**, and that pass changed them:
+
+> *"the pistol's model origin renders at the wrist, so its dump-derived anchor sat behind the hand."*
+
+**The asset's frame is not the wielded frame.** Deriving from geometry gets you close and cannot get
+you right, for the same reason a recorded animation pose is a starting point rather than an answer.
+
+**And the test proves the zone moved.** The end-to-end case steers the clip to the anchor — then
+**first carries it to the point mirrored across the model origin**, twice the anchor offset along the
+same ray, and asserts **nothing loads there**. Without that half, a passing test is equally consistent
+with the anchor having done nothing and the origin still working. See
+[HAND-016](pattern-catalog.md#hand-016).
+
+**One design decision that cuts against this playbook's own staircase.** Their eject spawns **no clip
+object in the world**: the rounds return to the backpack reserve as clips of the type they already
+are. Their reasoning — *"a magazine on the floor is a chore to pick up in VR, and the rounds are just
+as usable in the backpack"* — is a real trade against rung 2's visible eject. Ship the falling
+magazine because it feels good, not because the rounds need somewhere to go.
+
+Two more rules from the same work, both about honesty at the boundary:
+
+- **Ammo-type swap only when the eject actually emptied the magazine**, *"so rounds are never
+  converted for free."*
+- **A clip the weapon does not take is refused and stays in the hand**; an item that is not ammo at
+  all passes through to ordinary grab.
+
 ## Holsters and physical grab, from the two native-VR interaction stacks {#holsters-and-grab}
 
 Skyrim VR and Fallout 4 VR shipped *as* VR, so their mod scenes never had to solve stereo - they went

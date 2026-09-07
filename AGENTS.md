@@ -1,6 +1,11 @@
 # Using this playbook
 
-**Read this file. Do not read the playbook.**
+Read `CLAUDE.md` once as the paired entry point. For RE work, read
+[the shared agent workflow](AGENT_RE_WORKFLOW.md) once, then route below.
+Use `vr-re-workflow` and `re-mcp-toolkit` for selected procedures; session tool
+discovery determines availability (`cheatengine`, Ghidra, optional `local-llm`, etc.).
+
+**Read the relevant route, not the playbook end to end.**
 
 It is ~213,000 words across 40 documents. About 10% of that is a retrieval layer built
 specifically so you never open the other 90%. A normal lookup is one table row plus one
@@ -13,16 +18,16 @@ wrong move, and reading several is a sign you skipped the routing below.
 
 | What you have | Go to | Why |
 |---|---|---|
-| **A symptom** — something looks or behaves wrong | [`docs/failure-atlas.md`](docs/failure-atlas.md) | 325 rows: symptom → *fast discriminator* → likely cause → route. The discriminator is the point: it is chosen to be cheap. |
-| **A symptom, but you want the chapter** | [`docs/symptom-index.md`](docs/symptom-index.md) | 238 rows mapping what you see to the chapter that covers it |
-| **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 135 atomic patterns, stable IDs, five fixed fields each |
+| **A symptom** — something looks or behaves wrong | [`docs/failure-atlas.md`](docs/failure-atlas.md) | 330 rows: symptom → *fast discriminator* → likely cause → route. The discriminator is the point: it is chosen to be cheap. |
+| **A symptom, but you want the chapter** | [`docs/symptom-index.md`](docs/symptom-index.md) | 242 rows mapping what you see to the chapter that covers it |
+| **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 137 atomic patterns, stable IDs, five fixed fields each |
 | **A new or inherited target** | [`docs/start-new-port.md`](docs/start-new-port.md) | The router. Classifies integration authority first, then sends you down the RE-owned or source-owned route |
 | **Several plausible next steps** | [`docs/bottleneck-map.md`](docs/bottleneck-map.md) | The earliest uncleared dependency, in order. Its *Agent operating protocol* section is worth reading once. |
 | **A question of "has anyone solved this?"** | [`docs/cross-project-index.md`](docs/cross-project-index.md) | Who solved what, and where the raw working lives |
 | **A target whose engine/API you know** | `python tools/prior_art.py <engine> <api>` | Matching prior art from 113 tracked sources, with what was harvested and what is thin |
 | **Maths you are about to write yourself** | `docs/a1`–`a5` | Working code with the test that catches the error. Rotation, pose pipeline, stereo projection, hook safety, noise floor. |
 | **A term used oddly** | [`docs/glossary.md`](docs/glossary.md) | Camera, pose, stereo, lifecycle, render and evidence vocabulary |
-| **"Did another project already hit this?"** | `graphify explain "<concept>" --graph cross-engine-graph/graphify-out/fleet-graph.json` | 2,239 nodes over **all ten** projects' documentation, joined by 126 cross-project links across 34 named concepts |
+| **"Did another project already hit this?"** | `graphify explain "<concept>" --graph cross-engine-graph/graphify-out/fleet-graph.json` | Fleet documentation with cross-project concept links; inspect current coverage |
 
 **On that graph, in short.** Start with `explain` on a **concept name**, not `query` on a sentence:
 seed matching is lexical and unstemmed, so a plain-English question lands on whatever noun happens to

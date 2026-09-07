@@ -41,6 +41,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **HIGGS 1.10.10-43930-1-10-10-1768263289** | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Read 2026-09-05: higgs_vr.ini (593 settings) and the Papyrus API. The C++ core is binary. |
 | `stereo` | **IRON-NEST-VR** | BINARY ONLY: managed code driving OpenXR and D3D11 directly via Silk.NET rather than through Unity XR. No source. |
 | `stereo` | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the most transferable finding here. Checked against SS2VR manualReload rather than assumed: that code is already immune, because every quantity in it is a difference between two tracked hands, which cancels locomotion, turning and the play-space origin at once. INPUT-010 now ranks that formulation above room space; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary. |
+| `stereo` | **PureDark-UEVR** | REGISTERED NOT REVIEWED 2026-09-07. A FORK of praydog/UEVR, and its master is BYTE-IDENTICAL to the already-tracked upstream at D:/Dev Debug/Other VR mods/UEVR - same HEAD 74b76bc, same tree 20e90587ef58d605. Nothing on master is new, so the harvested UEVR notes on that entry stand unchanged. The fork's own work is on two BRANCHES that are not checked out: origin/AFW and origin/Joey-Merged. Checking `git branch -a` before assuming a fork has diverged is the cheap discriminator, and it is what stops a duplicate tree being re-read as new material. The delta on those branches has NOT been read. |
 | `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
 | `stereo` | **ReclaimerVR** | NOT HARVESTABLE: the checkout contains a README and nothing else. Third Halo MCC entry by name only. |
 | `stereo` | **SkyrimVR FBT 185070 1.0.3 2026-07-22T11-37Z HZCMOyLlG** | REGISTERED NOT REVIEWED 2026-09-05. Full-body tracking support (SKSE plugin only, no source in the tree). |
@@ -58,19 +59,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 21 | 14 | 34 | 16 |
-| `xr_lifecycle` | 6 | 7 | 0 | 47 | 44 |
-| `xr_input` | 4 | 0 | 4 | 47 | 49 |
-| `camera_tracking` | 12 | 13 | 1 | 38 | 40 |
-| `render_hazards` | 5 | 9 | 1 | 14 | 75 |
-| `ui_hud` | 5 | 13 | 5 | 41 | 40 |
-| `hands_interaction` | 6 | 12 | 5 | 33 | 48 |
-| `input_locomotion` | 2 | 4 | 1 | 14 | 83 |
-| `performance` | 8 | 8 | 3 | 41 | 44 |
-| `audio` | 1 | 1 | 0 | 51 | 51 |
-| `packaging_deploy` | 6 | 23 | 18 | 26 | 31 |
-| `re_discovery` | 14 | 14 | 5 | 33 | 38 |
-| `source_integration` | 2 | 8 | 7 | 33 | 54 |
+| `stereo` | 19 | 21 | 14 | 35 | 16 |
+| `xr_lifecycle` | 6 | 7 | 0 | 48 | 44 |
+| `xr_input` | 4 | 1 | 4 | 47 | 49 |
+| `camera_tracking` | 12 | 13 | 1 | 39 | 40 |
+| `render_hazards` | 5 | 9 | 1 | 15 | 75 |
+| `ui_hud` | 5 | 13 | 5 | 42 | 40 |
+| `hands_interaction` | 6 | 13 | 5 | 34 | 47 |
+| `input_locomotion` | 2 | 4 | 1 | 15 | 83 |
+| `performance` | 8 | 8 | 3 | 42 | 44 |
+| `audio` | 1 | 1 | 0 | 52 | 51 |
+| `packaging_deploy` | 6 | 23 | 18 | 27 | 31 |
+| `re_discovery` | 14 | 14 | 5 | 34 | 38 |
+| `source_integration` | 2 | 8 | 7 | 33 | 55 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -160,6 +161,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **prince-of-persia-2008-vr-external-research** | external reference | Scimitar / Anvil (Prince of Persia 2008) | framework-companion | — | — | 11 | 13 | 0 | 11 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 0S / 9NR / 2— |
 | **psychonauts-vr-dev-archive** | external reference | Runtime (Psychonauts 2005) | native-injector | — | — | 6 | 147 | 12 | 77 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
 | **psychonauts-vr-modding-notes** | external reference | Runtime (Psychonauts 2005) | native-injector | T1 | ? | 11 | 67 | 0 | 67 | 2026-08-29 | ⚪ unpinned | 3F / 1P / 1S / 6NR / 2— |
+| **PureDark-UEVR** | external reference | Unreal Engine (multi-title) | framework | — | — | — | 267 | 223 | 14 | 2026-09-07 | 🟥 source changed | 0F / 0P / 0S / 12NR / 1— |
 | **Quake2Quest** | external reference | id Tech 2 (Quake II, via Yamagi) | source-port | ? | ? | 9 | 1057 | 707 | 28 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
 | **quake2vr** | external reference | id Tech 2 (Quake II, via KMQuake II) | source-port | ? | ? | 9 | 1090 | 338 | 24 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
 | **ravenfield-vr-mod** | external reference | Unity | managed-plugin | — | — | — | 40 | 10 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
@@ -171,7 +173,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **satisfactory-uevr-enhancements** | external reference | Unreal 5 | framework-companion | — | — | 18 | 433 | 18 | 5 | 2026-08-22 | 🟩 current | 0F / 2P / 0S / 0NR / 11— |
 | **Scrap-Mechanic-Native-VR** | external reference | Scrap Mechanic (proprietary) | script-native-hybrid | — | — | — | 74 | 38 | 11 | 2026-08-27 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
 | **Shipwright-VR** | external reference | libultraship / Ship of Harkinian | source-port | — | — | — | 11943 | 3243 | 22 | 2026-08-26 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
-| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 989 | 617 | 63 | 2026-08-28 | 🟩 current | 3F / 0P / 1S / 3NR / 6— |
+| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1070 | 649 | 62 | 2026-09-07 | 🟥 source changed | 3F / 2P / 1S / 2NR / 5— |
 | **Silent-Hill-3-VR-Mod** | external reference | Silent Hill 3 (2003) | native-injector | T2 | ? | 18 | 478 | 133 | 56 | 2026-08-29 | ⚪ unpinned | 0F / 2P / 0S / 9NR / 2— |
 | **sims4-vr** | archived reference | EA custom (Sims 4) | script-native-hybrid | — | — | 18 | 131 | 81 | 26 | 2026-08-23 | 🟩 current | 3F / 0P / 0S / 0NR / 10— |
 | **singularity-vr-mod** | external reference | Unreal Engine 3.584 (Singularity 2010) | native-injector | T1 | R2 · per-draw replay | 9 | 84 | 39 | 16 | 2026-08-29 | ⚪ unpinned | 6F / 2P / 0S / 3NR / 2— |
@@ -209,16 +211,16 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 
 | Source | Reviewed at | Reviewed tree | Current tree | Reviewed Git commit | Result | Upstream | License |
 |---|---|---|---|---|---|---|---|
-| **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:f739d4177dd41381` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:35ab1dc2354b0092` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:05de572c6a5f86b5` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:63c86bec10424c19` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:678494071967f9a9` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:f31b82ea3ce79d04` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:762a48d6bc781596` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:3ce075f4d3c87a95` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:fe59cdd197c8e903` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:5dbc4303c1264b3d` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:a1d866eec56d74b4` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:852852fac712141b` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:0250b1043fc308a2` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:5877bc8ec68334c7` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:3d9c0da7742d6042` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:22d5f3e3f1b84962` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:b6c488176ce7dbd4` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:1f22adffff74afbc` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:ba546aa6a51107e3` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:7d2686182cac76b9` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
 | **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | unknown |
@@ -281,6 +283,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **prince-of-persia-2008-vr-external-research** | 2026-08-29 | `unknown` | `tree:05fa0ca45f7a63b8` | `—` | ⚪ unpinned | unknown | unknown |
 | **psychonauts-vr-dev-archive** | 2026-08-29 | `unknown` | `tree:90e822bc3d53f345` | `—` | ⚪ unpinned | unknown | unknown |
 | **psychonauts-vr-modding-notes** | 2026-08-29 | `unknown` | `tree:45d31d43bf8ad326` | `—` | ⚪ unpinned | unknown | unknown |
+| **PureDark-UEVR** | 2026-09-07 | `tree:20e90587ef58d605` | `tree:1ffc10d5d5c5782b` | `—` | 🟥 source changed | https://github.com/PureDark/UEVR | see LICENSE in tree |
 | **Quake2Quest** | 2026-09-02 | `tree:6762626f4c1aed86` | `tree:af131bfd6663683b` | `—` | 🟥 source changed | unknown | unknown |
 | **quake2vr** | 2026-09-02 | `tree:461b476dadb7b80e` | `tree:a203a1a1bb26e4e1` | `—` | 🟥 source changed | unknown | unknown |
 | **ravenfield-vr-mod** | 2026-08-26 | `tree:5ff2383f8ff12840` | `tree:5ff2383f8ff12840` | `4ed67514aa3302ba255b6ddb870854f9c992737e` | 🟩 current | https://github.com/GDani31/ravenfield-vr-mod | unknown |
@@ -292,7 +295,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **satisfactory-uevr-enhancements** | 2026-08-25 | `tree:33a7aa8069455a16` | `tree:33a7aa8069455a16` | `—` | 🟩 current | unknown | unknown |
 | **Scrap-Mechanic-Native-VR** | 2026-08-27 | `tree:b34922f3c587f2ce` | `tree:b34922f3c587f2ce` | `8aabe24ec62c5c4d8ef9852250a358e1296f9bf2` | 🟩 current | https://github.com/21Suspect/Scrap-Mechanic-Native-VR | MIT |
 | **Shipwright-VR** | 2026-08-26 | `tree:6847d39fbf2e86de` | `tree:6847d39fbf2e86de` | `7afef6987c7f0fb51e09bfb2f7a8f902428a38f2` | 🟩 current | https://github.com/ShinyWindow/Shipwright-VR | unknown |
-| **shock2quest** | 2026-08-27 | `tree:781ad86feeac5eda` | `tree:781ad86feeac5eda` | `—` | 🟩 current | unknown | unknown |
+| **shock2quest** | 2026-09-07 | `tree:117b0dc694969ed8` | `tree:10cb01aaf88080b9` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | unknown |
 | **Silent-Hill-3-VR-Mod** | 2026-08-29 | `unknown` | `tree:f1f0674d9d679091` | `—` | ⚪ unpinned | unknown | unknown |
 | **sims4-vr** | 2026-08-25 | `tree:1dec2736beb2f5e5` | `tree:1dec2736beb2f5e5` | `—` | 🟩 current | unknown | unknown |
 | **singularity-vr-mod** | 2026-08-29 | `unknown` | `tree:50b0c75b563c385d` | `—` | ⚪ unpinned | unknown | unknown |
@@ -330,6 +333,8 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 ### Deliberately not sources
 
+- `UEVR-joeyhodge_AFW_v1.0-beta.6` — UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source.
+- `UEVR-nightly_AFW_v1.0-beta.6` — the nightly variant of the same 9-file AFW binary set; identical file list, no source.
 - `StalkerVR` — the 32 GB S.T.A.L.K.E.R. Anthology VR INSTALL, plus a 32 GB .7z of itself. Fingerprinting 64 GB of game assets on every coverage.py run buys nothing, so the install is classified like 'SS2 OG' and its VR code/design was separated into the StalkerVR-code source instead - 43 files, 339 KB, see PROVENANCE.md there. Left in place here and NOT copied: the assets, ~40 unrelated content mods (quests, furniture, balance, shaders, translations), and three files worth knowing about - bin/AnomalyDX11.exe (the VR engine build, original preserved beside it), bin/AnomalyDX11.pdb (shipped symbols) and bin/openxr_loader.dll.
 - `Dishonored-VR-metalink-test` — one built d3d9.dll plus its hash and a readme - a test artifact of Dishonored-VR-fork, not a source tree
 - `DishonoredVR-alpha` — binary alpha distribution (Binaries/, INSTALL.txt, a resolution .bat) - no source
@@ -350,16 +355,16 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3804 | 355 | 2026-09-07 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
-| **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4912 | 2582 | 2026-09-03 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 18085 | 1446 | 2026-09-05 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2068 | 346 | 2026-09-07 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
-| **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 474 | 97 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3853 | 359 | 2026-09-07 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4912 | 2582 | 2026-09-07 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 18123 | 1450 | 2026-09-07 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2736 | 846 | 2026-09-07 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 474 | 97 | 2026-09-07 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
 | **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5620 | 133 | 2026-09-07 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
-| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-05 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
-| **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 160 | 18 | 2026-09-04 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
-| **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 69 | 30 | 2026-09-04 | 🟥 source changed | 2F / 3P / 0S / 8NR / 0— |
-| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3771 | 354 | 2026-09-05 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
+| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-07 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
+| **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 160 | 18 | 2026-09-07 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
+| **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 69 | 30 | 2026-09-07 | 🟥 source changed | 2F / 3P / 0S / 8NR / 0— |
+| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3774 | 354 | 2026-09-07 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 
 ## Per-source area detail
 
@@ -1663,6 +1668,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `re_discovery` | 🟩 full | `SOURCE` | harvested 2026-08-29 into ch11 #derived-output and RE-006: three camera matrices (+0x20/+0x50/+0x90) accept a write, hold it all frame and change nothing - they are DERIVED OUTPUTS nothing reads; the real input is at +0x150 and culling follows it. 'Wrong field, not wrong timing.' The earlier dump misled because it sampled BEFORE the write in both runs. Also: write absolute from a snapshot because the engine does not refresh a stationary camera (a 15-degree hold became a spin, c0.z 0.5160 -> 0.1235 in 1.5 s); rotate all four columns (c2/c3 are a matched pair); the translation row must follow, or error GROWS WITH ANGLE - clean at 2-5 deg, wrecked at 15+. Columns carry projection scale (\|c1\|/\|c0\| = 1.334 = 4:3), so the basis is not orthonormal. |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
+#### PureDark-UEVR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-07. A FORK of praydog/UEVR, and its master is BYTE-IDENTICAL to the already-tracked upstream at D:/Dev Debug/Other VR mods/UEVR - same HEAD 74b76bc, same tree 20e90587ef58d605. Nothing on master is new, so the harvested UEVR notes on that entry stand unchanged. The fork's own work is on two BRANCHES that are not checked out: origin/AFW and origin/Joey-Merged. Checking `git branch -a` before assuming a fork has diverged is the cheap discriminator, and it is what stops a duplicate tree being re-read as new material. The delta on those branches has NOT been read. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
+| `source_integration` | — no entry — | — | — |
+
 #### Quake2Quest
 
 | Area | Review | Evidence | Note |
@@ -1867,11 +1890,11 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 |---|---|---|---|
 | `stereo` | 🟥 not reviewed | `—` | — |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | — |
-| `xr_input` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟨 partial | `SOURCE` | harvested 2026-09-07 into ch03 #context-by-hand and INPUT-011: four face buttons bound raw by hand and physical position, meaning resolved per hand against what that hand holds, symmetric across hands, every action targeting the hand that pressed. Locomotion work not read: climbing holds, mantle lips, ladder tops and vaulting all landed since the last review. |
 | `camera_tracking` | — no entry — | — | — |
 | `render_hazards` | — no entry — | — | — |
 | `ui_hud` | 🟩 full | `SOURCE` | Harvested 2026-08-25 into ch04: world-locking, honest panel basis, shared pointer arbitration, input edges and zero-quaternion guards. |
-| `hands_interaction` | — no entry — | — | — |
+| `hands_interaction` | 🟨 partial | `SOURCE` | harvested 2026-09-07 into ch02 #s2q-clip-insert, HAND-016, INPUT-011 and ch20. THE CLOSEST PRIOR ART IN THE CORPUS to SS2VR physical reload: same game, readable Rust, and a SHIPPED clip-insert gesture. Its pistol magazine anchor is keyed on atek_h - the same model SS2VR manualReload is gated to. Taken: the motion IS the reload cost, so no authored reload_time survives on the physical path; a five-row per-model MAGAZINE_ANCHORS table keyed on PropModelName with the model origin as fallback, derived headlessly from sub-object bounds and then RE-PLACED against the rendered wield (the pistol origin renders at the wrist, so the dump-derived anchor sat behind the hand); the negative control that proves the zone moved rather than that the origin still works - carry the clip to the point mirrored across the origin and assert nothing loads; a three-way cue policy where silence means only nothing-to-do because silence on an earned refusal is indistinguishable from a dead button; face buttons bound RAW by hand and position and resolved per hand by what that hand holds, with the resolver shipped before any of its cells; and omissions recorded with their KINDS - recharges, not trusted, not measured. One deliberate trade against our own staircase: no clip object is spawned in the world, because a magazine on the floor is a chore to pick up in VR. |
 | `input_locomotion` | — no entry — | — | — |
 | `performance` | 🟩 full | `HEADSET` | Harvested 2026-08-25 into ch19 from the full Quest mission baseline and Oculus profiling workflow. |
 | `audio` | 🟩 full | `SOURCE` | Harvested 2026-08-25 into ch20 from engine/src/audio/mod.rs: moving emitters, two-ear listener updates, listener-relative lanes, channel preemption and unit scaling. |

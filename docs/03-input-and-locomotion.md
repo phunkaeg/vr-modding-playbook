@@ -77,6 +77,35 @@ Three details that make it work:
 - **Palm orientation as a trigger.** VRIK shows the compass on *"left palm points upward"* - checking
   your wrist. A diegetic, zero-button UI gesture, and the same idea works for any glanceable readout.
 
+## Bind buttons raw by hand and position; resolve meaning by what that hand holds {#context-by-hand}
+
+[INPUT-009](pattern-catalog.md#input-009) multiplies one button with a stroke. This is the other axis,
+and the two compose. `[SOURCE]` shock2quest.
+
+The Touch's four face buttons stopped being two global shortcuts. They are bound **raw, by hand and
+position** — `LeftHandLowerButton` … `RightHandUpperButton`, with *lower* = left `X` / right `A` and
+*upper* = left `Y` / right `B` — and what a press **means** is resolved per hand against what that
+hand is holding:
+
+| that hand holds | lower | upper |
+|---|---|---|
+| nothing, a melee weapon, a clip, a log, anything else | toggle the cyber interface | read last unread log |
+| **a gun** | eject the clip | cycle fire mode |
+| **the psi amp** | open the psi selector | cycle psi power |
+
+Three things make it work:
+
+- **Symmetric by position, not by name.** A left-handed player gets the same layout, and nothing in
+  the table mentions `A` or `X`.
+- **Per-hand targeting all the way down.** The eject applies to the gun in *the hand that pressed*,
+  not a hand-agnostic "wielded weapon" lookup — so a dual-wielding player ejects the one they meant.
+- **The resolver shipped before any of its cells did.** The gun and psi rows landed resolving to
+  `None`: the dispatch mechanism went in with no behaviour, and each cell was filled by a later
+  change. That keeps the risky part — a table that silently swallows a press — reviewable on its own.
+
+**The trap it removes:** a global binding that means one thing while your hands mean two. See
+[INPUT-011](pattern-catalog.md#input-011).
+
 ## The input ladder (crude → clean)
 
 1. **Synthetic key presses.** Translate stick/buttons into `SendInput` keyboard events. Works

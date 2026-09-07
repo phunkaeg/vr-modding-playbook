@@ -147,6 +147,10 @@ that the observation and the cause are usually in different chapters.
 | Missing geometry in one eye, and the hazard census says clean | [14](14-render-pass-hazard-atlas.md#cpu-visibility-history) — look in the culling, not the renderer |
 | A green run under the substitute, refused by the real runtime | [TEST-022](pattern-catalog.md#test-022) — pin the instrument's version too |
 | Native re-entry survives a few frames then wedges | [17](17-teardown-fc2vr-native-stereo.md) — something advanced twice per frame |
+| A weapon interaction zone sits behind the hand | [HAND-016](pattern-catalog.md#hand-016) — re-place the anchor against the rendered wield |
+| Out of buttons, and hands need different meanings | [INPUT-011](pattern-catalog.md#input-011) — bind by hand and position, resolve by what it holds |
+| A physical control is reported dead but the log says it declined | [20](20-audio-and-haptics.md#cue-policy-three-outcomes) — a refusal must be audible |
+| Building physical reload for System Shock 2 specifically | [02](02-viewmodels-and-hands.md#s2q-clip-insert) — shock2quest shipped one, same game, readable source |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

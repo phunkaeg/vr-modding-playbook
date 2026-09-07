@@ -385,7 +385,7 @@ def reader_corpus_metrics() -> tuple[int, int]:
 # Folders that group sources rather than being one. The scan descends into these
 # and reports their CHILDREN, so a grouping folder cannot become a place where new
 # arrivals go unnoticed - which is the only thing the zero-untracked rule buys.
-GROUPING_DIRS = {"binary-only", "monsterdeadwood", "skyrimvr mods", "fallout4vr mods"}
+GROUPING_DIRS = {"binary-only", "monsterdeadwood", "skyrimvr mods", "fallout4vr mods", "puredark"}
 
 
 def find_untracked(cfg: dict[str, Any]) -> list[str]:

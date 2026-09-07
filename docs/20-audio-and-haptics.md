@@ -230,3 +230,23 @@ For each project, write `AUDIO_OWNERSHIP.md` with:
 
 That turns “the original audio seems fine” into a reviewable engineering
 decision rather than an unexamined omission.
+
+## Silence must mean "nothing to do", never "it failed" {#cue-policy-three-outcomes}
+
+A physical control has three outcomes and only two of them may be silent. shock2quest's clip eject and
+clip insert share one policy, and the middle row is the one usually missed. `[SOURCE]`
+
+| Outcome | Cue | Why |
+|---|---|---|
+| **nothing to do** — an empty magazine, or an energy weapon with no clip archetype | **silent** no-op | there was no action to acknowledge |
+| **a refusal the player earned** — the backpack could not take the minted clip | the game's own refusal chime (`repfail`) | *"silence there is indistinguishable from a dead button"* |
+| **success** | the weapon's own `reload` schema | the same cue the physical insert plays going in |
+
+**Use the game's own refusal sound rather than inventing one.** The player has already learned it, and
+it arrives with the right connotation for free. The same three-way split applies to any physical
+gesture that can be legitimately inapplicable *and* legitimately refused — holstering, grabbing,
+inserting a keycard.
+
+The general failure this prevents: **a control that is silent on refusal is reported as broken.** A
+tester cannot distinguish "the mod ignored me" from "the mod heard me and said no", and will file the
+first.
