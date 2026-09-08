@@ -167,6 +167,33 @@ surface they touched on.** That is [INPUT-012](pattern-catalog.md#input-012) and
 measure the quantity the rule is actually about, between the two things it is about, projected onto
 the axis that matters.
 
+## One recenter, one reference yaw, one timestamp — every hand lane {#one-pose-origin}
+
+FC2VR's motion-controller handover states the rule twice, in the "do not reopen these dead ends"
+register, because each half cost them a session. `[HEADSET]` (Donor-lineage evidence: their own doc
+marks it `CANDIDATE_ONLY` against retail, which is the grading to imitate.)
+
+**One reference yaw.** *"All orientation/position lanes share the head recenter's reference yaw. At
+that same event, grip positions are latched as their positional baseline. Do not give a new hand or
+aim lane its own yaw zero; that previously caused an **arm-pose-dependent offset between view and
+shots**."* A second zero does not read as a rotation error — it reads as a bug that depends on how you
+are standing, which is why it survives so long.
+
+**One space, one predicted display time.** *"The XR producer deliberately locates hands in the same
+space and at the same predicted display time as the eyes. Do not create a second input path with a
+different timestamp or reference space."* A hand lane that samples on its own clock is
+[FAIL-INPUT-004](failure-atlas.md) with a different symptom.
+
+Two more of their dead ends generalise past Dunia:
+
+- **Drive the rigid cluster, not the root.** Writing the palm bone alone *"detached the wrist and
+  fingers"*; the working write covers the whole 80..95 cluster. A hand is not one joint.
+- **Write where the skeleton is evaluated, not where the frame is drawn.** *"Do not write bone 80
+  once per frame from a camera/render hook. The skeleton evaluation overwrites it."* The working
+  write is inside the animator evaluation detour. That is the third fleet instance of **stop climbing
+  the producer and hook the consumer** — after PreyVR's CryEngine correction and SOMAVR's skinning
+  palette.
+
 ## A stroke grammar multiplies one button into a menu you never open {#stroke-grammar}
 
 VR controllers run out of buttons long before a mod runs out of actions, and the usual answers are a

@@ -1097,6 +1097,34 @@ Two more rules from the same work, both about honesty at the boundary:
 - **A clip the weapon does not take is refused and stays in the hand**; an item that is not ammo at
   all passes through to ordinary grab.
 
+### Two-handed support, and the socket that grew into a region {#two-handed-support}
+
+The same project's next campaign, taken 2026-09-09. `[SOURCE]` `[LIVE]`
+
+**One hand owns; the other supports.** A fresh squeeze near the socket attaches the free hand; *"the
+supporting hand steers the barrel while the primary hand keeps ownership and fires."* Releasing
+support blends back to one hand; releasing the **primary** drops the weapon **once**. Ownership never
+transfers, which is what stops a support grab from becoming an accidental disarm — and the
+*blend* back to one-handed is what stops the weapon snapping.
+
+**A socket does not fit a large weapon, so it became a capsule.** Oversized weapons expose a **support
+region** — mirrored XYZ endpoints plus a grab radius — and *"a squeeze selects the nearest point,
+locks that contact until release, and steers the weapon without stretching or transferring
+ownership."* The generalisation is clean and worth copying exactly:
+
+> **missing or zero-length regions act as fixed sockets.**
+
+One representation covers both cases, the simple case is the degenerate one, and no code branches on
+weapon size. That extends [HAND-016](pattern-catalog.md#hand-016): a magazine well is a point, a
+fusion cannon's forestock is a line, and a point is a line of length zero.
+
+**They shipped the authoring tools with it** — an interaction workbench, editable grip previews, a
+visual review gallery, and *copy-and-mirror across hands and models*, which is the labour that makes a
+per-weapon table affordable at all. This is [in-headset calibration](#holsters-and-grab) grown into a
+content pipeline: the data is authored where it is seen, not typed.
+
+See [HAND-017](pattern-catalog.md#hand-017).
+
 ## Holsters and physical grab, from the two native-VR interaction stacks {#holsters-and-grab}
 
 Skyrim VR and Fallout 4 VR shipped *as* VR, so their mod scenes never had to solve stereo - they went
@@ -1682,6 +1710,34 @@ of degrees apart**.
 built from the grip pose. See [13](13-teardown-bioshock-vr.md).*) Note this cuts against the natural
 instinct to use one pose for everything "so they can't disagree" — they *should* differ, because a gun
 model sits in your fist while its barrel points where you aim.
+
+### Confirmed independently, with the signature it produces — and one apparent exception
+
+**FC2VR reached this rule the hard way and states it as non-negotiable**, with the tell that names it:
+using one pose for the other *"produces a result that **looks nearly right at rest and wrong in
+motion**."* That signature is the diagnostic — a static screenshot cannot show it, so this survives
+desk review and fails the moment a wearer turns their wrist. `[HEADSET]`
+
+**MoH-VR appears to break the rule, and does not.** Its `DEC-019` takes **position from grip** and
+**orientation from aim**, deliberately: *"The server fires along the aim angles; orienting the model
+with the same angles makes the barrel and the bullet agree by construction instead of by tuning."*
+
+**The difference is not the engine, and it is not who can redirect the shot** — both projects redirect
+it. It is **whether a hand is visibly attached to the weapon**:
+
+| | Hands rendered? | Model orientation | Why it works |
+|---|---|---|---|
+| **MoH-VR** | **no** — `vr_hideViewArms 1`, because the arms are animated by the body and know nothing about the hand | **aim** | with no wrist on screen the grip/aim delta has nothing to look wrong on, so aligning the barrel to the shot is free |
+| **FC2VR** | **yes** — hands, full finger cluster, two-bone arms | **grip** | orient a rendered hand from aim and the wrist twists tens of degrees: *"nearly right at rest and wrong in motion"* |
+
+So the rule stands, with its scope made explicit: **grip places anything the player can see in their
+hand.** Where nothing is visible but the weapon, orienting it to the firing solution is the better
+trade, and the hand's absence is what pays for it.
+
+**This is a prediction for MoH-VR rather than a criticism.** Their own note says *"posing the arms is
+the next piece of milestone 3"* — and the moment those arms exist, an aim-oriented weapon will twist
+the wrist they just built. The move at that point is grip orientation plus per-weapon trim, which is
+what `vr_weaponPitch/Yaw/Roll` already exists for.
 
 ## One trim, one algebra, one ray
 

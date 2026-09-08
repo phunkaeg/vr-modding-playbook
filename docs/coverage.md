@@ -65,7 +65,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `camera_tracking` | 12 | 13 | 1 | 39 | 40 |
 | `render_hazards` | 5 | 9 | 1 | 15 | 75 |
 | `ui_hud` | 5 | 13 | 5 | 42 | 40 |
-| `hands_interaction` | 6 | 13 | 5 | 34 | 47 |
+| `hands_interaction` | 6 | 14 | 5 | 34 | 46 |
 | `input_locomotion` | 2 | 4 | 1 | 15 | 83 |
 | `performance` | 8 | 8 | 3 | 42 | 44 |
 | `audio` | 1 | 1 | 0 | 52 | 51 |
@@ -148,7 +148,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-BF3VR** | external reference | Frostbite 2 / Venice Unleashed (Battlefield 3) | native-injector | T1 | R4 · reconstruction | 14 | 55 | 4 | 44 | 2026-09-03 | 🟩 current | 2F / 4P / 0S / 1NR / 6— |
 | **MonsterDeadWood-C2VR** | external reference | CryEngine 3 (Crysis 2) | native-injector | T1 | R4 · reconstruction | 9 | 105 | 12 | 85 | 2026-09-03 | 🟩 current | 1F / 5P / 0S / 1NR / 6— |
 | **MonsterDeadWood-DiRT2VR** | external reference | EGO (DiRT 2) | native-injector | T1 | R1 · native re-entry | 17 | 44 | 4 | 36 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
-| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 111 | 19 | 63 | 2026-09-05 | 🟥 source changed | 0F / 5P / 0S / 1NR / 7— |
+| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 119 | 19 | 71 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
@@ -173,7 +173,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **satisfactory-uevr-enhancements** | external reference | Unreal 5 | framework-companion | — | — | 18 | 433 | 18 | 5 | 2026-08-22 | 🟩 current | 0F / 2P / 0S / 0NR / 11— |
 | **Scrap-Mechanic-Native-VR** | external reference | Scrap Mechanic (proprietary) | script-native-hybrid | — | — | — | 74 | 38 | 11 | 2026-08-27 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
 | **Shipwright-VR** | external reference | libultraship / Ship of Harkinian | source-port | — | — | — | 11943 | 3243 | 22 | 2026-08-26 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
-| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1070 | 649 | 62 | 2026-09-07 | 🟥 source changed | 3F / 2P / 1S / 2NR / 5— |
+| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1105 | 657 | 69 | 2026-09-09 | 🟥 source changed | 3F / 2P / 1S / 2NR / 5— |
 | **Silent-Hill-3-VR-Mod** | external reference | Silent Hill 3 (2003) | native-injector | T2 | ? | 18 | 478 | 133 | 56 | 2026-08-29 | ⚪ unpinned | 0F / 2P / 0S / 9NR / 2— |
 | **sims4-vr** | archived reference | EA custom (Sims 4) | script-native-hybrid | — | — | 18 | 131 | 81 | 26 | 2026-08-23 | 🟩 current | 3F / 0P / 0S / 0NR / 10— |
 | **singularity-vr-mod** | external reference | Unreal Engine 3.584 (Singularity 2010) | native-injector | T1 | R2 · per-draw replay | 9 | 84 | 39 | 16 | 2026-08-29 | ⚪ unpinned | 6F / 2P / 0S / 3NR / 2— |
@@ -270,7 +270,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **MonsterDeadWood-BF3VR** | 2026-09-03 | `tree:a434e6fd4ed2c819` | `tree:a434e6fd4ed2c819` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-C2VR** | 2026-09-03 | `tree:5c9a476fdb91dfb4` | `tree:5c9a476fdb91dfb4` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-DiRT2VR** | 2026-09-03 | `tree:e1f675860774af3f` | `tree:e1f675860774af3f` | `—` | 🟩 current | unknown | unknown |
-| **MonsterDeadWood-FC2VR** | 2026-09-03 | `tree:0f01206573f0c260` | `tree:6ddcccada41c56ca` | `—` | 🟥 source changed | unknown | unknown |
+| **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:885ad189f33d5a23` | `—` | 🟥 source changed | unknown | unknown |
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | unknown |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | unknown |
@@ -295,7 +295,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **satisfactory-uevr-enhancements** | 2026-08-25 | `tree:33a7aa8069455a16` | `tree:33a7aa8069455a16` | `—` | 🟩 current | unknown | unknown |
 | **Scrap-Mechanic-Native-VR** | 2026-08-27 | `tree:b34922f3c587f2ce` | `tree:b34922f3c587f2ce` | `8aabe24ec62c5c4d8ef9852250a358e1296f9bf2` | 🟩 current | https://github.com/21Suspect/Scrap-Mechanic-Native-VR | MIT |
 | **Shipwright-VR** | 2026-08-26 | `tree:6847d39fbf2e86de` | `tree:6847d39fbf2e86de` | `7afef6987c7f0fb51e09bfb2f7a8f902428a38f2` | 🟩 current | https://github.com/ShinyWindow/Shipwright-VR | unknown |
-| **shock2quest** | 2026-09-07 | `tree:117b0dc694969ed8` | `tree:10cb01aaf88080b9` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | unknown |
+| **shock2quest** | 2026-09-09 | `tree:80a30f1bdad91aa8` | `tree:75c532db6de12b16` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | unknown |
 | **Silent-Hill-3-VR-Mod** | 2026-08-29 | `unknown` | `tree:f1f0674d9d679091` | `—` | ⚪ unpinned | unknown | unknown |
 | **sims4-vr** | 2026-08-25 | `tree:1dec2736beb2f5e5` | `tree:1dec2736beb2f5e5` | `—` | 🟩 current | unknown | unknown |
 | **singularity-vr-mod** | 2026-08-29 | `unknown` | `tree:50b0c75b563c385d` | `—` | ⚪ unpinned | unknown | unknown |
@@ -1444,7 +1444,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `camera_tracking` | 🟨 partial | `AUTHOR` | Build-specific culling seam and sphere center/radius layout are documented against GOG Dunia.dll SHA256 7B82...; the in-house UPLAY/Steam bytes differ, so addresses are leads only. |
 | `render_hazards` | 🟨 partial | `AUTHOR` | Side planes 2-5 versus depth planes 0-1 support a side-only binocular-union candidate. An intrusive force-pass changed the call denominator, establishing the observer-before-intervention rule. |
 | `ui_hud` | — no entry — | — | — |
-| `hands_interaction` | — no entry — | — | — |
+| `hands_interaction` | 🟨 partial | `HEADSET` | harvested 2026-09-09 from HANDOVER_MOTION_CONTROLLER_HANDS_20260907 into ch03 #one-pose-origin and ch02. Motion-controller hands are WORKING in a headset: right-palm bone 80 carries the weapon and the rigid 80..95 cluster must be driven together because palm-only detached the wrist and fingers; the write lives INSIDE the animator evaluation detour because a camera/render-hook write is overwritten by skeleton evaluation - the fleet third instance of hook-the-consumer. Every orientation and position lane shares the head recenter reference yaw with grip positions latched at that same event, because a second yaw zero produced an ARM-POSE-DEPENDENT offset between view and shots. Hands are located in the same space and at the same predicted display time as the eyes, deliberately. Their aim-vs-grip rule confirms the playbook independently with the signature that names it - using one for the other looks nearly right at rest and wrong in motion - and resolves the apparent contradiction with MoH-VR, which orients from AIM because it HIDES its arms. Their doc is self-graded BORROWED_EVIDENCE / DONOR_BETA_HINT / CANDIDATE_ONLY against retail, which is the grading discipline to imitate. Left hand calibration incomplete; right deform ranges 96..101 still symmetry-derived. |
 | `input_locomotion` | — no entry — | — | — |
 | `performance` | — no entry — | — | — |
 | `audio` | — no entry — | — | — |

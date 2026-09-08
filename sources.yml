@@ -1099,8 +1099,8 @@ external:
     status: external_reference
     upstream_url: https://github.com/tommy-xr/shock2quest
     license: unknown
-    reviewed_at: 2026-09-07
-    reviewed_revision: tree:117b0dc694969ed8
+    reviewed_at: 2026-09-09
+    reviewed_revision: tree:80a30f1bdad91aa8
     engine: Dark engine recreation (Rust)
     api: OpenGL ES / Vulkan
     vehicle: engine-recreation
@@ -1881,13 +1881,14 @@ external:
     status: external_reference
     upstream_url: unknown
     license: unknown
-    reviewed_at: 2026-09-03
-    reviewed_revision: tree:0f01206573f0c260
+    reviewed_at: 2026-09-09
+    reviewed_revision: "tree:a8349d3eba75bc6d"
     engine: "Dunia (Far Cry 2)"
     api: D3D9
     vehicle: native-injector
     chapter: 17
     areas:
+      hands_interaction: {review: partial, evidence: HEADSET, note: "harvested 2026-09-09 from HANDOVER_MOTION_CONTROLLER_HANDS_20260907 into ch03 #one-pose-origin and ch02. Motion-controller hands are WORKING in a headset: right-palm bone 80 carries the weapon and the rigid 80..95 cluster must be driven together because palm-only detached the wrist and fingers; the write lives INSIDE the animator evaluation detour because a camera/render-hook write is overwritten by skeleton evaluation - the fleet third instance of hook-the-consumer. Every orientation and position lane shares the head recenter reference yaw with grip positions latched at that same event, because a second yaw zero produced an ARM-POSE-DEPENDENT offset between view and shots. Hands are located in the same space and at the same predicted display time as the eyes, deliberately. Their aim-vs-grip rule confirms the playbook independently with the signature that names it - using one for the other looks nearly right at rest and wrong in motion - and resolves the apparent contradiction with MoH-VR, which orients from AIM because it HIDES its arms. Their doc is self-graded BORROWED_EVIDENCE / DONOR_BETA_HINT / CANDIDATE_ONLY against retail, which is the grading discipline to imitate. Left hand calibration incomplete; right deform ranges 96..101 still symmetry-derived."}
       stereo: {review: partial, evidence: AUTHOR, note: "AUTHOR runtime record: same-frame D3D9 stereo and 400 completed pairs. Harvested only as prior art; not replayed independently."}
       camera_tracking: {review: partial, evidence: AUTHOR, note: "Build-specific culling seam and sphere center/radius layout are documented against GOG Dunia.dll SHA256 7B82...; the in-house UPLAY/Steam bytes differ, so addresses are leads only."}
       render_hazards: {review: partial, evidence: AUTHOR, note: "Side planes 2-5 versus depth planes 0-1 support a side-only binocular-union candidate. An intrusive force-pass changed the call denominator, establishing the observer-before-intervention rule."}

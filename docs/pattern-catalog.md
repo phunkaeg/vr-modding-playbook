@@ -2200,6 +2200,37 @@ different absences, three different next actions — collapse them into a blank 
 the resolved anchor over your control plane if you have one, so a test can assert it in world space
 rather than inferring it from behaviour. `[SOURCE]` shock2quest.
 
+## HAND-017 — Two-handed hold: one owner, a region not a socket {#hand-017}
+
+**Problem:** a second hand on a weapon either does nothing, fights the first for ownership, or attaches
+only at one authored point that suits a pistol and not a cannon.
+
+**Use when:** any weapon or object big enough that a player will instinctively bring the other hand to
+it.
+
+**Recipe:**
+
+- **One hand owns throughout.** The primary hand holds and fires; the support hand *steers* and never
+  takes ownership. Releasing support **blends** back to one-handed rather than snapping; releasing the
+  primary drops the object **once**, idempotently.
+- **Express the support point as a region, and let the degenerate case be the socket.** Mirrored
+  endpoints plus a grab radius describes a capsule; a squeeze locks the nearest point on it until
+  release. **A missing or zero-length region behaves as a fixed socket**, so one representation covers
+  a pistol's magazine well and a fusion cannon's forestock with no branch on weapon size.
+- **Author it where it is seen.** Ship the editor with the feature — previews on the live model,
+  copy-and-mirror across hands and models. A per-weapon table is only affordable if authoring one row
+  is cheap.
+
+**Proof:** support can be taken and released repeatedly in either hand without the weapon changing
+owner, moving in scale, or dropping; and a large weapon can be gripped at more than one point along
+its region.
+
+**Trip hazard:** the support grab is the one most likely to be mistaken for a disarm, so make
+ownership explicit in the state rather than implied by which hand moved last. And headless coverage
+here proves attachment, never **comfort or finger clearance** — shock2quest says exactly that on every
+one of these changes and it is worth copying into the record rather than assuming a green suite means
+the hold feels right. `[SOURCE]` shock2quest.
+
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
 **Problem:** a visible controller/hand aligns, but weapon ray or muzzle does not.
@@ -3089,6 +3120,35 @@ refused with its own message rather than attaching and failing later.
 **Trip hazard:** a refusal is only useful if it names the fix. *"Unsupported executable"* sends the
 user to a forum; *"packed versions are not supported"* and *"you are using a newer version than this
 build supports"* do not. `[SOURCE]` F4SEVR loader.
+
+## PACK-005 — Resolve authored content by identity; keep the hash as provenance {#pack-005}
+
+**Problem:** authored content — a pose, a grip, a calibration — is validated against a hash of the
+asset it was authored on, and a platform that re-bakes that asset silently invalidates every saved
+value.
+
+**Use when:** any per-asset data your mod saves and reloads, especially when a second platform builds
+its own copy of the assets.
+
+**Recipe:** resolve by **identity** — the model name plus whatever else disambiguates it, hand or
+slot — and keep validating the **shape** of the data: schema, ranges, plausible values. Record the
+content hash and the tool revision **as provenance only**. shock2quest's rule, after Quest rejected a
+valid wrench grip because *"its posed-mesh fingerprint differed from the desktop bake"*:
+
+> **Hashes and fitter revisions are provenance only; they cannot disable a saved pose.**
+
+Apply the same policy in the runtime, the editor and the bake script, or one of the three will
+disagree with the others. Re-baking must **preserve manual overrides** across tool revisions.
+
+**Proof:** authored data authored on one platform loads on another whose assets were built
+separately, and a genuinely malformed value is still rejected.
+
+**Trip hazard:** this is the **inverse** of the rule for binaries. A dependency or a target executable
+must be identified by its bytes ([dependency binary, not version](08-project-process.md#dependency-binary-not-version)),
+because there the hash *is* the identity and a mismatch means you are about to hook the wrong thing.
+For **authored content** the hash is incidental — it changes for reasons that have nothing to do with
+whether the pose is still correct. Gate binaries on hashes; never gate content on them.
+`[SOURCE]` shock2quest.
 
 ## CFG-001 — One owner per setting, or write both together {#cfg-001}
 
