@@ -406,6 +406,52 @@ telling them requires alt-tabbing. Same family as
 [controls that must be reachable from inside](#headset-reachable-controls): an instruction the wearer
 cannot follow without breaking the test is not an instruction.
 
+## Keeping a reference checkout current, without losing what you reviewed {#refresh-external-sources}
+
+External sources are read-only reference clones, and they go stale silently. `git clone` is the wrong
+tool for refreshing one — it is a bootstrap, and re-cloning throws away the local history you might
+have and every path anything else points at.
+
+**Fetch, then fast-forward:**
+
+```bash
+git fetch origin                       # read-only: updates knowledge of the remote,
+                                       # touches no working file, disturbs no fingerprint
+git merge --ff-only origin/HEAD        # refuses rather than creating a merge commit
+```
+
+`--ff-only` is the load-bearing half. A reference checkout should never have diverged, so a refusal is
+a **finding** — it means someone committed into it, as this fleet has legitimately done with its
+Dishonored fork. Discovering that by being refused beats discovering it in a merge conflict.
+
+**Fetch is free; merging is not.** Every source's `reviewed_revision` in `sources.yml` is a tree
+fingerprint of the working files, so a fast-forward moves the tree and the ledger correctly reports
+the source as changed. **A bulk refresh therefore converts a quiet corpus into review debt**, and if
+everything is flagged, the flag stops carrying information. Measured 2026-09-09: **46 external
+sources already read `source changed`**, which is the state to avoid re-creating, not to add to.
+
+So refresh **per source, on purpose**:
+
+1. `git fetch` everything — it is safe, and the counts alone answer "has anything moved".
+2. Read the *commit subjects* in the delta. A source you have harvested and cite is worth taking; one
+   you registered but never read gains nothing from being newer.
+3. Fast-forward the ones you will actually re-read, and **re-stamp `reviewed_revision` in the same
+   change as the re-read**, so the ledger returns to green rather than accumulating.
+
+**The counts are the cheap discriminator.** One sweep tells you where the work is:
+
+```bash
+git fetch --quiet origin
+git rev-list --left-right --count HEAD...origin/HEAD   # <ahead>  <behind>
+```
+
+Two details make the sweep reliable. `origin/HEAD` is not always set in a plain clone, so fall back
+through `origin/main`, `origin/master`, `origin/develop` and say so when none resolves. And cap each
+fetch with a timeout: one unreachable host otherwise stalls the whole run, and a timed-out fetch
+silently reports the *previous* fetch's counts — which look authoritative and are not.
+
+See [META-011](pattern-catalog.md#meta-011).
+
 ## Verify a sibling's build identity from their own patch bytes {#sibling-build-identity}
 
 Before trusting another project's address corpus, **find a documented patch site with expected bytes in

@@ -156,6 +156,8 @@ that the observation and the cause are usually in different chapters.
 | A gesture behaves differently on a different headset | [03](03-input-and-locomotion.md#physical-locomotion-verb) — express it in physics steps, not seconds |
 | Walking into an enemy deals melee damage | [03](03-input-and-locomotion.md#physical-locomotion-verb) — bill closing speed at the contact, not raw weapon velocity |
 | Crouching lowers the view but not the hands | [03](03-input-and-locomotion.md#physical-locomotion-verb) — one head-resolved translation for the whole rig |
+| Keeping an external reference clone up to date | [08](08-project-process.md#refresh-external-sources) — fetch everything, fast-forward what you will re-read |
+| Most sources show `source changed` and nobody acts | [META-011](pattern-catalog.md#meta-011) — a flag that always fires is not a signal |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

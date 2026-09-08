@@ -233,6 +233,36 @@ The common shape: **the unit that gets promoted is larger than the unit that was
 session, a build, a cited project - each carries adjacent material that inherits a verdict it never
 earned.
 
+## META-011 — Fetch the whole corpus, merge the parts you will re-read {#meta-011}
+
+**Problem:** external reference checkouts drift out of date invisibly, and the two obvious responses
+are both wrong — re-cloning throws away local history and breaks every path pointing at the tree,
+while bulk-pulling everything converts a reviewed corpus into unreviewed debt in one command.
+
+**Use when:** the question "has any of our reference material moved?" comes up — which is worth
+asking on a schedule, not only when someone remembers.
+
+**Recipe:** split the cheap half from the expensive half.
+
+- **Fetch everything.** `git fetch` is read-only, changes no working file and disturbs no fingerprint,
+  so it can run across the whole corpus with no consequence. `git rev-list --left-right --count
+  HEAD...origin/HEAD` then gives ahead/behind per source, which is the entire answer to *where has
+  work happened*.
+- **Merge selectively, with `--ff-only`.** A reference clone should never have diverged, so a refusal
+  is information: somebody committed into it. Take the delta only where you will actually re-read it.
+- **Re-stamp the review in the same change as the re-read**, so a refreshed source returns to green
+  instead of joining the pile of "source changed" rows.
+
+**Proof:** after the sweep, every source is either at upstream *and* re-stamped, or deliberately
+behind with the reason recorded. "Behind and nobody decided" is the state this exists to prevent.
+
+**Trip hazard:** **a freshness flag that fires on most of the corpus has stopped being a signal.**
+Measured on this fleet: 46 external sources reading `source changed` at once, which is the
+[metric that cannot fail](06-debugging-methodology.md#metric-cannot-fail) inverted — one that always
+does. And when sweeping, cap every fetch with a timeout and mark the ones that failed: a timed-out
+fetch reports the *previous* fetch's counts, which look exactly like fresh ones. `[LIVE]` 2026-09-09,
+21 high-value sources swept.
+
 ## HOOK-001 — Resolve from a throwaway object, hook the real object {#hook-001}
 
 **Problem:** hard-coded COM vtable addresses drift across OS/runtime versions.
