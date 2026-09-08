@@ -287,6 +287,29 @@ The [headset trial report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_
 owns the exact receipts and next human test. Do not turn simulator pacing or CPU
 backend duration into a hardware performance claim.
 
+## GPU timestamps measure an interval, not exclusive GPU work
+
+`SOURCE`: v3.99 adds an explicit process-gated, 16-slot asynchronous timestamp
+ring around backend calls, with per-eye scene markers. Poll with DONOTFLUSH,
+skip image-readback frames, reject query/ring/clock failures, and do not overlap
+an existing disjoint timer. One ordinary-view sample and a two-eye backend
+sample need explicit dimensions, frame identity and successful draw controls.
+
+`LIVE` in SS2 with xr-sim: all 240 ordinary and 600 native samples are valid;
+the native XR trace and ordinary recovery still pass. After warmup, the full
+native backend interval is median 9.274 ms, but the scene subinterval medians
+are 0.889/0.391 ms. A large variable interval follows the right-eye scene call.
+The ordinary interval is 13.072 ms at a different extent and pacing. These
+numbers are **not a native speedup or GPU-active budget**. Tight source brackets
+exclude explicit Present/xrWaitFrame calls but can still include starvation,
+scheduling and additional GPU work. Valid timestamp arithmetic does not decide
+which one dominates. Use an adjacent-marker/batch-boundary control or real replay
+counters to separate them before estimating a supported refresh rate.
+
+The [GPU report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_GPU_COST.md>)
+owns the raw clock samples, dimensions, warmup policy and exact scope. This
+independent profiling work adds no prerequisite to the first controlled HMD test.
+
 ## Cheapest discriminating proofs, in order
 
 1. Observe the natural frame and prove candidate callee-to-GPU coverage.
