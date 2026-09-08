@@ -254,10 +254,38 @@ together still fails the GPU comparison. Matching XR metadata is insufficient;
 the rendered camera must follow the same sample. The
 [motion report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_XR_MOTION.md>)
 owns the hashes, quantization bounds, cancellation coverage and reproduction.
-Next is deliberate real-runtime mode and a bounded HMD camera test. Canted optics,
+The deliberate real-runtime mode is now implemented and simulator-tested in
+v3.97; actual connected-runtime and HMD camera acceptance are next. Canted optics,
 arbitrary aspect/off-axis/ASSAO, general scene coverage and gameplay integration
 remain separate gates. Do not reopen completed stationary transport or visibility
 tests as prerequisites for that next camera test.
+
+## Validate the human-test policy before the headset
+
+`SOURCE`: keep the proven camera/submit path and add explicit runtime admission,
+visible-session readiness, a bounded stop path and no blocking readbacks during
+the human test. Query the actual runtime name rather than trusting a manifest
+label. Select the runtime and recording layer per process. Preserve the sampled
+diagnostic mode; a readback-free trace is not independent GPU-camera evidence.
+
+`LIVE` in SS2 with xr-sim: v3.97 completes 1,800 consecutive pairs in that exact
+mode on the admitted 14-model room fixture. The runtime's recommended asymmetric
+FOV differs from the honest rendered symmetric FOV; submitted poses/time and
+image identity still pass. An explicit stop returns after 39 of 900 pairs.
+Both runs pass three ordinary recovery frames and both games are closed.
+
+`LIVE` / checker correction: that stop landed between complete frames. Requiring
+an extra empty frame was an analyzer error. Require every begun frame to end,
+an untruncated recording and a bounded prefix; only cancellation inside a begun
+frame needs its empty end. Fault controls must still reject unmatched lifecycle
+calls. This is distinct from the earlier cancellation inside a moved-eye frame.
+
+`LIVE` outside the game: an info-only real-runtime query found VirtualDesktopXR
+1.0.10 and D3D11 support but no connected headset. This proves loader/runtime
+availability, not hardware eye configuration, swapchain acceptance or HMD quality.
+The [headset trial report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_HMD_TRIAL.md>)
+owns the exact receipts and next human test. Do not turn simulator pacing or CPU
+backend duration into a hardware performance claim.
 
 ## Cheapest discriminating proofs, in order
 
