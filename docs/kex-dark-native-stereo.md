@@ -223,6 +223,42 @@ an empty frame inside the requested positive interval. No depth layer was submit
 The [project report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_OPENXR_BRIDGE.md>)
 owns final hashes, paths, cancellation evidence and the reproduction procedure.
 
+### Moving native cameras, v3.95
+
+`STATIC`: derive the actual angle/basis conversion through the target producer
+and consumer before mapping XR poses. SS2's native U16 angles produce
+`Rx(-pi/2) Rz(pi/2) Rx(-roll) Ry(-pitch) Rz(-yaw)`, not a generic Euler view.
+`LIVE`: verify that contract against the current body's published basis before
+each replay and each eye's native publication afterward. Preserve the native
+cell/cache fields while replacing XYZ and angles. A basis from an old backend
+matrix remains the wrong source, even if its entries form a valid rotation.
+
+The tracking anchor is the first located parallel-eye midpoint and orientation.
+Map each current located eye through the current body/anchor transform; retain
+full float pose precision for the GPU and exact original poses for submission.
+Native culling uses quantized U16 angles, so verify its quantized expected basis
+separately. Publish that eye's native angles/basis before original backend setup,
+and retain the full backend prologue. Restoration must include every field setup
+rebuilds, including its quaternion, angles and basis as well as the view matrices.
+
+`LIVE`: 91 consecutive pairs in the injected game follow simulated three-axis
+rotation, then translation. One locate precedes all three traversals; display-time
+mismatches are zero. Six sampled XR copies match native output bytes exactly;
+GPU orientation and origin agree with an independently mapped located pose.
+Cancellation after moved poses ends that frame empty, restores body rendering,
+and passes three ordinary frames. Both owned games were closed. This proves
+bounded simulator motion on admitted scenes, not HMD acceptance or frame budget.
+
+`LIVE` evidence plus offline fault controls: changing located and submitted poses
+together still fails the GPU comparison. Matching XR metadata is insufficient;
+the rendered camera must follow the same sample. The
+[motion report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_XR_MOTION.md>)
+owns the hashes, quantization bounds, cancellation coverage and reproduction.
+Next is deliberate real-runtime mode and a bounded HMD camera test. Canted optics,
+arbitrary aspect/off-axis/ASSAO, general scene coverage and gameplay integration
+remain separate gates. Do not reopen completed stationary transport or visibility
+tests as prerequisites for that next camera test.
+
 ## Cheapest discriminating proofs, in order
 
 1. Observe the natural frame and prove candidate callee-to-GPU coverage.

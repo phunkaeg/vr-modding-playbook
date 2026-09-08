@@ -158,7 +158,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | D3D11 OpenXR transport and recovery are shipping in AFR. The isolated native bridge has stationary simulator transport proof, not headset acceptance; see kex-dark-native-stereo.md. |
+| **SS2VR** | 🟩 cleared | `HEADSET` | D3D11 OpenXR transport and recovery are shipping in AFR. The isolated native bridge has simulator transport, tracked motion and moved-frame recovery proof, not headset acceptance; see kex-dark-native-stereo.md. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | D3D11 private-HDR to OpenXR projection submission is sustained. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | OpenGL OpenXR handoff is proven; transfer cost remains a performance lane. |
 | **PreyVR** | 🟩 cleared | `HEADSET` | Game-image transport passes: per-eye images reach the runtime through an owned texture-array swapchain and were seen correctly in headset. Adapter LUID is resolved and matched to a DXGI index, swapchain format is chosen and logged (28->29 fixed double-encoded gamma, FAIL-STR-033), and the per-eye pose/FOV contract is stored with the pixels it describes (FAIL-STR-044). |

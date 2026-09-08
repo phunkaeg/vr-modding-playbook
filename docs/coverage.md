@@ -215,7 +215,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:852852fac712141b` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:0250b1043fc308a2` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:5877bc8ec68334c7` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:c19469d05ca7c603` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:536a654a718785ee` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:22d5f3e3f1b84962` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:b6c488176ce7dbd4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:1f22adffff74afbc` | `—` | 🟥 source changed | internal | internal-unreleased |
@@ -518,7 +518,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟩 full | `HEADSET` | Shipping route grade retained. 2026-09-08 isolated native R1 investigation v3.93 checkpoint0b9c159 has LIVE own-eye products, zero/displaced doorway controls,600 centered frames and recovery; no HMD claim. See kex-dark-native-stereo.md and its current bridge receipt. This note does not re-fingerprint the protected main tree. |
+| `stereo` | 🟩 full | `HEADSET` | Shipping route grade retained. 2026-09-08 isolated native R1 investigation v3.93 checkpoint0b9c159 has LIVE own-eye products, zero/displaced doorway controls,600 centered frames and recovery; no HMD claim. The v3.95 follow-up proves bounded native XR head motion and moved-frame cancellation in xr-sim. See kex-dark-native-stereo.md and its current motion receipt. This note does not re-fingerprint the protected main tree. |
 | `xr_lifecycle` | 🟩 full | `HEADSET` | — |
 | `xr_input` | 🟨 partial | `SOURCE` | — |
 | `camera_tracking` | 🟩 full | `HEADSET` | — |

@@ -144,7 +144,7 @@ bottlenecks:
     exit_proof: Both known-color and game-image transport pass; adapter LUID, API binding, format, synchronization, and recovery behavior are logged.
     route: "[PORT-08](shared-vr-spine.md#port-08) and [graphics API routes](10-graphics-apis.md)"
     projects:
-      ss2vr-work: {state: cleared, evidence: HEADSET, note: "D3D11 OpenXR transport and recovery are shipping in AFR. The isolated native bridge has stationary simulator transport proof, not headset acceptance; see kex-dark-native-stereo.md."}
+      ss2vr-work: {state: cleared, evidence: HEADSET, note: "D3D11 OpenXR transport and recovery are shipping in AFR. The isolated native bridge has simulator transport, tracked motion and moved-frame recovery proof, not headset acceptance; see kex-dark-native-stereo.md."}
       BioshockVR: {state: cleared, evidence: HEADSET, note: "D3D11 private-HDR to OpenXR projection submission is sustained."}
       SOMAVR: {state: cleared, evidence: HEADSET, note: "OpenGL OpenXR handoff is proven; transfer cost remains a performance lane."}
       PreyVR: {state: cleared, evidence: HEADSET, note: "Game-image transport passes: per-eye images reach the runtime through an owned texture-array swapchain and were seen correctly in headset. Adapter LUID is resolved and matched to a DXGI index, swapchain format is chosen and logged (28->29 fixed double-encoded gamma, FAIL-STR-033), and the per-eye pose/FOV contract is stored with the pixels it describes (FAIL-STR-044)."}
