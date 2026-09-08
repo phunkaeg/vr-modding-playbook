@@ -310,6 +310,35 @@ The [GPU report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_GPU_COST.m
 owns the raw clock samples, dimensions, warmup policy and exact scope. This
 independent profiling work adds no prerequisite to the first controlled HMD test.
 
+## Repeat the symptom in the control before claiming its cause
+
+`LIVE` in SS2 with xr-sim, v3.100: 600 native pairs alternate 60-frame blocks of
+normal batching and immediate-context Flush after the timing commands. Adjacent
+GPU markers and CPU QPC delimit the measurement. All frames, clocks, pose/product
+guards and recovery pass; the game is closed. After transition exclusions, the
+post-scene medians are 0.289424/0.289088 ms, both far below the prior 7.218 ms.
+The original effect was **not reproduced in the control**. This neither proves
+a Flush fix nor falsifies delayed submission as the original cause. A zero
+adjacent-marker span now cannot explain an earlier run's scheduling. Fixture
+pitch/instrumentation differed between runs and machine load was uncontrolled.
+
+The full-backend p95 changed from 6.411 ms unflushed to 2.168 ms flushed, mainly
+through the right-scene interval. Flush itself cost median 0.058 ms CPU. These
+are batching/scheduling leads, not production FPS or latency evidence. Keep the
+control opt-in and reproduce the original symptom before causal attribution.
+The [submission report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_GPU_SUBMISSION.md>)
+records all conditions, positive controls, failure classification and receipts.
+
+`LIVE` fixture lesson: installed gameplay scripts can change admitted scene
+products without any native renderer source change. The first run emitted a
+type-0 MD event in unsupported lane 6 and correctly rejected stereo. Process-only
+`set ss2vr_melee_static 0` plus equipping the wrench restored lanes 0/2/4 and the
+valid run. MM0 alone was legal; it was the typed lane that failed admission.
+Before a new graphics experiment, survey actual records and prove its positive
+control. Do not silently relax the whitelist to accommodate a changed viewmodel.
+Native rigid-melee support still needs eye/matrix/ownership and GPU validation;
+the bounded HMD camera test can use the documented fixture independently.
+
 ## Cheapest discriminating proofs, in order
 
 1. Observe the natural frame and prove candidate callee-to-GPU coverage.
