@@ -215,11 +215,11 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:852852fac712141b` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:0250b1043fc308a2` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:5877bc8ec68334c7` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:3d9c0da7742d6042` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:c19469d05ca7c603` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:22d5f3e3f1b84962` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:b6c488176ce7dbd4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:1f22adffff74afbc` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:ae4ad0b390ce6229` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:c4dbe197385cf1fb` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:7d2686182cac76b9` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
@@ -355,10 +355,10 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3854 | 360 | 2026-09-08 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3856 | 362 | 2026-09-08 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 4912 | 2582 | 2026-09-07 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
 | **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 18123 | 1450 | 2026-09-07 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2736 | 846 | 2026-09-07 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2867 | 872 | 2026-09-08 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 474 | 97 | 2026-09-07 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
 | **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5620 | 133 | 2026-09-07 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 221 | 33 | 2026-09-07 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
@@ -518,7 +518,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟩 full | `HEADSET` | — |
+| `stereo` | 🟩 full | `HEADSET` | Shipping route grade retained. 2026-09-08 isolated native R1 investigation v3.93 checkpoint0b9c159 has LIVE own-eye products, zero/displaced doorway controls,600 centered frames and recovery; no HMD claim. See kex-dark-native-stereo.md and its current bridge receipt. This note does not re-fingerprint the protected main tree. |
 | `xr_lifecycle` | 🟩 full | `HEADSET` | — |
 | `xr_input` | 🟨 partial | `SOURCE` | — |
 | `camera_tracking` | 🟩 full | `HEADSET` | — |

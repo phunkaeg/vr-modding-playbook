@@ -69,6 +69,7 @@ nav:
     - "17 · Native stereo: FEAR VR & FC2VR": 17-teardown-fc2vr-native-stereo.md
     - 19 · D3D12 & performance: 19-d3d12-and-performance.md
   - Case studies:
+    - "KEX / Dark native stereo": kex-dark-native-stereo.md
     - "13 · Independent BioShock VR mod": 13-teardown-bioshock-vr.md
     - "15 · IL-2 1946 VR mod": 15-teardown-il2-1946-vr.md
     - "16 · Virtua Cop 2 VR": 16-teardown-virtua-cop-2-vr.md

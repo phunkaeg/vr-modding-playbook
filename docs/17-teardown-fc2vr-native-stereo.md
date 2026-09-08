@@ -1,5 +1,8 @@
 # Native stereo: two engines, two routes to rendering the world twice
 
+For the x64 D3D11 KEX/Dark route and its per-eye traversal ownership traps, see the
+[SS2VR worked case](kex-dark-native-stereo.md).
+
 Two independent mods that reached the top rung of the stereo ladder, on two engines, from opposite
 starting positions:
 
@@ -22,8 +25,9 @@ shared between them — which is itself the architectural lesson in
 engine's camera: patch the matrices per draw, replay the draw stream, or alternate eyes across frames.
 Both of these do something else. They call **the engine's own world-render a second time per frame**,
 with the camera moved to the other eye, and capture what comes out. The engine renders the scene twice
-because it genuinely believes it is rendering two views — so culling, LOD, sky and fog are correct per
-eye for free, which is exactly what downstream approaches cannot buy at any price.
+because it is asked to render two views. That gives culling, LOD, sky and fog a native per-view
+path, but each consumer and retained product still needs an ownership proof. The
+[KEX/Dark case](kex-dark-native-stereo.md) demonstrates why a second call alone does not supply it.
 
 That is the top rung of the stereo ladder, and these are the playbook's first worked examples of it —
 both achieved on 2005–2008 D3D9 titles with no OpenXR binding of their own. Age is not the barrier.

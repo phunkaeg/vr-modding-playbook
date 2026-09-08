@@ -116,7 +116,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | Private per-eye targets with alternate-eye fills are the proven shipping route; native cubemap re-entry is a future opportunity. |
+| **SS2VR** | 🟩 cleared | `HEADSET` | Private per-eye targets with alternate-eye fills remain the shipping route. The isolated native route now has a controlled OpenXR transport proof; its current boundary and next gate are linked from kex-dark-native-stereo.md. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | Per-draw private-eye replay is proven; rung-1 reflection/mirror re-entry remains optional research. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR is the selected route around expensive/side-effectful HPL re-entry. |
 | **PreyVR** | 🟩 cleared | `HEADSET` | STEREO_ROUTE.md records the ladder, the rejected higher rungs, camera delivery, rollback and the A5 side-effect exit test. Rung 3 with native projection passed and stereo was confirmed in headset 2026-09-02 with depth and scale judged correct. Rung 1 cost remains unmeasured, but that is a rejected rung, not the selected one. |
@@ -137,7 +137,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `LIVE` | Current per-draw/AFR architecture avoids re-entering the complete simulation frame. |
+| **SS2VR** | 🟩 cleared | `LIVE` | The shipping per-draw/AFR route avoids full simulation re-entry. Isolated native traversal ownership and remaining scene-admission limits have separate evidence in kex-dark-native-stereo.md; shipping clearance does not clear every native scene. |
 | **BioShockVR** | 🟩 cleared | `LIVE` | Private-eye replay is scoped to eligible rendering work; pair authority and fallbacks are explicit. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR deliberately avoids same-frame scene re-entry and banks temporal histories per eye. |
 | **PreyVR** | 🟥 active | `STATIC` | Dormant rather than solved: the selected route is alternate-eye, which never runs RenderWorld twice, so the once-per-frame side-effect class is not currently exercised and nothing about it has been proven. It returns in full the moment native scene re-entry is attempted. |
@@ -158,7 +158,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | D3D11 OpenXR transport and recovery are shipping. |
+| **SS2VR** | 🟩 cleared | `HEADSET` | D3D11 OpenXR transport and recovery are shipping in AFR. The isolated native bridge has stationary simulator transport proof, not headset acceptance; see kex-dark-native-stereo.md. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | D3D11 private-HDR to OpenXR projection submission is sustained. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | OpenGL OpenXR handoff is proven; transfer cost remains a performance lane. |
 | **PreyVR** | 🟩 cleared | `HEADSET` | Game-image transport passes: per-eye images reach the runtime through an owned texture-array swapchain and were seen correctly in headset. Adapter LUID is resolved and matched to a DXGI index, swapchain format is chosen and logged (28->29 fixed double-encoded gamma, FAIL-STR-033), and the per-eye pose/FOV contract is stored with the pixels it describes (FAIL-STR-044). |

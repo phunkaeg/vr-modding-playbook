@@ -59,7 +59,7 @@ fleet:
     reviewed_at: 2026-08-28
     reviewed_revision: tree:4d9e7c06edd1a483
     areas:
-      stereo:            {review: full, evidence: HEADSET}
+      stereo:            {review: full, evidence: HEADSET, note: "Shipping route grade retained. 2026-09-08 isolated native R1 investigation v3.93 checkpoint0b9c159 has LIVE own-eye products, zero/displaced doorway controls,600 centered frames and recovery; no HMD claim. See kex-dark-native-stereo.md and its current bridge receipt. This note does not re-fingerprint the protected main tree."}
       xr_lifecycle:      {review: full, evidence: HEADSET}
       xr_input:          {review: partial, evidence: SOURCE}
       camera_tracking:   {review: full, evidence: HEADSET}
