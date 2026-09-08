@@ -690,6 +690,43 @@ The strongest confirmation that you found the right thing is a property only the
   (*Unplanned dividend: the same residual settled row-vector versus column-vector convention empirically —
   column residual 0.000031, translation in the last row — instead of by assumption.*)
 
+## Solve the layout instead of validating a guess — the perturbation Jacobian {#perturbation-jacobian}
+
+The residual above validates a reconstruction you already guessed. When you do not want to guess at all —
+which memory scalar drives which matrix element, and through what transposition — **measure the
+derivative matrix directly.** `[SOURCE]`
+
+Hold everything else still. Perturb upstream scalar `i` by a known `Δin`. Record the resulting `Δout` in
+every output element `o` you can observe (GPU-side `View`, `InvView`, world position). Then
+
+```text
+J[o,i] = mean( Δout_o / Δin_i )      over the samples for that cell
+rank(J)   — is every input independently reaching the outputs?
+cond(J)   — how badly will a fitted inverse amplify noise?
+```
+
+**Full rank is the layout proof.** If `rank(J) == min(J.shape)`, every input scalar has an independent
+route to the outputs, so the mapping is invertible and the ordering question is settled by measurement
+rather than by trying transposes until one "looks less wrong". Deficient rank is equally informative: two
+inputs are coupled, or one is dead. A high condition number says the mapping is near-singular and any
+inverse you fit from it will be noise.
+
+**The hardening this needs, because the obvious implementation is unsound.** The donor's `jacobian_rank.py`
+accumulates into a zero matrix and averages only the cells that received samples. A cell nobody probed
+therefore stays exactly `0.0` — **indistinguishable from a genuine measured-zero derivative** — and feeds
+straight into `matrix_rank`. So an *incomplete probe set* produces a rank deficiency that reads exactly
+like a *real coupling deficiency*, and the tool never prints the difference. `[SOURCE]` 2026-09-09, read
+in the donor's own toolbox.
+
+> **A rank number without its coverage matrix is not a result.** Print the per-cell sample count
+> alongside `J`, or assert `C.min() > 0` before reporting rank at all. This is
+> [META-013](pattern-catalog.md#meta-013) in its numeric form.
+
+The same caveat applies to the claim this recipe is famous for. The donor's FarCry2 case study reports
+`View rank 16/16`, `InvView rank 16/16`, `Position rank 3/3`, `32/32 replay` — but the package carries the
+*summary*, not the probe logs or the coverage matrix, so those numbers are `[AUTHOR]`, not `[LIVE]`. The
+**method** transfers on its own merits; the scores are the donor's claim about a run we cannot inspect.
+
 ## An exported address is usually a thunk, and internal callers bypass it
 
 Two different mechanisms, one lesson, and both have now bitten projects in this playbook:

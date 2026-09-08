@@ -78,6 +78,10 @@ VEHICLE_VALUES = (
     "source-port",
     "engine-recreation",
     "script-native-hybrid",
+    # Not a delivered mod at all: a methodology/reference document harvested for
+    # its method. Kept in the vocabulary so such a source can be registered
+    # honestly rather than mislabelled as one of the delivery shapes above.
+    "documentation",
 )
 TIER_VALUES = ("pre-T1", "T0", "T1", "T2", "T3", "T4")
 TIER_TARGET_VALUES = ("T0", "T1", "T2", "T3", "T4")

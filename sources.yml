@@ -11,7 +11,8 @@
 # NEVER REVIEWED. That is the point — omission must be loud.
 # These are deliberately separate axes:
 # - fleet `authority` records who owns the shipping integration selected by PORT-01;
-# - external `vehicle` records how a reference mod is delivered/built.
+# - external `vehicle` records how a reference mod is delivered/built; `documentation`
+#   is for a source that ships no mod at all and was harvested for its method.
 # `tier` is achieved completeness; an aspiration belongs in optional `tier_target`.
 # `stereo_rung` is one of unproven/R1/R2/R3/R4, never a mixture of integers and prose.
 #
@@ -2434,6 +2435,32 @@ external:
       audio:             {review: not_reviewed}
       packaging_deploy:  {review: not_reviewed}
       re_discovery:      {review: not_reviewed}
+  - id: "vr-analyzer-bible"
+    root: "D:/Dev Debug/VR Modding/External/VR_ANALYZER_BIBLE_SOURCE_BRAIN_MERGED_20260907/01_BIBLE"
+    status: external_reference
+    upstream_url: unknown
+    license: unknown
+    reviewed_at: 2026-09-09
+    reviewed_revision: "tree:a22a31975814991e"
+    engine: engine-agnostic (methodology)
+    api: n/a
+    vehicle: documentation
+    chapter: 6
+    areas:
+      re_discovery:      {review: partial, evidence: SOURCE, note: "Harvested 2026-09-09. A donor METHODOLOGY package, not a mod - taken for four things and no more. (1) The perturbation Jacobian as a DISCOVERY procedure for matrix layout, now ch11 #perturbation-jacobian, hardened: the donor's jacobian_rank.py leaves unprobed cells at 0.0, so incomplete coverage is arithmetically identical to a real zero derivative and reads as rank deficiency - print the sample-count matrix. (2) INVALID as a verdict distinct from FAIL with an enumerated void checklist, plus FACT_VERDICT independent of BASELINE_VERDICT, now ch06 #run-validity + META-012. (3) Both offline checkers read had the clean-equals-empty defect, now ch06 #empty-is-not-clean + META-013. (4) Its case-study numbers are AUTHOR-grade only. DELIBERATELY NOT TAKEN: the AMBIGUOUS branch, baseline-revision recording and claim-scoped promotion, all of which ch06 #claim-scoped-promotion already had; and 'validate numerically, do not guess transpose', which ch09:479 and ch11's residual table already state MORE strongly than the donor does."}
+      stereo:            {review: skimmed, evidence: AUTHOR, note: "Case studies (FC2 Jacobian, CSGO custom projection, DiRT2 same-frame reentry, Crysis2 CB pivot) report scores - 'View rank 16/16', '32/32 replay', '19/19 probes' - but the package carries the SUMMARY only. No probe logs, no coverage matrix, no raw captures. AUTHOR, not LIVE, and not upgradeable from anything in this tree."}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      source_integration: {review: not_reviewed}
+
 not_a_source:
   - id: "UEVR-joeyhodge_AFW_v1.0-beta.6"
     reason: "UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source."

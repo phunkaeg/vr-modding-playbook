@@ -162,6 +162,10 @@ that the observation and the cause are usually in different chapters.
 | Saved poses load on desktop and are refused on Quest | [PACK-005](pattern-catalog.md#pack-005) — resolve by identity, hash is provenance |
 | Aim and view disagree by an amount that depends on arm pose | [03](03-input-and-locomotion.md#one-pose-origin) — one reference yaw for every lane |
 | A bone write from a render hook does nothing | [03](03-input-and-locomotion.md#one-pose-origin) — write inside the skeleton evaluation |
+| A run "failed" but you are unsure the experiment even happened | [06](06-debugging-methodology.md#run-validity) — grade validity before the hypothesis |
+| The fact was proven but something unrelated regressed | [06](06-debugging-methodology.md#run-validity) — keep the fact, refuse the build |
+| A checker is green and you suspect it saw nothing | [META-013](pattern-catalog.md#meta-013) — clean and empty must differ |
+| Which memory scalar drives which matrix element | [11](11-re-anchoring-and-discovery.md#perturbation-jacobian) — measure the derivative matrix |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |

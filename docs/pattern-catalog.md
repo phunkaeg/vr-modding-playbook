@@ -263,6 +263,62 @@ does. And when sweeping, cap every fetch with a timeout and mark the ones that f
 fetch reports the *previous* fetch's counts, which look exactly like fresh ones. `[LIVE]` 2026-09-09,
 21 high-value sources swept.
 
+## META-012 — Grade the run, then the hypothesis {#meta-012}
+
+**Problem:** "the experiment failed" hides two outcomes with opposite remedies — the hypothesis was wrong
+(design a better discriminator) and the experiment did not happen (re-run it correctly). A single verdict
+also collapses "the fact held" with "nothing else broke", which are independent and frequently disagree.
+
+**Use when:** any run whose result will be written down — live, headset, or a scripted harness.
+
+**Recipe:** three graded outputs from one run.
+
+- **Validity first.** Pre-declare what makes the run void, and check it in postflight: target executed and
+  hash-matched, probe actually active, scene gate reached, baseline phase present, restore proven, data
+  capable of separating `PASS` from `FAIL`. Any miss ⇒ `INVALID`, and no hypothesis conclusion is drawn.
+- **Then the fact.** `CONFIRM / REFUTE / AMBIGUOUS`, per [META-010](#meta-010).
+- **Then the baseline, independently.** Frame cadence, stereo pair counts, draw/pass counts, drop and
+  error counters, XR health, key resource identities. `FACT_PASS + BASELINE_FAIL` means **keep the fact,
+  refuse to promote the build** — the knowledge is banked, the branch is not.
+
+**Proof:** a run that produced no verdict on one of the three axes is itself a process defect. If you
+cannot say which of the three graded outputs a past result carried, it was not recorded properly.
+
+**Trip hazard:** the greedy half and the narrow half get confused. Read-only collection should be as wide
+as you can afford — counters, module map, caller fingerprints, before/after snapshots — because it costs
+nothing and cannot contaminate. **Mutation should be one thing, and it should stop the moment the primary
+fact is classified.** Using leftover session time to poke unrelated systems converts a clean attributable
+answer into an unattributable one. See [06](06-debugging-methodology.md#run-validity).
+
+## META-013 — A checker must distinguish clean from empty {#meta-013}
+
+**Problem:** a validator that received no usable input reports the same thing as one that checked
+everything and found nothing wrong. The green result then travels as evidence, and the absence of data
+travels with it disguised as the presence of health.
+
+**Use when:** writing or adopting any offline checker, fixture validator or CI gate — especially an
+inherited one, where the failure is invisible until the day it matters.
+
+**Recipe:**
+
+- **Three exit codes, not two:** clean, dirty, no usable input. A checker that cannot fail cannot gate.
+- **Emit the denominator beside the verdict.** `0 of 0 frames had both eyes` is a finding; `pairs_pass 0`
+  is noise wearing a success costume.
+- **Count what you skip.** Every record filtered out by a guard is a coverage hole; a silent skip is the
+  checker declining to report the size of its own blind spot.
+- **Encode "not measured" distinctly from "measured zero."** Accumulating into a zero-initialised array
+  and then reading it as data is the numeric form of the same bug.
+- **Name the check after its reach**, not its aspiration — `NO_DIRECT_FACT_CONTRADICTIONS` over
+  `NO_CONTRADICTIONS`.
+
+**Proof:** run the checker against an empty input and against a deliberately broken one. The three outputs
+must differ, and the exit codes must differ. If empty and clean agree, the tool is decorative.
+
+**Trip hazard:** this is the offline cousin of
+[a metric that cannot come back bad](06-debugging-methodology.md#metric-cannot-fail), and **inheriting** a
+checker is the usual way to acquire it — the code looks reasonable, it passes on real input, and nobody
+has ever fed it nothing. Both tools read in one donor package had it. `[SOURCE]` 2026-09-09
+
 ## HOOK-001 — Resolve from a throwaway object, hook the real object {#hook-001}
 
 **Problem:** hard-coded COM vtable addresses drift across OS/runtime versions.

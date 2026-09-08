@@ -1128,6 +1128,36 @@ Two rules, and the second is the one that generalises furthest:
 > opportunity for eye divergence; it is not divergence. Name instruments after what they measure, not
 > after what you hope they detect.
 
+## A checker's clean verdict must not be its no-data verdict {#empty-is-not-clean}
+
+[#metric-cannot-fail](#metric-cannot-fail) is about instruments that cannot report a fault. This is its
+offline sibling: **a checker that reports success and a checker that received nothing produce the same
+output and the same exit code.** Both donor tools read in one sitting had the defect, in two different
+shapes. `[SOURCE]` 2026-09-09
+
+- **The stereo pair validator groups rows by frame and only compares frames that have both eyes** — with
+  no `else`. A capture that lost every right eye prints `pairs_pass 0 pairs_fail 0` and exits 0, which is
+  byte-identical to a capture containing no frames at all. It also **exits 0 with real failures**: ten
+  failed pairs still return success, so nothing upstream can gate on it.
+- **The Jacobian tool encodes "nobody probed this cell" as `0.0`**, the same value a genuine zero
+  derivative produces — so incomplete coverage is silently reported as a structural rank deficiency.
+  See [#perturbation-jacobian](11-re-anchoring-and-discovery.md#perturbation-jacobian).
+
+Three rules, and the third is the one that generalises furthest:
+
+> **A checker has three outcomes, not two:** clean, dirty, and *no usable input*. Give them three distinct
+> exit codes. A green CI step that ran against an empty directory is worse than no CI step, because it
+> also carries a claim.
+
+> **Print the denominator with the verdict.** `pairs_pass 0` means nothing; `0 of 0 frames had both eyes`
+> is a finding. Every skipped record is a coverage hole, and a checker that skips silently is choosing not
+> to tell you the size of its own blind spot.
+
+> **Name the check after its actual reach.** The one tool in the same package that gets its exit code
+> right prints `NO_DIRECT_FACT_CONTRADICTIONS` — and the word *direct* is load-bearing and honest: it
+> compares exact strings in the proven and falsified lists and nothing more. A weak check with an accurate
+> name is safe; a weak check with a broad name is a liability. `[SOURCE]`
+
 ## A liveness signal does not tell you WHICH thing is alive {#liveness-is-not-identity}
 
 "The process is presenting frames" answers *is it running*, never *what is on screen*. FarCry2-VR's
@@ -1608,6 +1638,57 @@ Dismissing an anomaly because "the working case has it too" is only valid if the
 reads that value through the same path. Otherwise you haven't controlled for anything — you've excluded
 your best lead. Before you write off a finding, name the code path that would consume it and confirm your
 control runs that path. [05](05-assets-and-materials.md) has the worked example that cost a day.
+
+## Grade the run before you grade the hypothesis {#run-validity}
+
+Two very different outcomes both get reported as "the experiment failed": the hypothesis was wrong, and
+the experiment never actually happened. Conflating them is expensive in exactly the wrong direction —
+**a `FAIL` sends you off to design a better discriminator; an `INVALID` just means run it again
+properly.** Spend a redesign on a run that did not occur and you have paid for a lesson nobody taught.
+
+So make `INVALID` a first-class verdict with its own pre-declared checklist, separate from the
+`CONFIRM / REFUTE / AMBIGUOUS` rule in [#claim-scoped-promotion](#claim-scoped-promotion). A run is void —
+not negative — if any of these is not provably true afterwards: `[SOURCE]`
+
+- the target was executed at all, and its hash matches the one the contract named;
+- the hook or probe was actually active (not merely installed);
+- the scene or gameplay gate the experiment needs was reached;
+- the baseline phase ran, and the restore afterwards is proven;
+- the data collected can distinguish `PASS` from `FAIL` **at all**.
+
+That last one is the bridge to `AMBIGUOUS`: if the instrument could never have separated the two answers,
+the run is void by construction rather than inconclusive by luck. This is the postflight companion to
+[#self-proving-instrument](#self-proving-instrument) — one proves the instrument before, the other proves
+the run after.
+
+### The fact and the baseline are two independent verdicts
+
+A live run answers two questions and they do not have to agree. `FACT_VERDICT` says whether the
+proposition held. `BASELINE_VERDICT` says whether everything the change was not supposed to touch — frame
+cadence, stereo pair counts, draw/pass counts, drop counters, XR health, key resource identities — came
+back unharmed. Grading them together throws away half the run:
+
+| | baseline held | baseline broke |
+|---|---|---|
+| **fact proven** | promote both | **keep the fact, refuse the build** |
+| **fact refuted** | promote the knowledge, revert the change | void — you learned nothing cleanly |
+
+**`FACT_PASS + BASELINE_FAIL` is a legitimate and common result**, and it is the one a single verdict
+destroys. The knowledge is real and should be written down; the integration branch must not be promoted.
+Keeping the axes separate is what lets you bank a hard-won fact from a run whose build you are about to
+throw away.
+
+### Collect widely, mutate narrowly — then stop
+
+The read-only half of a run should be greedy: module map, frame and call counters, resource identity,
+caller fingerprints, adjacent fields and owners, before/after payload snapshots, error counters, exact
+timestamps. None of it perturbs anything, and it is free once you are already in there.
+
+The mutating half should be one thing. And **once the primary fact is classified, stop** — do not spend
+the remaining session mutating unrelated systems because the harness is still up. A second uncontrolled
+change turns a clean answer into an unattributable one, and this fleet has already burned headset
+sessions on runs that could not be read afterwards. Banking one clean fact beats collecting three
+ambiguous ones. See [META-012](pattern-catalog.md#meta-012).
 
 ## Promote claims, not branches {#claim-scoped-promotion}
 

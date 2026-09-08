@@ -59,19 +59,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 21 | 14 | 35 | 16 |
-| `xr_lifecycle` | 6 | 7 | 0 | 48 | 44 |
-| `xr_input` | 4 | 1 | 4 | 47 | 49 |
-| `camera_tracking` | 12 | 13 | 1 | 39 | 40 |
-| `render_hazards` | 5 | 9 | 1 | 15 | 75 |
-| `ui_hud` | 5 | 13 | 5 | 42 | 40 |
-| `hands_interaction` | 6 | 14 | 5 | 34 | 46 |
-| `input_locomotion` | 2 | 4 | 1 | 15 | 83 |
-| `performance` | 8 | 8 | 3 | 42 | 44 |
-| `audio` | 1 | 1 | 0 | 52 | 51 |
-| `packaging_deploy` | 6 | 23 | 18 | 27 | 31 |
-| `re_discovery` | 14 | 14 | 5 | 34 | 38 |
-| `source_integration` | 2 | 8 | 7 | 33 | 55 |
+| `stereo` | 19 | 21 | 15 | 35 | 16 |
+| `xr_lifecycle` | 6 | 7 | 0 | 49 | 44 |
+| `xr_input` | 4 | 1 | 4 | 48 | 49 |
+| `camera_tracking` | 12 | 13 | 1 | 40 | 40 |
+| `render_hazards` | 5 | 9 | 1 | 16 | 75 |
+| `ui_hud` | 5 | 13 | 5 | 43 | 40 |
+| `hands_interaction` | 6 | 14 | 5 | 35 | 46 |
+| `input_locomotion` | 2 | 4 | 1 | 16 | 83 |
+| `performance` | 8 | 8 | 3 | 43 | 44 |
+| `audio` | 1 | 1 | 0 | 53 | 51 |
+| `packaging_deploy` | 6 | 23 | 18 | 28 | 31 |
+| `re_discovery` | 14 | 15 | 5 | 34 | 38 |
+| `source_integration` | 2 | 8 | 7 | 34 | 55 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -197,6 +197,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **VirtualFortress2** | external reference | Source (Team Fortress 2) | source-port | — | — | — | 4613 | 3839 | 22 | 2026-08-27 | 🟩 current | 0F / 0P / 3S / 0NR / 10— |
 | **visceral-re2-vr-mod** | external reference | RE Engine (Resident Evil 2, 2019) | framework-companion | T2 | — | 2 | 14 | 5 | 5 | 2026-08-30 | 🟥 source changed | 0F / 0P / 2S / 9NR / 2— |
 | **Vostok-VR-Mod** | external reference | Godot 4 | native-injector | — | — | — | 78 | 14 | 10 | 2026-08-26 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
+| **vr-analyzer-bible** | external reference | engine-agnostic (methodology) | documentation | — | — | 6 | 199 | 16 | 141 | 2026-09-08 | 🟩 current | 0F / 1P / 1S / 11NR / 0— |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 20 | 0 | 0 | 2026-07-12 | ⚪ unpinned | 0F / 1P / 0S / 11NR / 1— |
 | **WeWereInVR** | external reference | Unity (We Were Here) | managed-plugin | — | — | 18 | 33 | 17 | 3 | 2026-08-28 | ⚪ unpinned | 1F / 2P / 0S / 8NR / 2— |
 | **White_Knuckle_VR** | external reference | Unity | managed-plugin | — | — | 18 | 4 | 0 | 3 | 2026-08-22 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
@@ -218,7 +219,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:9d29b10c794ece55` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:b28c3ada30ad5237` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:b6c488176ce7dbd4` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:0223a3c5afb9fda3` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:31dfa6b953fdb66e` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:73c649bf8dec08aa` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:488f4758c1d6c543` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
@@ -319,6 +320,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **VirtualFortress2** | 2026-08-27 | `tree:a20f91fac220f18e` | `tree:a20f91fac220f18e` | `—` | 🟩 current | unknown | unknown |
 | **visceral-re2-vr-mod** | 2026-08-29 | `tree:dfbb912f1ec1c758` | `tree:b54e8fb8f08ff568` | `—` | 🟥 source changed | unknown | unknown |
 | **Vostok-VR-Mod** | 2026-08-26 | `tree:12bd87bb2b93482c` | `tree:12bd87bb2b93482c` | `74f73105d1e7326d60dedd525a3e6cd68bf30839` | 🟩 current | https://github.com/Blah64/Vostok-VR-Mod | unknown |
+| **vr-analyzer-bible** | 2026-09-09 | `tree:a22a31975814991e` | `tree:a22a31975814991e` | `—` | 🟩 current | unknown | unknown |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | 2026-09-05 | `unknown` | `tree:a9678ae3c00b1813` | `—` | ⚪ unpinned | unknown | unknown |
 | **WeWereInVR** | 2026-08-28 | `unknown` | `tree:73ae278c47bffb04` | `—` | ⚪ unpinned | unknown | unknown |
 | **White_Knuckle_VR** | 2026-08-25 | `tree:0e9bfa4ea9f7dd43` | `tree:0e9bfa4ea9f7dd43` | `—` | 🟩 current | unknown | unknown |
@@ -2315,6 +2317,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | 🟨 partial | `SOURCE` | FIRST Godot target. Bootstrap hooks GetCommandLineW (guarded by call_once) to make Godot load a GDExtension - injection exists only to get the extension registered, after which VR runs as engine-sanctioned native code. Harvested to ch18 #engine-sanctioned-loading. Vehicle recorded as native-injector but the taxonomy fits poorly. |
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
+
+#### vr-analyzer-bible
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟧 skimmed | `AUTHOR` | Case studies (FC2 Jacobian, CSGO custom projection, DiRT2 same-frame reentry, Crysis2 CB pivot) report scores - 'View rank 16/16', '32/32 replay', '19/19 probes' - but the package carries the SUMMARY only. No probe logs, no coverage matrix, no raw captures. AUTHOR, not LIVE, and not upgradeable from anything in this tree. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟨 partial | `SOURCE` | Harvested 2026-09-09. A donor METHODOLOGY package, not a mod - taken for four things and no more. (1) The perturbation Jacobian as a DISCOVERY procedure for matrix layout, now ch11 #perturbation-jacobian, hardened: the donor's jacobian_rank.py leaves unprobed cells at 0.0, so incomplete coverage is arithmetically identical to a real zero derivative and reads as rank deficiency - print the sample-count matrix. (2) INVALID as a verdict distinct from FAIL with an enumerated void checklist, plus FACT_VERDICT independent of BASELINE_VERDICT, now ch06 #run-validity + META-012. (3) Both offline checkers read had the clean-equals-empty defect, now ch06 #empty-is-not-clean + META-013. (4) Its case-study numbers are AUTHOR-grade only. DELIBERATELY NOT TAKEN: the AMBIGUOUS branch, baseline-revision recording and claim-scoped promotion, all of which ch06 #claim-scoped-promotion already had; and 'validate numerically, do not guess transpose', which ch09:479 and ch11's residual table already state MORE strongly than the donor does. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO
 
