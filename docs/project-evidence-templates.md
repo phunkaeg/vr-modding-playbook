@@ -8,6 +8,10 @@ The templates intentionally separate observations, ownership and decisions.
 One giant progress document becomes unsearchable and lets stale assumptions
 survive beside newer evidence.
 
+For completed investigations, use the [structured receipt and contribution
+workflow](research-receipts.md). It validates project-owned evidence and queues a
+candidate for review; it does not automatically promote findings into patterns.
+
 ## `PORT_BRIEF.md`
 
 ```markdown

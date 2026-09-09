@@ -55,6 +55,12 @@ SKIP_DIRS = {
     # consecutive coverage runs three seconds apart, while its git tree was
     # stable - so the failure had nothing to do with the change under test.
     "tmp", "temp", ".tmp", "logs", ".cache",
+    # Derived output that is not source. "build" was already here but matching is
+    # by exact name, so SOMAVR's build-ninja2 slipped through and moved the SOMAVR
+    # fingerprint 11 files between two consecutive runs on 2026-09-09 while its
+    # agent was compiling - the same failure the comment above describes, with a
+    # directory name the list did not cover. Prefixes are handled in walk().
+    "out", "graphify-out",
 }
 REVIEW_VALUES = ("full", "partial", "skimmed", "not_reviewed")
 EVIDENCE_VALUES = ("SPEC", "SOURCE", "STATIC", "LIVE", "HEADSET", "AUTHOR", "INFERENCE")
@@ -146,7 +152,8 @@ def scan(path: Path) -> dict[str, Any] | None:
     newest = 0.0
     signature = hashlib.sha256()
     for directory, dirs, files in os.walk(path):
-        dirs[:] = sorted(name for name in dirs if name not in SKIP_DIRS)
+        dirs[:] = sorted(name for name in dirs
+                         if name not in SKIP_DIRS and not name.startswith("build-"))
         for filename in sorted(files):
             file_path = Path(directory) / filename
             try:
@@ -217,6 +224,8 @@ def validate(cfg: dict[str, Any]) -> None:
         if not isinstance(entries, list):
             errors.append(f"{section} must be a list")
             continue
+        if not entries:
+            errors.append(f"{section} must contain at least one source")
         for index, source in enumerate(entries):
             label = f"{section}[{index}]"
             if not isinstance(source, dict):

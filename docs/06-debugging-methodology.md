@@ -1141,7 +1141,7 @@ shapes. `[SOURCE]` 2026-09-09
   failed pairs still return success, so nothing upstream can gate on it.
 - **The Jacobian tool encodes "nobody probed this cell" as `0.0`**, the same value a genuine zero
   derivative produces — so incomplete coverage is silently reported as a structural rank deficiency.
-  See [#perturbation-jacobian](11-re-anchoring-and-discovery.md#perturbation-jacobian).
+  See [numerical camera mapping](11-re-anchoring-and-discovery.md#numerical-camera-mapping).
 
 Three rules, and the third is the one that generalises furthest:
 

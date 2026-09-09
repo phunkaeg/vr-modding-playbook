@@ -101,6 +101,13 @@ diverging.
 
 ## If you are contributing back
 
+For a substantial finding or failed approach, follow [research receipts](docs/research-receipts.md).
+`tools/research_receipt.py` creates/validates a project-owned record and submits a
+candidate for review. Keep validity, fact verdict, baseline health, evidence grade
+and observation environment separate. Intake does not promote claims, allocate IDs,
+clear bottlenecks, or authorize runtime work. Review candidates with `list`, read
+their evidence, update the owning document, then record the editorial decision.
+
 **Grade every claim.** `SPEC` normative API fact · `SOURCE` read in the project's own source ·
 `STATIC` binary/static RE · `LIVE` observed at runtime · `HEADSET` accepted in a headset ·
 `AUTHOR` the author's claim, unchecked · `INFERENCE` transferable hypothesis, not established
@@ -124,9 +131,10 @@ costs a session to re-derive if you drop it.
 python tools/verify.py
 ```
 
-Nine checks — source ledger, interaction coverage, bottleneck ledger, retrieval-ID integrity,
+Ten checks — source ledger, interaction coverage, bottleneck ledger, retrieval-ID integrity,
 entry-point links, project instruction pairs, reference maths, strict site build, and every
-internal anchor. One line each, correct exit code.
+internal anchor, and integration regression tests. PASS requires measured input;
+NO_DATA is incomplete (exit 2). `--quick` / `--portable` explicitly name omitted checks.
 
 Do **not** pipe validators through `tail` or `head` to trim their output. A shell pipeline
 returns the *pipe's* exit status, so a failing check reports success. That mistake hid a real

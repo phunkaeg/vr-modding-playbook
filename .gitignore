@@ -1,4 +1,5 @@
 site/
+.guidance-staging/
 cross-engine-graph/corpus/
 cross-engine-graph/graphify-out/cache/
 cross-engine-graph/**/graphify-out/cache/

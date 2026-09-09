@@ -1,5 +1,53 @@
 # Finding Things in the Binary: Anchors, Discovery, and Version Robustness
 
+## Measure a camera mapping instead of guessing storage order {#numerical-camera-mapping}
+
+Use when you have a bounded candidate block and an observable downstream payload,
+but transpose, packing or component correspondence is uncertain. This method is
+adapted from MonsterDeadWood's analyzer Bible; it is an experimental recipe, not
+confirmation of its FC2 addresses or success counts. `[SOURCE]` method inspected;
+application to a different target remains `[INFERENCE]` until tested there.
+
+1. Pin the actual build, receiver, byte range, observation point, frame/thread/eye
+   and restoration mechanism. For source-owned work use the real producer/consumer
+   interface. For RE-owned work confirm the field is safe to perturb; a plausible
+   64-byte block is not automatically a mutable matrix.
+2. Record an unmodified control, then perturb one independent scalar by `+epsilon`
+   and `-epsilon`, restoring the original bytes after each bounded observation.
+   Repeat around multiple translated and rotated poses. Keep scene/time/jitter
+   controlled or measure their contribution to the noise floor.
+3. Log **every output component**, including unchanged zeros, for every input/sign.
+   Store `input_index,output_index,delta_input,delta_output`; deltas are relative to
+   the matched control. Keep phase, pose, writer and capture identity in the raw
+   receipt. Split CSVs by pose/pass; do not average unrelated owners together.
+4. Analyze with `python tools/research_checks.py jacobian samples.csv --inputs 16
+   --outputs 16 --atol 0.0001 --rtol 0.05`. These tolerances are examples: choose
+   them from measured noise in **derivative units**, and record the choice. Dimensions
+   are declared so missing trailing components cannot masquerade as a smaller map.
+5. The tool requires both perturbation signs for every cell, rejects nonfinite data,
+   distinguishes unmeasured from measured zero, and reports unstable slopes, rank
+   and conditioning. A sparse permutation pattern suggests component correspondence;
+   it does not establish view-versus-pose semantics or camera ownership.
+6. Predict downstream values for a **held-out perturbation and pose** using the proposed
+   mapping. Compare prediction with measured payload, then verify the intended draw or
+   pixels and exact restoration. Record the result through [research receipts](research-receipts.md).
+
+The numerical Jacobian is a local sensitivity estimate: each cell is the average of
+observed `delta_output / delta_input`. Sign disagreement can reveal nonlinear response,
+noise, overwrites or the wrong consumer. Collect a smaller perturbation or improve the
+instrument instead of increasing a tolerance until the result passes.
+
+Do not require rank 16 by habit. A rigid camera pose has six independent degrees of
+freedom; a legal parameterized camera can produce a lower-rank matrix response.
+Only use `--expected-rank` when the independent input contract justifies that rank.
+Direct writes that violate orthonormality can produce full rank while leaving the
+valid camera manifold. Full rank alone never proves a correct VR camera.
+
+The integrated checker is offline and does not inject, launch or mutate game memory.
+Its tests establish behavior on synthetic fixtures; each project's runtime and headset
+acceptance remain separate. Prefer an already established source/math contract over
+running a new perturbation experiment when that contract answers the question.
+
 Chapter [06](06-debugging-methodology.md) is about *proving* things once your code runs. This chapter is
 about the step before: **locating the function, global, vtable, or struct field in the first place**, and
 doing it in a way that survives a game patch.
@@ -689,43 +737,6 @@ The strongest confirmation that you found the right thing is a property only the
 
   (*Unplanned dividend: the same residual settled row-vector versus column-vector convention empirically —
   column residual 0.000031, translation in the last row — instead of by assumption.*)
-
-## Solve the layout instead of validating a guess — the perturbation Jacobian {#perturbation-jacobian}
-
-The residual above validates a reconstruction you already guessed. When you do not want to guess at all —
-which memory scalar drives which matrix element, and through what transposition — **measure the
-derivative matrix directly.** `[SOURCE]`
-
-Hold everything else still. Perturb upstream scalar `i` by a known `Δin`. Record the resulting `Δout` in
-every output element `o` you can observe (GPU-side `View`, `InvView`, world position). Then
-
-```text
-J[o,i] = mean( Δout_o / Δin_i )      over the samples for that cell
-rank(J)   — is every input independently reaching the outputs?
-cond(J)   — how badly will a fitted inverse amplify noise?
-```
-
-**Full rank is the layout proof.** If `rank(J) == min(J.shape)`, every input scalar has an independent
-route to the outputs, so the mapping is invertible and the ordering question is settled by measurement
-rather than by trying transposes until one "looks less wrong". Deficient rank is equally informative: two
-inputs are coupled, or one is dead. A high condition number says the mapping is near-singular and any
-inverse you fit from it will be noise.
-
-**The hardening this needs, because the obvious implementation is unsound.** The donor's `jacobian_rank.py`
-accumulates into a zero matrix and averages only the cells that received samples. A cell nobody probed
-therefore stays exactly `0.0` — **indistinguishable from a genuine measured-zero derivative** — and feeds
-straight into `matrix_rank`. So an *incomplete probe set* produces a rank deficiency that reads exactly
-like a *real coupling deficiency*, and the tool never prints the difference. `[SOURCE]` 2026-09-09, read
-in the donor's own toolbox.
-
-> **A rank number without its coverage matrix is not a result.** Print the per-cell sample count
-> alongside `J`, or assert `C.min() > 0` before reporting rank at all. This is
-> [META-013](pattern-catalog.md#meta-013) in its numeric form.
-
-The same caveat applies to the claim this recipe is famous for. The donor's FarCry2 case study reports
-`View rank 16/16`, `InvView rank 16/16`, `Position rank 3/3`, `32/32 replay` — but the package carries the
-*summary*, not the probe logs or the coverage matrix, so those numbers are `[AUTHOR]`, not `[LIVE]`. The
-**method** transfers on its own merits; the scores are the donor's claim about a run we cannot inspect.
 
 ## An exported address is usually a thunk, and internal callers bypass it
 

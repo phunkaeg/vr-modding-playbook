@@ -55,7 +55,7 @@ RE_TOOL_NAMES = (
 ANCHOR_LINK = re.compile(r"\]\(([A-Za-z0-9._/-]*\.md)?#([a-z0-9][a-z0-9._-]*)\)")
 
 
-def run(label: str, argv: list[str]) -> tuple[str, bool, str]:
+def run(label: str, argv: list[str]) -> tuple[str, bool | None, str]:
     """Run a command, capturing everything. Never pipes; exit code is authoritative."""
     try:
         proc = subprocess.run(
@@ -64,6 +64,8 @@ def run(label: str, argv: list[str]) -> tuple[str, bool, str]:
     except (OSError, subprocess.SubprocessError) as exc:
         return label, False, f"could not run: {exc}"
     output = (proc.stdout or "") + (proc.stderr or "")
+    if proc.returncode == 2 or (proc.returncode == 0 and not output.strip()):
+        return label, None, output.strip() or "no check output"
     return label, proc.returncode == 0, output.strip()
 
 
@@ -74,7 +76,7 @@ def site_html_for(md_rel: str) -> Path:
     return SITE / stem / "index.html"
 
 
-def audit_anchors() -> tuple[str, bool, str]:
+def audit_anchors() -> tuple[str, bool | None, str]:
     """Every ]( ... #fragment ) in the docs must exist as an id= in the built page."""
     if not SITE.exists():
         return "internal anchors", False, "site/ not built - run the site build first"
@@ -93,6 +95,8 @@ def audit_anchors() -> tuple[str, bool, str]:
     checked = 0
     files = [m for m in sorted(DOCS.rglob("*.md"))
              if not m.relative_to(DOCS).as_posix().startswith("generated/")]
+    if not files:
+        return "internal anchors", None, "no documents to audit"
 
     for md in files:
         rel = md.relative_to(DOCS).as_posix()
@@ -110,6 +114,8 @@ def audit_anchors() -> tuple[str, bool, str]:
     detail = f"{checked} links across {len(files)} files"
     if broken:
         return "internal anchors", False, detail + "\n  " + "\n  ".join(broken)
+    if checked == 0:
+        return "internal anchors", None, detail
     return "internal anchors", True, detail
 
 
@@ -117,7 +123,7 @@ ROOT_DOCS = ("AGENTS.md", "CLAUDE.md", "README.md")
 FILE_LINK = re.compile(r"\]\((?!https?:|#)([A-Za-z0-9._/-]+?)(#[a-z0-9._-]+)?\)")
 
 
-def audit_entry_points() -> tuple[str, bool, str]:
+def audit_entry_points() -> tuple[str, bool | None, str]:
     """Root-level routing files are outside docs/, so nothing else checks their links.
 
     They are the files most certain to be read, and a dead path in one sends a
@@ -126,8 +132,8 @@ def audit_entry_points() -> tuple[str, bool, str]:
     broken: list[str] = []
     checked = 0
     present = [n for n in ROOT_DOCS if (ROOT / n).exists()]
-    if not present:
-        return "entry-point links", True, "no root routing files"
+    if len(present) != len(ROOT_DOCS):
+        return "entry-point links", None, "missing required root routing files: " + ", ".join(set(ROOT_DOCS) - set(present))
 
     for name in present:
         text = (ROOT / name).read_text(encoding="utf-8", errors="ignore")
@@ -139,10 +145,12 @@ def audit_entry_points() -> tuple[str, bool, str]:
     detail = f"{checked} links across {', '.join(present)}"
     if broken:
         return "entry-point links", False, detail + "\n  " + "\n  ".join(broken)
+    if checked == 0:
+        return "entry-point links", None, detail
     return "entry-point links", True, detail
 
 
-def audit_project_instructions() -> tuple[str, bool, str]:
+def audit_project_instructions() -> tuple[str, bool | None, str]:
     """Each fleet project's instruction files must point at each other AND route.
 
     Claude Code auto-loads CLAUDE.md; Codex auto-loads AGENTS.md. Neither reads
@@ -153,29 +161,31 @@ def audit_project_instructions() -> tuple[str, bool, str]:
     This gap ran silently for a long time: four projects kept their hard rules
     in CLAUDE.md only, so Codex never saw them.
 
-    Pointing at each other is necessary and not sufficient. An agent arriving
-    cold also needs the playbook (so it routes instead of re-deriving) and the
-    RE tooling. Skills are a CLAUDE mechanism - Codex cannot load one - so
-    AGENTS.md must additionally name at least one concrete tool inline rather
-    than delegating the whole subject to `re-mcp-toolkit`. Sims4VR did exactly
-    that and this check passed anyway, which is why it now looks at content.
+    Both hosts can read SKILL.md files. The pair must route to the playbook,
+    relevant skills, and the contribution workflow. Tool names are navigation
+    hints; availability is established by discovery in the active session.
     """
     label = "project instruction pairs"
     try:
         import yaml
         cfg = yaml.safe_load((ROOT / "sources.yml").read_text(encoding="utf-8"))
     except Exception as exc:
-        return label, True, f"skipped (cannot read sources.yml: {exc})"
+        return label, None, f"cannot read sources.yml: {exc}"
+
+    if not isinstance(cfg, dict) or not cfg.get("fleet"):
+        return label, None, "no fleet entries"
 
     problems: list[str] = []
     checked = 0
     for entry in cfg.get("fleet") or []:
         root = entry.get("root")
         if not root:
+            problems.append("fleet entry has no root")
             continue
         proj = Path(root)
         if not proj.is_dir():
-            continue  # a fleet root that is not mounted is not this check's business
+            problems.append(f"{entry.get('id')}: root unavailable: {root}; use --portable to omit this check")
+            continue
         name = entry.get("id", proj.name)
         agents, claude = proj / "AGENTS.md", proj / "CLAUDE.md"
         if not agents.exists() or not claude.exists():
@@ -217,36 +227,23 @@ def audit_project_instructions() -> tuple[str, bool, str]:
             if skill not in both:
                 problems.append(f"{name}: neither file names the {skill!r} skill")
 
-        # Codex has no skill mechanism and auto-loads AGENTS.md ONLY, so this one
-        # deliberately does not fall back to CLAUDE.md. An earlier version did, and a
-        # test that stripped every tool name from AGENTS.md still passed - CLAUDE.md
-        # answered for it, which is precisely the reader that does not need the help.
-        # Naming SOME tool is not enough either. Audited 2026-09-01: every project
-        # named 8-9 of the 12 configured MCP servers, and the systematic gaps were
-        # `local-llm` (missing from ALL EIGHT, despite having its own delegation
-        # skill) and `cheatengine` (also all eight). A Codex session sees only
-        # AGENTS.md, so a server absent from it does not exist as far as that
-        # session is concerned.
-        for server in ("local-llm", "cheatengine"):
-            if server not in a.lower():
-                problems.append(
-                    f"{name}: AGENTS.md never names {server!r} - it is a configured "
-                    f"MCP server, so omitting it hides a live tool from Codex"
-                )
-
-        if not any(tool in a.lower() for tool in RE_TOOL_NAMES):
+        # Do not require a fixed MCP roster: desktop/terminal sessions differ.
+        if not any(tool in low for tool in RE_TOOL_NAMES):
             problems.append(
-                f"{name}: AGENTS.md names no concrete RE tool - a Codex session "
-                f"cannot load a skill, so pointing at one is not enough"
+                f"{name}: instruction pair names no concrete RE tool"
             )
+        if "research-receipts.md" not in low:
+            problems.append(f"{name}: no research-receipts.md contribution route")
 
     detail = f"{checked} project pairs"
     if problems:
         return label, False, detail + "\n  " + "\n  ".join(problems)
+    if checked == 0:
+        return label, None, detail
     return label, True, detail
 
 
-def reference_maths() -> tuple[str, bool, str]:
+def reference_maths() -> tuple[str, bool | None, str]:
     """Run the compiled appendix reference tests, and insist they are not stale.
 
     The maths in docs/a1..a5 was read-only for a long time: it referenced types that
@@ -262,14 +259,16 @@ def reference_maths() -> tuple[str, bool, str]:
     label = "reference maths"
     ref = ROOT / "reference"
     if not ref.is_dir():
-        return (label, True, "skipped: reference/ not present")
+        return (label, None, "reference/ not present")
 
     exe = ref / "build" / "vrref_tests.exe"
     if not exe.exists():
-        return (label, True, "skipped: not built - run reference/build-and-test.bat")
+        return (label, None, "not built - run reference/build-and-test.bat")
 
     built = exe.stat().st_mtime
     sources = list((ref / "tests").rglob("*.cpp")) + list((ref / "include").rglob("*.h"))
+    if not sources:
+        return label, None, "no reference sources"
     stale = sorted(f.relative_to(ROOT).as_posix() for f in sources if f.stat().st_mtime > built)
     if stale:
         listing = "\n".join(f"- {f}" for f in stale)
@@ -285,6 +284,8 @@ def reference_maths() -> tuple[str, bool, str]:
     out = (proc.stdout or "") + (proc.stderr or "")
     summary = next((ln.strip() for ln in reversed(out.splitlines())
                     if "checks" in ln and "tests" in ln), "")
+    if proc.returncode == 0 and not re.search(r"\b[1-9][0-9]* tests\b", summary):
+        return label, None, "test executable reported no positive test count: " + out
     return (label, proc.returncode == 0, out if proc.returncode else summary)
 
 
@@ -300,9 +301,7 @@ def main() -> int:
     results = []
     if not args.portable:
         results.append(run("source coverage ledger", [py, "tools/coverage.py", "--check"]))
-        # Generated from external mod configs. The generator returns 0 and says so
-        # when those trees are absent, so this cannot fail on a machine that has
-        # the playbook but not the reference corpus.
+        # Missing reference trees are NO_DATA, never a passing empty census.
         results.append(run("interaction coverage",
                            [py, "tools/interaction_coverage.py", "--check"]))
     results.extend([
@@ -314,18 +313,28 @@ def main() -> int:
         results.append(audit_project_instructions())
     results.append(reference_maths())
 
+    results.append(integration_tests())
     if not args.quick:
-        results.append(run("strict site build", ["mkdocs", "build", "--strict"]))
+        results.append(strict_site_build())
         results.append(audit_anchors())
 
     width = max(len(label) for label, _, _ in results)
-    failed = [r for r in results if not r[1]]
+    failed = [r for r in results if r[1] is False]
+    unavailable = [r for r in results if r[1] is None]
 
     for label, ok, detail in results:
         note = ""
         if ok and detail:
             note = "  " + detail.splitlines()[-1][:70]
-        print(f"{'PASS' if ok else 'FAIL'}  {label:<{width}}{note}")
+        status = "NO_DATA" if ok is None else "PASS" if ok else "FAIL"
+        if ok is None:
+            note = "  " + detail
+        print(f"{status}  {label:<{width}}{note}")
+
+    if args.quick:
+        print("SKIP  strict site build / internal anchors (--quick)")
+    if args.portable:
+        print("SKIP  source coverage / interaction coverage / project pairs (--portable)")
 
     if failed:
         for label, _, detail in failed:
@@ -333,8 +342,26 @@ def main() -> int:
         print(f"\n{len(failed)} of {len(results)} CHECKS FAILED")
         return 1
 
+    if unavailable:
+        print(f"\nINCOMPLETE: {len(unavailable)} required checks did not execute")
+        return 2
+
     print(f"\nall {len(results)} checks passed")
     return 0
+
+
+def strict_site_build() -> tuple[str, bool | None, str]:
+    if not (ROOT / "mkdocs.yml").is_file() or not list(DOCS.glob("*.md")):
+        return "strict site build", None, "missing configuration or document corpus"
+    return run("strict site build", [sys.executable, "-m", "mkdocs", "build", "--strict"])
+
+
+def integration_tests() -> tuple[str, bool | None, str]:
+    label, ok, detail = run("integration regression tests",
+        [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"])
+    if ok and not re.search(r"Ran [1-9][0-9]* tests?\b", detail):
+        return label, None, "no positive test count: " + detail
+    return label, ok, detail
 
 
 if __name__ == "__main__":

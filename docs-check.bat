@@ -1,32 +1,19 @@
 @echo off
 REM ---------------------------------------------------------------
-REM  Validate source-coverage and fleet-bottleneck ledgers/generated
-REM  fragments, then link-check the docs. --strict makes a broken
-REM  internal link an error.
+REM  Use the canonical verifier, including receipt/instrument controls.
 REM  You do NOT need this to pass in order to use docs-serve.bat.
 REM ---------------------------------------------------------------
 cd /d "%~dp0"
 
 if exist "%LocalAppData%\Programs\Python\Python312\python.exe" (
-  "%LocalAppData%\Programs\Python\Python312\python.exe" tools\coverage.py --check
-  if errorlevel 1 goto :failed
-  "%LocalAppData%\Programs\Python\Python312\python.exe" tools\bottlenecks.py --check
-  if errorlevel 1 goto :failed
-  "%LocalAppData%\Programs\Python\Python312\python.exe" tools\playbook_integrity.py --check
+  "%LocalAppData%\Programs\Python\Python312\python.exe" tools\verify.py %*
 ) else (
-  py -3 tools\coverage.py --check
-  if errorlevel 1 goto :failed
-  py -3 tools\bottlenecks.py --check
-  if errorlevel 1 goto :failed
-  py -3 tools\playbook_integrity.py --check
+  py -3 tools\verify.py %*
 )
 if errorlevel 1 goto :failed
 
-mkdocs build --strict
-if errorlevel 1 goto :failed
-
 echo.
-echo OK - source and bottleneck ledgers, generated docs, and strict site build all pass.
+echo OK - requested verification checks passed; see any explicit SKIP lines above.
 echo.
 call :maybepause
 exit /b 0

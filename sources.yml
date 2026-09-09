@@ -305,6 +305,19 @@ fleet:
       re_discovery:      {review: partial, evidence: SOURCE, note: "RE is not the route: retail binaries are a behaviour reference, and the shipping binary is the fork build."}
       source_integration: {review: full, evidence: SOURCE, note: "Every layer is source-owned through the OpenMoHAA fork. Frame loop, stereo loop, camera construction, projection, culling, renderer and UI all buildable and shippable under GPL-2.0. Fork maintenance contract written; the fork remote is not yet created on GitHub."}
 external:
+  - id: MonsterDeadWood-Analyzer-Bible
+    root: "D:/Dev Debug/VR Modding/External/VR_ANALYZER_BIBLE_SOURCE_BRAIN_MERGED_20260907/01_BIBLE/SPLIT"
+    status: archived_reference
+    upstream_url: unknown
+    license: "Integration permission from MonsterDeadWood relayed by user 2026-09-09; no blanket license claim for bundled third-party sources."
+    reviewed_at: 2026-09-09
+    reviewed_revision: tree:00139a13544026eb
+    engine: cross-engine research methodology
+    vehicle: documentation
+    chapter: 6
+    areas:
+      re_discovery: {review: partial, evidence: SOURCE, note: "Inspected postflight/contracts, numerical mapping, checker and merge scripts. Integrated research-receipts.md, new validated intake/offline tools and synthetic verifier controls. Donor case-study outcomes remain unverified; original corpus preserved."}
+      stereo: {review: partial, evidence: SOURCE, note: "Same-frame metadata checker hardened with missing/duplicate/empty controls. Neither distinct hashes nor synthetic fixtures establish geometric stereo or headset acceptance."}
   - id: Bioshock-Remastered-VR
     tier: T3
     stereo_rung: R3
@@ -1592,7 +1605,7 @@ external:
     upstream_url: https://github.com/GDani31/ravenfield-vr-mod
     license: unknown
     reviewed_at: 2026-08-26
-    reviewed_revision: tree:5ff2383f8ff12840
+    reviewed_revision: tree:fdaf974b1d43efcc  # re-stamped 2026-09-09: source unchanged; SKIP_DIRS gained out/graphify-out/build-* so derived build output no longer moves a source fingerprint
     reviewed_git_commit: 4ed67514aa3302ba255b6ddb870854f9c992737e
     engine: Unity
     vehicle: managed-plugin
@@ -1826,7 +1839,7 @@ external:
     upstream_url: unknown
     license: unknown
     reviewed_at: 2026-08-27
-    reviewed_revision: tree:a20f91fac220f18e
+    reviewed_revision: tree:55fad8d1871ed244  # re-stamped 2026-09-09: source unchanged; SKIP_DIRS gained out/graphify-out/build-* so derived build output no longer moves a source fingerprint
     engine: Source (Team Fortress 2)
     api: D3D9
     vehicle: source-port
@@ -2447,7 +2460,7 @@ external:
     vehicle: documentation
     chapter: 6
     areas:
-      re_discovery:      {review: partial, evidence: SOURCE, note: "Harvested 2026-09-09. A donor METHODOLOGY package, not a mod - taken for four things and no more. (1) The perturbation Jacobian as a DISCOVERY procedure for matrix layout, now ch11 #perturbation-jacobian, hardened: the donor's jacobian_rank.py leaves unprobed cells at 0.0, so incomplete coverage is arithmetically identical to a real zero derivative and reads as rank deficiency - print the sample-count matrix. (2) INVALID as a verdict distinct from FAIL with an enumerated void checklist, plus FACT_VERDICT independent of BASELINE_VERDICT, now ch06 #run-validity + META-012. (3) Both offline checkers read had the clean-equals-empty defect, now ch06 #empty-is-not-clean + META-013. (4) Its case-study numbers are AUTHOR-grade only. DELIBERATELY NOT TAKEN: the AMBIGUOUS branch, baseline-revision recording and claim-scoped promotion, all of which ch06 #claim-scoped-promotion already had; and 'validate numerically, do not guess transpose', which ch09:479 and ch11's residual table already state MORE strongly than the donor does."}
+      re_discovery:      {review: partial, evidence: SOURCE, note: "Harvested 2026-09-09. A donor METHODOLOGY package, not a mod - taken for four things and no more. (1) The perturbation Jacobian as a DISCOVERY procedure for matrix layout, now ch11 #numerical-camera-mapping, hardened: the donor's jacobian_rank.py leaves unprobed cells at 0.0, so incomplete coverage is arithmetically identical to a real zero derivative and reads as rank deficiency - print the sample-count matrix. (2) INVALID as a verdict distinct from FAIL with an enumerated void checklist, plus FACT_VERDICT independent of BASELINE_VERDICT, now ch06 #run-validity + META-012. (3) Both offline checkers read had the clean-equals-empty defect, now ch06 #empty-is-not-clean + META-013. (4) Its case-study numbers are AUTHOR-grade only. DELIBERATELY NOT TAKEN: the AMBIGUOUS branch, baseline-revision recording and claim-scoped promotion, all of which ch06 #claim-scoped-promotion already had; and 'validate numerically, do not guess transpose', which ch09:479 and ch11's residual table already state MORE strongly than the donor does."}
       stereo:            {review: skimmed, evidence: AUTHOR, note: "Case studies (FC2 Jacobian, CSGO custom projection, DiRT2 same-frame reentry, Crysis2 CB pivot) report scores - 'View rank 16/16', '32/32 replay', '19/19 probes' - but the package carries the SUMMARY only. No probe logs, no coverage matrix, no raw captures. AUTHOR, not LIVE, and not upgradeable from anything in this tree."}
       xr_lifecycle:      {review: not_reviewed}
       xr_input:          {review: not_reviewed}

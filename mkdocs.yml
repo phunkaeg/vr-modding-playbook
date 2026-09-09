@@ -38,6 +38,7 @@ nav:
     - "Start or unblock a port": start-new-port.md
     - "Fleet bottleneck map": bottleneck-map.md
     - "Copy-ready evidence templates": project-evidence-templates.md
+    - "Record and contribute a finding": research-receipts.md
     - "Symptom index (something is broken)": symptom-index.md
     - Pattern catalog: pattern-catalog.md
     - Failure atlas: failure-atlas.md

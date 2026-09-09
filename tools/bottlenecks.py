@@ -73,8 +73,8 @@ def md(value: Any) -> str:
 def source_fleet() -> tuple[list[str], dict[str, str], dict[str, str]]:
     cfg = load_yaml(SOURCES)
     entries = cfg.get("fleet")
-    if not isinstance(entries, list):
-        raise LedgerError("sources.yml fleet must be a list")
+    if not isinstance(entries, list) or not entries:
+        raise LedgerError("sources.yml fleet must be a non-empty list")
     ids: list[str] = []
     display: dict[str, str] = {}
     authority: dict[str, str] = {}
@@ -92,6 +92,8 @@ def source_fleet() -> tuple[list[str], dict[str, str], dict[str, str]]:
 
 def validate(cfg: dict[str, Any], fleet_ids: list[str]) -> None:
     errors: list[str] = []
+    if not fleet_ids:
+        errors.append("no fleet projects to validate")
     fleet = set(fleet_ids)
     records = cfg.get("bottlenecks")
     if not isinstance(records, list) or not records:

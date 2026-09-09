@@ -165,7 +165,7 @@ that the observation and the cause are usually in different chapters.
 | A run "failed" but you are unsure the experiment even happened | [06](06-debugging-methodology.md#run-validity) — grade validity before the hypothesis |
 | The fact was proven but something unrelated regressed | [06](06-debugging-methodology.md#run-validity) — keep the fact, refuse the build |
 | A checker is green and you suspect it saw nothing | [META-013](pattern-catalog.md#meta-013) — clean and empty must differ |
-| Which memory scalar drives which matrix element | [11](11-re-anchoring-and-discovery.md#perturbation-jacobian) — measure the derivative matrix |
+| Which memory scalar drives which matrix element | [11](11-re-anchoring-and-discovery.md#numerical-camera-mapping) — measure the derivative matrix |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
@@ -313,6 +313,13 @@ that the observation and the cause are usually in different chapters.
 | I don't know whether to reconstruct or to hook the camera | [16](16-teardown-virtua-cop-2-vr.md#when-to-reach-for-this-and-when-not-to) — four preconditions with a fast test each, and the frustum-culling ceiling that decides it |
 | My reconstructed scene is empty where I turn my head | [16](16-teardown-virtua-cop-2-vr.md#the-hard-ceiling-you-get-what-was-submitted-and-nothing-else) — not a bug. Everything outside the original frustum was culled and never submitted |
 | I want to see a whole project end to end | [13](13-teardown-bioshock-vr.md) |
+
+## Research evidence and matrix layout
+
+For an uncertain CPU-to-GPU matrix layout, use
+[numerical camera mapping](11-re-anchoring-and-discovery.md#numerical-camera-mapping).
+For an experiment whose result needs to reach other projects, use
+[research receipts](research-receipts.md).
 
 ## Console command startup faults
 

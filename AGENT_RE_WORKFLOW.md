@@ -103,6 +103,13 @@ Two summaries of the same decompile are one source, not independent confirmation
 
 For each substantial finding record: question; target/build; producer/consumer;
 discriminating evidence; result; limitations; replay command or receipt path.
+Use [research receipts](docs/research-receipts.md) for a reusable finding or failed
+approach: create and validate a project-owned receipt with `tools/research_receipt.py`,
+then submit it for playbook review. Keep validity, fact verdict, baseline health,
+evidence grade and observation environment separate. INVALID cannot confirm/refute;
+static work does not need a fabricated runtime gate. Intake never clears bottlenecks.
+For numerical layout uncertainty use the [camera-mapping recipe](docs/11-re-anchoring-and-discovery.md#numerical-camera-mapping)
+and `tools/research_checks.py`; choose the cheapest discriminating test within scope.
 Update the owning ledger; correct misleading Ghidra names/comments when project
 annotation edits are within scope. Routers
 link to the answer instead of duplicating it. Preserve retired experiments in

@@ -239,8 +239,12 @@ def main() -> int:
     missing = [lab for lab, rel, _ in SOURCES if not (MODS / rel).exists()]
     if missing:
         print(f"sources not found, skipping: {', '.join(missing)}")
-        if len(missing) == len(SOURCES):
-            return 0
+        if args.check or len(missing) == len(SOURCES):
+            return 2  # no usable input is not a clean result
+
+    if not any(read_settings(MODS / rel) for _, rel, _ in SOURCES):
+        print("NO_DATA: no settings were extracted from the source files")
+        return 2
 
     text = build()
     if args.check:
