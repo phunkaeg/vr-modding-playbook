@@ -15,8 +15,8 @@ The isolated branch is `codex/native-stereo-independent-targets` at
 `D:/Dev Debug/ss2vr-native-stereo`. v3.93 source checkpoint: `0b9c159`.
 
 `STATIC` means binary analysis; `LIVE` below means the injected game plus external
-GPU/Frida observation under bounded tests. No native-stereo headset acceptance or
-production GPU budget follows from those receipts. Dark source and sibling VR mods
+GPU/Frida observation under bounded tests. Limited headset image/head-tracking
+acceptance is recorded below; a production GPU budget remains unproved. Dark source and sibling VR mods
 were search leads, not proof of target layouts. No proprietary code is reproduced here.
 
 | Gate | Evidence through v3.93 |
@@ -338,6 +338,40 @@ Before a new graphics experiment, survey actual records and prove its positive
 control. Do not silently relax the whitelist to accommodate a changed viewmodel.
 Native rigid-melee support still needs eye/matrix/ownership and GPU validation;
 the bounded HMD camera test can use the documented fixture independently.
+
+## First real headset: validate resource backing and presented colour separately
+
+`LIVE`, 2026-09-09, SS2 phase 1.2.1: v3.97 rendered both eyes correctly but
+submitted an empty first frame. A standalone OpenXR/D3D11 descriptor probe
+requested RGBA UNORM (28) at 2560x1440; VDXR returned three typeless (27)
+resources with matching shape and samples. Native code's exact format-equality
+check was rejecting a valid family-compatible CopyResource. A successful native
+draw or xrCreateSwapchain was insufficient evidence of an actual image handoff.
+Log source, resource and declared formats separately, preserve shape and image
+ownership guards, and copy bits without inventing a colour conversion.
+
+`LIVE`: v3.101's narrow format repair passes 900 consecutive pairs on
+VirtualDesktopXR 1.0.10 / Quest 3, plus ordinary recovery. The user did not watch
+that run. `HEADSET`, separate repeat: the user confirms visible VR and head
+tracking, but washed-out gamma. That repeat submits 140 pairs then stops at
+the explicit 40-degree guard (39.669 last accepted, 40.350 rejected); it is a
+valid prefix and clean stop, not a completed 900-pair trial or an eye-sync fault.
+All owned games were closed. General motion/scene/gameplay acceptance remains open.
+
+`SOURCE`: the native bridge bypassed shipping AFR's sRGB format preference and
+requested exact UNORM for already-encoded presented bytes. Chapter 09's
+[first-pixels gamma rule](09-d3d11-openxr-injection.md#first-pixels-gamma)
+applies: prefer matching sRGB before exact UNORM, preserving the byte copy and
+channel family. v3.102 implements that follow-up; tests pass, hardware/visual
+colour acceptance is pending because the headset disconnected. Do not upgrade
+a format-selection test to a wearer colour verdict.
+
+Process lesson: prepare all admission controls, then obtain a fresh wearer-ready
+signal and start immediately. A ready message before minutes of debugging does
+not prove they watched. Product control alone is insufficient: a moving desktop
+camera can fail basis/camera checks even when scene ownership passes.
+The [hardware report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_HARDWARE_SUBMISSION.md>)
+owns build hashes, driver preflight, raw receipts and the exact next colour test.
 
 ## Cheapest discriminating proofs, in order
 
