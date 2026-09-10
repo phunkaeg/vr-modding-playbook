@@ -1513,6 +1513,65 @@ and it is a good suspect, since
 so a project can spend a round trip disabling something that was never involved. See
 [XR-008](pattern-catalog.md#xr-008).
 
+## Running the headless instruments: xr-sim and xr-tape {#headless-instrument-operation}
+
+The two sections above say *why* a substitute runtime and an observing layer exist. This is how to run
+them day to day, and - the load-bearing half - how to read their results without being lied to. Three
+instruments sit at three different boundaries, and confusing them is the common mistake:
+
+```
+   game draw stream  ──►  the mod  ──►  OpenXR runtime  ──►  headset
+   ▲                      ▲               ▲
+   apitrace            xr-tape          xr-sim
+   (what it drew)   (what it submitted) (a runtime, no headset)
+```
+
+**Select the runtime per process; never machine-wide.** Generate a runtime manifest for the *target's*
+architecture and set `XR_RUNTIME_JSON` only in the process that launches the game - a launcher that
+detects x86 vs x64 from the PE header and restores its own environment immediately after is the safe
+shape, because it leaves the machine's real headset runtime and every other application untouched.
+`XR_RUNTIME_JSON` is a secure-loader variable, so do not launch from an elevated shell; a hardened
+environment may ignore it and you will debug a phantom. `[SOURCE]`
+
+**Drive it through its state channel, and wait for the acknowledgement.** A substitute runtime worth
+using exposes a command/state/ack triple: the driver writes commands (head and hand poses, buttons,
+sticks, triggers, validity bits), the runtime publishes rig/session/frame/layer/error state, and an ack
+sequence tells you a batch was applied - committed atomically at the next `xrWaitFrame`, so a batch is one
+frame's worth of input. Advance to a named frame and read `state.json` rather than sleeping. Scenarios
+script this; keep the mod-specific command lines in an external script the scenario calls, so an inherited
+scenario runs against a different mod unchanged.
+
+**xr-tape needs no integration; that is the point.** It is an OpenXR API layer, links no graphics API
+(one binary covers every binding), and reads the wire rather than the mod's own variables - so it works on
+every mod in the fleet the day it is built, including mods you did not write, and a mod that lies to
+itself cannot lie to the trace. Install it for the target's architecture, run the game under it with a
+check pass, and check the trace against the runtime you expect. It carries the two checks no in-process
+test can perform on itself - submitted-vs-located FOV ([FAIL-STR-009](failure-atlas.md)) and
+submitted-vs-located pose ([FAIL-XR-011](failure-atlas.md)) - plus eye order, distinct sub-images, shared
+display time, and validity bits, each naming the atlas row it implements so a red line leads to the
+write-up.
+
+Three reading rules keep a green run honest, and each is a lesson this fleet has paid for:
+
+- **`SKIP` is not `PASS`.** A check that could not measure its property must say so, be counted, and be
+  promotable to a failure (`--require`). An earlier tool skipped a check when its field was missing, so a
+  main-menu run matched no pattern, nothing objected, and absence of evidence was read as evidence of
+  validity. This is [META-013](pattern-catalog.md#meta-013) at the wire.
+- **A green contract is not headset acceptance.** A full session can pass under the substitute and the
+  same binary fail on the first *real* runtime - [FAIL-XR-022](failure-atlas.md). *xr-sim green is not a
+  pass*; it clears the contract, not the experience.
+- **The layer reads the wire, not the pixels.** `submitted_fov_matches_located` compares what the runtime
+  was told against what it reported, not what the game's draws actually used - correlate with an
+  [apitrace](11-re-anchoring-and-discovery.md#re-tool-surface) capture or renderer evidence, with explicit
+  frame correlation, before calling the rendered projection correct.
+
+**Prove the instrument can fail before you trust its clean verdict.** Both tools ship a self-test that
+feeds every check a known-bad trace and requires each to fail - because a check never observed failing is
+decoration, and this fleet has shipped a green suite over a no-op more than once. Run it after any change
+to the checks. This is [#self-proving-instrument](06-debugging-methodology.md#self-proving-instrument)
+made routine. And remember the two traps from [above](#submitted-frame-recorder): a layer sees only
+loader-visible applications, and OpenXR handle widths differ between x86 and x64.
+
 ## Once a session exists, the runtime owns the frame pacing {#runtime-owns-pacing}
 
 An engine frame cap and `xrWaitFrame` are two schedulers competing for the same frame. The runtime

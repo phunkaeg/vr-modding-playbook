@@ -244,6 +244,16 @@ that the observation and the cause are usually in different chapters.
 | Flat harness, robust noise floor, the control that vetoes a verdict, command seam | [A5](a5-flat-harness-stats.md) |
 | Burst capture for alternate-eye — a single frame tells you nothing | [A5.7](a5-flat-harness-stats.md) |
 
+## "Setting up or trusting the tools"
+
+| What you're seeing | Go to |
+|---|---|
+| Standing up the RE tool surface; which MCP answers which question | [11](11-re-anchoring-and-discovery.md#re-tool-surface) — install once, configure per host; guidance lives in the skills |
+| A tool "succeeded" but acted on the wrong program or PID | [META-014](pattern-catalog.md#meta-014) — health and target are two checks; registration is not connection |
+| A versioned tool refuses to connect after an update | [META-014](pattern-catalog.md#meta-014) — pair client and plugin by codename/hash, not version number |
+| Running a mod with no headset attached | [09](09-d3d11-openxr-injection.md#headless-instrument-operation) — select xr-sim per process; drive it through its state channel |
+| A headless run went green and you are not sure it is real | [09](09-d3d11-openxr-injection.md#headless-instrument-operation) — SKIP is not PASS, and a green contract is not headset acceptance ([FAIL-XR-022](failure-atlas.md)) |
+
 ## "The agent itself is going wrong"
 
 These are process symptoms — the AI is circling, not the mod. They route to the sections that already

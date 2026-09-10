@@ -1995,6 +1995,33 @@ desync the eyes - see the reflexive-duplication warning in 14. `[SOURCE]` starfi
 `CreationEngineRendererModule.cpp:107-151, 261-272, 302`, `.h:192`, `CreationEngineConstants.h:14`; via
 vrframework guide 10; receipts resolved 2026-09-10.
 
+## META-014 — A registered tool is not a connected tool on the right target {#meta-014}
+
+**Problem:** a tool call that "succeeds" proves far less than it appears - a bridge answered, not that it
+holds the program you mean; a process enumerated, not that you attached to the intended one; a config
+lists a server, not that this session can call it. Acting on the wrong target reads as a plausible result
+and corrupts everything downstream.
+
+**Use when:** the first call of any session against an MCP-backed RE tool, and again whenever the target
+binary, PID, or selected program could have changed.
+
+**Recipe:** treat health and target as two separate checks.
+
+- **Discover the tool in the session and read its real schema** - a config file, `claude mcp list`, or
+  "it's running" are leads, not proof of callable capability here.
+- **Run the tool's health check, then a distinct target check**: selected program + image base +
+  architecture + build for a decompiler; attached PID for a live debugger or memory tool; the intended
+  process for an injector.
+- **Pair versioned components by their handshake token** (codename, matched hashes, a version-locked
+  panel), not by a version number that looks close.
+
+**Proof:** the next operation records the exact target identity it acted on - hash/build, image base,
+PID, architecture - so a wrong-target action is visible in the log rather than inferred later.
+
+**Trip hazard:** `success: true`, a live bridge, and a green preflight each answer a *different* question
+than "is this pointed at my target?". A convenience endpoint failing is also not proof the underlying data
+is absent - check selection and schema, then try another read-only path. `[SOURCE]`
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared

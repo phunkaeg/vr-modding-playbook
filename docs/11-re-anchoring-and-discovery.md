@@ -90,6 +90,53 @@ disable and fail-closed receivers; it does not establish live cadence or downstr
 projection agreement. Equal pre-write readback also cannot exclude another writer
 that writes the same value. Evidence: `PreyVR/docs/RE-BUILD-TAKEOVER-2026-09-09.md`.
 
+## Stand up the RE tool surface, and trust nothing until you have checked the target {#re-tool-surface}
+
+Before the anchor ladder below is a question it assumes answered: *which tools can this session actually
+call, and are they pointed at the right binary?* On this fleet the reverse-engineering tools are reached
+as MCP servers - Ghidra, x64dbg/x32dbg, ReGenny, Frida, Cheat Engine, RenderDoc, apitrace, ILSpy - and
+the durable lessons about running them transfer to any such setup. `[SOURCE]`
+
+**Install once, configure per host.** The servers are shared binaries; each host (a desktop agent, a
+terminal agent, a second-vendor CLI) points its own config at the *same* install, so an update fixes
+every host at once and a version skew between hosts means someone edited one config and not the others.
+Keep the *behavioural* guidance out of the configs and in skills the projects reference - this fleet
+splits it into `re-mcp-toolkit` (which tool, preflight, per-tool caveats) and `vr-re-workflow` (the
+investigation method), and each project's `AGENTS.md`/`CLAUDE.md` names them so an agent loads the same
+discipline wherever it runs.
+
+**Availability is a property of the session, not of a config file.** A server listed in a config, or by
+`claude mcp list`, or asserted "it's running" by the user, is a lead - not proof the current session can
+call it against the target you mean. Discover the tool in the session and inspect its actual schema, then
+run the tool's own health check *and* a distinct target check before any dependent call. These are two
+questions, and the second is the one that bites: a live Ghidra bridge is not a selected program at the
+right image base; a live CE pipe is not the right PID; `enumerate_processes` succeeding is not attachment
+to the intended one. See [META-014](pattern-catalog.md#meta-014).
+
+**Pair versioned components by their handshake token, not their version number.** The failures that cost
+a day here were all coupling, not capability: x64dbg's Python client and its `.dp64` plugin live in two
+different repos and match by *codename*, so a mismatch is a silently refused connection; a decompiler
+bridge and its in-tool extension must be the same version; a capture-analysis server can bundle its own
+replay core, so a capture taken with a newer tool cannot be opened; an editor-panel bridge can be
+version-locked to its server, so updating one half breaks every call until the other half is re-copied.
+Record the exact component versions you are pairing, and re-check them after any update.
+
+**Keep it current on a schedule, and never auto-apply.** Reference checkouts and servers drift; a check
+that compares *installed* versions against upstream, run on a fixed cadence and reporting rather than
+applying, catches the drift without breaking a session mid-task - several updates need an application
+closed or a GUI step. Fold in the consistency checks that have bitten before (a version-locked panel
+hash, a plugin hash, a dependency pin) so the check fails loudly instead of a call failing obscurely
+later. This is [refreshing a reference checkout](08-project-process.md#refresh-external-sources) applied
+to the tool surface.
+
+**Two economics worth building in.** A server that pushes its whole tool schema every turn spends context
+you have not used yet - load tool groups lazily and pull the rest on demand. And a bounded, self-contained
+subtask (boilerplate, a mechanical refactor, summarising long output) can go to a local delegation spoke
+that sees only its prompt; preflight it once and continue locally if it is down, per
+[local delegation](06-debugging-methodology.md#agent-token-costs). Neither is free: MCP env vars are stored
+in plaintext in the host config, so treat any key there as exposed, keep those configs out of every repo,
+and keep API keys in a location outside the working tree entirely.
+
 ## The anchor ladder — prefer higher rungs
 
 Rank your discovery method by how well it survives a patch. Climb down only when the rung above is
