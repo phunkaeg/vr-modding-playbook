@@ -1,65 +1,21 @@
-# License
+MIT License
 
-The VR Modding Playbook is dual-licensed, because it is two kinds of work in one
-repository and neither licence fits both halves.
+Copyright (c) 2026 phunkaeg and the VR Modding Playbook contributors
 
-Copyright (c) 2026 phunkaeg and the VR Modding Playbook contributors.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Documentation and prose — CC BY 4.0
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Everything in `docs/`, `briefs/`, `README.md`, `AGENTS.md`, `CLAUDE.md`,
-`AGENT_RE_WORKFLOW.md` and `sources.yml` is licensed under the
-
-**Creative Commons Attribution 4.0 International License (CC BY 4.0)**
-<https://creativecommons.org/licenses/by/4.0/>
-Legal code: <https://creativecommons.org/licenses/by/4.0/legalcode>
-
-You may share and adapt this material, including commercially, provided you give
-appropriate credit, link to the licence, and indicate whether changes were made.
-
-Suggested attribution:
-
-> "VR Modding Playbook" by phunkaeg and contributors, licensed under CC BY 4.0.
-> https://github.com/phunkaeg/vr-modding-playbook
-
-## Code — MIT
-
-Everything in `tools/` and `tests/`, and every code sample embedded in the
-documentation, is licensed under the MIT License:
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
-
-## What this licence does NOT cover
-
-**This licence covers this playbook's own content only.**
-
-The playbook studies and describes roughly 107 external projects. It does not
-redistribute them, and it does not relicense them. Each remains under its own
-terms, which are recorded per-source in [`sources.yml`](sources.yml) and
-summarised in [`NOTICE.md`](NOTICE.md). Some are copyleft, and some are not open
-source at all — see NOTICE.md before copying anything from a source this playbook
-cites.
-
-Game assets, engine SDKs, proprietary binaries and the contents of any local
-`External/` or reference-checkout directory are **not** part of this repository
-and are not covered here.
-
-The observations, measurements and techniques described in this playbook are
-statements of fact about how software behaves. Describing behaviour is not
-redistribution of the software described.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

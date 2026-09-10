@@ -1,0 +1,62 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 phunkaeg and the VR Modding Playbook contributors
+
+The documentation and prose in this repository are licensed under the Creative
+Commons Attribution 4.0 International License.
+
+  Summary:     https://creativecommons.org/licenses/by/4.0/
+  Legal code:  https://creativecommons.org/licenses/by/4.0/legalcode
+
+The legal code at that URL is the authoritative text of this licence and is
+incorporated here by reference. It is referenced rather than reproduced so that
+this file cannot drift from the canonical wording.
+
+WHAT THIS COVERS
+
+  docs/                      the playbook chapters, catalogs and indexes
+  briefs/                    project briefs
+  README.md, NOTICE.md
+  AGENTS.md, CLAUDE.md, AGENT_RE_WORKFLOW.md
+  sources.yml                the coverage ledger
+
+Code is licensed separately under the MIT License - see LICENSE. That covers
+tools/, tests/, and every code sample embedded in the documentation.
+
+YOU ARE FREE TO
+
+  Share   - copy and redistribute the material in any medium or format
+  Adapt   - remix, transform, and build upon the material for any purpose,
+            including commercially
+
+UNDER THE FOLLOWING TERMS
+
+  Attribution - You must give appropriate credit, provide a link to the licence,
+  and indicate if changes were made. You may do so in any reasonable manner, but
+  not in any way that suggests the licensor endorses you or your use.
+
+  Suggested attribution:
+
+    "VR Modding Playbook" by phunkaeg and contributors, licensed under CC BY 4.0.
+    https://github.com/phunkaeg/vr-modding-playbook
+
+  No additional restrictions - You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the licence permits.
+
+WHAT THIS LICENCE DOES NOT COVER
+
+This licence covers this playbook's own content only.
+
+The playbook studies and describes roughly 107 external projects. It does not
+include, redistribute or relicense them. Each remains under its own terms, which
+are recorded per-source in sources.yml and summarised in NOTICE.md. Some are
+copyleft and three are not open source at all - read NOTICE.md before copying
+anything from a project this playbook cites.
+
+Game assets, engine SDKs, proprietary binaries, and the contents of any local
+External/ or reference-checkout directory are not part of this repository and are
+not covered here.
+
+The observations, measurements and techniques described in this playbook are
+statements of fact about how software behaves. Describing behaviour is not
+redistribution of the software described.

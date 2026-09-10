@@ -131,8 +131,12 @@ For a searchable local reading view, after installing the Python dependencies:
 
 ## License
 
-Dual-licensed: the prose is **CC BY 4.0**, the code in `tools/`, `tests/` and the
-embedded samples is **MIT**. See [LICENSE](LICENSE).
+Dual-licensed, split across two files so GitHub can detect the code licence:
+
+| File | Covers | Licence |
+|---|---|---|
+| [LICENSE](LICENSE) | `tools/`, `tests/`, and code samples embedded in the docs | **MIT** |
+| [LICENSE-docs](LICENSE-docs) | `docs/`, `briefs/`, the root Markdown files, `sources.yml` | **CC BY 4.0** |
 
 This covers the playbook's own content. The ~107 external projects it studies are
 described, not redistributed, and each keeps its own terms — recorded per-source in

@@ -2,7 +2,8 @@
 
 This playbook is distilled from 10 in-house VR ports and roughly 107 external
 projects. It **describes** those projects; it does not include, redistribute or
-relicense them. See [`LICENSE`](LICENSE) for the playbook's own terms.
+relicense them. The playbook's own terms are split in two: code under MIT in [`LICENSE`](LICENSE),
+prose under CC BY 4.0 in [`LICENSE-docs`](LICENSE-docs).
 
 [`sources.yml`](sources.yml) is authoritative for every source: its path, upstream
 URL, licence, the revision reviewed, and which areas were reviewed at what evidence
@@ -73,4 +74,4 @@ internal; findings from them are published here with permission.
 
 Game assets, engine SDKs, proprietary binaries, and the contents of any local
 `External/` or reference-checkout directory are excluded from version control and
-are not covered by this repository's licence.
+are not covered by either of this repository's licences.
