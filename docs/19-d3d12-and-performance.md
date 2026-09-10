@@ -201,6 +201,24 @@ Report:
 The compositor can present at refresh rate while reusing an older application
 frame. Average presentation FPS alone can certify a bad result.
 
+### A rolling percentile and a lifetime counter have different denominators {#timing-population}
+
+PreyVR's September 9 production-counter harness feeds 2,000 slow intervals followed
+by 512 fast ones. The report correctly returns a 512-sample clean window alongside
+2,000 lifetime overruns. Combining them into a whole-run miss rate is incorrect.
+A second control produces 500 threshold overruns with no compositor present.
+`frameMissed` was an interval-budget counter, not observed dropped displays.
+`[SOURCE; LIVE harness]`
+
+Retain frame IDs, start/end epochs, total and retained counts, actual collection
+durations, configured budget and runtime period. Pair CPU/GPU samples by frame;
+a ratio or subtraction of separate medians is not a measured budget decomposition.
+Saved GPU work may reappear as runtime waiting, so unchanged paced cadence does
+not establish that lower resolution saved nothing. Conversely it does not prove
+a GPU bottleneck. Preserve that uncertainty until the discriminating timing run.
+Evidence: `PreyVR/docs/RE-PERFORMANCE-HANDOVER-AUDIT-2026-09-09.md` and
+`evidence/performance-handover-audit-2026-09-09/verification.txt`.
+
 ## Halving cadence: where the stall appears names the cause {#xr-frame-pacing}
 
 A VR app that drops from the panel rate to exactly half it — 120 → 60, or 90 → 45 — is usually assumed

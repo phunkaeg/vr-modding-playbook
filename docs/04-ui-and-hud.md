@@ -298,6 +298,24 @@ Two requirements that are easy to miss:
 call site per category, and hooking the instruction *after* the call gives you a clean seam that needs no
 knowledge of what the category contains.
 
+### Redirect the existing movie once; preserve its private passes {#single-native-hud-draw}
+
+PreyVR's September 10 DanielleHUD extraction uses the game's queued Flash callback,
+actual secondary-interface receiver and original release argument. It redirects
+one original draw, not another Flash advance or scene render. A thread-local bind
+guard substitutes only the original top-level target; Scaleform filter targets
+remain native, private stencil is preserved, and targets restore on return.
+Unsupported resources fall back to native rendering. `[STATIC; LIVE in-game simulator]`
+
+Prove extraction, not duplication: compare on/off scene captures, inspect isolated
+RGBA, and correlate the layer. The preserved target has 60,817 nonzero-alpha pixels
+and 3,625,583 zero-alpha pixels, containing HUD rather than scene. Some glow carries
+additive RGB at zero alpha; unconditional `RGB <= alpha` would reject that content.
+This is one canvas, not separate widgets or all screens. Physical readability and
+performance remain separate gates. Evidence: `PreyVR/docs/RE-VR-INTERFACE-2026-09-10.md`;
+its old missing-card interpretation is superseded by the
+[saved-pixel correction](06-debugging-methodology.md#saved-pixel-correction).
+
 ## Three ways to place a HUD in stereo, and they are all legitimate
 
 There is no single right answer, and the projects here have shipped all three. Pick per element and
@@ -526,6 +544,21 @@ relative deltas onto it** - the same discipline as
 
 An absolute panel intersection is the only pointer definition that is stable under both tests. See
 [HUD-001](pattern-catalog.md#hud-001).
+
+### Prove the pointer receiver and release ownership {#native-pointer-receiver}
+
+Prey's static pointer contract crosses `CFlashUI+8`'s hardware-mouse interface,
+an adjustor subtracting eight, and primary dispatch to eligible Flash movies.
+Viewport-to-client conversion and the pressed receiver's retained ownership are
+part of the route. Input-device selection uses a separate listener: a posted event
+returning proves neither mouse mode nor menu selection. `[STATIC]`
+
+Map the ray into the actual quad/cylinder, then viewport/movie coordinates;
+dispatch on the owning thread and return release to the receiver that owned the
+press. Test down/move-out/up and separately prove device-mode switching. This
+receipt has byte/vtable and geometry/state fixtures, not live pointer acceptance.
+Evidence: `PreyVR/docs/evidence/ui-pointer-2026-09-10/static-contract.json` and
+`native-input-mode-proof.json`.
 
 ## Maximum extent cannot tell you which coordinate space tiles are in {#extent-is-not-space}
 

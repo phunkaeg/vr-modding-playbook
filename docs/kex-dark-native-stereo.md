@@ -373,6 +373,35 @@ camera can fail basis/camera checks even when scene ownership passes.
 The [hardware report](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_HARDWARE_SUBMISSION.md>)
 owns build hashes, driver preflight, raw receipts and the exact next colour test.
 
+## Integrate shared features without creating a second frame owner {#shared-native-features}
+
+September 9–10 follow-up receipts retain the native branch as an engineering
+spike/integration candidate, not a supported AFR replacement. v3.102's in-game
+xr-sim run supplies 600 paired submissions, six byte-identical native/XR image
+samples and ordinary recovery with sRGB resources. This adds transport evidence,
+not the missing real-runtime colour/fusion verdict. `[LIVE in-game simulator]`
+
+The feature integration borrows the existing runtime/input owner. One two-eye
+locate publishes the shared sample; completed native eye textures wait until
+Present, after desktop UI is ready, and the same begun frame uses shared layer
+composition. Idle-menu UI and a rejected native pair are different states:
+rejection closes empty, including auxiliary layers. No second locate or stale-eye
+fill is introduced into the native pair. `[SOURCE]`
+
+Keep builds separate: v3.104 completed 600 motion pairs with auxiliary layers;
+v3.105 tested a five-pair prefix followed by moved-pair cancellation and recovery,
+plus a complete 391-frame AFR lifecycle/composition control. Those are not a
+600-pair v3.105 acceptance or AFR pixel parity. `[LIVE in-game simulator]`
+
+Valid head-local controller getters and layer transitions do not prove world-space
+weapon, selection or script actions. The native early return still skips the
+ordinary pick-basis publication and AFR turn consumer; publish a centre-head/world
+basis and verify downstream body-local conversions before declaring feature parity.
+Scene-lane limits, load-slot lifecycle, physical acceptance and performance remain
+open. Evidence: `ss2vr-work/docs/NATIVE_STEREO_BRANCH_REVIEW_2026-09-09.md`,
+`NATIVE_STEREO_SRGB_AUTOMATED_2026-09-09.md`, and
+`NATIVE_FEATURE_INTEGRATION_2026-09-10.md`, with their pinned review-evidence JSON.
+
 ## Cheapest discriminating proofs, in order
 
 1. Observe the natural frame and prove candidate callee-to-GPU coverage.

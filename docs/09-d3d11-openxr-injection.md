@@ -356,16 +356,25 @@ Four things about that shape are worth copying:
   re-`READY`/begin sequence **with no headset attached** — which is the only way that path ever gets
   exercised, since you cannot reliably provoke it by hand.
 
-### Neutralize input on focus loss — do not freeze it
+### Neutralize input on focus loss — do not freeze it {#input-independent-of-render}
 
 `VISIBLE` without `FOCUSED` means the runtime has given input to something else — a system menu, a
 dashboard, another app. **Actions stop updating, and their last values are still sitting in your
 buffers.** If you keep consuming them the player walks into a wall while reading a system dialog.
 
-**Neutralize, do not freeze:** zero the axes and release the buttons, and treat the next focused frame as
-a fresh press rather than a continuation. This is the
+**Neutralize, do not freeze:** zero the axes and release the buttons; after focus returns,
+require neutral/release before allowing a held control to generate a new press. This is the
 [latched-action rule](03-input-and-locomotion.md#a-release-must-go-to-whoever-owned-the-press) again —
 focus loss is a release you never received.
+
+Do not put invalidation behind `shouldRender`, a successful locate, or image acquisition.
+OpenMoHAA fork `63c790a277bdf153159d7ff8e59bdeca036994a5` returned before input sync
+when rendering was skipped; its getter accepted the old snapshot using coarse ACTIVE
+state. The source-linked harness calls sync in the good control but retains seeded
+input when `shouldRender=false`. `[SOURCE; LIVE harness]` Test hold/fire -> skip/focus
+loss -> release delivered -> held reconnection suppressed -> neutral -> fresh press.
+The receipt proves the old call ordering, not a real-game firing incident or a fixed
+current fork. Evidence: `Medal-of-Honor-vr/docs/reviews/REVIEW-20260909.md`.
 
 ### Keep submitting during loading screens and menus
 
@@ -432,6 +441,38 @@ kept the same OpenXR session alive** and never reported a loss. So a genuine run
 
 **Write that distinction down for your own matrix**: which rows are unit-tested, which are live-tested,
 and which are still theory.
+
+### Observe completed draws; close the frame on its owner thread {#completed-draw-transaction}
+
+SWAT4's September 9 controls found normal gameplay inside
+`UWindowsClient::Tick -> Repaint -> Draw`. Blanket Repaint exclusion suppressed
+1,712 normal draws. Removing it allowed double draws, but the early Present callback
+still preceded the current Draw's world projection. Moving capture after each
+completed Draw aligned image, eye tag and FOV. `[LIVE in-game simulator]`
+
+Guard actual nesting/destruction rather than excluding a caller by its name. Carry
+one located pose/time through both renders and copies; admit a layer only after the
+whole pair succeeds. The preserved final trace contains 1,315 distinct-eye projection
+pairs, 151 deliberate mono frames and nine empty frames. Its generic checker still
+reports three policy mismatches, explicitly classified in the project report—not
+silently converted to passes. Metadata separation is not distinct-raster proof.
+
+Use fault controls for each transaction edge: failed acquire/wait, partial creation,
+failed copy/end, disarm, loss and incomplete pair. SWAT4's old source-linked probe
+failed five such expectations; new tests exercise the repaired path. Preserve GPU
+fence/borrowed-resource ownership during recovery instead of reusing in-flight state.
+
+Sims4's native M1 adds a different ownership test: remote Stop must queue teardown
+to the bound render thread. A mutex around Present alone does not protect the game's
+graphics work outside that callback. Its final retail regression records caller
+thread 37596 and cleanup thread 86464, 405 quad submissions and normal exit.
+This is game-image transport, **not scene stereo**; loaded-lot/resize controls belong
+to an earlier DLL, and retail xr-tape was not active. `[LIVE in-game simulator]`
+
+Evidence: `Swat4-VR/docs/reviews/openxr-2026-09-09/probe-output.txt`,
+`reviews/openxr-fixes-2026-09-09/IMPLEMENTATION.md` under its docs, and
+`Sims4VR/experiments/native_m1_20260910/REPORT.md`. No headset, full re-entry
+side-effect or release acceptance is implied by these controls.
 
 ## Private per-eye color and depth targets
 
@@ -1008,28 +1049,40 @@ cant and lens geometry for you — see the canted-display section below.
 
 ### Write these assertions now, not after the first headset session
 
-All of them are desk tests. None needs a headset, and together they retire most of the table:
+These are desk tests, but their reference frame is part of the assertion.
+Compare rendered and submitted values after conversion into the **same named space**:
 
 ```cpp
 // 1. What you submit is what you rendered -- in tangent space.
 ASSERT_NEAR(tanf(submittedFovLeft),  renderedTanLeft,  1e-4f);
+ASSERT_NEAR(tanf(submittedFovRight), renderedTanRight, 1e-4f);
 ASSERT_NEAR(tanf(submittedFovUp),    renderedTanUp,    1e-4f);
+ASSERT_NEAR(tanf(submittedFovDown),  renderedTanDown,  1e-4f);
 
-// 2. Eyes are laterally separated, in the right order, by a sane amount.
-ASSERT_LT(viewSpaceLeftEye.x, viewSpaceRightEye.x);
-ASSERT_NEAR(fabsf(rightEye.x - leftEye.x), ipdMetres * worldScale, 1e-3f);
+// 2. Each rendered position equals its own runtime pose after basis/scale/origin conversion.
+ASSERT_VEC_NEAR(renderedLeft.position,  convertedXrView[0].position, tolerance);
+ASSERT_VEC_NEAR(renderedRight.position, convertedXrView[1].position, tolerance);
 
-// 3. No vertical or longitudinal separation between the eyes.
-ASSERT_NEAR(leftEye.y, rightEye.y, 1e-6f);
-ASSERT_NEAR(leftEye.z, rightEye.z, 1e-6f);
+// 3. Only a DECLARED symmetric, uncanted head-local fixture has equal y/z.
+// Compare full baseline vectors for arbitrary views; do not hardcode world-axis ordering.
+ASSERT_VEC_NEAR(renderedRight.position - renderedLeft.position,
+                convertedXrView[1].position - convertedXrView[0].position, tolerance);
 
 // 4. No toe-in: both eye rotations match what the runtime reported.
-ASSERT_QUAT_EQ(leftRot,  xrView[0].pose.orientation);
-ASSERT_QUAT_EQ(rightRot, xrView[1].pose.orientation);
+ASSERT_QUAT_EQ(leftRot,  convertedXrView[0].orientation); // modulo q == -q
+ASSERT_QUAT_EQ(rightRot, convertedXrView[1].orientation);
 
 // 5. The swap flag flips the OFFSET, not the label. Run it over several frames.
 ASSERT_SIGN_FLIPPED(offsetDeliveredToEye(LEFT, swap=0), offsetDeliveredToEye(LEFT, swap=1));
 ```
+
+The last offset diagnostic belongs to a declared symmetric test rig; it is not a
+general transformation of canted runtime views. Add positive controls at translated
+and rotated head poses and with runtime-provided cant. Sims4's old probe passed its
+neutral selftest yet rejected a valid 63 mm pair at 30-degree yaw, rejected eye
+ordering at 120 degrees, and rejected legitimate outward cant. `[LIVE harness]`
+Test the validator with valid non-identity geometry before using it to reject a mod.
+Evidence: `Sims4VR/experiments/review_20260909/geometry_results.txt`.
 
 ### When you do put the headset on, report a magnitude
 

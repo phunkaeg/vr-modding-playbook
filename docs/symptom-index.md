@@ -316,6 +316,21 @@ that the observation and the cause are usually in different chapters.
 
 ## Research evidence and matrix layout
 
+| What you're seeing | Go to |
+|---|---|
+| Weapon calibration changes depending on how it was held during equip | [02: authored basis](02-viewmodels-and-hands.md#authored-weapon-basis) |
+| The offhand follows the aiming hand without hitting the reach clamp | [02: anchor feedback](02-viewmodels-and-hands.md#aim-dependent-hand-anchor) |
+| Moving an elbow makes the deformed arm miss its target | [02: coherent pivots](02-viewmodels-and-hands.md#coherent-arm-pivots) |
+| Plausible bone array has a nonsense allocation count | [11: raw slice ownership](11-re-anchoring-and-discovery.md#slice-owner-count) |
+| Valid rotated or canted eyes fail the stereo checker | [09: geometry assertions](09-d3d11-openxr-injection.md#write-these-assertions-now-not-after-the-first-headset-session) |
+| A screenshot appears to have lost text | [06: saved pixel comparison](06-debugging-methodology.md#saved-pixel-correction) |
+| Second draw exists but the XR image is stale, or Stop races a frame | [09: completed-draw transaction](09-d3d11-openxr-injection.md#completed-draw-transaction) |
+| Input sticks when XR skips drawing | [09: render-independent input](09-d3d11-openxr-injection.md#input-independent-of-render) |
+| ProcessEvent never sees the script's firing-ray output | [03: script call consumer](03-input-and-locomotion.md#script-call-consumer) |
+| Rolling latency and over-budget totals contradict each other | [19: timing populations](19-d3d12-and-performance.md#timing-population) |
+| Redirected native HUD corrupts filters or advances its movie twice | [04: single native draw](04-ui-and-hud.md#single-native-hud-draw) |
+| Increasing grab gain makes a drawer resist motion | [02: manipulation feedback](02-viewmodels-and-hands.md#manipulation-feedback) |
+
 For an uncertain CPU-to-GPU matrix layout, use
 [numerical camera mapping](11-re-anchoring-and-discovery.md#numerical-camera-mapping).
 For an experiment whose result needs to reach other projects, use

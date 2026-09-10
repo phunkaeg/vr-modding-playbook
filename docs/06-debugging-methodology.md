@@ -1557,6 +1557,22 @@ and the funnel you designed — not the module you touched last week.
 A related line worth keeping, from the same exchange: **"documenting a trap is not removing it."** A
 registry entry marking a seam `OPEN` does not stop a later plan from quietly assuming it is closed.
 
+### Compare saved pixels before fixing a visual impression {#saved-pixel-correction}
+
+PreyVR's reported intermittent help-card text loss was refuted by its saved images.
+112 eye images form four matched eye/layout/alpha groups, each with one exact RGB
+crop hash; the historical frames labelled faulty match the complete reference.
+The crop includes the whole card, and moved-head captures are excluded. This is
+stronger than an interpreted full-frame preview or one instrumented GPU readback
+whose stall might change timing. `[LIVE in-game capture evidence; offline comparison]`
+
+Inspect the native-resolution crop, compare equivalent layouts, and separate eyes,
+alpha modes and moved poses. Retain the original diagnosis as superseded history;
+do not call an unrelated opaque-card change the repair. This refutes that captured
+pixel-loss claim only, not a physical headset's readability or every other UI defect.
+Evidence: `PreyVR/docs/RE-UI-CAPTURE-PIXELS-2026-09-10.md` and its
+`evidence/ui-compositor-2026-09-10/card-pixel-verification.json`.
+
 ## Falsify your own hypothesis before shipping a fix
 
 Several SS2VR "fixes" shipped on a plausible theory and were later falsified by their own

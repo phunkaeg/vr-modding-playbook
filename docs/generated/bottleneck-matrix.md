@@ -7,16 +7,16 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | Bottleneck | Applies to | Gate | SS2VR | BioShockVR | SOMAVR | PreyVR | DishonoredVR | FarCry2-VR | SWAT4-VR | Sims4VR | SoF-VR | MoH-VR |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **BN-ACC-001** — Integration authority is not classified | `both` | ACCESS | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared |
-| **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared |
+| **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
 | **BN-OBS-001** — The active renderer and frame boundary are not owned | `both` | OBSERVE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
 | **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟥 active | 🟧 open | 🟥 active | 🟩 cleared | 🟩 cleared |
 | **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
 | **BN-SFX-001** — A second eye may advance once-per-frame side effects | `both` | STEREO-SAFETY | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟩 cleared |
-| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟧 open | 🟧 open | 🟩 cleared |
+| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
 | **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
 | **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
-| **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟩 cleared | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
-| **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟥 active | 🟧 open | 🟧 open | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟩 cleared |
+| **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟩 cleared | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟥 active |
+| **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟥 active | 🟧 open | 🟥 active | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟩 cleared |
 | **BN-PERF-001** — The fresh-frame budget and dominant cost are not measured | `both` | PERFORMANCE | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟨 risk | 🟨 risk |
 | **BN-PACK-001** — Build, version, install, and recovery contracts are not shippable | `both` | RELEASE | 🟩 cleared | 🟧 open | 🟩 cleared | 🟨 risk | 🟨 risk | 🟧 open | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
 
@@ -39,7 +39,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **DishonoredVR** | 🟩 cleared | `STATIC` | Native x86 injector against UE3/D3D9. |
 | **FarCry2-VR** | 🟩 cleared | `LIVE` | Native x86 injector against Dunia.dll; editor symbols are leads, not a shippable source route. |
 | **SWAT4-VR** | 🟩 cleared | `SOURCE` | Hybrid evidence route: shipped UnrealScript/SDK and exports are oracles; the deliverable remains a native injector. |
-| **Sims4VR** | 🟩 cleared | `LIVE` | Hybrid candidate: Python controls gameplay camera state; a future native D3D11 layer must own stereo and submission. |
+| **Sims4VR** | 🟩 cleared | `SOURCE` | Hybrid RE+script: Python controls gameplay camera state; a native D3D11/OpenXR M1 layer now owns flat-quad transport. Scene stereo remains separate. |
 | **SoF-VR** | 🟩 cleared | `STATIC` | Hybrid: RE-owned at the ref_gl module contract, delivered as a proxy DLL selected by a cvar; the SoF SDK and id Quake 2 tree are oracles. No byte of SoF.exe or ref_gl.dll is patched for T1. |
 | **MoH-VR** | 🟩 cleared | `SOURCE` | Source-owned at every layer: the shipping binary is an OpenMoHAA fork built from source under GPL-2.0, not the retail executable. Retail supplies assets and a behaviour reference only. |
 
@@ -60,7 +60,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **DishonoredVR** | 🟧 open | `STATIC` | Exact executable hash is established; deterministic mod-load proof has not yet become the primary gate. |
 | **FarCry2-VR** | 🟩 cleared | `LIVE` | Launch preconditions and build-time OpenXR option are logged; vanilla and mod recipes are distinct. |
 | **SWAT4-VR** | 🟩 cleared | `LIVE` | Fresh-log injected launch and test-artifact config identity are explicit. |
-| **Sims4VR** | 🟧 open | `LIVE` | Retail build and tool observations are pinned; there is no mod build yet because the project remains pre-feasibility. |
+| **Sims4VR** | 🟥 active | `LIVE` | 2026-09-10 native M1 receipt pins retail 1.127.41.1030 and two distinct DLLs. Final f064c6 has 405 retail quads and normal owner-thread exit; loaded-lot/resize coverage belongs to earlier 733209. Preserve a matched vanilla control and revalidate old-build camera RE. |
 | **SoF-VR** | 🟩 cleared | `LIVE` | M0 load proof: the identity line carries version, build, path and config; the original renderer loads from the same directory at the expected base and PE timestamp; clean detach. A vanilla control must now pass the renderer cvar explicitly, because the VR one is archived. |
 | **MoH-VR** | 🟩 cleared | `LIVE` | Retail hashes, prerequisites, flat build and launch each have a dated receipt; the port build is hash-identified and the retail install is never written to. |
 
@@ -81,7 +81,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **DishonoredVR** | 🟥 active | `LIVE` | Present wrapper +0x5C0180 proven by a LIVE breakpoint at the device Present target returning to +0x5C01A4, hitting every frame - 682 Presents in five seconds. RHI global +0x103EC78, factory +0x5C2D70, constructor +0x5C27C0 and device field RHI+0x824 all live-read, the last QueryInterface-proven. STILL ACTIVE for the reason the exit proof names: no control yet proves the hook is not observing a launcher or secondary swapchain. Was previously graded STATIC, which was stale. Proven live. |
 | **FarCry2-VR** | 🟩 cleared | `LIVE` | D3D10 bridge and WorldExec/pass dispatch are live-mapped. |
 | **SWAT4-VR** | 🟩 cleared | `LIVE` | UGameEngine::Draw and scene-node callbacks are hookable and counted; the world/HUD sub-seam remains a stereo question. |
-| **Sims4VR** | 🟥 active | `LIVE` | RenderDoc proves the pass graph, but no shippable engine/frame callback has been selected. |
+| **Sims4VR** | 🟥 active | `LIVE` | Native Present/backbuffer transport is observed in retail by the 2026-09-10 M1 receipt. This closes the no-callback claim, not ownership of a callable full-quality scene view; correlate the native camera/scene consumer on the new build next. |
 | **SoF-VR** | 🟩 cleared | `LIVE` | M1 census over 52 wrapped slots: slots 44 and 47 bracket every frame in every state with equal counts across 60+ buckets, and slot 16 is absent through menu and loading then holds 1:1 with the bracket in gameplay. The thunks are ABI-transparent - no crash, no frame-rate change. |
 | **MoH-VR** | 🟩 cleared | `LIVE` | Frame and render ownership mapped from source with line numbers, confirmed by measured per-second call counts across menu, loading and two maps. |
 
@@ -165,7 +165,7 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **DishonoredVR** | 🟥 active | `LIVE` | GAME-LESS PROBE (not in-game): Direct3DCreate9On12 -> UnwrapUnderlyingResource -> D3D12 -> OpenXR passes end to end on VirtualDesktopXR 1.0.10, with XR_KHR_D3D12_enable v9 among 31 extensions. Negative control recorded - plain Direct3DCreate9 refuses shared resources (0x8876086C). D3DFMT_A8R8G8B8 opens as DXGI_FORMAT_B8G8R8A8_UNORM unconverted; adapter LUIDs are per-boot handles. Completed-query median 0.224 ms is an IDLE-GPU FLOOR, not a budget. Remains active: known-colour transport only, never a game image. |
 | **FarCry2-VR** | 🟩 cleared | `HEADSET` | D3D10 via shared DXGI surface reaches OpenXR; descriptor/copy compatibility is proven. |
 | **SWAT4-VR** | 🟥 active | `LIVE` | 9On12 reaches an owned D3D12 resource and XR bring-up passes without hardware; first headset submission remains. |
-| **Sims4VR** | 🟧 open | `LIVE` | D3D11 makes the binding straightforward, but no mod-owned eye resource or XR host exists yet. |
+| **Sims4VR** | 🟥 active | `LIVE` | Native M1 proves owned image/quad transport, resize/re-enable and owner-thread shutdown using xr-sim. Host xr-tape controls are separate from retail observations. A flat quad is not scene stereo or hardware acceptance; optical distortion remains an acceptance question. |
 | **SoF-VR** | 🟧 open | `STATIC` | 32-bit runtime shortlist checked on this machine; the runtime choice is deliberately OPEN until M5. No instance, session or submitted frame yet. |
 | **MoH-VR** | 🟩 cleared | `HEADSET` | Session reaches FOCUSED on a Quest 3 through Virtual Desktop with two 2688x2880 sRGB swapchains and 561 plus 588 frames submitted without error. Result-driven fallback proven: with no headset the flat path is untouched. |
 
@@ -227,10 +227,10 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **PreyVR** | 🟧 open | `LIVE` | Aim is confirmed detached live: a motion controller drives the native reticle ray and interaction endpoint, with the crosshair following it. Locomotion route resolved -- gEnv->pInput at gEnv+0x58 from our own verified accessor table, with the PostInputEvent vtable index measured by a setter/getter alignment probe rather than guessed. Action-family ownership and projectile proof remain. |
 | **DishonoredVR** | 🟨 risk | `—` | PlayerController action strings are static anchors only. |
 | **FarCry2-VR** | 🟥 active | `LIVE` | Native aim contract is read; viewmodel/muzzle alignment and final fire-direction delivery remain. |
-| **SWAT4-VR** | 🟧 open | `LIVE` | Console/FExec property bridge is proven; VR semantic ownership is downstream of headset stereo. |
+| **SWAT4-VR** | 🟥 active | `LIVE` | 2026-09-10 d817 motion prototype reaches native TraceFire/BallisticFire and ammo consumption in-game with xr-sim. Hand/head independence, loss release and held reconnect suppression are measured. Script-to-script CallFunction/out-parameter ownership matters; hardware calibration and all-weapon coverage remain. |
 | **Sims4VR** | 🟨 risk | `—` | The intended dollhouse/giant experience must be chosen before VR interaction semantics are designed. |
 | **SoF-VR** | 🟧 open | `STATIC` | The renderer import table carries the command and cvar entry points, so the proxy can drive binds without RE of the executable; the index map is open. |
-| **MoH-VR** | 🟥 active | `SOURCE` | Milestone 2 and the current critical path. The input snapshot, getter and haptics are stubs - no action sets, bindings, snap turn or aim decoupling exist. Must fit the existing usercmd with no protocol change. |
+| **MoH-VR** | 🟥 active | `SOURCE` | Input and experimental interactions are implemented, not stubs. The 2026-09-09 review found skipped-render stale input and invalid-view gates; a 2026-09-10 repaired feature candidate reports 162 standalone checks. Successful controller/engine and headset regression is still pending for that candidate; use the existing usercmd contract. |
 
 ### BN-UI-001 — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier
 
@@ -245,9 +245,9 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 | **SS2VR** | 🟥 active | `HEADSET` | T3 feature completion now concentrates on frob coverage, weapon/assets, gravity glove, wrist HUD and physical interactions. |
 | **BioShockVR** | 🟥 active | `LIVE` | Viewmodel/arm ownership, native AimIK lifecycle and late-LDR HUD capture remain incomplete. |
 | **SOMAVR** | 🟧 open | `HEADSET` | Hands, HUD layers, subtitles and interaction lanes work; effect/state coverage continues. |
-| **PreyVR** | 🟧 open | `LIVE` | Detached aim/use/melee proven live and the crosshair follows the controller. The rendered first-person attachment is traced to limb-IK targets whose layout is confirmed (R-078) and whose producer is not yet named -- writes at the known site are downstream of consumption, so they are accepted every frame and change nothing. |
+| **PreyVR** | 🟥 active | `LIVE` | 2026-09-10 receipts advance native HUD extraction and correct pose-slice ownership in-game with xr-sim; authored weapon basis and aim-dependent hand anchor require separate validation. Missing UI-card pixels were refuted by saved captures. Pointer receiver/mode work is STATIC, not live UI acceptance; no fleet-wide feature/headset clearance. |
 | **DishonoredVR** | 🟨 risk | `—` | Adaptation is intentionally downstream of transport, camera and stereo gates. |
-| **FarCry2-VR** | 🟥 active | `HEADSET` | The animator writer census found 106/101/101-bone rigs and a 101-bone poke moved a body plus shadow; first-person arms/viewmodel remain on a separate undiscovered path. |
+| **FarCry2-VR** | 🟥 active | `LIVE` | The driven-hand baseline superseded the undiscovered-arm summary. 2026-09-10 arm-deform harness isolates a 101 mm pivot/translation error and closes its equal-length fixture below 1e-5 m. Fresh-pivot scheduling and later twist candidate still need target acceptance; right deform indices/weights remain uncertain. Historical headset baseline is not acceptance of this patch. |
 | **SWAT4-VR** | 🟨 risk | `—` | HUD/world separation and gameplay adaptation follow first headset pixels. |
 | **Sims4VR** | 🟥 active | `LIVE` | Dollhouse versus true-scale player embodiment is an unresolved design gate that controls scale, IPD and interaction. |
 | **SoF-VR** | 🟧 open | `STATIC` | The proxy sees every 2D call; the plan is a HUD quad from the backbuffer between the world render and end of frame. Not built. |

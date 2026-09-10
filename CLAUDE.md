@@ -10,5 +10,6 @@ For substantial findings, use [research receipts](docs/research-receipts.md): re
 project-owned evidence, validate it, and submit a candidate for review. Read the
 canonical workflow for commands and proof boundaries; intake never promotes claims.
 
-**The one rule, if you read nothing else:** this playbook is ~213,000 words and about 10% of it
-is a retrieval layer built so you never open the rest. Route; do not read.
+**The one rule, if you read nothing else:** use the retrieval layer to reach one relevant
+section, not whole chapters. Current corpus measurements live in
+[coverage](docs/coverage.md). Route; do not read end to end.

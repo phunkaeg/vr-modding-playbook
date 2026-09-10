@@ -63,6 +63,33 @@ Much of the technique here is distilled from Praydog's write-ups on
 SS2VR, BioshockVR, and SOMAVR actually needed. UEVR is the most battle-tested example of the problem in
 its hardest form — one injector that must work across a decade of Unreal versions it has never seen.
 
+## Prove a slice's owner and count; do not infer an allocation header {#slice-owner-count}
+
+An adjacent DynArray does not make every pointer a prefixed array. Prey's September
+10 native getter takes the absolute QuatT base from `CPoseData+0x18`, indexes it
+with stride 28, and obtains count from the owning pose at `+8`. The word before
+the live slice was float bits, not count. Earlier offline fixtures had reproduced
+the same wrong header assumption as the implementation. `[STATIC; LIVE in-game simulator]`
+
+Trace the concrete getter and allocation/owner independently. Test a valid owner
+with a poisoned false prefix, boundary indices and mismatched owners. Preserve the
+separate measured prefix contract for real joint/attachment/ADIK DynArrays; a fix
+to one field is not permission to rewrite every container reader. Evidence:
+`PreyVR/docs/RE-VR-INTERFACE-2026-09-10.md`; target identity is pinned there.
+
+### Order an override after the real latch, not a similarly named frame {#override-after-latch}
+
+Prey's `RT_BeginFrame` writes the near-FOV cvar to the renderer before returning.
+The corrected detour calls that original and then overrides through its verified
+renderer receiver on the same thread. Earlier game-thread `CSystem::Render` writes
+did not establish ordering against the render-thread latch. Disable delegates to
+the next native latch, not a stale saved cvar. `[STATIC; LIVE harness]`
+
+The production-callback fixture covers post-latch ordering, fallback sentinels,
+disable and fail-closed receivers; it does not establish live cadence or downstream
+projection agreement. Equal pre-write readback also cannot exclude another writer
+that writes the same value. Evidence: `PreyVR/docs/RE-BUILD-TAKEOVER-2026-09-09.md`.
+
 ## The anchor ladder — prefer higher rungs
 
 Rank your discovery method by how well it survives a patch. Climb down only when the rung above is

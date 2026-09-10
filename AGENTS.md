@@ -7,8 +7,9 @@ discovery determines availability (`cheatengine`, Ghidra, optional `local-llm`, 
 
 **Read the relevant route, not the playbook end to end.**
 
-It is ~213,000 words across 40 documents. About 10% of that is a retrieval layer built
-specifically so you never open the other 90%. A normal lookup is one table row plus one
+It is a large corpus; current measured size and source counts live in
+[coverage](docs/coverage.md). The retrieval layer is built so you rarely open a whole
+chapter. A normal lookup is one table row plus one
 linked section — a few hundred words. Reading a chapter end to end is almost always the
 wrong move, and reading several is a sign you skipped the routing below.
 
@@ -18,13 +19,13 @@ wrong move, and reading several is a sign you skipped the routing below.
 
 | What you have | Go to | Why |
 |---|---|---|
-| **A symptom** — something looks or behaves wrong | [`docs/failure-atlas.md`](docs/failure-atlas.md) | 348 rows: symptom → *fast discriminator* → likely cause → route. The discriminator is the point: it is chosen to be cheap. |
-| **A symptom, but you want the chapter** | [`docs/symptom-index.md`](docs/symptom-index.md) | 257 rows mapping what you see to the chapter that covers it |
+| **A symptom** — something looks or behaves wrong | [`docs/failure-atlas.md`](docs/failure-atlas.md) | Symptom → *fast discriminator* → likely cause → route. The discriminator is the point: it is chosen to be cheap. |
+| **A symptom, but you want the chapter** | [`docs/symptom-index.md`](docs/symptom-index.md) | Short rows mapping what you see to the chapter that covers it |
 | **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 144 atomic patterns, stable IDs, five fixed fields each |
 | **A new or inherited target** | [`docs/start-new-port.md`](docs/start-new-port.md) | The router. Classifies integration authority first, then sends you down the RE-owned or source-owned route |
 | **Several plausible next steps** | [`docs/bottleneck-map.md`](docs/bottleneck-map.md) | The earliest uncleared dependency, in order. Its *Agent operating protocol* section is worth reading once. |
 | **A question of "has anyone solved this?"** | [`docs/cross-project-index.md`](docs/cross-project-index.md) | Who solved what, and where the raw working lives |
-| **A target whose engine/API you know** | `python tools/prior_art.py <engine> <api>` | Matching prior art from 113 tracked sources, with what was harvested and what is thin |
+| **A target whose engine/API you know** | `python tools/prior_art.py <engine> <api>` | Matching tracked prior art, with what was harvested and what is thin |
 | **Maths you are about to write yourself** | `docs/a1`–`a5` | Working code with the test that catches the error. Rotation, pose pipeline, stereo projection, hook safety, noise floor. |
 | **A term used oddly** | [`docs/glossary.md`](docs/glossary.md) | Camera, pose, stereo, lifecycle, render and evidence vocabulary |
 | **"Did another project already hit this?"** | `graphify explain "<concept>" --graph cross-engine-graph/graphify-out/fleet-graph.json` | Fleet documentation with cross-project concept links; inspect current coverage |

@@ -1,6 +1,6 @@
 # Coverage dashboard
 
-**Generated deterministically by `tools/coverage.py` from `sources.yml` (ledger updated 2026-09-03) plus a filesystem scan. Do not edit by hand.**
+**Generated deterministically by `tools/coverage.py` from `sources.yml` (ledger updated 2026-09-10) plus a filesystem scan. Do not edit by hand.**
 
 This page makes both knowledge gaps and stale reviews visible. `Last change` and `current revision` are measured; review depth, evidence and `reviewed revision` are human/agent judgements.
 
@@ -79,15 +79,15 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 5 | 3 | 0 | 2 | 0 |
-| `xr_lifecycle` | 3 | 3 | 0 | 1 | 3 |
+| `stereo` | 5 | 5 | 0 | 0 | 0 |
+| `xr_lifecycle` | 3 | 4 | 0 | 1 | 2 |
 | `xr_input` ⚠ | 0 | 3 | 1 | 2 | 4 |
 | `camera_tracking` | 6 | 4 | 0 | 0 | 0 |
 | `render_hazards` | 6 | 3 | 0 | 0 | 1 |
-| `ui_hud` | 3 | 1 | 0 | 1 | 5 |
-| `hands_interaction` | 3 | 1 | 0 | 2 | 4 |
+| `ui_hud` | 3 | 2 | 0 | 1 | 4 |
+| `hands_interaction` | 3 | 2 | 0 | 2 | 3 |
 | `input_locomotion` | 4 | 1 | 1 | 2 | 2 |
-| `performance` ⚠ | 0 | 5 | 0 | 2 | 3 |
+| `performance` ⚠ | 0 | 6 | 0 | 2 | 2 |
 | `audio` ⚠ | 0 | 3 | 0 | 2 | 5 |
 | `packaging_deploy` | 5 | 3 | 0 | 1 | 1 |
 | `re_discovery` | 8 | 2 | 0 | 0 | 0 |
@@ -215,14 +215,14 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 |---|---|---|---|---|---|---|---|
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:347dcbbb8f06dee4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:1b97883db8e3cb72` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:babcc6fb6d356caa` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:478658fe07937681` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:2ede6fb114c145b3` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:8826ce468dcf75f5` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:b598a2220fc4e018` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:085802b26af64fef` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:c92257c49b305d2e` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:96db60cc869ff837` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:70d8139029ca120b` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:e5c3237d713d5722` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:06844c826e9d2b94` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:3ac3cf4cbcbc9f9a` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:245cadf978091b98` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:de984ca5b8aeb7d7` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:c362bdb2124a9a9d` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
 | **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | unknown |
@@ -359,16 +359,16 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3362 | 317 | 2026-09-09 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
+| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3374 | 322 | 2026-09-10 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 3325 | 2433 | 2026-09-09 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 286 | 58 | 2026-09-09 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 2579 | 865 | 2026-09-09 | 🟥 source changed | 2F / 3P / 1S / 0NR / 7— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 287 | 58 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142594 | 4984 | 2026-09-10 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 212 | 75 | 2026-09-09 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
-| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5458 | 131 | 2026-09-09 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
-| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 114 | 25 | 2026-09-09 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
-| **Sims4VR** | research target | EA custom (Sims 4) | script-owned | D3D11 | x64 | pre-T1 | T2 | unproven | 70 | 16 | 2026-09-09 | 🟥 source changed | 0F / 2P / 0S / 1NR / 10— |
-| **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 70 | 30 | 2026-09-09 | 🟥 source changed | 2F / 3P / 0S / 8NR / 0— |
-| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3844 | 374 | 2026-09-09 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
+| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5471 | 134 | 2026-09-10 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
+| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 184 | 50 | 2026-09-10 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
+| **Sims4VR** | research target | EA custom (Sims 4) | hybrid-re+script | D3D11 | x64 | pre-T1 | T2 | unproven | 439 | 68 | 2026-09-10 | 🟥 source changed | 0F / 4P / 0S / 0NR / 9— |
+| **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 70 | 30 | 2026-09-09 | 🟥 source changed | 2F / 4P / 0S / 7NR / 0— |
+| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3951 | 406 | 2026-09-10 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 
 ## Per-source area detail
 
@@ -455,10 +455,10 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `xr_input` | — no entry — | — | — |
 | `camera_tracking` | 🟩 full | `SOURCE` | 2026-08-28 re-review. RenderCameraMatchesSource no longer uses a tolerance chosen by eye: RenderCameraResidual() takes its limit from a measured separation table (correct 0.000000000; tightest wrong case, a 0.004 asymmetry error, 0.004000008 at 40x the 1e-4 limit; the rest 600x-7500x above), and the tests assert THE GAP so widening the limit later breaks a test. SOURCE of TEST-007. AsymmetryFromFovTangents inverts the SetCamera formula to solve OpenXR XrFovf tangents to Prey's fWL/fWR/fWB/fWT asymmetry shifts, round-trip tested, guarded by 'a symmetric FoV must yield all-zero shifts' because a sign error survives every other check while quietly symmetrising the eye. CAVEAT THEY RAISED THEMSELVES: the correct case reproduces to exactly zero because the test recomputes with the same formula on the same inputs - the live rounding floor is unmeasured, and LIVE_CAPTURE_PLAN now logs the residual as a number rather than a verdict. |
 | `render_hazards` | 🟨 partial | `SOURCE` | — |
-| `ui_hud` | — no entry — | — | — |
-| `hands_interaction` | — no entry — | — | — |
+| `ui_hud` | 🟨 partial | `LIVE` | 2026-09-10 in-game xr-sim captures show single-draw native HUD extraction. The missing-card-text claim was refuted by saved pixels; 112 crop hashes independently reproduced during harvest. Native pointer receiver/mode work remains STATIC, not accepted controller UI. No headset promotion. |
+| `hands_interaction` | 🟨 partial | `STATIC` | 2026-09-10 scoped receipt harvest, not a whole-tree re-review: authored mount basis and IK anchor coupling are source/static results. A later LIVE in-game correction proves the pose getter returns an owner-counted raw slice, invalidating the earlier prefixed-array assumption. Recipe and limits in chapter 02; receipt IDs in briefs/fleet-harvest-2026-09-10.md. |
 | `input_locomotion` | 🟧 skimmed | `STATIC` | — |
-| `performance` | — no entry — | — | — |
+| `performance` | 🟨 partial | `LIVE` | 2026-09-09 harness instrument audit proves rolling percentiles and lifetime overruns have different populations. It does not measure compositor misses or establish the missing raw before/after optimization comparison. |
 | `audio` | — no entry — | — | — |
 | `packaging_deploy` | 🟨 partial | `SOURCE` | — |
 | `re_discovery` | 🟩 full | `STATIC` | — |
@@ -468,8 +468,8 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟥 not reviewed | `—` | Research target; no stereo proof yet. |
-| `xr_lifecycle` | — no entry — | — | — |
+| `stereo` | 🟨 partial | `LIVE` | 2026-09-09 harness counterexamples invalidate world-X/parallel-eye geometry checks under rotated or canted views. No game scene-stereo proof; native M1 is a flat quad transport milestone, not an achieved stereo rung. |
+| `xr_lifecycle` | 🟨 partial | `LIVE` | 2026-09-10 native M1 reached retail 1.127.41.1030 with substitute XR runtime, owned backbuffer copies, resize/re-enable and owner-thread shutdown. Final f064c6 build has 405 retail quads; earlier loaded-lot coverage belongs to a different DLL. xr-tape was active in the host, not the retail process. Older camera addresses need revalidation. |
 | `xr_input` | — no entry — | — | — |
 | `camera_tracking` | 🟨 partial | `STATIC` | — |
 | `render_hazards` | — no entry — | — | — |
@@ -486,7 +486,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟥 not reviewed | `—` | Stereo ladder is authored with 10 rungs; every rung OPEN. R1 native re-entry is declared, not proven. |
+| `stereo` | 🟨 partial | `SOURCE` | 2026-09-10 current-state review reports M3 single-view +8/-8/0 reversible mutation complete and M4 two-RenderFrame candidate built but unrun. This is not a second-eye proof; zero-delta writeback evidence must not be extended to nonzero shifts. R1 remains unproven. |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | 32-bit runtime shortlist checked; no session yet. Runtime choice OPEN until M5. |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟩 full | `LIVE` | M2 confirmed refdef_t live: prefix shift +1, unique match, fov_y residual 0.0000 against CalcFov, fov_x exactly the install's fov cvar. Viewport, FOV, position and angles each carry a receipt. Two static inferences corrected (F-009): time is at +0x44 not +0x50, and +0x00 is written every frame. |

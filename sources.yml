@@ -26,7 +26,7 @@
 #   AUTHOR    the author's claim only — not independently checked
 #   INFERENCE transferable hypothesis; not established on this target
 
-ledger_updated_at: 2026-09-03
+ledger_updated_at: 2026-09-10
 
 areas:
   - stereo
@@ -151,6 +151,9 @@ fleet:
       input_locomotion: {review: skimmed, evidence: STATIC}
       packaging_deploy: {review: partial, evidence: SOURCE}
       re_discovery:     {review: full, evidence: STATIC}
+      hands_interaction: {review: partial, evidence: STATIC, note: "2026-09-10 scoped receipt harvest, not a whole-tree re-review: authored mount basis and IK anchor coupling are source/static results. A later LIVE in-game correction proves the pose getter returns an owner-counted raw slice, invalidating the earlier prefixed-array assumption. Recipe and limits in chapter 02; receipt IDs in briefs/fleet-harvest-2026-09-10.md."}
+      ui_hud: {review: partial, evidence: LIVE, note: "2026-09-10 in-game xr-sim captures show single-draw native HUD extraction. The missing-card-text claim was refuted by saved pixels; 112 crop hashes independently reproduced during harvest. Native pointer receiver/mode work remains STATIC, not accepted controller UI. No headset promotion."}
+      performance: {review: partial, evidence: LIVE, note: "2026-09-09 harness instrument audit proves rolling percentiles and lifetime overruns have different populations. It does not measure compositor misses or establish the missing raw before/after optimization comparison."}
   - id: DishonoredVR
     display_name: DishonoredVR
     root: "D:/Dev Debug/DishonoredVR"
@@ -231,7 +234,7 @@ fleet:
     engine: EA custom (Sims 4)
     api: D3D11
     arch: x64
-    authority: script-owned
+    authority: hybrid-re+script
     tier: pre-T1
     tier_target: T2
     stereo_rung: unproven
@@ -240,9 +243,10 @@ fleet:
     reviewed_at: 2026-08-28
     reviewed_revision: tree:ca949b5a4fc0d490
     areas:
-      stereo:          {review: not_reviewed, note: "Research target; no stereo proof yet."}
+      stereo:          {review: partial, evidence: LIVE, note: "2026-09-09 harness counterexamples invalidate world-X/parallel-eye geometry checks under rotated or canted views. No game scene-stereo proof; native M1 is a flat quad transport milestone, not an achieved stereo rung."}
       camera_tracking: {review: partial, evidence: STATIC}
       re_discovery:    {review: partial, evidence: STATIC}
+      xr_lifecycle:    {review: partial, evidence: LIVE, note: "2026-09-10 native M1 reached retail 1.127.41.1030 with substitute XR runtime, owned backbuffer copies, resize/re-enable and owner-thread shutdown. Final f064c6 build has 405 retail quads; earlier loaded-lot coverage belongs to a different DLL. xr-tape was active in the host, not the retail process. Older camera addresses need revalidation."}
 
   - id: SoF-VR
     display_name: SoF-VR
@@ -261,7 +265,7 @@ fleet:
     reviewed_at: 2026-09-04
     reviewed_revision: tree:381555bafe5d9010
     areas:
-      stereo:            {review: not_reviewed, note: "Stereo ladder is authored with 10 rungs; every rung OPEN. R1 native re-entry is declared, not proven."}
+      stereo:            {review: partial, evidence: SOURCE, note: "2026-09-10 current-state review reports M3 single-view +8/-8/0 reversible mutation complete and M4 two-RenderFrame candidate built but unrun. This is not a second-eye proof; zero-delta writeback evidence must not be extended to nonzero shifts. R1 remains unproven."}
       xr_lifecycle:      {review: not_reviewed, note: "32-bit runtime shortlist checked; no session yet. Runtime choice OPEN until M5."}
       xr_input:          {review: not_reviewed}
       camera_tracking:   {review: full, evidence: LIVE, note: "M2 confirmed refdef_t live: prefix shift +1, unique match, fov_y residual 0.0000 against CalcFov, fov_x exactly the install's fov cvar. Viewport, FOV, position and angles each carry a receipt. Two static inferences corrected (F-009): time is at +0x44 not +0x50, and +0x00 is written every frame."}

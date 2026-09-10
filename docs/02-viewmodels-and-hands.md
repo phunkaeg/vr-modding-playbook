@@ -1739,6 +1739,72 @@ the next piece of milestone 3"* — and the moment those arms exist, an aim-orie
 the wrist they just built. The move at that point is grip orientation plus per-weapon trim, which is
 what `vr_weaponPitch/Yaw/Roll` already exists for.
 
+## Equip is an identity change, not an arbitrary new aim zero {#authored-weapon-basis}
+
+PreyVR's September 9 calibration audit reproduced a 45-degree barrel/aim mismatch
+after capture and return to neutral. `[SOURCE; LIVE harness]` Capturing
+`inverse(controllerAtEquip) * animatedWrist` preserves the wrist at that instant;
+waiting 90 callbacks does not make it an authored barrel frame. Position calibration
+cannot repair an orientation contract that never stores orientation.
+
+Resolve the authored helper, mount and wrist/socket chain instead. With rotations
+mapping local frames into their parent, let `B` map barrel into weapon, `M` map
+weapon into wrist, and `C` map character into world:
+
+```text
+desiredWristInCharacter = inverse(C) * aimWorld * inverse(B) * inverse(M)
+```
+
+Reconstruct the final helper through the native attachment chain and compare all
+three axes across rolled, noncommuting poses and equip angles. Use one reference
+epoch for grip placement and aim orientation; refuse unknown bindings rather than
+silently falling back to angle capture. A helper called `muzzle` may supply only a
+position: Prey's Disruptor needed `fx_muzzle` for presentation, while its wrench
+uses an explicit model-frame policy. September 10 game/simulator controls exercised
+GLOO, Disruptor and wrench; physical alignment and broad animation coverage remain
+open. `[STATIC; LIVE in-game simulator]`
+
+The resolver's original fixture was itself corrected by the
+[raw-slice finding](11-re-anchoring-and-discovery.md#slice-owner-count). An offline
+fixture is not independent native-layout proof. Evidence:
+`PreyVR/docs/RE-EQUIP-ALIGNMENT-AND-HUD-SCALE-2026-09-09.md`,
+`RE-WEAPON-BASIS-ALIGNMENT-2026-09-09.md`, `RE-VR-INTERFACE-2026-09-10.md`.
+
+### A coherent snapshot can contain the wrong anchor {#aim-dependent-hand-anchor}
+
+Prey's cached reticle origin is a screen-dependent unprojected near-plane point,
+not head centre on the inspected branch. Copying before the mod writes the ray
+avoids direct aliasing but not feedback through the earlier reticle input. Adding
+that point to both hand goals couples them to aiming. Separately,
+`goal = k * rawGoal + (1-k) * shoulder` retains animated-shoulder motion even when
+the reach clamp never activates. `[STATIC; LIVE harness]`
+
+Hold head and left grip fixed; sweep right orientation and translation separately.
+Record producer inputs, independent cyclops origin, shoulder, raw/scaled/clamped
+goals and epoch together. Zero clamp hits do not exclude additive coupling. This
+proves dependencies, not their measured share of a wearer symptom. Evidence:
+`PreyVR/docs/RE-IK-CROSSTALK-2026-09-09.md`.
+
+## Transform endpoints and their pivot from one completed pose {#coherent-arm-pivots}
+
+For an authored pivot `P`, endpoint `H`, desired pivot `E` and endpoint `T`, set
+`shift=E-P`. Swing from `H-P` to **`T-P-shift`** (= `T-E`), then transform `x` as
+`P + swing*(x-P) + shift`. A swing toward `T-P` followed by translation counts
+pivot movement twice. FarCry2-VR's translated-elbow fixture measured a 101.0 mm
+old-formula wrist gap; the corrected equal-length fixture closes both endpoints
+within 1e-5 m. `[LIVE harness, not a rendered-arm verdict]`
+
+Sample pivot and deform cluster from the same completed animation phase. FarCry2's
+deferred scheduling is compiled, not runtime-accepted; skin weights and candidate
+right-arm indices remain unverified. SWAT4's immediate post-`MoveActor` child read
+mixed a new root with an old child. Sampling both after rendering and solving the
+next frame from their relative attachment passed bounded simulator controls;
+rapid transitions can still disarm the pose. Native return success is not proof
+the attachment has caught up. `[SOURCE; LIVE in-game simulator]`
+
+Evidence: `FarCry2-vr/receipts/evidence/20260910-arm-deform.md` and
+`Swat4-VR/docs/reviews/motion-weapons-2026-09-10/IMPLEMENTATION.md`.
+
 ## One trim, one algebra, one ray
 
 If the ray, the laser, and the model each apply the "same" calibration trim through *different math*,
@@ -2007,6 +2073,22 @@ traps are all about *which component* you clamp and *hysteresis*:
   static wall pushback. Impulse-on-contact (dynamic) plus render-pose clamp (static) are the two
   controllable primitives.
 
+### Camera pullback is not a tracked-weapon collision volume {#weapon-query-coverage}
+
+At Vee.ViewmodelTweaks revision `88d62d85b2adcdd810815390ccdf6ec154c8a734`,
+`UpdateConvergence` uses a camera-forward ray, smoothed view-axis pullback and
+hysteretic ironsight blocking. The inspected path neither sweeps the full weapon
+nor makes its ADS block a firing prohibition. `[SOURCE]` Test both counterexamples:
+look through a doorway with the gun against its jamb, and look at a wall with the
+gun held clear. Camera and weapon coverage disagree in opposite directions.
+
+Adapt query/filter/response concepts, not foreign physics ABI or offsets. Prove a
+weapon-space volume/sweep (or declare a ray approximation), then check the final
+pose after IK/contact clamping. Do not alter tracked input to disguise collision.
+Free offhand coupling needs an explicit two-hand grip, not proximity alone.
+Evidence: `PreyVR/docs/RE-VEE-WEAPON-COLLISION-2026-09-09.md`; no collision port
+or headset acceptance is established by that source review.
+
 ## Throwing, knocking, and physical melee
 
 - **Use windowed-peak hand velocity, not instantaneous.** A single smoothed velocity decays at the exact
@@ -2034,6 +2116,21 @@ traps are all about *which component* you clamp and *hysteresis*:
   behind the currently-running maneuver (AI maneuvers play to completion). A real mid-swing interrupt
   must go through the engine's own stun/motion-abort primitive. (*SS2VR: `FUN_1403a15b0` tears down the
   current maneuver, plays a named motion, auto-recovers, non-damaging.*)
+
+### Manipulation gain must agree with the position target {#manipulation-feedback}
+
+SOMAVR's 0.96.1 review found that boosting drawer feed-forward velocity while
+retaining unscaled desired travel made position feedback brake the boost. Scale
+displacement and velocity consistently. Attach a door handle to the body's rigid
+transform: `initialHit + handDisplacement` invents an expanding hinge radius and
+weakens `cross(radius, velocity)/radiusSquared`. `[SOURCE]`
+
+Native Drop and Throw can restore collision and set velocity differently. Keep a
+bounded, exact-body action handoff alive until the native state consumes it;
+releasing Interact first can let PostUpdate drop before Throw arrives. Tracking
+loss, timeout and owner change must cancel it. Fixes pass offline controls; feel
+and player-contact outcomes remain unaccepted. Evidence:
+`SOMAVR/docs/INTERACTION_FOLLOW_REVIEW_2026-09-09.md`.
 
 ## Point the engine's own interaction at your hand, by borrowing the camera
 

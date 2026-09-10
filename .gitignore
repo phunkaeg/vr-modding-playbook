@@ -16,6 +16,10 @@ cross-engine-graph/graphify_run.log
 secrets*
 *secret*
 site-public/
+# Local intake contains project-owned artifact paths; publish the reviewed digest.
+/research-inbox/pending/
+/research-inbox/reviews/
+/External/
 
 # graphify query-feedback loop: per-machine learning signal, not shared state
 cross-engine-graph/graphify-out/.graphify_learning.json

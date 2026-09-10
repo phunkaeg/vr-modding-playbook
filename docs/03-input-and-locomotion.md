@@ -1084,6 +1084,25 @@ writing before designing around a value.
 locomotion limitation stated alongside it. Their own process note, *"this is the second over-claim on the
 same question today"*, is the kind of thing that stops a third.
 
+## A script-to-script call can bypass the event hook {#script-call-consumer}
+
+SWAT4-VR's 2026-09-10 motion-input receipt reaches native `TraceFire`/`BallisticFire`
+and ammunition consumption in the game with a substitute XR runtime. A 25-degree
+hand turn produced 24.99939 degrees of shot yaw; a separate 30-degree head turn did
+not steer the shot. This is `[LIVE, in_game]` endpoint evidence, not headset acceptance.
+
+The transferable trap is the dispatch lane: a `ProcessEvent` hook alone missed
+script-to-script calls. The working consumer is after `CallFunction` has interpreted
+the script and copied its out-parameters. Prove the concrete call and the completed
+output lifetime before overriding its ray; the correct function name at the wrong
+entry point is insufficient. Also resolve bounded import/jump thunks before comparing
+a native dispatch slot with a body address: this target's `InputEvent` slot led through
+an `FF 25` import thunk and an `E9`, not directly to the implementation.
+
+Test actual firing, hand-versus-head independence, tracking-loss release, and held
+reconnect suppression separately. These observations do not establish every weapon,
+physical calibration, or the stereo route's once-per-frame side-effect safety.
+
 ## Platform-state gotchas
 
 - **The OS/launcher controller layer can swallow input.** Steam Input, in particular, can
