@@ -1,13 +1,9 @@
 # VR Modding Playbook — RE-first, source-ready, cross-engine
 
-Distilled from the active first-hand flat-to-VR conversions tracked in the coverage ledger, on
-deliberately dissimilar engines —
-**SS2VR** (System Shock 2, Dark/KEX, D3D11), **BioshockVR** (BioShock, Unreal 2.5, D3D11),
-**SOMAVR** (SOMA, HPL3, **OpenGL**), **PreyVR** (Prey, CryEngine-derived, D3D11, 64-bit),
-**DishonoredVR** (Dishonored, **Unreal Engine 3**, **D3D9**), **FarCry2-VR** (Far Cry 2, Dunia,
-**D3D10**) and **Swat4-VR** (SWAT 4, Unreal 2.5, **D3D9**) — spanning 1998 to 2017, four graphics APIs
-and both bitnesses. Everything here earned its place by costing real time at least once. The engines
-differ on every axis; the VR conversion keeps hitting the *same* patterns, roadblocks and solutions.
+Distilled from the in-house flat-to-VR conversions and external prior art tracked in the
+[coverage dashboard](coverage.md), across different engines, graphics APIs and both bitnesses.
+See the dashboard for the current project roster, reviewed snapshots and evidence limits. The engines
+differ, but their VR conversions keep hitting the *same* patterns, roadblocks and solutions.
 Lessons are tagged with the project that paid for them. The primary evidence base is reverse-engineered
 native injection, but the playbook now separates that route from source-owned development and rejoins
 both at the shared VR problems: pose, stereo, culling, lifecycle, render state, input, UI and release.

@@ -149,7 +149,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-BF3VR** | external reference | Frostbite 2 / Venice Unleashed (Battlefield 3) | native-injector | T1 | R4 · reconstruction | 14 | 55 | 4 | 44 | 2026-09-03 | 🟩 current | 2F / 4P / 0S / 1NR / 6— |
 | **MonsterDeadWood-C2VR** | external reference | CryEngine 3 (Crysis 2) | native-injector | T1 | R4 · reconstruction | 9 | 105 | 12 | 85 | 2026-09-03 | 🟩 current | 1F / 5P / 0S / 1NR / 6— |
 | **MonsterDeadWood-DiRT2VR** | external reference | EGO (DiRT 2) | native-injector | T1 | R1 · native re-entry | 17 | 44 | 4 | 36 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
-| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 119 | 19 | 71 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
+| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 72 | 9 | 55 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
@@ -217,10 +217,10 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:1b97883db8e3cb72` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:b598a2220fc4e018` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:085802b26af64fef` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:c92257c49b305d2e` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:f9e337bdd332f511` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:96db60cc869ff837` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:70d8139029ca120b` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:245cadf978091b98` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:24ddf97512bac2de` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:de984ca5b8aeb7d7` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:c362bdb2124a9a9d` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
@@ -273,7 +273,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **MonsterDeadWood-BF3VR** | 2026-09-03 | `tree:a434e6fd4ed2c819` | `tree:a434e6fd4ed2c819` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-C2VR** | 2026-09-03 | `tree:5c9a476fdb91dfb4` | `tree:5c9a476fdb91dfb4` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-DiRT2VR** | 2026-09-03 | `tree:e1f675860774af3f` | `tree:e1f675860774af3f` | `—` | 🟩 current | unknown | unknown |
-| **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:885ad189f33d5a23` | `—` | 🟥 source changed | unknown | unknown |
+| **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:8378df24b881ca61` | `—` | 🟥 source changed | unknown | unknown |
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | unknown |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | unknown |
@@ -361,8 +361,8 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
 | **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3374 | 322 | 2026-09-10 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 3325 | 2433 | 2026-09-09 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 287 | 58 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142594 | 4984 | 2026-09-10 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 294 | 58 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142608 | 4989 | 2026-09-10 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 212 | 75 | 2026-09-09 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
 | **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5471 | 134 | 2026-09-10 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 184 | 50 | 2026-09-10 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
