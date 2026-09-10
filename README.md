@@ -128,3 +128,13 @@ For a searchable local reading view, after installing the Python dependencies:
 ```powershell
 & $vrPython -m mkdocs serve
 ```
+
+## License
+
+Dual-licensed: the prose is **CC BY 4.0**, the code in `tools/`, `tests/` and the
+embedded samples is **MIT**. See [LICENSE](LICENSE).
+
+This covers the playbook's own content. The ~107 external projects it studies are
+described, not redistributed, and each keeps its own terms — recorded per-source in
+[sources.yml](sources.yml) and summarised in [NOTICE.md](NOTICE.md). Three are not
+open source; read NOTICE.md before copying anything from a cited project.

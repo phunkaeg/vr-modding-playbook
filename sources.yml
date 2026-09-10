@@ -354,7 +354,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/crysis_vrmod"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "LicenseRef-Crytek-CryENGINE2-MOD-SDK EULA - proprietary; redistribution restricted"  # read from LICENSE.txt 2026-09-10
     reviewed_at: 2026-08-28
     reviewed_revision: unknown
     engine: CryEngine 2
@@ -380,7 +380,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/bfbc2-vr"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-28
     reviewed_revision: "tree:2577103b3f59826b"
     engine: Frostbite 1.5
@@ -428,7 +428,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/edvr-unofficial-patch"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-28
     reviewed_revision: unknown
     engine: "Cobra (Elite Dangerous: Odyssey)"
@@ -452,7 +452,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/FEAR2VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-28
     reviewed_revision: unknown
     engine: LithTech Jupiter EX (F.E.A.R. 2)
@@ -500,7 +500,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/WeWereInVR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-28
     reviewed_revision: unknown
     engine: Unity (We Were Here)
@@ -524,7 +524,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/SkyrimTogetherVR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-28
     reviewed_revision: unknown
     engine: Creation Engine (Skyrim VR 1.4.15, SKSEVR)
@@ -745,7 +745,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/singularity-vr-mod"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: unknown
     engine: "Unreal Engine 3.584 (Singularity 2010)"
@@ -771,7 +771,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/Snowrunner-VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: unknown
     engine: "SnowRunner (Steam)"
@@ -797,7 +797,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/Aliens-Versus-Predator-VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: unknown
     engine: "AvP Classic (1999) via the NakedAvP source port"
@@ -845,7 +845,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/condemned-vr"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: unknown
     engine: "LithTech Jupiter EX (Condemned: Criminal Origins)"
@@ -871,7 +871,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/theHunterCotW-VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: unknown
     engine: "Apex / Avalanche (theHunter: Call of the Wild)"
@@ -947,7 +947,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/mirrors-edge-vr-mod"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: "tree:a64e71450006b5d5"
     engine: "Unreal Engine 3.536 (Mirror's Edge, 2008)"
@@ -973,7 +973,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/Outlast-Vr-Mod"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: unknown
     engine: "Unreal Engine 3 (Outlast)"
@@ -998,7 +998,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/gta-sa-vr-quest"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: unknown
     engine: "RenderWare (GTA San Andreas, Android)"
@@ -1051,7 +1051,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/fear-vr"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-29
     reviewed_revision: tree:7437c5bc33a9688d
     engine: LithTech Jupiter EX
@@ -1075,7 +1075,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/cyberpunk-vr-port"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:22383c11593f8750
     engine: REDengine 4
@@ -1096,7 +1096,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/witcher3-vr"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: "tree:ea13c4e9680cad41"
     engine: REDengine 3
@@ -1157,7 +1157,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/BF2VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:b5d85b406c734579
     engine: Frostbite
@@ -1178,7 +1178,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/anvilengine2vr"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:64c6afb808b9af48
     engine: AnvilNext 2.0
@@ -1195,7 +1195,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/CallOfDuty4_VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:146efc09f95cba26
     engine: IW (CoD4)
@@ -1215,7 +1215,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/JKXR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-2.0"  # read from LICENSE.txt 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:5c5bd57858afdbe2
     engine: id Tech 3 / OpenJK
@@ -1235,7 +1235,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/Rea-Virtua-Cop-2-VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:d5c76a58e1e614ca
     engine: 1997 fixed-function
@@ -1253,7 +1253,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/GTFO_VR_Plugin"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:3b8bc8dedc3cb478
     engine: Unity IL2CPP
@@ -1271,7 +1271,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/RoR2VRMod-main"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE.md 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:19fb84a75b171a5f
     engine: Unity Mono
@@ -1288,7 +1288,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/White_Knuckle_VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:0e9bfa4ea9f7dd43
     engine: Unity
@@ -1349,7 +1349,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/MyFriendlyNeighborhoodVR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:2bd54d6d8674a6a7
     engine: Unity
@@ -1362,7 +1362,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/BendyVR-main"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:d87f8cff726a8460
     engine: Unity
@@ -1388,7 +1388,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/thedarkmodvr"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE.txt 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:7874ef99aa2ed9e7
     engine: idTech 4 (TDM)
@@ -1404,7 +1404,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/UEVR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "LicenseRef-AllRightsReserved (praydog, 2022-2025) - technique may be described; code must NOT be copied"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:ed8c07a5139dfdb0
     engine: Unreal (generic)
@@ -1428,7 +1428,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/CSVR-main"
     status: archived_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-2.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-25
     reviewed_revision: tree:b317ecb80018cb2d
     engine: GoldSrc / Xash3D
@@ -1461,7 +1461,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/RepoXR"
     status: external_reference
     upstream_url: https://github.com/DaXcess/RepoXR
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-26
     reviewed_revision: tree:987e89a6065d2301
     reviewed_git_commit: 15b4aec0e1411c7de5d9fdd184e02b8b1870119d
@@ -1478,7 +1478,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/novr"
     status: external_reference
     upstream_url: https://github.com/InfernoSuperNova/novr
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-26
     reviewed_revision: tree:6823115a691200c6
     reviewed_git_commit: 7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb
@@ -1493,7 +1493,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/BFVR-Battlefield-1942-VR-Mod"
     status: external_reference
     upstream_url: https://github.com/JayBiggsGMG/BFVR-Battlefield-1942-VR-Mod
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-26
     reviewed_revision: tree:2776363bdd1bbbf9
     reviewed_git_commit: cb01120313f56c85c68413a04066f898e2bdd49d
@@ -1512,7 +1512,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/perfect_dark_VR"
     status: external_reference
     upstream_url: https://github.com/Alex-LeTux/perfect_dark_VR
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-26
     reviewed_revision: tree:7b24c19fafd8b3f7
     reviewed_git_commit: 67ea20c86986c6bc85687f26a27418b266af309c
@@ -1578,7 +1578,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/GTA-VRV-Patcher"
     status: external_reference
     upstream_url: https://github.com/FranciscoManzanilla/GTA-VRV-Patcher
-    license: unknown
+    license: "MIT"  # read from LICENSE.txt 2026-09-10
     reviewed_at: 2026-08-26
     reviewed_revision: tree:c597e6967613fc1c
     reviewed_git_commit: 225df5859976d5f485ed8fddf029ea5e8fbe6c2f
@@ -1591,7 +1591,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/KSA_XR"
     status: external_reference
     upstream_url: https://github.com/Ybalrid/KSA_XR
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-26
     reviewed_revision: tree:09b84dde7a415db5
     reviewed_git_commit: 8467599b9389652d4a74d50f965b829dd3dee43e
@@ -1620,7 +1620,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/Vostok-VR-Mod"
     status: external_reference
     upstream_url: https://github.com/Blah64/Vostok-VR-Mod
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-26
     reviewed_revision: tree:12bd87bb2b93482c
     reviewed_git_commit: 74f73105d1e7326d60dedd525a3e6cd68bf30839
@@ -1734,7 +1734,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/DOOM-3-BFG-VR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from COPYING.txt 2026-09-10
     reviewed_at: 2026-08-27
     reviewed_revision: tree:b68fb6734c12a28c
     engine: idTech 4 (Doom 3 BFG)
@@ -1779,7 +1779,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/bo1-vr"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-27
     reviewed_revision: tree:f5a5f9cf94ed8e4f
     engine: Treyarch T5 (Black Ops)
@@ -1795,7 +1795,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/SonsVR_Mod"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "Apache-2.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-27
     reviewed_revision: tree:6db3fde18d9a2cc3
     engine: Unity HDRP (Sons of the Forest)
@@ -1856,7 +1856,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/payday2-vr-improvements"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-27
     reviewed_revision: tree:ceff8eb529473d2e
     engine: Diesel (PAYDAY 2)
@@ -1869,7 +1869,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/SubmersedVR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "MIT"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-27
     reviewed_revision: tree:6f1c537947774a46
     engine: Unity 2019.4 (Subnautica)
@@ -1883,7 +1883,7 @@ external:
     root: "D:/Dev Debug/Other VR mods/TechtonicaVR"
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-3.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-08-27
     reviewed_revision: tree:9bd62050d21c6d75
     engine: Unity 2021.3.15f1
@@ -2035,7 +2035,7 @@ external:
     root: D:/Dev Debug/Other VR mods/Quake2Quest
     status: external_reference
     upstream_url: unknown
-    license: unknown
+    license: "GPL-2.0"  # read from LICENSE 2026-09-10
     reviewed_at: 2026-09-02
     reviewed_revision: "tree:6762626f4c1aed86"
     engine: id Tech 2 (Quake II, via Yamagi)

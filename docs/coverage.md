@@ -149,7 +149,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-BF3VR** | external reference | Frostbite 2 / Venice Unleashed (Battlefield 3) | native-injector | T1 | R4 · reconstruction | 14 | 55 | 4 | 44 | 2026-09-03 | 🟩 current | 2F / 4P / 0S / 1NR / 6— |
 | **MonsterDeadWood-C2VR** | external reference | CryEngine 3 (Crysis 2) | native-injector | T1 | R4 · reconstruction | 9 | 105 | 12 | 85 | 2026-09-03 | 🟩 current | 1F / 5P / 0S / 1NR / 6— |
 | **MonsterDeadWood-DiRT2VR** | external reference | EGO (DiRT 2) | native-injector | T1 | R1 · native re-entry | 17 | 44 | 4 | 36 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
-| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 72 | 9 | 55 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
+| **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 119 | 19 | 71 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
@@ -216,117 +216,117 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:347dcbbb8f06dee4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:1b97883db8e3cb72` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:b598a2220fc4e018` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:085802b26af64fef` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:f9e337bdd332f511` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:6993771916d25874` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:6d026e4ac0e3073f` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:96db60cc869ff837` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:70d8139029ca120b` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:24ddf97512bac2de` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:72423b452aeeec8e` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:de984ca5b8aeb7d7` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:c362bdb2124a9a9d` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | unknown |
-| **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | unknown |
-| **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | unknown |
-| **BF2VR** | 2026-08-25 | `tree:b5d85b406c734579` | `tree:b5d85b406c734579` | `—` | 🟩 current | unknown | unknown |
-| **bfbc2-vr** | 2026-08-28 | `tree:2577103b3f59826b` | `tree:e1bd02050dcf90fa` | `—` | 🟥 source changed | unknown | unknown |
-| **BFVR-Battlefield-1942** | 2026-08-26 | `tree:2776363bdd1bbbf9` | `tree:2776363bdd1bbbf9` | `cb01120313f56c85c68413a04066f898e2bdd49d` | 🟩 current | https://github.com/JayBiggsGMG/BFVR-Battlefield-1942-VR-Mod | unknown |
+| **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | GPL-3.0 |
+| **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | MIT |
+| **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | MIT |
+| **BF2VR** | 2026-08-25 | `tree:b5d85b406c734579` | `tree:b5d85b406c734579` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **bfbc2-vr** | 2026-08-28 | `tree:2577103b3f59826b` | `tree:e1bd02050dcf90fa` | `—` | 🟥 source changed | unknown | MIT |
+| **BFVR-Battlefield-1942** | 2026-08-26 | `tree:2776363bdd1bbbf9` | `tree:2776363bdd1bbbf9` | `cb01120313f56c85c68413a04066f898e2bdd49d` | 🟩 current | https://github.com/JayBiggsGMG/BFVR-Battlefield-1942-VR-Mod | MIT |
 | **Bioshock-Remastered-VR** | 2026-08-28 | `unknown` | `tree:7050764150576da7` | `—` | ⚪ unpinned | unknown | unknown |
 | **bioshock-trilogy-vr** | 2026-08-26 | `tree:cab3312723aad2ca` | `tree:cab3312723aad2ca` | `5bc599923bf73bf154cc35f7265ff2c568e82016` | 🟩 current | https://github.com/VR-Stereo-Hub/bioshock-trilogy-vr | MIT |
 | **BL1GOTYVR** | 2026-08-29 | `unknown` | `tree:3e8e104d25c19bb5` | `—` | ⚪ unpinned | unknown | unknown |
 | **black-mesa-l4d2vr** | 2026-08-28 | `unknown` | `tree:58c62c9565e8c260` | `—` | ⚪ unpinned | unknown | unknown |
-| **bo1-vr** | 2026-08-27 | `tree:f5a5f9cf94ed8e4f` | `tree:f5a5f9cf94ed8e4f` | `—` | 🟩 current | unknown | unknown |
+| **bo1-vr** | 2026-08-27 | `tree:f5a5f9cf94ed8e4f` | `tree:f5a5f9cf94ed8e4f` | `—` | 🟩 current | unknown | MIT |
 | **Buffout4 NG-64880-1-38-3-1785297452** | 2026-09-05 | `unknown` | `tree:c5822dd551ad3a17` | `—` | ⚪ unpinned | unknown | unknown |
-| **CallOfDuty4_VR** | 2026-08-25 | `tree:146efc09f95cba26` | `tree:146efc09f95cba26` | `—` | 🟩 current | unknown | unknown |
-| **condemned-vr** | 2026-08-29 | `unknown` | `tree:375521a55d72feca` | `—` | ⚪ unpinned | unknown | unknown |
-| **crysis_vrmod** | 2026-08-28 | `unknown` | `tree:72edce18458cccd3` | `—` | ⚪ unpinned | unknown | unknown |
-| **CSVR** | 2026-08-25 | `tree:b317ecb80018cb2d` | `tree:b317ecb80018cb2d` | `—` | 🟩 current | unknown | unknown |
-| **cyberpunk-vr-port** | 2026-08-25 | `tree:22383c11593f8750` | `tree:e4fe5418281f1c41` | `—` | 🟥 source changed | unknown | unknown |
+| **CallOfDuty4_VR** | 2026-08-25 | `tree:146efc09f95cba26` | `tree:146efc09f95cba26` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **condemned-vr** | 2026-08-29 | `unknown` | `tree:375521a55d72feca` | `—` | ⚪ unpinned | unknown | MIT |
+| **crysis_vrmod** | 2026-08-28 | `unknown` | `tree:72edce18458cccd3` | `—` | ⚪ unpinned | unknown | LicenseRef-Crytek-CryENGINE2-MOD-SDK EULA - proprietary; redistribution restricted |
+| **CSVR** | 2026-08-25 | `tree:b317ecb80018cb2d` | `tree:b317ecb80018cb2d` | `—` | 🟩 current | unknown | GPL-2.0 |
+| **cyberpunk-vr-port** | 2026-08-25 | `tree:22383c11593f8750` | `tree:e4fe5418281f1c41` | `—` | 🟥 source changed | unknown | MIT |
 | **Dishonored-VR** | 2026-09-02 | `unknown` | `tree:9df41ffc43c99865` | `—` | ⚪ unpinned | unknown | zlib (DXVK) - covers fork-patches ONLY; dllmain.cpp is unlicensed |
 | **Dishonored-VR-fork** | 2026-09-04 | `tree:0d7e87ff7f68876e` | `tree:46f0337f8db33acd` | `—` | 🟥 source changed | https://github.com/phunkaeg/Dishonored-VR | see LICENSE in tree |
-| **DOOM-3-BFG-VR** | 2026-08-27 | `tree:b68fb6734c12a28c` | `tree:b68fb6734c12a28c` | `—` | 🟩 current | unknown | unknown |
-| **edvr-unofficial-patch** | 2026-08-28 | `unknown` | `tree:a27fb9fe577f1279` | `—` | ⚪ unpinned | unknown | unknown |
+| **DOOM-3-BFG-VR** | 2026-08-27 | `tree:b68fb6734c12a28c` | `tree:b68fb6734c12a28c` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **edvr-unofficial-patch** | 2026-08-28 | `unknown` | `tree:a27fb9fe577f1279` | `—` | ⚪ unpinned | unknown | MIT |
 | **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | 2026-09-05 | `unknown` | `tree:1346c9ecdc86400f` | `—` | ⚪ unpinned | unknown | unknown |
 | **Fallout-New-Vegas-FNVR** | 2026-08-29 | `unknown` | `tree:c979d571dbef665b` | `—` | ⚪ unpinned | unknown | unknown |
-| **fear-vr** | 2026-08-29 | `tree:7437c5bc33a9688d` | `tree:7437c5bc33a9688d` | `—` | 🟩 current | unknown | unknown |
-| **FEAR2VR** | 2026-08-28 | `unknown` | `tree:25ecac968c4146d1` | `—` | ⚪ unpinned | unknown | unknown |
+| **fear-vr** | 2026-08-29 | `tree:7437c5bc33a9688d` | `tree:7437c5bc33a9688d` | `—` | 🟩 current | unknown | MIT |
+| **FEAR2VR** | 2026-08-28 | `unknown` | `tree:25ecac968c4146d1` | `—` | ⚪ unpinned | unknown | MIT |
 | **ForerunnerVR** | 2026-08-26 | `tree:6c2023683d68eff9` | `tree:6c2023683d68eff9` | `ae37120becad289ed404bb7b848367e923033bf8` | 🟩 current | https://github.com/LivingFray/ForerunnerVR | unknown |
 | **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | 2026-09-05 | `unknown` | `tree:ff5f7db0f385d23d` | `—` | ⚪ unpinned | https://github.com/rollingrock/Fallout-4-VR-Body | unknown |
 | **FUS** | 2026-09-05 | `unknown` | `tree:4d835bf05872284e` | `—` | ⚪ unpinned | unknown | unknown |
 | **gmcl_openvr** | 2026-08-27 | `tree:d9da74ebf2d2629d` | `tree:d9da74ebf2d2629d` | `—` | 🟩 current | unknown | unknown |
 | **goldeneye-omniport** | 2026-08-28 | `unknown` | `tree:3d329e089afebd29` | `—` | ⚪ unpinned | unknown | unknown |
 | **GRAND-alien-isolation** | 2026-08-26 | `tree:b6fc9c9e7cc2e607` | `tree:b6fc9c9e7cc2e607` | `—` | 🟩 current | unknown | unknown |
-| **gta-sa-vr-quest** | 2026-08-29 | `unknown` | `tree:a211e6ff6f8bbfd8` | `—` | ⚪ unpinned | unknown | unknown |
-| **GTA-VRV-Patcher** | 2026-08-26 | `tree:c597e6967613fc1c` | `tree:c597e6967613fc1c` | `225df5859976d5f485ed8fddf029ea5e8fbe6c2f` | 🟩 current | https://github.com/FranciscoManzanilla/GTA-VRV-Patcher | unknown |
-| **GTFO_VR_Plugin** | 2026-08-25 | `tree:3b8bc8dedc3cb478` | `tree:3b8bc8dedc3cb478` | `—` | 🟩 current | unknown | unknown |
+| **gta-sa-vr-quest** | 2026-08-29 | `unknown` | `tree:a211e6ff6f8bbfd8` | `—` | ⚪ unpinned | unknown | MIT |
+| **GTA-VRV-Patcher** | 2026-08-26 | `tree:c597e6967613fc1c` | `tree:c597e6967613fc1c` | `225df5859976d5f485ed8fddf029ea5e8fbe6c2f` | 🟩 current | https://github.com/FranciscoManzanilla/GTA-VRV-Patcher | MIT |
+| **GTFO_VR_Plugin** | 2026-08-25 | `tree:3b8bc8dedc3cb478` | `tree:3b8bc8dedc3cb478` | `—` | 🟩 current | unknown | MIT |
 | **Halo-MCC-VR** | 2026-08-25 | `tree:fe9e1846706a63da` | `tree:eb934c8e30b766b5` | `—` | 🟥 source changed | https://github.com/pancreations/Halo-MCC-VR | MIT |
 | **Heisenberg - Physical Interactions 99105 0.8.6 2026-08-02T10-39Z Q8oKHMMng** | 2026-09-05 | `unknown` | `tree:58a5b1f5db6072ee` | `—` | ⚪ unpinned | unknown | unknown |
 | **HIGGS 1.10.10-43930-1-10-10-1768263289** | 2026-09-05 | `unknown` | `tree:11ade5e7d012caae` | `—` | ⚪ unpinned | unknown | unknown |
 | **IRON-NEST-VR** | 2026-08-26 | `tree:e65f3b7698f9edea` | `tree:e65f3b7698f9edea` | `—` | 🟩 current | unknown | unknown |
-| **JKXR** | 2026-08-25 | `tree:5c5bd57858afdbe2` | `tree:5c5bd57858afdbe2` | `—` | 🟩 current | unknown | unknown |
-| **KSA_XR** | 2026-08-26 | `tree:09b84dde7a415db5` | `tree:09b84dde7a415db5` | `8467599b9389652d4a74d50f965b829dd3dee43e` | 🟩 current | https://github.com/Ybalrid/KSA_XR | unknown |
+| **JKXR** | 2026-08-25 | `tree:5c5bd57858afdbe2` | `tree:5c5bd57858afdbe2` | `—` | 🟩 current | unknown | GPL-2.0 |
+| **KSA_XR** | 2026-08-26 | `tree:09b84dde7a415db5` | `tree:09b84dde7a415db5` | `8467599b9389652d4a74d50f965b829dd3dee43e` | 🟩 current | https://github.com/Ybalrid/KSA_XR | MIT |
 | **l4d2vr** | 2026-08-27 | `tree:0a633263d8116124` | `tree:0a633263d8116124` | `—` | 🟩 current | unknown | unknown |
 | **Luke-Ross-REAL-mods** | unknown | `tree:06153e074416cd40` | `tree:06153e074416cd40` | `—` | 🟩 current | unknown | unknown |
 | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | 2026-09-05 | `unknown` | `tree:35b3173db0af61f0` | `—` | ⚪ unpinned | unknown | unknown |
 | **manhunt-2003-vr-modding-notes** | 2026-08-29 | `unknown` | `tree:e8d969134352da0f` | `—` | ⚪ unpinned | unknown | unknown |
 | **MELE-VR** | 2026-08-28 | `tree:b8d87bff0fecabf1` | `tree:b8d87bff0fecabf1` | `—` | 🟩 current | unknown | unknown |
-| **mirrors-edge-vr-mod** | 2026-08-29 | `tree:a64e71450006b5d5` | `tree:ba6ab5363d9090ac` | `—` | 🟥 source changed | unknown | unknown |
+| **mirrors-edge-vr-mod** | 2026-08-29 | `tree:a64e71450006b5d5` | `tree:ba6ab5363d9090ac` | `—` | 🟥 source changed | unknown | MIT |
 | **MonsterDeadWood-Analyzer-Bible** | 2026-09-09 | `tree:00139a13544026eb` | `tree:00139a13544026eb` | `—` | 🟩 current | unknown | Integration permission from MonsterDeadWood relayed by user 2026-09-09; no blanket license claim for bundled third-party sources. |
 | **MonsterDeadWood-BF3VR** | 2026-09-03 | `tree:a434e6fd4ed2c819` | `tree:a434e6fd4ed2c819` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-C2VR** | 2026-09-03 | `tree:5c9a476fdb91dfb4` | `tree:5c9a476fdb91dfb4` | `—` | 🟩 current | unknown | unknown |
 | **MonsterDeadWood-DiRT2VR** | 2026-09-03 | `tree:e1f675860774af3f` | `tree:e1f675860774af3f` | `—` | 🟩 current | unknown | unknown |
-| **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:8378df24b881ca61` | `—` | 🟥 source changed | unknown | unknown |
+| **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:885ad189f33d5a23` | `—` | 🟥 source changed | unknown | unknown |
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
-| **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | unknown |
-| **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | unknown |
+| **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | MIT |
+| **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | GPL-3.0 |
 | **openmw-vr** | 2026-08-26 | `tree:7155f265d832b125` | `tree:7155f265d832b125` | `0f520f65c3e085369e66d6a90ce871e817d4533f` | 🟩 current | https://gitlab.com/madsbuvi/openmw/-/tree/openmw-vr | GPL-3.0 (OpenMW) |
-| **Outlast-Vr-Mod** | 2026-08-29 | `unknown` | `tree:bfa0db61dfab071e` | `—` | ⚪ unpinned | unknown | unknown |
-| **payday2-vr-improvements** | 2026-08-27 | `tree:ceff8eb529473d2e` | `tree:ceff8eb529473d2e` | `—` | 🟩 current | unknown | unknown |
-| **perfect_dark_VR** | 2026-08-26 | `tree:7b24c19fafd8b3f7` | `tree:7b24c19fafd8b3f7` | `67ea20c86986c6bc85687f26a27418b266af309c` | 🟩 current | https://github.com/Alex-LeTux/perfect_dark_VR | unknown |
+| **Outlast-Vr-Mod** | 2026-08-29 | `unknown` | `tree:bfa0db61dfab071e` | `—` | ⚪ unpinned | unknown | MIT |
+| **payday2-vr-improvements** | 2026-08-27 | `tree:ceff8eb529473d2e` | `tree:ceff8eb529473d2e` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **perfect_dark_VR** | 2026-08-26 | `tree:7b24c19fafd8b3f7` | `tree:7b24c19fafd8b3f7` | `67ea20c86986c6bc85687f26a27418b266af309c` | 🟩 current | https://github.com/Alex-LeTux/perfect_dark_VR | MIT |
 | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | 2026-09-05 | `unknown` | `tree:cd5be93c7cedb47d` | `—` | ⚪ unpinned | unknown | unknown |
 | **portal2vr** | 2026-08-27 | `tree:6fccc2a8dab60ec6` | `tree:6fccc2a8dab60ec6` | `—` | 🟩 current | unknown | unknown |
 | **prince-of-persia-2008-vr-external-research** | 2026-08-29 | `unknown` | `tree:05fa0ca45f7a63b8` | `—` | ⚪ unpinned | unknown | unknown |
 | **psychonauts-vr-dev-archive** | 2026-08-29 | `unknown` | `tree:90e822bc3d53f345` | `—` | ⚪ unpinned | unknown | unknown |
 | **psychonauts-vr-modding-notes** | 2026-08-29 | `unknown` | `tree:45d31d43bf8ad326` | `—` | ⚪ unpinned | unknown | unknown |
 | **PureDark-UEVR** | 2026-09-07 | `tree:20e90587ef58d605` | `tree:1ffc10d5d5c5782b` | `—` | 🟥 source changed | https://github.com/PureDark/UEVR | see LICENSE in tree |
-| **Quake2Quest** | 2026-09-02 | `tree:6762626f4c1aed86` | `tree:af131bfd6663683b` | `—` | 🟥 source changed | unknown | unknown |
+| **Quake2Quest** | 2026-09-02 | `tree:6762626f4c1aed86` | `tree:af131bfd6663683b` | `—` | 🟥 source changed | unknown | GPL-2.0 |
 | **quake2vr** | 2026-09-02 | `tree:461b476dadb7b80e` | `tree:a203a1a1bb26e4e1` | `—` | 🟥 source changed | unknown | unknown |
 | **ravenfield-vr-mod** | 2026-08-26 | `tree:fdaf974b1d43efcc` | `tree:fdaf974b1d43efcc` | `4ed67514aa3302ba255b6ddb870854f9c992737e` | 🟩 current | https://github.com/GDani31/ravenfield-vr-mod | unknown |
-| **Rea-Virtua-Cop-2-VR** | 2026-08-25 | `tree:d5c76a58e1e614ca` | `tree:d5c76a58e1e614ca` | `—` | 🟩 current | unknown | unknown |
+| **Rea-Virtua-Cop-2-VR** | 2026-08-25 | `tree:d5c76a58e1e614ca` | `tree:d5c76a58e1e614ca` | `—` | 🟩 current | unknown | MIT |
 | **ReclaimerVR** | 2026-08-26 | `tree:cf2ce2d8fb2ea250` | `tree:cf2ce2d8fb2ea250` | `9f746e07e6a34c5d23189bad1b2fb87b08d1c6e3` | 🟩 current | https://github.com/Nibre/ReclaimerVR | unknown |
 | **REFramework** | 2026-09-04 | `tree:168b893ee9b40862` | `tree:1c02807bf9e55ed3` | `—` | 🟥 source changed | https://github.com/praydog/REFramework | see LICENSE in tree |
-| **RepoXR** | 2026-08-26 | `tree:987e89a6065d2301` | `tree:987e89a6065d2301` | `15b4aec0e1411c7de5d9fdd184e02b8b1870119d` | 🟩 current | https://github.com/DaXcess/RepoXR | unknown |
-| **RoR2VRMod** | 2026-08-25 | `tree:19fb84a75b171a5f` | `tree:19fb84a75b171a5f` | `—` | 🟩 current | unknown | unknown |
+| **RepoXR** | 2026-08-26 | `tree:987e89a6065d2301` | `tree:987e89a6065d2301` | `15b4aec0e1411c7de5d9fdd184e02b8b1870119d` | 🟩 current | https://github.com/DaXcess/RepoXR | GPL-3.0 |
+| **RoR2VRMod** | 2026-08-25 | `tree:19fb84a75b171a5f` | `tree:19fb84a75b171a5f` | `—` | 🟩 current | unknown | MIT |
 | **satisfactory-uevr-enhancements** | 2026-08-25 | `tree:33a7aa8069455a16` | `tree:33a7aa8069455a16` | `—` | 🟩 current | unknown | unknown |
 | **Scrap-Mechanic-Native-VR** | 2026-08-27 | `tree:b34922f3c587f2ce` | `tree:b34922f3c587f2ce` | `8aabe24ec62c5c4d8ef9852250a358e1296f9bf2` | 🟩 current | https://github.com/21Suspect/Scrap-Mechanic-Native-VR | MIT |
 | **Shipwright-VR** | 2026-08-26 | `tree:6847d39fbf2e86de` | `tree:6847d39fbf2e86de` | `7afef6987c7f0fb51e09bfb2f7a8f902428a38f2` | 🟩 current | https://github.com/ShinyWindow/Shipwright-VR | unknown |
 | **shock2quest** | 2026-09-09 | `tree:80a30f1bdad91aa8` | `tree:75c532db6de12b16` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | unknown |
 | **Silent-Hill-3-VR-Mod** | 2026-08-29 | `unknown` | `tree:f1f0674d9d679091` | `—` | ⚪ unpinned | unknown | unknown |
 | **sims4-vr** | 2026-08-25 | `tree:1dec2736beb2f5e5` | `tree:1dec2736beb2f5e5` | `—` | 🟩 current | unknown | unknown |
-| **singularity-vr-mod** | 2026-08-29 | `unknown` | `tree:50b0c75b563c385d` | `—` | ⚪ unpinned | unknown | unknown |
-| **SkyrimTogetherVR** | 2026-08-28 | `unknown` | `tree:549f15c81edd5a6d` | `—` | ⚪ unpinned | unknown | unknown |
+| **singularity-vr-mod** | 2026-08-29 | `unknown` | `tree:50b0c75b563c385d` | `—` | ⚪ unpinned | unknown | MIT |
+| **SkyrimTogetherVR** | 2026-08-28 | `unknown` | `tree:549f15c81edd5a6d` | `—` | ⚪ unpinned | unknown | GPL-3.0 |
 | **SkyrimVR FBT 185070 1.0.3 2026-07-22T11-37Z HZCMOyLlG** | 2026-09-05 | `unknown` | `tree:381cbb4b4c660656` | `—` | ⚪ unpinned | unknown | unknown |
-| **Snowrunner-VR** | 2026-08-29 | `unknown` | `tree:0d822ae5b0b2ac8d` | `—` | ⚪ unpinned | unknown | unknown |
-| **SonsVR_Mod** | 2026-08-27 | `tree:6db3fde18d9a2cc3` | `tree:6db3fde18d9a2cc3` | `—` | 🟩 current | unknown | unknown |
+| **Snowrunner-VR** | 2026-08-29 | `unknown` | `tree:0d822ae5b0b2ac8d` | `—` | ⚪ unpinned | unknown | MIT |
+| **SonsVR_Mod** | 2026-08-27 | `tree:6db3fde18d9a2cc3` | `tree:6db3fde18d9a2cc3` | `—` | 🟩 current | unknown | Apache-2.0 |
 | **SPT-VR** | 2026-08-25 | `tree:3e000668126c723f` | `tree:3e000668126c723f` | `—` | 🟩 current | unknown | unknown |
 | **StalkerVR-code** | 2026-09-07 | `unknown` | `tree:7890e014622e9839` | `—` | ⚪ unpinned | unknown | unknown |
 | **Sterallax6DOF-silksong** | 2026-08-26 | `tree:d0f4634655052b15` | `tree:d0f4634655052b15` | `—` | 🟩 current | unknown | unknown |
-| **SubmersedVR** | 2026-08-27 | `tree:6f1c537947774a46` | `tree:6f1c537947774a46` | `—` | 🟩 current | unknown | unknown |
+| **SubmersedVR** | 2026-08-27 | `tree:6f1c537947774a46` | `tree:6f1c537947774a46` | `—` | 🟩 current | unknown | MIT |
 | **SystemReShock-UEVR-Plugin** | 2026-08-25 | `tree:00679eccfd4d256f` | `tree:00679eccfd4d256f` | `—` | 🟩 current | unknown | unknown |
 | **Talemann-RE4** | 2026-09-04 | `unknown` | `tree:509eecb1574a62d1` | `—` | ⚪ unpinned | unknown | unknown |
-| **TechtonicaVR** | 2026-08-27 | `tree:9bd62050d21c6d75` | `tree:9bd62050d21c6d75` | `—` | 🟩 current | unknown | unknown |
+| **TechtonicaVR** | 2026-08-27 | `tree:9bd62050d21c6d75` | `tree:9bd62050d21c6d75` | `—` | 🟩 current | unknown | GPL-3.0 |
 | **the-evil-within-vr-external-research** | 2026-08-29 | `unknown` | `tree:86941594e13fb4ae` | `—` | ⚪ unpinned | unknown | unknown |
-| **thedarkmodvr** | 2026-08-25 | `tree:7874ef99aa2ed9e7` | `tree:7874ef99aa2ed9e7` | `—` | 🟩 current | unknown | unknown |
-| **theHunterCotW-VR** | 2026-08-29 | `unknown` | `tree:f8b750f433504b25` | `—` | ⚪ unpinned | unknown | unknown |
+| **thedarkmodvr** | 2026-08-25 | `tree:7874ef99aa2ed9e7` | `tree:7874ef99aa2ed9e7` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **theHunterCotW-VR** | 2026-08-29 | `unknown` | `tree:f8b750f433504b25` | `—` | ⚪ unpinned | unknown | GPL-3.0 |
 | **TwoForksVR** | unknown | `tree:d638ddb7289ba69f` | `tree:d638ddb7289ba69f` | `—` | 🟩 current | unknown | unknown |
-| **UEVR** | 2026-08-25 | `tree:ed8c07a5139dfdb0` | `tree:ed8c07a5139dfdb0` | `—` | 🟩 current | unknown | unknown |
+| **UEVR** | 2026-08-25 | `tree:ed8c07a5139dfdb0` | `tree:ed8c07a5139dfdb0` | `—` | 🟩 current | unknown | LicenseRef-AllRightsReserved (praydog, 2022-2025) - technique may be described; code must NOT be copied |
 | **unreal-gold-vr-external-research** | 2026-08-29 | `unknown` | `tree:83ff5ed3badace3f` | `—` | ⚪ unpinned | unknown | unknown |
 | **VirtualFortress2** | 2026-08-27 | `tree:55fad8d1871ed244` | `tree:55fad8d1871ed244` | `—` | 🟩 current | unknown | unknown |
 | **visceral-re2-vr-mod** | 2026-08-29 | `tree:dfbb912f1ec1c758` | `tree:b54e8fb8f08ff568` | `—` | 🟥 source changed | unknown | unknown |
-| **Vostok-VR-Mod** | 2026-08-26 | `tree:12bd87bb2b93482c` | `tree:12bd87bb2b93482c` | `74f73105d1e7326d60dedd525a3e6cd68bf30839` | 🟩 current | https://github.com/Blah64/Vostok-VR-Mod | unknown |
+| **Vostok-VR-Mod** | 2026-08-26 | `tree:12bd87bb2b93482c` | `tree:12bd87bb2b93482c` | `74f73105d1e7326d60dedd525a3e6cd68bf30839` | 🟩 current | https://github.com/Blah64/Vostok-VR-Mod | MIT |
 | **vr-analyzer-bible** | 2026-09-09 | `tree:a22a31975814991e` | `tree:a22a31975814991e` | `—` | 🟩 current | unknown | unknown |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | 2026-09-05 | `unknown` | `tree:a9678ae3c00b1813` | `—` | ⚪ unpinned | unknown | unknown |
-| **WeWereInVR** | 2026-08-28 | `unknown` | `tree:73ae278c47bffb04` | `—` | ⚪ unpinned | unknown | unknown |
-| **White_Knuckle_VR** | 2026-08-25 | `tree:0e9bfa4ea9f7dd43` | `tree:0e9bfa4ea9f7dd43` | `—` | 🟩 current | unknown | unknown |
-| **witcher3-vr** | 2026-08-25 | `tree:ea13c4e9680cad41` | `tree:37b6d0281492167f` | `—` | 🟥 source changed | unknown | unknown |
+| **WeWereInVR** | 2026-08-28 | `unknown` | `tree:73ae278c47bffb04` | `—` | ⚪ unpinned | unknown | MIT |
+| **White_Knuckle_VR** | 2026-08-25 | `tree:0e9bfa4ea9f7dd43` | `tree:0e9bfa4ea9f7dd43` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **witcher3-vr** | 2026-08-25 | `tree:ea13c4e9680cad41` | `tree:37b6d0281492167f` | `—` | 🟥 source changed | unknown | MIT |
 | **WorldWarVR-Releases** | 2026-08-25 | `tree:063d02ae99714575` | `tree:063d02ae99714575` | `—` | 🟩 current | unknown | unknown |
 | **XIII2003-vr-external-research** | 2026-08-29 | `unknown` | `tree:3e9cdbe38f8f12f6` | `—` | ⚪ unpinned | unknown | unknown |
 | **XIII2003-vr-mod** | 2026-08-29 | `unknown` | `tree:72fc043a98da5f11` | `—` | ⚪ unpinned | unknown | unknown |
@@ -361,14 +361,14 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
 | **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3374 | 322 | 2026-09-10 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 3325 | 2433 | 2026-09-09 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 294 | 58 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142608 | 4989 | 2026-09-10 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 301 | 60 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142613 | 4992 | 2026-09-10 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 212 | 75 | 2026-09-09 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
 | **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5471 | 134 | 2026-09-10 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 184 | 50 | 2026-09-10 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
 | **Sims4VR** | research target | EA custom (Sims 4) | hybrid-re+script | D3D11 | x64 | pre-T1 | T2 | unproven | 439 | 68 | 2026-09-10 | 🟥 source changed | 0F / 4P / 0S / 0NR / 9— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 70 | 30 | 2026-09-09 | 🟥 source changed | 2F / 4P / 0S / 7NR / 0— |
-| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3951 | 406 | 2026-09-10 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
+| **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3964 | 406 | 2026-09-10 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 
 ## Per-source area detail
 
