@@ -1931,6 +1931,70 @@ rung that inherits the union-frustum problem, not the one that avoids it. **Two-
 rung, not merely the tidier one** - which reverses the usual ranking, and is worth knowing before
 building the cheaper thing twice. `[SOURCE]` DishonoredVR, `f4fb409`.
 
+## STR-014 — Read the engine's frame timeline; never invent a frame number {#str-014}
+
+**Problem:** alternate-eye assigns eyes by frame parity, so a cadence source that is not exactly 1:1 with
+engine frames - a self-counted hook that fires twice, a high-level tick, an async marker stream trusted
+blindly - drifts, and drift shows as one eye lagging or the eyes swapping, intermittently, usually after
+a load.
+
+**Use when:** any alternate-eye (R3) integration; any engine that integrates a latency or telemetry SDK.
+
+**Recipe:**
+
+- **Three clocks** - engine, render, presenter - because the pipeline is staged across threads and each
+  ticks on its own beat. Parity comes from the engine clock; the history bank and the presenter read the
+  same one.
+- **Borrow the engine's frame index** when it exposes one; count your own only when it does not.
+  `frame ? frame : (count + 1)` absorbs both engines in one line.
+- **Hook instrumentation the engine already calls every frame with its index** - Reflex, Streamline,
+  PIX markers, a profiler boundary - at the *internal* marker function, not a high-level callback.
+- **Size the recovery to the signal.** A structural once-per-frame hook: trust it. An async marker
+  stream: warm-up gate, a mid-cadence-marker check, and **skip one present** to re-phase -
+  [STR-010](#str-010)'s mechanism for a cadence reason, with its bounded-and-counted rule.
+
+**Proof:** log all three clocks per frame; they advance in lockstep, one apart, with stable parity. A jump
+of two or a parity flip without a logged skip is the bug - the same proof shape as
+[STR-012](#str-012)'s push-minus-pop depth, applied to the engine's clocks.
+
+**Trip hazard:** the higher-level hook that looks right and "sometimes give 2 ticks" - starfield2vr's
+abandoned `worldTick` / Streamline `sl::ReflexMarker` path, kept upstream as 145 fully commented lines.
+Run STR-012's off-headset publishes-per-frame test against any new cadence source before trusting it.
+`[SOURCE]` starfield2vr `CreationEngineRendererModule.cpp:319-373`, anvilengine2vr
+`EngineRendererModule.cpp:8-50`, via vrframework guide 07 + `spi/FrameTimeline.hpp`; receipts resolved
+2026-09-10. See [09](09-d3d11-openxr-injection.md#three-frame-clocks).
+
+## STR-015 — Bank temporal history in both halves, per eye {#str-015}
+
+**Problem:** splitting the previous-frame *matrices* per eye stops the temporal pass reprojecting into the
+wrong eye, but the history *texture* still holds the other eye's pixels, so it still ghosts; and a bank
+sized for one resolution corrupts silently after a render-scale change.
+
+**Use when:** alternate-eye on a TAA / upscaler engine **where a headset test says temporal is not fine for
+this title** - [14](14-render-pass-hazard-atlas.md#velocity-not-temporal) has one where it was. This is
+the fix, not a prerequisite.
+
+**Recipe:**
+
+- **Matrices:** a two-frame delay line keyed by the constant-buffer address - snapshot what is there,
+  restore this eye's copy from two frames ago. **Honour the engine's own `resetHistory` flag** by
+  restoring nothing on a cut, in addition to reseeding on your own detected pose gaps.
+- **Textures:** per temporal resource, a pair of copies; around the engine's pass, save its current
+  buffer into this eye's slot, restore this eye's two-frames-ago copy - slots `(fc-1)&1` / `fc&1`, and
+  let the pass run first.
+- **Validate every use:** width, height or format differ from the copies - drop them all, reallocate.
+- **Find the resources empirically:** a per-resource on/off bitset, toggled until artifacts vanish, then
+  frozen as data.
+
+**Proof:** [14](14-render-pass-hazard-atlas.md#per-eye-history-bank)'s read-before-written test per
+resource, and the bitset - a toggle that changes nothing is scratch, not history.
+
+**Trip hazard:** it is only correct because the parity in [STR-014](#str-014) is; key both from the same
+counter. And a bank that duplicates intra-frame scratch (bloom/blur ping-pong) costs memory and can itself
+desync the eyes - see the reflexive-duplication warning in 14. `[SOURCE]` starfield2vr
+`CreationEngineRendererModule.cpp:107-151, 261-272, 302`, `.h:192`, `CreationEngineConstants.h:14`; via
+vrframework guide 10; receipts resolved 2026-09-10.
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared

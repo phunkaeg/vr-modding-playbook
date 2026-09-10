@@ -2478,6 +2478,32 @@ external:
       packaging_deploy:  {review: not_reviewed}
       source_integration: {review: not_reviewed}
 
+  - id: "vrframework"
+    root: "D:/Dev Debug/Other VR mods/vrframework"
+    status: external_reference
+    upstream_url: https://github.com/elliotttate/vrframework
+    license: "MIT (derivative of praydog/REFramework, copyright preserved; CREDITS.md names mutars' starfield2vr and anvilengine2vr as the studied ports, both public MIT)"
+    reviewed_at: 2026-09-10
+    reviewed_revision: "tree:ad1763c6062c42d2"
+    engine: RE Engine / Creation Engine 2 / AnvilNext 2.0 (a guide that READS three ports; ships no port)
+    api: D3D11/D3D12, OpenVR/OpenXR
+    vehicle: documentation
+    chapter: 9
+    areas:
+      stereo:            {review: partial, evidence: SOURCE, note: "Registered 2026-09-10 after a side-by-side with the playbook (briefs/2026-09-10-vrframework-comparison.md). WHAT IT IS: 17 guides, 58,384 words, plus a 5,760-line C++ scaffold the author calls 'an independent reconstruction of that shape from the public REFramework, not a copy'; the one 'reference integration' (fh5vr) is a single CMakeLists.txt and its _agent_reports are explicitly offline ('FH5 was not launched or attached'). Built 2026-05-31..06-05 in 12 commits, untouched since. It is a code-READING of three shipped ports by praydog and mutars, and its own README says so: 'built by reading, line by line'. So the grade is SOURCE-of-someone-else's-port throughout; it structurally cannot carry LIVE/HEADSET claims and uses no evidence taxonomy ('should' x40, 'tested' x1, 'we observed' x0 in 58k words). RECEIPTS: its README promises every claim has a file:line. Checked 4 citations into mutars/anvilengine2vr EngineCameraModule.cpp against a curl'd copy of the file (210 lines; the file has ONE commit, 2026-01-25, so drift since the guides were written is impossible): :58 exact, :106 exact, :11-49 contains its target at 15; the fourth (:145) is recorded in the brief. The 8 self-citations to E:/Github/vrframework resolve in this checkout (push_stereo_to_adapter at VR.cpp:264). Guides 08/10: three-strategy AFR table with cost figures; per-eye temporal history fix (pastProjections + SwapBuffer ping-pong keyed (fc-1)&1) - ch14 #velocity-not-temporal names 'make history per-eye' in one line, this has the implementation. COLLISION worth recording: guide 10 asserts TAA under AFR -> 'within a minute, nausea' with no headset test; ch14 has PreyVR's wearer choosing the temporal AA mode in the headset. Both can be true (severity is engine/content dependent) and their fix is the correct fix; the playbook's finding is that it was tolerable in one title without it. Per-eye history HARVESTED 2026-09-10 -> ch14 #per-eye-history-bank + STR-015."}
+      performance:       {review: partial, evidence: SOURCE, note: "HARVESTED 2026-09-10 -> ch09 #three-frame-clocks + STR-014; starfield2vr receipts resolved against raw files (10 exact, 2 off by one; GameLoop.cpp dead end confirmed 145/145 commented). Guide 07 + include/spi/FrameTimeline.hpp: an AFR mod must keep THREE clocks in lockstep - engine frame, render frame, presenter frame - with eye cadence from presenter%2 and a 'detect drift -> skip a present' recovery; both shipped ports converge on it (Anvil via two engine hooks, Starfield by decoding NVIDIA Reflex markers 6/0/1 engine, 2 render, 4 present inside setReflexMarkerInternal). The generalisable insight: an engine that integrates a latency SDK already emits its frame-phase timeline - hook the markers, not the game loop. Also records the abandoned worldTick/Streamline attempt that 'sometimes give 2 ticks' as a dead end. The playbook has #runtime-owns-pacing (compositor vs engine cap) and a free-running counter note at ch09:1720, but NO three-clock model and NO Reflex/Streamline treatment (grep: zero hits). Complementary, not overlapping: ours is about who owns cadence, theirs is about reading the engine's cadence to alternate eyes."}
+      xr_lifecycle:      {review: skimmed, evidence: SOURCE, note: "Guide 06 runtime integration; not compared in depth."}
+      camera_tracking:   {review: skimmed, evidence: SOURCE, note: "Guide 09 unpacks the eye-view composition engine_to_vr_basis * rotation_offset * hmd * eye_to_head * vr_to_engine_basis term by term (Anvil EngineCameraModule.cpp:106-114). Candidate recipe vs a1-rotation-and-frames; depth not compared."}
+      render_hazards:    {review: skimmed, evidence: SOURCE, note: "Guide 10 temporal/history under AFR; see stereo note for the collision with ch14."}
+      ui_hud:            {review: skimmed, evidence: SOURCE, note: "Guide 11: Anvil gates the whole VR camera on one bIsShowingUI dereference; Starfield classifies Scaleform movies by hashed name into HUD-overlay vs real-menu. Both are ch04-shaped findings; depth not compared."}
+      input_locomotion:  {review: skimmed, evidence: SOURCE, note: "Guide 12; ch03 (10,140 words) is ~3.5x its length; not compared."}
+      re_discovery:      {review: skimmed, evidence: SOURCE, note: "Guides 03/13 (hooking, pattern scanning, engine object model); ch11 (21,478 words) is ~5x guide 03 and carries the six-rung anchor ladder, prologue-scan lies and /OPT:ICF - nothing checked here that ch11 lacks."}
+      xr_input:          {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      source_integration: {review: not_reviewed}
+
 not_a_source:
   - id: "UEVR-joeyhodge_AFW_v1.0-beta.6"
     reason: "UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source."

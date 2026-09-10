@@ -166,6 +166,10 @@ that the observation and the cause are usually in different chapters.
 | The fact was proven but something unrelated regressed | [06](06-debugging-methodology.md#run-validity) — keep the fact, refuse the build |
 | A checker is green and you suspect it saw nothing | [META-013](pattern-catalog.md#meta-013) — clean and empty must differ |
 | Which memory scalar drives which matrix element | [11](11-re-anchoring-and-discovery.md#numerical-camera-mapping) — measure the derivative matrix |
+| Eyes drift out of step or swap after a load, intermittently | [STR-014](pattern-catalog.md#str-014) — read the engine's clocks; skip one present to re-phase |
+| The engine integrates Reflex / DLSS / Streamline and you need a frame clock | [09](09-d3d11-openxr-injection.md#three-frame-clocks) — hook the markers, not the game loop |
+| Ghosting remains after the temporal matrices were split per eye | [STR-015](pattern-catalog.md#str-015) — the history texture still holds the other eye |
+| Temporal history fix corrupts after changing render scale | [STR-015](pattern-catalog.md#str-015) — validate the bank's size and format on every use |
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
@@ -239,6 +243,19 @@ that the observation and the cause are usually in different chapters.
 | Signature resolution, SEH wrapper, reentrancy guard, hook counters, layer census | [A4](a4-hook-safety.md) |
 | Flat harness, robust noise floor, the control that vetoes a verdict, command seam | [A5](a5-flat-harness-stats.md) |
 | Burst capture for alternate-eye — a single frame tells you nothing | [A5.7](a5-flat-harness-stats.md) |
+
+## "The agent itself is going wrong"
+
+These are process symptoms — the AI is circling, not the mod. They route to the sections that already
+diagnose them, which the rest of this index did not reach.
+
+| What you're seeing | Go to |
+|---|---|
+| Fix after fix, none right; plausible hypotheses that never touch the data path | [06](06-debugging-methodology.md#agent-failure-modes) — stop hypothesising; trace the chain end to end, four questions in order |
+| An elaborate input-injection pipeline for something a direct value-write does | [06](06-debugging-methodology.md#agent-failure-modes) — ask "what value am I changing?" before "what button changes it?" |
+| Context fills fast; the agent is burning tokens | [06](06-debugging-methodology.md#agent-token-costs) — most tokens go to reading habits (re-paging, whole-file reads, wide greps), not game tooling |
+| A green harness or a self-consistent instrument you don't quite trust | [06](06-debugging-methodology.md#self-proving-instrument) — make it detect the known-bad state before you trust its clean verdict |
+| An agent needs its operating rules before touching the fleet | [bottleneck-map](bottleneck-map.md#agent-operating-protocol) — state hypothesis, control, variable and decision rule before code; keep ambiguous outcomes ambiguous |
 
 ## "I'm about to start something new"
 

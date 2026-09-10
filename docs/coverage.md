@@ -59,19 +59,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 22 | 15 | 35 | 16 |
-| `xr_lifecycle` | 6 | 7 | 0 | 49 | 45 |
-| `xr_input` | 4 | 1 | 4 | 48 | 50 |
-| `camera_tracking` | 12 | 13 | 1 | 40 | 41 |
-| `render_hazards` | 5 | 9 | 1 | 16 | 76 |
-| `ui_hud` | 5 | 13 | 5 | 43 | 41 |
-| `hands_interaction` | 6 | 14 | 5 | 35 | 47 |
-| `input_locomotion` | 2 | 4 | 1 | 16 | 84 |
-| `performance` | 8 | 8 | 3 | 43 | 45 |
-| `audio` | 1 | 1 | 0 | 53 | 52 |
-| `packaging_deploy` | 6 | 23 | 18 | 28 | 32 |
-| `re_discovery` | 14 | 16 | 5 | 34 | 38 |
-| `source_integration` | 2 | 8 | 7 | 34 | 56 |
+| `stereo` | 19 | 23 | 15 | 35 | 16 |
+| `xr_lifecycle` | 6 | 7 | 1 | 49 | 45 |
+| `xr_input` | 4 | 1 | 4 | 49 | 50 |
+| `camera_tracking` | 12 | 13 | 2 | 40 | 41 |
+| `render_hazards` | 5 | 9 | 2 | 16 | 76 |
+| `ui_hud` | 5 | 13 | 6 | 43 | 41 |
+| `hands_interaction` | 6 | 14 | 5 | 36 | 47 |
+| `input_locomotion` | 2 | 4 | 2 | 16 | 84 |
+| `performance` | 8 | 9 | 3 | 43 | 45 |
+| `audio` | 1 | 1 | 0 | 54 | 52 |
+| `packaging_deploy` | 6 | 23 | 18 | 29 | 32 |
+| `re_discovery` | 14 | 16 | 6 | 34 | 38 |
+| `source_integration` | 2 | 8 | 7 | 35 | 56 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -199,6 +199,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **visceral-re2-vr-mod** | external reference | RE Engine (Resident Evil 2, 2019) | framework-companion | T2 | — | 2 | 14 | 5 | 5 | 2026-08-30 | 🟥 source changed | 0F / 0P / 2S / 9NR / 2— |
 | **Vostok-VR-Mod** | external reference | Godot 4 | native-injector | — | — | — | 78 | 14 | 10 | 2026-08-26 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
 | **vr-analyzer-bible** | external reference | engine-agnostic (methodology) | documentation | — | — | 6 | 199 | 16 | 141 | 2026-09-08 | 🟩 current | 0F / 1P / 1S / 11NR / 0— |
+| **vrframework** | external reference | RE Engine / Creation Engine 2 / AnvilNext 2.0 (a guide that READS three ports; ships no port) | documentation | — | — | 9 | 79 | 46 | 27 | 2026-09-10 | 🟩 current | 0F / 2P / 6S / 5NR / 0— |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 20 | 0 | 0 | 2026-07-12 | ⚪ unpinned | 0F / 1P / 0S / 11NR / 1— |
 | **WeWereInVR** | external reference | Unity (We Were Here) | managed-plugin | — | — | 18 | 33 | 17 | 3 | 2026-08-28 | ⚪ unpinned | 1F / 2P / 0S / 8NR / 2— |
 | **White_Knuckle_VR** | external reference | Unity | managed-plugin | — | — | 18 | 4 | 0 | 3 | 2026-08-22 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
@@ -323,6 +324,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **visceral-re2-vr-mod** | 2026-08-29 | `tree:dfbb912f1ec1c758` | `tree:b54e8fb8f08ff568` | `—` | 🟥 source changed | unknown | unknown |
 | **Vostok-VR-Mod** | 2026-08-26 | `tree:12bd87bb2b93482c` | `tree:12bd87bb2b93482c` | `74f73105d1e7326d60dedd525a3e6cd68bf30839` | 🟩 current | https://github.com/Blah64/Vostok-VR-Mod | MIT |
 | **vr-analyzer-bible** | 2026-09-09 | `tree:a22a31975814991e` | `tree:a22a31975814991e` | `—` | 🟩 current | unknown | unknown |
+| **vrframework** | 2026-09-10 | `tree:ad1763c6062c42d2` | `tree:ad1763c6062c42d2` | `—` | 🟩 current | https://github.com/elliotttate/vrframework | MIT (derivative of praydog/REFramework, copyright preserved; CREDITS.md names mutars' starfield2vr and anvilengine2vr as the studied ports, both public MIT) |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | 2026-09-05 | `unknown` | `tree:a9678ae3c00b1813` | `—` | ⚪ unpinned | unknown | unknown |
 | **WeWereInVR** | 2026-08-28 | `unknown` | `tree:73ae278c47bffb04` | `—` | ⚪ unpinned | unknown | MIT |
 | **White_Knuckle_VR** | 2026-08-25 | `tree:0e9bfa4ea9f7dd43` | `tree:0e9bfa4ea9f7dd43` | `—` | 🟩 current | unknown | GPL-3.0 |
@@ -2354,6 +2356,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
 | `re_discovery` | 🟨 partial | `SOURCE` | Harvested 2026-09-09. A donor METHODOLOGY package, not a mod - taken for four things and no more. (1) The perturbation Jacobian as a DISCOVERY procedure for matrix layout, now ch11 #numerical-camera-mapping, hardened: the donor's jacobian_rank.py leaves unprobed cells at 0.0, so incomplete coverage is arithmetically identical to a real zero derivative and reads as rank deficiency - print the sample-count matrix. (2) INVALID as a verdict distinct from FAIL with an enumerated void checklist, plus FACT_VERDICT independent of BASELINE_VERDICT, now ch06 #run-validity + META-012. (3) Both offline checkers read had the clean-equals-empty defect, now ch06 #empty-is-not-clean + META-013. (4) Its case-study numbers are AUTHOR-grade only. DELIBERATELY NOT TAKEN: the AMBIGUOUS branch, baseline-revision recording and claim-scoped promotion, all of which ch06 #claim-scoped-promotion already had; and 'validate numerically, do not guess transpose', which ch09:479 and ch11's residual table already state MORE strongly than the donor does. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### vrframework
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟨 partial | `SOURCE` | Registered 2026-09-10 after a side-by-side with the playbook (briefs/2026-09-10-vrframework-comparison.md). WHAT IT IS: 17 guides, 58,384 words, plus a 5,760-line C++ scaffold the author calls 'an independent reconstruction of that shape from the public REFramework, not a copy'; the one 'reference integration' (fh5vr) is a single CMakeLists.txt and its _agent_reports are explicitly offline ('FH5 was not launched or attached'). Built 2026-05-31..06-05 in 12 commits, untouched since. It is a code-READING of three shipped ports by praydog and mutars, and its own README says so: 'built by reading, line by line'. So the grade is SOURCE-of-someone-else's-port throughout; it structurally cannot carry LIVE/HEADSET claims and uses no evidence taxonomy ('should' x40, 'tested' x1, 'we observed' x0 in 58k words). RECEIPTS: its README promises every claim has a file:line. Checked 4 citations into mutars/anvilengine2vr EngineCameraModule.cpp against a curl'd copy of the file (210 lines; the file has ONE commit, 2026-01-25, so drift since the guides were written is impossible): :58 exact, :106 exact, :11-49 contains its target at 15; the fourth (:145) is recorded in the brief. The 8 self-citations to E:/Github/vrframework resolve in this checkout (push_stereo_to_adapter at VR.cpp:264). Guides 08/10: three-strategy AFR table with cost figures; per-eye temporal history fix (pastProjections + SwapBuffer ping-pong keyed (fc-1)&1) - ch14 #velocity-not-temporal names 'make history per-eye' in one line, this has the implementation. COLLISION worth recording: guide 10 asserts TAA under AFR -> 'within a minute, nausea' with no headset test; ch14 has PreyVR's wearer choosing the temporal AA mode in the headset. Both can be true (severity is engine/content dependent) and their fix is the correct fix; the playbook's finding is that it was tolerable in one title without it. Per-eye history HARVESTED 2026-09-10 -> ch14 #per-eye-history-bank + STR-015. |
+| `xr_lifecycle` | 🟧 skimmed | `SOURCE` | Guide 06 runtime integration; not compared in depth. |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟧 skimmed | `SOURCE` | Guide 09 unpacks the eye-view composition engine_to_vr_basis * rotation_offset * hmd * eye_to_head * vr_to_engine_basis term by term (Anvil EngineCameraModule.cpp:106-114). Candidate recipe vs a1-rotation-and-frames; depth not compared. |
+| `render_hazards` | 🟧 skimmed | `SOURCE` | Guide 10 temporal/history under AFR; see stereo note for the collision with ch14. |
+| `ui_hud` | 🟧 skimmed | `SOURCE` | Guide 11: Anvil gates the whole VR camera on one bIsShowingUI dereference; Starfield classifies Scaleform movies by hashed name into HUD-overlay vs real-menu. Both are ch04-shaped findings; depth not compared. |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟧 skimmed | `SOURCE` | Guide 12; ch03 (10,140 words) is ~3.5x its length; not compared. |
+| `performance` | 🟨 partial | `SOURCE` | HARVESTED 2026-09-10 -> ch09 #three-frame-clocks + STR-014; starfield2vr receipts resolved against raw files (10 exact, 2 off by one; GameLoop.cpp dead end confirmed 145/145 commented). Guide 07 + include/spi/FrameTimeline.hpp: an AFR mod must keep THREE clocks in lockstep - engine frame, render frame, presenter frame - with eye cadence from presenter%2 and a 'detect drift -> skip a present' recovery; both shipped ports converge on it (Anvil via two engine hooks, Starfield by decoding NVIDIA Reflex markers 6/0/1 engine, 2 render, 4 present inside setReflexMarkerInternal). The generalisable insight: an engine that integrates a latency SDK already emits its frame-phase timeline - hook the markers, not the game loop. Also records the abandoned worldTick/Streamline attempt that 'sometimes give 2 ticks' as a dead end. The playbook has #runtime-owns-pacing (compositor vs engine cap) and a free-running counter note at ch09:1720, but NO three-clock model and NO Reflex/Streamline treatment (grep: zero hits). Complementary, not overlapping: ours is about who owns cadence, theirs is about reading the engine's cadence to alternate eyes. |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟧 skimmed | `SOURCE` | Guides 03/13 (hooking, pattern scanning, engine object model); ch11 (21,478 words) is ~5x guide 03 and carries the six-rung anchor ladder, prologue-scan lies and /OPT:ICF - nothing checked here that ch11 lacks. |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO

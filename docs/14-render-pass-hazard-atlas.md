@@ -125,6 +125,47 @@ use, and reseed both on renderer replacement, recenter, or calibration change.*)
 several frames as a camera cut and reseed both banks, or the first frame after a hitch reintroduces the
 artifact.
 
+### The other half of the bank: textures, the engine's own reset, and finding the resources {#per-eye-history-bank}
+
+SOMAVR's bank above splits the *matrices*. starfield2vr's does both halves on a D3D12 render graph, and
+the shape transfers. `[SOURCE]` Read in the port's own source, receipts resolved 2026-09-10. The donor
+guide that pointed at it (vrframework 10) asserts the fix is mandatory and predicts nausea without it -
+with no headset test; [#velocity-not-temporal](#velocity-not-temporal) has a wearer choosing temporal AA.
+Both can be true, because severity is engine- and content-dependent. **This is the fix for when temporal
+is not fine, not a prerequisite - measure first.**
+
+**Matrices: a two-frame delay line, and stay out of the engine's own reset.** The engine's
+"copy current to past" hook is where the previous view-projection is written for the next temporal pass;
+under alternate-eye that "previous" is the other eye. The port keeps a small map keyed by the
+constant-buffer address (low bits masked to the buffer base) and, on every copy, snapshots what is there
+now and restores the value from *two* frames ago - this eye's own. The detail SOMAVR's version did not
+need: the hook also receives the engine's **`resetHistory`** flag, and when it is set the port restores
+nothing. A scene cut or teleport is the engine resetting history deliberately; putting a stale matrix back
+re-introduces the artifact you are removing. Honour the engine's cut signal *in addition to* detecting
+your own pose gaps (`CreationEngineRendererModule.cpp:261-272`). This is also the correct handling of the
+slot [FAIL-STR-021](failure-atlas.md) describes being clobbered - see [#cbuffer-fields](#cbuffer-fields).
+
+**Textures: ping-pong a per-eye pair around the engine's pass.** Correct matrices tell the pass *where* to
+sample; if the history texture still holds the other eye's pixels you still ghost. For each temporal
+resource the port keeps a pair of copies and, around the engine's pass, does two `CopyResource`s: save the
+engine's current buffer into this eye's slot, then restore this eye's two-frames-ago copy into the
+engine's buffer - slots indexed `(fc-1)&1` and `fc&1` by frame parity, and **let the pass run first, then
+swap** (`:142-151`, invoked at the render-graph frame boundary at `:302` and again after the TAA pass,
+hooked by vtable slot). Which is why it is only correct when the parity in
+[09](09-d3d11-openxr-injection.md#three-frame-clocks) is.
+
+**Validate on every use, or a render-scale change corrupts the bank silently.** A VR mod changes render
+resolution constantly. Before each swap the port compares the live resource's width, height and format
+to its copies and, on any mismatch, drops all of them and reallocates (`:107-140`). A bank sized for the
+old resolution does not fail loudly; it blits garbage.
+
+**Find the resources empirically, and freeze the answer as data.** Every engine keeps different temporal
+state, and the read-before-written test below says which resources are genuinely history. The port's
+form of that test is a per-resource on/off bitset - `enabledResourcesToCopy` - toggled until the
+artifacts vanish and then committed as a constant (`CreationEngineConstants.h:14`). A toggle that changes
+nothing is scratch, not history, and the frozen bitset *is* the experiment's result, kept where the next
+person can re-run it. See [STR-015](pattern-catalog.md#str-015).
+
 **But do not duplicate every extra buffer reflexively.** A multi-pass framebuffer *pair* is not
 automatically a temporal history — most bloom/blur/SSR chains are ping-pong scratch that is fully
 rewritten within the same frame, and duplicating those costs memory and can itself introduce eye-desync.

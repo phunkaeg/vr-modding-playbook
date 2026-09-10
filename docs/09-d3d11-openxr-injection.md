@@ -1528,6 +1528,69 @@ The same reasoning applies to any engine-side limiter you find: vsync, a sleep i
 "max foreground FPS" setting. In a VR session they are all downstream of the compositor, and the one
 that should win is the one holding the swapchain.
 
+## Three clocks, and borrow the engine's: reading the frame timeline for alternate-eye {#three-frame-clocks}
+
+[#pose-timing-contract](#pose-timing-contract) fixes the *order* - wait once, cache, submit after every
+camera. Alternate-eye adds a question the order does not answer: **which frame is this, and therefore
+which eye?** Two shipped ports on two engines converged on the same answer, and it is engine-agnostic.
+`[SOURCE]` starfield2vr and anvilengine2vr, read via vrframework's guide 07 and `spi/FrameTimeline.hpp`;
+receipts resolved against the raw upstream files 2026-09-10.
+
+**Keep three clocks, not one.** A flat game has one meaningful frame count. A staged pipeline has three,
+each advancing on its own thread's beat:
+
+| Clock | Advances when | What it decides |
+|---|---|---|
+| **engine** | the main loop ticks the world | which eye this frame is; when to sample the HMD pose |
+| **render** | the render thread starts recording draws | whose commands are being built - view injection, history |
+| **presenter** | the frame is handed to the swapchain | the cadence the headset actually sees; drift detection |
+
+They are not equal at any instant - the engine runs one or two ahead of what is being presented, and
+that pipelining is good. The mod's job is to know which one just ticked.
+
+**Borrow the engine's frame index; count your own only when it has none.** Creation Engine 2 hands its
+frame number to every NVIDIA Reflex marker (`oldFrameIndex`); the port copies it into all three clocks
+and never invents one. Anvil's per-frame functions carry no index, so that port increments its own engine
+counter and derives the other two from it. One line absorbs the difference - `frame ? frame : (count + 1)`
+- and the rule behind it is what keeps alternate-eye honest: **the engine's own number is the authority
+whenever it exists.**
+
+**Look for instrumentation the engine already calls every frame.** An integrated latency or telemetry
+SDK - Reflex, Streamline, PIX markers, a profiler's frame boundary - is emitted from the engine's own
+threads at the engine's own pacing and carries its frame index. That is the timeline signal, already
+wired through the whole pipeline. starfield2vr hooks one function, `setReflexMarkerInternal`, and decodes
+marker IDs: **6/0/1** (first to arrive wins, guarded) is the engine edge - sample the pose, begin
+rendering, advance the overlay; **2** sets the render clock; **4** sets the presenter clock
+(`CreationEngineRendererModule.cpp:319-353`). This playbook had no mention of any of these SDKs before
+this section; check for them before hooking the game loop.
+
+**Hook the internal marker function, not the high-level callback.** The same port first tried
+`worldTick` and the Streamline-level `sl::ReflexMarker` callback. That path "sometimes give 2 ticks" per
+frame and was abandoned - `CreationEngineGameLoop.cpp` survives upstream with all 145 lines commented
+out, which is the useful fossil. A cadence source that is not 1:1 with frames cannot carry parity, and
+[STR-012](pattern-catalog.md#str-012)'s off-headset test - publishes per rendered frame - is exactly what
+catches it.
+
+**Size the synchronisation machinery to how untrustworthy the signal is.** Anvil's two structural hooks
+are called once per frame, in order, so that port trusts them: no warm-up, no drift check, no recovery,
+about fifty lines. Starfield's marker stream is asynchronous and multi-threaded, so that port polices it:
+a warm-up gate (`frames_since_reset > 100` - transients at startup and after loads are normal), a check
+for a render/present marker arriving while the port believed it was inside a clean left-then-right pair,
+and one recovery - **skip the next present** (`CreationEngineRendererModule.cpp:364-373`). Dropping a
+frame is the only correction that re-phases alternate-eye without showing a wrong eye; it is
+[STR-010](pattern-catalog.md#str-010)'s mechanism for a different reason, and it inherits STR-010's rule
+that a drop must stay rare, bounded and counted.
+
+**Parity is a contract three consumers share.** Even engine frame = left, odd = right - decide once. View
+injection, the eye the runtime is told about, and the per-eye history bank in
+[14](14-render-pass-hazard-atlas.md#per-eye-history-bank) must all read the *same* counter, or the history
+fix is silently keyed to the wrong eye. The history fix is only correct *because* the parity is.
+
+**Verify with a counter readout, not your eyes.** Log all three clocks every frame. They should advance in
+lockstep, one apart, with stable parity. A counter that jumps by two, or a parity that flips without a
+logged skip, is the bug - visible in a log long before a wearer feels it, and the same proof shape as
+STR-012's push-minus-pop depth. See [STR-014](pattern-catalog.md#str-014).
+
 ## What UE3 gives you for stereo, and the one thing it cannot express {#ue3-stereo-shape}
 
 Read from a UE3 licensee source tree and directly reusable by every UE3 target. `[SOURCE]`
