@@ -1113,6 +1113,58 @@ So the observation protocol, done once, in the headset:
 Six observations, one session, no need to take the headset off between them. That is usually enough to
 name the row before anyone touches the code.
 
+## Review the two eye images as a delta, not a screenshot {#eye-image-delta-review}
+
+The diagnosis above answers convergence by *wearing the headset*. Its offline companion takes the two eye
+images from a capture and measures the differences between them, so an agent - or a capture MCP feeding
+one - can check convergence and luminance asymmetry with **no headset and repeatably**. The fleet already
+runs image instruments this way; the discipline is [LIVE], and the trap is treating the pair as one diff.
+
+**A single left/right diff answers nothing, because the eyes are *supposed* to differ.** The IPD gives
+every pixel a horizontal shift by design, so a raw difference is dominated by the thing that is meant to
+be there. Split it into three delta fields, each with a different correct value:
+
+| Delta | Correct value | A nonzero reading means |
+|---|---|---|
+| **Horizontal disparity** | grows toward the viewer, ~0 at infinity | the depth signal itself; *constant with depth* is a mono render wearing a stereo costume ([FAIL-STR-001](failure-atlas.md)) |
+| **Vertical disparity** | ~0 everywhere | always a defect - the eyes cannot fuse it; growing toward the edges is toe-in keystone ([translate the eyes, don't rotate](#q-distance)) |
+| **Luminance / chroma** | ~0 in linear light | binocular rivalry or luster - one eye brighter or tinted, genuinely sickening ([FAIL-STR-056](failure-atlas.md)) |
+
+Derive the horizontal field against **linearised** depth, never the raw buffer
+([A3.5](a3-stereo-projection.md)), or the whole effect concentrates in the near field.
+
+**The pairing trap is the one that wastes an afternoon.** Under alternate-eye the two eyes live in
+*different engine frames*, so differencing two consecutively presented frames measures scene motion plus
+the IPD jump - not stereo - and reports everything as broken ([FAIL-STR-057](failure-atlas.md)). Pair the
+two images by shared display time, the way [xr-tape](#headless-instrument-operation) does, before you
+subtract anything. Then **subtract the expected disparity** (from depth and the baseline) and review the
+*residual*; or lean on vertical disparity and luminance, which must be ~0 regardless of the correct
+horizontal shift.
+
+Three more rules carry over from the fleet's image instruments:
+
+- **Compare in linear light, before the optical post.** Vignette and chromatic aberration are class-5
+  effects that should be off in VR anyway ([14](14-render-pass-hazard-atlas.md)); comparing post-tonemap
+  conflates them with real rivalry. Per-eye auto-exposure is the usual cause of a true luminance delta -
+  two eyes metering the world independently ([14](14-render-pass-hazard-atlas.md)) - as is an asymmetric
+  per-eye post or velocity chain ([FAIL-PERF-018](failure-atlas.md)) or HDR copied into an 8-bit
+  swapchain on one eye (later in this chapter). **Mask the HUD/reticle layer** first; it composites per
+  eye and dominates a naive diff ([04](04-ui-and-hud.md)).
+- **Compare the image, not a whole-frame scalar, and not a single frame.** A mean luminance delta hides a
+  local one; capture a burst, find **connected clusters** and judge the largest, and derive the threshold
+  from a same-eye noise floor rather than importing one
+  ([06](06-debugging-methodology.md#metric-cannot-fail), [08](08-project-process.md), [A3.4](a3-stereo-projection.md)).
+- **The reviewer must be able to say NO.** Feed it a swapped-eye pair and a one-eye-dimmed pair and
+  require each to fail before you trust a clean verdict ([06](06-debugging-methodology.md#self-proving-instrument)),
+  and never score disparity against an expectation the same code produced
+  ([06](06-debugging-methodology.md#external-witness)).
+
+**Where the pixels come from:** the [xr-sim](#headless-instrument-operation) D3D11 capture emits per-eye
+images directly; a RenderDoc capture exposes each eye's target for pixel reads; apitrace can diff two
+images - all reached as the MCPs in [11](11-re-anchoring-and-discovery.md#re-tool-surface). The tool
+supplies the pixels; **the three deltas, the residual, the connected-cluster report and the pass/fail are
+the agent's**, and it should cite which two frames it paired. See [STR-016](pattern-catalog.md#str-016).
+
 ## Canted displays: use each eye pose directly instead of forcing parallel projection
 
 Some headsets (Pimax, and others with angled panels) mount their displays **canted** — rotated inward

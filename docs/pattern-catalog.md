@@ -2022,6 +2022,38 @@ PID, architecture - so a wrong-target action is visible in the log rather than i
 than "is this pointed at my target?". A convenience endpoint failing is also not proof the underlying data
 is absent - check selection and schema, then try another read-only path. `[SOURCE]`
 
+## STR-016 — Review the two eye images as three separate delta fields {#str-016}
+
+**Problem:** a single left/right image diff answers nothing - the eyes *should* differ by the IPD shift,
+so a raw diff is dominated by the thing that is meant to be there, while the three defects that matter (no
+depth, vertical disparity, luminance rivalry) each have a different correct value and get averaged into
+one meaningless number.
+
+**Use when:** validating stereo from a capture - headless, in CI, or after a headset viewer reports "won't
+fuse" or "one eye brighter" and you want a measurement instead of a memory.
+
+**Recipe:** separate three deltas, each judged against its own correct value.
+
+- **Horizontal disparity**, against linearised depth: must grow toward the viewer and vanish at infinity;
+  constant with depth is a duplicated mono render ([FAIL-STR-001](failure-atlas.md)).
+- **Vertical disparity**: ~0 everywhere; anything else is unfusable, and edge-growing is toe-in keystone.
+- **Luminance / chroma**: ~0 in linear light, before the optical post; a spatially broad delta is
+  binocular rivalry.
+
+Pair the two eyes by shared display time - **never consecutive presented frames**, which under
+alternate-eye measure scene motion plus the baseline jump. Subtract the expected disparity before reading
+a residual, mask the HUD, and judge connected clusters rather than a whole-frame mean.
+
+**Proof:** feed the reviewer a swapped-eye pair and a one-eye-dimmed pair and require each to fail; derive
+the threshold from a same-eye noise floor. A capture MCP supplies the pixels; the decomposition and the
+verdict are the agent's, and it records which two frames it paired.
+
+**Trip hazard:** three ways this silently lies - differencing consecutive frames under alternate-eye
+(measures motion, not stereo), comparing post-tonemap (conflates the optical post with real rivalry), and
+trusting a whole-frame scalar (a mean hides a local defect). `[LIVE]` the image-instrument discipline is
+the fleet's; `[SOURCE]` the three-delta decomposition consolidates it. See
+[09](09-d3d11-openxr-injection.md#eye-image-delta-review).
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared

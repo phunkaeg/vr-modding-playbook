@@ -45,6 +45,7 @@ that the observation and the cause are usually in different chapters.
 | Shading swims with your head instead of sticking to surfaces | [14](14-render-pass-hazard-atlas.md) — a mono screen-space buffer sampled with per-eye UVs |
 | Ghosting / trails / motion-blur wrongness | [14](14-render-pass-hazard-atlas.md) — temporal effects under alternate-eye; the "previous frame" is the other eye |
 | Subtle per-eye difference in grain or noise | [14](14-render-pass-hazard-atlas.md) — a once-per-frame mutable packet double-advancing |
+| One eye brighter or colour-shifted; hard to fuse | [FAIL-STR-056](failure-atlas.md) — luminance/chroma delta between the eyes is rivalry, not a local artefact ([STR-016](pattern-catalog.md#str-016)) |
 | Captured a frame to check the render and it landed mid-sequence | [06](06-debugging-methodology.md) — a single frame under alternate-eye is *arbitrary*. Capture a hotkey-armed burst: [A5.7](a5-flat-harness-stats.md) |
 | Can't tell whether eye alternation is actually happening | [06](06-debugging-methodology.md) — window captures are phase-locked and can never show it. Burst + labelled filenames: [A5.7](a5-flat-harness-stats.md) |
 | Geometry doubled, mirrored, or phantom | [09](09-d3d11-openxr-injection.md) — two projection bases in one frame |
@@ -253,6 +254,8 @@ that the observation and the cause are usually in different chapters.
 | A versioned tool refuses to connect after an update | [META-014](pattern-catalog.md#meta-014) — pair client and plugin by codename/hash, not version number |
 | Running a mod with no headset attached | [09](09-d3d11-openxr-injection.md#headless-instrument-operation) — select xr-sim per process; drive it through its state channel |
 | A headless run went green and you are not sure it is real | [09](09-d3d11-openxr-injection.md#headless-instrument-operation) — SKIP is not PASS, and a green contract is not headset acceptance ([FAIL-XR-022](failure-atlas.md)) |
+| Reviewing stereo convergence or luminance from a capture, no headset | [09](09-d3d11-openxr-injection.md#eye-image-delta-review) — split the pair into three delta fields; an agent or MCP runs it |
+| An automated left/right image diff says everything differs | [FAIL-STR-057](failure-atlas.md) — pair the same sim-frame and remove the expected disparity first ([STR-016](pattern-catalog.md#str-016)) |
 
 ## "The agent itself is going wrong"
 
