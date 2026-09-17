@@ -1054,6 +1054,34 @@ disk. The proxy is installed at launch and the previous state restored at exit, 
 
 ---
 
+### A short successful re-entry run is not an endurance gate {#reentry-endurance}
+
+Titanfall2VR's release leaves its compiled same-frame re-entry experiment disabled.
+`KNOWN-ISSUES.md` reports a deadlock after about 129 doubled frames; the source
+contains bounded experiments for once-per-frame latches, job waits and frame
+epilogues. Those experiments are useful **negative prior art**, not a working
+native-stereo recipe. The reported horizon and runtime diagnoses are `[AUTHOR]`;
+we inspected source and did not reproduce the hang.
+
+Use two distinct gates. First, a small controlled burst proves the seam returns
+and isolates immediate side effects. Then a separate sustained test must exceed
+the target's observed failure horizon and exercise job/resource reuse and scene
+transitions. Log logical frame, pass, job identity/generation, waits and teardown;
+retain a single-render control. A deliberately sub-horizon run can isolate a
+variable, but cannot establish sustained viability. No fixed number of frames is
+a universal acceptance threshold.
+
+The donor's thread-local pass tag also explicitly excludes asynchronous worker
+work. A time window around nested rendering cannot assign every later upload to
+that eye. Use [carried cache identity](14-render-pass-hazard-atlas.md#pair-cache-identity)
+or [actual command-list execution](09-d3d11-openxr-injection.md#deferred-eye-execution)
+where those are the real ownership boundaries. Do not copy experimental job/latch
+writes into another engine to get past a hang; prove what owns and consumes them.
+Keep the existing working stereo fallback while investigating.
+
+Sources: [Titanfall2VR KNOWN-ISSUES.md](https://github.com/TinyBlkDog/titanfall2vr/blob/8c50a7d491d9a275103cfc659430e4bc1b75a608/KNOWN-ISSUES.md)
+and [scene_reentry.cpp](https://github.com/TinyBlkDog/titanfall2vr/blob/8c50a7d491d9a275103cfc659430e4bc1b75a608/plugin/src/render/scene_reentry.cpp).
+
 ## What a rung-1 refusal looks like, and what to do next {#rung1-refusal}
 
 The gate above is only useful if a failure is as legible as a pass. BL1GOTYVR's is the clearest recorded

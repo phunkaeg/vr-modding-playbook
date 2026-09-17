@@ -624,6 +624,40 @@ Their second rule is about how you earn the right to try:
 > framebuffer, render pass, command-buffer, and image-lifetime assumptions. Previous direct calls failed
 > inside `BeginRenderPass` with invalid Vulkan state.
 
+### Replay needs original inputs and two separate retirement proofs {#replay-input-retirement}
+
+KHARVOX's experimental Vulkan replay adds two useful checks to the lifecycle above.
+`preserveStorageAttachmentInputs` seeds readable/writable attachment mirrors
+**before the first real pass**; `canCompleteFrame` requires original-input
+preservation as well as root/final output and converged mirrors. Allocating every
+mirror is not sufficient: seeding from already-processed left-eye output gives the
+second eye the wrong input epoch. The source attributes a tonemapped-input failure
+to this ordering; that runtime account remains `[AUTHOR]`. The inspected guard and
+copy placement are `[SOURCE]`.
+
+Retirement has two independent prerequisites: no CPU worker can still record a
+reference, **and** the relevant GPU work has completed. KHARVOX represents memory
+free and image destruction as different variant types in one ordered queue,
+retaining typed dispatch and allocator data. Equal raw handle bits do not make
+different object types interchangeable. Its bounded queue refuses duplicate,
+non-deferrable and over-capacity requests during an active epoch rather than
+freeing a resource still in use. A caller must handle refusal explicitly.
+
+`DeferredMemoryFreeQueue::complete()` trusts its caller: it does **not** query a
+GPU fence. Our standalone test proves queue ordering/refusal only, not safe engine
+teardown. Similarly, `PresentWaitOwnership` is a useful policy helper, but the
+review found no production consumer of that helper; its existence is not evidence
+that every real submit path balances binary waits. Keep submit success and later
+completion failure separate when auditing those paths.
+
+Sources: [NativeFinalReplay.inc](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/native/NativeFinalReplay.inc),
+[NativeResourceRetirement.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/native/NativeResourceRetirement.h),
+[NativeDeferredMemory.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/native/NativeDeferredMemory.h)
+and [NativeStereoPolicy.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/native/NativeStereoPolicy.h).
+The donor recommends alternate-eye rendering; this is **not** an endorsement of
+its experimental native route. Source-owned ports can put these invariants in
+resource owners; RE-owned ports must first prove the actual recording/free seams.
+
 ### Three full frames per displayed frame is a real starting architecture {#vulkan-three-frame-proof}
 
 Their proof of concept renders **one desktop frame and two XR eye frames by running three complete game

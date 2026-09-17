@@ -2054,6 +2054,157 @@ trusting a whole-frame scalar (a mean hides a local defect). `[LIVE]` the image-
 the fleet's; `[SOURCE]` the three-delta decomposition consolidates it. See
 [09](09-d3d11-openxr-injection.md#eye-image-delta-review).
 
+## STR-017 — When the race resolves per eye, hook the writer's return {#str-017}
+
+**Problem:** the usual last-writer protocol — write after the engine tick, clear the dirty flag, compare an
+anchor bone — can still lose to an engine re-evaluation that runs **inside one eye's pass**. Because it
+runs in one pass only, one eye draws your pose and the other draws the engine's, and the symptom is a
+one-eye flicker that sends you looking at stereo pairing instead of at a writer.
+
+**Use when:** you drive a skeleton, transform or matrix the engine also owns, and a difference shows up
+**between the eyes in content** rather than in geometry or timing.
+
+**Recipe:**
+
+- **Classify identity vs content first.** If the pairing layer is clean — shared display time, correct eye
+  order, distinct sub-images — it is frame *content*, and nothing in the XR layer will explain it.
+- **Name the writer; do not infer it.** A hardware write watch on the bank plus a stack walk at the hit
+  names it every time, which is [#writer-census](11-re-anchoring-and-discovery.md#writer-census) applied
+  under stereo.
+- **Attach to the writer rather than out-racing it.** Resolve its vtable slot at runtime, hook it, filter
+  on the instance and the owning thread, and repaint on return. You cannot win by writing earlier against
+  a participant that runs after you by construction.
+- **Measure the re-evaluation rate.** It is often a function of session age, so a fresh-boot A/B can read
+  clean while the shipped build is unusable.
+
+**Proof:** a **three-state** control — driver off, driver on with no re-evaluation pressure, driver on
+under load. Two states confound the driver with the pressure; the middle state is what clears the driver.
+
+**Trip hazard:** clearing the dirty flag is necessary and not sufficient — the engine can re-dirty and
+re-evaluate *within* a pass. And the symptom names the wrong subsystem: "one eye flickers" reads as a
+stereo bug and is a write-ordering bug. `[SOURCE]` BioShock-Trilogy-VR v0.8.3 (session 74), headset-
+confirmed by its author. See [13](13-teardown-bioshock-vr.md#per-eye-writer-race).
+
+## UEVR-001 — Solve it in the profile's declarative layer before you write a plugin {#uevr-001}
+
+**Problem:** a UEVR companion is assumed to be "a DLL", so work that the profile can express as data —
+attaching a component to a hand, binding the camera, stopping an animation — gets written as code, where
+it is longer, build-coupled and harder for anyone else to adjust.
+
+**Use when:** any UEVR-framework target, before opening a C++ project.
+
+**Recipe:** reach for the layers in this order.
+
+1. **UObjectHook attach state** (`<hash>_mc_state.json`) — attach any component to a motion controller
+   by UE object path, with location/rotation offsets and a `permanent` flag. A headlamp following your
+   hand is a JSON file, not a feature.
+2. **Property overrides** (`<hash>_props.json`) — set properties by path. The cheapest way to stop an
+   engine animation fighting a pose you drive is `RateScale: 0` on its sequence, not a hook.
+3. **Camera state** (`camera_state.json`) — bind the VR camera to an existing component plus an offset;
+   engines often already ship a marker (an `ArrowComponent`) at the right place.
+4. **Only then a plugin**, for game semantics the above cannot express.
+
+**Proof:** count what the plugin would no longer need to do. If a feature can be removed from the DLL and
+re-expressed as attach state or a property override, the declarative form is the shipping form.
+
+**Trip hazard:** the plugin's own scale is misleading. **Measured on a feature-rich production companion:
+~6,000 first-party lines, of which the UEVR API surface used is a handful of `param()` calls plus
+`uevr::Plugin` / `uevr::API::UStruct`** — everything else is written against the *game's* UObject graph
+through a generated SDK. So the skill this route demands is UE gameplay/UMG/animation modding, not
+graphics or framework work, and staffing it as the latter is the common planning error. `[SOURCE]`
+SystemReShock-UEVR-Plugin. See [the UEVR route](uevr-route.md).
+
+## UEVR-002 — Make VR behaviour a function of game state, not a global mode {#uevr-002}
+
+**Problem:** "VR mode is on" is not a useful state. A cinematic, a pause menu, an inventory screen, an
+intro sequence and a second playable space (here: cyberspace) each want different arms, different camera
+ownership, different interaction and different UI — and a single global policy fights all of them.
+
+**Use when:** the target has cutscenes, multiple pawns, an in-world UI mode, or any non-standard playable
+space. That is most narrative games.
+
+**Recipe:** build an explicit state machine and key VR policy off it.
+
+- **Classify by pawn class first, then by context.** The production profile dispatches on the pawn
+  (implant / avatar / simple-intro / ghost) and then on state: `CINEMATIC`, `PAUSE_MENU`, `MFD`,
+  `BOOTING_UP`, `CRASHING`, `INTERACTABLE`, `MAIN_MENU`, `INTRO_DRONE`, `INTRO_LAPTOP`, `PSEUDOSPACE`,
+  normal gameplay.
+- **Own the camera per animation, not globally.** Classify the engine's montages in a table
+  (name → type: starting / ending / single) and take camera control on start, hand it back on end,
+  restoring the rotation you saved. Scripted animations are the main source of "the camera is fighting
+  me".
+- **Drive per-entity exceptions from data.** Two tables worth copying wholesale: *interactable name →
+  hide the arms while interacting*, and *weapon → mesh search string, offset, selector distance*. One
+  mechanism, per-entity data.
+
+**Proof:** enumerate the states, then verify each one's policy in-game. A state you cannot name is a
+state whose VR behaviour is accidental.
+
+**Trip hazard:** the states you will forget are the non-gameplay ones — boot-up, crash/death, menus,
+intro sequences — and those are exactly where a wrong camera owner is most obvious to a wearer.
+`[SOURCE]` SystemReShock-UEVR-Plugin.
+
+## UEVR-003 — Reparenting a game widget into 3D fights its 2D layout {#uevr-003}
+
+**Problem:** the natural way to put a game's UMG widget on your wrist is to bind it to a
+`WidgetComponent`. Doing that to a widget the game still uses in its own 2D UI breaks the 2D layout, and
+some "accessibility" options silently invalidate the 3D placement.
+
+**Use when:** putting any existing in-game widget into the world, especially one that must keep working
+in its original screen.
+
+**Recipe:**
+
+- **Save the original panel slot before you re-bind, and recreate it afterwards at the same canvas
+  position.** Binding a widget to a `WidgetComponent` while it is still parented into the 2D canvas
+  mangles its layout; the production profile removes it from its parent, binds it, then rebuilds the slot
+  from the saved attributes so the same widget instance serves both the flat UI and the VR selector.
+- **Force the host options that change 2D layout maths to neutral.** A **curved-HUD option must be set
+  to 0** or hotbar slots reparented into 3D land in the wrong place — the curve is applied in the 2D
+  layout you are now bypassing ([FAIL-HUD-016](failure-atlas.md)). Same for head-bob, toggle-crouch,
+  toggle-ADS and "focus camera on puzzles"; see
+  [08](08-project-process.md#host-settings-policy).
+- **Give the interaction trace a channel that ignores your own body.** A `WidgetInteractionComponent`
+  laser will collide with the player's own arm and hand meshes before it reaches the widget. Set a
+  dedicated trace channel and set the body meshes to ignore it — and note that the production profile
+  records **disabling collision on the arms outright as a failed attempt**.
+
+**Proof:** the widget works in both places — flat UI unchanged, 3D copy hit-testable — and the laser
+reaches it from a pose where your own arm is between hand and widget.
+
+**Trip hazard:** re-binding a widget naively can explode object count. The same profile records
+`WidgetComponent`-driven minimap setup **causing massive UObject creation whenever the minimap was
+looked at**, and left it disabled rather than shipped. `[SOURCE]`
+
+## HAND-018 — Physicalising an interaction removes the rule the designer relied on {#hand-018}
+
+**Problem:** replacing a button press with a hand does not just change the input — it deletes the
+gate the original interaction enforced. The flat game's "open container → take item" is a transaction
+with rules; a hand reaching through the container's geometry is not.
+
+**Use when:** before shipping physical grab, physical crouch, or a hand-held weapon in a game that was
+designed around discrete interactions. Read it *before*, because each of these ships as a feature and
+lands as an exploit.
+
+**Recipe:** for every interaction you physicalise, name the invariant it used to enforce, then decide
+explicitly whether to re-impose it.
+
+| Physicalised | Invariant it silently removed |
+|---|---|
+| Grab items by hand | "you may only take from a container you opened" — becomes theft through geometry |
+| Physical crouch | "in this tunnel the camera is at crouch height" — stand up and see through the level |
+| Hand-held weapon | "the wall is between you and the enemy" — a barrel through a door still fires |
+| Free hands near NPCs | scripted interaction ranges and trigger volumes |
+
+**Proof:** try to cheat each one deliberately. This is the
+[instrument that must be able to say NO](06-debugging-methodology.md#self-proving-instrument) pointed at
+game rules: if you cannot break the invariant on purpose, the re-imposition works.
+
+**Trip hazard:** these are not edge cases and they are not bugs in your VR layer — they are the expected
+consequence of removing a gate, and a shipped production mod lists all four of them as known issues at
+once. Budget for re-imposing the rules (collision on held weapons, a crouch-height clamp in low spaces,
+container-state checks on grab) as part of the feature, not as polish afterwards. `[SOURCE]`
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared

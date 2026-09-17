@@ -48,6 +48,7 @@ nav:
   - Port workflows:
     - "RE-owned route (primary)": reverse-engineered-route.md
     - Source-owned route: source-owned-route.md
+    - "UEVR route (framework-owned stereo)": uevr-route.md
     - Shared VR engineering spine: shared-vr-spine.md
   - Core VR systems:
     - 00 · Engine profiles: 00-engine-profiles.md

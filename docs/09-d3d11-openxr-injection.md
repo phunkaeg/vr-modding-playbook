@@ -474,6 +474,32 @@ Evidence: `Swat4-VR/docs/reviews/openxr-2026-09-09/probe-output.txt`,
 `Sims4VR/experiments/native_m1_20260910/REPORT.md`. No headset, full re-entry
 side-effect or release acceptance is implied by these controls.
 
+### A deferred copy is not ready when it was recorded {#deferred-eye-execution}
+
+Extend the [completed-draw transaction](#completed-draw-transaction) across the
+graphics command queue. MGS5VR's `scene_capture.cpp` carries each eye-copy packet
+through **deferred context → finished command list → execution on the immediate
+context**. It keeps separate recorded and executed eye masks, retains command-list
+identity, and makes the pair eligible only after both masks contain both eyes.
+Device, activation and source/tracking sequence checks reject stale publications.
+An immediate-context copy can take the shorter path. `[SOURCE]`
+
+The transferable test is not “did both Copy calls happen?” Record two copies,
+execute only one list, execute out of order, cancel/disarm, then complete the pair.
+Only the last valid, same-generation pair may publish. Log packet ID, eye, context,
+list identity and execution sequence so worker scheduling cannot hide the gap.
+
+**Execution is not GPU completion.** Returning from `ExecuteCommandList` establishes
+queue insertion, not a fence result. MGS5VR's later ordered copy/mailbox handoff is
+a separate part of the contract; a port must prove its own GPU synchronization and
+resource lifetime. Nor is this a general D3D11 state saver: the capture helper saves
+one render-target binding, not an arbitrary MRT set. For source-owned engines,
+attach the packet to the render task directly; RE-owned ports must establish the
+real Finish/Execute consumers rather than infer ownership from a time window.
+
+Source: [MGS5VR scene_capture.cpp, pinned revision](https://github.com/nikamigaming-create/MGS5VR/blob/a51c4b9660f18addc71f06208fcd357d5ad58b15/src/scene_capture.cpp).
+No donor or fleet GPU execution was tested in this harvest.
+
 ## Private per-eye color and depth targets
 
 The safest first native-stereo route preserves the original game draw and adds an offscreen
@@ -1164,6 +1190,40 @@ images directly; a RenderDoc capture exposes each eye's target for pixel reads; 
 images - all reached as the MCPs in [11](11-re-anchoring-and-discovery.md#re-tool-surface). The tool
 supplies the pixels; **the three deltas, the residual, the connected-cluster report and the pass/fail are
 the agent's**, and it should cite which two frames it paired. See [STR-016](pattern-catalog.md#str-016).
+
+### Where you capture decides what the comparison can see {#eye-capture-point}
+
+Everything above assumes the two images are what the mod **submitted**. Capture them downstream of the
+compositor instead and one of the three checks quietly stops working: **an interocular diff can no longer
+detect a mono render**, because the compositor presents the identical pair at the two layer poses and
+reintroduces exactly the difference the check was looking for.
+
+This is measured, not theoretical. A deliberate mono negative control — both eyes the identical image —
+read **mean 54.8, inside the normal parallax band**, and every image leg of a five-leg stereo check stayed
+green while the per-eye replay rate collapsed **90 to 0** within five seconds of the view drive being
+disabled. The author's own verdict: *"the floor never detected the mono failure it was imagined to
+guard."* `[SOURCE]`
+
+So **capture as submitted, and never let the image comparison be your mono gate.** Two further
+calibration notes from the same source: the interocular band **includes quad compositing** (HUD panel, aim
+laser), so it is not pure parallax — mask those layers or widen the band knowingly; and the band is
+**scene-dependent**, so calibrate it on a known-good build and re-validate it with a deliberate negative
+control rather than trusting a number from elsewhere.
+
+**The three instruments have complementary blind spots, which is why a stereo check needs legs from more
+than one of them:**
+
+| Instrument | Sees | Structurally cannot see |
+|---|---|---|
+| **Wire / submission** ([xr-tape](#headless-instrument-operation)) — upstream of the compositor | mono (`eye_subimages_distinct`), pairing, submitted pose and FOV | **per-eye content divergence** — both eyes are legitimately distinct |
+| **Rendered images** (this section) | content divergence between the eyes | **mono**, if captured after the compositor |
+| **In-process rate counters** | a dead per-eye replay lane — the ground truth for pairing | anything about content |
+
+A per-eye *content* bug such as [FAIL-STR-062](failure-atlas.md) leaves the wire perfectly clean, so no
+submission check can ever catch it; a mono render leaves the rendered pair looking correct, so no
+post-compositor image check can ever catch it. And none of the three sees an offset-dependent
+post-process artefact — a change to the render set still needs a headset pass
+([FAIL-XR-022](failure-atlas.md)).
 
 ## Canted displays: use each eye pose directly instead of forcing parallel projection
 
@@ -2011,6 +2071,32 @@ did not submit, by a sub-pixel amount that is still a lie about where the rays g
 **And round outward, deliberately:** *"tangent-space leading edges are floored and trailing edges are
 ceiled so quantization never drops a requested ray at the boundary."* Rounding to nearest can shave a
 requested ray off an edge; rounding outward can only include a pixel you did not need.
+
+MGS5VR supplies an executable example of this same rule: `eyeImageRegion` rounds
+outward, rejects requested rays outside the rendered envelope, and derives the
+declared FOV from the resulting pixel boundaries. Its `core_tests.cpp` compares
+source and submitted rays at corners and interior points. Our September 14
+standalone checks additionally exercised an odd 1511×977 extent, invalid optics
+and missing coverage. This tests the arithmetic, **not** game culling or headset
+acceptance. [Pinned implementation](https://github.com/nikamigaming-create/MGS5VR/blob/a51c4b9660f18addc71f06208fcd357d5ad58b15/src/stereo.cpp).
+
+### Prove whose rectangle it is before doing the crop maths {#world-rect-provenance}
+
+Titanfall2VR's source records an opening-video failure where “last viewport before
+camera upload” associated a 32×32 auxiliary viewport with the world camera. The
+crop maths can be correct while its input belongs to the wrong pass. `[SOURCE;
+the reported 46-second runtime episode is AUTHOR, not reproduced here]`
+
+Its `WorldPassViewportPlausible` rejects rectangles below half the known target in
+either axis, retaining a previously accepted rectangle. Treat that as a
+**target-calibrated rejection filter**, not proof of world ownership. Its unknown
+target path deliberately accepts everything. Our standalone controls reproduce
+both the tiny-rectangle rejection and that permissive limitation. Bind accepted
+rectangles to target/resize epoch and view provenance; test opening videos,
+letterboxing, menus and resize before relying on last-good state. Do not transplant
+the 0.5 threshold as an engine-independent constant.
+
+Source: [Titanfall2VR world_rect_gate.h](https://github.com/TinyBlkDog/titanfall2vr/blob/8c50a7d491d9a275103cfc659430e4bc1b75a608/plugin/src/render/world_rect_gate.h).
 
 ### Changing presentation size without destroying the asymmetry
 

@@ -204,6 +204,61 @@ viable. A TAA-era engine (roughly 2016 onward) is much harder to alternate-eye, 
 same-frame per-eye rendering or scene re-entry ([09](09-d3d11-openxr-injection.md),
 [13](13-teardown-bioshock-vr.md)).
 
+### A pair cache belongs to the entity and generation, not the worker thread {#pair-cache-identity}
+
+KHARVOX's `AerWeaponPoseCache` stores first-phase poses by `(entity, pair serial)`
+in a bounded, mutex-protected table; the second phase reuses only that exact key.
+An unmatched lookup leaves the native result alone, and a full table does not
+evict an unrelated entity merely to make the lookup succeed. `AerCameraPairCache`
+uses the same principle for camera-stage identity. `[SOURCE]`
+
+This solves a different problem from a thread-local eye tag: a worker pool can
+evaluate the same entity on different threads between eyes. Keep thread-local
+tags only for scopes whose work demonstrably stays synchronous. Carry the pair
+identity through the producer/consumer boundary, and reset or change generation
+at scene changes, discontinuities and ownership changes. Test two interleaved
+entities, a worker change, an old serial and table overflow. It is an AFR
+coherence mechanism, not proof of two views from one simulation tick.
+
+For artificial turns, KHARVOX also stores a snap generation beside each cached
+eye. Its transition only completes once both valid cached eyes belong to the
+current generation; optional stale-eye compensation uses the turn delta belonging
+to that cached image. Do not silently stamp old pixels with the newest pose.
+This reinforces [carried eye identity](17-teardown-fc2vr-native-stereo.md#carry-eye-identity),
+not a second history-bank architecture.
+
+Sources: [AerWeaponPoseCache.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/weapon/AerWeaponPoseCache.h),
+[AerCameraPairCache.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/camera/AerCameraPairCache.h),
+[SnapTurnStereoPolicy.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/openxr/SnapTurnStereoPolicy.h)
+and their `OpenXRBootstrap.cpp` consumers. No worker/turn runtime test here.
+
+## Wider VR coverage can exhaust a fixed streaming queue {#bounded-streaming-append}
+
+Before assuming a new crash is a bad camera matrix, compare producer demand with
+the **destination's remaining capacity**. KHARVOX's virtual-texture append helper
+validates source/destination counts, appends `min(source_count, capacity-dest_count)`,
+and leaves the source intact. Its DOOM-specific contract relies on the subsequent
+residency pass to carry requests not yet fulfilled. `[SOURCE; that engine-side
+backlog behaviour was not independently measured here]`
+
+Our standalone call into the donor helper reproduces the boundary case:
+4,582 existing + 3,719 requested in an 8,192-slot array gives 3,610 appended,
+109 deferred, no source mutation. Full, null, aliased and corrupt-count controls
+are included. Merely enlarging the array or capping the reported count after an
+unchecked copy does not establish safety. Neither does dropping the backlog.
+
+For a new target, prove the actual capacity, allocation extent and downstream
+ownership, log demand/high-water/deferred counts, then test wider views and
+streaming transitions. This helper is **not atomic**: concurrent producers need
+their own synchronization proof. KHARVOX's byte-gated x64 patch and fatal refusal
+policy are target-specific, not portable offsets or a recommended universal
+recovery strategy. Source-owned engines can enforce the bound at the container;
+RE-owned ports need the writer and consumer identified before changing semantics.
+
+Sources: [VirtualTextureAppend.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/vulkan/VirtualTextureAppend.h)
+and [VirtualTextureGuard.h](https://github.com/CactusVRStudios/KHARVOX/blob/e2e15d603ae7bfa45b05424b88207179e903670e/src/vulkan/VirtualTextureGuard.h).
+No fleet streaming overflow is asserted by this example.
+
 ## A stereo-only artifact is infrastructure until proven content
 
 The most expensive mistake in this chapter is reaching for the shader. When a defect appears in stereo and

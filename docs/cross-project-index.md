@@ -31,6 +31,9 @@ the chapters carry the distilled rule, these carry the working. Distilled in
 
 | Mod | Engine / mode | Read it for |
 |---|---|---|
+| **MGS5VR** | FOX / D3D11, native injector | [Deferred eye-copy execution](09-d3d11-openxr-injection.md#deferred-eye-execution), [quantized crop/FOV](09-d3d11-openxr-injection.md#subimage-fov-pair), [both-eye panel fitting](04-ui-and-hud.md#binocular-panel-fit), [hinge versus twist](02-viewmodels-and-hands.md#hinge-versus-twist). SOURCE review, not independent runtime acceptance |
+| **KHARVOX** | id Tech 6 / Vulkan, native injector | [Original-input and retirement contracts](10-graphics-apis.md#replay-input-retirement), [worker-independent pair caches](14-render-pass-hazard-atlas.md#pair-cache-identity), [bounded streaming append](14-render-pass-hazard-atlas.md#bounded-streaming-append). Alternate-eye recommended by donor; native replay experimental |
+| **titanfall2vr** | Respawn Source-derived / D3D11, Northstar-hosted native plugin | [Re-entry endurance dead end](17-teardown-fc2vr-native-stereo.md#reentry-endurance), [world-rectangle provenance](09-d3d11-openxr-injection.md#world-rect-provenance). Compiled experiment is not a working stereo path |
 | **fear-vr** | LithTech, native injector | **Native stereo done from source.** The definition (world twice, everything else once), the side-effect gate, the smallest-safe-hook argument, the CRT ABI wall |
 | **cyberpunk-vr-port** | REDengine 4 / D3D12 | 80+ RE docs. Second view via engine registration, the four shared structures, off-axis lens coverage, and the best negative-result discipline anywhere |
 | **witcher3-vr** | REDengine 3 / D3D12 | Canted displays, optical-centre offset for asymmetric frusta, shadow-cascade authority, per-eye temporal history, script-mod-as-state-bridge |

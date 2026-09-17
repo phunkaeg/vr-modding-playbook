@@ -1805,6 +1805,31 @@ the attachment has caught up. `[SOURCE; LIVE in-game simulator]`
 Evidence: `FarCry2-vr/receipts/evidence/20260910-arm-deform.md` and
 `Swat4-VR/docs/reviews/motion-weapons-2026-09-10/IMPLEMENTATION.md`.
 
+### Preserve the hinge; distribute pronation through the authored twist chain {#hinge-versus-twist}
+
+MGS5VR separates endpoint IK from the skinning corrections. `solveArm` uses an
+authored arm basis to orient the elbow as a hinge; wrist pronation is then carried
+by downstream corrective channels. `armCorrectiveRotations` distributes selected
+local quaternion-axis components with different weights for its two arm rigs.
+Those coefficients describe FOX's authored skeleton, **not human anatomy or a
+portable bone-index map**. `[SOURCE]`
+
+When the wrist reaches its target but the sleeve knots, first hold the solved
+positions fixed and perturb the proven deform/twist channels individually. Compare
+skin pixels with both corrections disabled and enabled; preserve weapon/grip and
+gameplay-ray ownership. Endpoint agreement alone cannot accept an arm. Reconfirm
+the local axis, bind basis and weighted descendants on the target before adapting
+the donor's decomposition. This complements the
+[weighted-chain discriminator](12-torso-calculations-and-ergonomics.md#endpoint-is-not-the-mesh).
+
+The same solver handles a body-clearance plane by choosing another feasible point
+on the **elbow circle**, preserving both segment lengths. Translating the elbow
+after solving generally stretches them. An infeasible constraint returns no
+solution; it does not silently invent a different bone length.
+
+Source: [MGS5VR arm_ik.cpp](https://github.com/nikamigaming-create/MGS5VR/blob/a51c4b9660f18addc71f06208fcd357d5ad58b15/src/arm_ik.cpp).
+This harvest did not test its skinning or promote another game's deform indices.
+
 ## One trim, one algebra, one ray
 
 If the ray, the laser, and the model each apply the "same" calibration trim through *different math*,

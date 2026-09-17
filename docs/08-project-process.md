@@ -1308,6 +1308,16 @@ becomes actively unpleasant in stereo.
 
 ## What a VR mod must force OFF in the host game {#host-settings-policy}
 
+**A UEVR-era addition, and one of them is not about comfort at all.** A production UE companion forces
+six host options at injection: head-bob **off**, hotbar style **normal**, **HUD curve amount 0**,
+toggle-crouch **on**, toggle-ADS **off**, and "focus camera on puzzles" **off**. Five are the usual
+comfort and camera-ownership story. The sixth — **HUD curve** — is a *correctness* precondition: the
+curve is applied in the 2D layout, so any widget you reparent into 3D is positioned from maths the
+option has already changed, and hotbar slots land wrong ([FAIL-HUD-016](failure-atlas.md)). **Audit the host's
+accessibility and HUD options for anything that transforms UI layout, not just for anything that moves
+the camera.** `[SOURCE]` And note the delivery constraint: those writes need the game at a state where
+options are settable, which is why that profile instructs users to inject **at the main menu**.
+
 Distinct from the settings a mod *exposes*, above: these are the host game's own settings a mod
 **overrides on the user's behalf**. Luke Ross's REAL mods ship per-game override files, and because
 those mods have very large user bases the list is a shipped, complained-about, revised answer rather

@@ -402,6 +402,42 @@ And a hard-won constraint: **never scale anything in the wrist chain** — the a
 inverse-decomposes chain scale, so scaling the wrist to shrink a hand makes the attached weapon explode to
 fill the screen.
 
+## The protocol above is necessary and not sufficient: when the race resolves per eye {#per-eye-writer-race}
+
+Session 74 (v0.8.3) is the sequel to the bone-write protocol, and it is worth reading as a correction to
+it. Clearing the dirty flag and comparing an anchor bone **still lost** — because BioShock 2 runs one more
+skeleton update that the protocol does not cover. `[SOURCE]`
+
+**The writer.** A dirty-flagged *virtual* update on the `SkeletonInstance`, resolved through a vtable slot
+the rig scan already knew, guarded by a dirty byte and clearing that byte on the way out. It runs **after
+every repaint site and before the mesh is drawn** — and, because the flag is clear by the second pass,
+**it runs inside pass 1 only.**
+
+That last clause is the whole finding. The last-writer race is normally won or lost once per frame; here
+it is won or lost **once per eye**. Pass 1 (LEFT) draws the engine's authored pose, pass 2 (RIGHT) draws
+the driven one, and the symptom is a **one-eye flicker** — which names the wrong subsystem. Every instinct
+says stereo; the bug is a writer.
+
+**The discriminator that placed it**, and it generalises: *"The XR pairing layer was clean throughout, so
+this is frame CONTENT, not frame identity."* Check pairing first — shared display time, eye order,
+distinct sub-images — and a clean result moves you out of the XR layer entirely and into the draw path.
+
+**The fix: stop out-racing the writer and attach to it.** Resolve the slot's target from the vtable at
+runtime, hook it, filter on the instance and the owning game thread, and repaint the driven pose *the
+moment the engine update returns* — so the mesh pass 1 draws is the driven one. Writing earlier, or more
+often, cannot win a race whose last participant runs after you by construction.
+
+**The pressure is a function of session age, which is why a fresh-boot A/B reads clean.** Re-evaluation
+rate measured at roughly **0/min on a fresh boot and ~1600/min after sustained play**, about four per
+shot — exactly matching testers' "after playing for a while". An intermittent whose *rate* you can measure
+stops being intermittent.
+
+**Three states, not two.** Their control was: driver off → no snap; driver on, fresh idle boot with no
+re-evaluations → no snap; driver on under rapid fire → snap. Two states would have confounded the driver
+with the pressure; the middle state is what proves the driver alone is innocent. Shipped behind an
+in-headset F10 A/B checkbox, found in the flat simulator with per-eye captures and confirmed on hardware.
+See [STR-017](pattern-catalog.md#str-017).
+
 ## Write script properties by name through the console seam
 
 The highest-leverage single hook they found: the engine's own console `SET <class> <property> <value>`

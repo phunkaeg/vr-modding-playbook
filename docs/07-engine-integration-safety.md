@@ -490,6 +490,30 @@ affinity masks, environment, working directory — so if your target has a launc
 ([08](08-project-process.md)), the debugger's launch path will violate it. (*FarCry2-VR: `File > Open` of
 the exe hits the startup crash the affinity mask exists to prevent.*)
 
+## A detour that swaps a return address must survive an unwind {#return-stub-hardening}
+
+Hooking a function so your code runs *after it returns* — swapping the saved return address for a stub —
+is the way to win a race against a writer that runs last ([STR-017](pattern-catalog.md#str-017)). It also
+introduces three failure modes that are all silent, and all were found in review rather than in testing.
+`[SOURCE]`
+
+- **An unwind past the stub disables the fix permanently.** If the frame is unwound — an exception, a
+  level change, any longjmp-shaped control flow — the saved-return slot is left holding a stale value and
+  the stub never fires again. Nothing crashes; the feature simply stops. **Clear the slot at every entry
+  and on world change**, and treat a non-empty slot at entry as a fault, not as state.
+- **A thread id latched once can be latched wrong.** Filtering "is this my thread?" against an id captured
+  at initialisation breaks if the subsystem resolved *before* the first hooked call — the id can be zero,
+  and the filter then rejects everything or accepts everything. **Refresh it at each entry** to the
+  function you actually want to be inside.
+- **Install from the owning thread, never from inside the hook or from a UI thread.** Enabling a hook from
+  within a hooked callback, or from the render/overlay thread, races the very code you are patching. Post
+  a request and install from the owning thread's normal poll lane — **and retry on failure**, because a
+  one-shot enable that silently failed is indistinguishable from a feature that was never switched on.
+
+The through-line is [FAIL-HOOK-010](failure-atlas.md): every one of these fails *quiet*. Pair them with a
+trigger counter ([A4.6](a4-hook-safety.md)) so "the hook is installed" and "the hook is firing" stay
+separate claims.
+
 ## Hardware/debugger gotchas
 
 - Hardware breakpoints can be consumed or cleared by the game's own anti-debug or input

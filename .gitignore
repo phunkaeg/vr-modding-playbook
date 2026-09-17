@@ -24,3 +24,9 @@ site-public/
 # graphify query-feedback loop: per-machine learning signal, not shared state
 cross-engine-graph/graphify-out/.graphify_learning.json
 cross-engine-graph/graphify-out/reflections/
+# Verbatim proprietary game/engine files extracted from a shipping build.
+# The retail System Shock Remake evidence pack holds .uproject/.uplugin/.ini
+# read straight out of the pak and exe. NOTICE.md excludes game assets and
+# engine SDKs from version control, and this repository is public, so the
+# extraction stays local. Findings may be described; the files may not ship.
+briefs/evidence/ssr-retail-*/

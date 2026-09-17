@@ -42,9 +42,14 @@ that the observation and the cause are usually in different chapters.
 | What you're seeing | Go to |
 |---|---|
 | Artifact appears in stereo but never appeared flat | [14](14-render-pass-hazard-atlas.md) — **infrastructure until proven content.** Check whether the suspect buffer is per-eye or a singleton before touching shader logic |
+| Tiny patch magnified over the whole eye during a video/menu | [Rectangle provenance](09-d3d11-openxr-injection.md#world-rect-provenance) |
+| Wrist panel centre is visible but a corner disappears in one eye | [Binocular panel fit](04-ui-and-hud.md#binocular-panel-fit) |
+| Wrist reaches the target but pronation knots the sleeve | [Hinge versus twist](02-viewmodels-and-hands.md#hinge-versus-twist) |
+| AFR pose coherence changes with worker scheduling | [Pair-cache identity](14-render-pass-hazard-atlas.md#pair-cache-identity) |
 | Shading swims with your head instead of sticking to surfaces | [14](14-render-pass-hazard-atlas.md) — a mono screen-space buffer sampled with per-eye UVs |
 | Ghosting / trails / motion-blur wrongness | [14](14-render-pass-hazard-atlas.md) — temporal effects under alternate-eye; the "previous frame" is the other eye |
 | Subtle per-eye difference in grain or noise | [14](14-render-pass-hazard-atlas.md) — a once-per-frame mutable packet double-advancing |
+| Hands or gun snap between two poses, in one eye only | [FAIL-STR-062](failure-atlas.md) — pairing clean means content, not identity; find the writer inside that eye's pass ([STR-017](pattern-catalog.md#str-017)) |
 | One eye brighter or colour-shifted; hard to fuse | [FAIL-STR-056](failure-atlas.md) — luminance/chroma delta between the eyes is rivalry, not a local artefact ([STR-016](pattern-catalog.md#str-016)) |
 | Captured a frame to check the render and it landed mid-sequence | [06](06-debugging-methodology.md) — a single frame under alternate-eye is *arbitrary*. Capture a hotkey-armed burst: [A5.7](a5-flat-harness-stats.md) |
 | Can't tell whether eye alternation is actually happening | [06](06-debugging-methodology.md) — window captures are phase-locked and can never show it. Burst + labelled filenames: [A5.7](a5-flat-harness-stats.md) |
@@ -194,6 +199,8 @@ that the observation and the cause are usually in different chapters.
 | What you're seeing | Go to |
 |---|---|
 | Crash on a custom asset | [05](05-assets-and-materials.md) — structural validity ≠ semantic safety |
+| Re-entry survives short bursts but hangs during sustained rendering | [Re-entry endurance](17-teardown-fc2vr-native-stereo.md#reentry-endurance) |
+| Wider-view streaming corrupts memory near a repeatable queue count | [Bounded streaming append](14-render-pass-hazard-atlas.md#bounded-streaming-append) |
 | **Hang** (not crash) while loading a model | [05](05-assets-and-materials.md) — sample the main thread; usually an un-remapped offset |
 | Crash only when attaching a debugger | [07](07-engine-integration-safety.md) — anti-debug, attach windows |
 | The whole HMD freezes but the flat game runs | [07](07-engine-integration-safety.md) — OpenXR layer budget; over- *and* under-submission both do this |
@@ -206,6 +213,7 @@ that the observation and the cause are usually in different chapters.
 | What you're seeing | Go to |
 |---|---|
 | Clean logs, no errors, but is it running? | [06](06-debugging-methodology.md) — **absence of errors is not evidence.** Count applied *and* attempted |
+| Both deferred eye copies are logged; are their pixels ready? | [Deferred execution](09-d3d11-openxr-injection.md#deferred-eye-execution) |
 | Diagnostic output vanished mid-session | [06](06-debugging-methodology.md) — a shared sample budget spent by the boring case |
 | An isolation test came back blank | [06](06-debugging-methodology.md) — the gate may have disabled the fallback the scene needs |
 | An isolation test came back *positive* | [06](06-debugging-methodology.md) — can your mechanism itself move the measurement? Run the control — [A5.4](a5-flat-harness-stats.md) has the veto pattern |
@@ -255,6 +263,7 @@ that the observation and the cause are usually in different chapters.
 | Running a mod with no headset attached | [09](09-d3d11-openxr-injection.md#headless-instrument-operation) — select xr-sim per process; drive it through its state channel |
 | A headless run went green and you are not sure it is real | [09](09-d3d11-openxr-injection.md#headless-instrument-operation) — SKIP is not PASS, and a green contract is not headset acceptance ([FAIL-XR-022](failure-atlas.md)) |
 | Reviewing stereo convergence or luminance from a capture, no headset | [09](09-d3d11-openxr-injection.md#eye-image-delta-review) — split the pair into three delta fields; an agent or MCP runs it |
+| A stereo check passes every leg but the render is mono | [FAIL-STR-063](failure-atlas.md) — capture as submitted; the image legs cannot be the mono gate ([09](09-d3d11-openxr-injection.md#eye-capture-point)) |
 | An automated left/right image diff says everything differs | [FAIL-STR-057](failure-atlas.md) — pair the same sim-frame and remove the expected disparity first ([STR-016](pattern-catalog.md#str-016)) |
 
 ## "The agent itself is going wrong"
@@ -269,6 +278,17 @@ diagnose them, which the rest of this index did not reach.
 | Context fills fast; the agent is burning tokens | [06](06-debugging-methodology.md#agent-token-costs) — most tokens go to reading habits (re-paging, whole-file reads, wide greps), not game tooling |
 | A green harness or a self-consistent instrument you don't quite trust | [06](06-debugging-methodology.md#self-proving-instrument) — make it detect the known-bad state before you trust its clean verdict |
 | An agent needs its operating rules before touching the fleet | [bottleneck-map](bottleneck-map.md#agent-operating-protocol) — state hypothesis, control, variable and decision rule before code; keep ambiguous outcomes ambiguous |
+
+## "I'm working on a UEVR title"
+
+| What you're seeing | Go to |
+|---|---|
+| Starting on a UE target that already has UEVR injection | [UEVR route](uevr-route.md) — what UEVR owns, what is still yours, and which chapters do **not** apply |
+| About to write a plugin to attach something to a hand | [UEVR-001](pattern-catalog.md#uevr-001) — try UObjectHook attach state and property overrides first |
+| The camera fights you in cutscenes, menus or a second playable space | [UEVR-002](pattern-catalog.md#uevr-002) — VR policy per game state, camera ownership per montage |
+| A game widget put on your wrist has a broken layout | [UEVR-003](pattern-catalog.md#uevr-003) — save and rebuild the panel slot; zero the HUD curve |
+| The interaction laser hits your own arm before the widget | [UEVR-003](pattern-catalog.md#uevr-003) — give the trace its own channel and have body meshes ignore it |
+| Players can grab through containers or shoot through doors | [HAND-018](pattern-catalog.md#hand-018) — physicalising removed the gate the discrete version enforced |
 
 ## "I'm about to start something new"
 

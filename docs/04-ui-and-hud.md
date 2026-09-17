@@ -367,6 +367,26 @@ will fight each other for accommodation every time the player's attention moves 
 - Pointer interaction wants a depth-clipped beam and clear hand-ownership (which controller
   owns the cursor right now), with last-active priority.
 
+### Fit the whole panel inside both eye frusta without shrinking the text {#binocular-panel-fit}
+
+MGS5VR's `fitWristPanel` tests all four panel corners against **both** located eye
+frusta in their own pose frames. Starting from a head-oriented panel near the wrist,
+it searches farther away until a centred placement fits, then bisects from that
+safe centre toward the desired anchor. Physical panel size stays fixed; a margin
+keeps text away from the optical edge. No feasible placement returns no panel.
+Its 6% margin, 0.05 m search step and 2 m bound are donor policy, not universal
+comfort constants. `[SOURCE]`
+
+Use the same transaction's head/eye poses and asymmetric FOVs. A centre-point test
+or one cyclopean frustum can accept a panel whose corner disappears in one eye,
+especially with canting. Test corner containment, asymmetric eyes, edge anchors,
+oversized panels and tracking loss; then accept readability and reach in the
+headset. This is **placement**, not a replacement for native UI ownership, input
+mapping or the distinction between a stereo plane and an internally 3D inventory.
+
+Source: [MGS5VR stereo.cpp, fitWristPanel](https://github.com/nikamigaming-create/MGS5VR/blob/a51c4b9660f18addc71f06208fcd357d5ad58b15/src/stereo.cpp).
+No panel/headset acceptance test was run in this harvest.
+
 ## System-panel lifecycle and input rules
 
 Shock2Quest’s frontend-menu campaign exposes the failure cases that a static

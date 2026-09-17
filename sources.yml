@@ -26,7 +26,7 @@
 #   AUTHOR    the author's claim only — not independently checked
 #   INFERENCE transferable hypothesis; not established on this target
 
-ledger_updated_at: 2026-09-10
+ledger_updated_at: 2026-09-14
 
 areas:
   - stereo
@@ -1415,14 +1415,26 @@ external:
   - id: SystemReShock-UEVR-Plugin
     root: "D:/Dev Debug/Other VR mods/SystemReShock-UEVR-Plugin"
     status: external_reference
-    upstream_url: unknown
+    upstream_url: https://github.com/gwizdek/SystemReShock-UEVR-Plugin
     license: unknown
-    reviewed_at: 2026-08-25
-    reviewed_revision: tree:00679eccfd4d256f
-    engine: Unreal
+    reviewed_at: 2026-09-17
+    reviewed_revision: tree:8e5dc79ae4dab1bc
+    reviewed_git_commit: 3c69f183872f2838b0c38cca38bc9816c00f1f2d
+    engine: Unreal Engine 4.27.2 (System Shock Remake)
+    api: D3D11/D3D12 via UEVR
     vehicle: framework-companion
+    chapter: 18
     areas:
-      stereo: {review: partial, evidence: SOURCE, note: "UEVR COMPANION PLUGIN, harvested to ch18 #companion-plugin-scope as the Mode 3 case study. ~2,900 first-party lines (one dllmain.cpp) plus a ~300-line D3D11/12 shim and a GENERATED UObject SDK, against UEVR's ~40,000. Its entire feature list is game semantics - crosshair classes, HUD, body-anchored minimap, hotbar, cyberspace aiming - and none of it is stereo, tracking, projection or submission. Build-specific (no GOG/demo), Defender removes the DLL on profile import, and profile sites carry different versions. Rendering internals and the generated SDK not read in detail."}
+      stereo:            {review: partial, evidence: SOURCE, note: "UEVR COMPANION PLUGIN, the Mode 3 case study for ch18 #companion-plugin-scope and now the basis of docs/uevr-route.md. UEVR owns stereo/projection/submission/lifecycle entirely; NONE of this plugin is stereo work. Re-reviewed 2026-09-17 at 3c69f18 (checkout is AT upstream, 0/0). Corrected: first-party source is ~6,050 lines (dllmain 2871, plugin 2177, vr_body 533, plugin_utils 470), not the ~2,900 previously recorded. Author reports a UEVR-level stereo desync after level change / death / main menu, worked around by toggling Native Stereo in the UEVR overlay. [AUTHOR]"}
+      ui_hud:            {review: partial, evidence: SOURCE, note: "HARVESTED -> UEVR-003 + FAIL-HUD-016. Reparents the game's own UMG widgets into 3D: saves the original canvas panel slot, removes the widget from its parent (layout mangles otherwise), binds it to a WidgetComponent, then rebuilds the slot from saved attributes so ONE widget instance serves both the flat MFD and the VR item selector. Host HUD-curve option must be 0 or reparented hotbar slots land wrong - a correctness precondition, not comfort. WidgetInteractionComponent laser collides with the player's own arm meshes; fixed with a dedicated trace channel (disabling arm collision outright is recorded as a FAILED attempt). Minimap via WidgetComponent caused massive UObject creation when looked at - left disabled, recorded as a dead end."}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "HARVESTED -> HAND-018 + FAIL-HAND-052. vr_body.cpp: a custom A_BP_VRBody_C made resident by hard-referencing it from a PAK-shipped modified ArmsMesh AnimBP; VR actor moved to the bottom of the collision capsule; HMDComponent tracks the UEVR camera offset against its own VROrigin. Physical grab/holster/access-card/lever interaction. The author lists four design-invariant breaks as known issues at once - theft through container geometry, shooting through doors, seeing over geometry while physically crouched in a crouch-height tunnel, two-handed poses misaligned - which is the evidence behind HAND-018."}
+      input_locomotion:  {review: partial, evidence: AUTHOR, note: "A body-anchored gesture vocabulary, read from the README control tables (code not traced): ear (calibrate, flashlight), shoulder (holster, backpack), inner wrist (MFD, game menu), waist (access card). Note the anchor scarcity - MFD and game menu share the inner-wrist location and are disambiguated by BUTTON (grip vs thumb), not by place. Physical crouch; run on left thumb; laser pointer as the fallback for any failed physical interaction."}
+      xr_input:          {review: skimmed, evidence: AUTHOR, note: "Full controller map documented per context (general / MFD / cyberspace) with distinct bindings per game state. Requires the host game's controller bindings reset to defaults. Menu binding depends on the VR runtime and can collide with Virtual Desktop's own binding."}
+      performance:       {review: skimmed, evidence: AUTHOR, note: "Author recommends DLSS Swapper to a transformer-model DLSS and names profiles J/K as the sharpest that are not too heavy. Not measured here."}
+      packaging_deploy:  {review: partial, evidence: SOURCE, note: "HARVESTED -> FAIL-PACK-019 + uevr-route.md. TWO coupled artifacts with nothing enforcing the coupling: the plugin DLL and PAK asset packages must be the same version, and the README has to instruct users in bold to re-copy PAKs after every update. The PAKs are also load-bearing for code (see hands_interaction). Build-specific: no Steam demo, no GOG. Defender removes the DLL on profile import. Profile sites carry differing versions. Inject at MAIN MENU so the mod can write host game options."}
+      re_discovery:      {review: skimmed, evidence: SOURCE, note: "No pattern scanning: works through UE reflection and a GENERATED UObject SDK. Notes that the SDK's StaticClass() returns the live UClass - the same UObject the UEVR API uses. Has a pre-native hook able to SKIP the original call, and a self-guarding lazy init that returns once the class is loaded and hooked (UE loads classes on demand). Generated SDK internals not read."}
+      camera_tracking:   {review: partial, evidence: SOURCE, note: "HARVESTED -> UEVR-002. VR policy is a state machine over pawn class x game context (CINEMATIC, PAUSE_MENU, MFD, BOOTING_UP, CRASHING, INTERACTABLE, MAIN_MENU, INTRO_DRONE, INTRO_LAPTOP, PSEUDOSPACE, cyberspace), not a global VR mode. Camera ownership is per ANIMATION MONTAGE: montages are classified in a table (starting/ending/single) and the saved camera rotation is restored on montage end. Declarative camera binding lives in uobjecthook/camera_state.json - bound by object path to an existing ArrowComponent AnimCameraPosition plus a Z offset."}
+      source_integration: {review: partial, evidence: SOURCE, note: "HARVESTED -> UEVR-001. A UEVR profile has a DECLARATIVE layer that most people write code for: uobjecthook/<hash>_mc_state.json attaches any component to a motion controller by object path with offsets and a permanent flag (the headlamp SpotLightComponent is attached to hand 1 at 0,-10,40 with no code); <hash>_props.json overrides properties by path (an idle animation silenced with RateScale 0); camera_state.json binds the camera. MEASURED: of ~6,050 first-party lines the UEVR API surface actually used is tiny - a few param() calls, uevr::Plugin, uevr::API::UStruct - everything else is written against the game's own UObject graph. A UEVR companion is UE game-code modding that runs inside UEVR, not framework extension."}
 
   - id: CSVR
     root: "D:/Dev Debug/Other VR mods/CSVR-main"
@@ -1441,15 +1453,15 @@ external:
     status: external_reference
     upstream_url: https://github.com/VR-Stereo-Hub/bioshock-trilogy-vr
     license: MIT
-    reviewed_at: 2026-08-26
-    reviewed_revision: tree:cab3312723aad2ca
-    reviewed_git_commit: 5bc599923bf73bf154cc35f7265ff2c568e82016
+    reviewed_at: 2026-09-16
+    reviewed_revision: tree:0f2a8390d5d5d5aa
+    reviewed_git_commit: 41f004bc6a1e4fa8be0d0e0749f9ac5a0453e75e
     engine: UE2.5 Vengeance / UE3 (Infinite)
     api: D3D11
     vehicle: native-injector
     chapter: 13
     areas:
-      stereo:            {review: full, evidence: SOURCE, note: "IStereoPolicy ladder (STR-006). BS1 and BS2 both ultimately required separately derived structural single-thread paths; BS2's earlier threaded-safe verdict was explicitly refuted when the Draw-tail flush handshake was found. Infinite (UE3 6829) reached SequentialReentry with no 1t machinery on its threaded ring buffer. Rule: test threaded first, port no cure until a measured stall demands it, then derive every seam and constant fresh. Infinite's re-entry root is the viewport draw (client-draw-only double is a recorded negative); pass 2 is deny-by-default on a known caller return RVA; pair pacing is one wait/locate/prediction per game tick."}
+      stereo:            {review: full, evidence: SOURCE, note: "v0.8.3 session-74 DISTILLED 2026-09-16 -> 13 #per-eye-writer-race + STR-017: a dirty-flagged skeleton update inside pass 1 only makes the last-writer race resolve PER EYE (left draws authored, right driven); fix hooks the update's return rather than writing earlier. Its tools/eye-check.ps1 also supplies the measured mono-masking finding now in 09 #eye-capture-point. IStereoPolicy ladder (STR-006). BS1 and BS2 both ultimately required separately derived structural single-thread paths; BS2's earlier threaded-safe verdict was explicitly refuted when the Draw-tail flush handshake was found. Infinite (UE3 6829) reached SequentialReentry with no 1t machinery on its threaded ring buffer. Rule: test threaded first, port no cure until a measured stall demands it, then derive every seam and constant fresh. Infinite's re-entry root is the viewport draw (client-draw-only double is a recorded negative); pass 2 is deny-by-default on a known caller return RVA; pair pacing is one wait/locate/prediction per game tick."}
       camera_tracking:   {review: full, evidence: SOURCE, note: "CAM-004 now has three title-specific FOV contracts: BS1 true-horizontal; BS2 16:9-referenced horizontal with a live option that animates 73-96 degrees; Infinite's rendered lens is vertical-referenced, while its later camera-degrees lever is horizontal at a fixed 16:9 anchor (the same lens expressed at a different ownership boundary). Infinite claimRatioH baseline 0.5576."}
       xr_lifecycle:      {review: partial, evidence: AUTHOR, note: "Symmetric subsystem toggle (XR-004), its hang/crawl symptom (FAIL-XR-005), and non-FOCUSED ~10 Hz pacing inherited by the game."}
       xr_input:          {review: skimmed, evidence: AUTHOR, note: "Synthetic-XInput lane plus a gesture-detection layering rule; full controller map read, code not."}
@@ -2502,6 +2514,87 @@ external:
       hands_interaction: {review: not_reviewed}
       audio:             {review: not_reviewed}
       packaging_deploy:  {review: not_reviewed}
+      source_integration: {review: not_reviewed}
+
+  - id: "MGS5VR"
+    root: "D:/Dev Debug/Other VR Mods/MGS5VR"
+    status: external_reference
+    upstream_url: https://github.com/nikamigaming-create/MGS5VR
+    license: "MIT; bundled dependencies retain their own notices"
+    reviewed_at: 2026-09-14
+    reviewed_revision: "tree:95e3921c54d08c9b"
+    reviewed_git_commit: a51c4b9660f18addc71f06208fcd357d5ad58b15
+    engine: FOX (Metal Gear Solid V)
+    api: D3D11 / OpenXR
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo: {review: partial, evidence: SOURCE, note: "scene_capture.cpp tracks eye-copy packets through deferred recording, FinishCommandList and actual ExecuteCommandList before pair eligibility. Recorded and executed masks differ; execution is queue insertion, NOT GPU completion. Harvest ch09 #deferred-eye-execution. stereo.cpp eyeImageRegion supplies tested corroboration of existing #subimage-fov-pair. September 14 standalone audit includes rounded pixel/ray agreement at even and odd extents and invalid-input controls; no game/GPU/headset test. Full audit and fleet relevance: briefs/2026-09-14-new-mods-harvest.md."}
+      xr_lifecycle: {review: partial, evidence: SOURCE, note: "Read capture/mailbox transaction and epoch ownership, plus architecture documentation. Not a full runtime lifecycle review; headset compatibility remains the author's claim."}
+      xr_input: {review: not_reviewed}
+      camera_tracking: {review: partial, evidence: SOURCE, note: "Rendered versus requested FOV, exact integer crop/FOV pairing and same-source eye metadata; no shipping-target RE or canting acceptance here."}
+      render_hazards: {review: partial, evidence: SOURCE, note: "Deferred execution provenance and stale-generation rejection. Donor capture saves one RTV binding, not a generic MRT state envelope; do not copy it as a universal state saver."}
+      ui_hud: {review: partial, evidence: SOURCE, note: "fitWristPanel checks all four corners in both eye frusta, moves to readable depth then toward anchor without shrinking physical size; ch04 #binocular-panel-fit. No headset readability test."}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "solveArm keeps hinge orientation separate from downstream corrective twist channels; body-clearance constraint changes elbow-circle position instead of stretching lengths. ch02 #hinge-versus-twist. FOX indices, axes and per-arm coefficients do not establish FarCry2 skin weights."}
+      input_locomotion: {review: not_reviewed}
+      performance: {review: skimmed, evidence: SOURCE, note: "Architecture describes a nonblocking capture mailbox. No frame-time measurements or claimed performance improvement harvested."}
+      audio: {review: not_reviewed}
+      packaging_deploy: {review: skimmed, evidence: SOURCE, note: "README/CMake inspected: x64 dinput8 injector and build-specific target checks. No full installer or deployment audit."}
+      re_discovery: {review: skimmed, evidence: SOURCE, note: "Read source/build targeting and arm basis interpretation; native binary addresses were not independently checked."}
+      source_integration: {review: not_reviewed}
+
+  - id: "KHARVOX"
+    root: "D:/Dev Debug/Other VR Mods/KHARVOX"
+    status: external_reference
+    upstream_url: https://github.com/CactusVRStudios/KHARVOX
+    license: "MIT; upstream and bundled dependencies retain their own notices"
+    reviewed_at: 2026-09-14
+    reviewed_revision: "tree:5704ee580c726593"
+    reviewed_git_commit: e2e15d603ae7bfa45b05424b88207179e903670e
+    engine: id Tech 6 (DOOM 2016)
+    api: Vulkan / OpenXR
+    vehicle: native-injector
+    chapter: 10
+    areas:
+      stereo: {review: partial, evidence: SOURCE, note: "AerWeaponPoseCache and AerCameraPairCache key first/second phase state by entity or stage and pair serial, not worker TLS. SnapTurnStereoPolicy plus OpenXRBootstrap consumers track per-cached-eye turn generation. ch14 #pair-cache-identity. README recommends alternate-eye; native replay remains experimental, not a demonstrated upgrade."}
+      xr_lifecycle: {review: partial, evidence: SOURCE, note: "Native input preservation, pair-completion guards and typed retirement ownership inspected. DeferredMemoryFreeQueue.complete trusts caller CPU/GPU completion; standalone queue tests cannot establish GPU safety. PresentWaitOwnership is a policy helper with no production consumer found, not evidence that every submit path is balanced. ch10 #replay-input-retirement."}
+      xr_input: {review: not_reviewed}
+      camera_tracking: {review: partial, evidence: SOURCE, note: "Pair-cache identity and camera history validators inspected. No universal matrix-layout or live target camera proof inferred from plausible values."}
+      render_hazards: {review: partial, evidence: SOURCE, note: "NativeFinalReplay preserves storage-attachment inputs before the real pass, not from processed eye-zero output. VirtualTextureAppend validates counts and caps copy to destination capacity while retaining source; ch14 #bounded-streaming-append. Actual standalone helper tests include 4582+3719 into 8192 slots: 3610 appended,109 deferred. Engine backlog continuation and original failure episodes remain AUTHOR."}
+      ui_hud: {review: not_reviewed}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "Bounded cross-worker weapon pose cache inspected; no weapon feel, collision or physical-interaction acceptance."}
+      input_locomotion: {review: partial, evidence: SOURCE, note: "Snap generation and cached-eye compensation policy/consumers reviewed; not a headset snap-turn verdict."}
+      performance: {review: not_reviewed}
+      audio: {review: not_reviewed}
+      packaging_deploy: {review: skimmed, evidence: SOURCE, note: "README and version-sensitive byte-gated virtual-texture patch reviewed; no deployment performed. Local latest commit says Beta 0.9 while README header still says Beta 0.5; no maturity inferred from either label."}
+      re_discovery: {review: partial, evidence: SOURCE, note: "VirtualTextureGuard exact-byte/RVA gates inspected as implementation, not independently validated DOOM binary layout. Donor fail-fast process termination is not a universal recovery recommendation."}
+      source_integration: {review: not_reviewed}
+
+  - id: "titanfall2vr"
+    root: "D:/Dev Debug/Other VR Mods/titanfall2vr"
+    status: external_reference
+    upstream_url: https://github.com/TinyBlkDog/titanfall2vr
+    license: "MIT; bundled dependencies retain their own notices"
+    reviewed_at: 2026-09-14
+    reviewed_revision: "tree:669cd0c3ee1b8ba0"
+    reviewed_git_commit: 8c50a7d491d9a275103cfc659430e4bc1b75a608
+    engine: Respawn Source-derived (Titanfall 2)
+    api: D3D11 / OpenXR
+    vehicle: native-injector
+    chapter: 17
+    areas:
+      stereo: {review: partial, evidence: SOURCE, note: "Native Northstar-hosted plugin. scene_reentry.cpp has bounded nested-pass, latch/job and epilogue experiments; release keeps same-frame re-entry disabled. KNOWN-ISSUES reports a roughly 129-double-frame deadlock (AUTHOR, not reproduced). Harvest ch17 #reentry-endurance: short isolation burst != sustained viability; TLS scope does not include async worker uploads."}
+      xr_lifecycle: {review: not_reviewed}
+      xr_input: {review: not_reviewed}
+      camera_tracking: {review: partial, evidence: SOURCE, note: "world_rect_gate.h separates tiny auxiliary viewports from plausible world extents. Unknown target remains permissive, tested explicitly. ch09 #world-rect-provenance: size filter is not ownership proof. Source-reported 32x32 startup episode remains AUTHOR."}
+      render_hazards: {review: partial, evidence: SOURCE, note: "Read temporal_lever.cpp: distinguish current/history blend polarity, real convar from command, and snapshot current value before an experiment. Existing per-eye-history method retained; no duplicate recipe or blanket TAA-disable recommendation."}
+      ui_hud: {review: skimmed, evidence: AUTHOR, note: "README/known issues describe incomplete overlay behaviour. No stable UI implementation recommendation harvested."}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion: {review: not_reviewed}
+      performance: {review: not_reviewed}
+      audio: {review: not_reviewed}
+      packaging_deploy: {review: skimmed, evidence: SOURCE, note: "README and known issues identify v0.1.1 alpha and Northstar host. No installation, game launch or wearer compatibility test."}
+      re_discovery: {review: partial, evidence: SOURCE, note: "Re-entry experiment guards and scoped pass provenance read; source comments describing job-wait runtime diagnoses are AUTHOR without reviewed raw receipts. Do not import latch offsets or experimental writes to another target."}
       source_integration: {review: not_reviewed}
 
 not_a_source:
