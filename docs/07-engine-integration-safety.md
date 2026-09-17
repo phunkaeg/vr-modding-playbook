@@ -76,6 +76,23 @@ and all three present as something else.
   Checking your own thread's cardinality is race-free; coordinating a clean stop during process death is
   not.
 
+## Search order works in reverse too: put a companion where the host's DLLs cannot reach it {#companion-dll-isolation}
+
+The loader hazard above is the usual direction — *your* module cannot find the libraries you shipped
+beside it, because Windows searches the host executable's folder. The same mechanism has a second, useful
+use: **if your companion process must not load the host's DLLs, move it out of their folder.**
+
+DeusExHRVR keeps its 64-bit companion host in a **subdirectory of the game** —
+`DeusExHRVR/DeusExHRVRHost.exe` — specifically so it cannot load the game's 32-bit proxy DLLs. `[AUTHOR]`
+A 64-bit process attempting a 32-bit image fails the load, but the failure arrives as a confusing
+initialisation error inside a dependency, not as "wrong architecture", so the cheap fix is to never put
+the process where the wrong-bitness modules are on its search path in the first place.
+
+**The rule generalises past bitness.** Any time a companion must not inherit the host's module set —
+a different CRT, a conflicting graphics runtime, a proxy DLL intended only for the game — its working
+directory is part of its configuration. Place it deliberately, and record *why* it lives there, because
+the next person will read a subfolder as tidiness and flatten it.
+
 ## Choose an experiment's write target by its lifetime, not just its semantics
 
 When you need to perturb the running game to prove something, the safest write is one that **cannot

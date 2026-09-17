@@ -1699,6 +1699,24 @@ The same reasoning applies to any engine-side limiter you find: vsync, a sleep i
 "max foreground FPS" setting. In a VR session they are all downstream of the compositor, and the one
 that should win is the one holding the swapchain.
 
+### The mirror you add is a scheduler too {#mirror-is-a-scheduler}
+
+The rule above is about limiters you *find*. There is one you **introduce**: the desktop mirror. A
+spectator window is a second presentation path, and if you present it the obvious way — a normal
+swapchain present, VSync on — you have handed a 60 Hz monitor a veto over a 90 Hz headset. The headset
+then runs at the desktop's refresh rate and the cause is invisible, because nothing in the XR path is
+wrong ([FAIL-PERF-022](failure-atlas.md)).
+
+**Present the mirror windowed and non-blocking, and let the OpenXR frame request be the only thing that
+paces you.** DeusExHRVR states the shape explicitly: complete native stereo pairs are paced by OpenXR
+frame requests, while the desktop mirror uses a windowed, non-blocking presentation path *so desktop
+VSync and a 60 Hz monitor do not gate the headset*. `[AUTHOR]`
+
+The generalisation is worth holding onto: **anything you add that can block, paces you.** A mirror
+present, a debug overlay that waits on a readback, a screenshot path that flushes — each is a scheduler
+you did not mean to install. When the headset's rate mysteriously equals some *other* device's rate, look
+for what you added, not for what the engine had.
+
 ## Three clocks, and borrow the engine's: reading the frame timeline for alternate-eye {#three-frame-clocks}
 
 [#pose-timing-contract](#pose-timing-contract) fixes the *order* - wait once, cache, submit after every

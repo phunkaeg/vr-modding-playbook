@@ -908,6 +908,22 @@ made a comfort decision on the player's behalf.
 The same port ships HUD **bounce** modes on the same principle (`NONE / SES / LES`), which is
 [an in-headset A/B](08-project-process.md#headset-reachable-controls) turned into a shipped preference.
 
+**Corroborated in 2026, on a different engine, with a wider axis structure.** DeusExHRVR ships the same
+idea as two independent settings rather than one mode list, and the second axis is the one the Quake 2
+scheme does not have: `InteractionAim` and `MovementDirection` **each** accept `Mouse`, `Headset` or
+`Controller`. So the structure is not only *which input owns which rotation axis* but **which consumer
+reads which source** — where you point to interact and where "forward" is for locomotion are separate
+questions with separate answers. `[AUTHOR]`
+
+Two details in how it ships are worth copying:
+
+- **Unset means native.** Both settings default to `Mouse`, so a player who touches nothing keeps the
+  game's original look-and-move relationship. A new axis of freedom that changes behaviour by default is
+  a regression to somebody.
+- **Aim pitch and view pitch are separable too.** Its `LockVerticalCamera` keeps mouse and gamepad pitch
+  out of the VR camera *while the gun still aims vertically* — a third relationship that neither
+  "coupled" nor "decoupled" describes.
+
 ## A controller lying on a desk is not reporting zero {#resting-controller}
 
 Nine runs, five proposed mechanisms, all buried, and a shipped workaround built on a correlation nobody

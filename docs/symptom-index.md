@@ -12,6 +12,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| The VR session never starts and there is no actionable error | [08](08-project-process.md#hard-fail-preconditions) — a precondition in hardware: headset awake and the runtime link active *before* launch |
 | Hook installed at a verified-correct address, never fires | [07](07-engine-integration-safety.md) — you probably hooked a wrapper, or the runtime rewrites its own dispatch table. **Read the two addresses first**: if the replaced pointer still lands inside the API's own module, it's not an interposer. Guards + counters: [A4](a4-hook-safety.md) |
 | Hook fires but has no effect | [06](06-debugging-methodology.md) — prove it ran (bare hit-counter) before debugging its logic |
 | Your fix "didn't work" | [06](06-debugging-methodology.md) — check the build banner first. Then [08](08-project-process.md): is your code even in the load path? Present ≠ loaded ≠ ran |
@@ -226,6 +227,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| The headset is pinned to the desktop monitor's refresh rate | [09](09-d3d11-openxr-injection.md#mirror-is-a-scheduler) — the mirror you added presents with VSync and paces you |
 | Framerate dropped, code unchanged | [06](06-debugging-methodology.md) — cheap environmental causes first. A round-number cap is a vsync cap |
 | Perf regression appears with a feature enabled | [06](06-debugging-methodology.md) — instrumentation volume is not neutral; measure with logging off |
 | Need a per-frame GPU value without stalling | [06](06-debugging-methodology.md) — async copy, map `DO_NOT_WAIT` on a later frame |

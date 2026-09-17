@@ -406,6 +406,19 @@ telling them requires alt-tabbing. Same family as
 [controls that must be reachable from inside](#headset-reachable-controls): an instruction the wearer
 cannot follow without breaking the test is not an instruction.
 
+**Some preconditions live in hardware, and those are the ones an operator cannot read off a screen.**
+prey-vr's startup sequence has to be spelled out in its README as a numbered procedure: the headset must
+be **awake** and the Link session **active before the game launches**, because the mod queries the HMD at
+startup. Get the order wrong — headset asleep, proximity sensor uncovered, Link not entered — and the
+session simply does not come up ([FAIL-XR-029](failure-atlas.md)). `[AUTHOR]`
+
+This is the same rule as the two above with a harder edge: a foreground window or a stale build can be
+checked from inside the process, but **a device that is asleep is a state your code can only observe, not
+fix.** So observe it and say so. Query the runtime for a usable system and form factor *before* you begin
+any initialisation the user will interpret as progress, and fail with the physical instruction
+("put the headset on, then relaunch") rather than a `XR_ERROR_*` code. A precondition the user has to
+satisfy with their body deserves better than an enum.
+
 ## Keeping a reference checkout current, without losing what you reviewed {#refresh-external-sources}
 
 External sources are read-only reference clones, and they go stale silently. `git clone` is the wrong
