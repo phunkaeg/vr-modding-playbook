@@ -45,6 +45,10 @@ that the observation and the cause are usually in different chapters.
 | Artifact appears in stereo but never appeared flat | [14](14-render-pass-hazard-atlas.md) — **infrastructure until proven content.** Check whether the suspect buffer is per-eye or a singleton before touching shader logic |
 | Tiny patch magnified over the whole eye during a video/menu | [Rectangle provenance](09-d3d11-openxr-injection.md#world-rect-provenance) |
 | Wrist panel centre is visible but a corner disappears in one eye | [Binocular panel fit](04-ui-and-hud.md#binocular-panel-fit) |
+| A held object judders or fights the world when it touches something | [FAIL-HAND-053](failure-atlas.md) — late update overwrites the solver after contact ([HAND-019](pattern-catalog.md#hand-019)) |
+| A held tool swings like it is longer than it looks | [FAIL-HAND-054](failure-atlas.md) — centre-of-mass policy, not mesh centre |
+| Throws feel weak however hard the player flicks | [FAIL-HAND-055](failure-atlas.md) — which velocity the release samples |
+| Choosing how to hold something, for a new object class | [02](02-viewmodels-and-hands.md#grip-design-space) — pick from world-interaction; twelve grip types, not three |
 | Wrist reaches the target but pronation knots the sleeve | [Hinge versus twist](02-viewmodels-and-hands.md#hinge-versus-twist) |
 | AFR pose coherence changes with worker scheduling | [Pair-cache identity](14-render-pass-hazard-atlas.md#pair-cache-identity) |
 | Shading swims with your head instead of sticking to surfaces | [14](14-render-pass-hazard-atlas.md) — a mono screen-space buffer sampled with per-eye UVs |

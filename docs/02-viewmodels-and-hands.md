@@ -1326,6 +1326,78 @@ the head and is always reachable in the same way, a skeleton-anchored zone stays
 looks around and is more honest about where the body is. **Choose deliberately and write down which**,
 because the failure looks identical either way - a zone that is hard to hit.
 
+## The enumerated design space for holding an object {#grip-design-space}
+
+The table above lists the *mechanisms* this fleet has used. A mature framework's enums list the whole
+*space*, and reading them is the cheapest way to discover axes you did not know existed.
+VRExpansionPlugin — mordentral's MIT engine plugin, the de-facto way VR is built in Unreal — enumerates
+**twelve** grip types where this playbook had three, and the extra nine are not variants. They are a
+second axis. `[SOURCE]` the enums in `VRBPDatatypes.h`; the 8,204-line implementation behind them was
+not read, so treat each mechanism's behaviour as named-but-unverified.
+
+**The fleet's three are mechanisms. The twelve are mechanism × how the held object meets the world:**
+
+| | attach only | sweeps against the world | full physics |
+|---|---|---|---|
+| **rigid** | `AttachmentGrip`, `LockedConstraint` | — | — |
+| **driven** | `PhysicsOnly` | `SweepWithPhysics` | `InteractiveCollisionWithPhysics` |
+| **hybrid** | — | `InteractiveHybridCollisionWithSweep` | `InteractiveHybridCollisionWithPhysics` |
+
+And four that are not points on that grid at all, which are the ones worth knowing about:
+
+- **`ManipulationGrip`** and **`ManipulationGripWithWristTwist`** — for something *manipulated in place*
+  rather than carried: a dial, a lever, a drawer. The insight in having a separate type is that a knob is
+  **not** a held object with restricted movement; it is a different interaction whose entire output is
+  one or two scalars, and modelling it as a constrained grip is how you get a knob that can be ripped off.
+- **`EventsOnly`** — a grip that moves nothing and only raises events. The cheapest way to make something
+  grabbable for *gameplay* without taking responsibility for its transform.
+- **`CustomGrip`** — the escape hatch, which every such taxonomy needs and which tells you the author
+  expected to be surprised.
+
+Four rules fall out of the other enums, and the first is the one to take away.
+
+**Late update must be conditional on what the object is doing.** `EGripLateUpdateSettings` is not a
+boolean — it is `LateUpdatesAlwaysOn`, `AlwaysOff`, **`NotWhenColliding`**, **`NotWhenDoubleGripping`**
+and `NotWhenCollidingOrDoubleGripping`. Late update applies the freshest pose just before render, which
+is right for a free-floating object and **wrong for a constrained one**, because it overwrites the
+solver's answer after the solver has already resolved the contact.
+
+> **This converges with HIGGS from the opposite direction.** [#grab-depth](#grab-depth) records HIGGS
+> *softening the constraint* while the held object is in contact (`grabConstraintCollidingAngularTau`);
+> VRExpansionPlugin *stops late-updating* it. Two shipped frameworks, two different levers, one rule:
+> **a held object must stop fighting the world the moment it touches it.** The second condition is the
+> same hazard with a different cause — under a double grip two owners both want the final word.
+
+**Centre of mass is a policy, not a property of the mesh.** `EPhysicsGripCOMType` offers `COM_Default`,
+`COM_AtPivot`, `COM_SetAndGripAt`, `COM_GripAt` and `COM_GripAtControllerLoc`. Where the centre of mass
+sits decides how the thing swings, and the mesh's own centre is usually wrong for a held tool — this is
+[13](13-teardown-bioshock-vr.md)'s lever-arm problem turned into a setting ("*the actor's pivot is the
+eye anchor, with the gun about 1.2 m out, so any rotation swings the weapon on a long lever arm*").
+Gripping *at the controller location* removes the lever entirely. `[INFERENCE]` on the mechanism, from
+the names.
+
+**Throw feel is a velocity-sampling choice.** `EVRVelocityType` is `Default`, `RunningAverage` or
+`SamplePeak`. Which one you read at the moment of release decides how a throw lands, and the fleet does
+not currently name this axis anywhere — it has release-velocity handling but no statement that *how you
+sample* is a separate decision from *when you release*. `[SOURCE]` for the axis; which one feels correct
+is a per-title tuning question, not established here.
+
+**Teleporting with a full hand needs a declared per-object policy.**
+`EGripInterfaceTeleportBehavior` is `TeleportAllComponents`, `DeltaTeleportation`,
+`OnlyTeleportRootComponent`, **`DropOnTeleport`** or `DontTeleport`. Teleport locomotion plus a held
+object is a question this playbook has not asked: the object lives in world space and the player just
+moved discontinuously. **Dropping it is a legitimate answer**, and having the policy per-object rather
+than one global rule is the part worth copying.
+
+**And two-handed grip has more axes than socket-versus-free.** `ESecondaryGripType` crosses
+**free vs slot-only** — the socket-that-grew-into-a-region axis already in
+[#two-handed-support](#two-handed-support) — with **retain** (does the object keep its relative rotation
+when the second hand lets go?) and **scaling** (does the distance between the hands scale the object?).
+Nine values in total; *retain* is the one that shows up in a headset as a snap on release.
+
+See [HAND-019](pattern-catalog.md#hand-019) for choosing between these, and
+[META-015](pattern-catalog.md#meta-015) for why reading the enums was worth more than reading the code.
+
 ## Driving a body with physics: blend, clamp, and give up gracefully {#physics-bodies}
 
 PLANCK drives NPC bodies with active ragdoll so the player can shove, grab, drag and yank them. Its

@@ -2205,6 +2205,69 @@ consequence of removing a gate, and a shipped production mod lists all four of t
 once. Budget for re-imposing the rules (collision on held weapons, a crouch-height clamp in low spaces,
 container-state checks on grab) as part of the feature, not as polish afterwards. `[SOURCE]`
 
+## HAND-019 — Choose a grip type by how the object must meet the world {#hand-019}
+
+**Problem:** "how do I hold this" gets answered with a mechanism — parent it, place it each frame, drive
+it with a spring — and the mechanism is the wrong first question. The thing that decides the mechanism is
+**what the held object must do to the world**: pass through it, slide along it, or collide with it
+properly. Choosing mechanism first produces a held object that either tunnels through walls or fights
+them.
+
+**Use when:** designing any hold, grab or carry, and again for each *class* of object — a gun, a crate, a
+dial and a corpse are four different answers.
+
+**Recipe:** decide the world-interaction first, then take the mechanism it implies.
+
+- **Passes through the world** → an attachment or rigid grip. Cheapest, no solver, no correction.
+- **Must slide along surfaces but never be pushed off course** → a sweep.
+- **Must collide properly and be blocked** → full physics, and now you owe it constraint tuning.
+- **Manipulated in place, not carried** (dial, lever, drawer) → a *manipulation* grip, not a constrained
+  carry. Its output is a scalar; modelling it as a held object is how knobs come off in your hand.
+- **Only needs to raise gameplay events** → a grip that moves nothing at all.
+
+Then set the three policies the mechanism does not imply: **centre of mass** (the mesh's own is usually
+wrong for a tool), **late update** (off while colliding or double-gripped), and **teleport behaviour**
+(dropping it is allowed).
+
+**Proof:** for each object class, name its world-interaction and show the grip type follows. If two
+classes with different world-interaction share a grip type, one of them is wrong.
+
+**Trip hazard:** the rule that costs headset time is late update. Applying the freshest pose right before
+render is correct for a free-floating object and **actively wrong for a constrained one** — it overwrites
+the solver after contact is resolved. Two shipped frameworks reach that conclusion by different routes:
+HIGGS softens the constraint on contact, VRExpansionPlugin suppresses the late update. `[SOURCE]` See
+[02](02-viewmodels-and-hands.md#grip-design-space).
+
+## META-015 — A mature framework's enums are its design space; read those first {#meta-015}
+
+**Problem:** facing a large reference implementation, the instinct is to read the code — and an
+8,000-line component defeats that instinct immediately, so the reference goes unread and the design space
+stays as small as whatever you already thought of.
+
+**Use when:** adopting from, or competing with, any mature framework in your problem area — an engine VR
+plugin, a modding framework, an SDK.
+
+**Recipe:** read the **type vocabulary** before any implementation.
+
+- **Enums are the enumerated design space.** Every value is an axis somebody hit in production and had to
+  name. A twelve-value enum where you had three options is telling you about nine problems you have not
+  met yet.
+- **Read the axis structure, not the names.** Sort the values into a grid; the dimensions that fall out
+  are the real finding. Values that refuse to sit on the grid are the special cases worth the most.
+- **A `Custom` member tells you the author expected to be surprised**, and an escape hatch is a design
+  statement about the taxonomy's confidence.
+- **Then read only the code behind the values you will use**, and grade the rest as named-but-unverified.
+
+**Proof:** you can state the axes and place your own current approach on them. If your approach does not
+fit the grid, either you found a genuine gap or you misread the axis — both worth knowing before writing
+code.
+
+**Trip hazard:** a name is not a behaviour. Harvesting a taxonomy from enums gives you the *shape* of the
+space at `[SOURCE]` grade and the *semantics* at no grade at all; say which is which, because a
+confidently described enum value nobody has executed reads exactly like a tested one. `[SOURCE]`
+Measured on VRExpansionPlugin: the grip enums yielded five transferable rules for the cost of reading one
+header, against an 8,204-line implementation left unread.
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared
