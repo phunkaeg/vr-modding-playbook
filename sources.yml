@@ -2597,6 +2597,85 @@ external:
       re_discovery: {review: partial, evidence: SOURCE, note: "Re-entry experiment guards and scoped pass provenance read; source comments describing job-wait runtime diagnoses are AUTHOR without reviewed raw receipts. Do not import latch offsets or experimental writes to another target."}
       source_integration: {review: not_reviewed}
 
+  - id: "DeusExHRVR"
+    root: "D:/Dev Debug/Other VR mods/DeusExHRVR"
+    status: external_reference
+    upstream_url: https://github.com/farmerarmor/DeusExHRVR
+    license: unknown
+    reviewed_at: 2026-09-17
+    reviewed_revision: "tree:3713eceb96f39eed"
+    reviewed_git_commit: 945a2cf0b761fbec0a0bcb736cb0ead3aa8b8f64
+    engine: Custom Eidos Montreal (Deus Ex Human Revolution Director's Cut)
+    api: D3D11
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo: {review: partial, evidence: AUTHOR, note: "REGISTERED + README/STRUCTURE REVIEWED 2026-09-17; checkout verified at upstream (0/0) before review. HIGH VALUE and unusual - it drives the GAME'S OWN native AMD HD3D stereo renderer, so BOTH EYES RENDER IN THE SAME GAME FRAME. That is a shipped-stereo-path activation case, not an injected second view, and it is the closest thing in this ledger to 18 #engine-native-xr on a non-UE engine. Ships its own per-eye capture - F8 dumps both-eye images plus a camera trace, F10 is a rolling stereo-frame recorder - which corroborates 09 #eye-image-delta-review from a shipping mod. Code not read; src/EngineCamera.cpp (808 lines) is the bulk, and PairHistory.h / SharedPair.h / PairCapture.h suggest explicit pair tracking."}
+      xr_lifecycle: {review: partial, evidence: AUTHOR, note: "Queries the active OpenXR runtime at startup for BOTH the recommended per-eye resolution and the runtime's current refresh rate. Author-measured: 1344x1600 per eye and about 90 native pairs/submissions per second on a 90 Hz headset."}
+      performance: {review: partial, evidence: AUTHOR, note: "DISTILL CANDIDATE extending 09 #runtime-owns-pacing. Native stereo pairs are paced by OpenXR frame requests, and the DESKTOP MIRROR deliberately uses a windowed NONBLOCKING presentation path so desktop VSync and a 60 Hz monitor cannot gate the headset. The mirror as a pacing hazard is not currently in the playbook."}
+      render_hazards: {review: skimmed, evidence: AUTHOR, note: "Three in-headset toggles name the per-eye hazards the author found: F3 per-eye projected light/shadow transforms, F4 per-eye shader camera inputs, F7 a shared lighting-depth correction, with F4 documented as requiring F7. Consistent with 14's class-2 screen-space reconstruction; which passes are involved was not established."}
+      input_locomotion: {review: partial, evidence: AUTHOR, note: "DISTILL CANDIDATE. Targeting is a two-axis, three-way choice: InteractionAim and MovementDirection each independently accept Mouse, Headset or Controller, and default to Mouse so native look is retained when unset. Plus LockVerticalCamera, which keeps mouse/gamepad pitch out of the VR camera while the gun still aims vertically - decoupling aim pitch from view pitch."}
+      ui_hud: {review: skimmed, evidence: AUTHOR, note: "An independent cross-engine corroboration of UEVR-002: terminal interaction, hacking, the main/pause/game-over menus, sniper scope aiming and prerecorded video AUTOMATICALLY fall back to a 16:9 virtual screen, with full VR resuming afterwards. Same per-game-state policy shape, entirely different engine and vehicle."}
+      packaging_deploy: {review: partial, evidence: AUTHOR, note: "Pins an exact executable SHA256 (8266B6B4..A510A1) for Steam Director's Cut 2.0.66.0 and states other versions and the non-DC release are unsupported. The installer backs up replaced files and the original graphics settings. Note the bitness trick worth harvesting beside 09 #substitute-runtime-bitness: the 64-bit companion host is deliberately kept in a game SUBFOLDER (DeusExHRVR/DeusExHRVRHost.exe) so it cannot load the game's 32-bit proxy DLLs."}
+      hands_interaction: {review: skimmed, evidence: AUTHOR, note: "Motion controls are opt-in behind ExperimentalMotionControls=1; the author reports motion-controlled weapon aiming tested in a headset. Not verified here."}
+      camera_tracking: {review: skimmed, evidence: AUTHOR, note: "Headset tracking with F9 recenter, and F6 toggling between full VR and the virtual screen while capturing a neutral head pose."}
+      xr_input: {review: not_reviewed}
+      audio: {review: not_reviewed}
+      source_integration: {review: not_reviewed}
+      re_discovery: {review: not_reviewed}
+
+  - id: "prey-vr"
+    root: "D:/Dev Debug/Other VR mods/prey-vr"
+    status: external_reference
+    upstream_url: https://github.com/jordicalsinabaldoma/prey-vr
+    license: unknown
+    reviewed_at: 2026-09-17
+    reviewed_revision: "tree:57264622ead2189c"
+    reviewed_git_commit: b680f8bcb70d2deb6910c497d38e54d26683f933
+    engine: CryEngine (Arkane) - Prey 2017
+    api: D3D11
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo: {review: partial, evidence: AUTHOR, note: "REGISTERED + README/STRUCTURE REVIEWED 2026-09-17. EXTERNAL PRIOR ART FOR THE FLEET'S OWN PreyVR - same game, same engine, independent author, so read it as a second witness rather than a donor. Author states pre-alpha but hardware-verified on Quest 2 over Meta Horizon Link. Deliberately parked at the FLAT-FUSION rung rather than geometric stereo (that work is on an unmerged stage-4 branch): the flat game frame is placed at each eye's OPTICAL CENTRE IN TAN-ANGLE SPACE under the headset's native FOV, which the author names as the thing that makes the two eyes fuse. A clean R4-shaped waypoint with an explicit recipe. XRStereoRender.cpp (265 lines) not read."}
+      xr_lifecycle: {review: partial, evidence: AUTHOR, note: "A real OpenXR session against the Oculus/Meta runtime via Link, also reported working on SteamVR; XRSession.cpp is 947 lines. DISTILL CANDIDATE - an unusually user-visible hard precondition: the headset must be AWAKE and Link ACTIVE BEFORE the game launches, because the mod queries the HMD at startup. A sleeping headset or inactive Link fails the session. That is 08 #hard-fail-preconditions with a trigger the user controls physically."}
+      hands_interaction: {review: partial, evidence: AUTHOR, note: "The gun visually follows the right controller AND shots fire along the GUN ray rather than the camera ray, with controller wrist roll and an in-place hand calibration - a third fleet data point on aim-ray ownership alongside FC2VR and MoH-VR. Also vr_hide_body hides the player body model but KEEPS the held weapon, which is the same hide-the-arms decision MoH-VR reached with vr_hideViewArms."}
+      input_locomotion: {review: partial, evidence: AUTHOR, note: "Head-relative locomotion on the left stick (you walk where you look); comfort turning on right stick X as snap (45 degrees default) or smooth, with right stick Y adding accumulated pitch. Only the sticks and right trigger are mapped - the author lists needing keyboard/mouse or a gamepad for everything else as a limitation."}
+      source_integration: {review: skimmed, evidence: SOURCE, note: "SHIPS ITS OWN MOCK OPENXR RUNTIME in mockxr/ (mock_runtime.cpp, mock_loader_interfaces.h, CMakeLists.txt). That makes a THIRD independent substitute runtime in this corpus, alongside BioShock-Trilogy-VR's xrsim and the fleet's own xr-sim - strong corroboration that 09 #substitute-runtime is a thing everyone building headless VR arrives at. Its surface and fidelity were not assessed."}
+      re_discovery: {review: skimmed, evidence: SOURCE, note: "Hook-per-concern layout, read from the file list rather than the code: XRCameraHook, XRWeaponHook, XRRenderHook, XRHudHook, XRGameHooks, XRGameInput, XRWeaponRender and XRStereoRender beneath a 2,187-line ModMain. Hosted as a Chairloader DLL mod, so the loader is third-party while the VR is entirely the mod's own."}
+      ui_hud: {review: skimmed, evidence: AUTHOR, note: "At this rung the HUD and menus render inside the flat game frame and are not separated out. XRHudHook.cpp (308 lines) not read."}
+      performance: {review: skimmed, evidence: AUTHOR, note: "Author states there is no reprojection-friendly frame pacing work yet and advises keeping game FPS high. Not measured here."}
+      camera_tracking: {review: skimmed, evidence: AUTHOR, note: "HMD yaw/pitch look plus a 6DOF positional offset for lean and peek, recenterable."}
+      xr_input: {review: not_reviewed}
+      audio: {review: not_reviewed}
+      packaging_deploy: {review: not_reviewed}
+
+  - id: "VRExpansionPlugin-4.27"
+    root: "D:/Dev Debug/Other VR mods/VRExpansionPlugin-4.27"
+    status: external_reference
+    upstream_url: https://github.com/mordentral/VRExpansionPlugin
+    license: "MIT (Copyright Joshua Statzer)"
+    reviewed_at: 2026-09-17
+    reviewed_revision: "tree:b317d39a5c2f15b3"
+    reviewed_git_commit: 4e52c69393271f3abce11d22c5265aa14373cb6e
+    engine: Unreal Engine 4.27 (engine plugin, not a mod)
+    api: engine-level (OpenXR and OpenVR submodules)
+    vehicle: engine-plugin
+    chapter: 18
+    areas:
+      source_integration: {review: partial, evidence: SOURCE, note: "REGISTERED 2026-09-17, STRUCTURE REVIEWED - no code read. NOT A MOD: mordentral's engine plugin, compiled INTO a UE project, MIT licensed. On the frozen 4.27 branch (HEAD 2024-10-10), which is the CORRECT version for a UE 4.27.2 target rather than a stale one. 142 source files across three modules - VRExpansionPlugin (122), OpenXRExpansionPlugin (13), OpenVRExpansionPlugin (7). This is the reference answer to how VR is actually BUILT in UE, and therefore the most valuable source here for any UE port that has or will have engine source - the exact inverse of the UEVR route, where you own none of it."}
+      hands_interaction: {review: skimmed, evidence: SOURCE, note: "GripMotionControllerComponent.cpp is 8,204 lines - by far the largest file in the plugin, which is itself the finding about where the difficulty lives. Grip behaviour is factored into separate grip scripts (GS_Melee.cpp, 968 lines) and interactables are componentised (VRLeverComponent.cpp, 1,002 lines). Read the grip component before designing any hold system on UE. Not read here."}
+      input_locomotion: {review: skimmed, evidence: SOURCE, note: "THREE roomscale movement components, which is the finding: VRCharacterMovementComponent (4,151 lines), VRBaseCharacterMovementComponent (2,003) and VRSimpleCharacterMovementComponent (1,597), over a VRRootComponent (1,676) owning the capsule and roomscale root. Roomscale locomotion in UE is a replacement for CharacterMovement, not a tweak to it."}
+      ui_hud: {review: skimmed, evidence: SOURCE, note: "VRStereoWidgetComponent.cpp (1,155 lines) - a stereo-correct UMG widget component. Directly relevant to UEVR-003, which is about fighting a widget's 2D layout when reparenting it into 3D; this is what solving the same problem looks like when you own the engine."}
+      render_hazards: {review: skimmed, evidence: SOURCE, note: "VRRenderTargetManager.cpp (1,782 lines). Also VRAIPerceptionOverrides.cpp (983 lines), which is HAND-018 corroborated from the other side: a roomscale player breaks AI perception assumptions badly enough to need a dedicated override layer. Neither read."}
+      stereo: {review: not_reviewed, note: "Out of scope by design - the plugin does not implement stereo, the engine does. Registered for interaction, locomotion and widget architecture."}
+      re_discovery: {review: not_reviewed, note: "Not applicable: full MIT source, nothing to reverse."}
+      xr_input: {review: not_reviewed}
+      camera_tracking: {review: not_reviewed}
+      performance: {review: not_reviewed}
+      audio: {review: not_reviewed}
+      packaging_deploy: {review: not_reviewed}
+
 not_a_source:
   - id: "UEVR-joeyhodge_AFW_v1.0-beta.6"
     reason: "UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source."

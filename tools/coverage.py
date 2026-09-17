@@ -88,6 +88,10 @@ VEHICLE_VALUES = (
     # its method. Kept in the vocabulary so such a source can be registered
     # honestly rather than mislabelled as one of the delivery shapes above.
     "documentation",
+    # Not a mod either: an engine plugin compiled INTO a project. Kept distinct from
+    # "framework" (injected alongside a shipped game) because the delivery, the
+    # licence exposure and the review questions are all different.
+    "engine-plugin",
 )
 TIER_VALUES = ("pre-T1", "T0", "T1", "T2", "T3", "T4")
 TIER_TARGET_VALUES = ("T0", "T1", "T2", "T3", "T4")
