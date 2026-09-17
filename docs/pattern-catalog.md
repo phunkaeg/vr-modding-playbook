@@ -2268,6 +2268,30 @@ confidently described enum value nobody has executed reads exactly like a tested
 Measured on VRExpansionPlugin: the grip enums yielded five transferable rules for the cost of reading one
 header, against an 8,204-line implementation left unread.
 
+## TEST-024 — Make the run survivable and bounded before you make it long {#test-024}
+
+**Problem:** a VR bring-up run ends in a hang and a force-kill far more often than it ends cleanly, and
+that is precisely when a buffered log discards the lines you needed. Meanwhile an unbounded run produces
+a session that ends when the tester tires, which is not comparable to the next one.
+
+**Use when:** instrumenting any bring-up you expect to crash, hang, or be killed — which is all of them.
+
+**Recipe:**
+
+- **Flush per line while bringing up.** Treat the log as breadcrumbs, not a report. The evidence you lose
+  to buffering is always the last few lines, and those are the ones describing the failure.
+- **Full detail for the first N units, then one line per unit.** Bring-up wants detail; steady state
+  wants a countable heartbeat. Without the switch, a log is either unreadable or useless after seconds.
+- **Bound the run.** A clamp that stops cleanly after N units turns a demonstration into a *completed
+  experiment*, and fixes N so two runs are comparable.
+
+**Proof:** force-kill the process mid-run and confirm the log's last line describes the last thing that
+happened. If it does not, you are not flushing.
+
+**Trip hazard:** per-line flushing has a real cost, so it is tempting to defer it until "the logging is
+finalised" — which is after the runs that most needed it. Add it first and make it conditional later, on
+a measurement rather than an intuition. `[SOURCE]` prey-vr.
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared

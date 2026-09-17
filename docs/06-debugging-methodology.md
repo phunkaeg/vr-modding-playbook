@@ -1128,6 +1128,30 @@ Two rules, and the second is the one that generalises furthest:
 > opportunity for eye divergence; it is not divergence. Name instruments after what they measure, not
 > after what you hope they detect.
 
+
+## A force-killed process loses everything it had not flushed {#flush-on-write}
+
+Three logging disciplines from one file, all cheap, and the first explains why the other two exist.
+`[SOURCE]` prey-vr `XRStereoRender.cpp`.
+
+**Write breadcrumbs that survive a kill.** Its stage tracing is explicitly *"flush-on-write breadcrumbs;
+Game.log dies on force-kill"*. A VR bring-up ends with a hung process and Alt-F4 more often than it ends
+cleanly, and a buffered log is **exactly** the evidence you lose at that moment — the last few lines
+before the hang are the ones you needed. Flush per line while you are bringing something up; make it
+conditional later if the cost shows up in a measurement.
+
+**Log the first N in full, then one line per unit.** The same tracer logs every stage for the first few
+frame pairs and then drops to a single numbered line per pair. Bring-up needs detail; a steady state
+needs a heartbeat you can count. One switch, and the log stays readable for a whole session instead of
+being useful for four seconds ([#metric-cannot-fail](#metric-cannot-fail) is about the metric; this is
+about the volume).
+
+**Bound the run so it proves the mechanism and then stops.** prey-vr ships `vr_fullrate_limit`, a test
+clamp that stops cleanly after N stereo pairs. A mechanism that works for N pairs and then stops on
+purpose is a **completed experiment**; the same mechanism left running until something breaks is an
+anecdote. It also makes the run comparable — the same N every time — which a session that ends when the
+tester gets tired never is. See [TEST-024](pattern-catalog.md#test-024).
+
 ## A checker's clean verdict must not be its no-data verdict {#empty-is-not-clean}
 
 [#metric-cannot-fail](#metric-cannot-fail) is about instruments that cannot report a fault. This is its

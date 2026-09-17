@@ -924,6 +924,15 @@ Two details in how it ships are worth copying:
   out of the VR camera *while the gun still aims vertically* — a third relationship that neither
   "coupled" nor "decoupled" describes.
 
+
+**And redirecting movement means evaluating *both* locomotion axes, not replacing one.** DeusExHRVR's
+input hook carries the warning in a comment: *"Both locomotion actions must be evaluated: W can become a
+strafe."* Once "forward" is a direction you choose rather than the one the engine assumed, the mapping
+from key or stick axis to world axis is no longer fixed — a forward input can legitimately resolve to
+strafe movement, so a hook that rewrites only the forward axis and passes the strafe axis through
+produces movement that is correct until the player turns their head. Evaluate the pair and emit the pair.
+`[SOURCE]`
+
 ## A controller lying on a desk is not reporting zero {#resting-controller}
 
 Nine runs, five proposed mechanisms, all buried, and a shipped workaround built on a correlation nobody

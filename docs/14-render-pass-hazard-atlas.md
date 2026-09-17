@@ -384,6 +384,19 @@ the game actually renders"), and Crysis VR keeps the viewmodel's near FOV in ste
 The honest fallback while that track is open is what they shipped: **auto-widen off by default -
 correct geometry in a theater window** beats a wide image with a void in it.
 
+
+**When you do enlarge bounds, enlarge only the finite ones and keep their centre.** DeusExHRVR's bounds
+hook states the rule in one line — *"Enlarge only finite bounds, preserving their native world centre"* —
+and both halves matter. An infinite or degenerate bound is already "always visible" and scaling it
+produces nonsense; moving a bound's centre to grow it relocates the object as far as culling is
+concerned, so it disappears from a *different* angle instead. Grow symmetrically about the native centre,
+and leave anything non-finite alone. `[SOURCE]`
+
+It also names the trap that makes this necessary rather than optional: their cell lookup *"has no
+callback for type 10 (Everything)"* — so one query type simply never reaches the hook, and a bounds fix
+that works everywhere else silently does not apply there. **Enumerate the query types your hook actually
+receives before concluding a culling fix is complete.**
+
 ## A CPU visibility tracker that alternates per render is a stereo hazard {#cpu-visibility-history}
 
 The hazard census looks for temporal effects in the *renderer*. This one is in the **culling**, it is

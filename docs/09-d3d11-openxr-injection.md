@@ -983,6 +983,21 @@ Their values come **dynamically from OpenXR** with no headset-specific FOV, lens
 hard-coded anywhere — which is why the same correction holds across Quest 2, Quest 3, Meta's PCVR
 runtime, Virtual Desktop and SteamVR. See [STR-007](pattern-catalog.md#str-007).
 
+
+**A second independent implementation, with the arithmetic written out.** prey-vr builds the symmetric
+superset from the tangents rather than the angles:
+
+```cpp
+const float tv = fmaxf(fabsf(tanf(angleUp)), fabsf(tanf(angleDown)));
+const float vFov = 2.0f * atanf(tv);   // symmetric coverage fov; the eye's
+                                       // native asymmetric fov is cropped out
+```
+
+Taking the **maximum tangent** of the two vertical angles, not their average or their sum, is what makes
+it a *superset* — the symmetric frustum contains the asymmetric one, so the crop only ever removes
+pixels you had rather than inventing pixels you did not. Two projects reaching the same escape hatch
+independently is the useful part; the known-lossy caveat above still applies. `[SOURCE]`
+
 ### Superset-and-crop is an escape hatch, and it is lossy on canted displays
 
 A second family exists for engines that cannot express an off-axis frustum: render a **symmetric superset**
@@ -1562,6 +1577,12 @@ It also **retires a documented limitation**. Quad layers - aim laser, aim dot, H
 the compositor and never appear in a window screenshot, so "is the laser on screen" had been
 un-checkable outside a headset. A compositing substitute counts them, and the question becomes an
 assertion.
+
+
+**Measured twice now, and the numbers agree.** prey-vr independently ships a mock runtime
+(`mockxr/mock_runtime.cpp`, 513 lines) exporting **42** OpenXR entry points — beside BioShock-Trilogy-VR's
+39. Two unrelated projects, two counts in the low forties, which turns "count your own surface before
+dismissing the idea" from advice into a bracket you can plan against. `[SOURCE]`
 
 ## The runtime may refuse your API version, and the loader will not say so {#api-version-negotiation}
 
