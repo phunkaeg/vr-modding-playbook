@@ -30,3 +30,12 @@ cross-engine-graph/graphify-out/reflections/
 # engine SDKs from version control, and this repository is public, so the
 # extraction stays local. Findings may be described; the files may not ship.
 briefs/evidence/ssr-retail-*/
+
+# Per-developer assistant tooling, not project configuration. `graphify install
+# --platform opencode` writes a tool.execute.before hook here; the claude and
+# codex targets install to ~/.claude and ~/.codex instead, so only this one lands
+# in the repo. It is also inert here - it guards on <root>/graphify-out/graph.json
+# and this repo's graph lives under cross-engine-graph/. There is no .claude/
+# either, for the same reason: a public cross-engine playbook should not ship one
+# assistant's hooks.
+/.opencode/

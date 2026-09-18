@@ -6,10 +6,10 @@
     "semantic_hash": "48c29b05f1d38926a33b1b87696dcd0c"
   },
   "ADDRESS_REGISTRY.md": {
-    "mtime": 1784771986.7720792,
-    "seen": 1787801890.6839528,
-    "ast_hash": "d3a9eddc99e6966df93fd49a96bccb83",
-    "semantic_hash": ""
+    "mtime": 1788393769.6875358,
+    "seen": 1789706547.2018733,
+    "ast_hash": "dcf3cb494ece4bf8c5d105c23b5e7ced",
+    "semantic_hash": "dcf3cb494ece4bf8c5d105c23b5e7ced"
   },
   "BUILD_HISTORY.md": {
     "mtime": 1788394071.2849412,
@@ -24,22 +24,22 @@
     "semantic_hash": "34ed5e4487a1e211945cd052b64ea957"
   },
   "CURRENT_STATE.md": {
-    "mtime": 1784771986.9325643,
-    "seen": 1787801890.6839528,
-    "ast_hash": "9206e6c2843b42b5bc9222c6158dd93d",
-    "semantic_hash": ""
+    "mtime": 1788394273.5084527,
+    "seen": 1789706547.2018733,
+    "ast_hash": "c9b9a53e5f1180ffa7d5a09b532ac8c6",
+    "semantic_hash": "c9b9a53e5f1180ffa7d5a09b532ac8c6"
   },
   "DECISION_LOG.md": {
-    "mtime": 1784771986.9600856,
-    "seen": 1787801890.6839528,
-    "ast_hash": "a4136c6193a6b4153d356b78996ccbf6",
-    "semantic_hash": ""
+    "mtime": 1788394027.167815,
+    "seen": 1789706547.2018733,
+    "ast_hash": "a8df587b5db95f417de1112eef39c157",
+    "semantic_hash": "a8df587b5db95f417de1112eef39c157"
   },
   "FAILURE_REGISTRY.md": {
-    "mtime": 1784771987.0104244,
-    "seen": 1787801890.6839528,
-    "ast_hash": "6bc76dfc2a980f1ac8716df87bda1e19",
-    "semantic_hash": ""
+    "mtime": 1788394014.2164176,
+    "seen": 1789706547.2018733,
+    "ast_hash": "60ab5bb0cf3978189a71a4eba95a73df",
+    "semantic_hash": "60ab5bb0cf3978189a71a4eba95a73df"
   },
   "GIT_AGENT_BRIEF.md": {
     "mtime": 1784771987.0871322,
@@ -48,10 +48,10 @@
     "semantic_hash": "5d0c5f5a2e08773fb2c927e9865eb1d6"
   },
   "HYPOTHESES.md": {
-    "mtime": 1784771987.1136596,
-    "seen": 1787801890.6839528,
-    "ast_hash": "55bc08d119bee28d0f16e4726c92554d",
-    "semantic_hash": ""
+    "mtime": 1788393998.3796682,
+    "seen": 1789706547.2018733,
+    "ast_hash": "b8b73d43d4beaafd7105e16d5b57bf5a",
+    "semantic_hash": "b8b73d43d4beaafd7105e16d5b57bf5a"
   },
   "INSTALLATION.md": {
     "mtime": 1784771987.1685252,
@@ -60,10 +60,10 @@
     "semantic_hash": "57dd4471c44c4c18e7185dc3ccac971e"
   },
   "PROJECT_PHASES.md": {
-    "mtime": 1784771987.317583,
-    "seen": 1787801890.6839528,
-    "ast_hash": "a2c8c89c121ae889533cfe3fc4854416",
-    "semantic_hash": ""
+    "mtime": 1788394105.514978,
+    "seen": 1789706547.2018733,
+    "ast_hash": "756d4ceb79cfcd2d31d7ab29a5bf2bf0",
+    "semantic_hash": "756d4ceb79cfcd2d31d7ab29a5bf2bf0"
   },
   "RE_FINDINGS.md": {
     "mtime": 1788394047.6806972,
@@ -114,10 +114,10 @@
     "semantic_hash": "51a8a6d3f00b786170b016eb9cef907a"
   },
   "phase1-usage.md": {
-    "mtime": 1784771987.2468717,
-    "seen": 1787801890.6839528,
-    "ast_hash": "f7e51c8bfc02e527156d4dc1d4ed176b",
-    "semantic_hash": ""
+    "mtime": 1788394107.53938,
+    "seen": 1789706547.2018733,
+    "ast_hash": "2bdf7f5d3b56728eb80e7ac39a36275f",
+    "semantic_hash": "2bdf7f5d3b56728eb80e7ac39a36275f"
   },
   "phase2-ui.md": {
     "mtime": 1784771987.2715507,
@@ -156,16 +156,16 @@
     "semantic_hash": "2545a4b50d3a0df7dd0d58b7d2f6a102"
   },
   "AGENTS.md": {
-    "mtime": 1788233893.4140708,
-    "seen": 1788403126.113445,
-    "ast_hash": "c0f66347a7ecbfe401417c9b06033d0f",
-    "semantic_hash": "c0f66347a7ecbfe401417c9b06033d0f"
+    "mtime": 1788920735.6040773,
+    "seen": 1789706547.2018733,
+    "ast_hash": "7fc7a2ffc88f659027e26c38163e12ae",
+    "semantic_hash": "7fc7a2ffc88f659027e26c38163e12ae"
   },
   "CLAUDE.md": {
-    "mtime": 1787808180.993497,
-    "seen": 1788403126.113445,
-    "ast_hash": "395451b16de30bcd4ef4f9fa90b6c66c",
-    "semantic_hash": "395451b16de30bcd4ef4f9fa90b6c66c"
+    "mtime": 1788920735.6196232,
+    "seen": 1789706548.6471105,
+    "ast_hash": "15e26e7871a04639c81db0fb69ad47b0",
+    "semantic_hash": "15e26e7871a04639c81db0fb69ad47b0"
   },
   "COMPATIBILITY.md": {
     "mtime": 1784228184.8062217,

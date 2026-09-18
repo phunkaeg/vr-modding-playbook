@@ -1,9 +1,9 @@
 {
   "ADDRESS_REGISTRY.md": {
-    "mtime": 1788745197.4244905,
-    "seen": 1788746518.3159387,
-    "ast_hash": "de8a2d291b96b67f74fff48b604be4f0",
-    "semantic_hash": "de8a2d291b96b67f74fff48b604be4f0"
+    "mtime": 1789024888.6702514,
+    "seen": 1789709231.5897553,
+    "ast_hash": "062b8d209189344df77bc2474ee73f2f",
+    "semantic_hash": "062b8d209189344df77bc2474ee73f2f"
   },
   "ARCHITECTURE.md": {
     "mtime": 1787803705.5578427,
@@ -24,10 +24,10 @@
     "semantic_hash": "9f9177e03031cfafe95c2b3d25e4cb24"
   },
   "FAILURE_REGISTRY.md": {
-    "mtime": 1788734825.6925533,
-    "seen": 1788746518.3159387,
-    "ast_hash": "b5bf764a1ad4f8b33c958db48951c9a3",
-    "semantic_hash": "b5bf764a1ad4f8b33c958db48951c9a3"
+    "mtime": 1788820064.3281238,
+    "seen": 1789709231.5897553,
+    "ast_hash": "e1ccd9b4db76432dfb42725b67875796",
+    "semantic_hash": "e1ccd9b4db76432dfb42725b67875796"
   },
   "FRAME_OBSERVER_BOOTSTRAP.md": {
     "mtime": 1787985516.5605702,
@@ -102,10 +102,10 @@
     "semantic_hash": "fbe067853fba455a1ed79bda20b69744"
   },
   "RESEARCH_LOG.md": {
-    "mtime": 1788700490.704391,
-    "seen": 1788746532.9729092,
-    "ast_hash": "2eca5fd77ee661657216f08d6bbb3c26",
-    "semantic_hash": "2eca5fd77ee661657216f08d6bbb3c26"
+    "mtime": 1789081137.3806932,
+    "seen": 1789709231.5897553,
+    "ast_hash": "3779cf90b453aeefcd55e0067dc748ff",
+    "semantic_hash": "3779cf90b453aeefcd55e0067dc748ff"
   },
   "RUNTIME_BASELINE.md": {
     "mtime": 1785454656.1556213,
@@ -126,10 +126,10 @@
     "semantic_hash": "e0ca14cfa605563858fae07d8d6365e7"
   },
   "STEREO_ROUTE.md": {
-    "mtime": 1788311250.0021431,
-    "seen": 1788403381.2020683,
-    "ast_hash": "0b487c2ec3a8673076af8f0bcfd7abcc",
-    "semantic_hash": "0b487c2ec3a8673076af8f0bcfd7abcc"
+    "mtime": 1788828643.5704074,
+    "seen": 1789709231.5897553,
+    "ast_hash": "71d1214fe3d1883d24988fe4896519d9",
+    "semantic_hash": "71d1214fe3d1883d24988fe4896519d9"
   },
   "SUBMISSION_CONTRACT.md": {
     "mtime": 1788306344.568476,
@@ -216,10 +216,10 @@
     "semantic_hash": "08e24898cb69dae1c42ef4c5bdb5bf6c"
   },
   "AGENTS.md": {
-    "mtime": 1788421311.338619,
-    "seen": 1788746532.9729092,
-    "ast_hash": "d31dbb2b54f70ad9ec55443165ab429c",
-    "semantic_hash": "d31dbb2b54f70ad9ec55443165ab429c"
+    "mtime": 1788920735.6567867,
+    "seen": 1789709231.5897553,
+    "ast_hash": "05fc41112837ac82fea7c184b2c2640d",
+    "semantic_hash": "05fc41112837ac82fea7c184b2c2640d"
   },
   "BUILD_BASELINE.md": {
     "mtime": 1788563965.9347644,
@@ -228,10 +228,10 @@
     "semantic_hash": "b338271dd3cfddbaa0595c848f5c8e2c"
   },
   "HYPOTHESES.md": {
-    "mtime": 1788745197.2824404,
-    "seen": 1788746518.3159387,
-    "ast_hash": "084c92dc2fa464f959e0499aebeb4b56",
-    "semantic_hash": "084c92dc2fa464f959e0499aebeb4b56"
+    "mtime": 1788828643.568599,
+    "seen": 1789709231.5897553,
+    "ast_hash": "6dc912b9f95ee30adbaf1dd8e373a673",
+    "semantic_hash": "6dc912b9f95ee30adbaf1dd8e373a673"
   },
   "LIVE_CAPTURE_PLAN.md": {
     "mtime": 1788121593.6112928,
@@ -249,7 +249,7 @@
     "mtime": 1787808180.996495,
     "seen": 1788403749.4781382,
     "ast_hash": "79b53015bb81da3154029387983b5c46",
-    "semantic_hash": "79b53015bb81da3154029387983b5c46"
+    "semantic_hash": ""
   },
   "HEADLESS_TESTING.md": {
     "mtime": 1788051788.7642438,
@@ -258,10 +258,10 @@
     "semantic_hash": "976ed4d37cfcd9a4ea31def0c3500449"
   },
   "README.md": {
-    "mtime": 1787407321.1630428,
-    "seen": 1788746518.3159387,
-    "ast_hash": "49d84139f7b0cd749374f334ad8c1373",
-    "semantic_hash": "49d84139f7b0cd749374f334ad8c1373"
+    "mtime": 1788768269.2382274,
+    "seen": 1789709288.8727174,
+    "ast_hash": "dd33d7d4698d494918b32162d0aee476",
+    "semantic_hash": "dd33d7d4698d494918b32162d0aee476"
   },
   "captures/traces/2026-08-01-prey-stereo-path-recon.md": {
     "mtime": 1785553068.361322,
@@ -270,10 +270,10 @@
     "semantic_hash": "c3d63912433248f729c9f853cba17228"
   },
   "_project/README.md": {
-    "mtime": 1787407321.1787922,
-    "seen": 1788403966.3734405,
-    "ast_hash": "44ba9925c2ead7ba999470e093b6b348",
-    "semantic_hash": "44ba9925c2ead7ba999470e093b6b348"
+    "mtime": 1789007222.8816602,
+    "seen": 1789709288.8727174,
+    "ast_hash": "6e4f4c2b2c42f58f2f3d501db3a79408",
+    "semantic_hash": "6e4f4c2b2c42f58f2f3d501db3a79408"
   },
   "RE-H005-SKINNING-CONSUMER-2026-09-05.md": {
     "mtime": 1788578106.1347165,
@@ -312,10 +312,10 @@
     "semantic_hash": "271d93671b73598513c94dcd5a484811"
   },
   "RE-H021-ABSOLUTE-WRIST-ARM-CHAIN-WEAPON-AIM-2026-09-07.md": {
-    "mtime": 1788745157.5844953,
-    "seen": 1788746518.3159387,
-    "ast_hash": "8ddc05f044cc87ea7673e58ed4e2fc3f",
-    "semantic_hash": "8ddc05f044cc87ea7673e58ed4e2fc3f"
+    "mtime": 1788763987.2845185,
+    "seen": 1789709328.831414,
+    "ast_hash": "a839372b825e5692ce73b18400c981b8",
+    "semantic_hash": "a839372b825e5692ce73b18400c981b8"
   },
   "REVIEW-XRSIM-LAUNCH-AND-MENU-2026-09-06.md": {
     "mtime": 1788646886.1026998,
@@ -324,10 +324,10 @@
     "semantic_hash": "866c6d49a15a4c206317784d9634df69"
   },
   "SIXDOF_ROUTE.md": {
-    "mtime": 1788417317.3132396,
-    "seen": 1788746518.3159387,
-    "ast_hash": "173cf84d43f831057c1c04aef6c2d21f",
-    "semantic_hash": "173cf84d43f831057c1c04aef6c2d21f"
+    "mtime": 1788768269.2382274,
+    "seen": 1789709288.8727174,
+    "ast_hash": "ef7acc6014c19e47abd27ad009b2784c",
+    "semantic_hash": "ef7acc6014c19e47abd27ad009b2784c"
   },
   "HANDOVER-H005-HAND-RIG-TAKEOVER.md": {
     "mtime": 1788652933.1986828,
@@ -366,9 +366,591 @@
     "semantic_hash": "34c4428eaeb41fa5ebcb9d03b8fecf70"
   },
   "HANDOVER-H021-STATIC-VERIFICATION.md": {
-    "mtime": 1788746096.618409,
-    "seen": 1788746532.9729092,
-    "ast_hash": "a02222272a8422b36b282cb9a9808de5",
-    "semantic_hash": "a02222272a8422b36b282cb9a9808de5"
+    "mtime": 1788760209.7173386,
+    "seen": 1789709328.831414,
+    "ast_hash": "9c301e8cd501c26fe6152ad4850354e6",
+    "semantic_hash": "9c301e8cd501c26fe6152ad4850354e6"
+  },
+  "BUILD-INVENTORY-STEREO-2026-09-13.md": {
+    "mtime": 1789262164.3701797,
+    "seen": 1789709231.5897553,
+    "ast_hash": "4b3075a3b656183acb1a8ac21ec7a14d",
+    "semantic_hash": "4b3075a3b656183acb1a8ac21ec7a14d"
+  },
+  "GAME_FILE_CHANGES.md": {
+    "mtime": 1788826757.2413497,
+    "seen": 1789709231.5897553,
+    "ast_hash": "a23102f1a9a88fcd597360321bd74e21",
+    "semantic_hash": "a23102f1a9a88fcd597360321bd74e21"
+  },
+  "HANDOVER-AIM-HEAD-COUPLING-2026-09-08.md": {
+    "mtime": 1788842840.2987652,
+    "seen": 1789709231.5897553,
+    "ast_hash": "65d7b28a9743919966b31f54604bd53f",
+    "semantic_hash": "65d7b28a9743919966b31f54604bd53f"
+  },
+  "HANDOVER-HEADSET-SESSION-2026-09-08.md": {
+    "mtime": 1788843589.2772322,
+    "seen": 1789709231.5897553,
+    "ast_hash": "75972a37c2df077df526f1f0b70907bf",
+    "semantic_hash": "75972a37c2df077df526f1f0b70907bf"
+  },
+  "HANDOVER-IK-CROSSTALK-2026-09-09.md": {
+    "mtime": 1788929781.200933,
+    "seen": 1789709231.5897553,
+    "ast_hash": "b32ab2ef9c9a7f2d787d5f0d5f129783",
+    "semantic_hash": "b32ab2ef9c9a7f2d787d5f0d5f129783"
+  },
+  "HANDOVER-JORDI-COLLABORATION-2026-09-16.md": {
+    "mtime": 1789547371.0615838,
+    "seen": 1789709231.5897553,
+    "ast_hash": "73cef738db8a7e9cbff078e11a4aa403",
+    "semantic_hash": "73cef738db8a7e9cbff078e11a4aa403"
+  },
+  "HANDOVER-PERFORMANCE-2026-09-09.md": {
+    "mtime": 1788927166.854115,
+    "seen": 1789709231.5897553,
+    "ast_hash": "d9015a316f8004e4254aa744d4604cfc",
+    "semantic_hash": "d9015a316f8004e4254aa744d4604cfc"
+  },
+  "HOLOGRAM-VALIDATION.md": {
+    "mtime": 1789001577.1857123,
+    "seen": 1789709231.5897553,
+    "ast_hash": "87d539d1997a67947d7040a68c0acef8",
+    "semantic_hash": "87d539d1997a67947d7040a68c0acef8"
+  },
+  "HUD-INPUT-REGRESSION-2026-09-11.md": {
+    "mtime": 1789091022.4905877,
+    "seen": 1789709231.5897553,
+    "ast_hash": "f67e847f07117b8e57c0916766a64065",
+    "semantic_hash": "f67e847f07117b8e57c0916766a64065"
+  },
+  "INVENTORY-BACKDROP-HEADLESS-2026-09-13.md": {
+    "mtime": 1789254587.53659,
+    "seen": 1789709231.5897553,
+    "ast_hash": "965cb2736c8e719bcff510a114a5081e",
+    "semantic_hash": "965cb2736c8e719bcff510a114a5081e"
+  },
+  "INVENTORY-HOLOGRAM-READINESS-2026-09-11.md": {
+    "mtime": 1789083904.799038,
+    "seen": 1789709231.5897553,
+    "ast_hash": "5a97780404352d6917c39272f3ab7dc6",
+    "semantic_hash": "5a97780404352d6917c39272f3ab7dc6"
+  },
+  "INVENTORY-STEREO-PROTOTYPE-2026-09-13.md": {
+    "mtime": 1789261832.124623,
+    "seen": 1789709231.5897553,
+    "ast_hash": "4250b5d01e7554d419ea84588e2fc40c",
+    "semantic_hash": "4250b5d01e7554d419ea84588e2fc40c"
+  },
+  "INVENTORY-SWAPCHAIN-STATIC-2026-09-11.md": {
+    "mtime": 1789084158.0212753,
+    "seen": 1789709231.5897553,
+    "ast_hash": "510e348efc1e1c7efe498908a1b4b860",
+    "semantic_hash": "510e348efc1e1c7efe498908a1b4b860"
+  },
+  "LAUNCHER-RESOLUTION-FIX-2026-09-13.md": {
+    "mtime": 1789303867.5120687,
+    "seen": 1789709231.5897553,
+    "ast_hash": "55a86ee66dbc019a2b3f14359c2cadd7",
+    "semantic_hash": "55a86ee66dbc019a2b3f14359c2cadd7"
+  },
+  "NEXT-SESSION.md": {
+    "mtime": 1788818264.8996124,
+    "seen": 1789709231.5897553,
+    "ast_hash": "de142f1a8d073ff979df4576785ef2ca",
+    "semantic_hash": "de142f1a8d073ff979df4576785ef2ca"
+  },
+  "PERFORMANCE-PLAN-2026-09-09.md": {
+    "mtime": 1788927169.4818976,
+    "seen": 1789709231.5897553,
+    "ast_hash": "8d61a4c196f0deba1c7217b735967cd5",
+    "semantic_hash": "8d61a4c196f0deba1c7217b735967cd5"
+  },
+  "PLAYER-GUIDE-HOLOGRAM.md": {
+    "mtime": 1789336257.5334444,
+    "seen": 1789709231.5897553,
+    "ast_hash": "b35a40d3a6dd3947861e06d1cbf6c100",
+    "semantic_hash": "b35a40d3a6dd3947861e06d1cbf6c100"
+  },
+  "PLAYER-GUIDE.md": {
+    "mtime": 1789336255.755467,
+    "seen": 1789709231.5897553,
+    "ast_hash": "b9d0f2d65277bac0353fc5b4e7c32cb7",
+    "semantic_hash": "b9d0f2d65277bac0353fc5b4e7c32cb7"
+  },
+  "PREY-VR-COMPARISON-2026-09-16-v2.md": {
+    "mtime": 1789546112.7851398,
+    "seen": 1789709231.5897553,
+    "ast_hash": "f0f75070dd31a5f4e527ea14af992a24",
+    "semantic_hash": "f0f75070dd31a5f4e527ea14af992a24"
+  },
+  "PREY-VR-COMPARISON-2026-09-16.md": {
+    "mtime": 1789545559.0344293,
+    "seen": 1789709231.5897553,
+    "ast_hash": "031ed047b188fbfdd2e298caf7a674e8",
+    "semantic_hash": "031ed047b188fbfdd2e298caf7a674e8"
+  },
+  "RE-EGS-SYMBOL-CORPUS-2026-09-10.md": {
+    "mtime": 1788998326.8529127,
+    "seen": 1789709231.5897553,
+    "ast_hash": "b5bfa25549ecaaa26f1d010da89dd53f",
+    "semantic_hash": "b5bfa25549ecaaa26f1d010da89dd53f"
+  },
+  "RE-H021-INTEGRATION-AUDIT-2026-09-07.md": {
+    "mtime": 1788760163.7323904,
+    "seen": 1789709231.5897553,
+    "ast_hash": "35d2996928868aa72ee69b9ef6fc31b2",
+    "semantic_hash": "35d2996928868aa72ee69b9ef6fc31b2"
+  },
+  "RE-H021-STATIC-VERIFICATION-2026-09-07.md": {
+    "mtime": 1788747378.2278576,
+    "seen": 1789709231.5897553,
+    "ast_hash": "594b568f8dc2e448d23fafdbc5e06e30",
+    "semantic_hash": "594b568f8dc2e448d23fafdbc5e06e30"
+  },
+  "RE-H022-WEAPON-FLICKER-AND-GHOST-2026-09-08.md": {
+    "mtime": 1788823378.65288,
+    "seen": 1789709231.5897553,
+    "ast_hash": "18e3916b030a8f16e03773d0d75c0f9d",
+    "semantic_hash": "18e3916b030a8f16e03773d0d75c0f9d"
+  },
+  "RE-HEADSET-RESOLUTION-2026-09-08.md": {
+    "mtime": 1788826795.8902986,
+    "seen": 1789709231.5897553,
+    "ast_hash": "2d17007bc65b8fcded087109db75c552",
+    "semantic_hash": "2d17007bc65b8fcded087109db75c552"
+  },
+  "RE-HEADSET-SESSION-AUDIT-2026-09-08.md": {
+    "mtime": 1788843591.431749,
+    "seen": 1789709231.5897553,
+    "ast_hash": "9b1766d3aecb71886402f944e708787d",
+    "semantic_hash": "9b1766d3aecb71886402f944e708787d"
+  },
+  "RE-IK-CROSSTALK-2026-09-09.md": {
+    "mtime": 1788929858.8859868,
+    "seen": 1789709231.5897553,
+    "ast_hash": "9288b9c98edc3877352a0753c0e36912",
+    "semantic_hash": "9288b9c98edc3877352a0753c0e36912"
+  },
+  "RE-INVENTORY-DEPTH-2026-09-11.md": {
+    "mtime": 1789261833.6530983,
+    "seen": 1789709231.5897553,
+    "ast_hash": "0f42b3e99bedfa50da62a9a45129a9a4",
+    "semantic_hash": "0f42b3e99bedfa50da62a9a45129a9a4"
+  },
+  "RE-INVESTIGATION-GUIDE.md": {
+    "mtime": 1788747457.5627067,
+    "seen": 1789709231.5897553,
+    "ast_hash": "1c173dbba9a9b3a804aff810988bbf7f",
+    "semantic_hash": "1c173dbba9a9b3a804aff810988bbf7f"
+  },
+  "RE-PANEL-SWAPCHAIN-2026-09-11.md": {
+    "mtime": 1789083448.6744359,
+    "seen": 1789709231.5897553,
+    "ast_hash": "8d5c14077cf9ac97469c32e54c21a9e5",
+    "semantic_hash": "8d5c14077cf9ac97469c32e54c21a9e5"
+  },
+  "RE-PERFORMANCE-HANDOVER-AUDIT-2026-09-09.md": {
+    "mtime": 1788927132.465106,
+    "seen": 1789709231.5897553,
+    "ast_hash": "552615e8c187d07f1c9cfc3b95df4938",
+    "semantic_hash": "552615e8c187d07f1c9cfc3b95df4938"
+  },
+  "RE-RETICLE-HUD-VR-2026-09-08.md": {
+    "mtime": 1788819210.0532675,
+    "seen": 1789709231.5897553,
+    "ast_hash": "5f142ba6db5d1fb29da61a331840746a",
+    "semantic_hash": "5f142ba6db5d1fb29da61a331840746a"
+  },
+  "RE-UI-POINTER-2026-09-10.md": {
+    "mtime": 1788999985.1422276,
+    "seen": 1789709231.5897553,
+    "ast_hash": "d0d399cf423b1e162ffba962e7db9b35",
+    "semantic_hash": "d0d399cf423b1e162ffba962e7db9b35"
+  },
+  "RE-VEE-WEAPON-COLLISION-2026-09-09.md": {
+    "mtime": 1788949692.0993452,
+    "seen": 1789709231.5897553,
+    "ast_hash": "3b28d06261a30cfd222d6f0b33b7e2d2",
+    "semantic_hash": "3b28d06261a30cfd222d6f0b33b7e2d2"
+  },
+  "RE-VR-INTERFACE-2026-09-10.md": {
+    "mtime": 1788972096.8971457,
+    "seen": 1789709231.5897553,
+    "ast_hash": "500ce98154062b9fe90e5e060aab5245",
+    "semantic_hash": "500ce98154062b9fe90e5e060aab5245"
+  },
+  "RE-VR-SCHEME-2026-09-08.md": {
+    "mtime": 1788842067.3286154,
+    "seen": 1789709231.5897553,
+    "ast_hash": "169451c1f37df5dfa5716bc82ab23007",
+    "semantic_hash": "169451c1f37df5dfa5716bc82ab23007"
+  },
+  "RE-VR-SCHEME-AUDIT-2026-09-08.md": {
+    "mtime": 1788836380.2398536,
+    "seen": 1789709231.5897553,
+    "ast_hash": "61565f9280369dff913bd566ab665d8a",
+    "semantic_hash": "61565f9280369dff913bd566ab665d8a"
+  },
+  "RE-WEAPON-BASIS-ALIGNMENT-2026-09-09.md": {
+    "mtime": 1788959384.1281095,
+    "seen": 1789709231.5897553,
+    "ast_hash": "ee559f052a8aab47d568827535f56614",
+    "semantic_hash": "ee559f052a8aab47d568827535f56614"
+  },
+  "RE-WEAPON-WHEEL-2026-09-10.md": {
+    "mtime": 1789001577.5039034,
+    "seen": 1789709231.5897553,
+    "ast_hash": "5d40ea97db665532062e597403f035df",
+    "semantic_hash": "5d40ea97db665532062e597403f035df"
+  },
+  "RE-WORLD-UI-CURSOR-2026-09-10.md": {
+    "mtime": 1788994804.9345038,
+    "seen": 1789709231.5897553,
+    "ast_hash": "2efc546957f9e18582cfbfb5d952bde6",
+    "semantic_hash": "2efc546957f9e18582cfbfb5d952bde6"
+  },
+  "REVIEW-INVENTORY-SWAPCHAIN-CODEX-2026-09-11.md": {
+    "mtime": 1789083758.655516,
+    "seen": 1789709231.5897553,
+    "ast_hash": "37a23133095b30bf0f23b32991fdc460",
+    "semantic_hash": "37a23133095b30bf0f23b32991fdc460"
+  },
+  "TWO-HANDED-AIM-2026-09-14.md": {
+    "mtime": 1789337068.1553726,
+    "seen": 1789709231.5897553,
+    "ast_hash": "2a6c8744ffa83fbb883be005d30329c6",
+    "semantic_hash": "2a6c8744ffa83fbb883be005d30329c6"
+  },
+  "evidence/build-takeover-2026-09-09/rt-begin-frame.asm.txt": {
+    "mtime": 1788953089.267844,
+    "seen": 1789709231.5897553,
+    "ast_hash": "de5f26e215741fe78a47f49aee7da8e9",
+    "semantic_hash": "de5f26e215741fe78a47f49aee7da8e9"
+  },
+  "evidence/build-takeover-2026-09-09/source/CMakeLists.txt": {
+    "mtime": 1788953468.582927,
+    "seen": 1789709231.5897553,
+    "ast_hash": "25c3a2b4a9389ba2ab3f5bdde94cb37b",
+    "semantic_hash": "25c3a2b4a9389ba2ab3f5bdde94cb37b"
+  },
+  "evidence/build-takeover-2026-09-09/system-constructor.asm.txt": {
+    "mtime": 1788953118.2700486,
+    "seen": 1789709231.5897553,
+    "ast_hash": "5d027c6c1b79f56c6dbb7dd258601f40",
+    "semantic_hash": "5d027c6c1b79f56c6dbb7dd258601f40"
+  },
+  "evidence/build-takeover-2026-09-09/weapon-query-builder.asm.txt": {
+    "mtime": 1788953089.5899372,
+    "seen": 1789709231.5897553,
+    "ast_hash": "5d5e9ba5c53b60317017ddf6277c6ca5",
+    "semantic_hash": "5d5e9ba5c53b60317017ddf6277c6ca5"
+  },
+  "evidence/equip-alignment-hud-2026-09-09/CMakeLists.txt": {
+    "mtime": 1788938247.7272098,
+    "seen": 1789709231.5897553,
+    "ast_hash": "b70cf8fe11f8e82be628505cc25c77db",
+    "semantic_hash": "b70cf8fe11f8e82be628505cc25c77db"
+  },
+  "evidence/equip-alignment-hud-2026-09-09/cvar-name-list-decompile.txt": {
+    "mtime": 1788938380.918209,
+    "seen": 1789709231.5897553,
+    "ast_hash": "a197fdc0e247c68b2a20f6ecae1586d8",
+    "semantic_hash": "a197fdc0e247c68b2a20f6ecae1586d8"
+  },
+  "evidence/equip-alignment-hud-2026-09-09/interact-display-decompile.txt": {
+    "mtime": 1788938375.5745616,
+    "seen": 1789709231.5897553,
+    "ast_hash": "d94cc3f9b6d27ac6e2ac8957870318a2",
+    "semantic_hash": "d94cc3f9b6d27ac6e2ac8957870318a2"
+  },
+  "evidence/equip-alignment-hud-2026-09-09/interaction-update-decompile.txt": {
+    "mtime": 1788938383.6002262,
+    "seen": 1789709231.5897553,
+    "ast_hash": "11833890de6b320f6963dec3019aa003",
+    "semantic_hash": "11833890de6b320f6963dec3019aa003"
+  },
+  "evidence/equip-alignment-hud-2026-09-09/psi-targeting-config-decompile.txt": {
+    "mtime": 1788938378.2415056,
+    "seen": 1789709231.5897553,
+    "ast_hash": "06ee572d32c49778ab5bc8984f0722be",
+    "semantic_hash": "06ee572d32c49778ab5bc8984f0722be"
+  },
+  "evidence/ik-crosstalk-2026-09-09/handover-original.md": {
+    "mtime": 1788929536.4279158,
+    "seen": 1789709231.5897553,
+    "ast_hash": "6be7d4283a646346090e8fe36e194916",
+    "semantic_hash": "6be7d4283a646346090e8fe36e194916"
+  },
+  "evidence/ik-crosstalk-2026-09-09/native-ray-assembly.txt": {
+    "mtime": 1788929532.1063013,
+    "seen": 1789709231.5897553,
+    "ast_hash": "9a76c881a09fdba2aba53d07e0be0447",
+    "semantic_hash": "9a76c881a09fdba2aba53d07e0be0447"
+  },
+  "evidence/ik-crosstalk-2026-09-09/native-ray-decompile.txt": {
+    "mtime": 1788929529.6589813,
+    "seen": 1789709231.5897553,
+    "ast_hash": "8610907340e130cefbbedb7058cd02af",
+    "semantic_hash": "8610907340e130cefbbedb7058cd02af"
+  },
+  "evidence/ik-crosstalk-2026-09-09/verification.txt": {
+    "mtime": 1788929610.4626076,
+    "seen": 1789709231.5897553,
+    "ast_hash": "402a2ee5d3e2f44c6db9a2611dd59a90",
+    "semantic_hash": "402a2ee5d3e2f44c6db9a2611dd59a90"
+  },
+  "evidence/inventory-swapchain-2026-09-11/ctest.txt": {
+    "mtime": 1789084132.4450116,
+    "seen": 1789709231.5897553,
+    "ast_hash": "20b1d493c4d7fc5e7de308ef08e8d3e7",
+    "semantic_hash": "20b1d493c4d7fc5e7de308ef08e8d3e7"
+  },
+  "evidence/performance-handover-audit-2026-09-09/CMakeLists.txt": {
+    "mtime": 1788926994.679842,
+    "seen": 1789709231.5897553,
+    "ast_hash": "655d614d18666a6feb048bdfeea186f1",
+    "semantic_hash": "655d614d18666a6feb048bdfeea186f1"
+  },
+  "evidence/performance-handover-audit-2026-09-09/handover-author-original.md": {
+    "mtime": 1788927256.9332037,
+    "seen": 1789709231.5897553,
+    "ast_hash": "3454f770dc1af278253e894ae8dcceb9",
+    "semantic_hash": "3454f770dc1af278253e894ae8dcceb9"
+  },
+  "evidence/performance-handover-audit-2026-09-09/source-excerpts.txt": {
+    "mtime": 1788926991.9577794,
+    "seen": 1789709231.5897553,
+    "ast_hash": "76864bd52dfc4d0ba8472b7b073fbdf8",
+    "semantic_hash": "76864bd52dfc4d0ba8472b7b073fbdf8"
+  },
+  "evidence/performance-handover-audit-2026-09-09/verification.txt": {
+    "mtime": 1788927018.7019508,
+    "seen": 1789709231.5897553,
+    "ast_hash": "c36bc733b5fba98b76153773c46584b6",
+    "semantic_hash": "c36bc733b5fba98b76153773c46584b6"
+  },
+  "evidence/twohand-20260914/lifecycle.txt": {
+    "mtime": 1789336946.3377295,
+    "seen": 1789709231.5897553,
+    "ast_hash": "669825681858ddb6913fe106f8b4c2cd",
+    "semantic_hash": "669825681858ddb6913fe106f8b4c2cd"
+  },
+  "evidence/twohand-20260914/report-final.txt": {
+    "mtime": 1789336946.5720272,
+    "seen": 1789709231.5897553,
+    "ast_hash": "4e2f518c20a8bdf0f5aa1e9e598afa64",
+    "semantic_hash": "4e2f518c20a8bdf0f5aa1e9e598afa64"
+  },
+  "evidence/ui-pointer-2026-09-10/build-01.txt": {
+    "mtime": 1788992235.1147335,
+    "seen": 1789709231.5897553,
+    "ast_hash": "2fc8290cbf754b42239587e3fe6dce89",
+    "semantic_hash": "2fc8290cbf754b42239587e3fe6dce89"
+  },
+  "evidence/ui-pointer-2026-09-10/ctest-10.txt": {
+    "mtime": 1789001653.6997406,
+    "seen": 1789709231.5897553,
+    "ast_hash": "fbe52a981acf6465c96af17ae2cb027d",
+    "semantic_hash": "fbe52a981acf6465c96af17ae2cb027d"
+  },
+  "evidence/vr-interface-2026-09-09/final-inventory-report-07.txt": {
+    "mtime": 1788971965.6568072,
+    "seen": 1789709231.5897553,
+    "ast_hash": "067ebb1ec10ca9a75a9ba0d543107b32",
+    "semantic_hash": "067ebb1ec10ca9a75a9ba0d543107b32"
+  },
+  "evidence/vr-interface-2026-09-09/gloo-alignment-06.txt": {
+    "mtime": 1788971191.435477,
+    "seen": 1789709231.5897553,
+    "ast_hash": "7de739073b430c1a85d52a8e6df7140e",
+    "semantic_hash": "7de739073b430c1a85d52a8e6df7140e"
+  },
+  "evidence/vr-interface-2026-09-09/graph-refresh-final.txt": {
+    "mtime": 1788971594.6726964,
+    "seen": 1789709231.5897553,
+    "ast_hash": "9a4ea145a4b37ce5b7891d635f733bb7",
+    "semantic_hash": "9a4ea145a4b37ce5b7891d635f733bb7"
+  },
+  "evidence/vr-interface-2026-09-09/launcher-final-preflight.txt": {
+    "mtime": 1788972098.6346517,
+    "seen": 1789709231.5897553,
+    "ast_hash": "af9540941dd1283bcdc19a463513a113",
+    "semantic_hash": "af9540941dd1283bcdc19a463513a113"
+  },
+  "evidence/vr-interface-2026-09-09/loss-gameplay-06.txt": {
+    "mtime": 1788970991.5645514,
+    "seen": 1789709231.5897553,
+    "ast_hash": "df3e70f1939f3eaadbf12df1f5677bcb",
+    "semantic_hash": "df3e70f1939f3eaadbf12df1f5677bcb"
+  },
+  "evidence/vr-interface-2026-09-09/private-runtime-build.txt": {
+    "mtime": 1788964399.04645,
+    "seen": 1789709231.5897553,
+    "ast_hash": "93f8142324b9dcf8cd70d58b8adbef47",
+    "semantic_hash": "93f8142324b9dcf8cd70d58b8adbef47"
+  },
+  "evidence/vr-interface-2026-09-09/recovered-gameplay-06.txt": {
+    "mtime": 1788970967.2731612,
+    "seen": 1789709231.5897553,
+    "ast_hash": "4247be2170a5055aedfffd024e588523",
+    "semantic_hash": "4247be2170a5055aedfffd024e588523"
+  },
+  "evidence/vr-interface-2026-09-09/runs/player-20260910-020009/results.txt": {
+    "mtime": 1788970187.2827168,
+    "seen": 1789709231.5897553,
+    "ast_hash": "151abedf82a406e3c1037e4b4a741520",
+    "semantic_hash": "151abedf82a406e3c1037e4b4a741520"
+  },
+  "evidence/vr-interface-2026-09-09/runs/player-20260910-021201/results.txt": {
+    "mtime": 1788971351.3567603,
+    "seen": 1789709231.5897553,
+    "ast_hash": "15d4165a9fc9cd0c24b98a0e7734cdfd",
+    "semantic_hash": "15d4165a9fc9cd0c24b98a0e7734cdfd"
+  },
+  "evidence/vr-interface-2026-09-09/runs/player-20260910-023114/results.txt": {
+    "mtime": 1788972019.1685805,
+    "seen": 1789709231.5897553,
+    "ast_hash": "405df1b5b5a2abbcd8b1888018cac792",
+    "semantic_hash": "405df1b5b5a2abbcd8b1888018cac792"
+  },
+  "evidence/vr-interface-2026-09-09/wrench-alignment-06.txt": {
+    "mtime": 1788971296.1494703,
+    "seen": 1789709231.5897553,
+    "ast_hash": "d229d962ca3eaa55de717cc6b5ca77fa",
+    "semantic_hash": "d229d962ca3eaa55de717cc6b5ca77fa"
+  },
+  "evidence/weapon-basis-2026-09-09/source/CMakeLists.txt": {
+    "mtime": 1788959220.5713825,
+    "seen": 1789709231.5897553,
+    "ast_hash": "0b6a90f18b12947693b85b8c67c254ae",
+    "semantic_hash": "0b6a90f18b12947693b85b8c67c254ae"
+  },
+  "presentations/prey-vr-complementary-strengths-20260916.prompt.txt": {
+    "mtime": 1789546851.329822,
+    "seen": 1789709231.5897553,
+    "ast_hash": "c61243b65822e13be11c5288181db9be",
+    "semantic_hash": "c61243b65822e13be11c5288181db9be"
+  },
+  "INVENTORY-STEREO-LIVE-2026-09-13.md": {
+    "mtime": 1789266526.5906978,
+    "seen": 1789709288.8727174,
+    "ast_hash": "9c6181fe9ce74316fe92847ac7dcba0f",
+    "semantic_hash": "9c6181fe9ce74316fe92847ac7dcba0f"
+  },
+  "RE-AIM-HEAD-COUPLING-2026-09-08.md": {
+    "mtime": 1788842019.6663744,
+    "seen": 1789709288.8727174,
+    "ast_hash": "446b628389ba14ccd78387c652ae16d7",
+    "semantic_hash": "446b628389ba14ccd78387c652ae16d7"
+  },
+  "RE-BUILD-TAKEOVER-2026-09-09.md": {
+    "mtime": 1788953370.790787,
+    "seen": 1789709288.8727174,
+    "ast_hash": "70ec393b78402cbc1be9e6937d0d3862",
+    "semantic_hash": "70ec393b78402cbc1be9e6937d0d3862"
+  },
+  "RE-EQUIP-ALIGNMENT-AND-HUD-SCALE-2026-09-09.md": {
+    "mtime": 1788938497.65308,
+    "seen": 1789709288.8727174,
+    "ast_hash": "481364a92c5cd5db857d2546467830e7",
+    "semantic_hash": "481364a92c5cd5db857d2546467830e7"
+  },
+  "REVIEW-0.5.0-2026-09-13.md": {
+    "mtime": 1789253247.3637006,
+    "seen": 1789709288.8727174,
+    "ast_hash": "b7b1c74e3724077f94bc8a5754dea48d",
+    "semantic_hash": "b7b1c74e3724077f94bc8a5754dea48d"
+  },
+  "evidence/twohand-20260914/report-held-positive.txt": {
+    "mtime": 1789336501.9716632,
+    "seen": 1789709288.8727174,
+    "ast_hash": "3dfbb4fb68023765acb74ae1f561137d",
+    "semantic_hash": "3dfbb4fb68023765acb74ae1f561137d"
+  },
+  "evidence/ui-pointer-2026-09-10/ctest-07.txt": {
+    "mtime": 1788999185.5136094,
+    "seen": 1789709288.8727174,
+    "ast_hash": "71bc43a1be19f0c58156e6a38e216570",
+    "semantic_hash": "71bc43a1be19f0c58156e6a38e216570"
+  },
+  "evidence/vee-viewmodel-review-2026-09-09/upstream/DEVNOTES.md": {
+    "mtime": 1788949531.2488134,
+    "seen": 1789709288.8727174,
+    "ast_hash": "7c7ed7416bb0a1948ee3c1380eb8e721",
+    "semantic_hash": "7c7ed7416bb0a1948ee3c1380eb8e721"
+  },
+  "evidence/vee-viewmodel-review-2026-09-09/upstream/README.md": {
+    "mtime": 1788949531.6162474,
+    "seen": 1789709288.8727174,
+    "ast_hash": "0bf0909671eb667047f3cc475bd7ef15",
+    "semantic_hash": "0bf0909671eb667047f3cc475bd7ef15"
+  },
+  "evidence/vr-interface-2026-09-09/ctest-player-03.txt": {
+    "mtime": 1788966529.3399858,
+    "seen": 1789709288.8727174,
+    "ast_hash": "75c398dddcf9481f9f4c4da9b1470311",
+    "semantic_hash": "75c398dddcf9481f9f4c4da9b1470311"
+  },
+  "evidence/vr-interface-2026-09-09/element-name-getter.txt": {
+    "mtime": 1788965360.3129306,
+    "seen": 1789709288.8727174,
+    "ast_hash": "9f3bcfa9d1d058be157821bff8001180",
+    "semantic_hash": "9f3bcfa9d1d058be157821bff8001180"
+  },
+  "evidence/vr-interface-2026-09-09/live-xrsim/command.txt": {
+    "mtime": 1788964329.4733698,
+    "seen": 1789709288.8727174,
+    "ast_hash": "df80eaa714c3a245e362bf6233eb5f79",
+    "semantic_hash": "df80eaa714c3a245e362bf6233eb5f79"
+  },
+  "evidence/vr-interface-2026-09-09/loss-menu-06.txt": {
+    "mtime": 1788970896.9527814,
+    "seen": 1789709288.8727174,
+    "ast_hash": "1f911e731da92202615f38192af2e4ad",
+    "semantic_hash": "1f911e731da92202615f38192af2e4ad"
+  },
+  "evidence/vr-interface-2026-09-09/pda-xrefs.txt": {
+    "mtime": 1788961431.3973243,
+    "seen": 1789709288.8727174,
+    "ast_hash": "5247e726f34b085682e4e448d68f7980",
+    "semantic_hash": "5247e726f34b085682e4e448d68f7980"
+  },
+  "evidence/vr-interface-2026-09-09/private-live-xrsim-04/command.txt": {
+    "mtime": 1788969063.7305098,
+    "seen": 1789709288.8727174,
+    "ast_hash": "a89e120827eb3430eb1dcf91982987fe",
+    "semantic_hash": "a89e120827eb3430eb1dcf91982987fe"
+  },
+  "evidence/vr-interface-2026-09-09/runs/player-20260910-003637/results.txt": {
+    "mtime": 1788965534.952242,
+    "seen": 1789709288.8727174,
+    "ast_hash": "248c906048d44492a6b83daae09cf988",
+    "semantic_hash": "248c906048d44492a6b83daae09cf988"
+  },
+  "RE-UI-CAPTURE-PIXELS-2026-09-10.md": {
+    "mtime": 1788989942.0150602,
+    "seen": 1789709328.831414,
+    "ast_hash": "44f2855c12c49c0c289adb33d9debb72",
+    "semantic_hash": "44f2855c12c49c0c289adb33d9debb72"
+  },
+  "RELEASE-NOTES-0.5.0-preview.md": {
+    "mtime": 1789132646.4894245,
+    "seen": 1789709328.831414,
+    "ast_hash": "119b4e91835767528cdda20053e08a60",
+    "semantic_hash": "119b4e91835767528cdda20053e08a60"
+  },
+  "evidence/ui-pointer-2026-09-10/ctest-08.txt": {
+    "mtime": 1788999335.706799,
+    "seen": 1789709328.831917,
+    "ast_hash": "c9bfd55ddf736aea7eb172b0dfa3318b",
+    "semantic_hash": "c9bfd55ddf736aea7eb172b0dfa3318b"
+  },
+  "evidence/vr-interface-2026-09-09/ctest-retry.txt": {
+    "mtime": 1788964536.0758262,
+    "seen": 1789709328.831917,
+    "ast_hash": "714b70461186f68286760f370e847066",
+    "semantic_hash": "714b70461186f68286760f370e847066"
   }
 }
