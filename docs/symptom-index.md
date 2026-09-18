@@ -207,6 +207,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| It crashes on teardown or on swapchain recreation, never while running | [19](19-d3d12-and-performance.md#gpu-resource-identity) - work whose fence signal failed is untrackable; refuse teardown rather than assuming idle |
 | Crash on a custom asset | [05](05-assets-and-materials.md) — structural validity ≠ semantic safety |
 | Re-entry survives short bursts but hangs during sustained rendering | [Re-entry endurance](17-teardown-fc2vr-native-stereo.md#reentry-endurance) |
 | Wider-view streaming corrupts memory near a repeatable queue count | [Bounded streaming append](14-render-pass-hazard-atlas.md#bounded-streaming-append) |

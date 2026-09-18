@@ -109,6 +109,42 @@ Bisect duplicates and retain causal history across at least one frame.
 feeder may write arguments or data consumed indirectly without issuing the
 indirect draw itself.
 
+
+## Before you reuse or release a GPU resource, prove what you assume {#gpu-resource-identity}
+
+Three checks from one file, all cheap, all silent when skipped. `[SOURCE]` OFXR-Bridge's D3D12
+swapchain history (LGPL-3.0).
+
+**There is a third state between "finished" and "still running": untrackable.** The window between
+`ExecuteCommandLists` and a *successful* `Signal` is the dangerous one — the work is on the GPU, and if
+the `Signal` fails there is no fence value that will ever report its completion. The history object
+marks itself `completion_unknown` across exactly that window, and when the flag is set its
+`wait_for_idle` **refuses**: it returns `ERROR_IO_INCOMPLETE` and disables further capture rather than
+waiting on a fence that will never advance, or worse, proceeding as though idle
+([FAIL-PERF-023](failure-atlas.md)).
+
+The reason to copy this is the consequence, not the flag. You cannot safely free a resource the GPU may
+still be reading, so the honest answer to an untrackable submission is *refuse to tear down*, not
+*assume the best*. This is [META-013](pattern-catalog.md#meta-013) — a checker must distinguish clean
+from empty — expressed in a resource lifetime: **idle, busy, and "I cannot know" are three states, and
+collapsing the third into the first is how teardown becomes a use-after-free.** Its idle path also
+returns `ERROR_BUSY` while any consumer still holds a lease, rather than reclaiming the slot underneath
+them.
+
+**Validate a cached resource on every field of its description, not on its size.** Before reusing a
+history texture the code compares eleven fields — dimension, alignment, width, height, array size, mip
+levels, format, sample count *and quality*, layout, and flags. A swapchain can be recreated mid-session
+with a different format or sample count while its dimensions stay put, and a partial comparison accepts
+the mismatch. Compare the whole description or you are asserting the fields you skipped.
+
+**Compare COM objects by identity, not by interface pointer — and check the adapter separately.** Two
+`ID3D12Device*` values can differ while naming the same device, so its device check queries *both*
+sides for `IUnknown` and compares those. Separately, its adapter check compares `GetAdapterLuid`. The
+two are different questions: *is this resource from my device* and *is this resource even from my GPU*.
+[06](06-debugging-methodology.md) already records identifying adapters by LUID rather than by name or
+VRAM; this is the same rule applied to resource ownership, and the `IUnknown` step is the part people
+skip because a pointer comparison looks like it works.
+
 ## Transient aliasing can make replay impossible {#d3d12-transient-aliasing}
 
 Cyberpunk’s decisive split was between batches on dedicated resources and

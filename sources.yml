@@ -2821,9 +2821,9 @@ external:
     chapter: 9
     areas:
       render_hazards:
-        review: skimmed
-        evidence: AUTHOR
-        note: 'REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. An implicit OpenXR API layer that INSERTS an optical-flow-generated frame between two rendered frames. Author labels it pre-release v0.2.0 and warns it may freeze or crash the game, so treat every claim as AUTHOR. The file list is why this is worth reading next: optical_flow.cpp, d3d12_frame_synthesizer.cpp, d3d12_history.cpp, d3d11_d3d12_interop.cpp, implicit_layer.cpp, plus presenter pacing and optional frame-info validation. d3d12_history.cpp is STR-015 territory (bank temporal history in BOTH halves) and the pacing work is #three-frame-clocks / #mirror-is-a-scheduler territory.'
+        review: partial
+        evidence: SOURCE
+        note: 'REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. An implicit OpenXR API layer that INSERTS an optical-flow-generated frame between two rendered frames. Author labels it pre-release v0.2.0 and warns it may freeze or crash the game, so treat every claim as AUTHOR. d3d12_history.cpp READ 2026-09-18 (802 lines), distilled to ch14 #history-slot-identity, ch19 #gpu-resource-identity, META-016 and FAIL-PERF-023. THREE findings: (1) a ring-buffer slot index is a LOCATION, not an identity - capture issues a 4-field ticket (serial, fence value, slot, source index), a consumer borrows with a lease (capture serial, own lease serial, slot), and every read validates BOTH serials, so a wrapped-around consumer fails a check instead of reading a live frame; a stale lease also cannot cancel a live one. (2) completion_unknown marks the window between ExecuteCommandLists and a SUCCESSFUL Signal - if the signal fails, no fence value will ever report completion, so wait_for_idle refuses with ERROR_IO_INCOMPLETE rather than waiting forever or assuming idle. Idle also returns ERROR_BUSY while any lease is outstanding. (3) a cached resource is revalidated on ELEVEN D3D12_RESOURCE_DESC fields, COM devices are compared by QI-ing both to IUnknown rather than by interface pointer, and adapter identity is a SEPARATE GetAdapterLuid check. STILL UNREAD: d3d12_frame_synthesizer.cpp (3,692 lines), openxr_layer.cpp (4,851), optical_flow.cpp (363) - the pacing work remains #three-frame-clocks territory.'
       performance:
         review: skimmed
         evidence: AUTHOR

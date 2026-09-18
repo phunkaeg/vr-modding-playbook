@@ -74,7 +74,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `xr_lifecycle` | 6 | 11 | 1 | 50 | 52 |
 | `xr_input` | 4 | 1 | 7 | 59 | 49 |
 | `camera_tracking` | 12 | 18 | 4 | 46 | 40 |
-| `render_hazards` | 5 | 12 | 5 | 21 | 77 |
+| `render_hazards` | 5 | 13 | 4 | 21 | 77 |
 | `ui_hud` | 5 | 15 | 12 | 48 | 40 |
 | `hands_interaction` | 6 | 20 | 7 | 41 | 46 |
 | `input_locomotion` | 2 | 8 | 4 | 23 | 83 |
@@ -169,7 +169,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
-| **OFXR-Bridge** | external reference | engine-agnostic (implicit OpenXR API layer) | openxr-api-layer | — | — | 9 | 72 | 44 | 13 | 2026-09-15 | 🟩 current | 0F / 0P / 3S / 9NR / 1— |
+| **OFXR-Bridge** | external reference | engine-agnostic (implicit OpenXR API layer) | openxr-api-layer | — | — | 9 | 72 | 44 | 13 | 2026-09-15 | 🟩 current | 0F / 1P / 2S / 9NR / 1— |
 | **openmw-vr** | external reference | OpenMW (OSG / OpenGL) | source-port | — | — | — | 3825 | 3023 | 208 | 2026-08-26 | 🟩 current | 0F / 2P / 1S / 1NR / 9— |
 | **Outlast-Vr-Mod** | external reference | Unreal Engine 3 (Outlast) | native-injector | T1 | — | 18 | 49 | 16 | 8 | 2026-08-30 | ⚪ unpinned | 0F / 0P / 2S / 9NR / 2— |
 | **payday2-vr-improvements** | external reference | Diesel (PAYDAY 2) | script-native-hybrid | — | — | — | 55 | 34 | 3 | 2026-08-27 | 🟩 current | 0F / 1P / 1S / 0NR / 11— |
@@ -1665,7 +1665,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `xr_lifecycle` | — no entry — | — | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
-| `render_hazards` | 🟧 skimmed | `AUTHOR` | REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. An implicit OpenXR API layer that INSERTS an optical-flow-generated frame between two rendered frames. Author labels it pre-release v0.2.0 and warns it may freeze or crash the game, so treat every claim as AUTHOR. The file list is why this is worth reading next: optical_flow.cpp, d3d12_frame_synthesizer.cpp, d3d12_history.cpp, d3d11_d3d12_interop.cpp, implicit_layer.cpp, plus presenter pacing and optional frame-info validation. d3d12_history.cpp is STR-015 territory (bank temporal history in BOTH halves) and the pacing work is #three-frame-clocks / #mirror-is-a-scheduler territory. |
+| `render_hazards` | 🟨 partial | `SOURCE` | REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. An implicit OpenXR API layer that INSERTS an optical-flow-generated frame between two rendered frames. Author labels it pre-release v0.2.0 and warns it may freeze or crash the game, so treat every claim as AUTHOR. d3d12_history.cpp READ 2026-09-18 (802 lines), distilled to ch14 #history-slot-identity, ch19 #gpu-resource-identity, META-016 and FAIL-PERF-023. THREE findings: (1) a ring-buffer slot index is a LOCATION, not an identity - capture issues a 4-field ticket (serial, fence value, slot, source index), a consumer borrows with a lease (capture serial, own lease serial, slot), and every read validates BOTH serials, so a wrapped-around consumer fails a check instead of reading a live frame; a stale lease also cannot cancel a live one. (2) completion_unknown marks the window between ExecuteCommandLists and a SUCCESSFUL Signal - if the signal fails, no fence value will ever report completion, so wait_for_idle refuses with ERROR_IO_INCOMPLETE rather than waiting forever or assuming idle. Idle also returns ERROR_BUSY while any lease is outstanding. (3) a cached resource is revalidated on ELEVEN D3D12_RESOURCE_DESC fields, COM devices are compared by QI-ing both to IUnknown rather than by interface pointer, and adapter identity is a SEPARATE GetAdapterLuid check. STILL UNREAD: d3d12_frame_synthesizer.cpp (3,692 lines), openxr_layer.cpp (4,851), optical_flow.cpp (363) - the pacing work remains #three-frame-clocks territory. |
 | `ui_hud` | 🟥 not reviewed | `—` | — |
 | `hands_interaction` | 🟥 not reviewed | `—` | — |
 | `input_locomotion` | 🟥 not reviewed | `—` | — |

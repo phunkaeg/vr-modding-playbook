@@ -17,6 +17,38 @@ Every pattern uses the same fields:
 - **Proof** — evidence that distinguishes success from a near miss;
 - **Trip hazard** — the failure most likely to masquerade as success.
 
+## META-016 - A reused container is not the thing it currently holds {#meta-016}
+
+**Problem:** anything recycled - a ring-buffer slot, a pool entry, an array position, a frame index -
+is a *location*. Code that passes the location as though it were the contents reads whatever happens to
+be there later, which is usually the right shape and the wrong data, so nothing errors.
+
+**Use when:** handing out a reference into any structure that will be overwritten - a frame-history
+bank, a pose set assembled per frame, a texture pool, a slot in a fixed array of anything.
+
+**Recipe:**
+
+- **Issue an identity alongside the location.** A monotonically increasing serial, allocated at the
+  moment the contents are written, is enough; it never needs to be a hash of the contents.
+- **Validate the identity on every read**, not only on acquisition, and treat a mismatch as a normal
+  outcome to handle rather than an error to log.
+- **Give the borrow its own serial too**, so the holder of a stale reference cannot release, cancel or
+  mutate what a newer holder now owns.
+- **Compare the identity fields as a unit.** A partial comparison is the same bug one level down.
+
+**Proof:** hold a reference, force the container to wrap all the way round, then read. The read must
+fail the identity check. If it returns data, the identity is decorative - and this test is the only one
+that catches it, because every sequential test passes.
+
+**Trip hazard:** the wrapped-around read usually returns *plausible* data - an adjacent frame, the other
+eye, the other hand - so the symptom is a subtle wrongness under load and never a crash, and it
+disappears whenever you slow things down to look at it.
+
+**Seen three times, independently:** identified grab poses rather than counted ones
+([02](02-viewmodels-and-hands.md#two-handed-support)), frame identity separated from frame content
+([09](09-d3d11-openxr-injection.md#eye-capture-point)), and ticket-plus-lease serials over history
+slots ([14](14-render-pass-hazard-atlas.md#history-slot-identity)). `[SOURCE]`
+
 ## META-001 — Self-identifying build {#meta-001}
 
 **Problem:** a correct change appears ineffective because different bytes ran.

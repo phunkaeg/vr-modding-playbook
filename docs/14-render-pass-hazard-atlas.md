@@ -204,6 +204,37 @@ viable. A TAA-era engine (roughly 2016 onward) is much harder to alternate-eye, 
 same-frame per-eye rendering or scene re-entry ([09](09-d3d11-openxr-injection.md),
 [13](13-teardown-bioshock-vr.md)).
 
+
+#### A slot index is not an identity {#history-slot-identity}
+
+A history bank is a ring of slots that get overwritten. The obvious API hands a consumer the slot it
+may read — and that is the bug, because by the time the consumer reads it the ring may have wrapped and
+written a different frame into the same slot. The consumer reads the wrong frame and nothing errors.
+`[SOURCE]` OFXR-Bridge's D3D12 swapchain history (LGPL-3.0), which is an OpenXR API layer banking
+frames in order to synthesise one between them.
+
+Its protocol is worth copying wholesale, and it is small:
+
+- **A capture issues a ticket** carrying a monotonic serial, the fence value, the slot, and which
+  source image it came from. Four fields, compared as a unit.
+- **A consumer borrows with a lease** carrying the capture's serial, its own monotonic lease serial,
+  and the slot.
+- **Every read validates both serials against the slot.** The slot must still be valid, its ticket
+  serial must equal the serial the lease was issued against, *and* the slot's active lease serial must
+  equal this lease's. A stale consumer therefore fails a check rather than reading a live frame.
+- **A stale lease cannot cancel a live one.** Cancellation runs the same validation first, so a
+  late-arriving cancel from a wrapped-around consumer cannot release somebody else's slot.
+
+That is ABA protection: the slot index is the *location*, the serial is the *identity*, and a recycled
+location needs both. See [META-016](pattern-catalog.md#meta-016).
+
+> **This is the third form of one rule in this corpus, and the convergence is the useful part.**
+> [02](02-viewmodels-and-hands.md#two-handed-support) records that grab poses must be *identified*
+> rather than counted, because a two-point transform reading `left, right` then `right, left` must not
+> conclude the hands swapped. [09](09-d3d11-openxr-injection.md#eye-capture-point) separates frame
+> *identity* from frame *content* for the same reason. Here it is a ring-buffer slot. Three unrelated
+> subsystems, one rule: **a reused container is not the thing it currently holds.**
+
 ### A pair cache belongs to the entity and generation, not the worker thread {#pair-cache-identity}
 
 KHARVOX's `AerWeaponPoseCache` stores first-phase poses by `(entity, pair serial)`
