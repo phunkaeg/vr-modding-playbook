@@ -2727,7 +2727,7 @@ external:
         review: not_reviewed
 
   - id: Ultraleap-UnrealPlugin
-    root: D:/Dev Debug/VR Utilities/UE/UnrealPlugin
+    root: D:/Dev Debug/Other VR mods/VR Utilities/UE/UnrealPlugin
     status: external_reference
     upstream_url: https://github.com/ultraleap/UnrealPlugin
     license: Apache-2.0
@@ -2775,7 +2775,144 @@ external:
       packaging_deploy:
         review: not_reviewed
 
+  - id: CheekyFoveatedDLSS
+    root: D:/Dev Debug/Other VR mods/VR Utilities/CheekyFoveatedDLSS
+    status: external_reference
+    upstream_url: https://github.com/ClarkCheekyKent/CheekyFoveatedDLSS
+    license: GPL-3.0
+    reviewed_at: '2026-09-18'
+    reviewed_revision: tree:6c8e37528a2f2b3f
+    reviewed_git_commit: a830c74d7ef7c150168328b9fd657caee9e1655d
+    engine: engine-agnostic (proxy DLLs beside the game)
+    api: NGX / Streamline / OpenVR, plus a UEVR module
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. Eye-tracked foveated DLSS. The structure is the reason to keep it: separate CheekyFakeNGX, CheekyFakeOpenVR and CheekyFakeStreamline projects - three SUBSTITUTE RUNTIMES beside the real ones - plus a CheekyFoveatedDLSSUEVR module. Directly adjacent to ch09 #substitute-runtime, where the measured surfaces so far are BioShock''s 39 and prey-vr''s 42 OpenXR entry points; these are three more shims against different APIs. 68 source files.'
+      performance:
+        review: skimmed
+        evidence: AUTHOR
+        note: Foveated rendering driven by eye tracking is the whole point of the project; nothing measured here. A candidate if the fleet ever needs foveation.
+      re_discovery: &id001
+        review: not_reviewed
+      camera_tracking: *id001
+      hands_interaction: *id001
+      input_locomotion: *id001
+      xr_input: *id001
+      ui_hud: *id001
+      audio: *id001
+      render_hazards: *id001
+      source_integration: *id001
+      packaging_deploy: *id001
+  - id: OFXR-Bridge
+    root: D:/Dev Debug/Other VR mods/VR Utilities/OFXR-Bridge
+    status: external_reference
+    upstream_url: https://github.com/tig3rmast3r/OFXR-Bridge
+    license: LGPL-3.0-or-later
+    reviewed_at: '2026-09-18'
+    reviewed_revision: tree:084bd8beab66b041
+    reviewed_git_commit: 93039ffeeb73678eac0fcd555f7599314be2c26d
+    engine: engine-agnostic (implicit OpenXR API layer)
+    api: OpenXR API layer, D3D11 and D3D12
+    vehicle: openxr-api-layer
+    chapter: 9
+    areas:
+      render_hazards:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. An implicit OpenXR API layer that INSERTS an optical-flow-generated frame between two rendered frames. Author labels it pre-release v0.2.0 and warns it may freeze or crash the game, so treat every claim as AUTHOR. The file list is why this is worth reading next: optical_flow.cpp, d3d12_frame_synthesizer.cpp, d3d12_history.cpp, d3d11_d3d12_interop.cpp, implicit_layer.cpp, plus presenter pacing and optional frame-info validation. d3d12_history.cpp is STR-015 territory (bank temporal history in BOTH halves) and the pacing work is #three-frame-clocks / #mirror-is-a-scheduler territory.'
+      performance:
+        review: skimmed
+        evidence: AUTHOR
+        note: Frame generation is the entire purpose. An interpolated frame is not a rendered frame, so anything measured through this layer needs the distinction stated - relevant to ch06's rule that a metric which cannot come back bad is not a metric.
+      stereo:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'Synthesising a frame per eye raises the per-eye divergence question #eye-image-delta-review exists for: a synthesised pair can diverge in ways a rendered pair cannot. Not examined.'
+      re_discovery: *id001
+      camera_tracking: *id001
+      hands_interaction: *id001
+      input_locomotion: *id001
+      xr_input: *id001
+      ui_hud: *id001
+      audio: *id001
+      source_integration: *id001
+      packaging_deploy: *id001
+  - id: RazeXR-PCVR
+    root: D:/Dev Debug/Other VR mods/VR Utilities/RazeXR-PCVR
+    status: external_reference
+    upstream_url: https://github.com/GameOrDie007/RazeXR-PCVR
+    license: GPL-2.0
+    reviewed_at: '2026-09-18'
+    reviewed_revision: tree:0ecc568558345876
+    reviewed_git_commit: b3032e7440c84b56ad3a37a015f7a9172bf7b972
+    engine: 'Build engine family (Raze: Duke Nukem 3D, Blood, Shadow Warrior)'
+    api: OpenXR
+    vehicle: source-port
+    chapter: 18
+    areas:
+      source_integration:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. The largest of the VR Utilities arrivals by a wide margin: 5,610 files, 1,495 of them source, 231 MB, with an android/ tree. A full Mode 4 source port of Raze to OpenXR, so it is the opposite end of ch18 from everything harvested this session - nothing reversed, everything owned. Carries AUTHORS.md and THIRD-PARTY-PERMISSIONS.md, and GPL-2.0 means technique AND code are usable, subject to copyleft.'
+      stereo:
+        review: not_reviewed
+        note: 'Unexamined, and the interesting question: a source port owns the render path, so how it produces the second eye is a free choice rather than a constraint. Compare against the R1-R4 rungs.'
+      re_discovery:
+        review: not_reviewed
+        note: 'Not applicable: full GPL source.'
+      camera_tracking: *id001
+      hands_interaction: *id001
+      input_locomotion: *id001
+      xr_input: *id001
+      ui_hud: *id001
+      audio: *id001
+      render_hazards: *id001
+      performance: *id001
+      packaging_deploy: *id001
+  - id: VR_Template_UE5.1_SB
+    root: D:/Dev Debug/Other VR mods/VR Utilities/UE/VR_Template_UE5.1_SB
+    status: external_reference
+    upstream_url: https://github.com/Incurian/VR_Template_UE5.1_SB
+    license: LicenseRef-UnrealContentEULA (Incurian; custom terms plus the Unreal Engine and Unreal Content EULAs) - may not be redistributed stand-alone; technique may be described
+    reviewed_at: '2026-09-18'
+    reviewed_revision: tree:e9f80a40959dc71e
+    reviewed_git_commit: 3f0dd536aea644db7d458c13bc2104dff4a3cb04
+    engine: Unreal Engine 5.1 (source-built variant)
+    api: engine-level
+    vehicle: project-template
+    chapter: 18
+    areas:
+      input_locomotion:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'REGISTERED 2026-09-18, STRUCTURE ONLY. A VR starter project, and the harvest ceiling is low for a structural reason worth recording: 218 .uasset against SIX C++ files, so the implementation is in binary Blueprint graphs and is not readable as text. What IS readable is the README''s design reasoning on locomotion - ''there are too many ways to move and too few ways to stop the player from moving'' - which is ch03 and ch01 comfort territory stated as a design constraint. Licence forbids stand-alone redistribution, so describe only.'
+      hands_interaction:
+        review: not_reviewed
+        note: Blueprint-implemented; would need the editor to read, not a text diff.
+      stereo:
+        review: not_reviewed
+        note: 'Out of scope: the engine owns stereo.'
+      re_discovery:
+        review: not_reviewed
+        note: Not applicable.
+      camera_tracking: *id001
+      xr_input: *id001
+      ui_hud: *id001
+      audio: *id001
+      render_hazards: *id001
+      performance: *id001
+      source_integration: *id001
+      packaging_deploy: *id001
+
 not_a_source:
+  - id: Head Mounted VR - Demo
+    reason: 'a packaged Win64 staged build of a FAB Store demo - 32 files, 715 MB, and not one line of source. The tree is Engine/Binaries/ThirdParty plus the product''s own Binaries/Win64 (boost, openxr_loader, onnxruntime). Same class as Ship-9.2.3-win64-ship: build output, nothing to read.'
+  - id: VRExpansionPlugin
+    reason: 'a SECOND checkout of mordentral''s plugin, on the Master branch (HEAD 2026-09-11 era, UE5-generation APIs), beside the tracked VRExpansionPlugin-4.27 which is the frozen 4.27 branch. Not registered as its own source because it is the same upstream, and kept out of the ledger deliberately: for a UE 4.27.2 target the newer branch is a liability, since its signatures do not exist in 4.27. Read the 4.27 checkout. If the duplicate is not wanted, delete it rather than registering it.'
   - id: "UEVR-joeyhodge_AFW_v1.0-beta.6"
     reason: "UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source."
   - id: "UEVR-nightly_AFW_v1.0-beta.6"

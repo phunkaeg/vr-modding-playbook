@@ -84,6 +84,12 @@ VEHICLE_VALUES = (
     "source-port",
     "engine-recreation",
     "script-native-hybrid",
+    # An implicit OpenXR API layer: loaded by the OpenXR loader through a
+    # documented extension point rather than injected, so it reverses nothing and
+    # owns no game code. Distinct from native-injector for exactly that reason.
+    "openxr-api-layer",
+    # A starter PROJECT rather than a mod or a plugin - harvested for its approach.
+    "project-template",
     # Not a delivered mod at all: a methodology/reference document harvested for
     # its method. Kept in the vocabulary so such a source can be registered
     # honestly rather than mislabelled as one of the delivery shapes above.
@@ -402,7 +408,14 @@ def reader_corpus_metrics() -> tuple[int, int]:
 # Folders that group sources rather than being one. The scan descends into these
 # and reports their CHILDREN, so a grouping folder cannot become a place where new
 # arrivals go unnoticed - which is the only thing the zero-untracked rule buys.
-GROUPING_DIRS = {"binary-only", "monsterdeadwood", "skyrimvr mods", "fallout4vr mods", "puredark"}
+GROUPING_DIRS = {"binary-only", "monsterdeadwood", "skyrimvr mods",
+                 "fallout4vr mods", "puredark",
+                 # "VR Utilities" was a sibling of this root until 2026-09-18, so its
+                 # contents were invisible to this scan entirely - the tidy-up that
+                 # created it had silently disabled the arrival check for five tools.
+                 # Nested here and listed as grouping folders so their CHILDREN are
+                 # reported; classifying the wrapper instead would re-hide them.
+                 "vr utilities", "ue"}
 
 
 def find_untracked(cfg: dict[str, Any]) -> list[str]:

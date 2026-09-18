@@ -28,14 +28,17 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `hands_interaction` | **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | F4SEVR 0.6.21. src/ read selectively 2026-09-05 (150 .h / 144 .cpp; f4se_loader_common) -> ch08 #loader-preflight and PACK-004. The transferable part is the LOADER, not the game layer: IdentifyEXE maps the target read-only and classifies it by PE section (a UPX0 section means packed, a Steam section means wrapped; four outcomes, and the packed case is refused BY NAME), then compares versions three ways - older, NEWER than supported, and right version but wrong build branch - each with its own actionable message. The newer-than-supported case is the one that happens to every user the day the game updates. Version comes from the version resource rather than a file hash. The game-structure layer (BS*/Game*) was not read. |
 | `hands_interaction` | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | REGISTERED NOT REVIEWED 2026-09-05. A single 694 MB Wabbajack modlist archive, not a mod. Kept as a source only because it names a working Fallout 4 VR stack. |
 | `hands_interaction` | **StalkerVR-code** | THE REASON THIS WAS SEPARATED. gamedata/configs/vr/weapon_grip_vr.ltx is ~97 KB of PER-WEAPON GRIP DATA and handpose_vr.ltx ~29 KB of hand poses - the shape HAND-008 and HAND-009 argue for, shipped, on an engine nobody here has touched. The 3D_SIGHTS and 3DSS_Vanilla mods add per-weapon sight and model-swap tables (~34 KB and ~34 KB) beside them. |
+| `hands_interaction` | **VR_Template_UE5.1_SB** | Blueprint-implemented; would need the editor to read, not a text diff. |
 | `input_locomotion` | **MetaXRInteraction-1.205.0** | Not covered: the SDK is hands and interaction, not locomotion. |
 | `packaging_deploy` | **StalkerVR-code** | JSGME-managed mod stack; fsgame.ltx, commandline.txt and the launcher config were copied because they describe how the build is wired. |
 | `packaging_deploy` | **Talemann-RE4** | Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game. |
 | `re_discovery` | **Dishonored-VR** | REGISTERED NOT REVIEWED 2026-09-02. ALREADY MINED by the in-house DishonoredVR project (2026-09-02), which took the render path instead and avoided its blockers - read for method and negative results, not as an open task. GingasVRFO/Dishonored-VR is a SEPARATE VR conversion of the SAME GAME as the in-house DishonoredVR project. A d3d9.dll proxy built on a FORKED DXVK, with true stereo, 6DoF, motion controls, roomscale and a hand-aimed Blink. DISCONTINUED and explicitly offered for pickup (author burned out on unreproducible reports). Its 13 numbered fork-patches read as a complete rung-2 development history: M2 frame-map instrumentation, M3 stereo splice per-eye draw replay, mirrored-VP skip, world-quad splice via a c6 identity test, depth-test state REPLACING that c6 heuristic, an explicit revert to proven M3.1, measured gates, live projection scales, live writable separation and convergence, per-draw splice verdicts, world-space UP effects (the fire fix), and the Blink marker. The real payload is dllmain.cpp (~23k lines of in-game research log); its negative results are worth more than its code. |
 | `re_discovery` | **MetaXRInteraction-1.205.0** | Not applicable: source-available under a proprietary licence. |
 | `re_discovery` | **Quake2Quest** | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
+| `re_discovery` | **RazeXR-PCVR** | Not applicable: full GPL source. |
 | `re_discovery` | **StalkerVR-code** | bin/AnomalyDX11.pdb ships SYMBOLS for the VR engine build, so TEST-018 crash symbolisation applies to this target directly. Not copied - it lives in the install. |
 | `re_discovery` | **VRExpansionPlugin-4.27** | Not applicable: full MIT source, nothing to reverse. |
+| `re_discovery` | **VR_Template_UE5.1_SB** | Not applicable. |
 | `re_discovery` | **quake2vr** | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
 | `stereo` | **Dishonored-VR-fork** | REGISTERED NOT REVIEWED 2026-09-04. In-house fork of the shipped external mod, carrying local commits (Meta Link OpenXR backend selection; build.sh portability). The 52-patch upstream series is already distilled in ch17 #dishonored-splice; this tree adds the fork's own changes, which are not yet read. |
 | `stereo` | **FUS** | REGISTERED NOT REVIEWED 2026-09-05. A Wabbajack modlist/preset rather than a mod: README, images, a bundled openvr_api.dll and a Mantella folder. Kept as a source only because it names a working VR mod stack. |
@@ -47,6 +50,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the most transferable finding here. Checked against SS2VR manualReload rather than assumed: that code is already immune, because every quantity in it is a difference between two tracked hands, which cancels locomotion, turning and the play-space origin at once. INPUT-010 now ranks that formulation above room space; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary. |
 | `stereo` | **PureDark-UEVR** | REGISTERED NOT REVIEWED 2026-09-07. A FORK of praydog/UEVR, and its master is BYTE-IDENTICAL to the already-tracked upstream at D:/Dev Debug/Other VR mods/UEVR - same HEAD 74b76bc, same tree 20e90587ef58d605. Nothing on master is new, so the harvested UEVR notes on that entry stand unchanged. The fork's own work is on two BRANCHES that are not checked out: origin/AFW and origin/Joey-Merged. Checking `git branch -a` before assuming a fork has diverged is the cheap discriminator, and it is what stops a duplicate tree being re-read as new material. The delta on those branches has NOT been read. |
 | `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
+| `stereo` | **RazeXR-PCVR** | Unexamined, and the interesting question: a source port owns the render path, so how it produces the second eye is a free choice rather than a constraint. Compare against the R1-R4 rungs. |
 | `stereo` | **ReclaimerVR** | NOT HARVESTABLE: the checkout contains a README and nothing else. Third Halo MCC entry by name only. |
 | `stereo` | **SkyrimVR FBT 185070 1.0.3 2026-07-22T11-37Z HZCMOyLlG** | REGISTERED NOT REVIEWED 2026-09-05. Full-body tracking support (SKSE plugin only, no source in the tree). |
 | `stereo` | **StalkerVR-code** | REGISTERED NOT REVIEWED 2026-09-07. The VR code and design of a S.T.A.L.K.E.R. Anthology VR build, separated from its 32 GB install: 43 files, 339 KB of Lua and .ltx. See PROVENANCE.md in the tree for what was left behind and why. Tier and stereo rung are deliberately ABSENT rather than guessed, and the vehicle is INFERRED - nothing here has been read beyond listings and sizes. The evidence does say the VR support is an engine fork rather than an injector: bin/AnomalyDX11.exe is replaced with 'AnomalyDX11 - original.exe' preserved beside it, and bin/openxr_loader.dll is native. |
@@ -56,6 +60,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **Ultraleap-UnrealPlugin** | Out of scope: a hand-tracking input plugin. |
 | `stereo` | **VRExpansionPlugin-4.27** | Out of scope by design - the plugin does not implement stereo, the engine does. Registered for interaction, locomotion and widget architecture. |
 | `stereo` | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | REGISTERED NOT REVIEWED 2026-09-05. VRIK Player Avatar. Full-body IK avatar and, more importantly here, the mod that established the BODY-ANCHORED HOLSTER paradigm most VR mods now copy - which ch02's holster guidance and RE4VR's Spine_1 anchoring both descend from. Ships Scripts/, meshes/, an .esp. |
+| `stereo` | **VR_Template_UE5.1_SB** | Out of scope: the engine owns stereo. |
 | `stereo` | **XIII2003-vr-mod** | BINARY ONLY: ships D3DDrv.dll plus CONTRIBUTING/CREDITS/README and no source - an Unreal render-device replacement. This is the MOD repo of the six-repository family whose research repo (XIII2003-vr-external-research) is already harvested into ch18 #stock-cheat-commands, so the structure is documented even though the implementation is not. |
 | `ui_hud` | **MELE-VR** | HDR must be off or the headset image is blue/doubled (FAIL-STR-012). Binary only - no source. |
 | `ui_hud` | **StalkerVR-code** | Three vr_ui_* script overrides for the main menu and the load/save dialogs - a flat menu adapted for VR rather than replaced. |
@@ -65,19 +70,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 28 | 15 | 38 | 16 |
-| `xr_lifecycle` | 6 | 11 | 1 | 50 | 48 |
-| `xr_input` | 4 | 1 | 7 | 55 | 49 |
-| `camera_tracking` | 12 | 18 | 4 | 42 | 40 |
-| `render_hazards` | 5 | 12 | 4 | 18 | 77 |
-| `ui_hud` | 5 | 15 | 12 | 44 | 40 |
-| `hands_interaction` | 6 | 19 | 8 | 37 | 46 |
-| `input_locomotion` | 2 | 8 | 3 | 20 | 83 |
-| `performance` | 8 | 10 | 6 | 48 | 44 |
-| `audio` | 1 | 1 | 1 | 61 | 52 |
-| `packaging_deploy` | 6 | 25 | 21 | 33 | 31 |
-| `re_discovery` | 14 | 19 | 9 | 37 | 37 |
-| `source_integration` | 2 | 11 | 8 | 40 | 55 |
+| `stereo` | 19 | 28 | 17 | 40 | 16 |
+| `xr_lifecycle` | 6 | 11 | 1 | 50 | 52 |
+| `xr_input` | 4 | 1 | 7 | 59 | 49 |
+| `camera_tracking` | 12 | 18 | 4 | 46 | 40 |
+| `render_hazards` | 5 | 12 | 5 | 21 | 77 |
+| `ui_hud` | 5 | 15 | 12 | 48 | 40 |
+| `hands_interaction` | 6 | 19 | 8 | 41 | 46 |
+| `input_locomotion` | 2 | 8 | 4 | 23 | 83 |
+| `performance` | 8 | 10 | 8 | 50 | 44 |
+| `audio` | 1 | 1 | 1 | 65 | 52 |
+| `packaging_deploy` | 6 | 25 | 21 | 37 | 31 |
+| `re_discovery` | 14 | 19 | 9 | 41 | 37 |
+| `source_integration` | 2 | 11 | 9 | 43 | 55 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -118,6 +123,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **bo1-vr** | external reference | Treyarch T5 (Black Ops) | native-injector | — | — | — | 177 | 72 | 49 | 2026-08-27 | 🟩 current | 2F / 2P / 0S / 0NR / 9— |
 | **Buffout4 NG-64880-1-38-3-1785297452** | external reference | Creation Engine (Fallout 4 / Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 7 | 0 | 1 | 2026-07-29 | ⚪ unpinned | 0F / 2P / 0S / 10NR / 1— |
 | **CallOfDuty4_VR** | external reference | IW (CoD4) | source-port | — | — | 18 | 1125 | 1030 | 27 | 2026-08-22 | 🟩 current | 2F / 3P / 1S / 1NR / 6— |
+| **CheekyFoveatedDLSS** | external reference | engine-agnostic (proxy DLLs beside the game) | native-injector | — | — | 9 | 187 | 134 | 25 | 2026-09-15 | 🟩 current | 0F / 0P / 2S / 10NR / 1— |
 | **condemned-vr** | external reference | LithTech Jupiter EX (Condemned: Criminal Origins) | native-injector | T2 | R1 · native re-entry | 17 | 213 | 132 | 32 | 2026-08-30 | ⚪ unpinned | 1F / 0P / 4S / 6NR / 2— |
 | **crysis_vrmod** | external reference | CryEngine 2 | native-injector | T3 | R1 · native re-entry | 17 | 813 | 695 | 18 | 2026-08-28 | ⚪ unpinned | 2F / 1P / 1S / 7NR / 2— |
 | **CSVR** | archived reference | GoldSrc / Xash3D | source-port | — | — | — | 1001 | 307 | 5 | 2026-03-09 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
@@ -163,6 +169,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
+| **OFXR-Bridge** | external reference | engine-agnostic (implicit OpenXR API layer) | openxr-api-layer | — | — | 9 | 72 | 44 | 13 | 2026-09-15 | 🟩 current | 0F / 0P / 3S / 9NR / 1— |
 | **openmw-vr** | external reference | OpenMW (OSG / OpenGL) | source-port | — | — | — | 3825 | 3023 | 208 | 2026-08-26 | 🟩 current | 0F / 2P / 1S / 1NR / 9— |
 | **Outlast-Vr-Mod** | external reference | Unreal Engine 3 (Outlast) | native-injector | T1 | — | 18 | 49 | 16 | 8 | 2026-08-30 | ⚪ unpinned | 0F / 0P / 2S / 9NR / 2— |
 | **payday2-vr-improvements** | external reference | Diesel (PAYDAY 2) | script-native-hybrid | — | — | — | 55 | 34 | 3 | 2026-08-27 | 🟩 current | 0F / 1P / 1S / 0NR / 11— |
@@ -177,6 +184,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **Quake2Quest** | external reference | id Tech 2 (Quake II, via Yamagi) | source-port | ? | ? | 9 | 1057 | 707 | 28 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
 | **quake2vr** | external reference | id Tech 2 (Quake II, via KMQuake II) | source-port | ? | ? | 9 | 1090 | 338 | 24 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
 | **ravenfield-vr-mod** | external reference | Unity | managed-plugin | — | — | — | 37 | 9 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
+| **RazeXR-PCVR** | external reference | Build engine family (Raze: Duke Nukem 3D, Blood, Shadow Warrior) | source-port | — | — | 18 | 5547 | 1632 | 105 | 2026-09-15 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
 | **Rea-Virtua-Cop-2-VR** | external reference | 1997 fixed-function | native-injector | — | — | 16 | 8 | 3 | 1 | 2026-08-21 | 🟩 current | 3F / 2P / 0S / 0NR / 8— |
 | **ReclaimerVR** | external reference | Blam / Saber (MCC) | native-injector | ? | ? | — | 1 | 0 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 0S / 1NR / 12— |
 | **REFramework** | external reference | RE Engine (multi-title) | framework | T3 | ? | — | 1374 | 1284 | 25 | 2026-09-05 | 🟥 source changed | 0F / 0P / 0S / 13NR / 0— |
@@ -212,6 +220,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **visceral-re2-vr-mod** | external reference | RE Engine (Resident Evil 2, 2019) | framework-companion | T2 | — | 2 | 14 | 5 | 5 | 2026-08-30 | 🟥 source changed | 0F / 0P / 2S / 9NR / 2— |
 | **Vostok-VR-Mod** | external reference | Godot 4 | native-injector | — | — | — | 78 | 14 | 10 | 2026-08-26 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
 | **vr-analyzer-bible** | external reference | engine-agnostic (methodology) | documentation | — | — | 6 | 199 | 16 | 141 | 2026-09-08 | 🟩 current | 0F / 1P / 1S / 11NR / 0— |
+| **VR_Template_UE5.1_SB** | external reference | Unreal Engine 5.1 (source-built variant) | project-template | — | — | 18 | 242 | 10 | 1 | 2026-09-18 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
 | **VRExpansionPlugin-4.27** | external reference | Unreal Engine 4.27 (engine plugin, not a mod) | engine-plugin | — | — | 18 | 158 | 147 | 2 | 2026-09-16 | 🟩 current | 0F / 1P / 4S / 7NR / 1— |
 | **vrframework** | external reference | RE Engine / Creation Engine 2 / AnvilNext 2.0 (a guide that READS three ports; ships no port) | documentation | — | — | 9 | 79 | 46 | 27 | 2026-09-10 | 🟩 current | 0F / 2P / 6S / 5NR / 0— |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 20 | 0 | 0 | 2026-07-12 | ⚪ unpinned | 0F / 1P / 0S / 11NR / 1— |
@@ -251,6 +260,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **bo1-vr** | 2026-08-27 | `tree:f5a5f9cf94ed8e4f` | `tree:f5a5f9cf94ed8e4f` | `—` | 🟩 current | unknown | MIT |
 | **Buffout4 NG-64880-1-38-3-1785297452** | 2026-09-05 | `unknown` | `tree:c5822dd551ad3a17` | `—` | ⚪ unpinned | unknown | unknown |
 | **CallOfDuty4_VR** | 2026-08-25 | `tree:146efc09f95cba26` | `tree:146efc09f95cba26` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **CheekyFoveatedDLSS** | 2026-09-18 | `tree:6c8e37528a2f2b3f` | `tree:6c8e37528a2f2b3f` | `a830c74d7ef7c150168328b9fd657caee9e1655d` | 🟩 current | https://github.com/ClarkCheekyKent/CheekyFoveatedDLSS | GPL-3.0 |
 | **condemned-vr** | 2026-08-29 | `unknown` | `tree:375521a55d72feca` | `—` | ⚪ unpinned | unknown | MIT |
 | **crysis_vrmod** | 2026-08-28 | `unknown` | `tree:72edce18458cccd3` | `—` | ⚪ unpinned | unknown | LicenseRef-Crytek-CryENGINE2-MOD-SDK EULA - proprietary; redistribution restricted |
 | **CSVR** | 2026-08-25 | `tree:b317ecb80018cb2d` | `tree:b317ecb80018cb2d` | `—` | 🟩 current | unknown | GPL-2.0 |
@@ -296,6 +306,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | MIT |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | GPL-3.0 |
+| **OFXR-Bridge** | 2026-09-18 | `tree:084bd8beab66b041` | `tree:084bd8beab66b041` | `93039ffeeb73678eac0fcd555f7599314be2c26d` | 🟩 current | https://github.com/tig3rmast3r/OFXR-Bridge | LGPL-3.0-or-later |
 | **openmw-vr** | 2026-08-26 | `tree:7155f265d832b125` | `tree:7155f265d832b125` | `0f520f65c3e085369e66d6a90ce871e817d4533f` | 🟩 current | https://gitlab.com/madsbuvi/openmw/-/tree/openmw-vr | GPL-3.0 (OpenMW) |
 | **Outlast-Vr-Mod** | 2026-08-29 | `unknown` | `tree:bfa0db61dfab071e` | `—` | ⚪ unpinned | unknown | MIT |
 | **payday2-vr-improvements** | 2026-08-27 | `tree:ceff8eb529473d2e` | `tree:ceff8eb529473d2e` | `—` | 🟩 current | unknown | GPL-3.0 |
@@ -310,6 +321,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Quake2Quest** | 2026-09-02 | `tree:6762626f4c1aed86` | `tree:af131bfd6663683b` | `—` | 🟥 source changed | unknown | GPL-2.0 |
 | **quake2vr** | 2026-09-02 | `tree:461b476dadb7b80e` | `tree:a203a1a1bb26e4e1` | `—` | 🟥 source changed | unknown | unknown |
 | **ravenfield-vr-mod** | 2026-08-26 | `tree:fdaf974b1d43efcc` | `tree:fdaf974b1d43efcc` | `4ed67514aa3302ba255b6ddb870854f9c992737e` | 🟩 current | https://github.com/GDani31/ravenfield-vr-mod | unknown |
+| **RazeXR-PCVR** | 2026-09-18 | `tree:0ecc568558345876` | `tree:0ecc568558345876` | `b3032e7440c84b56ad3a37a015f7a9172bf7b972` | 🟩 current | https://github.com/GameOrDie007/RazeXR-PCVR | GPL-2.0 |
 | **Rea-Virtua-Cop-2-VR** | 2026-08-25 | `tree:d5c76a58e1e614ca` | `tree:d5c76a58e1e614ca` | `—` | 🟩 current | unknown | MIT |
 | **ReclaimerVR** | 2026-08-26 | `tree:cf2ce2d8fb2ea250` | `tree:cf2ce2d8fb2ea250` | `9f746e07e6a34c5d23189bad1b2fb87b08d1c6e3` | 🟩 current | https://github.com/Nibre/ReclaimerVR | unknown |
 | **REFramework** | 2026-09-04 | `tree:168b893ee9b40862` | `tree:1c02807bf9e55ed3` | `—` | 🟥 source changed | https://github.com/praydog/REFramework | see LICENSE in tree |
@@ -345,6 +357,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **visceral-re2-vr-mod** | 2026-08-29 | `tree:dfbb912f1ec1c758` | `tree:b54e8fb8f08ff568` | `—` | 🟥 source changed | unknown | unknown |
 | **Vostok-VR-Mod** | 2026-08-26 | `tree:12bd87bb2b93482c` | `tree:12bd87bb2b93482c` | `74f73105d1e7326d60dedd525a3e6cd68bf30839` | 🟩 current | https://github.com/Blah64/Vostok-VR-Mod | MIT |
 | **vr-analyzer-bible** | 2026-09-09 | `tree:a22a31975814991e` | `tree:a22a31975814991e` | `—` | 🟩 current | unknown | unknown |
+| **VR_Template_UE5.1_SB** | 2026-09-18 | `tree:e9f80a40959dc71e` | `tree:e9f80a40959dc71e` | `3f0dd536aea644db7d458c13bc2104dff4a3cb04` | 🟩 current | https://github.com/Incurian/VR_Template_UE5.1_SB | LicenseRef-UnrealContentEULA (Incurian; custom terms plus the Unreal Engine and Unreal Content EULAs) - may not be redistributed stand-alone; technique may be described |
 | **VRExpansionPlugin-4.27** | 2026-09-17 | `tree:b317d39a5c2f15b3` | `tree:b317d39a5c2f15b3` | `4e52c69393271f3abce11d22c5265aa14373cb6e` | 🟩 current | https://github.com/mordentral/VRExpansionPlugin | MIT (Copyright Joshua Statzer) |
 | **vrframework** | 2026-09-10 | `tree:ad1763c6062c42d2` | `tree:ad1763c6062c42d2` | `—` | 🟩 current | https://github.com/elliotttate/vrframework | MIT (derivative of praydog/REFramework, copyright preserved; CREDITS.md names mutars' starfield2vr and anvilengine2vr as the studied ports, both public MIT) |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | 2026-09-05 | `unknown` | `tree:a9678ae3c00b1813` | `—` | ⚪ unpinned | unknown | unknown |
@@ -361,6 +374,8 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 ### Deliberately not sources
 
+- `Head Mounted VR - Demo` — a packaged Win64 staged build of a FAB Store demo - 32 files, 715 MB, and not one line of source. The tree is Engine/Binaries/ThirdParty plus the product's own Binaries/Win64 (boost, openxr_loader, onnxruntime). Same class as Ship-9.2.3-win64-ship: build output, nothing to read.
+- `VRExpansionPlugin` — a SECOND checkout of mordentral's plugin, on the Master branch (HEAD 2026-09-11 era, UE5-generation APIs), beside the tracked VRExpansionPlugin-4.27 which is the frozen 4.27 branch. Not registered as its own source because it is the same upstream, and kept out of the ledger deliberately: for a UE 4.27.2 target the newer branch is a liability, since its signatures do not exist in 4.27. Read the 4.27 checkout. If the duplicate is not wanted, delete it rather than registering it.
 - `UEVR-joeyhodge_AFW_v1.0-beta.6` — UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source.
 - `UEVR-nightly_AFW_v1.0-beta.6` — the nightly variant of the same 9-file AFW binary set; identical file list, no source.
 - `StalkerVR` — the 32 GB S.T.A.L.K.E.R. Anthology VR INSTALL, plus a 32 GB .7z of itself. Fingerprinting 64 GB of game assets on every coverage.py run buys nothing, so the install is classified like 'SS2 OG' and its VR code/design was separated into the StalkerVR-code source instead - 43 files, 339 KB, see PROVENANCE.md there. Left in place here and NOT copied: the assets, ~40 unrelated content mods (quests, furniture, balance, shaders, translations), and three files worth knowing about - bin/AnomalyDX11.exe (the VR engine build, original preserved beside it), bin/AnomalyDX11.pdb (shipped symbols) and bin/openxr_loader.dll.
@@ -813,6 +828,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | 🟩 full | `SOURCE` | KNOWN-ISSUES.md harvested to ch09 #thirty-two-bit-preflight: reports the 32-bit AND 64-bit OpenXR registry views independently and BLOCKS an OpenXR-only launch when the 32-bit manifest is absent; labels the experimental x86 OpenVR fallback a Warning rather than an equivalent; states its own evidence grade to users (offline preflight, NOT a synthetic VR session) and names the action that upgrades it to live; refuses an unrecognised install layout before writing and never guesses, downloads or moves original assets; defers layout normalisation with a named precondition. |
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | 🟩 full | `SOURCE` | Reviewed as a source-port architecture. VR is a self-contained src/vr/ module (24 files) beside the engine subsystems, split by concern: openxr, openvr_input, openxr_profiles, d3d9_capture, d3d9ex_interop_probe, hud_layout, input_bindings, prompt_labels, weapon_profiles, compatibility, calibration, gestures, interactions. That module boundary is how a 634k-line port stays navigable, and is the transferable part. |
+
+#### CheekyFoveatedDLSS
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟧 skimmed | `AUTHOR` | REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. Eye-tracked foveated DLSS. The structure is the reason to keep it: separate CheekyFakeNGX, CheekyFakeOpenVR and CheekyFakeStreamline projects - three SUBSTITUTE RUNTIMES beside the real ones - plus a CheekyFoveatedDLSSUEVR module. Directly adjacent to ch09 #substitute-runtime, where the measured surfaces so far are BioShock's 39 and prey-vr's 42 OpenXR entry points; these are three more shims against different APIs. 68 source files. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟧 skimmed | `AUTHOR` | Foveated rendering driven by eye tracking is the whole point of the project; nothing measured here. A candidate if the fleet ever needs foveation. |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
+| `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### condemned-vr
 
@@ -1624,6 +1657,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
 
+#### OFXR-Bridge
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟧 skimmed | `AUTHOR` | Synthesising a frame per eye raises the per-eye divergence question #eye-image-delta-review exists for: a synthesised pair can diverge in ways a rendered pair cannot. Not examined. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟧 skimmed | `AUTHOR` | REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. An implicit OpenXR API layer that INSERTS an optical-flow-generated frame between two rendered frames. Author labels it pre-release v0.2.0 and warns it may freeze or crash the game, so treat every claim as AUTHOR. The file list is why this is worth reading next: optical_flow.cpp, d3d12_frame_synthesizer.cpp, d3d12_history.cpp, d3d11_d3d12_interop.cpp, implicit_layer.cpp, plus presenter pacing and optional frame-info validation. d3d12_history.cpp is STR-015 territory (bank temporal history in BOTH halves) and the pacing work is #three-frame-clocks / #mirror-is-a-scheduler territory. |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟧 skimmed | `AUTHOR` | Frame generation is the entire purpose. An interpolated frame is not a rendered frame, so anything measured through this layer needs the distinction stated - relevant to ch06's rule that a metric which cannot come back bad is not a metric. |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
 #### openmw-vr
 
 | Area | Review | Evidence | Note |
@@ -1875,6 +1926,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | — no entry — | — | — |
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
+
+#### RazeXR-PCVR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | Unexamined, and the interesting question: a source port owns the render path, so how it produces the second eye is a free choice rather than a constraint. Compare against the R1-R4 rungs. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | Not applicable: full GPL source. |
+| `source_integration` | 🟧 skimmed | `AUTHOR` | REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. The largest of the VR Utilities arrivals by a wide margin: 5,610 files, 1,495 of them source, 231 MB, with an android/ tree. A full Mode 4 source port of Raze to OpenXR, so it is the opposite end of ch18 from everything harvested this session - nothing reversed, everything owned. Carries AUTHORS.md and THIRD-PARTY-PERMISSIONS.md, and GPL-2.0 means technique AND code are usable, subject to copyleft. |
 
 #### Rea-Virtua-Cop-2-VR
 
@@ -2504,6 +2573,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
 | `re_discovery` | 🟨 partial | `SOURCE` | Harvested 2026-09-09. A donor METHODOLOGY package, not a mod - taken for four things and no more. (1) The perturbation Jacobian as a DISCOVERY procedure for matrix layout, now ch11 #numerical-camera-mapping, hardened: the donor's jacobian_rank.py leaves unprobed cells at 0.0, so incomplete coverage is arithmetically identical to a real zero derivative and reads as rank deficiency - print the sample-count matrix. (2) INVALID as a verdict distinct from FAIL with an enumerated void checklist, plus FACT_VERDICT independent of BASELINE_VERDICT, now ch06 #run-validity + META-012. (3) Both offline checkers read had the clean-equals-empty defect, now ch06 #empty-is-not-clean + META-013. (4) Its case-study numbers are AUTHOR-grade only. DELIBERATELY NOT TAKEN: the AMBIGUOUS branch, baseline-revision recording and claim-scoped promotion, all of which ch06 #claim-scoped-promotion already had; and 'validate numerically, do not guess transpose', which ch09:479 and ch11's residual table already state MORE strongly than the donor does. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### VR_Template_UE5.1_SB
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | Out of scope: the engine owns stereo. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟥 not reviewed | `—` | Blueprint-implemented; would need the editor to read, not a text diff. |
+| `input_locomotion` | 🟧 skimmed | `AUTHOR` | REGISTERED 2026-09-18, STRUCTURE ONLY. A VR starter project, and the harvest ceiling is low for a structural reason worth recording: 218 .uasset against SIX C++ files, so the implementation is in binary Blueprint graphs and is not readable as text. What IS readable is the README's design reasoning on locomotion - 'there are too many ways to move and too few ways to stop the player from moving' - which is ch03 and ch01 comfort territory stated as a design constraint. Licence forbids stand-alone redistribution, so describe only. |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | Not applicable. |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### VRExpansionPlugin-4.27
