@@ -122,6 +122,57 @@ wrist. The body-heading evidence ladder, calibrated shoulder equations,
 reach-triggered clavicle contribution, elbow swivel policy, and acceptance poses
 are specified in [12 · Torso Calculations & Ergonomics](12-torso-calculations-and-ergonomics.md).
 
+
+## What driving that skeleton actually requires {#retarget-tracked-joints}
+
+The section above says the work must go upstream of skinning. This is what the work *is*, taken from a
+shipped device-agnostic retargeter — Ultraleap's `BodyState`, which drives an arbitrary rig from tracked
+joints and serves both its native sensor path and an OpenXR hand-tracking path through the same layer.
+`[SOURCE]` Apache-2.0, so unlike the other frameworks in this chapter the implementation is usable, not
+merely readable.
+
+**It is a skeletal control node, evaluated in component space on the animation worker thread.** That is
+the concrete form of "upstream of skinning": not a post-skinning matrix override, and not a gameplay
+tick that races the animation update. If your target engine has an animation graph, the tracked pose
+belongs in it as a node.
+
+**A bone map is not enough — you have to measure the rig.** The mapping data carries, alongside the
+name map: the model's hand length *computed by walking the bones from palm to middle fingertip*, a
+per-finger array of fingertip lengths, an estimated elbow length, and the model's original scale. All
+of them are derived from the rig itself, not authored. The reason is unavoidable: **tracked joints
+arrive in physical units and the rig has its own proportions**, so without the rig's measurements you
+can place a joint correctly and still get fingers that over- or under-extend ([FAIL-HAND-057](failure-atlas.md)).
+A name-only map is the mistake that looks complete and is not.
+
+**Put a canonical vocabulary in the middle.** The map is *canonical bone enum → rig bone reference*,
+not *source bone → rig bone*. That indirection is the entire reason one module serves two unrelated
+tracking sources; a direct source-to-rig map would need rewriting per device, and for a mod, per game.
+
+**The bone list is cached, parent-to-child ordered, and re-synced against the linked skeleton.** All
+three matter. Name-to-index resolution is expensive enough to cache and invalid enough to need a
+validity check before evaluation; and in component space the order is load-bearing, because a child's
+transform is only meaningful once its parent has been placed.
+
+**Apply channels separately, and do not assume a tracked bone donates all three.** Translation,
+rotation and scale go through separate functions taking separate decisions. This is the lever that
+matters most when the rig belongs to a game you did not author: **take rotation from tracking and keep
+the rig's own bone lengths**, and the hand articulates correctly while remaining the hand the artist
+built. Donating translation as well is how you get a correctly-posed hand of the wrong shape.
+
+**Two joints are privileged.** Translation resolves against the cached *wrist* and *arm* links rather
+than absolutely — a tracked hand is a chain hanging off an anchor, and the anchor needs naming.
+*Hang the arms off the body, not off the head*, below, makes the same argument one level up.
+
+**Let a mapping declare what it needs from the source.** Each mapping carries a list of tracking tags
+it requires, with a check that the supplying skeleton satisfies them, and is skipped when it cannot.
+That is [META-015](pattern-catalog.md#meta-015)'s lesson applied to *data* rather than capability: a
+consumer that states its requirements can be skipped safely, where one that assumes gets a plausible
+pose built from absent data.
+
+**Chirality is a flag, not a second asset.** One boolean flips the model left-to-right so a single hand
+mesh serves both sides. Cheap, and worth knowing before you commission two meshes. See
+[HAND-021](pattern-catalog.md#hand-021).
+
 ## Hang the arms off the body, not off the head
 
 A full-body avatar has one structural decision that determines whether it ever looks right: **what the
@@ -619,6 +670,30 @@ sign-and-magnitude search on a wrong basis converges on nothing.
 
 Decide once, explicitly, and write it down: **are authored offsets baseline or overlay?** Every attached
 thing — weapon mounts, tool grips, held props — must answer it the same way.
+
+
+**A shipped retargeter answers "baseline or overlay?" with *both*, and names them by side.** BodyState's
+mapping data carries two offset slots whose documentation is purely positional — one *"applied before
+given rotation"*, one *"applied after rotation changes… consider this an offset"* — and the composition
+puts one on each side of the tracked rotation. That is this section's rule turned into an API: because
+which side an offset lands on decides whether it is a basis change or a residual, a framework that must
+serve rigs it has never seen cannot pick one, so it provides a slot on each side and makes the name say
+which. **If you find yourself arguing about whether your offset is baseline or overlay, the honest
+answer may be that you need two fields, not one decision.** `[SOURCE]`
+
+**And there is a third option this section does not have: derive the correction instead of authoring
+it.** The same data carries an *auto-calculated* rotation "to correct/normalize model rotation",
+computed when the rig is mapped by comparing the rig's own wrist pose **before** mapping against the
+tracked wrist. Neither authored nor live — measured once, from the difference between the rig you were
+given and the data you receive. For a mod that must work against a rig nobody documented, deriving the
+basis beats calibrating it by hand, and it removes the tuning loop the worked example above describes.
+
+*Reading hazard in that source, worth copying as a caution rather than a technique.* The rotation
+function's own comment documents the full three-part composition, but the function implements only part
+of it — the remaining multiply lives in a different function further down the same file. A reader who
+checks one function against its comment concludes a multiply is missing. **When a composition is split
+across functions, the comment describing the whole belongs where the whole is assembled**, or every
+future reader re-derives it.
 
 ## Euler/quaternion traps (the recurring math failures)
 

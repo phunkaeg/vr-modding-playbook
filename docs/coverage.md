@@ -76,7 +76,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `camera_tracking` | 12 | 18 | 4 | 46 | 40 |
 | `render_hazards` | 5 | 12 | 5 | 21 | 77 |
 | `ui_hud` | 5 | 15 | 12 | 48 | 40 |
-| `hands_interaction` | 6 | 19 | 8 | 41 | 46 |
+| `hands_interaction` | 6 | 20 | 7 | 41 | 46 |
 | `input_locomotion` | 2 | 8 | 4 | 23 | 83 |
 | `performance` | 8 | 10 | 8 | 50 | 44 |
 | `audio` | 1 | 1 | 1 | 65 | 52 |
@@ -214,7 +214,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **titanfall2vr** | external reference | Respawn Source-derived (Titanfall 2) | native-injector | — | — | 17 | 216 | 172 | 11 | 2026-09-14 | 🟩 current | 0F / 4P / 2S / 7NR / 0— |
 | **TwoForksVR** | external reference | Unity | managed-plugin | — | — | — | 73 | 0 | 0 | 2022-03-18 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **UEVR** | external reference | Unreal (generic) | framework | — | — | — | 267 | 223 | 14 | 2026-08-23 | 🟩 current | 0F / 1P / 0S / 0NR / 12— |
-| **Ultraleap-UnrealPlugin** | external reference | Unreal Engine 5 (engine plugin, not a mod; UltraleapTracking 5.0.1) | engine-plugin | — | — | 1 | 716 | 121 | 4 | 2026-09-18 | 🟩 current | 0F / 2P / 3S / 7NR / 1— |
+| **Ultraleap-UnrealPlugin** | external reference | Unreal Engine 5 (engine plugin, not a mod; UltraleapTracking 5.0.1) | engine-plugin | — | — | 1 | 716 | 121 | 4 | 2026-09-18 | 🟩 current | 0F / 3P / 2S / 7NR / 1— |
 | **unreal-gold-vr-external-research** | external reference | Unreal Engine 1 (Unreal Gold) | framework-companion | — | — | 18 | 5 | 0 | 5 | 2026-08-29 | ⚪ unpinned | 1F / 0P / 0S / 9NR / 3— |
 | **VirtualFortress2** | external reference | Source (Team Fortress 2) | source-port | — | — | — | 4606 | 3839 | 22 | 2026-08-27 | 🟩 current | 0F / 0P / 3S / 0NR / 10— |
 | **visceral-re2-vr-mod** | external reference | RE Engine (Resident Evil 2, 2019) | framework-companion | T2 | — | 2 | 14 | 5 | 5 | 2026-08-30 | 🟥 source changed | 0F / 0P / 2S / 9NR / 2— |
@@ -2477,7 +2477,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `camera_tracking` | 🟨 partial | `SOURCE` | REGISTERED 2026-09-18. THE FINDING: multi-device fusion weighted by GEOMETRIC confidence, distilled to #confidence-weighted-fusion and CAM-019. Confidence is a weighted sum of hand-position-in-volume, palm-facing and velocity terms, each with its own factor; multiplied by a time-since-first-visible term so a newly acquired hand scores zero; then the CONFIDENCE (not the pose) is averaged over a short per-device per-hand history. Scored per joint as well as per hand, so fusion is not all-or-nothing. Occlusion is a fourth term measured by rendering joints from the device viewpoint (JointOcclusionActor). Two combiners ship: ...CombinedDeviceConfidence and ...CombinedDeviceAngular. |
 | `render_hazards` | 🟥 not reviewed | `—` | — |
 | `ui_hud` | 🟧 skimmed | `SOURCE` | LeapWidgetInteractionComponent.cpp (562 lines) - hand-driven UMG interaction. Pairs with the Meta ISDK poke subsystem for any diegetic-UI work. |
-| `hands_interaction` | 🟧 skimmed | `SOURCE` | BodyState is a device-agnostic skeleton abstraction (BodyStateSkeleton, 597 lines) driven onto an arbitrary rig by an anim node (AnimNode_ModifyBodyStateMappedBones) via BodyStateAnimInstance (1,555 lines - the largest file here). This is ch02's 'drive the engine's own skeleton' with a shipped mapping layer. NOT read - the strongest remaining candidate in this source. |
+| `hands_interaction` | 🟨 partial | `SOURCE` | BodyState is a device-agnostic skeleton abstraction (BodyStateSkeleton, 597 lines) driven onto an arbitrary rig by AnimNode_ModifyBodyStateMappedBones via BodyStateAnimInstance (1,555 lines). READ 2026-09-18, distilled to ch02 |
 | `input_locomotion` | 🟥 not reviewed | `—` | — |
 | `performance` | 🟥 not reviewed | `—` | — |
 | `audio` | 🟥 not reviewed | `—` | — |

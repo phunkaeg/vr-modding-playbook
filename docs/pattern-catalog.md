@@ -2709,6 +2709,41 @@ a property of the object and the grab point, so it belongs in the pose the trans
 the detector's answer. `[SOURCE]` Meta Interaction SDK; contrast VRExpansionPlugin's fused grip enum at
 [#grip-design-space](02-viewmodels-and-hands.md#grip-design-space).
 
+## HAND-021 - Retarget with the rig's measurements, not just its bone names {#hand-021}
+
+**Problem:** tracked joints are mapped onto a rig by name, every bone is correctly identified, and the
+result still articulates wrongly - fingers that over-extend or curl short, a hand the wrong size, an
+arm that reaches past where the player's arm is.
+
+**Use when:** driving any skeleton you did not author from tracked joint data - a game's hand rig, a
+borrowed mesh, anything where the proportions are not yours to change.
+
+**Recipe:**
+
+- **Measure the rig before you drive it.** Walk the chain and record its real dimensions - hand length
+  palm to fingertip, per-finger tip lengths, forearm length, original scale. Tracked joints arrive in
+  physical units; the rig has its own proportions, and the map between them is arithmetic you cannot
+  skip.
+- **Map through a canonical vocabulary**, source -> canonical -> rig, so a second tracking source or a
+  second game costs a table and not a rewrite.
+- **Apply the channels separately and choose per channel.** Rotation from tracking plus the rig's own
+  bone lengths is usually right; donating translation as well gives a correctly-posed hand of the wrong
+  shape.
+- **Anchor the chain explicitly** on the wrist and the arm rather than placing joints absolutely.
+- **Cache the name-to-index links, order them parent-to-child, and re-validate** against the skeleton
+  before evaluating. In component space a child is meaningless before its parent.
+- **Have each mapping declare the tracking data it requires**, and skip it when the source cannot
+  supply it, rather than building a pose from absent joints.
+
+**Proof:** drive the same tracked data onto two rigs of visibly different proportions. Both hands should
+articulate correctly at their own size. If one is right and the other over-extends, the rig measurement
+step is missing or is being read from the wrong rig.
+
+**Trip hazard:** the name map is the visible, satisfying part of the job - it is a table, it either
+resolves or it does not, and when it resolves the work feels done. Every measurement above is invisible
+until an artist hands you a rig with different proportions, which is usually after you shipped.
+`[SOURCE]` Ultraleap BodyState (Apache-2.0).
+
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
 **Problem:** a visible controller/hand aligns, but weapon ray or muzzle does not.
