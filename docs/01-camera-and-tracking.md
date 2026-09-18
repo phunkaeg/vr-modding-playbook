@@ -179,6 +179,49 @@ from driving the same rotation simultaneously.
   yaw assist, pitch servos, baseline recapture) can run away. Gate them to idle, clamp the
   per-frame correction, and add a deadzone.
 
+
+## When two sources report the same pose, weight them by geometry {#confidence-weighted-fusion}
+
+Smoothing assumes one source. The harder case is *several* — the game's own hand position, a controller
+pose, an IK solve, a second tracker — each right some of the time. Ultraleap's plugin combines multiple
+tracking devices into one hand, and its confidence model is worth copying wholesale because every term
+in it is a **geometric fact about the sensor**, not an opaque score. `[SOURCE]` Ultraleap UnrealPlugin
+(Apache-2.0), `FUltraleapCombinedDeviceConfidence`.
+
+**Confidence is a weighted sum of plausibility terms.** Three, each cheap:
+
+- **Where the subject sits relative to the sensor.** Centre of the working volume beats the edge.
+- **Which way it faces.** The palm normal against the sensor's view direction — a hand seen edge-on is
+  a hand whose joints are being guessed.
+- **How fast it is moving.** Fast motion is less reliable, so velocity lowers the weight.
+
+Each has its own tunable factor, so the mix is data rather than code. The important part is that a
+reviewer can *argue* with each term, which is never true of a single number from a black box (and
+[06](06-debugging-methodology.md) records the matching hazard from the other direction — a decoder's
+own confidence score buys you a confident false answer).
+
+**Then multiply by an age term, because a track that just appeared has not earned trust yet.** The
+plugin scores a hand's first visible frame at **zero** and ramps with time-since-first-seen. This is
+the cheapest possible guard against the worst artefact in multi-source fusion: a second source
+acquires, is instantly believed, and yanks the pose ([FAIL-CAM-033](failure-atlas.md)). Persistence is
+evidence; one frame of agreement is not.
+
+**Smooth the weight, not the signal.** The confidence is averaged over a short per-source, per-subject
+history before it is used — while the pose itself stays on the freshest sample. That is the same
+division [12](12-torso-calculations-and-ergonomics.md) makes for the torso: filter the *latent* state
+and leave the rendered endpoints on the newest data, because smoothing what you draw adds visible lag.
+Applied to fusion it means blending weights move slowly and the pose never does.
+
+**Score per joint, not only per subject.** Confidence is kept per joint as well as per hand, so fusion
+is not all-or-nothing — the palm can come from one sensor and a fingertip from another. If you only
+ever score whole poses you are forced to pick a loser wholesale, which throws away the half of it that
+was good.
+
+**And if you need occlusion, render for it.** The fourth term is joint occlusion, and it is answered
+geometrically: a dedicated actor draws the joints from the sensor's viewpoint and reads back which are
+hidden. Asking the GPU "can this viewpoint see this point" is often cheaper and always more honest than
+a heuristic about hand orientation. See [CAM-019](pattern-catalog.md#cam-019).
+
 ## Turning (snap & smooth) without nausea
 
 - In authoritative mode, **rotate your cached display baseline by the body/capsule's observed

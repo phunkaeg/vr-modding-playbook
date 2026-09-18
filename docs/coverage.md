@@ -53,6 +53,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **Sterallax6DOF-silksong** | NOT HARVESTABLE without RE: a single DLL, no source, no config, no readme. Retained in the ledger because 6DOF applied to a 2D game is a conversion class with no other example here - worth an RE pass if that class ever matters. |
 | `stereo` | **SubmersedVR** | NARROW PULL: produces no stereo, XR lifecycle or perf work; forces Seated and hard-snaps the rig each frame. |
 | `stereo` | **Talemann-RE4** | Not a stereo mod. REFramework supplies VR; this supplies the HANDS. Installed build is RE4VR_2.0_Setup.exe; the mod is ~31k lines of Lua under reframework/autorun plus JSON data under reframework/data/re4_vr. |
+| `stereo` | **Ultraleap-UnrealPlugin** | Out of scope: a hand-tracking input plugin. |
 | `stereo` | **VRExpansionPlugin-4.27** | Out of scope by design - the plugin does not implement stereo, the engine does. Registered for interaction, locomotion and widget architecture. |
 | `stereo` | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | REGISTERED NOT REVIEWED 2026-09-05. VRIK Player Avatar. Full-body IK avatar and, more importantly here, the mod that established the BODY-ANCHORED HOLSTER paradigm most VR mods now copy - which ch02's holster guidance and RE4VR's Spine_1 anchoring both descend from. Ships Scripts/, meshes/, an .esp. |
 | `stereo` | **XIII2003-vr-mod** | BINARY ONLY: ships D3DDrv.dll plus CONTRIBUTING/CREDITS/README and no source - an Unreal render-device replacement. This is the MOD repo of the six-repository family whose research repo (XIII2003-vr-external-research) is already harvested into ch18 #stock-cheat-commands, so the structure is documented even though the implementation is not. |
@@ -64,19 +65,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 28 | 15 | 37 | 16 |
-| `xr_lifecycle` | 6 | 11 | 1 | 50 | 47 |
-| `xr_input` | 4 | 1 | 6 | 55 | 49 |
-| `camera_tracking` | 12 | 17 | 4 | 42 | 40 |
-| `render_hazards` | 5 | 12 | 4 | 17 | 77 |
-| `ui_hud` | 5 | 15 | 11 | 44 | 40 |
-| `hands_interaction` | 6 | 19 | 7 | 37 | 46 |
-| `input_locomotion` | 2 | 8 | 3 | 19 | 83 |
-| `performance` | 8 | 10 | 6 | 47 | 44 |
-| `audio` | 1 | 1 | 1 | 60 | 52 |
-| `packaging_deploy` | 6 | 25 | 21 | 32 | 31 |
-| `re_discovery` | 14 | 18 | 9 | 37 | 37 |
-| `source_integration` | 2 | 11 | 8 | 39 | 55 |
+| `stereo` | 19 | 28 | 15 | 38 | 16 |
+| `xr_lifecycle` | 6 | 11 | 1 | 50 | 48 |
+| `xr_input` | 4 | 1 | 7 | 55 | 49 |
+| `camera_tracking` | 12 | 18 | 4 | 42 | 40 |
+| `render_hazards` | 5 | 12 | 4 | 18 | 77 |
+| `ui_hud` | 5 | 15 | 12 | 44 | 40 |
+| `hands_interaction` | 6 | 19 | 8 | 37 | 46 |
+| `input_locomotion` | 2 | 8 | 3 | 20 | 83 |
+| `performance` | 8 | 10 | 6 | 48 | 44 |
+| `audio` | 1 | 1 | 1 | 61 | 52 |
+| `packaging_deploy` | 6 | 25 | 21 | 33 | 31 |
+| `re_discovery` | 14 | 19 | 9 | 37 | 37 |
+| `source_integration` | 2 | 11 | 8 | 40 | 55 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -205,6 +206,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **titanfall2vr** | external reference | Respawn Source-derived (Titanfall 2) | native-injector | — | — | 17 | 216 | 172 | 11 | 2026-09-14 | 🟩 current | 0F / 4P / 2S / 7NR / 0— |
 | **TwoForksVR** | external reference | Unity | managed-plugin | — | — | — | 73 | 0 | 0 | 2022-03-18 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **UEVR** | external reference | Unreal (generic) | framework | — | — | — | 267 | 223 | 14 | 2026-08-23 | 🟩 current | 0F / 1P / 0S / 0NR / 12— |
+| **Ultraleap-UnrealPlugin** | external reference | Unreal Engine 5 (engine plugin, not a mod; UltraleapTracking 5.0.1) | engine-plugin | — | — | 1 | 716 | 121 | 4 | 2026-09-18 | 🟩 current | 0F / 2P / 3S / 7NR / 1— |
 | **unreal-gold-vr-external-research** | external reference | Unreal Engine 1 (Unreal Gold) | framework-companion | — | — | 18 | 5 | 0 | 5 | 2026-08-29 | ⚪ unpinned | 1F / 0P / 0S / 9NR / 3— |
 | **VirtualFortress2** | external reference | Source (Team Fortress 2) | source-port | — | — | — | 4606 | 3839 | 22 | 2026-08-27 | 🟩 current | 0F / 0P / 3S / 0NR / 10— |
 | **visceral-re2-vr-mod** | external reference | RE Engine (Resident Evil 2, 2019) | framework-companion | T2 | — | 2 | 14 | 5 | 5 | 2026-08-30 | 🟥 source changed | 0F / 0P / 2S / 9NR / 2— |
@@ -337,6 +339,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **titanfall2vr** | 2026-09-14 | `tree:669cd0c3ee1b8ba0` | `tree:669cd0c3ee1b8ba0` | `8c50a7d491d9a275103cfc659430e4bc1b75a608` | 🟩 current | https://github.com/TinyBlkDog/titanfall2vr | MIT; bundled dependencies retain their own notices |
 | **TwoForksVR** | unknown | `tree:d638ddb7289ba69f` | `tree:d638ddb7289ba69f` | `—` | 🟩 current | unknown | unknown |
 | **UEVR** | 2026-08-25 | `tree:ed8c07a5139dfdb0` | `tree:ed8c07a5139dfdb0` | `—` | 🟩 current | unknown | LicenseRef-AllRightsReserved (praydog, 2022-2025) - technique may be described; code must NOT be copied |
+| **Ultraleap-UnrealPlugin** | 2026-09-18 | `tree:7b8ccacb03c3161f` | `tree:7b8ccacb03c3161f` | `f83705edaf445fda8556d6341777bb70a4a8c633` | 🟩 current | https://github.com/ultraleap/UnrealPlugin | Apache-2.0 |
 | **unreal-gold-vr-external-research** | 2026-08-29 | `unknown` | `tree:83ff5ed3badace3f` | `—` | ⚪ unpinned | unknown | unknown |
 | **VirtualFortress2** | 2026-08-27 | `tree:55fad8d1871ed244` | `tree:55fad8d1871ed244` | `—` | 🟩 current | unknown | unknown |
 | **visceral-re2-vr-mod** | 2026-08-29 | `tree:dfbb912f1ec1c758` | `tree:b54e8fb8f08ff568` | `—` | 🟥 source changed | unknown | unknown |
@@ -2394,6 +2397,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | — no entry — | — | — |
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
+
+#### Ultraleap-UnrealPlugin
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | Out of scope: a hand-tracking input plugin. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | 🟧 skimmed | `SOURCE` | OpenXRToLeapWrapper.cpp (883 lines) adapts OpenXR hand tracking into the same internal hand model as the native LeapC path, so one consumer serves both. The wrapper interface (IHandTrackingWrapper) is what makes the device combiners possible. Not read. |
+| `camera_tracking` | 🟨 partial | `SOURCE` | REGISTERED 2026-09-18. THE FINDING: multi-device fusion weighted by GEOMETRIC confidence, distilled to #confidence-weighted-fusion and CAM-019. Confidence is a weighted sum of hand-position-in-volume, palm-facing and velocity terms, each with its own factor; multiplied by a time-since-first-visible term so a newly acquired hand scores zero; then the CONFIDENCE (not the pose) is averaged over a short per-device per-hand history. Scored per joint as well as per hand, so fusion is not all-or-nothing. Occlusion is a fourth term measured by rendering joints from the device viewpoint (JointOcclusionActor). Two combiners ship: ...CombinedDeviceConfidence and ...CombinedDeviceAngular. |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟧 skimmed | `SOURCE` | LeapWidgetInteractionComponent.cpp (562 lines) - hand-driven UMG interaction. Pairs with the Meta ISDK poke subsystem for any diegetic-UI work. |
+| `hands_interaction` | 🟧 skimmed | `SOURCE` | BodyState is a device-agnostic skeleton abstraction (BodyStateSkeleton, 597 lines) driven onto an arbitrary rig by an anim node (AnimNode_ModifyBodyStateMappedBones) via BodyStateAnimInstance (1,555 lines - the largest file here). This is ch02's 'drive the engine's own skeleton' with a shipped mapping layer. NOT read - the strongest remaining candidate in this source. |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟨 partial | `SOURCE` | FKabschSolver: rigid point-set alignment with NO SVD - centroid difference for translation, 3x3 covariance, then iterative rotation extraction (Mueller et al., MIG 2016) converging in <10 iterations. Distilled to ch11 #rigid-alignment-from-points as the constructive half of the six-DOF argument in #numerical-camera-mapping. Also carries a real hazard: FromMatrixExtension::GetQuaternion converts a matrix to a quaternion via FQuat::FindBetween of two basis columns, under the author's own 'double check, was look rotation in Unity' comment - a marked-uncertain Unity port left in shipped code. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
 
 #### unreal-gold-vr-external-research
 

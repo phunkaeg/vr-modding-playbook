@@ -744,6 +744,37 @@ genuinely VR-specific.
 that assumes an HMD, two eyes or a runtime is a VR component with a misleading name, and will be
 rejected or will rot.
 
+## CAM-019 - Weight competing pose sources by geometry, and make a new one earn trust {#cam-019}
+
+**Problem:** more than one thing reports where the hand, head or object is, each correct in a different
+region. Picking one loses the other's good region; averaging them blindly propagates whichever is
+currently wrong; switching between them pops.
+
+**Use when:** two or more sources report the same pose - a second tracker, the game's own value beside
+your reconstruction, an IK solve beside a measured pose.
+
+**Recipe:**
+
+- **Build the weight from geometric plausibility terms**, each separately tunable: where the subject
+  sits in the sensor's working volume, which way it faces relative to the sensor, how fast it is
+  moving. Every term must be something a reviewer can argue with.
+- **Multiply by an age term so a freshly acquired source scores zero** and ramps with persistence.
+- **Average the weight over a short history; never average the pose.** Weights may move slowly; the
+  rendered pose stays on the freshest sample.
+- **Score per component, not per pose**, so you can take a palm from one source and a fingertip from
+  another instead of discarding a half-good source.
+- **If occlusion matters, measure it** - render the points from the sensor's viewpoint and read back
+  what is hidden - rather than inferring it from orientation.
+
+**Proof:** occlude one source mid-motion and confirm the fused pose does not step. Then introduce a
+second source while the first is tracking well and confirm the pose does not move on the frame the new
+one appears. If it does, the age term is missing or is not multiplicative.
+
+**Trip hazard:** a single opaque confidence number from a vendor API invites you to skip all of this.
+It is not the same thing - [06](06-debugging-methodology.md) records a high confidence score attached
+to a false camera. Prefer three terms you can name over one you cannot.
+`[SOURCE]` Ultraleap UnrealPlugin.
+
 ## CAM-001 — Split head pose from body yaw {#cam-001}
 
 **Problem:** head turning also rotates locomotion/body, or yaw is applied twice.

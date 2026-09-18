@@ -2726,6 +2726,55 @@ external:
       packaging_deploy:
         review: not_reviewed
 
+  - id: Ultraleap-UnrealPlugin
+    root: D:/Dev Debug/VR Utilities/UE/UnrealPlugin
+    status: external_reference
+    upstream_url: https://github.com/ultraleap/UnrealPlugin
+    license: Apache-2.0
+    reviewed_at: '2026-09-18'
+    reviewed_revision: tree:7b8ccacb03c3161f
+    reviewed_git_commit: f83705edaf445fda8556d6341777bb70a4a8c633
+    engine: Unreal Engine 5 (engine plugin, not a mod; UltraleapTracking 5.0.1)
+    api: device input (LeapC SDK, with an OpenXR hand-tracking path)
+    vehicle: engine-plugin
+    chapter: 1
+    areas:
+      camera_tracking:
+        review: partial
+        evidence: SOURCE
+        note: 'REGISTERED 2026-09-18. THE FINDING: multi-device fusion weighted by GEOMETRIC confidence, distilled to #confidence-weighted-fusion and CAM-019. Confidence is a weighted sum of hand-position-in-volume, palm-facing and velocity terms, each with its own factor; multiplied by a time-since-first-visible term so a newly acquired hand scores zero; then the CONFIDENCE (not the pose) is averaged over a short per-device per-hand history. Scored per joint as well as per hand, so fusion is not all-or-nothing. Occlusion is a fourth term measured by rendering joints from the device viewpoint (JointOcclusionActor). Two combiners ship: ...CombinedDeviceConfidence and ...CombinedDeviceAngular.'
+      re_discovery:
+        review: partial
+        evidence: SOURCE
+        note: 'FKabschSolver: rigid point-set alignment with NO SVD - centroid difference for translation, 3x3 covariance, then iterative rotation extraction (Mueller et al., MIG 2016) converging in <10 iterations. Distilled to ch11 #rigid-alignment-from-points as the constructive half of the six-DOF argument in #numerical-camera-mapping. Also carries a real hazard: FromMatrixExtension::GetQuaternion converts a matrix to a quaternion via FQuat::FindBetween of two basis columns, under the author''s own ''double check, was look rotation in Unity'' comment - a marked-uncertain Unity port left in shipped code.'
+      hands_interaction:
+        review: skimmed
+        evidence: SOURCE
+        note: BodyState is a device-agnostic skeleton abstraction (BodyStateSkeleton, 597 lines) driven onto an arbitrary rig by an anim node (AnimNode_ModifyBodyStateMappedBones) via BodyStateAnimInstance (1,555 lines - the largest file here). This is ch02's 'drive the engine's own skeleton' with a shipped mapping layer. NOT read - the strongest remaining candidate in this source.
+      xr_input:
+        review: skimmed
+        evidence: SOURCE
+        note: OpenXRToLeapWrapper.cpp (883 lines) adapts OpenXR hand tracking into the same internal hand model as the native LeapC path, so one consumer serves both. The wrapper interface (IHandTrackingWrapper) is what makes the device combiners possible. Not read.
+      ui_hud:
+        review: skimmed
+        evidence: SOURCE
+        note: LeapWidgetInteractionComponent.cpp (562 lines) - hand-driven UMG interaction. Pairs with the Meta ISDK poke subsystem for any diegetic-UI work.
+      stereo:
+        review: not_reviewed
+        note: 'Out of scope: a hand-tracking input plugin.'
+      input_locomotion:
+        review: not_reviewed
+      source_integration:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+
 not_a_source:
   - id: "UEVR-joeyhodge_AFW_v1.0-beta.6"
     reason: "UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source."

@@ -44,6 +44,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| The pose jumps once when a second tracker or source starts reporting | [01](01-camera-and-tracking.md#confidence-weighted-fusion) - a new source was trusted on its first frame; gate its weight on persistence |
 | Artifact appears in stereo but never appeared flat | [14](14-render-pass-hazard-atlas.md) — **infrastructure until proven content.** Check whether the suspect buffer is per-eye or a singleton before touching shader logic |
 | Tiny patch magnified over the whole eye during a video/menu | [Rectangle provenance](09-d3d11-openxr-injection.md#world-rect-provenance) |
 | Wrist panel centre is visible but a corner disappears in one eye | [Binocular panel fit](04-ui-and-hud.md#binocular-panel-fit) |

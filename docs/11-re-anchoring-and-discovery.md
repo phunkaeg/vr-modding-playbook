@@ -63,6 +63,45 @@ Much of the technique here is distilled from Praydog's write-ups on
 SS2VR, BioshockVR, and SOMAVR actually needed. UEVR is the most battle-tested example of the problem in
 its hardest form — one injector that must work across a decade of Unreal versions it has never seen.
 
+### Solving those six degrees of freedom from corresponding points {#rigid-alignment-from-points}
+
+This section warns against demanding rank 16 when a rigid pose has only six degrees of freedom.
+Here is the constructive other half: given two sets of corresponding points — observed and reference — recover
+exactly those six. It is the same shape of problem as aligning two trackers, fitting a bone set to
+observed joints, or recovering the transform between a game's coordinate frame and yours.
+`[SOURCE]` Ultraleap UnrealPlugin (Apache-2.0), `FKabschSolver`.
+
+The classical answer is Kabsch via an SVD of the 3x3 covariance. **The version worth knowing needs no
+SVD at all**, which matters when the target codebase has no linear-algebra library and you are not
+about to add one:
+
+1. **Translation is the centroid difference.** Compute both centroids; the translation is
+   `refCentroid - inCentroid`. Subtracting it first is what turns the remainder into a pure rotation.
+2. **Accumulate the 3x3 covariance** as `C[i][j] = sum over points of in[k][i] * ref[k][j]`.
+3. **Extract the rotation iteratively.** Start from identity. Each iteration takes the current
+   quaternion's three basis vectors, forms
+   `omega = (sum of cross(basis_i, C_i)) / (|sum of dot(basis_i, C_i)| + eps)`, and rotates the
+   quaternion by the angle-axis whose axis is `omega` normalised and whose **angle is `|omega|`**.
+   Renormalise, repeat. It converges in under ten iterations; bail out when `|omega|` falls below
+   epsilon. (Müller et al., *A Robust Method to Extract the Rotational Part of Deformations*, MIG 2016
+   — the technique the plugin cites.)
+4. **Compose in this order:** translate by `-inCentroid`, rotate, then scale and translate to
+   `refCentroid`. Centre, rotate, re-centre. Getting this order wrong is the usual failure and it looks
+   like a correct rotation about the wrong pivot — see [a1](a1-rotation-and-frames.md).
+
+**Solve scale only when you mean to.** It is optional and derived as a ratio of the summed radii from
+each centroid, not from the covariance, which is cheap and robust. Leave it **off** unless the two sets
+really are the same physical object at different scales; an unconstrained scale term will happily
+absorb tracking error and hand you a confident fit with the wrong geometry.
+
+**A trip hazard, and it is in the shipped code.** The same file converts a matrix to a quaternion with
+the minimal rotation *between two of its basis columns*, under the author's own comment that it needs
+double-checking because it was a look-rotation in Unity. A minimal-arc rotation between two vectors is
+not a basis-to-quaternion conversion, and the comment is the tell. This is
+[#numerical-camera-mapping](#numerical-camera-mapping)'s discipline in miniature: **a port from another
+engine is a lead, not a proof** — and a marked-uncertain conversion that ships is exactly the kind of
+thing you inherit silently when you copy a routine because its name matched.
+
 ## Prove a slice's owner and count; do not infer an allocation header {#slice-owner-count}
 
 An adjacent DynArray does not make every pointer a prefixed array. Prey's September
