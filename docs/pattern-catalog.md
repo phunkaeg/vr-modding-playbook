@@ -2648,6 +2648,36 @@ here proves attachment, never **comfort or finger clearance** — shock2quest sa
 one of these changes and it is worth copying into the record rather than assuming a green suite means
 the hold feels right. `[SOURCE]` shock2quest.
 
+## HAND-020 - Separate "what was grabbed" from "what happens to it" {#hand-020}
+
+**Problem:** grab systems grow by adding cases. A new way of reaching an object (distance grab, ray
+grab, gaze) and a new way of holding it (physics, sweep, attach) both arrive as another value in the
+same enum, so every combination must be enumerated and most combinations are never tested.
+
+**Use when:** designing a hold system, or extending one that already has more than three grip types.
+
+**Recipe:**
+
+- **Give detection one contract: input method in, candidate object out.** No transform, no physics, no
+  events beyond hover. A detector becomes a class, and adding gaze grab touches no hold code.
+- **Pass the input method as an argument**, so one detector can resolve a different candidate for a
+  pinch than for a palm grab instead of needing a detector per method.
+- **Give transformation one contract: the identified grab poses and the target's transform in, the
+  target's new transform out.** It must not know which detector ran.
+- **Report hover with its detector attached**, so presentation can distinguish a ray hover from a hand
+  hover without understanding either.
+- **Let each transformer declare its maximum grab-point count**, with a sentinel for unlimited.
+
+**Proof:** add a detection strategy without editing any file that moves an object, and add a hold
+behaviour without editing any file that decides what was grabbed. If either edit is forced, the layers
+are still fused.
+
+**Trip hazard:** the split tempts you to let the detector also resolve *where* the object should sit - a
+snap pose - and return that alongside the candidate. That is the same coupling reintroduced. Snapping is
+a property of the object and the grab point, so it belongs in the pose the transformer receives, not in
+the detector's answer. `[SOURCE]` Meta Interaction SDK; contrast VRExpansionPlugin's fused grip enum at
+[#grip-design-space](02-viewmodels-and-hands.md#grip-design-space).
+
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
 **Problem:** a visible controller/hand aligns, but weapon ray or muzzle does not.

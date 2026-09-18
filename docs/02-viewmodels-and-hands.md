@@ -1125,6 +1125,27 @@ content pipeline: the data is authored where it is seen, not typed.
 
 See [HAND-017](pattern-catalog.md#hand-017).
 
+
+**A second hand is a second *identified* grab point, not a second count.** Meta's transformer contract
+takes a set of grab poses in which each pose carries an **identifier required to be unique within that
+transformer**, and the pose is explicitly *the modification point* - the pinch point, the palm centre,
+the snap point - rather than the hand. Two consequences, both left open by the enter/exit state model
+above. `[SOURCE]`
+
+- **You need to know *which* point moved, not how many there are.** A two-point transform derives
+  rotation and scale from how the points move *relative to each other*, so a frame whose set is
+  `left, right` followed by one whose set is `right, left` must not read as both hands having swapped
+  places. Identity is what makes the delta meaningful; a count or an unordered array is not enough.
+- **Abstracting the point away from the hand is what lets one transformer serve every grab style.**
+  Pinch, palm and snap all reduce to a posed point with an identity, so the maths layer needs no cases
+  for them, and a non-hand source - a tool tip, a second player - costs nothing to add.
+
+**And a transformer declares its own arity.** Each reports the maximum number of grab points it
+supports, with a sentinel for unlimited, so the framework asks rather than assumes: a one-grab rotate
+accepts a single point, a free transform accepts two. This is
+[META-015](pattern-catalog.md#meta-015) in another shape - not an enum listing the design space, but a
+capability the implementation publishes so a caller cannot exceed it silently.
+
 ## Holsters and physical grab, from the two native-VR interaction stacks {#holsters-and-grab}
 
 Skyrim VR and Fallout 4 VR shipped *as* VR, so their mod scenes never had to solve stereo - they went
@@ -1397,6 +1418,66 @@ Nine values in total; *retain* is the one that shows up in a headset as a snap o
 
 See [HAND-019](pattern-catalog.md#hand-019) for choosing between these, and
 [META-015](pattern-catalog.md#meta-015) for why reading the enums was worth more than reading the code.
+
+
+## Detection and response are different layers {#grab-detection-layer}
+
+The twelve grip types above answer *what happens to the object once it is held*. They say nothing about
+*how you decided a grab happened* - and in VRExpansionPlugin the two are fused, because one enum value
+names both. Meta's Interaction SDK factors the same problem the other way, and having both in one
+corpus is what makes the axis visible at all. `[SOURCE]` Meta Interaction SDK 1.205.0 public headers.
+Its licence is the Oculus SDK License Agreement, all rights reserved, so **describe the architecture
+and never copy the code** - the handling this playbook already gives
+[UEVR](18-beyond-the-native-injector.md).
+
+**Detection reduces to one function.** A grab detector's entire contract is *given an input method,
+which object would be grabbed?* Everything else it exposes is lifecycle - initialise, tick, select,
+unselect. Three detectors ship against that one contract: by hand, by distance, and by ray. Because the
+contract yields only a candidate, the layer that moves the object never learns how the candidate was
+found, and a new way of reaching for something becomes a new class instead of a new case in a grip enum.
+
+Two details in the contract are worth copying:
+
+- **The input method is an argument, not a property of the detector.** One detector can therefore
+  resolve a *different* candidate for a pinch than for a palm grab. Bake the method into the detector
+  instead and you need one detector per method per strategy.
+- **Hover is reported together with the detector that found it.** The event carries both, which is what
+  lets a ray hover highlight differently from a hand hover without the highlight code knowing what a
+  ray is.
+
+**Transformation is the other layer, and its contract is arithmetic:** given the set of grab poses and
+the target's current transform, return the target's new transform. The transformer never learns which
+detector produced the poses; the detector never learns whether the object rotates, translates or
+scales. See [HAND-020](pattern-catalog.md#hand-020).
+
+### Three maths traps the contract makes visible {#grab-transform-traps}
+
+Each of these is silent when wrong, which is what makes reading someone else's design cheaper than
+rediscovering them.
+
+**The answer is owed in parent space, but the maths happens in world space.** The target arrives as
+*three* transforms - its world transform, its transform relative to its parent, and **the parent's own
+world transform** - and the value returned must be relative to the parent. The hands are in world
+space, so world space is the natural place to compute, and converting back needs the parent's world
+transform. Omit it and everything is correct for exactly as long as the parent sits at the origin
+([FAIL-HAND-056](failure-atlas.md)); it breaks when the held object's parent is a lift, a vehicle or a moving
+ship. This is the same error as a viewmodel trim applied on the wrong side (*Reference frame: place
+attached objects in the right space*, earlier in this chapter - an offset that grows with distance from
+the anchor), which is why the three-transform bundle is worth imitating: **pass the parent, not just
+the object.**
+
+**Constraints are snapshotted at grab start, not evaluated live.** Limits are authored as offsets from
+wherever the object began, and converted once - at the moment of the grab - into absolute bounds in
+parent space. A drawer authored as "plus or minus 20 cm" means 20 cm *from where it was*; re-deriving
+that each frame from the object's current position lets the limit walk with the object, and the drawer
+slowly travels out of its cabinet over repeated grabs.
+
+**Position constraints add; scale constraints multiply.** An offset limit composes with the initial
+position by addition, a scale limit with the initial scale by multiplication. Write one where you meant
+the other and the limit looks plausible at unit scale and is wrong everywhere else - the class of error
+[a1](a1-rotation-and-frames.md) exists to catch. Note also that scale is constrained as a **single**
+scalar range while position and rotation each get three axes: a deliberate reduction to uniform
+scaling, and a sensible default to copy.
 
 ## Driving a body with physics: blend, clamp, and give up gracefully {#physics-bodies}
 

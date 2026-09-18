@@ -12,6 +12,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| A held object flies off when the thing it is attached to moves | [02](02-viewmodels-and-hands.md#grab-transform-traps) - the grab transform was composed in world space and assigned as relative; pass the parent's world transform |
 | The log is empty or truncated after a crash or force-kill | [FAIL-TEST-039](failure-atlas.md) — buffered writes discarded; flush per line during bring-up ([TEST-024](pattern-catalog.md#test-024)) |
 | The VR session never starts and there is no actionable error | [08](08-project-process.md#hard-fail-preconditions) — a precondition in hardware: headset awake and the runtime link active *before* launch |
 | Hook installed at a verified-correct address, never fires | [07](07-engine-integration-safety.md) — you probably hooked a wrapper, or the runtime rewrites its own dispatch table. **Read the two addresses first**: if the replaced pointer still lands inside the API's own module, it's not an interposer. Guards + counters: [A4](a4-hook-safety.md) |

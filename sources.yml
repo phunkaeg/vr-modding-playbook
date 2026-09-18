@@ -2676,6 +2676,56 @@ external:
       audio: {review: not_reviewed}
       packaging_deploy: {review: not_reviewed}
 
+  - id: MetaXRInteraction-1.205.0
+    root: D:/Dev Debug/VR Modding/External/MetaXRInteractionPackage.205.0.0/MetaXRInteraction/Source
+    status: external_reference
+    upstream_url: https://developers.meta.com/horizon/documentation/unreal/unreal-isdk-overview
+    license: LicenseRef-OculusSDK (Meta Platforms, all rights reserved) - technique may be described, code must NOT be copied
+    reviewed_at: '2026-09-18'
+    reviewed_revision: tree:ac4d9fd082491ed3
+    engine: Unreal Engine 5.7 (engine plugin, not a mod; marked IsExperimentalVersion)
+    api: engine-level (OpenXR and Meta XR data sources)
+    vehicle: engine-plugin
+    chapter: 2
+    areas:
+      hands_interaction:
+        review: partial
+        evidence: SOURCE
+        note: 'REGISTERED 2026-09-18. Public headers read for architecture only - the licence is proprietary, so no code is reproduced. THE FINDING: detection and response are separate layers, orthogonal to VRExpansionPlugin''s fused grip enum. A detector''s whole contract is (input method) -> candidate grabbable, and three ship against it (hand, distance, ray). A transformer''s whole contract is (identified grab poses, target transform) -> new transform. Grab poses carry a REQUIRED unique identifier and represent the modification point (pinch/palm/snap), not the hand; each transformer declares its own max grab-point count. Distilled to #grab-detection-layer, #grab-transform-traps, HAND-020 and the #two-handed-support extension.'
+      source_integration:
+        review: partial
+        evidence: SOURCE
+        note: 'Six modules: OculusInteraction (the bulk), OculusInteractionPrebuilts, OculusInteractionEditor, IsdkDataSourcesMetaXR, IsdkDataSourcesOpenXR, ThirdParty. 178 headers and 153 .cpp of hand-written source (191 files in OculusInteraction, 69 Prebuilts, 40 Editor, 15 MetaXR data sources, 13 OpenXR data sources, 3 ThirdParty). The package-wide .h/.cpp count is ~4x larger because Intermediate/ holds UHT-generated *.gen.cpp and *.generated.h - do not quote it as source size. UE 5.7 against a 4.27 target, so nothing is source-compatible - which costs nothing, because the licence rules out using the code either way. Public API surface: 39 files under Interaction/, 15 DataSources/, 10 Core/, 6 HandPoseDetection/. Registered at Source/ rather than the package root because Intermediate/ is 2.5 GB of build output.'
+      xr_input:
+        review: skimmed
+        evidence: SOURCE
+        note: 'Hand pose recognition is a hierarchy - digit -> finger/thumb -> pinch-grab/palm-grab - behind a designer-tunable HandPoseDetectionProfile. A deliberate counterpoint to HAND-018: Meta KEEPS the designer''s gate rather than physicalising it away. Not distilled yet.'
+      ui_hud:
+        review: skimmed
+        evidence: SOURCE
+        note: 'Poke interaction is a whole subsystem: PokeInteractor, PokeInteractable, PokeButtonVisual, PokeLimiterVisual, ClippedPlaneSurface, PointableBox/Plane. PokeLimiterVisual is specifically the ''the finger went through the button but the visual must not'' problem. Candidate for the next pass; relevant to any diegetic UI.'
+      audio:
+        review: skimmed
+        evidence: SOURCE
+        note: IsdkGrabbableAudio exists - grab/release audio is a first-class component rather than gameplay's problem. Not read.
+      stereo:
+        review: not_reviewed
+        note: 'Out of scope by design: an interaction SDK; the engine owns stereo.'
+      re_discovery:
+        review: not_reviewed
+        note: 'Not applicable: source-available under a proprietary licence.'
+      input_locomotion:
+        review: not_reviewed
+        note: 'Not covered: the SDK is hands and interaction, not locomotion.'
+      camera_tracking:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+
 not_a_source:
   - id: "UEVR-joeyhodge_AFW_v1.0-beta.6"
     reason: "UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source."

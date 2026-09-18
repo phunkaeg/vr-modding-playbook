@@ -28,9 +28,11 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `hands_interaction` | **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | F4SEVR 0.6.21. src/ read selectively 2026-09-05 (150 .h / 144 .cpp; f4se_loader_common) -> ch08 #loader-preflight and PACK-004. The transferable part is the LOADER, not the game layer: IdentifyEXE maps the target read-only and classifies it by PE section (a UPX0 section means packed, a Steam section means wrapped; four outcomes, and the packed case is refused BY NAME), then compares versions three ways - older, NEWER than supported, and right version but wrong build branch - each with its own actionable message. The newer-than-supported case is the one that happens to every user the day the game updates. Version comes from the version resource rather than a file hash. The game-structure layer (BS*/Game*) was not read. |
 | `hands_interaction` | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | REGISTERED NOT REVIEWED 2026-09-05. A single 694 MB Wabbajack modlist archive, not a mod. Kept as a source only because it names a working Fallout 4 VR stack. |
 | `hands_interaction` | **StalkerVR-code** | THE REASON THIS WAS SEPARATED. gamedata/configs/vr/weapon_grip_vr.ltx is ~97 KB of PER-WEAPON GRIP DATA and handpose_vr.ltx ~29 KB of hand poses - the shape HAND-008 and HAND-009 argue for, shipped, on an engine nobody here has touched. The 3D_SIGHTS and 3DSS_Vanilla mods add per-weapon sight and model-swap tables (~34 KB and ~34 KB) beside them. |
+| `input_locomotion` | **MetaXRInteraction-1.205.0** | Not covered: the SDK is hands and interaction, not locomotion. |
 | `packaging_deploy` | **StalkerVR-code** | JSGME-managed mod stack; fsgame.ltx, commandline.txt and the launcher config were copied because they describe how the build is wired. |
 | `packaging_deploy` | **Talemann-RE4** | Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game. |
 | `re_discovery` | **Dishonored-VR** | REGISTERED NOT REVIEWED 2026-09-02. ALREADY MINED by the in-house DishonoredVR project (2026-09-02), which took the render path instead and avoided its blockers - read for method and negative results, not as an open task. GingasVRFO/Dishonored-VR is a SEPARATE VR conversion of the SAME GAME as the in-house DishonoredVR project. A d3d9.dll proxy built on a FORKED DXVK, with true stereo, 6DoF, motion controls, roomscale and a hand-aimed Blink. DISCONTINUED and explicitly offered for pickup (author burned out on unreproducible reports). Its 13 numbered fork-patches read as a complete rung-2 development history: M2 frame-map instrumentation, M3 stereo splice per-eye draw replay, mirrored-VP skip, world-quad splice via a c6 identity test, depth-test state REPLACING that c6 heuristic, an explicit revert to proven M3.1, measured gates, live projection scales, live writable separation and convergence, per-draw splice verdicts, world-space UP effects (the fire fix), and the Blink marker. The real payload is dllmain.cpp (~23k lines of in-game research log); its negative results are worth more than its code. |
+| `re_discovery` | **MetaXRInteraction-1.205.0** | Not applicable: source-available under a proprietary licence. |
 | `re_discovery` | **Quake2Quest** | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
 | `re_discovery` | **StalkerVR-code** | bin/AnomalyDX11.pdb ships SYMBOLS for the VR engine build, so TEST-018 crash symbolisation applies to this target directly. Not copied - it lives in the install. |
 | `re_discovery` | **VRExpansionPlugin-4.27** | Not applicable: full MIT source, nothing to reverse. |
@@ -41,6 +43,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **GRAND-alien-isolation** | BINARY ONLY: XINPUT1_3.dll proxy. Built on Nibre's MotherVR. No source to read. |
 | `stereo` | **HIGGS 1.10.10-43930-1-10-10-1768263289** | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Read 2026-09-05: higgs_vr.ini (593 settings) and the Papyrus API. The C++ core is binary. |
 | `stereo` | **IRON-NEST-VR** | BINARY ONLY: managed code driving OpenXR and D3D11 directly via Silk.NET rather than through Unity XR. No source. |
+| `stereo` | **MetaXRInteraction-1.205.0** | Out of scope by design: an interaction SDK; the engine owns stereo. |
 | `stereo` | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the most transferable finding here. Checked against SS2VR manualReload rather than assumed: that code is already immune, because every quantity in it is a difference between two tracked hands, which cancels locomotion, turning and the play-space origin at once. INPUT-010 now ranks that formulation above room space; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary. |
 | `stereo` | **PureDark-UEVR** | REGISTERED NOT REVIEWED 2026-09-07. A FORK of praydog/UEVR, and its master is BYTE-IDENTICAL to the already-tracked upstream at D:/Dev Debug/Other VR mods/UEVR - same HEAD 74b76bc, same tree 20e90587ef58d605. Nothing on master is new, so the harvested UEVR notes on that entry stand unchanged. The fork's own work is on two BRANCHES that are not checked out: origin/AFW and origin/Joey-Merged. Checking `git branch -a` before assuming a fork has diverged is the cheap discriminator, and it is what stops a duplicate tree being re-read as new material. The delta on those branches has NOT been read. |
 | `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
@@ -61,19 +64,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 28 | 15 | 36 | 16 |
-| `xr_lifecycle` | 6 | 11 | 1 | 50 | 46 |
-| `xr_input` | 4 | 1 | 5 | 55 | 49 |
-| `camera_tracking` | 12 | 17 | 4 | 41 | 40 |
-| `render_hazards` | 5 | 12 | 4 | 16 | 77 |
-| `ui_hud` | 5 | 15 | 10 | 44 | 40 |
-| `hands_interaction` | 6 | 18 | 7 | 37 | 46 |
-| `input_locomotion` | 2 | 8 | 3 | 18 | 83 |
-| `performance` | 8 | 10 | 6 | 46 | 44 |
-| `audio` | 1 | 1 | 0 | 60 | 52 |
-| `packaging_deploy` | 6 | 25 | 21 | 31 | 31 |
-| `re_discovery` | 14 | 18 | 9 | 36 | 37 |
-| `source_integration` | 2 | 10 | 8 | 39 | 55 |
+| `stereo` | 19 | 28 | 15 | 37 | 16 |
+| `xr_lifecycle` | 6 | 11 | 1 | 50 | 47 |
+| `xr_input` | 4 | 1 | 6 | 55 | 49 |
+| `camera_tracking` | 12 | 17 | 4 | 42 | 40 |
+| `render_hazards` | 5 | 12 | 4 | 17 | 77 |
+| `ui_hud` | 5 | 15 | 11 | 44 | 40 |
+| `hands_interaction` | 6 | 19 | 7 | 37 | 46 |
+| `input_locomotion` | 2 | 8 | 3 | 19 | 83 |
+| `performance` | 8 | 10 | 6 | 47 | 44 |
+| `audio` | 1 | 1 | 1 | 60 | 52 |
+| `packaging_deploy` | 6 | 25 | 21 | 32 | 31 |
+| `re_discovery` | 14 | 18 | 9 | 37 | 37 |
+| `source_integration` | 2 | 11 | 8 | 39 | 55 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -148,6 +151,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | external reference | Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 1 | 0 | 0 | 2026-08-28 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **manhunt-2003-vr-modding-notes** | external reference | RenderWare (Manhunt 2003) | native-injector | — | — | 7 | 10 | 0 | 9 | 2026-08-29 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
 | **MELE-VR** | external reference | UE3 (Mass Effect Legendary) | native-injector | ? | ? | — | 18 | 0 | 3 | 2026-08-23 | 🟩 current | 0F / 2P / 0S / 1NR / 10— |
+| **MetaXRInteraction-1.205.0** | external reference | Unreal Engine 5.7 (engine plugin, not a mod; marked IsExperimentalVersion) | engine-plugin | — | — | 2 | 347 | 339 | 1 | 2026-06-06 | 🟩 current | 0F / 2P / 3S / 7NR / 1— |
 | **MGS5VR** | external reference | FOX (Metal Gear Solid V) | native-injector | — | — | 9 | 184 | 91 | 56 | 2026-09-14 | 🟩 current | 0F / 6P / 3S / 4NR / 0— |
 | **mirrors-edge-vr-mod** | external reference | Unreal Engine 3.536 (Mirror's Edge, 2008) | native-injector | T1 | — | 9 | 37 | 17 | 9 | 2026-08-30 | 🟥 source changed | 2F / 0P / 2S / 8NR / 1— |
 | **MonsterDeadWood-Analyzer-Bible** | archived reference | cross-engine research methodology | documentation | — | — | 6 | 197 | 16 | 140 | 2026-09-08 | 🟩 current | 0F / 2P / 0S / 0NR / 11— |
@@ -224,7 +228,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 |---|---|---|---|---|---|---|---|
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:347dcbbb8f06dee4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:1b97883db8e3cb72` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:b598a2220fc4e018` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:126a03354716eacc` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:6993771916d25874` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:171b1557590a3e9a` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:ae8da0a17b1970c3` | `—` | 🟥 source changed | internal | internal-unreleased |
@@ -279,6 +283,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Main Wabbajack 20.0 96013 20 2026-08-28T01-06Z bnEVTOJ7D** | 2026-09-05 | `unknown` | `tree:35b3173db0af61f0` | `—` | ⚪ unpinned | unknown | unknown |
 | **manhunt-2003-vr-modding-notes** | 2026-08-29 | `unknown` | `tree:e8d969134352da0f` | `—` | ⚪ unpinned | unknown | unknown |
 | **MELE-VR** | 2026-08-28 | `tree:b8d87bff0fecabf1` | `tree:b8d87bff0fecabf1` | `—` | 🟩 current | unknown | unknown |
+| **MetaXRInteraction-1.205.0** | 2026-09-18 | `tree:ac4d9fd082491ed3` | `tree:ac4d9fd082491ed3` | `—` | 🟩 current | https://developers.meta.com/horizon/documentation/unreal/unreal-isdk-overview | LicenseRef-OculusSDK (Meta Platforms, all rights reserved) - technique may be described, code must NOT be copied |
 | **MGS5VR** | 2026-09-14 | `tree:95e3921c54d08c9b` | `tree:95e3921c54d08c9b` | `a51c4b9660f18addc71f06208fcd357d5ad58b15` | 🟩 current | https://github.com/nikamigaming-create/MGS5VR | MIT; bundled dependencies retain their own notices |
 | **mirrors-edge-vr-mod** | 2026-08-29 | `tree:a64e71450006b5d5` | `tree:ba6ab5363d9090ac` | `—` | 🟥 source changed | unknown | MIT |
 | **MonsterDeadWood-Analyzer-Bible** | 2026-09-09 | `tree:00139a13544026eb` | `tree:00139a13544026eb` | `—` | 🟩 current | unknown | Integration permission from MonsterDeadWood relayed by user 2026-09-09; no blanket license claim for bundled third-party sources. |
@@ -380,7 +385,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 301 | 60 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
 | **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142838 | 5038 | 2026-09-16 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 212 | 75 | 2026-09-09 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
-| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5471 | 134 | 2026-09-10 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
+| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5472 | 134 | 2026-09-18 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
 | **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 184 | 50 | 2026-09-10 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
 | **Sims4VR** | research target | EA custom (Sims 4) | hybrid-re+script | D3D11 | x64 | pre-T1 | T2 | unproven | 449 | 69 | 2026-09-14 | 🟥 source changed | 0F / 4P / 0S / 0NR / 9— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 70 | 30 | 2026-09-09 | 🟥 source changed | 2F / 4P / 0S / 7NR / 0— |
@@ -1417,6 +1422,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | 🟨 partial | `STATIC` | CFG-001 (installer writes the mod's per-mode resolution AND the game's GamerSettings.ini together, because a mode switch re-asserts resolution) and CFG-002 (short config, tuned defaults baked in, expands on first save; F1-F4 profile hotkeys chosen to avoid Mass Effect's 1-4 weapon keys). Delivery is a dxgi.dll proxy plus its own openxr_loader.dll. Three separate builds for ME1/2/3. |
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
+
+#### MetaXRInteraction-1.205.0
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | Out of scope by design: an interaction SDK; the engine owns stereo. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | 🟧 skimmed | `SOURCE` | Hand pose recognition is a hierarchy - digit -> finger/thumb -> pinch-grab/palm-grab - behind a designer-tunable HandPoseDetectionProfile. A deliberate counterpoint to HAND-018: Meta KEEPS the designer's gate rather than physicalising it away. Not distilled yet. |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟧 skimmed | `SOURCE` | Poke interaction is a whole subsystem: PokeInteractor, PokeInteractable, PokeButtonVisual, PokeLimiterVisual, ClippedPlaneSurface, PointableBox/Plane. PokeLimiterVisual is specifically the 'the finger went through the button but the visual must not' problem. Candidate for the next pass; relevant to any diegetic UI. |
+| `hands_interaction` | 🟨 partial | `SOURCE` | REGISTERED 2026-09-18. Public headers read for architecture only - the licence is proprietary, so no code is reproduced. THE FINDING: detection and response are separate layers, orthogonal to VRExpansionPlugin's fused grip enum. A detector's whole contract is (input method) -> candidate grabbable, and three ship against it (hand, distance, ray). A transformer's whole contract is (identified grab poses, target transform) -> new transform. Grab poses carry a REQUIRED unique identifier and represent the modification point (pinch/palm/snap), not the hand; each transformer declares its own max grab-point count. Distilled to #grab-detection-layer, #grab-transform-traps, HAND-020 and the #two-handed-support extension. |
+| `input_locomotion` | 🟥 not reviewed | `—` | Not covered: the SDK is hands and interaction, not locomotion. |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟧 skimmed | `SOURCE` | IsdkGrabbableAudio exists - grab/release audio is a first-class component rather than gameplay's problem. Not read. |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | Not applicable: source-available under a proprietary licence. |
+| `source_integration` | 🟨 partial | `SOURCE` | Six modules: OculusInteraction (the bulk), OculusInteractionPrebuilts, OculusInteractionEditor, IsdkDataSourcesMetaXR, IsdkDataSourcesOpenXR, ThirdParty. 178 headers and 153 .cpp of hand-written source (191 files in OculusInteraction, 69 Prebuilts, 40 Editor, 15 MetaXR data sources, 13 OpenXR data sources, 3 ThirdParty). The package-wide .h/.cpp count is ~4x larger because Intermediate/ holds UHT-generated *.gen.cpp and *.generated.h - do not quote it as source size. UE 5.7 against a 4.27 target, so nothing is source-compatible - which costs nothing, because the licence rules out using the code either way. Public API surface: 39 files under Interaction/, 15 DataSources/, 10 Core/, 6 HandPoseDetection/. Registered at Source/ rather than the package root because Intermediate/ is 2.5 GB of build output. |
 
 #### MGS5VR
 
