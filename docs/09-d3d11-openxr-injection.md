@@ -1831,6 +1831,63 @@ The same reasoning applies to any engine-side limiter you find: vsync, a sleep i
 "max foreground FPS" setting. In a VR session they are all downstream of the compositor, and the one
 that should win is the one holding the swapchain.
 
+
+### The runtime owns the pacing, but it may decline to do it {#wait-frame-is-not-a-pacer}
+
+The section above is right that you must not fight the runtime for cadence. It is incomplete in one
+way that costs you half your frames: **`xrWaitFrame` is not a guaranteed pacer, and whether it paces
+is a property of the runtime, not of the API.** Measured by OFXR-Bridge against the same application.
+`[SOURCE]` LGPL-3.0, `openxr_layer.cpp`.
+
+| runtime | `xrWaitFrame` returns in | result |
+|---|---|---|
+| VDXR | **9.95-9.97 ms**, metronomic | the pair goes out 11.11 ms apart, as intended |
+| SteamVR + Pimax driver | **1.55 ms** | the presenter free-runs: pair 1.12 ms apart, then a 21.1 ms gap |
+
+On the second, both frames land inside one 11.11 ms scanout window. **A compositor that holds one
+submitted frame at a time never scans out the first of each pair - the second replaces it** - so half
+the generated frames are discarded before they are ever displayed.
+
+**The instrument reading is the part to remember.** The layer's own overlay reported a steady 90 while
+the compositor reported about 80 FPS with 10% reprojection, and *"neither pipeline depth nor synthesis
+readiness moved the result - the frames were being dropped for their timing, never for their
+contents"*. Both numbers were correct. A submission counter cannot see a frame discarded for *when* it
+arrived, which puts it on the blind-spot map beside the instruments in
+[#eye-capture-point](#eye-capture-point): you can measure everything about the frame and still miss
+that it was never shown.
+
+**The fix is a pacer that is a no-op when the runtime already paces.** Check the elapsed time against
+your own schedule and sleep only if you are early: where the wait already blocks, the check passes
+immediately and the runtime still sets the cadence; where it does not, you supply it. It costs nothing
+to carry.
+
+**Four approaches that do not work, each with its number.** These are the value of the file:
+
+- **Chaining each wait off the last submission.** Added about **4.6 ms of per-cycle overhead** to a
+  10 ms pace and held the runtime to **64/s**. Advance an absolute grid by exactly one period instead,
+  so the loop's own cost is a constant offset rather than something that accumulates into the cadence.
+- **Waiting on a condition variable.** Windows' default system tick is 15.6 ms, so every pace wait
+  rounded up to it: an 11.11 ms schedule produced 15.5 ms submissions and **exactly 64/s**. A
+  high-resolution waitable timer sleeps well under a millisecond *without* raising the process-wide
+  timer resolution - which, as their comment puts it, a layer "has no business doing to its host".
+- **Pacing against the latest reported display period.** SteamVR returns a *multiple* of the true
+  period when it considers the caller behind - **11.1, then 55.6, then 22.2 ms within a few frames** -
+  so a slow frame widens the pace, which makes the next frame later still. That spiral **throttled the
+  presenter to 3.7 Hz and froze the session**. Pace against the *smallest* period the runtime has ever
+  reported: that is the one the hardware actually scans at.
+- **Trusting the grid after an overrun.** The schedule knows nothing about how long a submission took,
+  so when the runtime's own `xrEndFrame` ran long - 3.7 ms typical, 17 ms worst on SteamVR - the next
+  grid point can be two milliseconds away and the pair bunches again. Measured as a repeating
+  on-grid/long/short cadence with **28.8% of gaps under 9 ms** against an 11.11 ms period. Step off any
+  deadline falling within *half* a period of the handover; half rather than a full period, so the rule
+  cannot fire in steady state where the deadline already falls about 7 ms out.
+
+**Two locking rules they paid for.** Never hold the pace longer than one period whatever the schedule
+says - *"pacing exists to stop submissions bunching up; it must never be able to hold the presenter
+back instead"*. And never sleep while holding the mutex the application thread enqueues against:
+waiting for presenter progress under that lock *"has deadlocked this layer twice"*.
+See [STR-021](pattern-catalog.md#str-021).
+
 ### The mirror you add is a scheduler too {#mirror-is-a-scheduler}
 
 The rule above is about limiters you *find*. There is one you **introduce**: the desktop mirror. A

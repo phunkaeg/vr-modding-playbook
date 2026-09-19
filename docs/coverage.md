@@ -70,19 +70,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 31 | 19 | 45 | 16 |
-| `xr_lifecycle` | 6 | 11 | 1 | 50 | 62 |
-| `xr_input` | 4 | 1 | 7 | 69 | 49 |
-| `camera_tracking` | 12 | 19 | 4 | 55 | 40 |
-| `render_hazards` | 5 | 14 | 4 | 30 | 77 |
-| `ui_hud` | 5 | 15 | 12 | 58 | 40 |
-| `hands_interaction` | 6 | 20 | 8 | 50 | 46 |
-| `input_locomotion` | 2 | 8 | 4 | 33 | 83 |
-| `performance` | 8 | 10 | 9 | 59 | 44 |
-| `audio` | 1 | 1 | 1 | 75 | 52 |
-| `packaging_deploy` | 6 | 25 | 22 | 46 | 31 |
-| `re_discovery` | 14 | 20 | 8 | 51 | 37 |
-| `source_integration` | 2 | 12 | 15 | 47 | 54 |
+| `stereo` | 19 | 32 | 19 | 45 | 16 |
+| `xr_lifecycle` | 6 | 11 | 1 | 50 | 63 |
+| `xr_input` | 4 | 1 | 7 | 70 | 49 |
+| `camera_tracking` | 12 | 19 | 4 | 56 | 40 |
+| `render_hazards` | 5 | 15 | 4 | 30 | 77 |
+| `ui_hud` | 5 | 15 | 13 | 58 | 40 |
+| `hands_interaction` | 6 | 20 | 8 | 51 | 46 |
+| `input_locomotion` | 2 | 8 | 4 | 34 | 83 |
+| `performance` | 8 | 11 | 8 | 60 | 44 |
+| `audio` | 1 | 1 | 1 | 76 | 52 |
+| `packaging_deploy` | 6 | 25 | 23 | 46 | 31 |
+| `re_discovery` | 14 | 20 | 8 | 52 | 37 |
+| `source_integration` | 2 | 12 | 15 | 48 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -173,8 +173,9 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 119 | 19 | 71 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
+| **NewDark-1.29** | external reference | Dark Engine (System Shock 2 v2.50, Thief 2 v1.29) - the patch layer every current install runs | documentation | — | — | 0 | 24 | 0 | 6 | 2026-09-19 | 🟩 current | 0F / 2P / 2S / 8NR / 1— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
-| **OFXR-Bridge** | external reference | engine-agnostic (implicit OpenXR API layer) | openxr-api-layer | — | — | 9 | 86 | 57 | 14 | 2026-09-19 | 🟥 source changed | 0F / 1P / 2S / 9NR / 1— |
+| **OFXR-Bridge** | external reference | engine-agnostic (implicit OpenXR API layer) | openxr-api-layer | — | — | 9 | 86 | 57 | 14 | 2026-09-19 | 🟥 source changed | 0F / 2P / 1S / 9NR / 1— |
 | **openmw-vr** | external reference | OpenMW (OSG / OpenGL) | source-port | — | — | — | 3825 | 3023 | 208 | 2026-08-26 | 🟩 current | 0F / 2P / 1S / 1NR / 9— |
 | **Outlast-Vr-Mod** | external reference | Unreal Engine 3 (Outlast) | native-injector | T1 | — | 18 | 49 | 16 | 8 | 2026-08-30 | ⚪ unpinned | 0F / 0P / 2S / 9NR / 2— |
 | **payday2-vr-improvements** | external reference | Diesel (PAYDAY 2) | script-native-hybrid | — | — | — | 55 | 34 | 3 | 2026-08-27 | 🟩 current | 0F / 1P / 1S / 0NR / 11— |
@@ -320,6 +321,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:885ad189f33d5a23` | `—` | 🟥 source changed | unknown | unknown |
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | MIT |
+| **NewDark-1.29** | 2026-09-19 | `tree:2d267b23b563fb8b` | `tree:2d267b23b563fb8b` | `—` | 🟩 current | https://www.ttlg.com/forums/ (community patch; no canonical repository) | LicenseRef-NewDark (closed-source community engine patch, freely distributed). The binaries are not readable and not usable; the shipped documentation is what was read and what may be described |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | GPL-3.0 |
 | **OFXR-Bridge** | 2026-09-19 | `tree:084bd8beab66b041` | `tree:59f7e01df46fc74b` | `93039ffeeb73678eac0fcd555f7599314be2c26d` | 🟥 source changed | https://github.com/tig3rmast3r/OFXR-Bridge | LGPL-3.0-or-later |
 | **openmw-vr** | 2026-08-26 | `tree:7155f265d832b125` | `tree:7155f265d832b125` | `0f520f65c3e085369e66d6a90ce871e817d4533f` | 🟩 current | https://gitlab.com/madsbuvi/openmw/-/tree/openmw-vr | GPL-3.0 (OpenMW) |
@@ -1191,7 +1193,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
 | `re_discovery` | 🟥 not reviewed | `—` | — |
-| `source_integration` | 🟧 skimmed | `AUTHOR` | REGISTERED 2026-09-19, STRUCTURE ONLY. Unusual shape and the reason to look before harvesting: 420 documents against NINE source files. That is a documentation corpus, not a mod checkout - the same shape as vrframework, which was overestimated at 100k+ words before measuring 58,384. SIZE IT FIRST, harvest only if it is substance. Deferred to a sizing pass. |
+| `source_integration` | 🟧 skimmed | `AUTHOR` | SIZED 2026-09-19, and the first registration's guess was WRONG. Measured: 413 markdown files, 768,104 words - more than twice this playbook's own reader corpus. I expected process churn from the filenames (RUN-SHEET-*, PRIORITY-BOARD-*, task boards) and sampled 18 of the 305 numbered documents to check. They are substantive engineering findings in a numbered lab notebook, cross-referencing each other ('OUTSTANDING SINCE 73', "115's TRAP"), with retractions ('239 - TWO OF MINE TO RETRACT') and never-written markers in the filenames. Titles that map straight onto open playbook questions: '134 - IT RUNS AT NINETY AND BOTH OF THE GATES I NAMED ARE BLIND' (instrument blindness), '98 - THE TIMEWARP RAN AND MADE IT WORSE', '70 - ONE DESCRIPTOR SLOT, TWO DRAWS', '109 - THE PACING MAXIMA', '312 - THE 0.705 IS AN ASPECT TERM', '43 - MSAA IS FORCED OFF UNDER VR', '46 - THE RECENTRE DONE THE WAY OPENXR INTENDS', '136 - static HELPERS IN PATCH CODE ARE NOT EMITTED'. This is the closest external analogue to the fleet's own research-receipts practice. HARVEST BY TITLE, NOT LINEARLY: the documents are individually small (median 1,283 words) and self-describing, so route to the dozen that answer known gaps. Deferred as its own pass. |
 
 #### GloomhavenVR
 
@@ -1751,6 +1753,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
 
+#### NewDark-1.29
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟨 partial | `SPEC` | REGISTERED AND READ 2026-09-19 (release notes + 'Newdark HWTL Variant.txt'). Distilled to ch00 #newdark-hwtl. THE FINDING FOR SS2VR: 1.29 introduces an HWTL variant that moves VERTEX TRANSFORMS FROM THE CPU TO THE GPU. An interception on the software transform path does not see a frame transformed in a vertex shader - the camera moves into shader constants, which is SOMAVR's hypothesis S2 restated and makes ch09 route B (capture and rewrite the shaders) the applicable route rather than an exotic one. THREE SOFTENERS: both paths remain in the engine and SWTL is still used for newsky and inventory models even in HWTL mode; toggle_hwtl_enable switches them AT RUNTIME, which is a one-command discriminator for whether a hook survives; and light_fade_sharpness crossfades hardware and software lighting, so the boundary is a blend rather than a hard switch. ONE SHARPENER: hwtl_enable DEFAULTS TO 1, so new installs get the new path. Graded SPEC because this is the engine's own shipped documentation, not a reading of its code. |
+| `xr_lifecycle` | — no entry — | — | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟥 not reviewed | `—` | — |
+| `render_hazards` | 🟨 partial | `SPEC` | The HWTL variant adds PCSS soft shadows, normal mapping, POM, SSAO, dynamic environment mapping, soft particles, volumetric fog and light volumes, underwater light shafts and blur, post-processing, luminance adaptation and light streaks - i.e. most of ch14's hazard classes arrive at once. THE UNUSUAL PART, and the reason to exploit it: there is a RUNTIME TOGGLE FOR NEARLY ALL OF THEM (toggle_ssao_enable, toggle_postprocess, toggle_shadow_enable, toggle_env_enable, toggle_underwater_enable) plus about fifty config variables. The playbook's normal answer to a screen-space effect breaking stereo is a render-pass hook; here it may be a config line. TWO TO CHECK FIRST: 'barrel' is barrel distortion (default 0.0) and a post-processed lens warp fights the headset's own correction; and adapt/adapt_decay/adapt_threshold are luminance adaptation, which is TEMPORAL state and therefore the per-eye divergence case of #eye-image-delta-review and #per-eye-history-bank. |
+| `ui_hud` | 🟧 skimmed | `SPEC` | 1.29 adds TTF/OTF font support, UTF-8 text, a configurable inventory font and file-panel page count. Relevant only if a mod re-renders the 2D UI. |
+| `hands_interaction` | 🟥 not reviewed | `—` | — |
+| `input_locomotion` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟧 skimmed | `SPEC` | Build is ss2_v250 (md5 of the distribution zip b8fedd7dc045c25eabd3463127315d08) and the notes say to consider all prior versions obsolete - so every RVA derived against an earlier build needs re-confirming. The Squirrel layer also changed: LinkNotify message binding fixed and the Squirrel OSM updated, which is live for any mod shipping .nut scripts. |
+| `re_discovery` | 🟥 not reviewed | `—` | — |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
 #### novr
 
 | Area | Review | Evidence | Note |
@@ -1781,7 +1801,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `ui_hud` | 🟥 not reviewed | `—` | — |
 | `hands_interaction` | 🟥 not reviewed | `—` | — |
 | `input_locomotion` | 🟥 not reviewed | `—` | — |
-| `performance` | 🟧 skimmed | `AUTHOR` | Frame generation is the entire purpose. An interpolated frame is not a rendered frame, so anything measured through this layer needs the distinction stated - relevant to ch06's rule that a metric which cannot come back bad is not a metric. |
+| `performance` | 🟨 partial | `SOURCE` | READ 2026-09-19: the pacing in openxr_layer.cpp (4,851 lines). Distilled to ch09 #wait-frame-is-not-a-pacer + STR-021 + FAIL-PERF-024. THE FINDING: xrWaitFrame is not a guaranteed pacer and whether it paces is a property of the RUNTIME. Measured against the same application - VDXR blocks it for a metronomic 9.95-9.97 ms and the pair goes out 11.11 ms apart; SteamVR with a Pimax driver returns it in 1.55 ms, the presenter free-runs, and the pair goes out 1.12 ms apart inside one scanout window followed by a 21.1 ms gap. A compositor holding one frame at a time then never scans out the first of each pair, so half the generated frames are discarded for their TIMING. The instrument reading is the lesson: the layer's overlay reported a steady 90 while the compositor reported ~80 with 10% reprojection, and neither pipeline depth nor synthesis readiness moved it. FOUR REJECTED APPROACHES WITH NUMBERS: chaining each wait off the last submission (+4.6 ms per cycle, held to 64/s); a condition variable (Windows' 15.6 ms system tick rounded an 11.11 ms schedule to 15.5 ms, exactly 64/s); pacing against the LATEST reported display period (SteamVR returns multiples when it thinks you are behind - 11.1, 55.6, 22.2 ms - and the spiral throttled the presenter to 3.7 Hz and froze the session; use the SMALLEST period ever reported); and trusting the absolute grid after an overrun (xrEndFrame 3.7 ms typical / 17 ms worst on SteamVR put the next grid point 2 ms away, measured as 28.8% of gaps under 9 ms - step off any deadline within HALF a period of the handover). Plus two locking rules they paid for: never hold the pace longer than one period, and never sleep under the mutex the application enqueues against, which 'has deadlocked this layer twice'. |
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
 | `re_discovery` | 🟥 not reviewed | `—` | — |

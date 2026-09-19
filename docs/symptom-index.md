@@ -239,6 +239,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| My frame counter says 90 but the compositor says 80 with reprojection | [09](09-d3d11-openxr-injection.md#wait-frame-is-not-a-pacer) - the runtime's frame-wait may not block; two submissions land in one scanout window and the compositor keeps one |
 | The headset is pinned to the desktop monitor's refresh rate | [09](09-d3d11-openxr-injection.md#mirror-is-a-scheduler) — the mirror you added presents with VSync and paces you |
 | Framerate dropped, code unchanged | [06](06-debugging-methodology.md) — cheap environmental causes first. A round-number cap is a vsync cap |
 | Perf regression appears with a feature enabled | [06](06-debugging-methodology.md) — instrumentation volume is not neutral; measure with logging off |

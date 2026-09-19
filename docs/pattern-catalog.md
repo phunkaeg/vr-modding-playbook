@@ -1044,6 +1044,42 @@ top-and-bottom pack, or the inner edges of side-by-side, which sit at the nose. 
 hard to attribute later, because the seam is invisible in a single-eye screenshot.
 `[SOURCE]` OFXR-Bridge, which uses a 64-pixel block-aligned gutter against flow blocks of 8 and 4.
 
+## STR-021 - Carry a pacer that does nothing when the runtime already paces {#str-021}
+
+**Problem:** the frame loop assumes the runtime's frame-wait blocks for roughly one display period. On
+some runtimes it does. On others it returns almost immediately, the loop free-runs, and consecutive
+submissions land inside one scanout window - where a compositor that holds one frame at a time keeps
+only the last. Half the work is discarded for its timing, and every counter you own says it was
+submitted.
+
+**Use when:** you submit frames on a schedule you did not set - any XR layer, injected presenter, or
+frame-generation path.
+
+**Recipe:**
+
+- **Keep your own submission deadline** and sleep only when you are early. Where the runtime already
+  blocks, the check passes immediately and costs nothing; where it does not, you supply the cadence.
+- **Advance the deadline by exactly one period on an absolute grid**, never by measuring from the last
+  submission - chaining accumulates your own loop cost into the cadence.
+- **Pace against the smallest display period the runtime has ever reported.** A runtime that thinks you
+  are behind may report a multiple of the true period, and pacing against the latest value turns one
+  slow frame into a widening spiral.
+- **Sleep on a high-resolution timer, not a condition variable**, whose granularity is the system tick.
+  Do not raise the process-wide timer resolution to fix that: it is not yours to change.
+- **After an overrun, step off a deadline that falls too soon** - within half a period of the handover.
+  Half, not a full period, so it cannot fire in steady state.
+- **Never sleep holding a lock the producer needs**, and never hold the pace longer than one period.
+
+**Proof:** log the interval between consecutive submissions for a minute and histogram it. A working
+pace has one mode at the display period. Free-running shows pairs far below it followed by gaps near
+double; post-overrun bunching shows a repeating on-grid, long, short pattern. Compare your own frame
+count against the compositor's displayed count - a gap between them is frames dropped for timing.
+
+**Trip hazard:** every instrument you own reports success, because the frames really were submitted.
+The discrepancy only appears in the compositor's own statistics, and the two obvious knobs - pipeline
+depth and readiness - do not move it, because nothing is wrong with the frames.
+`[SOURCE]` OFXR-Bridge, measured on VDXR and on SteamVR with a Pimax driver.
+
 ## STR-001 — Private per-eye targets {#str-001}
 
 **Problem:** the game backbuffer cannot safely serve as both engine target and

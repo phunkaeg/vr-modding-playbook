@@ -261,6 +261,52 @@ Record which tree a finding came from in your evidence notes, the same way you w
 project. See [state the interoperability basis](08-project-process.md).
 
 
+
+## NewDark, and the transform path that moved to the GPU {#newdark-hwtl}
+
+System Shock 2 and Thief in 2026 are not the 1999 binaries: they are **NewDark**, the community engine
+patch, and that is what a mod attaches to. The table above lists the Dark source trees; this is the
+layer on top of them that every current install actually runs. `[SOURCE]` NewDark 1.29 release notes
+and the HWTL variant documentation, read as shipped text.
+
+**1.29 introduces an HWTL variant, and it moves vertex transforms from the CPU to the GPU.** For a VR
+mod that is the whole story, because an interception on the software transform path does not see a
+frame that was transformed in a vertex shader - the camera moves into shader constants. That is
+[SOMAVR's hypothesis S2](00-engine-profiles.md) restated for a different engine, and it is the
+condition that makes route B in
+[09](09-d3d11-openxr-injection.md#native-stereo-routes) - capture and rewrite the shaders - the
+applicable one rather than an exotic option.
+
+Three things soften it, and one sharpens it:
+
+- **Both paths remain in the engine**, and SWTL is still used for newsky and inventory models even in
+  HWTL mode. A mod may see both in one frame.
+- **`toggle_hwtl_enable` switches them at runtime.** That is a one-command discriminator for "does my
+  hook survive the new path" - no build, no instrumentation. It is the cheapest test in this chapter.
+- **`light_fade_sharpness` crossfades hardware and software lighting**, so the boundary is a blend
+  rather than a hard switch, and a hook that assumes one or the other will see both.
+- **`hwtl_enable` defaults to 1.** New installs get the new path unless told otherwise, so this is not
+  an opt-in you can ignore.
+
+**The config surface is a disable list for exactly the effects that break stereo**, which is unusual
+and worth exploiting: the playbook's normal answer to a screen-space effect is a render-pass hook, and
+here it may be a line in a config file. `toggle_ssao_enable`, `toggle_postprocess`,
+`toggle_shadow_enable`, `toggle_env_enable`, `toggle_underwater_enable` and about fifty variables
+besides. Two deserve naming:
+
+- **`barrel`** is barrel distortion, defaulting to 0.0. A post-processed lens warp is actively fighting
+  the headset's own correction; confirm it is off rather than assuming.
+- **`adapt`, `adapt_decay`, `adapt_threshold`** are luminance adaptation - *temporal* state. Temporal
+  state on a shared history across two eyes is the per-eye brightness divergence
+  [09](09-d3d11-openxr-injection.md#eye-image-delta-review) exists to catch, and
+  [14](14-render-pass-hazard-atlas.md#per-eye-history-bank) is the rule it breaks.
+
+**Two operational consequences.** The build is `ss2_v250` and the notes say to consider all prior
+versions obsolete, so every RVA derived against an earlier build needs re-confirming - the version is
+part of the address, and [11](11-re-anchoring-and-discovery.md) says so already. And the Squirrel layer
+changed: LinkNotify message binding was fixed and the Squirrel OSM updated, which is live for any mod
+shipping `.nut` scripts.
+
 ## What each engine makes easy, and what it makes painful
 
 **SS2VR (Dark/KEX, D3D11, 64-bit).** A portal/cell engine with a CPU visibility pass that runs
