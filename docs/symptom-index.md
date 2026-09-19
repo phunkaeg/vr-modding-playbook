@@ -212,6 +212,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| The session freezes when the player recentres | [09](09-d3d11-openxr-injection.md#what-pipelining-breaks) - recentre destroys the reference space, and a pipelined submission still names it |
 | It crashes on teardown or on swapchain recreation, never while running | [19](19-d3d12-and-performance.md#gpu-resource-identity) - work whose fence signal failed is untrackable; refuse teardown rather than assuming idle |
 | Crash on a custom asset | [05](05-assets-and-materials.md) — structural validity ≠ semantic safety |
 | Re-entry survives short bursts but hangs during sustained rendering | [Re-entry endurance](17-teardown-fc2vr-native-stereo.md#reentry-endurance) |
@@ -242,6 +243,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| One hitch leaves the system permanently in a worse mode | [06](06-debugging-methodology.md#dont-measure-their-opinion-of-you) - an adaptive loop keyed off a value that reports your own lateness reacts to its own effect |
 | My frame counter says 90 but the compositor says 80 with reprojection | [09](09-d3d11-openxr-injection.md#wait-frame-is-not-a-pacer) - the runtime's frame-wait may not block; two submissions land in one scanout window and the compositor keeps one |
 | The headset is pinned to the desktop monitor's refresh rate | [09](09-d3d11-openxr-injection.md#mirror-is-a-scheduler) — the mirror you added presents with VSync and paces you |
 | Framerate dropped, code unchanged | [06](06-debugging-methodology.md) — cheap environmental causes first. A round-number cap is a vsync cap |

@@ -1226,6 +1226,43 @@ other side, a cell lookup with no callback for one query type. **Enumerate what 
 receives; a type-gated correction silently excludes everything outside the gate.**
 See [META-018](pattern-catalog.md#meta-018).
 
+
+## A value the system computes *about you* is not evidence about the system {#dont-measure-their-opinion-of-you}
+
+The instruments above fail by being blind, by sharing a fault, or by sitting in the wrong frame. There
+is one more way, and it is the only one that makes things actively worse: **reading a number that is
+partly a judgement of your own behaviour, and treating it as an observation.** Doing that closes a
+feedback loop with you inside it. `[SOURCE]` OFXR-Bridge (LGPL-3.0), measured against SteamVR.
+
+Their layer needed to know whether the runtime was throttling its frame cycle. `predictedDisplayPeriod`
+looks like the natural signal - a wider period plausibly means the runtime is pacing you. But SteamVR
+**widens that value when it considers the caller late**, so it is not a report about the display, it
+is a report about you. Counting it produced this:
+
+1. a warm-up hitch made the caller late;
+2. SteamVR widened the reported period;
+3. the widened period was read as "the runtime is throttling", which promoted the presenter;
+4. **the promotion hitched harder**, and back to 2.
+
+Measured: *"UEVR reached the promotion three frames after its first synthesis on two 20 us waits, with
+SteamVR reporting 33.3 ms and then 22.2 ms against an 11.1 ms baseline, and the GPU hung 4 ms later."*
+A signal that was a symptom of the problem was used as the trigger for the response to it.
+
+**The fix is to measure the thing rather than read the opinion**: only *a wait that actually blocked* -
+elapsed time at least half the baseline period - counts as evidence that the runtime is throttling. A
+blocked wait is an observation. A reported period is a negotiation.
+
+The same runtime supplies the same lesson twice, which is what makes it a rule rather than an anecdote:
+[09](09-d3d11-openxr-injection.md#wait-frame-is-not-a-pacer) records SteamVR returning *multiples* of
+the true display period when it considers the caller behind - 11.1, then 55.6, then 22.2 ms - where
+pacing against the latest value spiralled the presenter down to 3.7 Hz. **Same number, same cause, two
+different systems built on top of it, two failures.**
+
+**How to tell one from the other before it bites you:** ask whether the value could change while the
+hardware does not. A display period that varies with your own lateness is describing a relationship,
+not a device. Prefer a quantity you measured yourself - elapsed time, a fence, a frame you counted -
+over a quantity the other side derived. See [META-019](pattern-catalog.md#meta-019).
+
 ## A force-killed process loses everything it had not flushed {#flush-on-write}
 
 Three logging disciplines from one file, all cheap, and the first explains why the other two exist.

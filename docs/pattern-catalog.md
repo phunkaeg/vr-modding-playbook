@@ -110,6 +110,37 @@ shots agreed with the aim only because the gun happened to be pointed where the 
 Agreement from one configuration is not evidence; agreement across a varied lever arm is.
 `[SOURCE]` GEVR.
 
+## META-019 - Never drive a response from a signal that reports your own behaviour {#meta-019}
+
+**Problem:** a control loop reads a value from the system it is adapting to, and that value is partly
+the system's assessment of the caller rather than a property of the hardware. The loop then reacts to
+its own effect, and each reaction strengthens the input that caused it.
+
+**Use when:** anything adaptive - pacing, quality scaling, pipeline depth, resolution, synthesis
+promotion - keys off a number the other side computed.
+
+**Recipe:**
+
+- **Ask whether the value can change while the hardware does not.** A display period that widens
+  because you were late is describing a relationship, not a device.
+- **Prefer a quantity you measured to one you were told.** Elapsed wall time across a call, a fence you
+  signalled, a frame you counted yourself.
+- **Where you must use a reported value, require corroboration that cannot be self-caused.** A wait
+  that actually blocked for a meaningful fraction of the period is evidence; a wide number alone is
+  not.
+- **Damp the response and cap it.** A loop that can only escalate has no way back once it starts.
+- **Log the input beside the decision**, so a spiral is visible in the record as a monotone climb
+  rather than reconstructed afterwards from a hang.
+
+**Proof:** induce a hitch deliberately - a warm-up, a load, a breakpoint - and confirm the adaptive
+value returns to baseline afterwards. If one hitch leaves the system permanently in a different mode,
+the loop is self-reinforcing.
+
+**Trip hazard:** the failure looks like the condition it was meant to fix, and worse, so the instinct
+is to strengthen the response. Measured here: a warm-up hitch widened the reported period, the widened
+period promoted the presenter, the promotion hitched harder, and the GPU hung four milliseconds later.
+`[SOURCE]` OFXR-Bridge, against SteamVR.
+
 ## META-001 — Self-identifying build {#meta-001}
 
 **Problem:** a correct change appears ineffective because different bytes ran.

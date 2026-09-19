@@ -1726,6 +1726,46 @@ UVOSuit exposes it, as a user slider that eases in rather than a fixed build-tim
 independently, a shift *adds the same value to both* - and implementing the shift by scaling is a silent
 way to change field of view when you meant to change convergence ([FAIL-STR-065](failure-atlas.md)).
 
+
+### What pipelining breaks, that nobody wrote down {#what-pipelining-breaks}
+
+Holding a frame past the call that produced it is the whole point of a generation or reprojection
+layer. It also silently revokes a guarantee the application was relying on: **that by the time a call
+returns, everything it referenced has been consumed.** Three consequences, all recorded in one file.
+`[SOURCE]` OFXR-Bridge (LGPL-3.0), `openxr_layer.cpp`.
+
+**An object the application destroys may still be named by something in your queue.** A composition
+layer names a space. At any pipeline depth above zero, a queued submission can still reference one
+when the application destroys it; the runtime rejects that submission, the failure latches, and *every
+later frame call fails for the life of the session*. Their note on the symptom is the part worth
+memorising, because nobody would connect the two: **it is seen as the session freezing on recentre** -
+because recentre is exactly when an application rebuilds its reference space, which is to say destroys
+the old one ([FAIL-XR-030](failure-atlas.md)).
+
+> The last line of their comment is the general rule: *"Upstream never needed this because the
+> application waited for the queue to empty inside `xrEndFrame`; it does not any more."* **Your
+> optimisation removed a synchronisation the application's correctness depended on.** Before you hold
+> anything past its call, enumerate the handles that call used to retire - spaces, swapchains,
+> swapchain images, command allocators - and settle the queue before any of them can be destroyed.
+
+**A timestamp is not an identity token.** The obvious way to match an `xrEndFrame` back to its
+`xrWaitFrame` is `displayTime`. That is wrong, and the counter-example is one the fleet cares about:
+*"UEVR's Native Stereo Fix deliberately submits an older pipelined render state while keeping a
+strictly sequential wait/begin/end call chain"*, so the two times legitimately differ. The layer falls
+back to **call order** when exactly one wait is outstanding, and returns nothing at all when more than
+one candidate matches - refusing to guess rather than picking. This is
+[META-016](pattern-catalog.md#meta-016) in a fourth subsystem: *a value that looks like an identity is
+not one*, and the discipline is to make the ambiguous case return no answer.
+
+**A fence you own cannot prove that a foreign command list has finished with your resource.** When the
+layer's private snapshot slots are recorded into by another component - OptiScaler's DLSS evaluate,
+whose command list *"is owned and submitted by the game"* - they cannot be freed on disable, because
+*"an OFXR fence cannot prove that an open, not-yet-submitted producer list has finished referencing
+them"*. They are retained and reused instead. That is a fourth entry beside
+[19](19-d3d12-and-performance.md#gpu-resource-identity)'s untrackable state, and a harder one: the
+work is not merely unmeasured, it is **not yours to measure**. Where another component records against
+your resources, ownership can only be released by agreement, not by a fence.
+
 ### Two details worth copying if you implement convergence {#convergence-implementation}
 
 **Apply the rotation in the eye's own frame, never by adding to a yaw Euler.** UVOSuit builds the
