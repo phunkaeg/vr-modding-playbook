@@ -225,6 +225,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| The frame rate jumped by a clean ratio and I cannot corroborate it | [06](06-debugging-methodology.md#instrument-shares-the-fault) - time a fixed route with a wall clock; every in-process instrument shares the clock that may be the fault |
 | Clean logs, no errors, but is it running? | [06](06-debugging-methodology.md) — **absence of errors is not evidence.** Count applied *and* attempted |
 | Both deferred eye copies are logged; are their pixels ready? | [Deferred execution](09-d3d11-openxr-injection.md#deferred-eye-execution) |
 | Diagnostic output vanished mid-session | [06](06-debugging-methodology.md) — a shared sample budget spent by the boring case |
@@ -261,6 +262,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you need | Go to |
 |---|---|
+| The game has local split-screen | [09](09-d3d11-openxr-injection.md#native-stereo-routes) - a per-view render loop with independent viewport, FOV, aspect and projection already exists |
 | I have to produce a second eye and re-entry looks expensive | [09](09-d3d11-openxr-injection.md#native-stereo-routes) - check first whether the title shipped a 3D Vision / HD3D stereo path you can unlock instead |
 | Quaternion↔matrix, basis building, roll without gimbal, integer rotators | [A1](a1-rotation-and-frames.md) |
 | Pose snapshot, cross-thread handoff, recenter epoch, settle latch, input arbitration | [A2](a2-pose-pipeline.md) |

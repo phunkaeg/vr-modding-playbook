@@ -1639,6 +1639,32 @@ rather than by impersonating the driver that would have called it.
 See [STR-018](pattern-catalog.md#str-018).
 
 
+
+**Route D - the game renders several views per frame already, because it shipped split-screen.**
+GoldenEye's `lvlRender` loops over players, and *each iteration carries its own viewport, FOV, aspect
+and projection* - `viSetViewSize`, `viSetViewPosition`, `viSetFovY`, `viSetAspect`, a per-player Z
+clear, all inside the loop. `[SOURCE]` GEVR (MIT), read from the decompilation. A second eye is a
+second view in a loop that already exists and already re-parameterises projection per iteration.
+
+That makes local split-screen a **fourth triage question**, and it covers a large class of targets -
+console-era shooters, arena games, racers, anything with a two-player option. It is also the
+friendliest of the four, because unlike a vendor stereo path the per-view loop is *engine* code rather
+than a driver interface, so it is readable, hookable, and already correct about per-view state.
+
+**So the triage list is four questions, still cheapest first:**
+
+1. **Did the title ship 3D Vision, HD3D or "Stereoscopic 3D"?** A stereo render path exists; routes A
+   and C are live.
+2. **Does it have local split-screen?** A per-view render loop with independent projection exists;
+   route D is live, and you are looking for the loop rather than a driver.
+3. **Does it load a vendor stereo DLL** (`atidxx*.dll`, `nvapi*.dll`)? A proxy is a drop-in point.
+4. **None of those?** Route B - shader rewriting - or genuine `R1` re-entry.
+
+A related note from the same project, worth knowing where frame generation is already present: its
+renderer *"already publishes both eyes for the present thread"* and the interpolated frames were being
+discarded. **Before building a producer, check whether something downstream is already throwing your
+output away.**
+
 ## "It looks flat" has two knobs, and they are not the same knob {#convergence-vs-world-scale}
 
 This chapter's five-minute alignment table records one cause of a flat image: the per-eye

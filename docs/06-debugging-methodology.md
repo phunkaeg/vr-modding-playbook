@@ -1129,6 +1129,63 @@ Two rules, and the second is the one that generalises furthest:
 > after what you hope they detect.
 
 
+
+## When the fault is in the clock, every instrument inside the process shares it {#instrument-shares-the-fault}
+
+[#metric-cannot-fail](#metric-cannot-fail) is about an instrument that cannot report failure.
+[#empty-is-not-clean](#empty-is-not-clean) is about one that reports nothing and is read as success.
+This is the third and worst case: **an instrument that is working perfectly, reporting an accurate
+number, and supporting a conclusion that is false.**
+
+GEVR is a native VR port of GoldenEye 007 whose documentation is a numbered lab notebook with
+retractions. Four of its entries are instrument failures, and together they make one rule.
+`[SOURCE]` GEVR (MIT), `docs/134`, `136`, `137`, `145`, `267`.
+
+**The frame counter was right and the conclusion was wrong.** A change took the measured rate from a
+59.2 mean to **87.1, then 89.5, with a max of 91.6** - and the author argued, reasonably, that it
+*"cannot be an artefact"* because the counter was independent and predated the work. It was not an
+artefact. It was also not a speed-up: the loop was iterating once per retrace at 90 Hz while each
+iteration still advanced the world by one sixtieth, so **the world ran at 1.5x real speed.** Ninety
+frames per second of a fast-forward is ninety frames per second. *A rate instrument cannot tell you
+how much work each unit contains*, and that gap is exactly where a time-base bug lives.
+
+**A stopwatch settled in three runs what three purpose-built instruments could not.** The owner timed
+the same route in three configurations: 29.48 s stock, 27.04 s with the first change, **18.18 s** with
+the second. `27.04 / 18.18 = 1.487`, which is 90/60 to within stopwatch error. Their own summary is
+the lesson: *"Three purpose-built instruments failed tonight and a stopwatch and a corridor settled it
+in three runs."*
+
+> **The rule. When the suspected fault is in the time base, every in-process instrument inherits the
+> fault, because they all read the same clock.** The only measurement that survives is one taken
+> outside the process - a wall clock against a fixed, repeatable in-game route. It is also the
+> cheapest instrument you have, and the one nobody reaches for, because it feels unserious next to a
+> counter.
+
+**A timing figure that changes when you change the cap is measuring the limiter, not the work.** The
+same project's frame-budget instrument reported a mean cost of **16.397 ms under a 60 cap and
+10.931 ms under a 90 cap**. Work does not get cheaper because you asked for more frames. The
+distribution gives it away before the numbers do: **the mean sat just *below* budget with a tight
+spread of about +/-1.5 ms**, which is the signature of a limiter holding a period. A machine genuinely
+at its limit pushes the mean *above* budget and the rate *below* the cap. ([19](19-d3d12-and-performance.md#blocking-wait-floor)
+records the same shape from the other end - the biggest number in a VR-bridge profile is usually a
+wait.)
+
+**And an instrument that prints nothing may never have been built.** Before all of the above, every
+diagnostic print in the project had *"gone nowhere"* - the toolchain was silently dropping `static`
+helpers in patched code, so the call compiled, linked, and did not exist. They only established this
+by reading the recompiler's emitted C and confirming the chain link by link
+(`bossMainloop -> waitForNextFrame -> geVrTickInstrument -> recomp_puts`), then noting that the
+verified-present marker *still* printed zero times - which is what finally identified the real fault,
+that the function was never executing. **Silence has at least three causes: not reached, not emitted,
+and not flushed.** [#flush-on-write](#flush-on-write) covers the third.
+See [META-017](pattern-catalog.md#meta-017) and [FAIL-TEST-040](failure-atlas.md).
+
+**One practice worth stealing from the same notebook.** `137` opens: *"A hypothesis with a cheap
+decisive test, written down before the test rather than after."* Every retraction in that corpus is
+numbered, dated and cross-referenced from the document that supersedes it - `134` is retracted by
+`137`, `132` by `144`, and one entry is titled simply *"two of mine to retract"*. A corpus that makes
+retraction routine is one whose surviving claims are worth more.
+
 ## A force-killed process loses everything it had not flushed {#flush-on-write}
 
 Three logging disciplines from one file, all cheap, and the first explains why the other two exist.

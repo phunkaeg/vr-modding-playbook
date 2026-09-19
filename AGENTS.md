@@ -21,7 +21,7 @@ wrong move, and reading several is a sign you skipped the routing below.
 |---|---|---|
 | **A symptom** — something looks or behaves wrong | [`docs/failure-atlas.md`](docs/failure-atlas.md) | Symptom → *fast discriminator* → likely cause → route. The discriminator is the point: it is chosen to be cheap. |
 | **A symptom, but you want the chapter** | [`docs/symptom-index.md`](docs/symptom-index.md) | Short rows mapping what you see to the chapter that covers it |
-| **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 165 atomic patterns, stable IDs, five fixed fields each |
+| **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 166 atomic patterns, stable IDs, five fixed fields each |
 | **A UE target that already has UEVR injection** | [`docs/uevr-route.md`](docs/uevr-route.md) | Mode 3. Says what UEVR already owns, what is still yours, and **which chapters do not apply** — a recipe that assumes you own the render path will mislead you here |
 | **A new or inherited target** | [`docs/start-new-port.md`](docs/start-new-port.md) | The router. Classifies integration authority first, then sends you down the RE-owned or source-owned route |
 | **Several plausible next steps** | [`docs/bottleneck-map.md`](docs/bottleneck-map.md) | The earliest uncleared dependency, in order. Its *Agent operating protocol* section is worth reading once. |

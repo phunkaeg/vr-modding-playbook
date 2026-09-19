@@ -78,11 +78,11 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `ui_hud` | 5 | 15 | 13 | 58 | 40 |
 | `hands_interaction` | 6 | 20 | 8 | 51 | 46 |
 | `input_locomotion` | 2 | 8 | 4 | 34 | 83 |
-| `performance` | 8 | 11 | 8 | 60 | 44 |
+| `performance` | 8 | 11 | 9 | 59 | 44 |
 | `audio` | 1 | 1 | 1 | 76 | 52 |
 | `packaging_deploy` | 6 | 25 | 23 | 46 | 31 |
 | `re_discovery` | 14 | 20 | 8 | 52 | 37 |
-| `source_integration` | 2 | 12 | 15 | 48 | 54 |
+| `source_integration` | 2 | 13 | 14 | 48 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -141,7 +141,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **ForerunnerVR** | external reference | Blam / Saber (MCC) | native-injector | — | — | — | 101 | 87 | 3 | 2026-08-26 | 🟩 current | 1F / 1P / 1S / 0NR / 10— |
 | **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | external reference | Creation Engine (Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 128 | 0 | 1 | 2026-08-18 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **FUS** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 66 | 0 | 4 | 2026-09-05 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
-| **GEVR** | external reference | N64 (GoldenEye 007; 'native, bring your own ROM') | source-port | — | — | 18 | 462 | 9 | 420 | 2026-09-19 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
+| **GEVR** | external reference | N64 (GoldenEye 007; 'native, bring your own ROM') | source-port | — | — | 18 | 462 | 9 | 420 | 2026-09-19 | 🟩 current | 0F / 1P / 1S / 10NR / 1— |
 | **GloomhavenVR** | external reference | Unity | managed-plugin | — | — | 18 | 2954 | 1210 | 319 | 2026-09-19 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
 | **gmcl_openvr** | external reference | Source (Garry's Mod) | script-native-hybrid | — | — | — | 82 | 24 | 1 | 2026-08-27 | 🟩 current | 0F / 2P / 1S / 0NR / 10— |
 | **goldeneye-omniport** | external reference | N64 decompilation (GoldenEye 007) | source-port | — | — | 18 | 2309 | 2045 | 24 | 2026-08-28 | ⚪ unpinned | 1F / 1P / 1S / 8NR / 2— |
@@ -1189,11 +1189,11 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `ui_hud` | 🟥 not reviewed | `—` | — |
 | `hands_interaction` | 🟥 not reviewed | `—` | — |
 | `input_locomotion` | 🟥 not reviewed | `—` | — |
-| `performance` | 🟥 not reviewed | `—` | — |
+| `performance` | 🟧 skimmed | `SOURCE` | doc 267's budget-instrument failure and doc 272 ('the GPU timeline is the frame cap, the GPU is still unmeasured') are the same fault twice: a timing figure that tracks the cap. Distilled into ch06 #instrument-shares-the-fault rather than a performance section, because the lesson is about the instrument, not the engine. |
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
 | `re_discovery` | 🟥 not reviewed | `—` | — |
-| `source_integration` | 🟧 skimmed | `AUTHOR` | SIZED 2026-09-19, and the first registration's guess was WRONG. Measured: 413 markdown files, 768,104 words - more than twice this playbook's own reader corpus. I expected process churn from the filenames (RUN-SHEET-*, PRIORITY-BOARD-*, task boards) and sampled 18 of the 305 numbered documents to check. They are substantive engineering findings in a numbered lab notebook, cross-referencing each other ('OUTSTANDING SINCE 73', "115's TRAP"), with retractions ('239 - TWO OF MINE TO RETRACT') and never-written markers in the filenames. Titles that map straight onto open playbook questions: '134 - IT RUNS AT NINETY AND BOTH OF THE GATES I NAMED ARE BLIND' (instrument blindness), '98 - THE TIMEWARP RAN AND MADE IT WORSE', '70 - ONE DESCRIPTOR SLOT, TWO DRAWS', '109 - THE PACING MAXIMA', '312 - THE 0.705 IS AN ASPECT TERM', '43 - MSAA IS FORCED OFF UNDER VR', '46 - THE RECENTRE DONE THE WAY OPENXR INTENDS', '136 - static HELPERS IN PATCH CODE ARE NOT EMITTED'. This is the closest external analogue to the fleet's own research-receipts practice. HARVEST BY TITLE, NOT LINEARLY: the documents are individually small (median 1,283 words) and self-describing, so route to the dozen that answer known gaps. Deferred as its own pass. |
+| `source_integration` | 🟨 partial | `SOURCE` | HARVESTED BY TITLE 2026-09-19 (413 files, 768,104 words - routed, not read linearly). Distilled to ch06 #instrument-shares-the-fault + META-017 + FAIL-TEST-040, and ch09 #native-stereo-routes route D. THE INSTRUMENT CLUSTER is the reason this source matters: four measured instrument failures in one project. (1) doc 134/137: the frame counter rose from a 59.2 mean to 87.1 then 89.5 and the author argued it could not be an artefact - correct, but the loop was iterating once per retrace at 90 Hz while each iteration still advanced the world one sixtieth, so the WORLD RAN AT 1.5x. A rate instrument cannot see how much work a unit contains. (2) doc 145: a STOPWATCH on a fixed route settled it in three runs - 29.48 / 27.04 / 18.18 s, and 27.04/18.18 = 1.487 = 90/60 - after three purpose-built instruments failed. When the time base is the suspect, every in-process instrument shares the clock. (3) doc 267: a frame-budget instrument reported 16.397 ms under a 60 cap and 10.931 ms under a 90 cap - work does not get cheaper because you asked for more frames; the tell is a mean just BELOW budget with a tight spread, the signature of a limiter holding a period. (4) doc 136/137: every diagnostic print had gone nowhere because the toolchain silently dropped static helpers in patched code, so silence has three causes - not reached, not emitted, not flushed. ALSO doc 258: lvlRender already loops over players with per-iteration viewport, FOV, aspect and projection, because the game shipped split-screen - that is route D and a fourth triage question covering a large class of targets. NOT YET HARVESTED, and worth it: the aim/frame cluster (214 'the larger gun went further right', 217 '181 degrees of gun gave 14 degrees of bullet', 193 'the projection is innocent, 55 shots say so'), the HUD-in-stereo cluster (166, 170, 173, 174) and the comfort gate (146, 147). |
 
 #### GloomhavenVR
 

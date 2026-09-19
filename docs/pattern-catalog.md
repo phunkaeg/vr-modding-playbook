@@ -49,6 +49,39 @@ disappears whenever you slow things down to look at it.
 ([09](09-d3d11-openxr-injection.md#eye-capture-point)), and ticket-plus-lease serials over history
 slots ([14](14-render-pass-hazard-atlas.md#history-slot-identity)). `[SOURCE]`
 
+## META-017 - Measure the time base from outside the process {#meta-017}
+
+**Problem:** every instrument in the build reads the same clock. When the clock is the thing that is
+wrong, they agree with each other, they are internally consistent, and they are all wrong together. A
+frame counter reporting a genuine 90 cannot tell you that each frame now advances the world by less.
+
+**Use when:** the symptom involves rate, speed, pacing, animation timing or anything measured per
+frame - and especially when an in-process number improved by a suspiciously round factor.
+
+**Recipe:**
+
+- **Time a fixed in-game route with a wall clock.** Same start, same finish, same path, three runs per
+  configuration. A ratio near a ratio of your frame rates (1.5, 2.0) is a time-base fault, not a
+  speed-up.
+- **Distrust a per-frame cost that moves when you change the cap.** Work does not get cheaper because
+  you asked for more frames. If the figure tracks the period, the instrument is timing the limiter.
+- **Read the distribution, not just the mean.** A mean just *below* budget with a tight spread is a
+  limiter holding a period; a machine at its limit puts the mean *above* budget and the rate below the
+  cap.
+- **Prove the instrument exists in the built artifact** before concluding anything from its silence.
+  Toolchains drop code. Read the emitted output and confirm the call chain link by link.
+- **Write the hypothesis and its decisive test down before running it**, so a result that fits cannot
+  be reinterpreted into agreement afterwards.
+
+**Proof:** the external timing and the internal counter must tell the same story. If the counter says
+1.5x faster and the stopwatch says the level takes the same time, the counter is measuring frames and
+you were asking about work.
+
+**Trip hazard:** the stopwatch feels unserious beside a purpose-built instrument, so it is the last
+thing anyone tries and frequently the only thing that works. It is also the cheapest: one person, one
+corridor, three runs. `[SOURCE]` GEVR, where three purpose-built instruments failed in one night and a
+stopwatch settled it.
+
 ## META-001 — Self-identifying build {#meta-001}
 
 **Problem:** a correct change appears ineffective because different bytes ran.
