@@ -415,7 +415,11 @@ GROUPING_DIRS = {"binary-only", "monsterdeadwood", "skyrimvr mods",
                  # created it had silently disabled the arrival check for five tools.
                  # Nested here and listed as grouping folders so their CHILDREN are
                  # reported; classifying the wrapper instead would re-hide them.
-                 "vr utilities", "ue"}
+                 "vr utilities", "ue",
+                 # "Quest Native" arrived 2026-09-19 holding four standalone
+                 # Quest ports. Same reason as the two above: report its
+                 # CHILDREN, or classifying the wrapper hides all four.
+                 "quest native"}
 
 
 def find_untracked(cfg: dict[str, Any]) -> list[str]:

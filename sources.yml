@@ -2908,7 +2908,412 @@ external:
       source_integration: *id001
       packaging_deploy: *id001
 
+  - id: UVOSuit
+    root: D:/Dev Debug/Other VR mods/VR Utilities/UVOSuit
+    status: external_reference
+    upstream_url: https://github.com/Wamasoet/UVOSuit
+    license: MIT
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:1e9628e93af9ee8f
+    reviewed_git_commit: fad4769b9851cd28ffddb1d8dd85a777fa6a0328
+    engine: Unreal Engine (UEVR plugin, engine-agnostic within UEVR's reach)
+    api: uevr/API.h plus an OpenXR API layer, D3D11 and D3D12
+    vehicle: framework-companion
+    chapter: 9
+    areas:
+      stereo:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'PASS 1 CANDIDATE. REGISTERED 2026-09-19, README ONLY. The single most SSR-VR-relevant arrival, and MIT so the code is usable rather than only describable. Author''s description: hooks UEVR''s on_post_calculate_stereo_view_offset for real physical camera CONVERGENCE, and separately intercepts xrLocateViews for asymmetric FOV, optical-centre shift and axis rotation - two distinct rendering layers. Lands directly on ch09 #symmetric-base-decomposition and the frustum-declaration law in the openxr-submission skill. 42 source files.'
+      render_hazards:
+        review: skimmed
+        evidence: AUTHOR
+        note: Communicates with an EXTERNAL OpenXR API layer over shared memory to draw a comfort vignette. A UEVR plugin coupled to an API layer by shared memory is an architecture the corpus has no example of; OFXR-Bridge is an API layer but stands alone.
+      performance:
+        review: skimmed
+        evidence: AUTHOR
+        note: C++20, described as high-performance; nothing measured.
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      source_integration:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: ThiefVR
+    root: D:/Dev Debug/Other VR mods/ThiefVR
+    status: external_reference
+    upstream_url: https://github.com/farmerarmor/ThiefVR
+    license: GPL-2.0
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:50d73b0477f1f019
+    reviewed_git_commit: 2d7e867f75cb3314cab856f9fec866543bf59aee
+    engine: Unreal Engine 3 (Thief 2014, 64-bit 1.7 build 4158.21)
+    api: OpenXR, D3D11
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'PASS 1 CANDIDATE. REGISTERED 2026-09-19, README ONLY. Claims NATIVE SAME-FRAME STEREO - ''both eyes render in one game frame. No AER'' - plus asymmetric headset projections. That is a live open question on two priority projects: SOMAVR has NATIVE_STEREO_FEASIBILITY.md and hypothesis S5 ''alternating cached eye renders'', and SS2VR is in the same territory. EIGHTEEN source files, so the whole thing is readable in one sitting. Highest stereo value-per-file of any arrival. NOTE: Thief 2014 is Unreal Engine 3, NOT the Dark Engine of Thief 1/2 - no engine kinship with SS2VR despite the name.'
+      camera_tracking:
+        review: skimmed
+        evidence: AUTHOR
+        note: Head-tracked gameplay with positional movement; level recentering; optional mouse/gamepad vertical-look lock on by default - the ch01 'aim pitch and view pitch are separable' axis.
+      packaging_deploy:
+        review: skimmed
+        evidence: AUTHOR
+        note: Queries the headset's recommended render resolution before each launch rather than baking it - cheap and worth copying.
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      source_integration:
+        review: not_reviewed
+  - id: KCD1VR
+    root: D:/Dev Debug/Other VR mods/KCD1VR
+    status: external_reference
+    upstream_url: https://github.com/farmerarmor/KCD1VR
+    license: MIT
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:e41980f85dd64f18
+    reviewed_git_commit: dcd0b1d8413493a5603f2eace5ae45314b929b7c
+    engine: 'CryEngine (Kingdom Come: Deliverance)'
+    api: OpenXR, proxy DLL
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'PASS 1 CANDIDATE. REGISTERED 2026-09-19, STRUCTURE ONLY. 18 source files. The closest engine-family prior art the fleet has for prey-vr: Prey 2017 and Kingdom Come are both CryEngine. Same author as ThiefVR, so expect a shared injection skeleton - reading both together should separate what is engine-specific from what is the author''s house style.'
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      source_integration:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: GEVR
+    root: D:/Dev Debug/Other VR mods/GEVR
+    status: external_reference
+    upstream_url: https://github.com/no6969el/GEVR
+    license: MIT
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:34023fff9cb9b47f
+    reviewed_git_commit: b87b808c4d391dddeeb28d3feb525cec43185b78
+    engine: N64 (GoldenEye 007; 'native, bring your own ROM')
+    api: OpenXR
+    vehicle: source-port
+    chapter: 18
+    areas:
+      source_integration:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'REGISTERED 2026-09-19, STRUCTURE ONLY. Unusual shape and the reason to look before harvesting: 420 documents against NINE source files. That is a documentation corpus, not a mod checkout - the same shape as vrframework, which was overestimated at 100k+ words before measuring 58,384. SIZE IT FIRST, harvest only if it is substance. Deferred to a sizing pass.'
+      stereo:
+        review: not_reviewed
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: TrackManiaForeverOpenXR
+    root: D:/Dev Debug/Other VR mods/TrackManiaForeverOpenXR
+    status: external_reference
+    upstream_url: https://github.com/jiink/TrackManiaForeverOpenXR
+    license: MIT
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:7376f42fe45e2819
+    reviewed_git_commit: 57e449c002d79e4174c0f3398dc4dd97c535f00f
+    engine: TrackMania Nations/United Forever
+    api: OpenXR
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      stereo:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'REGISTERED 2026-09-19, STRUCTURE ONLY. Thirteen source files and 0.4 MB - the smallest injector in the ledger. Its value is as a MINIMAL reference: whatever it does is the irreducible core of an OpenXR injection, with nothing else in the way. Ten minutes, low expectations.'
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      source_integration:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: GloomhavenVR
+    root: D:/Dev Debug/Other VR mods/GloomhavenVR
+    status: external_reference
+    upstream_url: https://github.com/McFredward/GloomhavenVR
+    license: GPL-3.0
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:2366adfe88bed33d
+    reviewed_git_commit: 377d26ec4f28b8bd5f40a8f364365e23372e21cb
+    engine: Unity
+    api: OpenXR
+    vehicle: managed-plugin
+    chapter: 18
+    areas:
+      source_integration:
+        review: skimmed
+        evidence: AUTHOR
+        note: REGISTERED 2026-09-19, STRUCTURE ONLY. 1,210 source files, 341 MB. Unity is not a priority-fleet engine and the corpus already has managed-plugin coverage, so this is registered for completeness rather than queued. Revisit only if a Unity target enters the fleet.
+      stereo:
+        review: not_reviewed
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: gothic2-vr
+    root: D:/Dev Debug/Other VR mods/Quest Native/gothic2-vr
+    status: external_reference
+    upstream_url: https://github.com/dubrovskiy-yevhen-stakelogic/gothic2-vr
+    license: MIT
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:c4d445619ccd8fa5
+    reviewed_git_commit: d74ccbfcc23c0efa7f2b23ccbc4649183c6f2413
+    engine: 'ZenGin via OpenGothic (Gothic II: Night of the Raven), Android baseline from Solessfir''s OpenGothic port'
+    api: OpenXR, Vulkan, D3D12, OpenGL
+    vehicle: source-port
+    chapter: 18
+    areas:
+      source_integration:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'REGISTERED 2026-09-19, README ONLY. The largest and most developed of the four Quest ports: 2,798 source files, tracked hands, physical combat, stereoscopic world, running ON the headset. Built on OpenGothic (an engine recreation of ZenGin) - so the VR work is a layer on somebody else''s reimplementation, which is the pattern all four share. Author calls it a very early alpha.'
+      hands_interaction:
+        review: skimmed
+        evidence: AUTHOR
+        note: 'Physical melee, parrying, two-handed grips requiring both hands to deal damage, using OpenGothic''s native damage and reaction rules - ch02 #two-handed-support territory, driven through the host engine''s own systems rather than replacing them. Not read.'
+      stereo:
+        review: not_reviewed
+      camera_tracking:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: QuestSam
+    root: D:/Dev Debug/Other VR mods/Quest Native/QuestSam
+    status: external_reference
+    upstream_url: https://github.com/maranone/QuestSam
+    license: unknown - no LICENSE file found
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:4889e5b786b3e8e0
+    reviewed_git_commit: 42c97b0e83d6cca18430d3f3b72a350acb37aed4
+    engine: Serious Engine (Serious Sam Classic TFE and TSE)
+    api: OpenGL ES, Android
+    vehicle: source-port
+    chapter: 18
+    areas:
+      source_integration:
+        review: skimmed
+        evidence: AUTHOR
+        note: REGISTERED 2026-09-19, README ONLY. 758 source files. VR port for standalone Quest against Croteam's released Serious Engine source; game data supplied by the owner, not bundled. LICENCE UNRESOLVED - no LICENSE file present, so treat the code as unusable until that is settled.
+      stereo:
+        review: not_reviewed
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: carnage
+    root: D:/Dev Debug/Other VR mods/Quest Native/carnage
+    status: external_reference
+    upstream_url: https://github.com/maranone/carnage
+    license: unknown - no LICENSE file found
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:c04961c7bbf2b0a9
+    reviewed_git_commit: 71df6f213c2368e42100846916b42c7cabdd75b2
+    engine: Dethrace reimplementation (Carmageddon)
+    api: OpenGL ES, Android
+    vehicle: source-port
+    chapter: 18
+    areas:
+      source_integration:
+        review: skimmed
+        evidence: AUTHOR
+        note: REGISTERED 2026-09-19, README ONLY. 52 source files - the smallest of the four. Notable for building BOTH a Quest APK and a PCVRCarnage.exe from one gameplay/menu codebase, which is the cheapest available example of one VR layer serving standalone and PCVR targets. LICENCE UNRESOLVED.
+      stereo:
+        review: not_reviewed
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+  - id: sm64coopdx-VR-Standalone-Physics-based
+    root: D:/Dev Debug/Other VR mods/Quest Native/sm64coopdx-VR-Standalone-Physics-based
+    status: external_reference
+    upstream_url: https://github.com/fulldivegames/sm64coopdx-VR-Standalone-Physics-based
+    license: unknown - no LICENSE file found
+    reviewed_at: '2026-09-19'
+    reviewed_revision: tree:c1c0def7d304784f
+    reviewed_git_commit: 36e693af5a9df88bf27f29282f2e30c375f6a9d1
+    engine: Super Mario 64 decompilation via sm64coopdx
+    api: OpenXR, OpenGL, Android
+    vehicle: source-port
+    chapter: 18
+    areas:
+      source_integration:
+        review: skimmed
+        evidence: AUTHOR
+        note: REGISTERED 2026-09-19, STRUCTURE ONLY. 3,640 source files, 202 MB. Multiplayer VR on a decompilation base. The 'physics-based' in the name is the interesting part if it means physical interaction rather than animation-driven, but nothing is confirmed. LICENCE UNRESOLVED (the SM64 decompilation lineage makes this worth care, not just paperwork).
+      stereo:
+        review: not_reviewed
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      render_hazards:
+        review: not_reviewed
+      performance:
+        review: not_reviewed
+      re_discovery:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
+
 not_a_source:
+  - id: OBVR 0.1.3 56559 3 2026-09-07T09-29Z gWxLrl3z
+    reason: 'Nexus Mods download of an Oblivion VR mod: three files, 0.5 MB, no source, no git history. The directory name is the Nexus download slug. Nothing to read without running it; re-classify if a source repository appears.'
+  - id: Detroit-Become-Human-VR-Mod
+    reason: Eleven files, 2.5 MB, MIT-licensed but ZERO source files - binaries and configuration only. Same class as the other release-artifact directories here; the source it was built from is not in this checkout.
   - id: Head Mounted VR - Demo
     reason: 'a packaged Win64 staged build of a FAB Store demo - 32 files, 715 MB, and not one line of source. The tree is Engine/Binaries/ThirdParty plus the product''s own Binaries/Win64 (boost, openxr_loader, onnxruntime). Same class as Ship-9.2.3-win64-ship: build output, nothing to read.'
   - id: VRExpansionPlugin
