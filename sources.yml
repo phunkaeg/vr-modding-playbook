@@ -1113,26 +1113,51 @@ external:
       audio:          {review: not_reviewed}
 
   - id: shock2quest
-    root: "D:/Dev Debug/Other VR mods/shock2quest"
+    root: D:/Dev Debug/Other VR mods/shock2quest
     status: external_reference
     upstream_url: https://github.com/tommy-xr/shock2quest
-    license: unknown
-    reviewed_at: 2026-09-09
+    license: 'GPL-2.0 (README: code ported from openDarkEngine, so the whole is GPL-2.0); the engine/ folder is additionally dual-licensed MIT. No LICENSE file at the root - the terms are stated in README.md and THIRD_PARTY_LICENSES.md'
+    reviewed_at: '2026-09-19'
     reviewed_revision: tree:80a30f1bdad91aa8
     engine: Dark engine recreation (Rust)
     api: OpenGL ES / Vulkan
     vehicle: engine-recreation
     chapter: 18
     areas:
-      hands_interaction: {review: partial, evidence: SOURCE, note: "harvested 2026-09-07 into ch02 #s2q-clip-insert, HAND-016, INPUT-011 and ch20. THE CLOSEST PRIOR ART IN THE CORPUS to SS2VR physical reload: same game, readable Rust, and a SHIPPED clip-insert gesture. Its pistol magazine anchor is keyed on atek_h - the same model SS2VR manualReload is gated to. Taken: the motion IS the reload cost, so no authored reload_time survives on the physical path; a five-row per-model MAGAZINE_ANCHORS table keyed on PropModelName with the model origin as fallback, derived headlessly from sub-object bounds and then RE-PLACED against the rendered wield (the pistol origin renders at the wrist, so the dump-derived anchor sat behind the hand); the negative control that proves the zone moved rather than that the origin still works - carry the clip to the point mirrored across the origin and assert nothing loads; a three-way cue policy where silence means only nothing-to-do because silence on an earned refusal is indistinguishable from a dead button; face buttons bound RAW by hand and position and resolved per hand by what that hand holds, with the resolver shipped before any of its cells; and omissions recorded with their KINDS - recharges, not trusted, not measured. One deliberate trade against our own staircase: no clip object is spawned in the world, because a magazine on the floor is a chore to pick up in VR."}
-      re_discovery: {review: skimmed, evidence: SOURCE, note: "dark/ crate identified as a format oracle; NOT read"}
-      performance:  {review: full, evidence: HEADSET, note: "Harvested 2026-08-25 into ch19 from the full Quest mission baseline and Oculus profiling workflow."}
-      ui_hud:       {review: full, evidence: SOURCE, note: "Harvested 2026-08-25 into ch04: world-locking, honest panel basis, shared pointer arbitration, input edges and zero-quaternion guards."}
-      audio:        {review: full, evidence: SOURCE, note: "Harvested 2026-08-25 into ch20 from engine/src/audio/mod.rs: moving emitters, two-ear listener updates, listener-relative lanes, channel preemption and unit scaling."}
-      stereo:       {review: not_reviewed}
-      xr_lifecycle: {review: not_reviewed}
-      xr_input:     {review: partial, evidence: SOURCE, note: "harvested 2026-09-07 into ch03 #context-by-hand and INPUT-011: four face buttons bound raw by hand and physical position, meaning resolved per hand against what that hand holds, symmetric across hands, every action targeting the hand that pressed. LOCOMOTION harvested 2026-09-07 into ch03 #physical-locomotion-verb, INPUT-012 and TEST-023: a nine-PR hand-climbing campaign whose first change was the BENCH (debug_ladder, one station per climbing shape including a non-climbable wall, built from shipped ladder templates) and whose second was the physics grip query ALONE, query-only with no body motion. Grip qualifies on the AUTHORED per-face climbable mask rather than the collider bounding box, permuted from the tool Z-up frame into the engine Y-up one. Release throws the body by the anchor hand travel RELATIVE TO THE PAWN over four frames, capped in magnitude and - the transferable cap - capped upward at the ordinary jump launch speed so a haul can never rise higher nor fall further than a jump, because the game scores falls. Velocity is expressed in PHYSICS STEPS so the throw matches the pull at 72/90/120 Hz. The vault predicate carries a state-at-acquisition term (the eye was BELOW the lip when the hold was taken) which is what stops leaning on a crate being a mantle, and a failed top-out plan changes nothing rather than breaking. Grip forgiveness is two mechanisms, spatial (0.3 wu lip search) and temporal (squeeze eligible 150 ms). Capsule resize is anchored on the body CENTRE while hanging because the feet-planted shift exceeds the grip stretch tolerance, and on the feet when grounded. Crouch applies one head-resolved translation to eyes, hands and gameplay head. Same week, melee billing moved from raw centre-of-mass speed to CLOSING speed at the contact point along the contact normal. They mark headless coverage as proving mechanism and NOT comfort, explicitly."}
-
+      hands_interaction:
+        review: partial
+        evidence: SOURCE
+        note: 'READ 2026-09-19, PropFrobInfo only. Distilled to ch02 #grab-detection-layer: interaction permission in the Dark Engine is per CONTEXT, not per object - the same nine-bit flag set (MOVE, SCRIPT, DELETE, IGNORE, FOCUS, TOOL, USE_AMMO, DEFAULT, DESELECT) is carried three times, for the object in the world, in the inventory, and used as a tool on something else. A VR port multiplies contexts rather than sharing them (held, holstered, resting, pointed at from range), so inheriting the engine''s context split beats inventing one. shock2vr/src/interaction.rs (2,088 lines) NOT read - the strongest remaining target here.'
+      re_discovery:
+        review: partial
+        evidence: SOURCE
+        note: 'READ 2026-09-19, dark/src/ scoped. Distilled to ch11 #recreation-as-naming-oracle, RE-011 and FAIL-RE-035. THE FINDING: this is a NAMING oracle for the Dark Engine, and naming is the expensive part of RE. dark/src/properties/ registers 165 property decoders keyed by on-disk chunk name - define_prop("P$AI_Team", PropAITeam::read, identity, accumulator::latest) - across ~50 modules, each a named struct with its fields in file order. THREE GOTCHAS: (1) chunk names are FIXED-WIDTH and truncated, so the table holds P$AmbientHa, P$BitmapAni, P$AI_Alertn - grep a data file for the real name and you get zero hits, which reads as the feature being absent. (2) Property inheritance from archetype ancestors is resolved PER PROPERTY - the fourth argument to define_prop - and the module comment says override is not universal ("some - like Scripts - need to potentially incorporate ancestor values"), though only the overwrite rule is implemented so far, so the signature is the finding rather than the implementation. An absent property is not an empty one. (3) Authored Config and runtime State are SEPARATE properties throughout, e.g. the tweq system pairs TweqRotateConfig with TweqRotateState. Serialised layout is not memory layout, so this settles meaning, never location.'
+      performance:
+        review: full
+        evidence: HEADSET
+        note: Harvested 2026-08-25 into ch19 from the full Quest mission baseline and Oculus profiling workflow.
+      ui_hud:
+        review: full
+        evidence: SOURCE
+        note: 'Harvested 2026-08-25 into ch04: world-locking, honest panel basis, shared pointer arbitration, input edges and zero-quaternion guards.'
+      audio:
+        review: full
+        evidence: SOURCE
+        note: 'Harvested 2026-08-25 into ch20 from engine/src/audio/mod.rs: moving emitters, two-ear listener updates, listener-relative lanes, channel preemption and unit scaling.'
+      stereo:
+        review: skimmed
+        note: NOT READ. runtimes/oculus_runtime/src/lib.rs (1,892 lines) is a straightforward OpenXR + OpenGL ES Android bring-up against xr::FormFactor::HEAD_MOUNTED_DISPLAY and a STAGE reference space; the corpus already covers that ground, so it was surveyed and skipped rather than read. Worth returning to only for vr_crouch::VrCrouchDetector, which is directly comparable to SS2VR's ROOMSCALE_CROUCH_RESEARCH.md and SOMAVR's physical-crouch work.
+        evidence: AUTHOR
+      xr_lifecycle:
+        review: not_reviewed
+      xr_input:
+        review: partial
+        evidence: SOURCE
+        note: 'harvested 2026-09-07 into ch03 #context-by-hand and INPUT-011: four face buttons bound raw by hand and physical position, meaning resolved per hand against what that hand holds, symmetric across hands, every action targeting the hand that pressed. LOCOMOTION harvested 2026-09-07 into ch03 #physical-locomotion-verb, INPUT-012 and TEST-023: a nine-PR hand-climbing campaign whose first change was the BENCH (debug_ladder, one station per climbing shape including a non-climbable wall, built from shipped ladder templates) and whose second was the physics grip query ALONE, query-only with no body motion. Grip qualifies on the AUTHORED per-face climbable mask rather than the collider bounding box, permuted from the tool Z-up frame into the engine Y-up one. Release throws the body by the anchor hand travel RELATIVE TO THE PAWN over four frames, capped in magnitude and - the transferable cap - capped upward at the ordinary jump launch speed so a haul can never rise higher nor fall further than a jump, because the game scores falls. Velocity is expressed in PHYSICS STEPS so the throw matches the pull at 72/90/120 Hz. The vault predicate carries a state-at-acquisition term (the eye was BELOW the lip when the hold was taken) which is what stops leaning on a crate being a mantle, and a failed top-out plan changes nothing rather than breaking. Grip forgiveness is two mechanisms, spatial (0.3 wu lip search) and temporal (squeeze eligible 150 ms). Capsule resize is anchored on the body CENTRE while hanging because the feet-planted shift exceeds the grip stretch tolerance, and on the feet when grounded. Crouch applies one head-resolved translation to eyes, hands and gameplay head. Same week, melee billing moved from raw centre-of-mass speed to CLOSING speed at the contact point along the contact normal. They mark headless coverage as proving mechanism and NOT comfort, explicitly.'
+      source_integration:
+        note: 'READ 2026-09-19, structure. A game-engine recreation of the Dark Engine in Rust, built against System Shock 2: 25th Anniversary Remaster - the same game SS2VR mods, which makes it the fleet''s only ch18 Mode 5 example aimed at a top-priority target. 224,801 lines of Rust across dark/ (the engine layer, 26,175), shock2vr/ (the game and VR layer), engine/ (engine-agnostic, dual MIT), runtimes/ (oculus, desktop, debug) and tools/dark_explorer. The author flags it pre-alpha and a first Rust project, so claims are AUTHOR unless read. LICENCE CORRECTED 2026-09-19: the first registration said none found. There is no LICENSE file, but the README states GPL-2.0 because code is ported from openDarkEngine, with engine/ additionally dual-licensed MIT.'
+        review: partial
+        evidence: SOURCE
   - id: Halo-MCC-VR
     root: "D:/Dev Debug/Other VR mods/Halo-MCC-VR"
     status: external_reference

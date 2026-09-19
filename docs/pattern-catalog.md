@@ -532,6 +532,42 @@ symptom under deliberate fast head motion - the condition that exposes it.
 (Condemned VR uses 20 ms). And pacing from process start rather than from the first stereo pair creates
 bring-up stalls unrelated to the steady state.
 
+## RE-011 - Use an open reimplementation for names, then prove the layout yourself {#re-011}
+
+**Problem:** reverse engineering a data format or entity model is mostly not about finding structure
+boundaries - those fall out of a hex editor in an afternoon. It is about learning what each field
+*means*, and that is measured in weeks of watching values change.
+
+**Use when:** the target's engine has an open reimplementation, an official editing kit, or a released
+ancestor. Check for one *before* starting a format or entity-model investigation, not after.
+
+**Recipe:**
+
+- **Look for the decode table first.** A recreation that loads the game's files has a registry mapping
+  on-disk names to typed readers. That table is the dictionary, and it is worth more than any single
+  decompiled function.
+- **Take names, field order, bit meanings and reserved fields.** Those transfer, because they describe
+  the format rather than the binary.
+- **Do not take offsets.** Serialised layout is not memory layout; the engine may unpack, pad or
+  reorder. Confirm every address against the shipping bytes.
+- **Check the licence before you copy anything**, and prefer describing the layout to lifting the
+  reader. A GPL reimplementation makes its code unusable in a closed project while leaving the
+  knowledge perfectly usable.
+- **Read the resolution rules, not just the structs.** How a value is inherited, defaulted or
+  accumulated is part of its meaning, and it is where a naive reader produces confidently wrong
+  answers.
+
+**Proof:** take one field the oracle names, predict its value for a known in-game object, then read
+that value out of the shipping binary or file and confirm it matches. One confirmed prediction
+validates the dictionary; zero means you have the wrong version of the format.
+
+**Trip hazard:** the recreation is a different program. It may target a different release of the game,
+implement only what its author needed, or carry deliberate simplifications. Its comments will tell you
+which - and a comment describing an intention (*"some need to incorporate ancestor values"*) beside an
+implementation that does only the simple case is a documented gap, not a description of the engine.
+`[SOURCE]` shock2quest for the Dark Engine; [00](00-engine-profiles.md) records ManagedDonkey doing the
+same job for Halo.
+
 ## RE-001 — GPU value to owning CPU structure {#re-001}
 
 **Problem:** the scene camera is hidden in an unknown binary.

@@ -1554,6 +1554,21 @@ the other and the limit looks plausible at unit scale and is wrong everywhere el
 scalar range while position and rotation each get three axes: a deliberate reduction to uniform
 scaling, and a sensible default to copy.
 
+
+**And a shipped game's answer to "what may the player do with this right now" is per *context*, not per
+object.** Dark Engine's frob property - frob being its word for use/interact - carries the same
+nine-bit permission set **three times**: one for the object in the world, one for it in the inventory,
+one for it used as a tool on something else. The bits are `MOVE`, `SCRIPT`, `DELETE`, `IGNORE`,
+`FOCUS`, `TOOL`, `USE_AMMO`, `DEFAULT`, `DESELECT`. `[SOURCE]` shock2quest's `PropFrobInfo` (GPL-2.0),
+read as a naming oracle - see [11](11-re-anchoring-and-discovery.md#recreation-as-naming-oracle).
+
+For a VR port that separation is the useful part, because VR multiplies the contexts rather than
+sharing them. The same object held in the hand, sitting in a holster, resting on a table and pointed at
+from across the room is four situations, and a permission model with one flag set per object cannot
+distinguish them. If the target engine already separates them, **inherit its contexts instead of
+inventing your own** - the game's designers already decided that a thing you may pick up is not
+necessarily a thing you may use, and the content is authored against that.
+
 ## Driving a body with physics: blend, clamp, and give up gracefully {#physics-bodies}
 
 PLANCK drives NPC bodies with active ragdoll so the player can shove, grab, drag and yank them. Its

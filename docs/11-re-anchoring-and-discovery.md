@@ -129,6 +129,64 @@ disable and fail-closed receivers; it does not establish live cadence or downstr
 projection agreement. Equal pre-write readback also cannot exclude another writer
 that writes the same value. Evidence: `PreyVR/docs/RE-BUILD-TAKEOVER-2026-09-09.md`.
 
+
+## A reimplementation is a naming oracle, and naming is the expensive part {#recreation-as-naming-oracle}
+
+[00](00-engine-profiles.md) notes in passing that ManagedDonkey gives HaloVR *"real names for tags and
+HUD structures"*, and lists openDarkEngine as prior art for SS2VR. This is the method behind those
+asides, because the pattern generalises and the gotchas are not obvious.
+
+An open reimplementation of your target's engine will not tell you the shipping binary's memory layout
+- that remains something you confirm against the bytes. What it will tell you is **what every field
+means**, and on a real RE effort that is where the time goes. You can find a struct's boundaries in an
+afternoon; learning that offset `0x1C` is a three-context permission bitfield takes weeks of watching
+it change.
+
+**The usable form is a decode table.** shock2quest, a Dark Engine recreation in Rust targeting the same
+game SS2VR mods, carries **165 registered property decoders** keyed by their on-disk chunk name, each
+with a typed reader:
+
+```
+define_prop("P$AI_Team", PropAITeam::read, identity, accumulator::latest)
+```
+
+Name, reader, transform, inheritance rule. Fifty-odd property modules behind it, each a named struct
+with its fields in file order. `[SOURCE]` shock2quest (GPL-2.0; its `engine/` folder is dual-licensed
+MIT). Take the *knowledge*, not the code - [00](00-engine-profiles.md) has the licence table and the
+rule.
+
+**Three gotchas, all of which cost a day if you meet them cold.**
+
+**Chunk names are fixed-width and truncated, so searching for the real name finds nothing.** The table
+holds `P$AmbientHa`, `P$BitmapAni`, `P$AI_Alertn` - AmbientHacked, BitmapAnimation, Alertness, each cut
+to the format's name field. Grep a data file for the property you are looking for and you get zero
+hits, which reads as "this game does not have that feature" ([FAIL-RE-035](failure-atlas.md)). Search on
+the truncated prefix, and treat any name at exactly the field width as probably clipped.
+
+**An absent property is not an empty property.** Dark entities inherit from archetype ancestors, and
+the registration makes the resolution rule a *per-property parameter* rather than a global policy -
+that is what the fourth argument is. Its module comment is explicit that override is not universal:
+*"For most, they are simply overwritten - but some - like Scripts - need to potentially incorporate
+ancestor values"*. Only the overwrite rule is implemented there so far, so treat the accumulate case as
+a documented intention rather than a worked example - but the **signature** is the finding. Read a
+property off an entity, find nothing, and the answer is up the ancestor chain, not absent. This is
+[META-013](pattern-catalog.md#meta-013) in a data model: empty and unset are different answers.
+
+**Authored configuration and runtime state are separate properties, systematically.** Dark's tweq
+system pairs them every time - `TweqRotateConfig` beside `TweqRotateState`, `TweqModelConfig` beside
+`TweqModelState`, and the same for emitters and deletes. If you are hunting for "the rotation speed"
+and find a struct that also contains a current angle, you are probably looking at the state and the
+config is elsewhere. The split is the same distinction
+[02](02-viewmodels-and-hands.md) draws for offsets in *Authored offset or live delta*, made at the
+data model rather than in the maths.
+
+**What the oracle does not settle.** Serialised layout is not memory layout; the recreation's struct is
+what the *file* holds, and the engine may unpack, pad or reorder it in RAM. Confirm against the
+shipping binary before you write an address down - the rule in
+[#numerical-camera-mapping](#numerical-camera-mapping) and in `CLAUDE.md` applies unchanged. The oracle
+removes the guessing about *meaning*, not the obligation to prove *location*.
+See [RE-011](pattern-catalog.md#re-011).
+
 ## Stand up the RE tool surface, and trust nothing until you have checked the target {#re-tool-surface}
 
 Before the anchor ladder below is a question it assumes answered: *which tools can this session actually

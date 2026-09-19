@@ -70,7 +70,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 31 | 18 | 46 | 16 |
+| `stereo` | 19 | 31 | 19 | 45 | 16 |
 | `xr_lifecycle` | 6 | 11 | 1 | 50 | 62 |
 | `xr_input` | 4 | 1 | 7 | 69 | 49 |
 | `camera_tracking` | 12 | 19 | 4 | 55 | 40 |
@@ -81,8 +81,8 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `performance` | 8 | 10 | 9 | 59 | 44 |
 | `audio` | 1 | 1 | 1 | 75 | 52 |
 | `packaging_deploy` | 6 | 25 | 22 | 46 | 31 |
-| `re_discovery` | 14 | 19 | 9 | 51 | 37 |
-| `source_integration` | 2 | 11 | 15 | 47 | 55 |
+| `re_discovery` | 14 | 20 | 8 | 51 | 37 |
+| `source_integration` | 2 | 12 | 15 | 47 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -199,7 +199,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **satisfactory-uevr-enhancements** | external reference | Unreal 5 | framework-companion | — | — | 18 | 433 | 18 | 5 | 2026-08-22 | 🟩 current | 0F / 2P / 0S / 0NR / 11— |
 | **Scrap-Mechanic-Native-VR** | external reference | Scrap Mechanic (proprietary) | script-native-hybrid | — | — | — | 74 | 38 | 11 | 2026-08-27 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
 | **Shipwright-VR** | external reference | libultraship / Ship of Harkinian | source-port | — | — | — | 11943 | 3243 | 22 | 2026-08-26 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
-| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1229 | 708 | 80 | 2026-09-19 | 🟥 source changed | 3F / 2P / 1S / 2NR / 5— |
+| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1229 | 708 | 80 | 2026-09-19 | 🟥 source changed | 3F / 4P / 1S / 1NR / 4— |
 | **Silent-Hill-3-VR-Mod** | external reference | Silent Hill 3 (2003) | native-injector | T2 | ? | 18 | 478 | 133 | 56 | 2026-08-29 | ⚪ unpinned | 0F / 2P / 0S / 9NR / 2— |
 | **sims4-vr** | archived reference | EA custom (Sims 4) | script-native-hybrid | — | — | 18 | 131 | 81 | 26 | 2026-08-23 | 🟩 current | 3F / 0P / 0S / 0NR / 10— |
 | **singularity-vr-mod** | external reference | Unreal Engine 3.584 (Singularity 2010) | native-injector | T1 | R2 · per-draw replay | 9 | 84 | 39 | 16 | 2026-08-29 | ⚪ unpinned | 6F / 2P / 0S / 3NR / 2— |
@@ -346,7 +346,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **satisfactory-uevr-enhancements** | 2026-08-25 | `tree:33a7aa8069455a16` | `tree:33a7aa8069455a16` | `—` | 🟩 current | unknown | unknown |
 | **Scrap-Mechanic-Native-VR** | 2026-08-27 | `tree:b34922f3c587f2ce` | `tree:b34922f3c587f2ce` | `8aabe24ec62c5c4d8ef9852250a358e1296f9bf2` | 🟩 current | https://github.com/21Suspect/Scrap-Mechanic-Native-VR | MIT |
 | **Shipwright-VR** | 2026-08-26 | `tree:6847d39fbf2e86de` | `tree:6847d39fbf2e86de` | `7afef6987c7f0fb51e09bfb2f7a8f902428a38f2` | 🟩 current | https://github.com/ShinyWindow/Shipwright-VR | unknown |
-| **shock2quest** | 2026-09-09 | `tree:80a30f1bdad91aa8` | `tree:e975003c94fac98e` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | unknown |
+| **shock2quest** | 2026-09-19 | `tree:80a30f1bdad91aa8` | `tree:e975003c94fac98e` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | GPL-2.0 (README: code ported from openDarkEngine, so the whole is GPL-2.0); the engine/ folder is additionally dual-licensed MIT. No LICENSE file at the root - the terms are stated in README.md and THIRD_PARTY_LICENSES.md |
 | **Silent-Hill-3-VR-Mod** | 2026-08-29 | `unknown` | `tree:f1f0674d9d679091` | `—` | ⚪ unpinned | unknown | unknown |
 | **sims4-vr** | 2026-08-25 | `tree:1dec2736beb2f5e5` | `tree:1dec2736beb2f5e5` | `—` | 🟩 current | unknown | unknown |
 | **singularity-vr-mod** | 2026-08-29 | `unknown` | `tree:50b0c75b563c385d` | `—` | ⚪ unpinned | unknown | MIT |
@@ -2223,19 +2223,19 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟥 not reviewed | `—` | — |
+| `stereo` | 🟧 skimmed | `AUTHOR` | NOT READ. runtimes/oculus_runtime/src/lib.rs (1,892 lines) is a straightforward OpenXR + OpenGL ES Android bring-up against xr::FormFactor::HEAD_MOUNTED_DISPLAY and a STAGE reference space; the corpus already covers that ground, so it was surveyed and skipped rather than read. Worth returning to only for vr_crouch::VrCrouchDetector, which is directly comparable to SS2VR's ROOMSCALE_CROUCH_RESEARCH.md and SOMAVR's physical-crouch work. |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | — |
 | `xr_input` | 🟨 partial | `SOURCE` | harvested 2026-09-07 into ch03 #context-by-hand and INPUT-011: four face buttons bound raw by hand and physical position, meaning resolved per hand against what that hand holds, symmetric across hands, every action targeting the hand that pressed. LOCOMOTION harvested 2026-09-07 into ch03 #physical-locomotion-verb, INPUT-012 and TEST-023: a nine-PR hand-climbing campaign whose first change was the BENCH (debug_ladder, one station per climbing shape including a non-climbable wall, built from shipped ladder templates) and whose second was the physics grip query ALONE, query-only with no body motion. Grip qualifies on the AUTHORED per-face climbable mask rather than the collider bounding box, permuted from the tool Z-up frame into the engine Y-up one. Release throws the body by the anchor hand travel RELATIVE TO THE PAWN over four frames, capped in magnitude and - the transferable cap - capped upward at the ordinary jump launch speed so a haul can never rise higher nor fall further than a jump, because the game scores falls. Velocity is expressed in PHYSICS STEPS so the throw matches the pull at 72/90/120 Hz. The vault predicate carries a state-at-acquisition term (the eye was BELOW the lip when the hold was taken) which is what stops leaning on a crate being a mantle, and a failed top-out plan changes nothing rather than breaking. Grip forgiveness is two mechanisms, spatial (0.3 wu lip search) and temporal (squeeze eligible 150 ms). Capsule resize is anchored on the body CENTRE while hanging because the feet-planted shift exceeds the grip stretch tolerance, and on the feet when grounded. Crouch applies one head-resolved translation to eyes, hands and gameplay head. Same week, melee billing moved from raw centre-of-mass speed to CLOSING speed at the contact point along the contact normal. They mark headless coverage as proving mechanism and NOT comfort, explicitly. |
 | `camera_tracking` | — no entry — | — | — |
 | `render_hazards` | — no entry — | — | — |
 | `ui_hud` | 🟩 full | `SOURCE` | Harvested 2026-08-25 into ch04: world-locking, honest panel basis, shared pointer arbitration, input edges and zero-quaternion guards. |
-| `hands_interaction` | 🟨 partial | `SOURCE` | harvested 2026-09-07 into ch02 #s2q-clip-insert, HAND-016, INPUT-011 and ch20. THE CLOSEST PRIOR ART IN THE CORPUS to SS2VR physical reload: same game, readable Rust, and a SHIPPED clip-insert gesture. Its pistol magazine anchor is keyed on atek_h - the same model SS2VR manualReload is gated to. Taken: the motion IS the reload cost, so no authored reload_time survives on the physical path; a five-row per-model MAGAZINE_ANCHORS table keyed on PropModelName with the model origin as fallback, derived headlessly from sub-object bounds and then RE-PLACED against the rendered wield (the pistol origin renders at the wrist, so the dump-derived anchor sat behind the hand); the negative control that proves the zone moved rather than that the origin still works - carry the clip to the point mirrored across the origin and assert nothing loads; a three-way cue policy where silence means only nothing-to-do because silence on an earned refusal is indistinguishable from a dead button; face buttons bound RAW by hand and position and resolved per hand by what that hand holds, with the resolver shipped before any of its cells; and omissions recorded with their KINDS - recharges, not trusted, not measured. One deliberate trade against our own staircase: no clip object is spawned in the world, because a magazine on the floor is a chore to pick up in VR. |
+| `hands_interaction` | 🟨 partial | `SOURCE` | READ 2026-09-19, PropFrobInfo only. Distilled to ch02 #grab-detection-layer: interaction permission in the Dark Engine is per CONTEXT, not per object - the same nine-bit flag set (MOVE, SCRIPT, DELETE, IGNORE, FOCUS, TOOL, USE_AMMO, DEFAULT, DESELECT) is carried three times, for the object in the world, in the inventory, and used as a tool on something else. A VR port multiplies contexts rather than sharing them (held, holstered, resting, pointed at from range), so inheriting the engine's context split beats inventing one. shock2vr/src/interaction.rs (2,088 lines) NOT read - the strongest remaining target here. |
 | `input_locomotion` | — no entry — | — | — |
 | `performance` | 🟩 full | `HEADSET` | Harvested 2026-08-25 into ch19 from the full Quest mission baseline and Oculus profiling workflow. |
 | `audio` | 🟩 full | `SOURCE` | Harvested 2026-08-25 into ch20 from engine/src/audio/mod.rs: moving emitters, two-ear listener updates, listener-relative lanes, channel preemption and unit scaling. |
 | `packaging_deploy` | — no entry — | — | — |
-| `re_discovery` | 🟧 skimmed | `SOURCE` | dark/ crate identified as a format oracle; NOT read |
-| `source_integration` | — no entry — | — | — |
+| `re_discovery` | 🟨 partial | `SOURCE` | READ 2026-09-19, dark/src/ scoped. Distilled to ch11 #recreation-as-naming-oracle, RE-011 and FAIL-RE-035. THE FINDING: this is a NAMING oracle for the Dark Engine, and naming is the expensive part of RE. dark/src/properties/ registers 165 property decoders keyed by on-disk chunk name - define_prop("P$AI_Team", PropAITeam::read, identity, accumulator::latest) - across ~50 modules, each a named struct with its fields in file order. THREE GOTCHAS: (1) chunk names are FIXED-WIDTH and truncated, so the table holds P$AmbientHa, P$BitmapAni, P$AI_Alertn - grep a data file for the real name and you get zero hits, which reads as the feature being absent. (2) Property inheritance from archetype ancestors is resolved PER PROPERTY - the fourth argument to define_prop - and the module comment says override is not universal ("some - like Scripts - need to potentially incorporate ancestor values"), though only the overwrite rule is implemented so far, so the signature is the finding rather than the implementation. An absent property is not an empty one. (3) Authored Config and runtime State are SEPARATE properties throughout, e.g. the tweq system pairs TweqRotateConfig with TweqRotateState. Serialised layout is not memory layout, so this settles meaning, never location. |
+| `source_integration` | 🟨 partial | `SOURCE` | READ 2026-09-19, structure. A game-engine recreation of the Dark Engine in Rust, built against System Shock 2: 25th Anniversary Remaster - the same game SS2VR mods, which makes it the fleet's only ch18 Mode 5 example aimed at a top-priority target. 224,801 lines of Rust across dark/ (the engine layer, 26,175), shock2vr/ (the game and VR layer), engine/ (engine-agnostic, dual MIT), runtimes/ (oculus, desktop, debug) and tools/dark_explorer. The author flags it pre-alpha and a first Rust project, so claims are AUTHOR unless read. LICENCE CORRECTED 2026-09-19: the first registration said none found. There is no LICENSE file, but the README states GPL-2.0 because code is ported from openDarkEngine, with engine/ additionally dual-licensed MIT. |
 
 #### Silent-Hill-3-VR-Mod
 

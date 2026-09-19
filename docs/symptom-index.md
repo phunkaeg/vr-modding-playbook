@@ -194,6 +194,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| I know the game has this property but searching its files for the name finds nothing | [11](11-re-anchoring-and-discovery.md#recreation-as-naming-oracle) - fixed-width name fields truncate; search the prefix, and check for an open reimplementation that names the field for you |
 | Where do I even start on an unknown binary? | [11](11-re-anchoring-and-discovery.md) — the anchor ladder, top rung first |
 | The game is old enough to have no camera object, no shaders, no reflection | [16](16-teardown-virtua-cop-2-vr.md) — check for a **renderer plugin ABI** first; then run the [four preconditions](16-teardown-virtua-cop-2-vr.md#the-four-preconditions-with-the-test-for-each) before committing to draw-stream reconstruction |
 | Looking for a function | [11](11-re-anchoring-and-discovery.md) — **check the export table and for shipped script source before disassembling** |
