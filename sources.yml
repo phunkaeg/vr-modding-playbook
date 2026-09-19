@@ -1127,7 +1127,7 @@ external:
       hands_interaction:
         review: partial
         evidence: SOURCE
-        note: 'READ 2026-09-19, PropFrobInfo only. Distilled to ch02 #grab-detection-layer: interaction permission in the Dark Engine is per CONTEXT, not per object - the same nine-bit flag set (MOVE, SCRIPT, DELETE, IGNORE, FOCUS, TOOL, USE_AMMO, DEFAULT, DESELECT) is carried three times, for the object in the world, in the inventory, and used as a tool on something else. A VR port multiplies contexts rather than sharing them (held, holstered, resting, pointed at from range), so inheriting the engine''s context split beats inventing one. shock2vr/src/interaction.rs (2,088 lines) NOT read - the strongest remaining target here.'
+        note: 'READ 2026-09-19: PropFrobInfo, then shock2vr/src/interaction.rs (2,088 lines) and vr_support::solve_two_hand_pose. Distilled to ch02 #two-handed-support, ch08 #one-interaction-two-presentations, and the #grab-detection-layer context finding. TWO-HAND GRIP IS OVER-DETERMINED - twelve tracked degrees of freedom onto a rigid six - and this is the corpus''s clearest statement of one resolution: ONE HAND IS PRIMARY and its anchor lands exactly on its palm; the SUPPORT HAND ONLY AIMS, supplying the direction the authored anchor-to-anchor vector is rotated onto; TWIST IS INHERITED from the primary orientation rather than solved, because aligning one vector leaves roll free; and there is NO SCALE SOLVE, refused in the docstring. Both degeneracies are guarded - coincident hands return the PREVIOUS rotation, antiparallel hands pick a deterministic twist axis (primary local X, falling back to local Z past a 0.9 parallel threshold, then orthogonalised). Compare Meta''s IsdkGrabFreeTransformer (symmetric) and VRExpansionPlugin''s ESecondaryGripType (per-grip setting): three frameworks, three resolutions, and choosing none is the error. ALSO: interaction is one trait with two implementations, VR and flat, both emitting the same VirtualHandEffect vocabulary, with every VR-specific method DEFAULTED so the flat controller costs no code. Its own comment records the trap that design leaves: StoreItem and DropItem look interchangeable but only DropItem dispatches the drop message, so a caller storing a held item must dispatch it manually or the world-model restore is skipped. Also unread but noted: resolve_hand_climb feeds collision-resolved motion back into the tracking reference, and the climb pass runs BEFORE movement because its result IS the movement.'
       re_discovery:
         review: partial
         evidence: SOURCE
@@ -2837,7 +2837,7 @@ external:
     status: external_reference
     upstream_url: https://github.com/tig3rmast3r/OFXR-Bridge
     license: LGPL-3.0-or-later
-    reviewed_at: '2026-09-18'
+    reviewed_at: '2026-09-19'
     reviewed_revision: tree:084bd8beab66b041
     reviewed_git_commit: 93039ffeeb73678eac0fcd555f7599314be2c26d
     engine: engine-agnostic (implicit OpenXR API layer)
@@ -2848,7 +2848,7 @@ external:
       render_hazards:
         review: partial
         evidence: SOURCE
-        note: 'REGISTERED 2026-09-18, STRUCTURE ONLY - no code read. An implicit OpenXR API layer that INSERTS an optical-flow-generated frame between two rendered frames. Author labels it pre-release v0.2.0 and warns it may freeze or crash the game, so treat every claim as AUTHOR. d3d12_history.cpp READ 2026-09-18 (802 lines), distilled to ch14 #history-slot-identity, ch19 #gpu-resource-identity, META-016 and FAIL-PERF-023. THREE findings: (1) a ring-buffer slot index is a LOCATION, not an identity - capture issues a 4-field ticket (serial, fence value, slot, source index), a consumer borrows with a lease (capture serial, own lease serial, slot), and every read validates BOTH serials, so a wrapped-around consumer fails a check instead of reading a live frame; a stale lease also cannot cancel a live one. (2) completion_unknown marks the window between ExecuteCommandLists and a SUCCESSFUL Signal - if the signal fails, no fence value will ever report completion, so wait_for_idle refuses with ERROR_IO_INCOMPLETE rather than waiting forever or assuming idle. Idle also returns ERROR_BUSY while any lease is outstanding. (3) a cached resource is revalidated on ELEVEN D3D12_RESOURCE_DESC fields, COM devices are compared by QI-ing both to IUnknown rather than by interface pointer, and adapter identity is a SEPARATE GetAdapterLuid check. STILL UNREAD: d3d12_frame_synthesizer.cpp (3,692 lines), openxr_layer.cpp (4,851), optical_flow.cpp (363) - the pacing work remains #three-frame-clocks territory.'
+        note: 'READ 2026-09-18 (d3d12_history.cpp) and 2026-09-19 (d3d12_frame_synthesizer.cpp, 3,692 lines). d3d12_history distilled to ch14 #history-slot-identity, ch19 #gpu-resource-identity, META-016 and FAIL-PERF-023: a ring slot index is a LOCATION, not an identity (four-field capture ticket plus a consumer lease, both serials validated on every read); and there is a third state between finished and running - UNTRACKABLE - covering the window between ExecuteCommandLists and a SUCCESSFUL Signal, where wait_for_idle refuses rather than waiting on a fence that will never advance. THE SYNTHESIZER, distilled to ch14 #packed-stereo-seam + STR-020 + FAIL-STR-066: when both eyes are packed into one optical-flow input it inserts a 64-pixel gutter AND rounds the per-eye stride up to the estimator''s block size (8 for FidelityFX, 4 for the NVIDIA path), because a gutter that is wide but unaligned still lets one estimation cell span two eyes. It also offers a separate-surfaces path where the stride is zero, and refuses with E_INVALIDARG when the gutter would push the texture past D3D12''s dimension limit. Separately, same_view_layout will not synthesise between two captures unless view count, per-view array slice, rect offsets and dimensions all match. Three optical-flow backends are wired: FidelityFX, NVIDIA, and a game-motion path that uses the engine''s own vectors instead of estimating flow. DRED SetMarker calls are gated behind the same switch as the flight recorder, so a normal run records no diagnostic GPU commands. STILL UNREAD: openxr_layer.cpp (4,851 lines), where the presenter pacing lives.'
       performance:
         review: skimmed
         evidence: AUTHOR
@@ -2857,15 +2857,24 @@ external:
         review: skimmed
         evidence: AUTHOR
         note: 'Synthesising a frame per eye raises the per-eye divergence question #eye-image-delta-review exists for: a synthesised pair can diverge in ways a rendered pair cannot. Not examined.'
-      re_discovery: *id001
-      camera_tracking: *id001
-      hands_interaction: *id001
-      input_locomotion: *id001
-      xr_input: *id001
-      ui_hud: *id001
-      audio: *id001
-      source_integration: *id001
-      packaging_deploy: *id001
+      re_discovery:
+        review: not_reviewed
+      camera_tracking:
+        review: not_reviewed
+      hands_interaction:
+        review: not_reviewed
+      input_locomotion:
+        review: not_reviewed
+      xr_input:
+        review: not_reviewed
+      ui_hud:
+        review: not_reviewed
+      audio:
+        review: not_reviewed
+      source_integration:
+        review: not_reviewed
+      packaging_deploy:
+        review: not_reviewed
   - id: RazeXR-PCVR
     root: D:/Dev Debug/Other VR mods/VR Utilities/RazeXR-PCVR
     status: external_reference

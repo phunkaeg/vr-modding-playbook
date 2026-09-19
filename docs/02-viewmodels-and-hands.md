@@ -1221,6 +1221,41 @@ accepts a single point, a free transform accepts two. This is
 [META-015](pattern-catalog.md#meta-015) in another shape - not an enum listing the design space, but a
 capability the implementation publishes so a caller cannot exceed it silently.
 
+
+**Two hands on one rigid object is over-determined, and something has to give.** Two tracked hands
+carry twelve degrees of freedom; a rigid object has six. The hands will not agree - they cannot, once
+the player's real hands drift a centimetre from the object's authored grip spacing - so every
+two-handed grip is a choice about *what to sacrifice*. Make that choice explicitly or the solver makes
+it for you, usually as jitter.
+
+shock2quest's is the clearest statement of one answer the corpus has. `[SOURCE]` GPL-2.0,
+`solve_two_hand_pose`:
+
+- **One hand is primary and its anchor is exact.** The object is positioned so the primary anchor lands
+  precisely on the primary palm. That hand is never wrong.
+- **The support hand only supplies a direction.** The rotation is whatever takes the object's authored
+  anchor-to-anchor vector onto the measured palm-to-palm vector. The support hand aims; it does not
+  position.
+- **Twist is inherited, not solved.** Aligning one vector leaves roll about that vector free, and rather
+  than invent it they take it from the primary hand's orientation.
+- **No scale solve and no hand-distance stretch**, stated in the docstring as a deliberate refusal. Move
+  your hands apart and the object does not grow. Compare
+  [11](11-re-anchoring-and-discovery.md#rigid-alignment-from-points), where the same discipline appears
+  as "leave the scale term off unless you mean it".
+
+**Both degeneracies are handled, which is the part to copy.** Coincident hands - the alignment is
+undefined - return the *previous* rotation rather than a default. Antiparallel hands leave the rotation
+ambiguous about an axis, so a twist axis is chosen deterministically: the primary hand's local X,
+falling back to its local Z when X is within `0.9` of parallel, then orthogonalised against the
+alignment vector. A two-hand solver without those two guards looks correct in testing and snaps when a
+player brings their hands together.
+
+> **Three frameworks, three different resolutions of the same over-determination.** Meta's
+> `IsdkGrabFreeTransformer` treats the grab points symmetrically and derives rotation and scale from how
+> they move relative to each other; VRExpansionPlugin's `ESecondaryGripType` makes the secondary hand's
+> influence a per-grip setting; shock2quest makes one hand authoritative and the other advisory. None is
+> wrong. Choosing none of them is.
+
 ## Holsters and physical grab, from the two native-VR interaction stacks {#holsters-and-grab}
 
 Skyrim VR and Fallout 4 VR shipped *as* VR, so their mod scenes never had to solve stereo - they went
@@ -1561,6 +1596,8 @@ nine-bit permission set **three times**: one for the object in the world, one fo
 one for it used as a tool on something else. The bits are `MOVE`, `SCRIPT`, `DELETE`, `IGNORE`,
 `FOCUS`, `TOOL`, `USE_AMMO`, `DEFAULT`, `DESELECT`. `[SOURCE]` shock2quest's `PropFrobInfo` (GPL-2.0),
 read as a naming oracle - see [11](11-re-anchoring-and-discovery.md#recreation-as-naming-oracle).
+
+**Corroborated, and it was fleet knowledge first.** SS2VR's own address registry already carries this from a *different* oracle - NewDark's `proplist.txt` - with the same three contexts and the same nine flags, recorded there as a static reference. Two independent reimplementation-adjacent sources agreeing on a structure neither of them shipped is much stronger evidence than either alone, and it is the reason to prefer a corroborated name over a confident single reading.
 
 For a VR port that separation is the useful part, because VR multiplies the contexts rather than
 sharing them. The same object held in the hand, sitting in a holster, resting on a table and pointed at

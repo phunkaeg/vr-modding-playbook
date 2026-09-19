@@ -235,6 +235,47 @@ location needs both. See [META-016](pattern-catalog.md#meta-016).
 > *identity* from frame *content* for the same reason. Here it is a ring-buffer slot. Three unrelated
 > subsystems, one rule: **a reused container is not the thing it currently holds.**
 
+
+### A neighbourhood operator does not know where one eye ends {#packed-stereo-seam}
+
+Packing both eyes into one surface is normal and usually harmless - it is one allocation, one barrier,
+one dispatch. It stops being harmless the moment anything **samples a neighbourhood**: optical flow,
+blur, SSAO, TAA, any kernel wider than a pixel. At the boundary the operator reads across the seam and
+reports motion, occlusion or history that travelled from one eye into the other. Nothing errors, and
+the artefact sits in a band at the edge of both images.
+
+OFXR-Bridge's frame synthesiser packs the eyes for its optical-flow pass and pays for the seam
+explicitly. `[SOURCE]` LGPL-3.0, `d3d12_frame_synthesizer.cpp`.
+
+```
+stride = round_up(eye_height + kEyeGapPixels, flow_block_size)   // kEyeGapPixels = 64
+```
+
+**A 64-pixel gutter between the eyes, and the per-eye stride rounded up to the estimator's block
+size.** Both halves matter. The gutter has to be at least the operator's kernel reach, or the
+neighbourhood still spans the boundary; the block alignment stops an eye starting mid-block, which
+would put both eyes inside one estimation cell however wide the gutter is. Their flow blocks are 8
+pixels for FidelityFX and 4 for the NVIDIA path, so 64 is comfortable margin rather than a tuned
+minimum.
+
+It also carries the alternative: a `separate_nvidia_eyes` path that gives each eye its own texture and
+sets the stride to zero. **Separate surfaces are the safe default; the packed layout is the
+optimisation**, and it is the one that needs the gutter. There is a guard for the third case too - if
+the eye height plus the gutter would exceed D3D12's maximum texture dimension, it refuses with
+`E_INVALIDARG` rather than silently clamping.
+
+**This applies well beyond frame generation, and it now applies to a route this playbook recommends.**
+[09](09-d3d11-openxr-injection.md#native-stereo-routes) records unlocking a game's own vendor stereo
+path, which delivers **top-and-bottom packed eyes** in one surface. Run any screen-space effect over
+that surface as though it were a single image and you have this bug - and the packed layout arrived
+from the game, so nobody chose it.
+
+**Before you blend two frames, prove they describe the same thing.** The same file will not synthesise
+between two captures unless their view layouts match: same view count, and per view the same array
+slice, the same image-rect offsets, and the same dimensions. A swapchain resize, a foveation change or
+a view-count change between the two sources makes the motion field meaningless, and the check is
+cheaper than the artefact ([FAIL-STR-066](failure-atlas.md)). See [STR-020](pattern-catalog.md#str-020).
+
 ### A pair cache belongs to the entity and generation, not the worker thread {#pair-cache-identity}
 
 KHARVOX's `AerWeaponPoseCache` stores first-phase poses by `(entity, pair serial)`

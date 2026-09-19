@@ -1013,6 +1013,37 @@ differ *vertically* between them, and the difference grows toward the frame edge
 vertical disparity is invisible. It announces itself only in a headset, over time, as eye strain rather
 than as a visible defect. `[SOURCE]` UVOSuit.
 
+## STR-020 - Gutter the eyes before any neighbourhood operator touches a packed pair {#str-020}
+
+**Problem:** both eyes share one surface - because it was cheaper, or because the game's own stereo
+path delivered them that way - and something samples a neighbourhood. Optical flow, blur, SSAO, TAA and
+every wide kernel read across the boundary and mix one eye into the other. It never errors; it shows up
+as a band of wrong motion or wrong occlusion along the seam.
+
+**Use when:** both eyes occupy one texture at any point in the pipeline, and any pass reads more than
+one pixel.
+
+**Recipe:**
+
+- **Prefer separate surfaces.** One texture per eye cannot bleed. Treat packing as the optimisation it
+  is, and justify it.
+- **If packed, insert a gutter at least as wide as the operator's kernel reach**, and round the per-eye
+  stride up to the operator's block or tile size. A gutter that is wide enough but unaligned still lets
+  one estimation cell span two eyes.
+- **Check the packed dimensions against the API's limits** before allocating; the gutter is what pushes
+  a legal size over the edge.
+- **Never assume the packed layout was your choice.** A vendor stereo path or a top-and-bottom capture
+  hands you one, and the seam is there whether or not you put it there.
+
+**Proof:** render a frame with one eye black and the other bright, run the pass, and read the band
+either side of the boundary. Any non-zero result in the black eye came across the seam. Widen the
+gutter until it is zero, then align it.
+
+**Trip hazard:** the artefact is strongest where people look least - the top and bottom edges of a
+top-and-bottom pack, or the inner edges of side-by-side, which sit at the nose. It is easy to ship and
+hard to attribute later, because the seam is invisible in a single-eye screenshot.
+`[SOURCE]` OFXR-Bridge, which uses a 64-pixel block-aligned gutter against flow blocks of 8 and 4.
+
 ## STR-001 — Private per-eye targets {#str-001}
 
 **Problem:** the game backbuffer cannot safely serve as both engine target and

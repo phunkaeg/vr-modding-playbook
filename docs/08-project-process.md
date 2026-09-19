@@ -465,6 +465,37 @@ silently reports the *previous* fetch's counts — which look authoritative and 
 
 See [META-011](pattern-catalog.md#meta-011).
 
+
+## Keep flat mode as an implementation, not a branch {#one-interaction-two-presentations}
+
+Every mod here keeps a flatscreen path - for testing without a headset, for debugging, for the users
+who want it. The default way that happens is `if (vr) { ... } else { ... }` spreading through the
+interaction code until neither path can be changed safely.
+
+shock2quest's interaction layer is the cleanest alternative in the corpus, and its module docstring
+names the thing it is avoiding: one trait with two implementations, *"so `mission_core` drives
+interaction polymorphically through a single `Box<dyn PlayerInteraction>` instead of branching on
+`PresentationMode` and holding both sets of state"*. `[SOURCE]` GPL-2.0, `shock2vr/src/interaction.rs`.
+
+Three properties make it work, and they transfer to any language with interfaces:
+
+- **One required method, returning a list of effects.** `update(ctx) -> Vec<VirtualHandEffect>`. Both
+  presentations speak the same effect vocabulary, and the game core applies effects in one place
+  without knowing which produced them.
+- **Everything VR-specific is a *defaulted* method.** Held-item fitting, glove synchronisation, hand
+  climbing and its feedback all have do-nothing defaults, so the flat controller implements none of
+  them and costs no code. *"Flat climbs by pushing into a ladder instead and never grips."*
+- **Diagnostics are part of the interface.** `hand_feedback_diagnostics` and `grip_diagnostics` return
+  JSON, defaulting to null and empty. A presentation that has nothing to report says so in the same
+  shape as one that does, which is what lets a single debug endpoint serve both.
+
+**The trap this design still leaves open is worth recording**, because their own comment documents it.
+Two effects that look interchangeable can differ in what they *imply*: dropping an item dispatches a
+message to it, storing one does not, so a caller that stores a held item must dispatch the drop itself
+or the world-model restore and psi-charge cancel are silently skipped. **An effect vocabulary is an
+API, and members that differ only in their side effects need that difference in their names or their
+types, not in a comment.**
+
 ## Verify a sibling's build identity from their own patch bytes {#sibling-build-identity}
 
 Before trusting another project's address corpus, **find a documented patch site with expected bytes in

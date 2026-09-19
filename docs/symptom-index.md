@@ -44,6 +44,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| A band of artefacts along one edge of each eye, worst near the nose or the top and bottom | [14](14-render-pass-hazard-atlas.md#packed-stereo-seam) - both eyes share a surface and something sampled across the seam |
 | Stereo is correct but the world still reads flat, like a screen | [09](09-d3d11-openxr-injection.md#convergence-vs-world-scale) - the eyes are parallel; shift the frustum rather than lowering world scale, which gives you a dollhouse |
 | Tracked hands articulate but the fingers over-extend or the hand is the wrong size | [02](02-viewmodels-and-hands.md#retarget-tracked-joints) - the bone map has names but no measurements of the rig it is driving |
 | The pose jumps once when a second tracker or source starts reporting | [01](01-camera-and-tracking.md#confidence-weighted-fusion) - a new source was trusted on its first frame; gate its weight on persistence |
