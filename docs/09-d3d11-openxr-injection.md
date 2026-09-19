@@ -1584,6 +1584,117 @@ assertion.
 39. Two unrelated projects, two counts in the low forties, which turns "count your own surface before
 dismissing the idea" from advice into a bracket you can plan against. `[SOURCE]`
 
+
+## Three shipped routes to same-frame stereo that are not re-entry {#native-stereo-routes}
+
+The rungs in chapter 08 treat native same-frame stereo as `R1` - re-enter the engine's render
+for the second eye. Three mods in this corpus reach it without re-entry at all, and each is worth
+knowing because which one applies is decided by the *target*, not by preference. All three claim
+"both eyes in one game frame, no AER".
+
+**Route A - the game already has a stereo path; impersonate the vendor driver that unlocks it.**
+ThiefVR ships a fake `atidxx64.dll` implementing the AMD Quad-Buffer Stereo COM interface, whose
+stated purpose is that *"AMD HD3D native games can enable their stereo render path on ANY GPU (AMD,
+NVIDIA, Intel)"*. A game that shipped 3D-TV support renders left into the top half and right into the
+bottom half of a doubled target already - the second eye is not something you create, it is something
+the game will produce if the right driver answers. `[SOURCE]` ThiefVR (GPL-2.0), Thief 2014.
+
+This is [#substitute-runtime](#substitute-runtime) against a **fourth kind of surface**. The measured
+surfaces there were OpenXR runtimes (39 and 42 entry points) and CheekyFoveatedDLSS's three shims
+against NGX, OpenVR and Streamline. A GPU vendor's stereo extension is another, and it is the one
+most likely to be sitting unused in a 2010-2015 title.
+
+**How it gets the doubled target past DXGI is the transferable part.** The swapchain back buffer stays
+at display resolution; a separate *shadow* texture at doubled height is returned from a hooked
+`IDXGISwapChain::GetBuffer`, so the game renders top-and-bottom into the shadow, and the `Present` hook
+composites from the shadow into the real back buffer. The comment says why: it *"avoids DXGI scaling
+issues that caused display bugs on NVIDIA (Hitman: Absolution, Tomb Raider 2013, GRID 2/Autosport)"*.
+**Hand the game a bigger buffer than the swapchain actually has, and reconcile at present** - that is
+how you get a game to render a doubled target without touching its render code and without fighting
+the swapchain's own scaling. Cost, stated plainly by the author: every output mode is half resolution
+per eye.
+
+**Route B - there is no stereo path, so patch the shaders into one.** KCD1VR makes CryEngine render
+both eyes per frame with no vendor path to borrow, via shader capture and rewriting
+(`ShaderCapture.cpp`, 1,455 lines). `[SOURCE]` KCD1VR (MIT), Kingdom Come: Deliverance.
+
+It carries a gotcha that will stop anyone trying this cold: **a rewritten DXBC shader is rejected until
+you recompute its container checksum**, which is *"a modified MD5"* - the project ships a 110-line
+implementation of it derived from AMD's reference. Patch the bytecode, re-sign it, then D3D will accept
+it. Budget for that before assuming shader substitution is a morning's work.
+
+**Route C - call the game's own stereo entry point directly.** DeusExHRVR's
+`using Stereo = void(__cdecl*)(float*, bool, float, float)` is the game's HD3D entry, already recorded
+in the ledger. Same family as route A - the game shipped stereo - but taken by calling the function
+rather than by impersonating the driver that would have called it.
+
+**How to tell which route your target allows, cheapest first:**
+
+1. **Did the title ship 3D Vision, HD3D or "Stereoscopic 3D" in its options?** If yes, a stereo render
+   path exists in the binary and routes A and C are live. This is a five-minute check against a 2010-2015
+   title's manual or options menu, and it is the highest-value question to ask before designing anything.
+2. **Does it load a vendor stereo DLL** (`atidxx*.dll`, `nvapi*.dll`)? A proxy is then a drop-in point.
+3. **Neither?** You are on route B or on `R1` re-entry, and route B needs the checksum work above.
+
+See [STR-018](pattern-catalog.md#str-018).
+
+
+## "It looks flat" has two knobs, and they are not the same knob {#convergence-vs-world-scale}
+
+This chapter's five-minute alignment table records one cause of a flat image: the per-eye
+offset is zero or near it. There is a second,
+where the offset is correct and the image still reads flat - the eyes are parallel, so everything
+converges at infinity and nothing is felt as *near*. The two fixes are different and mixing them up
+produces a characteristic artefact. `[SOURCE]` UVOSuit (MIT), a UEVR plugin.
+
+**Lowering world scale increases depth cues and shrinks the world.** It works, because a smaller world
+at a fixed IPD means more parallax per object - and that is exactly why it costs you: the world becomes
+a model of itself. The author's phrasing is the one to remember, because players report it in these
+words: *"an unnatural dollhouse or miniature effect"*. [12](12-torso-calculations-and-ergonomics.md#one-scale-three-users)
+already establishes world scale as one constant with three users; this is the fourth reason not to reach
+for it casually.
+
+**Convergence raises depth without touching scale.** Rotate each eye inward toward a focal point and
+near geometry gains parallax while the world keeps its size. UVOSuit's headline feature does exactly
+this inside UEVR's `on_post_calculate_stereo_view_offset`.
+
+**But there are three ways to converge and they are not equivalent.** UVOSuit ships all three, which is
+what makes it worth reading:
+
+| mechanism | what it does to the frustum | vertical parallax |
+|---|---|---|
+| **toe-in** - rotate each eye inward | rotates the whole view | **introduces it** toward the edges |
+| **optical-axis rotation** - rotate the submitted view pose | rotates the whole view | **introduces it** |
+| **frustum shift** - add the same offset to both horizontal edges | *translates* the frustum, width unchanged | none |
+
+Only the third is the off-axis construction that stereo geometry actually wants. Rotating a camera pair
+inward makes corresponding points differ *vertically* toward the frame edges, and vertical disparity is
+the one kind the visual system cannot fuse. The author's own caveat is the symptom surfacing: aggressive
+values *"can make foreground geometry feel slightly oversized"*.
+
+So: **prefer the frustum shift, and treat toe-in as a comfort-tunable of last resort** - which is how
+UVOSuit exposes it, as a user slider that eases in rather than a fixed build-time choice. In its
+`xrLocateViews` hook the distinction is visible in one line each - a scale multiplies each edge angle
+independently, a shift *adds the same value to both* - and implementing the shift by scaling is a silent
+way to change field of view when you meant to change convergence ([FAIL-STR-065](failure-atlas.md)).
+
+### Two details worth copying if you implement convergence {#convergence-implementation}
+
+**Apply the rotation in the eye's own frame, never by adding to a yaw Euler.** UVOSuit builds the
+forward and right basis vectors from the eye's pitch/yaw/roll, rotates forward toward right by the
+signed angle, and recovers Euler angles from the result - so the toe-in stays correct when the head is
+pitched or rolled. `yaw += angle` is correct only while the head is level, and fails in exactly the
+pose a player adopts to look at something near. It also clamps the forward component before `asin`,
+which is the guard [a1](a1-rotation-and-frames.md) asks for.
+
+**Ease the parameter and give it a settle threshold.** Convergence is moved toward its target by a
+fraction of the remaining distance each frame, and snapped once inside 0.005. A step change in
+convergence is a step change in perceived depth, which reads as a lurch; and without the threshold an
+eased value creeps asymptotically and never compares equal. Same division as
+[CAM-019](pattern-catalog.md#cam-019): smooth the parameter, never the pose.
+
+See [STR-019](pattern-catalog.md#str-019).
+
 ## The runtime may refuse your API version, and the loader will not say so {#api-version-negotiation}
 
 **Two projects in this fleet hit this independently, and the second did not know the first had.** It

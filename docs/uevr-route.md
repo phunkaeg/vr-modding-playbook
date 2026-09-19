@@ -110,3 +110,19 @@ and the [source-owned route](source-owned-route.md). Two consequences worth plan
 - **The UEVR mod becomes an oracle, not an architecture.** It remains the best available answer to "what
   should this feel like, and what did someone already solve?" — a feature checklist and a behavioural
   reference to diff against. Its findings stay valid even when its mechanism stops being yours.
+
+## The eye index is not a constant {#uevr-view-index}
+
+A UEVR plugin that touches per-eye state has to know which eye it is in, and the answer depends on a
+flag. UVOSuit's `on_post_calculate_stereo_view_offset` resolves it as **left = index 0 when
+`is_double`, otherwise index 1**, with right as 1 or 2 correspondingly, because the non-double path
+carries a centre view at index 0. `[SOURCE]` UVOSuit (MIT).
+
+Meanwhile its OpenXR-side hook indexes `views[0]` and `views[1]` as left and right unconditionally,
+because that array is the runtime's and has its own convention. **So one plugin holds two different
+index conventions at once**, and both are correct only because each is used against the API it came
+from. Getting either wrong swaps the eyes, which looks like a rendering bug and is a one-character fix
+you will not find by staring at the render code.
+
+Write the mapping down once, in a named helper, and never index a view array inline.
+

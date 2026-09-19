@@ -44,6 +44,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| Stereo is correct but the world still reads flat, like a screen | [09](09-d3d11-openxr-injection.md#convergence-vs-world-scale) - the eyes are parallel; shift the frustum rather than lowering world scale, which gives you a dollhouse |
 | Tracked hands articulate but the fingers over-extend or the hand is the wrong size | [02](02-viewmodels-and-hands.md#retarget-tracked-joints) - the bone map has names but no measurements of the rig it is driving |
 | The pose jumps once when a second tracker or source starts reporting | [01](01-camera-and-tracking.md#confidence-weighted-fusion) - a new source was trusted on its first frame; gate its weight on persistence |
 | Artifact appears in stereo but never appeared flat | [14](14-render-pass-hazard-atlas.md) — **infrastructure until proven content.** Check whether the suspect buffer is per-eye or a singleton before touching shader logic |
@@ -257,6 +258,7 @@ that the observation and the cause are usually in different chapters.
 
 | What you need | Go to |
 |---|---|
+| I have to produce a second eye and re-entry looks expensive | [09](09-d3d11-openxr-injection.md#native-stereo-routes) - check first whether the title shipped a 3D Vision / HD3D stereo path you can unlock instead |
 | Quaternion↔matrix, basis building, roll without gimbal, integer rotators | [A1](a1-rotation-and-frames.md) |
 | Pose snapshot, cross-thread handoff, recenter epoch, settle latch, input arbitration | [A2](a2-pose-pipeline.md) |
 | Asymmetric per-eye projection, eye-transform conjugation, the residual gate, depth linearisation | [A3](a3-stereo-projection.md) |

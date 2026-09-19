@@ -70,11 +70,11 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 28 | 21 | 46 | 16 |
+| `stereo` | 19 | 31 | 18 | 46 | 16 |
 | `xr_lifecycle` | 6 | 11 | 1 | 50 | 62 |
 | `xr_input` | 4 | 1 | 7 | 69 | 49 |
-| `camera_tracking` | 12 | 18 | 5 | 55 | 40 |
-| `render_hazards` | 5 | 13 | 5 | 30 | 77 |
+| `camera_tracking` | 12 | 19 | 4 | 55 | 40 |
+| `render_hazards` | 5 | 14 | 4 | 30 | 77 |
 | `ui_hud` | 5 | 15 | 12 | 58 | 40 |
 | `hands_interaction` | 6 | 20 | 8 | 50 | 46 |
 | `input_locomotion` | 2 | 8 | 4 | 33 | 83 |
@@ -155,7 +155,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **HIGGS 1.10.10-43930-1-10-10-1768263289** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 6 | 0 | 0 | 2026-01-13 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **IRON-NEST-VR** | external reference | Unity | managed-plugin | ? | ? | — | 14 | 0 | 1 | 2026-07-01 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
 | **JKXR** | external reference | id Tech 3 / OpenJK | source-port | — | — | 18 | 2548 | 1969 | 70 | 2026-08-23 | 🟩 current | 1F / 4P / 0S / 2NR / 6— |
-| **KCD1VR** | external reference | CryEngine (Kingdom Come: Deliverance) | native-injector | — | — | 9 | 43 | 18 | 3 | 2026-09-19 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
+| **KCD1VR** | external reference | CryEngine (Kingdom Come: Deliverance) | native-injector | — | — | 9 | 43 | 18 | 3 | 2026-09-19 | 🟩 current | 0F / 1P / 0S / 11NR / 1— |
 | **KHARVOX** | external reference | id Tech 6 (DOOM 2016) | native-injector | — | — | 10 | 486 | 345 | 15 | 2026-09-14 | 🟩 current | 0F / 7P / 1S / 5NR / 0— |
 | **KSA_XR** | external reference | Brutal (RocketWerkz) | managed-plugin | — | — | — | 19 | 8 | 3 | 2026-08-26 | 🟩 current | 1F / 2P / 1S / 0NR / 9— |
 | **l4d2vr** | external reference | Source (Left 4 Dead 2) | native-injector | — | — | — | 1546 | 1211 | 55 | 2026-09-15 | 🟥 source changed | 0F / 3P / 1S / 0NR / 9— |
@@ -218,14 +218,14 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **the-evil-within-vr-external-research** | external reference | id Tech 5 (The Evil Within) | framework-companion | — | — | 9 | 8 | 0 | 8 | 2026-08-29 | ⚪ unpinned | 1F / 0P / 1S / 9NR / 2— |
 | **thedarkmodvr** | external reference | idTech 4 (TDM) | source-port | — | — | — | 2604 | 2122 | 25 | 2026-05-22 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
 | **theHunterCotW-VR** | external reference | Apex / Avalanche (theHunter: Call of the Wild) | native-injector | T2 | R1 · native re-entry | 17 | 167 | 139 | 18 | 2026-08-30 | ⚪ unpinned | 1F / 0P / 2S / 8NR / 2— |
-| **ThiefVR** | external reference | Unreal Engine 3 (Thief 2014, 64-bit 1.7 build 4158.21) | native-injector | — | — | 9 | 28 | 14 | 7 | 2026-09-19 | 🟩 current | 0F / 0P / 3S / 9NR / 1— |
+| **ThiefVR** | external reference | Unreal Engine 3 (Thief 2014, 64-bit 1.7 build 4158.21) | native-injector | — | — | 9 | 28 | 14 | 7 | 2026-09-19 | 🟩 current | 0F / 2P / 1S / 9NR / 1— |
 | **titanfall2vr** | external reference | Respawn Source-derived (Titanfall 2) | native-injector | — | — | 17 | 216 | 172 | 11 | 2026-09-14 | 🟩 current | 0F / 4P / 2S / 7NR / 0— |
 | **TrackManiaForeverOpenXR** | external reference | TrackMania Nations/United Forever | native-injector | — | — | 9 | 22 | 13 | 4 | 2026-09-19 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
 | **TwoForksVR** | external reference | Unity | managed-plugin | — | — | — | 73 | 0 | 0 | 2022-03-18 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **UEVR** | external reference | Unreal (generic) | framework | — | — | — | 267 | 223 | 14 | 2026-08-23 | 🟩 current | 0F / 1P / 0S / 0NR / 12— |
 | **Ultraleap-UnrealPlugin** | external reference | Unreal Engine 5 (engine plugin, not a mod; UltraleapTracking 5.0.1) | engine-plugin | — | — | 1 | 716 | 121 | 4 | 2026-09-18 | 🟩 current | 0F / 3P / 2S / 7NR / 1— |
 | **unreal-gold-vr-external-research** | external reference | Unreal Engine 1 (Unreal Gold) | framework-companion | — | — | 18 | 5 | 0 | 5 | 2026-08-29 | ⚪ unpinned | 1F / 0P / 0S / 9NR / 3— |
-| **UVOSuit** | external reference | Unreal Engine (UEVR plugin, engine-agnostic within UEVR's reach) | framework-companion | — | — | 9 | 68 | 44 | 12 | 2026-09-19 | 🟩 current | 0F / 0P / 3S / 9NR / 1— |
+| **UVOSuit** | external reference | Unreal Engine (UEVR plugin, engine-agnostic within UEVR's reach) | framework-companion | — | — | 9 | 68 | 44 | 12 | 2026-09-19 | 🟩 current | 0F / 2P / 1S / 9NR / 1— |
 | **VirtualFortress2** | external reference | Source (Team Fortress 2) | source-port | — | — | — | 4606 | 3839 | 22 | 2026-08-27 | 🟩 current | 0F / 0P / 3S / 0NR / 10— |
 | **visceral-re2-vr-mod** | external reference | RE Engine (Resident Evil 2, 2019) | framework-companion | T2 | — | 2 | 14 | 5 | 5 | 2026-08-30 | 🟥 source changed | 0F / 0P / 2S / 9NR / 2— |
 | **Vostok-VR-Mod** | external reference | Godot 4 | native-injector | — | — | — | 78 | 14 | 10 | 2026-08-26 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
@@ -1431,7 +1431,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟧 skimmed | `AUTHOR` | PASS 1 CANDIDATE. REGISTERED 2026-09-19, STRUCTURE ONLY. 18 source files. The closest engine-family prior art the fleet has for prey-vr: Prey 2017 and Kingdom Come are both CryEngine. Same author as ThiefVR, so expect a shared injection skeleton - reading both together should separate what is engine-specific from what is the author's house style. |
+| `stereo` | 🟨 partial | `SOURCE` | READ 2026-09-19 (structure, plus the ShaderCapture.cpp and DxbcChecksum.cpp headers). Distilled to ch09 #native-stereo-routes as ROUTE B. It makes CryEngine render both eyes per frame with no vendor stereo path to borrow, by capturing and rewriting the game's shaders (ShaderCapture.cpp, 1,455 lines). THE GOTCHA worth the whole read: a rewritten DXBC shader is rejected until its container checksum is recomputed, and that checksum is "a modified MD5" - the project ships a 110-line implementation derived from AMD's reference. Patch the bytecode, re-sign it, then D3D accepts it. Also ships its own DLSS upscaler (1,983 lines), unread. CORRECTION to the first registration: this is 6,396 lines across src/, not 18 files - the earlier count came from a survey that missed the directory. Prey 2017 and Kingdom Come are both CryEngine and SOMAVR's hypothesis S2 is "shader-uniform camera path", so the shader route is live prior art for two projects. |
 | `xr_lifecycle` | — no entry — | — | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
@@ -2565,10 +2565,10 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟧 skimmed | `AUTHOR` | PASS 1 CANDIDATE. REGISTERED 2026-09-19, README ONLY. Claims NATIVE SAME-FRAME STEREO - 'both eyes render in one game frame. No AER' - plus asymmetric headset projections. That is a live open question on two priority projects: SOMAVR has NATIVE_STEREO_FEASIBILITY.md and hypothesis S5 'alternating cached eye renders', and SS2VR is in the same territory. EIGHTEEN source files, so the whole thing is readable in one sitting. Highest stereo value-per-file of any arrival. NOTE: Thief 2014 is Unreal Engine 3, NOT the Dark Engine of Thief 1/2 - no engine kinship with SS2VR despite the name. |
+| `stereo` | 🟨 partial | `SOURCE` | READ 2026-09-19. Distilled to ch09 #native-stereo-routes + STR-018 + FAIL-STR-064, and ch06 #armed-pair-recorder. HOW IT ACHIEVES SAME-FRAME STEREO, which was the open question: it does NOT re-enter the renderer. It ships a FAKE atidxx64.dll implementing the AMD Quad-Buffer Stereo COM interface so that, in its own words, "AMD HD3D native games can enable their stereo render path on ANY GPU (AMD, NVIDIA, Intel)". Thief 2014 shipped 3D-TV support, so the game already renders left into the top half and right into the bottom half of a doubled target - the second eye is UNLOCKED, not built. That makes this ch09 #substitute-runtime against a FOURTH kind of surface: a GPU vendor's stereo extension, beside OpenXR runtimes at 39 and 42 entry points and CheekyFoveatedDLSS's three shims. THE TRANSFERABLE TRICK: a shadow texture at doubled height is returned from a hooked IDXGISwapChain::GetBuffer while the real back buffer stays at display resolution, and Present composites down - which "avoids DXGI scaling issues that caused display bugs on NVIDIA (Hitman: Absolution, Tomb Raider 2013, GRID 2/Autosport)". Cost, stated by the author: half resolution per eye in every output mode. |
 | `xr_lifecycle` | — no entry — | — | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
-| `camera_tracking` | 🟧 skimmed | `AUTHOR` | Head-tracked gameplay with positional movement; level recentering; optional mouse/gamepad vertical-look lock on by default - the ch01 'aim pitch and view pitch are separable' axis. |
+| `camera_tracking` | 🟨 partial | `SOURCE` | READ 2026-09-19, distilled to ch06 #armed-pair-recorder. PairHistory.h is an always-armed diagnostic: a 360-slot ring of 384x192 eye pairs where "small GPU copies run while armed; mapping and disk IO happen only on F8" - the continuous cost is a downsampled GPU copy and the stall is deferred to the keypress. Each slot stores submission metadata beside the image (frame, tick, predictedTime, layers, shouldRender, swapEyes); recording the eye order WITH the pair is what makes a capture interpretable later, which is META-016 in the instrument rather than the runtime. EngineCamera.cpp gates the pair at the transport boundary - "use metadata from the scene actually selected for both eyes, never the newest pose" - downgrading the mode when eyeMask != 3, with matchedEyes/unmatchedEyes counters as the pairing ground truth. Logging cadence is frame 300, then every 1800, PLUS on demand and on state change. SharedPair.h is the x86-game/x64-companion wire format with static_assert on struct sizes so both sides fail at compile time if the ABI drifts. Also: head-tracked gameplay with positional movement, level recentering, and an optional vertical-look lock on by default. |
 | `render_hazards` | 🟥 not reviewed | `—` | — |
 | `ui_hud` | 🟥 not reviewed | `—` | — |
 | `hands_interaction` | 🟥 not reviewed | `—` | — |
@@ -2691,11 +2691,11 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟧 skimmed | `AUTHOR` | PASS 1 CANDIDATE. REGISTERED 2026-09-19, README ONLY. The single most SSR-VR-relevant arrival, and MIT so the code is usable rather than only describable. Author's description: hooks UEVR's on_post_calculate_stereo_view_offset for real physical camera CONVERGENCE, and separately intercepts xrLocateViews for asymmetric FOV, optical-centre shift and axis rotation - two distinct rendering layers. Lands directly on ch09 #symmetric-base-decomposition and the frustum-declaration law in the openxr-submission skill. 42 source files. |
+| `stereo` | 🟨 partial | `SOURCE` | READ 2026-09-19 (main.cpp, 1,051 lines). Distilled to ch09 #convergence-vs-world-scale, #convergence-implementation, STR-019, FAIL-STR-065 and uevr-route #uevr-view-index. THE FINDING: "it looks flat" has two knobs and they are not the same knob. Lowering world scale buys depth by shrinking the world - the author's own word for the result is "dollhouse". Convergence buys it without touching scale. But UVOSuit ships THREE convergence mechanisms and only one is geometrically sound: toe-in (rotate each eye, via UEVR's on_post_calculate_stereo_view_offset) and optical-axis rotation (rotate the submitted view pose, via xrLocateViews) both ROTATE, so both introduce vertical parallax toward the frame edges; optical-centre shift ADDS the same offset to both horizontal edge angles, translating the frustum without changing its width - the off-axis construction, no vertical disparity. In the xrLocateViews hook the difference is one line each (scale multiplies per edge, shift adds to both), so implementing the shift as a scale silently changes FOV instead. ApplyConvergenceMath rotates in the EYE'S OWN FRAME - builds forward/right basis vectors, rotates forward toward right, recovers Euler - rather than adding to a yaw Euler, which is correct only while the head is level; and it clamps before asin. The convergence parameter is eased toward its target with a 0.005 settle threshold, which is CAM-019's "smooth the parameter, never the pose". |
 | `xr_lifecycle` | — no entry — | — | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
-| `render_hazards` | 🟧 skimmed | `AUTHOR` | Communicates with an EXTERNAL OpenXR API layer over shared memory to draw a comfort vignette. A UEVR plugin coupled to an API layer by shared memory is an architecture the corpus has no example of; OFXR-Bridge is an API layer but stands alone. |
+| `render_hazards` | 🟨 partial | `SOURCE` | READ 2026-09-19. Talks to an EXTERNAL OpenXR API layer (VignetteLayer, 1,706 lines) over shared memory to draw a comfort vignette. A UEVR plugin coupled to an API layer this way is an architecture the corpus had no example of - OFXR-Bridge is an API layer but stands alone. The xrLocateViews hook does three distinct things in order: asymmetric FOV scaling (inner/outer named relative to the NOSE, not to screen coordinates), optical-centre shift, then optical-axis rotation by cached quaternions. Only the shift is a translation; the other two change or rotate the frustum. |
 | `ui_hud` | 🟥 not reviewed | `—` | — |
 | `hands_interaction` | 🟥 not reviewed | `—` | — |
 | `input_locomotion` | 🟥 not reviewed | `—` | — |

@@ -915,6 +915,68 @@ unchanged by that fix.
 late-latching synthetic motion separates the camera from whatever the engine attached to it by one frame
 of its movement.
 
+## STR-018 - Ask whether the game already renders two eyes before building a second one {#str-018}
+
+**Problem:** producing the second eye is treated as the hard problem of a flat-to-VR port, so the
+effort goes into re-entry, alternate-eye rendering or reconstruction - on a title that shipped a
+working stereo renderer nobody thought to look for.
+
+**Use when:** scoping any flat-to-VR port, and *before* choosing a stereo rung. A triage step, not an
+implementation.
+
+**Recipe:**
+
+- **Check the shipped options menu and manual for 3D Vision, HD3D or "Stereoscopic 3D".** Roughly
+  2010-2015 is the likely window. If it is there, a stereo render path exists in the binary.
+- **Check the import table and loaded modules for a vendor stereo DLL** (`atidxx*.dll`, `nvapi*.dll`).
+  A loaded vendor DLL is a drop-in proxy point.
+- **If a path exists, there are two ways in:** call the game's own stereo entry point, or implement the
+  vendor interface the game expects so its native path switches on. The second works on any GPU, which
+  the original vendor path did not.
+- **Expect a packed layout, not two targets.** These paths render top-and-bottom or side-by-side into
+  one doubled surface at half resolution per eye, and you unpack it.
+- **If no path exists,** you are on shader rewriting or genuine re-entry, and shader rewriting means
+  re-signing the bytecode container.
+
+**Proof:** enable the game's own stereo option, or its vendor path, and confirm that one presented
+frame contains two distinct viewpoints - a packed pair - before writing any VR code. If it does, the
+second eye is an unpacking problem rather than a rendering problem.
+
+**Trip hazard:** the vendor path is half resolution per eye by construction, so it trades the hardest
+problem for a permanent sharpness cost. Worth it when the alternative is reconstruction; worth knowing
+before you promise a resolution. `[SOURCE]` ThiefVR, KCD1VR, DeusExHRVR.
+
+## STR-019 - Converge by shifting the frustum, not by rotating the eyes {#str-019}
+
+**Problem:** the stereo is geometrically correct and the image still reads flat, because the eyes are
+parallel and everything converges at infinity. The two obvious fixes - lower the world scale, or toe
+the cameras in - each introduce an artefact harder to diagnose than the flatness was.
+
+**Use when:** the per-eye offset is verified non-zero and correct, and the complaint is still "no
+depth" or "it feels like a screen".
+
+**Recipe:**
+
+- **Do not reach for world scale.** It buys depth by shrinking the world and players report the result
+  as a dollhouse. World scale has other consumers and should be set once, from the engine's units.
+- **Shift the frustum instead: add the same offset to both horizontal edge angles.** That translates
+  the frustum without changing its width - the off-axis construction - and adds no vertical disparity.
+- **Scaling an edge angle is a different operation from shifting it.** Multiplying each edge changes
+  the field of view; adding to both moves the optical centre. Implementing one with the other is
+  silent.
+- **If you expose toe-in anyway, expose it as an eased user slider**, not a build-time constant, and
+  accept that it introduces vertical parallax toward the frame edges.
+- **Rotate in the eye's own frame** if you rotate at all: build the basis and rotate forward toward
+  right, rather than adding to a yaw Euler, which is correct only while the head is level.
+
+**Proof:** set the convergence control to its extremes and watch a high-contrast vertical edge near the
+left and right borders. A frustum shift moves that edge horizontally in both eyes; a rotation makes it
+differ *vertically* between them, and the difference grows toward the frame edge.
+
+**Trip hazard:** toe-in is the easier one to implement and it demos well in a screenshot, where
+vertical disparity is invisible. It announces itself only in a headset, over time, as eye strain rather
+than as a visible defect. `[SOURCE]` UVOSuit.
+
 ## STR-001 — Private per-eye targets {#str-001}
 
 **Problem:** the game backbuffer cannot safely serve as both engine target and

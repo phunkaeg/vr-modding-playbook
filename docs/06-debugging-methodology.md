@@ -1152,6 +1152,41 @@ purpose is a **completed experiment**; the same mechanism left running until som
 anecdote. It also makes the run comparable — the same N every time — which a session that ends when the
 tester gets tired never is. See [TEST-024](pattern-catalog.md#test-024).
 
+
+## Capture continuously and cheaply; pay for the readback only when asked {#armed-pair-recorder}
+
+The instrument that catches a per-eye problem has to be running *before* you see the problem, because
+the interesting frame is always the one that just went past. The usual objection is cost - a readback
+stalls the pipeline, so nobody leaves one armed. ThiefVR's diagnostic splits the two halves of that
+cost and keeps only the cheap one running. `[SOURCE]` ThiefVR (GPL-2.0), `PairHistory.h`.
+
+**Its shape, which transfers to any engine:**
+
+- A ring of **360 slots**, each holding both eyes of one submission at **384x192** - small enough that
+  the GPU copy is noise, long enough to hold several seconds of history.
+- *"Small GPU copies run while armed; mapping and disk IO happen only on F8."* The continuous cost is a
+  GPU-to-GPU copy of a downsampled image. The expensive part - mapping to CPU memory and writing files -
+  happens on the keypress, after the fact, for the slots you already have.
+- Each slot carries its **submission metadata**, not just the image: frame, tick, predicted display
+  time, layer count, `shouldRender`, and **`swapEyes`**. Recording the eye order *with* the pair is what
+  makes the capture interpretable later; an image pair alone cannot tell you whether it was submitted
+  swapped.
+
+That last point is [META-016](pattern-catalog.md#meta-016) in the instrument rather than the runtime:
+a slot's index tells you where it is, and only the stored metadata tells you what it holds.
+
+**Gate the pair at the boundary, and count the failures.** The same project refuses to submit a pose
+unless both eyes came from the same scene - *"use metadata from the scene actually selected for both
+eyes, never the newest pose"* - and downgrades the mode when its eye mask is not both-eyes. Alongside
+it the tracer keeps `matchedEyes` and `unmatchedEyes` as running counters, which is the pairing ground
+truth [#eye-capture-point](09-d3d11-openxr-injection.md#eye-capture-point) says the rate counters have
+to provide, because neither the wire nor the rendered images can give it.
+
+**And log on state change, not only on a schedule.** Its cadence is frame 300, then every 1800 frames,
+*plus* on demand and *plus* whenever tracking is toggled. [#flush-on-write](#flush-on-write) records
+first-N-then-heartbeat; the addition here is that a transition is itself worth a line, because the
+frames either side of a mode change are the ones you will want and a timer will not land on them.
+
 ## A checker's clean verdict must not be its no-data verdict {#empty-is-not-clean}
 
 [#metric-cannot-fail](#metric-cannot-fail) is about instruments that cannot report a fault. This is its

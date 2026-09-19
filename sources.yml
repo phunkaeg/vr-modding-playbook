@@ -2922,13 +2922,13 @@ external:
     chapter: 9
     areas:
       stereo:
-        review: skimmed
-        evidence: AUTHOR
-        note: 'PASS 1 CANDIDATE. REGISTERED 2026-09-19, README ONLY. The single most SSR-VR-relevant arrival, and MIT so the code is usable rather than only describable. Author''s description: hooks UEVR''s on_post_calculate_stereo_view_offset for real physical camera CONVERGENCE, and separately intercepts xrLocateViews for asymmetric FOV, optical-centre shift and axis rotation - two distinct rendering layers. Lands directly on ch09 #symmetric-base-decomposition and the frustum-declaration law in the openxr-submission skill. 42 source files.'
+        review: partial
+        evidence: SOURCE
+        note: 'READ 2026-09-19 (main.cpp, 1,051 lines). Distilled to ch09 #convergence-vs-world-scale, #convergence-implementation, STR-019, FAIL-STR-065 and uevr-route #uevr-view-index. THE FINDING: "it looks flat" has two knobs and they are not the same knob. Lowering world scale buys depth by shrinking the world - the author''s own word for the result is "dollhouse". Convergence buys it without touching scale. But UVOSuit ships THREE convergence mechanisms and only one is geometrically sound: toe-in (rotate each eye, via UEVR''s on_post_calculate_stereo_view_offset) and optical-axis rotation (rotate the submitted view pose, via xrLocateViews) both ROTATE, so both introduce vertical parallax toward the frame edges; optical-centre shift ADDS the same offset to both horizontal edge angles, translating the frustum without changing its width - the off-axis construction, no vertical disparity. In the xrLocateViews hook the difference is one line each (scale multiplies per edge, shift adds to both), so implementing the shift as a scale silently changes FOV instead. ApplyConvergenceMath rotates in the EYE''S OWN FRAME - builds forward/right basis vectors, rotates forward toward right, recovers Euler - rather than adding to a yaw Euler, which is correct only while the head is level; and it clamps before asin. The convergence parameter is eased toward its target with a 0.005 settle threshold, which is CAM-019''s "smooth the parameter, never the pose".'
       render_hazards:
-        review: skimmed
-        evidence: AUTHOR
-        note: Communicates with an EXTERNAL OpenXR API layer over shared memory to draw a comfort vignette. A UEVR plugin coupled to an API layer by shared memory is an architecture the corpus has no example of; OFXR-Bridge is an API layer but stands alone.
+        review: partial
+        evidence: SOURCE
+        note: 'READ 2026-09-19. Talks to an EXTERNAL OpenXR API layer (VignetteLayer, 1,706 lines) over shared memory to draw a comfort vignette. A UEVR plugin coupled to an API layer this way is an architecture the corpus had no example of - OFXR-Bridge is an API layer but stands alone. The xrLocateViews hook does three distinct things in order: asymmetric FOV scaling (inner/outer named relative to the NOSE, not to screen coordinates), optical-centre shift, then optical-axis rotation by cached quaternions. Only the shift is a translation; the other two change or rotate the frustum.'
       performance:
         review: skimmed
         evidence: AUTHOR
@@ -2965,13 +2965,13 @@ external:
     chapter: 9
     areas:
       stereo:
-        review: skimmed
-        evidence: AUTHOR
-        note: 'PASS 1 CANDIDATE. REGISTERED 2026-09-19, README ONLY. Claims NATIVE SAME-FRAME STEREO - ''both eyes render in one game frame. No AER'' - plus asymmetric headset projections. That is a live open question on two priority projects: SOMAVR has NATIVE_STEREO_FEASIBILITY.md and hypothesis S5 ''alternating cached eye renders'', and SS2VR is in the same territory. EIGHTEEN source files, so the whole thing is readable in one sitting. Highest stereo value-per-file of any arrival. NOTE: Thief 2014 is Unreal Engine 3, NOT the Dark Engine of Thief 1/2 - no engine kinship with SS2VR despite the name.'
+        review: partial
+        evidence: SOURCE
+        note: 'READ 2026-09-19. Distilled to ch09 #native-stereo-routes + STR-018 + FAIL-STR-064, and ch06 #armed-pair-recorder. HOW IT ACHIEVES SAME-FRAME STEREO, which was the open question: it does NOT re-enter the renderer. It ships a FAKE atidxx64.dll implementing the AMD Quad-Buffer Stereo COM interface so that, in its own words, "AMD HD3D native games can enable their stereo render path on ANY GPU (AMD, NVIDIA, Intel)". Thief 2014 shipped 3D-TV support, so the game already renders left into the top half and right into the bottom half of a doubled target - the second eye is UNLOCKED, not built. That makes this ch09 #substitute-runtime against a FOURTH kind of surface: a GPU vendor''s stereo extension, beside OpenXR runtimes at 39 and 42 entry points and CheekyFoveatedDLSS''s three shims. THE TRANSFERABLE TRICK: a shadow texture at doubled height is returned from a hooked IDXGISwapChain::GetBuffer while the real back buffer stays at display resolution, and Present composites down - which "avoids DXGI scaling issues that caused display bugs on NVIDIA (Hitman: Absolution, Tomb Raider 2013, GRID 2/Autosport)". Cost, stated by the author: half resolution per eye in every output mode.'
       camera_tracking:
-        review: skimmed
-        evidence: AUTHOR
-        note: Head-tracked gameplay with positional movement; level recentering; optional mouse/gamepad vertical-look lock on by default - the ch01 'aim pitch and view pitch are separable' axis.
+        review: partial
+        evidence: SOURCE
+        note: 'READ 2026-09-19, distilled to ch06 #armed-pair-recorder. PairHistory.h is an always-armed diagnostic: a 360-slot ring of 384x192 eye pairs where "small GPU copies run while armed; mapping and disk IO happen only on F8" - the continuous cost is a downsampled GPU copy and the stall is deferred to the keypress. Each slot stores submission metadata beside the image (frame, tick, predictedTime, layers, shouldRender, swapEyes); recording the eye order WITH the pair is what makes a capture interpretable later, which is META-016 in the instrument rather than the runtime. EngineCamera.cpp gates the pair at the transport boundary - "use metadata from the scene actually selected for both eyes, never the newest pose" - downgrading the mode when eyeMask != 3, with matchedEyes/unmatchedEyes counters as the pairing ground truth. Logging cadence is frame 300, then every 1800, PLUS on demand and on state change. SharedPair.h is the x86-game/x64-companion wire format with static_assert on struct sizes so both sides fail at compile time if the ABI drifts. Also: head-tracked gameplay with positional movement, level recentering, and an optional vertical-look lock on by default.'
       packaging_deploy:
         review: skimmed
         evidence: AUTHOR
@@ -3008,9 +3008,9 @@ external:
     chapter: 9
     areas:
       stereo:
-        review: skimmed
-        evidence: AUTHOR
-        note: 'PASS 1 CANDIDATE. REGISTERED 2026-09-19, STRUCTURE ONLY. 18 source files. The closest engine-family prior art the fleet has for prey-vr: Prey 2017 and Kingdom Come are both CryEngine. Same author as ThiefVR, so expect a shared injection skeleton - reading both together should separate what is engine-specific from what is the author''s house style.'
+        review: partial
+        evidence: SOURCE
+        note: 'READ 2026-09-19 (structure, plus the ShaderCapture.cpp and DxbcChecksum.cpp headers). Distilled to ch09 #native-stereo-routes as ROUTE B. It makes CryEngine render both eyes per frame with no vendor stereo path to borrow, by capturing and rewriting the game''s shaders (ShaderCapture.cpp, 1,455 lines). THE GOTCHA worth the whole read: a rewritten DXBC shader is rejected until its container checksum is recomputed, and that checksum is "a modified MD5" - the project ships a 110-line implementation derived from AMD''s reference. Patch the bytecode, re-sign it, then D3D accepts it. Also ships its own DLSS upscaler (1,983 lines), unread. CORRECTION to the first registration: this is 6,396 lines across src/, not 18 files - the earlier count came from a survey that missed the directory. Prey 2017 and Kingdom Come are both CryEngine and SOMAVR''s hypothesis S2 is "shader-uniform camera path", so the shader route is live prior art for two projects.'
       camera_tracking:
         review: not_reviewed
       hands_interaction:
