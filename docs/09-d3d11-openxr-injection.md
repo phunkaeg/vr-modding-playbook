@@ -1585,6 +1585,28 @@ assertion.
 dismissing the idea" from advice into a bracket you can plan against. `[SOURCE]`
 
 
+
+### An interposer must be at least as permissive as what it replaces {#interposer-permissiveness}
+
+Every substitute in this chapter - a fake OpenXR runtime, a vendor stereo shim, an API layer - answers
+calls that would otherwise have reached a real implementation. Matching the *signature* is the obvious
+half. Matching the **permissiveness** is the half that breaks other people's software.
+
+OFXR-Bridge answers `xrWaitFrame` itself in its presenter and pipelined modes rather than forwarding
+it. The spec allows a null `XrFrameWaitInfo`, and the runtime accepts null. A layer that validates the
+pointer strictly therefore rejects a call the real implementation would have served - and the recorded
+consequence is specific: *"Luke Ross's mods call `xrWaitFrame(session, NULL, &state)` and drop back to
+2D on the `XR_ERROR_VALIDATION_FAILURE`."* `[SOURCE]` LGPL-3.0, `openxr_layer.cpp`.
+
+Note how that failure presents. Not as an error in the layer, not in the layer's logs - as **an
+unrelated mod silently falling back to flat**, which its user will attribute to that mod. An
+interposer's validation failures are attributed to whatever it interposed on.
+
+Their guard is the right shape, and it is three lines: accept null, and check the type only when the
+pointer is non-null. **Validation you add is validation the application never agreed to.** Enumerate
+every parameter the API marks optional, and make sure each path where you answer instead of forwarding
+accepts what the real implementation would - including the calls you personally consider sloppy.
+
 ## Three shipped routes to same-frame stereo that are not re-entry {#native-stereo-routes}
 
 The rungs in chapter 08 treat native same-frame stereo as `R1` - re-enter the engine's render

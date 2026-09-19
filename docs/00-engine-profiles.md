@@ -264,8 +264,10 @@ project. See [state the interoperability basis](08-project-process.md).
 
 ## NewDark, and the transform path that moved to the GPU {#newdark-hwtl}
 
-System Shock 2 and Thief in 2026 are not the 1999 binaries: they are **NewDark**, the community engine
-patch, and that is what a mod attaches to. The table above lists the Dark source trees; this is the
+Classic System Shock 2 and Thief in 2026 are not the 1999 binaries: they are **NewDark**, the
+community engine patch.
+
+> **Read the scope before the content.** NewDark 1.29 patches the **classic** build to v2.50 - 32-bit, Dark Engine, D3D9. It is **not** the Nightdive 25th Anniversary Remaster, which is a separate x64 KEX/D3D11 product, and the 1.29 notes never mention it. **SS2VR targets the KEX remaster**, so none of the console commands or config variables below exist in its binary and `toggle_hwtl_enable` cannot be run against it. What follows is therefore an *engine-profile* fact about the classic line and a *technique* observation that transfers - not a description of SS2VR's target. A feature wanted on the remaster has to be built into the injected DLL. shock2quest sits in a third place again: it reimplements the Dark Engine, reads NewDark-era file-format extensions (its worldrep reader skips two u32 fields NewDark added) and cites NewDark behaviour as a design reference, but incorporates none of its renderer. The table above lists the Dark source trees; this is the
 layer on top of them that every current install actually runs. `[SOURCE]` NewDark 1.29 release notes
 and the HWTL variant documentation, read as shipped text.
 

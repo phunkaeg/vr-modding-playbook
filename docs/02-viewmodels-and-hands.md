@@ -1457,6 +1457,37 @@ the head and is always reachable in the same way, a skeleton-anchored zone stays
 looks around and is more honest about where the body is. **Choose deliberately and write down which**,
 because the failure looks identical either way - a zone that is hard to hit.
 
+
+## When the world refuses the motion you asked for, two things need correcting {#world-refused-the-motion}
+
+A tracked hand asks for a translation; collision grants part of it. Everyone remembers to use the
+applied value for the body. The two things that get forgotten are what makes the bug arrive *later*,
+somewhere else. `[SOURCE]` shock2quest (GPL-2.0), `vr_climb::resolve_translation`, whose whole body is
+four lines and two comments.
+
+**The reference must absorb the difference, or the rejection accumulates.** Their grab anchor is
+corrected by exactly the shortfall - `hand_world_at_grab += applied - requested` - because otherwise
+every blocked frame adds to a discrepancy between where the hand is and where the grab thinks it is.
+Nothing looks wrong while the obstruction lasts. The comment names the symptom: *"rejected tracking
+travel must not accumulate into a sudden move when the obstruction clears"* - you pull against a wall,
+step aside, and the body jumps by everything the wall absorbed ([FAIL-HAND-058](failure-atlas.md)).
+
+**The velocity history must record what happened, not what was asked.** The same function overwrites
+the most recent entry in the travel history used to compute release velocity: *"a blocked pull made no
+body momentum. Do not turn that rejected travel into a throw when the hand is deliberately opened."*
+Pull hard against a wall, let go, and without this you are launched by motion that never occurred.
+
+> **This is the third distinct answer in this chapter to "the world refused".** [#grab-depth](#grab-depth)
+> records HIGGS *softening the constraint* on contact; [#grip-design-space](#grip-design-space) records
+> VRExpansionPlugin *suppressing the late update* while colliding; this reconciles the *reference* and
+> scrubs the *velocity history*. They are not alternatives - they address different moments. The first
+> two stop the held thing fighting the world; this one stops the rejection being repaid with interest
+> after the contact ends.
+
+It applies well beyond climbing: any held object pressed into geometry, roomscale movement into a wall,
+a grabbed lever at its limit. **Wherever you ask physics for a motion and accept less, ask what still
+believes the full amount happened.** See [HAND-022](pattern-catalog.md#hand-022).
+
 ## The enumerated design space for holding an object {#grip-design-space}
 
 The table above lists the *mechanisms* this fleet has used. A mature framework's enums list the whole

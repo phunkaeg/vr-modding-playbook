@@ -1186,6 +1186,46 @@ numbered, dated and cross-referenced from the document that supersedes it - `134
 `137`, `132` by `144`, and one entry is titled simply *"two of mine to retract"*. A corpus that makes
 retraction routine is one whose surviving claims are worth more.
 
+
+## The wearer's report is an instrument, and often the only one in the right frame {#the-report-is-an-instrument}
+
+The section above ends with a stopwatch beating three purpose-built instruments. The same project
+produced three more diagnoses from *sentences*, and they are worth reading as a technique rather than
+as luck: **a wearer sits outside the process, has stereo fusion as a sensor, and can vary things your
+instrument holds constant.** `[SOURCE]` GEVR (MIT), `docs/174`, `214`, `217`.
+
+**"The aim was off to the right, the larger gun went further to the right."** That single sentence is a
+complete diagnosis, and the project's own note says why: *"a wrong CONSTANT would move a 35 cm barrel
+and a 70 cm barrel by the same amount. An error that scales with the offset's LENGTH is the offset
+being rotated by the wrong matrix."* The cause was a published matrix captured *after* a transpose, so
+the barrel offset was being rotated by the inverse.
+
+> **The generalisable move is to vary the lever arm rather than the parameter.** [02](02-viewmodels-and-hands.md)
+> already records tuning a suspect value to both extremes and concluding the *model* is wrong when both
+> fail symmetrically. This is its companion and it is cheaper: **swap to an object with a different
+> offset length. Error constant means the offset is wrong; error proportional to length means the
+> rotation is.** No instrument, one weapon swap.
+
+**"It seems to aim off the right eye."** A ray anchored at one eye reads exactly like that - correct
+from one eye, offset from the other, never correct from the middle. The per-eye pose array was being
+indexed at one eye where the head pose was wanted. A report of *which eye* a thing is correct from is a
+report about the origin of a ray, and no frame-rate or alignment counter carries it.
+
+**An accurate instrument in the wrong frame cannot answer the question.** Before any of this, the
+project measured aim extensively and learned nothing, because *"every instrument before `216` was in
+CAMERA space, and the question is about"* world space. When a new recorder finally measured in the
+right frame, **181 degrees of gun produced 14 degrees of bullet** - and one earlier group's apparent
+agreement turned out to be coincidence, the gun having been pointed at where the bullets were already
+going. **A false confirmation from a correctly-functioning instrument is the expensive kind.**
+
+**And a per-eye fix reaches only the projection types it is gated on.** Their per-eye adjustment was
+conditioned on `Projection::Type::Perspective`; the HUD is orthographic, so *"the HUD was drawn at the
+SAME PIXEL in both eyes while the 3D scene behind it was canted per eye"* - for as long as stereo had
+existed. [14](14-render-pass-hazard-atlas.md) records DeusExHRVR's version of the same rule from the
+other side, a cell lookup with no callback for one query type. **Enumerate what your hook actually
+receives; a type-gated correction silently excludes everything outside the gate.**
+See [META-018](pattern-catalog.md#meta-018).
+
 ## A force-killed process loses everything it had not flushed {#flush-on-write}
 
 Three logging disciplines from one file, all cheap, and the first explains why the other two exist.

@@ -82,6 +82,34 @@ thing anyone tries and frequently the only thing that works. It is also the chea
 corridor, three runs. `[SOURCE]` GEVR, where three purpose-built instruments failed in one night and a
 stopwatch settled it.
 
+## META-018 - Treat the wearer's sentence as a measurement, and vary the lever arm {#meta-018}
+
+**Problem:** a spatial fault is investigated with instruments that all sit inside the render or camera
+frame, while the person wearing the headset keeps describing it in words nobody converts into a test.
+
+**Use when:** aim, alignment, depth or placement is wrong and the instruments disagree, agree
+uselessly, or have nothing to say.
+
+**Recipe:**
+
+- **Write the report down verbatim** before interpreting it. "It aims off the right eye" and "the aim
+  is off" are different measurements.
+- **Vary the lever arm rather than the parameter.** Swap to an object with a different offset length:
+  a constant error means the offset is wrong, an error proportional to length means the rotation is.
+- **Treat "correct from one eye" as a statement about a ray's origin**, not about calibration.
+- **Check which frame your instrument reports in** before trusting a null result. An accurate recorder
+  in camera space cannot answer a question about world space.
+- **Enumerate what a type-gated correction excludes.** A per-eye fix conditioned on perspective
+  projection never reaches an orthographic HUD.
+
+**Proof:** convert the sentence into a prediction and test it with a swap, not a rebuild. "If this is a
+rotation error, the long barrel will be wrong by twice the short one" is falsifiable in one run.
+
+**Trip hazard:** a correctly-functioning instrument can produce a *false confirmation* - one group of
+shots agreed with the aim only because the gun happened to be pointed where the bullets already went.
+Agreement from one configuration is not evidence; agreement across a varied lever arm is.
+`[SOURCE]` GEVR.
+
 ## META-001 — Self-identifying build {#meta-001}
 
 **Problem:** a correct change appears ineffective because different bytes ran.
@@ -2973,6 +3001,34 @@ step is missing or is being read from the wrong rig.
 resolves or it does not, and when it resolves the work feels done. Every measurement above is invisible
 until an artist hands you a rig with different proportions, which is usually after you shipped.
 `[SOURCE]` Ultraleap BodyState (Apache-2.0).
+
+## HAND-022 - When physics grants less than you asked, fix the reference and the history {#hand-022}
+
+**Problem:** a tracked hand requests a translation and collision grants part of it. The body is moved
+by the applied amount, which is correct and obvious. Two other things still believe the full amount
+happened, and both pay out later.
+
+**Use when:** any tracked-hand interaction where the world can refuse motion - climbing, a held object
+pressed into geometry, roomscale movement into a wall, a lever at its limit.
+
+**Recipe:**
+
+- **Correct the grab reference by the shortfall**, `applied - requested`, every frame it is refused.
+  Otherwise the discrepancy accumulates invisibly and the body jumps by the whole of it when the
+  obstruction clears.
+- **Overwrite the most recent velocity-history entry with what actually happened.** A blocked pull
+  generated no momentum; leaving the requested travel in the history turns it into a throw on release.
+- **Keep the acquisition pose fixed.** The surface and the grip did not move - only the reference that
+  maps hand travel onto body travel needs adjusting.
+- **Decide this per grip kind.** Their ledge holds reconcile; ladder holds keep an existing
+  stretch-and-break behaviour instead.
+
+**Proof:** pull hard against a wall for several seconds, then step out of the obstruction without
+releasing - the body must not lurch. Then repeat and release while still blocked - you must not be
+thrown.
+
+**Trip hazard:** both symptoms appear *after* the contact ends, so they are attributed to the release
+or to the step, not to the frames that were quietly refused. `[SOURCE]` shock2quest.
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
