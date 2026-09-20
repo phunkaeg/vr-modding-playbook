@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="950" viewBox="0 0 1200 950" role="img" aria-labelledby="title desc">
+  <title id="title">Keep evidence categories distinct and turn reviewed findings into reusable methods</title>
+  <desc id="desc">Source inspection, static binary analysis, runtime observation and headset acceptance establish different claims, not automatic promotions. Capture one question with target identity, controls, artifacts, verdict, baseline and limits. Submit a candidate for editorial review, then update a canonical pattern, failure or bottleneck record. A failed or ambiguous experiment remains useful.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8" fill="none" stroke="#72dfd4" stroke-width="1.5"/></marker></defs>
+  <rect width="1200" height="950" rx="20" fill="#101923"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="60" y="57" font-size="18" letter-spacing="3" fill="#72dfd4">VR MODDING PLAYBOOK / 03</text>
+    <text x="60" y="118" font-size="44" font-weight="700" fill="#edf3f7">Know what the evidence actually proves.</text>
+    <text x="60" y="164" font-size="24" fill="#b2c3cf">A useful lead is not yet a target result. A runtime result is not headset acceptance.</text>
+    <g fill="#1a2935" stroke="#415564"><rect x="60" y="214" width="246" height="183" rx="12"/><rect x="338" y="214" width="246" height="183" rx="12"/><rect x="616" y="214" width="246" height="183" rx="12"/><rect x="894" y="214" width="246" height="183" rx="12"/></g>
+    <g fill="#72dfd4" font-size="24" font-weight="700"><text x="84" y="257">SOURCE</text><text x="362" y="257">STATIC</text><text x="640" y="257">LIVE</text><text x="918" y="257">HEADSET</text></g>
+    <g fill="#edf3f7" font-size="23"><text x="84" y="303">Read in source</text><text x="362" y="303">Binary analysis</text><text x="640" y="303">Runtime observation</text><text x="918" y="303">Wearer acceptance</text></g>
+    <g fill="#b2c3cf" font-size="21"><text x="84" y="345"><tspan x="84">What the inspected</tspan><tspan x="84" dy="28">implementation says.</tspan></text><text x="362" y="345"><tspan x="362">What the identified</tspan><tspan x="362" dy="28">target bytes establish.</tspan></text><text x="640" y="345"><tspan x="640">What ran—and in</tspan><tspan x="640" dy="28">which environment.</tspan></text><text x="918" y="345"><tspan x="918">What was accepted</tspan><tspan x="918" dy="28">under actual test.</tspan></text></g>
+    <text x="60" y="435" font-size="21" fill="#f2c17d">Distinct claims, not an automatic promotion ladder.</text>
+    <text x="60" y="468" font-size="20" fill="#b2c3cf">Also distinguish SPEC, AUTHOR and INFERENCE. Preserve harness vs in-game context.</text>
+    <path d="M60 500H1140" stroke="#415564"/>
+    <text x="60" y="548" font-size="30" font-weight="700" fill="#edf3f7">Make the next investigation smarter.</text>
+    <g fill="#1a2935" stroke="#415564"><rect x="60" y="583" width="330" height="250" rx="14"/><rect x="435" y="583" width="330" height="250" rx="14"/><rect x="810" y="583" width="330" height="250" rx="14"/></g>
+    <g font-size="18" letter-spacing="2" fill="#72dfd4"><text x="86" y="622">01 / CAPTURE</text><text x="461" y="622">02 / REVIEW</text><text x="836" y="622">03 / DISTILL</text></g>
+    <g fill="#edf3f7" font-size="28" font-weight="700"><text x="86" y="666">Research receipt</text><text x="461" y="666">Editorial decision</text><text x="836" y="666">Reusable method</text></g>
+    <g fill="#b2c3cf" font-size="23">
+      <text x="86" y="711"><tspan x="86">Question + target + controls</tspan><tspan x="86" dy="34">Artifacts + verdict + baseline</tspan><tspan x="86" dy="34">Limits + next useful test</tspan></text>
+      <text x="461" y="711"><tspan x="461">Inspect the original evidence</tspan><tspan x="461" dy="34">Check scope and duplicates</tspan><tspan x="461" dy="34">Accept, revise or defer</tspan></text>
+      <text x="836" y="711"><tspan x="836">Pattern or failure record</tspan><tspan x="836" dy="34">Canonical chapter update</tspan><tspan x="836" dy="34">Bottleneck exit proof</tspan></text>
+    </g>
+    <g fill="none" stroke="#72dfd4" stroke-width="2" marker-end="url(#arrow)"><path d="M394 686H429"/><path d="M769 686H804"/></g>
+    <text x="60" y="882" font-size="22" fill="#f2c17d">Submission alone never promotes a claim or clears a bottleneck.</text>
+    <text x="60" y="919" font-size="20" fill="#b2c3cf">Failed and ambiguous tests belong in the record too—with reasons and conditions for retrying.</text>
+  </g>
+</svg>

@@ -35,6 +35,7 @@ theme:
 nav:
   - Home: README.md
   - Start here:
+    - "Visual guide": visual-guide.md
     - "Start or unblock a port": start-new-port.md
     - "Fleet bottleneck map": bottleneck-map.md
     - "Copy-ready evidence templates": project-evidence-templates.md

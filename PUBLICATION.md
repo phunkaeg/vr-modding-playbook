@@ -36,6 +36,10 @@ The first checks tracked working files and non-ignored untracked candidates. The
 second checks actual staged bytes. The private policy is stored in the ignored
 `.publication-private/policy.json`; it must not be committed. Missing or malformed
 policy blocks the check. Binary/undecodable candidates require further review.
+After inspecting an image and its metadata, record its exact relative path and
+SHA-256 in the private policy's `reviewed_binary_assets` map. That approves only
+those bytes, not a file extension or folder; replacement images need fresh review.
+Filename and private-path rules still apply to approved binary assets.
 
 Even with no rule matches, the result is **REVIEW_REQUIRED** until an editor has
 reviewed that exact candidate snapshot. The policy's `approved_snapshot` must

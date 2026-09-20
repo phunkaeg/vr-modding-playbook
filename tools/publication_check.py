@@ -45,6 +45,14 @@ def load_policy(path: Path) -> dict:
         if approved is not None and (not isinstance(approved, str) or
                                      not re.fullmatch(r'[a-f0-9]{64}', approved)):
             raise ValueError('Approval must be an exact SHA-256 snapshot, or null')
+    assets = policy.get('reviewed_binary_assets', {})
+    if not isinstance(assets, dict):
+        raise ValueError('Reviewed binary assets must map exact paths to SHA-256 hashes')
+    for name, digest in assets.items():
+        if (not isinstance(name, str) or not name or name.startswith(('/', '\\'))
+                or '..' in Path(name).parts or ':' in name or '\\' in name
+                or not isinstance(digest, str) or not re.fullmatch(r'[a-f0-9]{64}', digest)):
+            raise ValueError('Invalid reviewed asset path or hash')
     return policy
 
 
@@ -91,17 +99,21 @@ def inspect(files, policy: dict) -> dict:
         digest.update(hashlib.sha256(data).digest())
         if any(rule.search(name.replace('\\', '/')) for rule in path_rules):
             findings.append({'file': name, 'rule': 'private-path'})
-        try:
-            body = data.decode('utf-8-sig')
-        except UnicodeDecodeError:
-            findings.append({'file': name, 'rule': 'unreviewed-binary-or-encoding'})
-            continue
-        if '\0' in body:
-            findings.append({'file': name, 'rule': 'unreviewed-binary-or-encoding'})
-            continue
         for rule_id, rule in content_rules:
             if rule.search(normalized(name)):
                 findings.append({'file': name, 'rule': rule_id, 'location': 'filename'})
+        reviewed_asset = policy.get('reviewed_binary_assets', {}).get(name) == hashlib.sha256(data).hexdigest()
+        try:
+            body = data.decode('utf-8-sig')
+        except UnicodeDecodeError:
+            if not reviewed_asset:
+                findings.append({'file': name, 'rule': 'unreviewed-binary-or-encoding'})
+            continue
+        if '\0' in body:
+            if not reviewed_asset:
+                findings.append({'file': name, 'rule': 'unreviewed-binary-or-encoding'})
+            continue
+        for rule_id, rule in content_rules:
             for line_no, line in enumerate(body.splitlines(), 1):
                 if rule.search(normalized(line)):
                     # No matching text: reports need paths/lines, not another leak copy.

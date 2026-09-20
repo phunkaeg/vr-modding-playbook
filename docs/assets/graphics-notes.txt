@@ -1,0 +1,40 @@
+VR MODDING PLAYBOOK — GRAPHICS
+
+playbook-hero-v2.png
+  Conceptual hero, generated with the built-in image-generation tool.
+  No referenced images or game screenshots were used.
+  A generic architectural diorama rises from a technical field manual.
+  This is a metaphor for engineering knowledge, not an automatic conversion claim.
+
+playbook-routes.svg
+  Editable diagram of reverse-engineered and source-owned integration routes.
+  Canonical sources: start-new-port.md and shared-vr-spine.md.
+
+playbook-diagnosis.svg
+  Editable symptom/discriminator/recipe/proof diagram and illustrative bottleneck chain.
+  Canonical sources: failure-atlas.md, pattern-catalog.md and bottleneck-map.md.
+  Gate states are hypothetical, not measured project status.
+
+playbook-evidence.svg
+  Editable evidence-category and receipt/review/distillation diagram.
+  Canonical sources: start-new-port.md and research-receipts.md.
+  Categories are distinct types of evidence, not an automatic promotion ladder.
+
+The SVGs are authored directly, contain accessible titles/descriptions and use no
+external fonts, scripts, trackers, linked images or dependencies. Text alternatives
+and chapter links are provided in visual-guide.md. These illustrations are covered
+by the documentation licence alongside the other documentation assets.
+
+FINAL HERO PROMPT (built-in tool, not CLI fallback)
+
+Use case: ads-marketing / stylized-concept.
+Create a new alternative GitHub hero banner for VR Modding Playbook, radically different composition from a row of monitor, book, headset props.
+Wide panoramic canvas about 2.4:1. Contemporary restrained technical editorial art, not vintage textbook styling. One striking focal point: an open dark technical field manual viewed from a slightly elevated three-quarter angle, occupying the center-right of the composition. A continuous generic geometric game environment rises from a flat drawing on its pages into a richly spatial, exploded wireframe/solid architectural diorama. The same geometry transitions from printed plan, through layered cyan outlines, into spatial depth, without separate boxed screens. Subtle paired viewing rays suggest stereo vision inside the diorama. The book is the foundation of the scene, not one object among many. No monitor, no physical headset, no floating gadget collage, no network spaghetti, no arrows connecting products.
+Background: nearly black ink/navy with enormous calm negative space on the left and a very restrained technical grid only near the diorama. Crisp pale stone geometry, translucent cyan wireframes, a very small warm amber highlight. Elegant asymmetry, strong hierarchy, clean silhouettes, realistic material light, little atmospheric glow. Sophisticated modern engineering journal cover. NOT neon cyberpunk, NOT fantasy magic, NOT a game screenshot.
+In the left negative space set exact text in crisp contemporary geometric sans-serif, not serif, substantial but not dominating the whole canvas:
+"VR MODDING"
+"PLAYBOOK"
+Below, smaller:
+"From a flat game to a proven VR integration."
+Require accurate spelling, large safe margins, no other text, no fake code or microtext on the pages.
+The image is a conceptual metaphor for research and engineering, not a claim of automatic conversion. Entirely generic geometry and unbranded objects. No recognizable game scenes, project identifiers, binary addresses, screenshots, logos, watermarks, people or characters. A single cohesive scene, not an infographic panel grid. Deliver a polished ready-to-use banner.

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc">
+  <title id="title">Route from a symptom to a discriminating test, a recipe and target proof</title>
+  <desc id="desc">The failure atlas starts from an observed symptom and supplies a cheap discriminator. The pattern catalog provides a scoped recipe and trip hazards. The developer tests the result on the target. Separately, the bottleneck map identifies the earliest uncleared dependency. The illustrated camera gate is a hypothetical example, not project status.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8" fill="none" stroke="#72dfd4" stroke-width="1.5"/></marker></defs>
+  <rect width="1200" height="850" rx="20" fill="#101923"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="60" y="57" font-size="18" letter-spacing="3" fill="#72dfd4">VR MODDING PLAYBOOK / 02</text>
+    <text x="60" y="118" font-size="44" font-weight="700" fill="#edf3f7">Start with the symptom. Find the proof.</text>
+    <text x="60" y="164" font-size="24" fill="#b2c3cf">Read one relevant route—not the whole playbook.</text>
+    <g fill="#1a2935" stroke="#415564"><rect x="60" y="220" width="246" height="285" rx="14"/><rect x="338" y="220" width="246" height="285" rx="14"/><rect x="616" y="220" width="246" height="285" rx="14"/><rect x="894" y="220" width="246" height="285" rx="14"/></g>
+    <g fill="#72dfd4" font-size="18" letter-spacing="2"><text x="84" y="258">01 / OBSERVE</text><text x="362" y="258">02 / SEPARATE</text><text x="640" y="258">03 / APPLY</text><text x="918" y="258">04 / VERIFY</text></g>
+    <g fill="#edf3f7" font-size="28" font-weight="700"><text x="84" y="309">Symptom</text><text x="362" y="309">Discriminator</text><text x="640" y="309">Recipe</text><text x="918" y="309">Target proof</text></g>
+    <g fill="#b2c3cf" font-size="23">
+      <text x="84" y="355"><tspan x="84">What looks wrong?</tspan><tspan x="84" dy="33">When does it fail?</tspan><tspan x="84" dy="33">What stays correct?</tspan></text>
+      <text x="362" y="355"><tspan x="362">Run the cheap test</tspan><tspan x="362" dy="33">that separates the</tspan><tspan x="362" dy="33">plausible causes.</tspan></text>
+      <text x="640" y="355"><tspan x="640">Use the scoped fix.</tspan><tspan x="640" dy="33">Check prerequisites</tspan><tspan x="640" dy="33">and trip hazards.</tspan></text>
+      <text x="918" y="355"><tspan x="918">Measure the result.</tspan><tspan x="918" dy="33">Check the baseline.</tspan><tspan x="918" dy="33">Record the limits.</tspan></text>
+    </g>
+    <g fill="#f2c17d" font-size="20"><text x="84" y="470">Failure atlas</text><text x="362" y="470">Fast discriminator</text><text x="640" y="470">Pattern catalog</text><text x="918" y="470">Evidence + exit test</text></g>
+    <g fill="none" stroke="#72dfd4" stroke-width="2" marker-end="url(#arrow)"><path d="M309 325H332"/><path d="M587 325H610"/><path d="M865 325H888"/></g>
+    <path d="M60 551H1140" stroke="#415564"/>
+    <text x="60" y="599" font-size="29" font-weight="700" fill="#edf3f7">Too many problems? Find the earliest uncleared gate.</text>
+    <text x="60" y="636" font-size="22" fill="#b2c3cf">The bottleneck map orders the dependencies that make later work meaningful.</text>
+    <path d="M140 710H1080" fill="none" stroke="#415564" stroke-width="2"/>
+    <g fill="#101923" stroke="#72dfd4" stroke-width="2"><circle cx="165" cy="710" r="13"/><circle cx="390" cy="710" r="13"/></g>
+    <rect x="598" y="693" width="34" height="34" rx="5" fill="#f2c17d"/>
+    <g fill="#101923" stroke="#8395a3" stroke-width="2"><circle cx="840" cy="710" r="13"/><circle cx="1065" cy="710" r="13"/></g>
+    <g text-anchor="middle" font-size="23" fill="#edf3f7"><text x="165" y="680">Baseline</text><text x="390" y="680">Frame</text><text x="615" y="680">Camera</text><text x="840" y="680">Stereo</text><text x="1065" y="680">Interaction</text></g>
+    <g text-anchor="middle" font-size="17"><text x="165" y="752" fill="#72dfd4">CLEARED</text><text x="390" y="752" fill="#72dfd4">CLEARED</text><text x="615" y="752" fill="#f2c17d">TEST NEXT</text><text x="840" y="752" fill="#b2c3cf">DEPENDENT</text><text x="1065" y="752" fill="#b2c3cf">DEPENDENT</text></g>
+    <text x="60" y="806" font-size="19" fill="#b2c3cf">Illustrative subset of the dependency chain—not a project status report.</text>
+  </g>
+</svg>

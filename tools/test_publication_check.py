@@ -1,6 +1,7 @@
 """Offline positive controls using invented project identifiers only."""
 import tempfile
 import json
+import hashlib
 from pathlib import Path
 import unittest
 
@@ -45,6 +46,30 @@ class PublicationTests(unittest.TestCase):
     def test_binary_and_null_are_not_silently_skipped(self):
         for data in (b'\xff\xfe', b'abc\0def'):
             self.assertEqual(pub.inspect([('image.png', data)], policy())['status'], 'BLOCKED')
+
+    def test_reviewed_asset_requires_exact_path_and_bytes(self):
+        data = b'\x89PNG\x00synthetic-test-fixture'
+        cfg = policy()
+        cfg['reviewed_binary_assets'] = {'art.png': hashlib.sha256(data).hexdigest()}
+        self.assertEqual(pub.inspect([('art.png', data)], cfg)['findings'], [])
+        for files in ([('renamed.png', data)], [('art.png', data+b'changed')]):
+            self.assertEqual(pub.inspect(files, cfg)['status'], 'BLOCKED')
+
+    def test_asset_approval_cannot_bypass_private_filename_or_folder(self):
+        data = b'\x89PNG\x00synthetic-test-fixture'
+        for name in ('Violet-Port.png', 'raw-notes/art.png'):
+            cfg = policy()
+            cfg['reviewed_binary_assets'] = {name: hashlib.sha256(data).hexdigest()}
+            self.assertEqual(pub.inspect([(name, data)], cfg)['status'], 'BLOCKED')
+
+    def test_bad_asset_approval_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / 'policy.json'
+            cfg = policy()
+            cfg['reviewed_binary_assets'] = {'../art.png': 'a'*64}
+            path.write_text(json.dumps(cfg))
+            with self.assertRaises(ValueError):
+                pub.load_policy(path)
 
     def test_policy_missing_malformed_or_empty_fails(self):
         with tempfile.TemporaryDirectory() as td:

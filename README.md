@@ -1,5 +1,7 @@
 <div align="center">
 
+![VR Modding Playbook: a flat level plan rises from a technical manual into a spatial wireframe world.](docs/assets/playbook-hero-v2.png)
+
 # VR Modding Playbook
 
 ### From a flat game to a proven VR integration.
@@ -9,7 +11,8 @@
 [Start a port](docs/start-new-port.md) ·
 [Diagnose a failure](docs/failure-atlas.md) ·
 [Find a recipe](docs/pattern-catalog.md) ·
-[Test the maths](reference/)
+[Test the maths](reference/) ·
+[Visual guide](docs/visual-guide.md)
 
 </div>
 
@@ -43,6 +46,8 @@ is needed to read the Markdown files.
 
 ## Two integration routes, one shared engineering core
 
+![Reverse-engineered and source-owned routes converge on shared VR engineering.](docs/assets/playbook-routes.svg)
+
 | Reverse-engineered — primary route | Source-owned | Shared VR engineering |
 |---|---|---|
 | Find and prove a seam in the shipping binary. | Integrate through code you can build and ship. | Make the whole experience coherent. |
@@ -53,6 +58,8 @@ An SDK or open-source engine ancestor may be an oracle without being the code
 you can ship. [Classify that boundary first](docs/start-new-port.md).
 
 ## What a lookup looks like
+
+![Follow a symptom through a discriminator and recipe to target proof; resolve the earliest blocker first.](docs/assets/playbook-diagnosis.svg)
 
 **Problem:** your stereo validator passes at neutral, then rejects the eyes
 when the player turns their head.
@@ -67,6 +74,8 @@ That is the intended workflow: **symptom → discriminating test → scoped reci
 → proof on your target.**
 
 ## What the evidence does — and does not — establish
+
+![Evidence categories remain distinct; receipts undergo review before becoming reusable playbook knowledge.](docs/assets/playbook-evidence.svg)
 
 A solve on one engine is a lead for another, not proof that its offsets, ABI
 or behavior transfer. Review depth and snapshot age matter as much as a promising

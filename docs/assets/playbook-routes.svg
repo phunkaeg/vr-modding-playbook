@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">Two integration routes, one shared VR engineering core</title>
+  <desc id="desc">First determine who owns the shipping camera and render loop. Reverse-engineered projects prove target identity, ownership and a reversible seam. Source-owned projects prove a matching build, explicit ownership and a controlled integration. Both feed shared work on stereo, culling, OpenXR, input, hands, UI and performance, followed by target-specific exit proofs.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#20313e" stroke-width="1"/></pattern>
+    <marker id="cyan-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8" fill="none" stroke="#72dfd4" stroke-width="1.5"/></marker>
+    <marker id="gold-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8" fill="none" stroke="#f2c17d" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="1200" height="820" rx="20" fill="#101923"/>
+  <rect width="1200" height="820" rx="20" fill="url(#grid)" opacity=".38"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="60" y="57" font-size="18" letter-spacing="3" fill="#72dfd4">VR MODDING PLAYBOOK / 01</text>
+    <text x="60" y="118" font-size="44" font-weight="700" fill="#edf3f7">Two ways in. One engineering core.</text>
+    <text x="60" y="164" font-size="24" fill="#b2c3cf">Start with ownership of the shipping camera and render loop.</text>
+    <rect x="60" y="212" width="520" height="325" rx="14" fill="#142c34" stroke="#335a63"/>
+    <rect x="620" y="212" width="520" height="325" rx="14" fill="#30291f" stroke="#685238"/>
+    <text x="88" y="252" font-size="16" letter-spacing="2" fill="#72dfd4">PRIMARY ROUTE</text>
+    <text x="88" y="293" font-size="31" font-weight="700" fill="#edf3f7">Reverse-engineered</text>
+    <text x="88" y="329" font-size="23" fill="#b2c3cf">You do not own the shipping source.</text>
+    <path d="M105 368V488" stroke="#72dfd4" stroke-width="2"/>
+    <g fill="#142c34" stroke="#72dfd4" stroke-width="2"><circle cx="105" cy="375" r="8"/><circle cx="105" cy="426" r="8"/><circle cx="105" cy="477" r="8"/></g>
+    <g font-size="23" fill="#edf3f7"><text x="130" y="383">Identify the exact target</text><text x="130" y="434">Prove owners, layout and ABI</text><text x="130" y="485">Test a reversible integration seam</text></g>
+    <text x="648" y="252" font-size="16" letter-spacing="2" fill="#f2c17d">SOURCE ROUTE</text>
+    <text x="648" y="293" font-size="31" font-weight="700" fill="#edf3f7">Source-owned</text>
+    <text x="648" y="329" font-size="23" fill="#b2c3cf">You can build and ship the owning code.</text>
+    <path d="M665 368V488" stroke="#f2c17d" stroke-width="2"/>
+    <g fill="#30291f" stroke="#f2c17d" stroke-width="2"><circle cx="665" cy="375" r="8"/><circle cx="665" cy="426" r="8"/><circle cx="665" cy="477" r="8"/></g>
+    <g font-size="23" fill="#edf3f7"><text x="690" y="383">Build a matching baseline</text><text x="690" y="434">Make ownership explicit</text><text x="690" y="485">Integrate through the source</text></g>
+    <path d="M320 537V570H540V600" fill="none" stroke="#72dfd4" stroke-width="2.5" marker-end="url(#cyan-arrow)"/>
+    <path d="M880 537V570H660V600" fill="none" stroke="#f2c17d" stroke-width="2.5" marker-end="url(#gold-arrow)"/>
+    <rect x="60" y="609" width="1080" height="133" rx="14" fill="#1a2935" stroke="#415564"/>
+    <text x="90" y="651" font-size="27" font-weight="700" fill="#edf3f7">Shared VR engineering</text>
+    <text x="90" y="687" font-size="24" fill="#b2c3cf">Poses · Stereo · Culling · OpenXR · Input · Hands · UI · Performance</text>
+    <text x="90" y="719" font-size="21" fill="#72dfd4">Close each gate with a named proof on your own target.</text>
+    <text x="60" y="785" font-size="20" fill="#b2c3cf">An SDK or engine ancestor can be an oracle without being the code you can ship.</text>
+  </g>
+</svg>
