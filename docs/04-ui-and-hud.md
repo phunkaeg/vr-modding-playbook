@@ -48,15 +48,6 @@ and asymmetric FoVs; a **quad layer** is a compositor-placed surface. Submitting
 image through a projection layer does not make it spatially correct, while a quad layer is an
 excellent honest fallback for menus, debugging, and cinema-mode presentation.
 
-**For full-screen flat menus specifically, mirror the desktop window onto a quad — and get input for
-free.** Capturing and re-laying-out a menu means rebuilding its hit-testing in VR space; mirroring the
-window means the pointer is *inside the mirrored image*, so the physical mouse works with no extra code
-and the click path is identical to the desktop by construction. (*The external
-[IL-2 1946 VR mod](15-teardown-il2-1946-vr.md) blacks out both eyes whenever a flat menu is active and
-presents the window as a world-space overlay at the window's own aspect ratio, auto-showing and
-auto-hiding on menu state. No laser pointer, no controller, no cursor injection.*) This also sidesteps
-the SS2VR trap below, where cursor injection overrode the OS mouse and the physical input path was never
-reached. Reach for the mirror before you build a pointer.
 
 Do not stretch a 16:9 UI or game source across a tall eye texture. Preserve aspect and place it
 deliberately. Crop-to-fill is useful as an A/B but changes angular scale and hides content.
@@ -73,8 +64,7 @@ actually yields, not by assuming the layer approach always wins.
 Before you can hide or move a HUD element, identify the system that owns it. Engines often have
 a table of named overlay/HUD elements with on/off state and per-element rects. Suppressing the
 wrong layer (e.g. redrawing your own lines into the same flat overlay the broken element lives
-in) just repeats the failure. (*SS2VR: drawing VR brackets through the engine's 2D overlay API
-reproduced the exact flat-HUD problem they were trying to escape.*)
+in) just repeats the failure.
 
 **Never re-invoke an immediate-mode GUI's render path just to capture its output.** Immediate-mode
 systems execute widget logic on *every* render call — layout, animation timers, dirty rects, focus — so
@@ -113,9 +103,7 @@ screen and you conclude (wrongly) that suppression failed.
 - Prove which it is: log the element's on/off state while the reticle is visible. If the
   element is *off* and the reticle is *still there*, it's a different draw.
 - Find the real draw by signature in a frame capture (vertex count + texture size + target),
-  then skip exactly that draw. (*SS2VR: the surviving centre reticle was a 6-index sprite quad
-  with a 32×32 texture in the UI pass — not the legacy crosshair slot, which was already off.
-  Skipping that specific draw killed it.*)
+  then skip exactly that draw.
 
 - *BioshockVR:* the reference/aim reticle is explicitly **not** the gameplay crosshair
   (`gameplayAimOwner=unchanged`), and the private-HDR headset source legitimately lacks the late-LDR
@@ -357,10 +345,7 @@ will fight each other for accommodation every time the player's attention moves 
   pitch offset on the pick ray (IL-2 uses `-10°`) beats forcing an uncomfortable head posture. It does
   *not* generalise to picking real world geometry — use the engine's own picker for that (below).
 - **For anything spatially placed, ship the editor.** Guessing coordinates in a config file and
-  relaunching is the most wasteful loop in VR modding. (*IL-2 1946 VR ships a self-contained three.js
-  page that previews panels in a simulated cockpit, reproduces the gaze fade, writes the INI, and pairs
-  with a hot-reload hotkey so the change applies without a restart — the mature form of SS2VR's
-  "expose the metrics as live config keys".*)
+  relaunching is the most wasteful loop in VR modding.
 - Reuse the engine's own rect data when it exists — the native HUD already knows where the
   ammo/inventory/keypad rectangles are; cropping the captured UI by those rects beats guessing
   pixel slices that break at different resolutions.
@@ -663,17 +648,13 @@ An in-world screen — a computer terminal, a handheld device, an arcade minigam
 (you hold it, you point at it) but it lives inside a different subsystem than the HUD.
 
 - **These are usually a table-dispatched immediate-mode framework; add content by detouring one slot.**
-  (*SS2VR's Game-Pig is one `int gGameCurrent` selecting parallel function-pointer tables — Init / Draw /
-  Input / Term, 13 entries each. A new "cartridge" is one `VirtualProtect` on the `.rdata` table and one
-  slot overwritten with your callback of the same ABI.*) Signature-guard the slot (skip if it isn't the
+   Signature-guard the slot (skip if it isn't the
   known RVA — fail closed on a patched binary), SEH-wrap install and every callback, and make the enable
   flag a **live** toggle that chains to the *saved original* when off, so it's an instant no-restart
   escape hatch. Leave the in-world unlock/item bit alone so the screen stays authentically diegetic.
 - **VR input to the panel is often free — but verify the *real* input path live.** The panel already
   consumes the game's abstract input, which your controller beam + cursor injection synthesize. But
-  don't assume. (*SS2VR nearly shipped assuming point-and-click; the remaster had rebuilt the minigame's
-  input as a gated mouse dispatch, and in VR the physical-mouse path is never reached because cursor
-  injection overrides the OS mouse — so only the controller beam drives it.*) Ship a belt-and-suspenders
+  don't assume.  Ship a belt-and-suspenders
   fallback with a short debounce so a click arriving via two paths collapses to one action.
 - **Ship a "smoke mode" for render-detour work you can't test outside a headset.** Because you're
   patching live engine tables, first render only a couple of static text lines to validate the riskiest

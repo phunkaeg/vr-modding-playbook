@@ -11,9 +11,9 @@ the fleet graph. See [run validity](pattern-catalog.md#meta-012) and
 
 ## Record once, submit a pointer
 
-Run from the playbook root with `requirements.txt` installed. On this machine the
-working interpreter is `C:/Users/meise/AppData/Local/Programs/Python/Python312/python.exe`;
-bare `python` may resolve to an unconfigured pyenv shim. Below, `python` means your
+Run from the playbook root with `requirements.txt` installed. Select a working
+Python 3.12 interpreter explicitly: bare `python` may resolve to an unconfigured
+pyenv shim. Below, `python` means your
 working interpreter. Choose an existing fleet ID and unique run ID.
 
 ```powershell

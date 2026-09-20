@@ -24,7 +24,6 @@ bottlenecks:
     exit_proof: AUTHORITY_MAP names the shipping route—source-owned, RE-owned, or hybrid—and names every code layer that remains closed.
     route: "[Choose the route](start-new-port.md#port-01)"
     projects:
-      ss2vr-work: {state: cleared, evidence: SOURCE, note: "Native KEX injector plus a shipped Squirrel bridge; engine source is not the delivery boundary."}
       BioshockVR: {state: cleared, evidence: STATIC, note: "Native x86 injector against a closed Vengeance build."}
       SOMAVR: {state: cleared, evidence: SOURCE, note: "Native OpenGL injector, with HPL2 source and SOMA scripts used as readable oracles."}
       PreyVR: {state: cleared, evidence: STATIC, note: "Native x64 injector; PreyDll.dll is the closed gameplay/render ownership boundary."}
@@ -44,7 +43,6 @@ bottlenecks:
     exit_proof: A fresh log alone proves which build/config entered which executable, and a vanilla control proves the launch recipe did not change the target.
     route: "[RE-03](reverse-engineered-route.md#re-03) or [SRC-01](source-owned-route.md#src-01)"
     projects:
-      ss2vr-work: {state: cleared, evidence: LIVE, note: "Self-identifying DLL/config lines retired stale-package and ignored-key false tests."}
       BioshockVR: {state: cleared, evidence: LIVE, note: "Release-tag and canonical-path handoffs are part of every runtime verdict."}
       SOMAVR: {state: cleared, evidence: LIVE, note: "Build flavor, loader path, runtime and prior-log preservation are explicit."}
       PreyVR: {state: cleared, evidence: SOURCE, note: "Build and runtime baselines plus landmark gates identify the target."}
@@ -64,7 +62,6 @@ bottlenecks:
     exit_proof: One named callback owns gameplay frames with understood menu/loading/device-reset behavior; a control proves the hook is not observing a launcher or secondary swapchain.
     route: "[RE-04](reverse-engineered-route.md#re-04) or [SRC-02](source-owned-route.md#src-02)"
     projects:
-      ss2vr-work: {state: cleared, evidence: LIVE, note: "KEX render and D3D11 ownership are established."}
       BioshockVR: {state: cleared, evidence: LIVE, note: "D3D11/private-HDR frame ownership is sustained and logged."}
       SOMAVR: {state: cleared, evidence: LIVE, note: "OpenGL context, SwapBuffers and HPL render-stage ownership are live-mapped."}
       PreyVR: {state: cleared, evidence: LIVE, note: "EndRendererScene, live swapchain/device and renderer singleton are reproduced."}
@@ -84,7 +81,6 @@ bottlenecks:
     exit_proof: CAMERA_FINDINGS or RENDER_OWNERSHIP_MAP names the render, game/body, cull, scripted, viewmodel and secondary-view authorities, including invalidation conditions.
     route: "[RE-05/06](reverse-engineered-route.md#re-05) or [SRC-02](source-owned-route.md#src-02)"
     projects:
-      ss2vr-work: {state: cleared, evidence: HEADSET, note: "KEX render/cull camera and Dark gameplay consumers are separated; remaining work is feature-level coverage."}
       BioshockVR: {state: cleared, evidence: HEADSET, note: "Player scene-node camera, transient per-eye matrices and foreground ownership are mapped."}
       SOMAVR: {state: cleared, evidence: HEADSET, note: "Player versus authored/secondary HPL frusta are classified and yielded to by state."}
       PreyVR: {state: open, evidence: LIVE, note: "Authorities now separated live rather than statically: ArkPlayerCamera::UpdateView (R-009) is the upstream source, CRenderView::SetCamera copies by value and sits downstream of culling, and the cull frustum was measured following the aim ray rather than the view. Viewmodel authority traced to limb-IK targets (R-077/R-078); its producer is unnamed. Open until every authority and its invalidation conditions are recorded."}
@@ -104,7 +100,6 @@ bottlenecks:
     exit_proof: STEREO_ROUTE.md records the selected rung, rejected higher rungs, camera delivery method, cost, rollback, and an exit test that distinguishes camera change from repeated side effects.
     route: "[RE-09](reverse-engineered-route.md#re-09), then [PORT-07](shared-vr-spine.md#port-07)"
     projects:
-      ss2vr-work: {state: cleared, evidence: HEADSET, note: "Private per-eye targets with alternate-eye fills remain the shipping route. The isolated native route now has a controlled OpenXR transport proof; its current boundary and next gate are linked from kex-dark-native-stereo.md."}
       BioshockVR: {state: cleared, evidence: HEADSET, note: "Per-draw private-eye replay is proven; rung-1 reflection/mirror re-entry remains optional research."}
       SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR is the selected route around expensive/side-effectful HPL re-entry."}
       PreyVR: {state: cleared, evidence: HEADSET, note: "STEREO_ROUTE.md records the ladder, the rejected higher rungs, camera delivery, rollback and the A5 side-effect exit test. Rung 3 with native projection passed and stereo was confirmed in headset 2026-09-02 with depth and scale judged correct. Rung 1 cost remains unmeasured, but that is a rejected rung, not the selected one."}
@@ -124,7 +119,6 @@ bottlenecks:
     exit_proof: The zero-delta control stays at the measured noise floor and a side-effect ledger proves which work runs once per frame, once per view, or is snapshot/restored.
     route: "[RE-09 side-effect gate](reverse-engineered-route.md#the-three-capture-side-effect-gate)"
     projects:
-      ss2vr-work: {state: cleared, evidence: LIVE, note: "The shipping per-draw/AFR route avoids full simulation re-entry. Isolated native traversal ownership and remaining scene-admission limits have separate evidence in kex-dark-native-stereo.md; shipping clearance does not clear every native scene."}
       BioshockVR: {state: cleared, evidence: LIVE, note: "Private-eye replay is scoped to eligible rendering work; pair authority and fallbacks are explicit."}
       SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR deliberately avoids same-frame scene re-entry and banks temporal histories per eye."}
       PreyVR: {state: active, evidence: STATIC, note: "Dormant rather than solved: the selected route is alternate-eye, which never runs RenderWorld twice, so the once-per-frame side-effect class is not currently exercised and nothing about it has been proven. It returns in full the moment native scene re-entry is attempted."}
@@ -144,7 +138,6 @@ bottlenecks:
     exit_proof: Both known-color and game-image transport pass; adapter LUID, API binding, format, synchronization, and recovery behavior are logged.
     route: "[PORT-08](shared-vr-spine.md#port-08) and [graphics API routes](10-graphics-apis.md)"
     projects:
-      ss2vr-work: {state: cleared, evidence: HEADSET, note: "D3D11 OpenXR transport and recovery are shipping in AFR. The isolated native bridge has simulator transport, tracked motion and moved-frame recovery proof, not headset acceptance; see kex-dark-native-stereo.md."}
       BioshockVR: {state: cleared, evidence: HEADSET, note: "D3D11 private-HDR to OpenXR projection submission is sustained."}
       SOMAVR: {state: cleared, evidence: HEADSET, note: "OpenGL OpenXR handoff is proven; transfer cost remains a performance lane."}
       PreyVR: {state: cleared, evidence: HEADSET, note: "Game-image transport passes: per-eye images reach the runtime through an owned texture-array swapchain and were seen correctly in headset. Adapter LUID is resolved and matched to a DXGI index, swapchain format is chosen and logged (28->29 fixed double-encoded gamma, FAIL-STR-033), and the per-eye pose/FOV contract is stored with the pixels it describes (FAIL-STR-044)."}
@@ -164,7 +157,6 @@ bottlenecks:
     exit_proof: RENDER_PASS_CENSUS states once/per-eye/disabled policy for every material class and a device capture proves the intended workload and resource identities.
     route: "[PORT-09](shared-vr-spine.md#port-09) and [render hazard atlas](14-render-pass-hazard-atlas.md)"
     projects:
-      ss2vr-work: {state: open, evidence: HEADSET, note: "Core stereo/culling are proven; reflections, portals, viewmodels and effects remain ownership-sensitive feature lanes."}
       BioshockVR: {state: active, evidence: LIVE, note: "Mono screen-space shadow/light/fog producer resources remain the dominant visual defect after geometry stereo."}
       SOMAVR: {state: active, evidence: LIVE, note: "Refraction/post-effect ownership, occlusion identities and OpenGL transfer timing are current T3 refinement lanes."}
       PreyVR: {state: risk, note: "The shipping route is alternate-eye, so per-eye render state is one engine frame per eye rather than two passes sharing state; deferred CryEngine companions remain unexercised by a second pass. One per-eye hazard is confirmed: motion blur read as a focus artifact on near objects and had to be disabled."}
@@ -184,7 +176,6 @@ bottlenecks:
     exit_proof: One immutable per-frame pose packet drives all declared consumers, and stale/focus-loss paths neutralize or hold according to a documented policy.
     route: "[PORT-06](shared-vr-spine.md#port-06) and [A2](a2-pose-pipeline.md)"
     projects:
-      ss2vr-work: {state: cleared, evidence: HEADSET, note: "AFR pair latching, render/game pose separation and recenter ownership are implemented."}
       BioshockVR: {state: cleared, evidence: HEADSET, note: "Pair authority and shared recenter/height baselines are explicit; feature consumers still require regression tests."}
       SOMAVR: {state: cleared, evidence: HEADSET, note: "AFR history banking, pose latch, authored-state transitions and recenter generations are live."}
       PreyVR: {state: active, evidence: HEADSET, note: "Corrected -- a live eye pair exists and is stable. Eye identity travels on a lock-free ring (ordered) while poses use a latest-wins seqlock, and the per-eye pose/FOV contract is stored with its pixels. Positional 6DoF is built but has never run in a headset, so pose ownership is not yet proven end to end."}
@@ -204,7 +195,6 @@ bottlenecks:
     exit_proof: INPUT_OWNERSHIP maps every action to one press owner, one release owner, one native endpoint and one neutralization policy.
     route: "[PORT-10](shared-vr-spine.md#port-10)"
     projects:
-      ss2vr-work: {state: cleared, evidence: HEADSET, note: "Squirrel verbs/native gameplay systems own locomotion and interactions; coverage continues feature by feature."}
       BioshockVR: {state: open, evidence: LIVE, note: "XInput/native camera and weapon endpoints are mapped; body-yaw snap turn and some action ownership remain active work."}
       SOMAVR: {state: cleared, evidence: HEADSET, note: "Native analog mover, action routes, focus-loss release and haptic bridge are working."}
       PreyVR: {state: open, evidence: LIVE, note: "Aim is confirmed detached live: a motion controller drives the native reticle ray and interaction endpoint, with the crosshair following it. Locomotion route resolved -- gEnv->pInput at gEnv+0x58 from our own verified accessor table, with the PostInputEvent vtable index measured by a setter/getter alignment probe rather than guessed. Action-family ownership and projectile proof remain."}
@@ -224,7 +214,6 @@ bottlenecks:
     exit_proof: VR_UI_MATRIX and mechanic checklist cover progression, cutscenes, loading, death, handedness, interaction ranges and controller loss at the declared completeness tier.
     route: "[PORT-11](shared-vr-spine.md#port-11)"
     projects:
-      ss2vr-work: {state: active, evidence: HEADSET, note: "T3 feature completion now concentrates on frob coverage, weapon/assets, gravity glove, wrist HUD and physical interactions."}
       BioshockVR: {state: active, evidence: LIVE, note: "Viewmodel/arm ownership, native AimIK lifecycle and late-LDR HUD capture remain incomplete."}
       SOMAVR: {state: open, evidence: HEADSET, note: "Hands, HUD layers, subtitles and interaction lanes work; effect/state coverage continues."}
       PreyVR: {state: active, evidence: LIVE, note: "2026-09-10 receipts advance native HUD extraction and correct pose-slice ownership in-game with xr-sim; authored weapon basis and aim-dependent hand anchor require separate validation. Missing UI-card pixels were refuted by saved captures. Pointer receiver/mode work is STATIC, not live UI acceptance; no fleet-wide feature/headset clearance."}
@@ -244,7 +233,6 @@ bottlenecks:
     exit_proof: PERFORMANCE_BASELINE identifies the dominant metric and a preregistered A/B moves that metric without changing workload or image validity.
     route: "[PORT-12](shared-vr-spine.md#port-12) and [PERF-002](pattern-catalog.md#perf-002)"
     projects:
-      ss2vr-work: {state: open, evidence: LIVE, note: "Performance telemetry exists; debugger/logging distortion and fresh-frame cadence remain recurring acceptance concerns."}
       BioshockVR: {state: active, evidence: LIVE, note: "Two eye renders plus a desktop world render dominate; reusable buffers help, but eliminating the third world render is the architectural lever. KSA_XR independently corroborates the knowingly inefficient three-frame problem on Vulkan; Scrap Mechanic demonstrates the worked D3D11 answer by mirroring the finished left eye with one three-vertex fullscreen draw."}
       SOMAVR: {state: active, evidence: LIVE, note: "OpenGL-to-XR handoff cost, occlusion/query behavior and thermally valid device timing are being priced."}
       PreyVR: {state: risk, note: "First real numbers exist: the naive per-eye path ran about 11Hz and the eye handoff took it to about 45Hz, judged comfortable in headset. Native scene re-entry cost is still unknown and no frame budget has been attributed by pass."}
@@ -264,7 +252,6 @@ bottlenecks:
     exit_proof: Known builds are signature/hash guarded, unknown builds fail closed, install/uninstall are recoverable, dependencies and anti-cheat boundaries are explicit, and logs self-identify.
     route: "[PORT-13](shared-vr-spine.md#port-13)"
     projects:
-      ss2vr-work: {state: cleared, evidence: SOURCE, note: "Packaging and self-identification are mature; each new feature still needs rollback/default validation."}
       BioshockVR: {state: open, evidence: SOURCE, note: "Canonical package path and guards exist; runtime/implicit-layer/startup variability remains a support surface."}
       SOMAVR: {state: cleared, evidence: SOURCE, note: "OpenXR/non-OpenXR build flavors, loader locality and runtime recovery are explicit."}
       PreyVR: {state: risk, note: "Landmark gates fail closed but pin exactly one build: seven Steam/EGS function pairs show five distinct RVA deltas spanning 0x1590, so no arithmetic translation between storefront builds exists. A shippable install contract must detect the variant rather than assume one -- see RE-010."}
@@ -276,13 +263,6 @@ bottlenecks:
       Medal-of-Honor-vr: {state: open, evidence: SOURCE, note: "A source port ships a replacement executable, so packaging must carry GPL obligations and the fork maintenance contract; the fork remote does not exist on GitHub yet."}
 
 project_focus:
-  - project: ss2vr-work
-    stage: T3 adaptation and regression
-    primary: [BN-UI-001]
-    current_question: Which remaining interactions, weapon assets, wrist surfaces and physical mechanics fail the declared T3 coverage matrix?
-    next_proof: Run the ordered headset regressions for frob coverage, weapon alignment, gravity glove, hazard UI, reload, two-hand grip and wall collision.
-    source: "D:/Dev Debug/ss2vr-work/docs/CURRENT_STATE.md"
-
   - project: BioshockVR
     stage: T3 render/adaptation refinement
     primary: [BN-RND-001, BN-UI-001, BN-PERF-001]

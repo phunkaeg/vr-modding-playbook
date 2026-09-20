@@ -5,7 +5,7 @@ page points at the *raw working* in whichever project actually did it, so you ca
 the numbers, and what they tried first.
 
 If you are an agent on one of these projects: the other projects' `docs/` folders are readable. Nothing
-here is secret, and several of these questions have already cost someone a week.
+here authorizes publication of private project documents. Follow the owning project's disclosure rules.
 
 This index answers **who has useful working**. The generated
 [fleet bottleneck map](bottleneck-map.md) answers **which missing capability is
@@ -37,7 +37,6 @@ the chapters carry the distilled rule, these carry the working. Distilled in
 | **fear-vr** | LithTech, native injector | **Native stereo done from source.** The definition (world twice, everything else once), the side-effect gate, the smallest-safe-hook argument, the CRT ABI wall |
 | **cyberpunk-vr-port** | REDengine 4 / D3D12 | 80+ RE docs. Second view via engine registration, the four shared structures, off-axis lens coverage, and the best negative-result discipline anywhere |
 | **witcher3-vr** | REDengine 3 / D3D12 | Canted displays, optical-centre offset for asymmetric frusta, shadow-cascade authority, per-eye temporal history, script-mod-as-state-bridge |
-| **shock2quest** | Dark engine **recreation** (Rust) | **A live oracle for Dark formats** — `dark/` crate: gamesys, params, sound_schema, speech_db, mesh/skeleton importers, hitboxes. Directly relevant to SS2VR |
 | **Halo-MCC-VR** | Blam/Saber, 3 games in one mod | Multi-title runtime ownership, the success-and-failure-in-one-log method, antivirus/release checklist, per-context calibration |
 | **anvilengine2vr** | AnvilNext 2.0 / DXGI | `worldMatrixOverride` — an override the engine already honours. Sibling-port guide with published pseudocode |
 | **CallOfDuty4_VR** | IW source port | Deployment engineering: 32-bit OpenXR registration, preflight vs live receipt, refuse-don't-guess installers |
@@ -95,7 +94,6 @@ it does **not** claim those project code changes have been made.
 | New reusable result | Canonical home | First in-house use |
 |---|---|---|
 | Claim ID + baseline + artifacts + decision rule; promote only that claim | [META-010](pattern-catalog.md#meta-010), [06](06-debugging-methodology.md#claim-scoped-promotion) | Every project experiment and evidence ledger |
-| Pixels, depth, pose, FOV and resource generation publish atomically | [STR-002](pattern-catalog.md#str-002) | **FarCry2-VR native pair**, then SS2VR/SOMAVR asynchronous pair audits |
 | Semantic image epoch outranks COM pointer or shader identity | [STR-004](pattern-catalog.md#str-004) | FarCry2-VR capture seam; BioshockVR/DishonoredVR replay correspondence |
 | Observer-only denominator before force-pass or duplication | [06](06-debugging-methodology.md#observer-before-intervention) | FarCry2-VR M3/culling probes; Swat4-VR side-effect controls |
 | Submitted-buffer oracle plus inverse-depth disparity | [FAIL-STR-001](failure-atlas.md) | Objective stereo acceptance across the fleet |
@@ -126,7 +124,6 @@ their own binaries. **Check here before starting that investigation.**
 
 | Project | Camera arrives as | World-render re-entrancy | State |
 |---|---|---|---|
-| **SS2VR** | **Parameter plus globals (STATIC)** — traversal0x45C470, native backend0x32C480 | **LIVE owned eye products through v3.93:** same-frame native pairs, independent2560x1440 targets, same-camera and displaced doorway controls,600 centered frames and bounded recovery | [KEX / Dark method and evidence limits](kex-dark-native-stereo.md). Each eye owns world cells and complete admitted MD/MM scene slices; deferred scratch queues are reset separately from retained arenas. Current published basis and shared shader origin both need correct ownership. Particle/sorted lanes and arbitrary optics remain open. Native XR has its own transport/HMD evidence boundary; see the linked current project receipt. |
 | **PreyVR** | **Parameter** — `CreateGeneralPassRenderingInfo(const CCamera&,…)` @ `0x1E5B30`; `CRenderView::SetCamera` copies **by value** | `C3DEngine::RenderWorld` @ `0x21F520`, zero direct xrefs — all virtual dispatch, `IProcess` idx 3, vtable `+0x18` | **H-009: preconditions met, viability not established.** Nothing called yet |
 | **FarCry2-VR** | **Global** — must borrow and restore | `WorldExec` @ `0x342360` — 37 pass dispatches, **no simulation** | M3 Q1 live: 3,521 prepare+execute replays, 1.915× draws, animator 1.0×. Camera delivery, zero-delta control and capture/publication remain open |
 | **SOMAVR** | **Parameter** — `iRenderer::Render(…, cFrustum* apFrustum, …)`, `mpCurrentFrustum` assigned from the argument every call | unresolved | **But their own AFR path mutates the frustum in place** — F-19 and F-20 are that defect family, self-inflicted |
@@ -137,11 +134,6 @@ their own binaries. **Check here before starting that investigation.**
 | **SoF-VR** | **Parameter** — `refdef_t*` passed to the `RenderFrame` export (slot 16); the renderer copies 33 dwords out of it into `r_newrefdef` on entry | **Structurally free** — `RenderFrame` is the whole world render and the proxy owns the call site, so "render twice" is calling the export twice | Layout confirmed live 2026-09-04: `fov_y` residual 0.0000 vs `CalcFov`, prefix shift +1. Nothing written yet; M3 is the first reversible mutation |
 | **Sims4VR** | **Parameter** — a per-draw constant-buffer write (`cbuffer0`): the same object in the same frame receives two different view-projections, so the delivery is copy-by-value and the borrow/restore/freeze-observers family does not apply | **Structurally present, not independently controllable** — world geometry is traversed three times per frame (depth prepass, 2048x6144 shadow atlas, main view) with three matrices, but every second traversal found so far shares the main camera's basis | Rung 1 selected by evidence, rung 2 declared fallback; nothing exercised. Cost unmeasured, and the main path is 8x MSAA so a per-eye render inherits a resolve |
 
-**The cheapest unanswered check for the last three:** find a repeat world-render the engine *already*
-performs — cubemap/reflection probes, portals, mirrors, security monitors, render-to-texture. Verify
-that it reaches actual GPU scene draws: SS2VR's earlier six-call interpretation was lighting visibility,
-not complete rendering ([AE boundary receipts](<D:/Dev Debug/ss2vr-native-stereo/docs/NATIVE_STEREO_INVESTIGATION.md>)).
-Even an existing GPU repeat render can be a **reduced** pass set — *proof, not vehicle*.
 
 ## Per-eye alignment — solved, do not re-derive
 
@@ -170,14 +162,12 @@ The two findings worth knowing before you touch anything:
 | `D3DPOOL_MANAGED` falsifies the shared-surface route | Swat4-VR | `docs/` R1 battery |
 | **D3D10 → OpenXR** via DXGI shared surface | FarCry2-VR | `docs/engine/D3D9_OPENXR_NOTES.md` |
 | **OpenGL → OpenXR**, incl. depth-layer negotiation and unit conversion | SOMAVR | `docs/HPL_OPENGL_NOTES.md`, `BUILD_HISTORY.md` |
-| **D3D11 → OpenXR**, the reference path | SS2VR, BioshockVR | see [09](09-d3d11-openxr-injection.md) |
 | GL renderer borrowing D3D11's XR path (`WGL_NV_DX_interop2`) | *external: thedarkmodvr* | `renderer/vr/D3D11Helper.cpp` |
 
 ## Stereo architecture
 
 | Question | Answered by | Where |
 |---|---|---|
-| Alternate-eye (AFR): coherence, pair latching, eye-lag root cause | SS2VR | `docs/UEVR_STEREO_LESSONS.md`, `VR_LATENCY_RECOVERY_PLAN.md` |
 | Per-eye temporal history banks under AFR (the fix pattern) | SOMAVR | `docs/BUILD_HISTORY.md` (0.5.x) |
 | Atomic pixels + depth + render pose/FOV/contract publication across keyed-mutex transport | *external: MonsterDeadWood C2VR* | `C2VR/research/POSEPAIR_PACKET_ATOMICITY_PACING_20260824.md`, donor `t1_proxy.cpp` |
 | One resource reused serially for L/R: semantic phase and generation outrank pointer identity | *external: MonsterDeadWood BF3VR* | `BF3VR/docs/STATE.md` |
@@ -198,13 +188,11 @@ The two findings worth knowing before you touch anything:
 
 | Question | Answered by | Where |
 |---|---|---|
-| Cull-camera ownership; the FOV lever | SS2VR; *Halo-MCC-VR* | `docs/CULLING_FRUSTUM.md` |
 | Authored-camera yielding (20 player states, 3 detection signals) | SOMAVR | `docs/AUTHORED_STATES_AND_VISIBLE_HANDS_RE.md` |
 | Reference-space first-pose settling latch | SOMAVR | `docs/BUILD_HISTORY.md` (0.5.10-poselatch) |
 | Side-only binocular cull union: preserve depth planes, widen lateral planes | *external: MonsterDeadWood FC2VR* | `FC2VR/research/FRUSTUM_PLANE_CLASS_MAP_20260824.md` — method transfers; offsets do not |
 | One recenter event across all lanes | BioshockVR | `docs/DECISION_LOG.md` |
 | Unified tracking space as the root cause of *panel* drift (not view drift) | *external: IL-2 1946 VR* | [15](15-teardown-il2-1946-vr.md) |
-| Roomscale crouch double-drop | SS2VR | `docs/ROOMSCALE_CROUCH_RESEARCH.md` |
 | **Mechanic triage before building** (roll / up-vector / possession) | PreyVR, DishonoredVR | `PreyVR/docs/VR_MECHANICS_RISK.md`, `DishonoredVR/docs/research/09-vr-mechanic-risk-2026-08-03.md` |
 
 ## Input & interaction
@@ -216,19 +204,14 @@ The two findings worth knowing before you touch anything:
 | XInput bridge as the working route | BioshockVR | `docs/BUILD_HISTORY.md` |
 | Engine's own normalised axis/button funnel *above* XInput | FarCry2-VR | `docs/RE_FINDINGS.md` (DR-7) |
 | Console `Exec` / `SET <class> <prop>` as a property-drive seam | Swat4-VR | `docs/ENGINE_NOTES_SWAT4.md` |
-| Frob/pick: copy the engine's model, don't invent one | SS2VR | `docs/FROB_TARGET_LIBRARY.md`, `INTERACTION_SQUIRREL_REPORT.md` |
-| Grab / throw / gravity-glove / holsters | SS2VR | `docs/SQUIRREL_WORLD_PHYSICS.md`, `VR_BODY_HOLSTERS.md` |
-| Physical melee, parry, block | SS2VR | `docs/MELEE_DAMAGE_RE.md`, `MELEE_VR_SPEC.md` |
 
 ## Viewmodels, hands, weapons
 
 | Question | Answered by | Where |
 |---|---|---|
 | Grip pose vs aim pose; one trim one algebra | BioshockVR | `docs/DECISION_LOG.md` |
-| Native skeleton/IK vs pre-skinned verts | BioshockVR, SS2VR | `docs/` |
 | Authored mount offset composition order | BioshockVR | `docs/BUILD_HISTORY.md` (0.3.18x) |
 | Bone-chain twist distribution (skinning crease) | SOMAVR | `docs/FUTURE_SYSTEMS_RE.md` |
-| Weapon mesh pipeline, vhots, LGMD | SS2VR | `docs/VR_WEAPON_MESH_PIPELINE.md`, `WEAPON_MODEL_SPEC.md` |
 
 ## Reverse engineering & tooling
 
@@ -243,7 +226,6 @@ The two findings worth knowing before you touch anything:
 | x64 REX-prefix signature drift | SOMAVR, PreyVR | `SOMAVR/docs/BUILD_HISTORY.md`, `PreyVR/docs/ADDRESS_REGISTRY.md` |
 | Ghidra annotation loss on re-analysis | PreyVR | `docs/GHIDRA_SYNC.md` |
 | Frame inspector as a RenderDoc replacement | FarCry2-VR | `docs/RE_FINDINGS.md` |
-| Live probing over static RE (four recipes failed) | SS2VR | `docs/FAILURE_REGISTRY.md` |
 | Hardware execution breakpoint resumes only after `EFLAGS.RF`; `DR6` clear is insufficient | *external: MonsterDeadWood DiRT2VR* | `DiRT2VR/docs/results/REENTRY_CONTRACT_RF_FIX_20260827_031450_032351.md` |
 | Start at a known GPU consumer, capture the first-consuming-draw stack, then rank recurring RVAs | *external: MonsterDeadWood DiRT2VR* | `DiRT2VR/docs/results/CB400_BIND_ISOLATOR_20260827_141903.md` |
 | Promote registry/RTTI candidates only after direct graphics-API activity proves runtime ownership | *external: MonsterDeadWood TimeShiftVR* | `TimeShiftVR/docs/STATE.md` |
@@ -270,7 +252,6 @@ The two findings worth knowing before you touch anything:
 Every project keeps one. They are the highest lesson-density documents in the fleet, and they are the
 first thing to search when something smells familiar.
 
-- `ss2vr-work\docs\FAILURE_REGISTRY.md`
 - `BioshockVR\docs\FAILURE_REGISTRY.md`
 - `Swat4-VR\docs\FAILURE_REGISTRY.md`
 - `FarCry2-vr\docs\FAILURE_REGISTRY.md`

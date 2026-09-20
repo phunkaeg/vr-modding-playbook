@@ -2,7 +2,6 @@
 
 | Project | Status | Game | Engine | Integration authority | Graphics API | Bits | Tier achieved | Tier target | Stereo route | Docs |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **SS2VR** | active mod | System Shock 2 Remastered | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | `D:\Dev Debug\ss2vr-work\docs\` |
 | **BioShockVR** | active mod | BioShock Remastered | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | `D:\Dev Debug\BioshockVR\docs\` |
 | **SOMAVR** | active mod | SOMA | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | `D:\Dev Debug\SOMAVR\docs\` |
 | **PreyVR** | active mod | Prey (2017) | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | `D:\Dev Debug\PreyVR\docs\` |

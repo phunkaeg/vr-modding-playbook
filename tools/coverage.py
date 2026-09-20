@@ -51,7 +51,7 @@ SKIP_DIRS = {
     # Scratch and log directories. The fingerprint below includes st_mtime_ns,
     # so a directory a project rewrites while it works makes the ledger stale on
     # every run and `verify.py` unpassable for anyone whose sibling happens to be
-    # building. Measured: ss2vr-work/tmp/executor-*.ps1 changed between two
+    # building. Measured: a project's tmp/executor-*.ps1 changed between two
     # consecutive coverage runs three seconds apart, while its git tree was
     # stable - so the failure had nothing to do with the change under test.
     "tmp", "temp", ".tmp", "logs", ".cache",

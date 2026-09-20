@@ -1,9 +1,5 @@
 # Project Process
 
-A flat-to-VR conversion is a long, mostly-blind reverse-engineering grind with a slow test
-loop (build → package → inject → put on headset → observe → take off headset). The process
-scaffolding below is what kept SS2VR moving instead of going in circles. It generalizes to any
-hardware-in-the-loop modding project.
 
 ## The documentation system that worked
 
@@ -14,13 +10,9 @@ A layered doc set, so each session starts with context instead of re-deriving it
   load at the top of every session.
 - **BUILD_HISTORY** — every build's hashes, what changed, and the handoff notes. The hash log
   is what lets you prove (later) which build produced which result.
-- **FAILURE_REGISTRY** — "do not repeat." Every dead end, *why* it was a dead end, and the rule
-  it produced. This is the highest-value doc; it stops you re-walking paths. (SS2VR's had 80+
-  entries — most of this whole VR-modding guide is distilled from it.)
+- **FAILURE_REGISTRY** — dead ends, their evidence and the conditions that would justify retrying.
+- **CONVENTIONS** — coordinate frames, angle units, field ordering and shared mathematical contracts.
 - **DECISION_LOG** — dated decisions with rationale, so reversals are deliberate not accidental.
-- **CONVENTIONS** — single-source the math conventions (heading order, angle units, basis
-  construction, field orders) with a parity table if you have sibling codebases. Conflated
-  conventions were SS2VR's #1 recurring bug; one canonical doc kills the whole class.
 - A **target/whitelist library** for data-driven gameplay (which objects are interactable,
   etc.) curated from in-game inspection, with a clear policy order.
 
@@ -49,16 +41,9 @@ cannot hold the material; “this page is long” alone is not a new responsibil
 This is the growth control for the playbook: routing depth should buy narrower
 reading, not force a reader through repeated summaries.
 
-This exact layout is now running, near-identically, on all three projects (SS2VR, BioshockVR,
-SOMAVR) — the same `CURRENT_STATE` / `BUILD_HISTORY` / `FAILURE_REGISTRY` / `DECISION_LOG` /
-`CONVENTIONS` / `ADDRESS_REGISTRY` spine, plus per-feature RE docs. That convergence is itself the
-argument for it: three engines, three teams-of-one, and the same doc set kept each one moving. Two
-force-multipliers worth adopting deliberately:
 
-- **A findings index.** Once the per-feature docs multiply (SS2VR has a `VR_FINDINGS_INDEX.md`), a
-  one-line "which doc owns this topic" map is what stops the same finding being written in three
-  places or lost entirely.
-- **A knowledge graph over the corpus.** All three projects run graphify over their source and
+- **A findings index.** Map each topic to its owning document; do not duplicate findings across summaries.
+- **A knowledge graph over the corpus.** Internal projects can index their source and
   docs (`graphify-out/`), and treat `graphify query "<topic>"` as the first orientation pass before
   `rg`. For a *cross-project* view — "where did all three hit the projection-companion problem?" — a
   graph built over the combined doc set surfaces the overlaps and contradictions a per-repo grep
@@ -73,10 +58,8 @@ conclusions. Bake validity in:
 - Every test has a **machine-checkable precondition** (the build banner shows the right
   version; the config key wasn't rejected; the expected mode flag is set) **and** a
   **machine-checkable proof line** (the value changed; the action fired; the residual dropped).
-- Check the precondition *before* asking the user to put the headset on. (SS2VR repeatedly
-  burned headset sessions on builds that silently weren't running the change — every one was
-  preventable by reading the first log line.)
 - Distinguish "user reported X" from "log proves X." Both matter; conflating them hides bugs.
+- Check machine-readable preconditions before asking a wearer to test in a headset.
 
 ## Reduce the project's biggest bet to one falsifiable experiment, first
 
@@ -593,9 +576,6 @@ something true about the project that a prose status update will hide.
 This fleet ran the experiment twice, with opposite results, and the discriminator is clean enough to
 plan around. `[LIVE]`
 
-**One substitute OpenXR runtime serves seven projects** spanning Unreal 2, UE3, Dunia, KEX, HPL3,
-CryEngine and a proprietary engine, across two architectures and five graphics bindings. Four private
-forks of it were deleted in favour of the shared one.
 
 **Six game harnesses share almost no code and never will.** One drives Frida and a game's own Python
 camera API; one drives a UE2 console bridge and greps the engine's log; one drives Squirrel through a
@@ -1482,7 +1462,3 @@ stops you deleting a right one.
   principles. Its actual behavior beats your model of it every time (see doc 06).
 - Keep a running list of **parked / avoid** paths — things that didn't work and shouldn't be
   retried without new evidence. Future-you will be tempted; the list saves you.
-- Celebrate the gambles that pay off and **write down why** (SS2VR's "crash combo" turned out
-  to be a data bug, not a structural one — re-enabling it after the data fix retired a whole
-  banned category). Today's hard "no" can become tomorrow's "yes" once an upstream cause is
-  fixed — revisit bans when their suspected cause changes.

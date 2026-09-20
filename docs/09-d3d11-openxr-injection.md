@@ -8,10 +8,6 @@ The key principle is to prove the route in layers. Do not jump directly from "DL
 to "rewrite every world draw twice." Each milestone should answer one question, preserve the
 working desktop path, and leave behind a useful fallback.
 
-This chapter is written in D3D11 terms (SS2VR and BioshockVR). If your target is **OpenGL** (as
-SOMAVR/HPL3 is), everything strategic here still holds — read [10](10-graphics-apis.md) for the
-API translation (SwapBuffers instead of Present, FBOs instead of RTVs, uniform-driven projection,
-global-state ownership, AFR).
 
 ## Keep the architecture in explicit lanes
 
@@ -79,12 +75,6 @@ is the signal that the ladder has quietly stopped climbing.
 A flat bridge at step 5 is valuable plumbing, but it is not stereo. A depth-reprojected bridge
 can be a useful fallback, but it is not full 6DoF native rendering.
 
-**Before you commit to this ladder at all, check whether the engine already has a stereo/multi-view path
-you can drive** — a split-screen mode, a cvar-gated second view, an `IStereoRendering`-style interface.
-Driving the engine's own stereo pipeline is both more correct and faster than replaying every draw twice
-(this is what UEVR does with Unreal's `-emulatestereo`/`FFakeStereoRendering`). None of SS2VR,
-BioshockVR, or SOMAVR had a usable one — which is *why* all three replay draws — but the check is cheap
-and the payoff is large. See [11](11-re-anchoring-and-discovery.md).
 
 ### The question before the ladder: can you just call the scene draw twice?
 
@@ -872,11 +862,6 @@ an earlier one for anything that reads the value before that.
 
 ## "The two eyes don't line up" — a five-minute differential diagnosis
 
-**Every project in this fleet has hit this, and none of them recognised it the first time.** The first
-stereo image reaches the headset and the two eyes will not fuse: it looks as though there is a camera per
-eye and they are aimed slightly wrong relative to each other. SS2VR, SOMAVR, BioshockVR and FarCry2-VR
-all spent headset sessions on it, and the expensive part was never the fix — it was the round trip of
-*put the headset on, look, take it off, describe it, guess, rebuild.*
 
 The whole space is separated by **two questions**, and both are answerable in one headset session
 without taking it off.
@@ -2864,7 +2849,7 @@ render scale it does not move the GPU cost at all.
 The feared "resolution port" mostly doesn't exist if you read sizes semantically — but two real coupling
 classes will bite, and the display mode matters for VR pacing.
 
-- **The two coupling classes.** (*SS2VR's whole audit found only these:*) a config pair storing a
+- **The two coupling classes.**  a config pair storing a
   hardcoded **reference resolution** that feeds aim→screen projection, and **pixel calibration offsets**
   silently divided by the *live* size. Fix the first with a `0 = AUTO` sentinel meaning "live backbuffer
   size" (and resolve it at every read site — see [07](07-engine-integration-safety.md)); fix the second

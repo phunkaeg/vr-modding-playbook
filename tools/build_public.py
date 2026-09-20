@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Build a shareable variant of the playbook with the internal status report removed.
+"""Build a candidate shared site only after publication approval.
 
 WHAT THIS DOES AND DOES NOT DO
 ------------------------------
-It does NOT hide that the in-house projects exist. Their names are cited on
-almost every page - "FarCry2-VR measured...", "SS2VR spent headset sessions on
-it" - and that attribution is the content. Removing it would gut the playbook.
+The transformations below are legacy presentation filters, NOT anonymisation.
+The publication gate must approve the exact input tree before this builder runs.
+Missing policy, disclosures, or an unreviewed snapshot block building and serving.
 
 What it removes is the STATUS REPORT on unreleased work, plus local paths:
 
@@ -19,8 +19,8 @@ What it removes is the STATUS REPORT on unreleased work, plus local paths:
 
 generated/source-summary.md is KEPT: it carries aggregate counts only, no names.
 
-The build fails loudly if any banned string survives into the output. A
-sanitiser that cannot prove it worked is worth nothing.
+The output path scan is an additional check, not proof of confidentiality.
+Neither this builder nor the gate cleans existing Git history or old exports.
 
 Usage:
   python tools/build_public.py            # build to site-public/
@@ -36,6 +36,8 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+from publication_check import check as publication_check
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
@@ -84,7 +86,7 @@ def _fleet_dirs() -> list[str]:
 FLEET_DIRS = _fleet_dirs()
 
 # Relative internal doc paths, in either slash style:
-#   `ss2vr-work\docs\FAILURE_REGISTRY.md`   `FarCry2-vr/docs/CURRENT_STATE.md`
+#   `<project>/docs/FAILURE_REGISTRY.md`   `<project>/docs/CURRENT_STATE.md`
 # Matched case-insensitively because the same project is written several ways.
 if FLEET_DIRS:
     _alt = "|".join(re.escape(n) for n in FLEET_DIRS)
@@ -187,6 +189,18 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Build the shareable playbook variant.")
     ap.add_argument("--serve", action="store_true", help="serve the result on :8001 after building")
     args = ap.parse_args()
+
+    try:
+        privacy = publication_check()
+    except Exception as exc:
+        print(f"PUBLICATION BLOCKED: privacy gate unavailable: {exc}")
+        return 2
+    if privacy['status'] != 'PASS':
+        print(f"PUBLICATION BLOCKED: {privacy['status']} "
+              f"({len(privacy['findings'])} findings).")
+        print('Run python tools/publication_check.py for the audit.')
+        print('No build, server or tunnel was started. Old exports may still be unsafe.')
+        return 1
 
     if OUT.exists():
         try:

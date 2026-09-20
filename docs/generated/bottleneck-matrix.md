@@ -4,21 +4,21 @@ Legend: 🟥 **active critical path** · 🟧 **open, not current critical path*
 
 A green cell does not mean the subsystem is perfect. It means the named bottleneck no longer blocks the next gate.
 
-| Bottleneck | Applies to | Gate | SS2VR | BioShockVR | SOMAVR | PreyVR | DishonoredVR | FarCry2-VR | SWAT4-VR | Sims4VR | SoF-VR | MoH-VR |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **BN-ACC-001** — Integration authority is not classified | `both` | ACCESS | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared |
-| **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
-| **BN-OBS-001** — The active renderer and frame boundary are not owned | `both` | OBSERVE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
-| **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟥 active | 🟧 open | 🟥 active | 🟩 cleared | 🟩 cleared |
-| **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
-| **BN-SFX-001** — A second eye may advance once-per-frame side effects | `both` | STEREO-SAFETY | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟩 cleared |
-| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
-| **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
-| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
-| **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟩 cleared | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟥 active |
-| **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟥 active | 🟧 open | 🟥 active | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟩 cleared |
-| **BN-PERF-001** — The fresh-frame budget and dominant cost are not measured | `both` | PERFORMANCE | 🟧 open | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟨 risk | 🟨 risk |
-| **BN-PACK-001** — Build, version, install, and recovery contracts are not shippable | `both` | RELEASE | 🟩 cleared | 🟧 open | 🟩 cleared | 🟨 risk | 🟨 risk | 🟧 open | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
+| Bottleneck | Applies to | Gate | BioShockVR | SOMAVR | PreyVR | DishonoredVR | FarCry2-VR | SWAT4-VR | Sims4VR | SoF-VR | MoH-VR |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **BN-ACC-001** — Integration authority is not classified | `both` | ACCESS | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟩 cleared |
+| **BN-LOAD-001** — The active bytes and test session are not proven | `both` | BASELINE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟧 open | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
+| **BN-OBS-001** — The active renderer and frame boundary are not owned | `both` | OBSERVE | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟩 cleared |
+| **BN-CAM-001** — Camera, projection, culling, and consumers are not separated | `both` | CAMERA | 🟩 cleared | 🟩 cleared | 🟧 open | 🟥 active | 🟥 active | 🟧 open | 🟥 active | 🟩 cleared | 🟩 cleared |
+| **BN-STE-001** — The stereo production route is not selected by evidence | `both` | STEREO-ARCH | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
+| **BN-SFX-001** — A second eye may advance once-per-frame side effects | `both` | STEREO-SAFETY | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟩 cleared |
+| **BN-XR-001** — The game graphics path cannot yet deliver owned images to OpenXR | `both` | XR-TRANSPORT | 🟩 cleared | 🟩 cleared | 🟩 cleared | 🟥 active | 🟩 cleared | 🟥 active | 🟥 active | 🟧 open | 🟩 cleared |
+| **BN-RND-001** — Per-eye render state is incomplete or misattributed | `both` | RENDER-CORRECTNESS | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
+| **BN-POSE-001** — Pose, frame, and eye-pair ownership are incoherent | `both` | POSE | 🟩 cleared | 🟩 cleared | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟧 open | 🟥 active |
+| **BN-INP-001** — Native gameplay input, aim, and interaction ownership are unresolved | `both` | INPUT | 🟧 open | 🟩 cleared | 🟧 open | 🟨 risk | 🟥 active | 🟥 active | 🟨 risk | 🟧 open | 🟥 active |
+| **BN-UI-001** — Viewmodels, UI, hands, and interaction are not adapted to the selected VR tier | `both` | ADAPTATION | 🟥 active | 🟧 open | 🟥 active | 🟨 risk | 🟥 active | 🟨 risk | 🟥 active | 🟧 open | 🟩 cleared |
+| **BN-PERF-001** — The fresh-frame budget and dominant cost are not measured | `both` | PERFORMANCE | 🟥 active | 🟥 active | 🟨 risk | 🟨 risk | 🟥 active | 🟧 open | 🟨 risk | 🟨 risk | 🟨 risk |
+| **BN-PACK-001** — Build, version, install, and recovery contracts are not shippable | `both` | RELEASE | 🟧 open | 🟩 cleared | 🟨 risk | 🟨 risk | 🟧 open | 🟧 open | 🟨 risk | 🟧 open | 🟧 open |
 
 ## Bottleneck definitions
 
@@ -32,7 +32,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `SOURCE` | Native KEX injector plus a shipped Squirrel bridge; engine source is not the delivery boundary. |
 | **BioShockVR** | 🟩 cleared | `STATIC` | Native x86 injector against a closed Vengeance build. |
 | **SOMAVR** | 🟩 cleared | `SOURCE` | Native OpenGL injector, with HPL2 source and SOMA scripts used as readable oracles. |
 | **PreyVR** | 🟩 cleared | `STATIC` | Native x64 injector; PreyDll.dll is the closed gameplay/render ownership boundary. |
@@ -53,7 +52,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `LIVE` | Self-identifying DLL/config lines retired stale-package and ignored-key false tests. |
 | **BioShockVR** | 🟩 cleared | `LIVE` | Release-tag and canonical-path handoffs are part of every runtime verdict. |
 | **SOMAVR** | 🟩 cleared | `LIVE` | Build flavor, loader path, runtime and prior-log preservation are explicit. |
 | **PreyVR** | 🟩 cleared | `SOURCE` | Build and runtime baselines plus landmark gates identify the target. |
@@ -74,7 +72,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `LIVE` | KEX render and D3D11 ownership are established. |
 | **BioShockVR** | 🟩 cleared | `LIVE` | D3D11/private-HDR frame ownership is sustained and logged. |
 | **SOMAVR** | 🟩 cleared | `LIVE` | OpenGL context, SwapBuffers and HPL render-stage ownership are live-mapped. |
 | **PreyVR** | 🟩 cleared | `LIVE` | EndRendererScene, live swapchain/device and renderer singleton are reproduced. |
@@ -95,7 +92,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | KEX render/cull camera and Dark gameplay consumers are separated; remaining work is feature-level coverage. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | Player scene-node camera, transient per-eye matrices and foreground ownership are mapped. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | Player versus authored/secondary HPL frusta are classified and yielded to by state. |
 | **PreyVR** | 🟧 open | `LIVE` | Authorities now separated live rather than statically: ArkPlayerCamera::UpdateView (R-009) is the upstream source, CRenderView::SetCamera copies by value and sits downstream of culling, and the cull frustum was measured following the aim ray rather than the view. Viewmodel authority traced to limb-IK targets (R-077/R-078); its producer is unnamed. Open until every authority and its invalidation conditions are recorded. |
@@ -116,7 +112,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | Private per-eye targets with alternate-eye fills remain the shipping route. The isolated native route now has a controlled OpenXR transport proof; its current boundary and next gate are linked from kex-dark-native-stereo.md. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | Per-draw private-eye replay is proven; rung-1 reflection/mirror re-entry remains optional research. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR is the selected route around expensive/side-effectful HPL re-entry. |
 | **PreyVR** | 🟩 cleared | `HEADSET` | STEREO_ROUTE.md records the ladder, the rejected higher rungs, camera delivery, rollback and the A5 side-effect exit test. Rung 3 with native projection passed and stereo was confirmed in headset 2026-09-02 with depth and scale judged correct. Rung 1 cost remains unmeasured, but that is a rejected rung, not the selected one. |
@@ -137,7 +132,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `LIVE` | The shipping per-draw/AFR route avoids full simulation re-entry. Isolated native traversal ownership and remaining scene-admission limits have separate evidence in kex-dark-native-stereo.md; shipping clearance does not clear every native scene. |
 | **BioShockVR** | 🟩 cleared | `LIVE` | Private-eye replay is scoped to eligible rendering work; pair authority and fallbacks are explicit. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR deliberately avoids same-frame scene re-entry and banks temporal histories per eye. |
 | **PreyVR** | 🟥 active | `STATIC` | Dormant rather than solved: the selected route is alternate-eye, which never runs RenderWorld twice, so the once-per-frame side-effect class is not currently exercised and nothing about it has been proven. It returns in full the moment native scene re-entry is attempted. |
@@ -158,7 +152,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | D3D11 OpenXR transport and recovery are shipping in AFR. The isolated native bridge has simulator transport, tracked motion and moved-frame recovery proof, not headset acceptance; see kex-dark-native-stereo.md. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | D3D11 private-HDR to OpenXR projection submission is sustained. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | OpenGL OpenXR handoff is proven; transfer cost remains a performance lane. |
 | **PreyVR** | 🟩 cleared | `HEADSET` | Game-image transport passes: per-eye images reach the runtime through an owned texture-array swapchain and were seen correctly in headset. Adapter LUID is resolved and matched to a DXGI index, swapchain format is chosen and logged (28->29 fixed double-encoded gamma, FAIL-STR-033), and the per-eye pose/FOV contract is stored with the pixels it describes (FAIL-STR-044). |
@@ -179,7 +172,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟧 open | `HEADSET` | Core stereo/culling are proven; reflections, portals, viewmodels and effects remain ownership-sensitive feature lanes. |
 | **BioShockVR** | 🟥 active | `LIVE` | Mono screen-space shadow/light/fog producer resources remain the dominant visual defect after geometry stereo. |
 | **SOMAVR** | 🟥 active | `LIVE` | Refraction/post-effect ownership, occlusion identities and OpenGL transfer timing are current T3 refinement lanes. |
 | **PreyVR** | 🟨 risk | `—` | The shipping route is alternate-eye, so per-eye render state is one engine frame per eye rather than two passes sharing state; deferred CryEngine companions remain unexercised by a second pass. One per-eye hazard is confirmed: motion blur read as a focus artifact on near objects and had to be disabled. |
@@ -200,7 +192,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | AFR pair latching, render/game pose separation and recenter ownership are implemented. |
 | **BioShockVR** | 🟩 cleared | `HEADSET` | Pair authority and shared recenter/height baselines are explicit; feature consumers still require regression tests. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | AFR history banking, pose latch, authored-state transitions and recenter generations are live. |
 | **PreyVR** | 🟥 active | `HEADSET` | Corrected -- a live eye pair exists and is stable. Eye identity travels on a lock-free ring (ordered) while poses use a latest-wins seqlock, and the per-eye pose/FOV contract is stored with its pixels. Positional 6DoF is built but has never run in a headset, so pose ownership is not yet proven end to end. |
@@ -221,7 +212,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `HEADSET` | Squirrel verbs/native gameplay systems own locomotion and interactions; coverage continues feature by feature. |
 | **BioShockVR** | 🟧 open | `LIVE` | XInput/native camera and weapon endpoints are mapped; body-yaw snap turn and some action ownership remain active work. |
 | **SOMAVR** | 🟩 cleared | `HEADSET` | Native analog mover, action routes, focus-loss release and haptic bridge are working. |
 | **PreyVR** | 🟧 open | `LIVE` | Aim is confirmed detached live: a motion controller drives the native reticle ray and interaction endpoint, with the crosshair following it. Locomotion route resolved -- gEnv->pInput at gEnv+0x58 from our own verified accessor table, with the PostInputEvent vtable index measured by a setter/getter alignment probe rather than guessed. Action-family ownership and projectile proof remain. |
@@ -242,7 +232,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟥 active | `HEADSET` | T3 feature completion now concentrates on frob coverage, weapon/assets, gravity glove, wrist HUD and physical interactions. |
 | **BioShockVR** | 🟥 active | `LIVE` | Viewmodel/arm ownership, native AimIK lifecycle and late-LDR HUD capture remain incomplete. |
 | **SOMAVR** | 🟧 open | `HEADSET` | Hands, HUD layers, subtitles and interaction lanes work; effect/state coverage continues. |
 | **PreyVR** | 🟥 active | `LIVE` | 2026-09-10 receipts advance native HUD extraction and correct pose-slice ownership in-game with xr-sim; authored weapon basis and aim-dependent hand anchor require separate validation. Missing UI-card pixels were refuted by saved captures. Pointer receiver/mode work is STATIC, not live UI acceptance; no fleet-wide feature/headset clearance. |
@@ -263,7 +252,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟧 open | `LIVE` | Performance telemetry exists; debugger/logging distortion and fresh-frame cadence remain recurring acceptance concerns. |
 | **BioShockVR** | 🟥 active | `LIVE` | Two eye renders plus a desktop world render dominate; reusable buffers help, but eliminating the third world render is the architectural lever. KSA_XR independently corroborates the knowingly inefficient three-frame problem on Vulkan; Scrap Mechanic demonstrates the worked D3D11 answer by mirroring the finished left eye with one three-vertex fullscreen draw. |
 | **SOMAVR** | 🟥 active | `LIVE` | OpenGL-to-XR handoff cost, occlusion/query behavior and thermally valid device timing are being priced. |
 | **PreyVR** | 🟨 risk | `—` | First real numbers exist: the naive per-eye path ran about 11Hz and the eye handoff took it to about 45Hz, judged comfortable in headset. Native scene re-entry cost is still unknown and no frame budget has been attributed by pass. |
@@ -284,7 +272,6 @@ A green cell does not mean the subsystem is perfect. It means the named bottlene
 
 | Project | State | Evidence | Fleet note |
 |---|---|---|---|
-| **SS2VR** | 🟩 cleared | `SOURCE` | Packaging and self-identification are mature; each new feature still needs rollback/default validation. |
 | **BioShockVR** | 🟧 open | `SOURCE` | Canonical package path and guards exist; runtime/implicit-layer/startup variability remains a support surface. |
 | **SOMAVR** | 🟩 cleared | `SOURCE` | OpenXR/non-OpenXR build flavors, loader locality and runtime recovery are explicit. |
 | **PreyVR** | 🟨 risk | `—` | Landmark gates fail closed but pin exactly one build: seven Steam/EGS function pairs show five distinct RVA deltas spanning 0x1590, so no arithmetic translation between storefront builds exists. A shippable install contract must detect the variant rather than assume one -- see RE-010. |

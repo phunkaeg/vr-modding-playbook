@@ -17,8 +17,7 @@ In VR that second pass is poison:
 The fix is to make the weapon pass use the **same per-eye headset frustum as the world**, then
 size the apparent gun with a scale knob — *not* with a stereo view-shift hack (that's a dead
 symptom-fix that fights itself). Confirm with a frame capture that the held item is one draw
-in the real frustum, not two. (*SS2VR: RenderDoc proved pistol + both hands each drew a
-transparent "invis" pass plus opaque passes; the flat HUD copy was the stereo-breaker.*)
+in the real frustum, not two.
 
 ## Reference frame: place attached objects in the right space
 
@@ -27,8 +26,7 @@ puts the gun ~half a unit in front of and beside the hand) must live in the **ha
 not the **camera's frame**.
 
 - Camera-frame offset → the lever rotates with your head: turn the HMD and the gun swings,
-  even though the controller is still. (*SS2VR: this was the actual "wobble" after the camera
-  selection was already correct.*)
+  even though the controller is still.
 - Camera-frame offset also makes **controller roll pivot about a displaced axis** — the model
   orbits a point offset from the hand instead of rotating in place.
 - Hand-frame offset rides the controller: the grip point stays planted; roll pivots in the
@@ -639,7 +637,7 @@ They often share inputs but must be tuned independently:
   and is usually already stable.
 - The visible model is a rendering-frame problem.
 - Retuning projectile aim to fix the model's look (or vice-versa) just couples two things that
-  should stay decoupled and creates a whack-a-mole. (*SS2VR registry: multiple entries.*)
+  should stay decoupled and creates a whack-a-mole.
 
 **A related half-measure: an animation's blend weight, playback rate and playback position are three
 separate levers, and "freeze at pose X" needs all three.** Suppressing weight alone leaves the others free
@@ -708,12 +706,7 @@ future reader re-derives it.
 
   This is the single most expensive rule in this chapter to learn the hard way, and it does not
   announce itself: each individual correction *improves* the case in front of you, so the failure looks
-  like slow progress rather than a wrong approach. (*SS2VR's flat-aim weapon-roll investigation runs to
-  roughly twenty consecutive numbered attempts in its own registry — inverse-cos heading plus bank
-  cancellation, bounded bank cancellation, screen-axis heading/bank decomposition, per-component
-  quaternion negation, screen-up proxy roll signs, several rounds of Euler tuning — before the frame
-  itself was fixed. BioshockVR reached the same conclusion independently by measuring it: a single
-  trim that looks perfect at one orientation diverges by 28.21° at 180° of roll.*) If you have corrected
+  like slow progress rather than a wrong approach.  If you have corrected
   the same rotation more than twice, stop correcting and go find the frame.
 - **Bank/roll cancellation near vertical.** Inverse-cos heading + bank corrections blow up or
   cancel near ±90° pitch. Use a screen-up Gram-Schmidt basis, or compute bank from the
@@ -735,9 +728,7 @@ future reader re-derives it.
   the representable range entirely.*) Two separate bugs in one line: compose rotations properly **and**
   wrap explicitly. Chapter [11](11-re-anchoring-and-discovery.md) covers the reading half of this trap —
   the same integer rotators read as floats print as denormal zeros.
-- **Know your `GetFacing` field order.** Engines lie about this. (*SS2VR's Squirrel
-  `Camera.GetFacing()` returns `(bank, pitch, heading)`, not `(heading, pitch, bank)` — proven
-  by live logs, and the source of a whole class of "diagonal" bugs.*) Verify with data, write
+- **Know your `GetFacing` field order.** Engines lie about this.  Verify with data, write
   it down, never assume.
 
 The two traps named above, as the code that avoids them:
@@ -783,8 +774,7 @@ but test it, because some engines clamp or ignore scale too.
 An object you spawn yourself may have **no lighting state** if it has no archetype (a blank
 "create empty object" call). Engine lighting often attaches to the archetype/class, so a blank
 carrier renders fullbright or black regardless of material. Clone a real, already-lit archetype
-and override its model/mesh, rather than building a bare object. (*SS2VR: the bright-white hand
-was partly this — though the deeper cause was a material-header bug, see doc 05.*)
+and override its model/mesh, rather than building a bare object.
 
 ## Held tools and physical manipulation: drive the native system, share one basis
 
@@ -1111,12 +1101,11 @@ the whole first inch". And a pose referenced by name but never loaded is a **sil
 stays nil and every guard that reads it simply never fires. That one caught two weapons in Cyberpunk
 before the rule became "a new place to name a pose is a new line in the loader, in the same commit".
 
-### A third implementation, and it is the same game SS2VR is modding {#s2q-clip-insert}
+### A third independently public implementation {#s2q-clip-insert}
 
-**shock2quest** — a Dark-engine *recreation* in Rust — shipped a physical clip-insert reload with
-per-model magazine anchors. It is the closest prior art this fleet has, because it is **System Shock
-2**, the source is readable, and its pistol anchor is keyed on `atek_h`: the same model SS2VR's own
-`manualReload` gesture is gated to. `[SOURCE]`
+The following example is from **shock2quest**, an independently public Dark-engine
+recreation in Rust. Its implementation and numbers belong to that external project;
+they are not a description of an in-house mod.
 
 **The gesture.** Squeeze a clip out of the inventory strip with the free hand, bring it to the gun the
 other hand holds, and it goes in **instantly**. Their sentence is the design rule:
@@ -1319,7 +1308,6 @@ The fleet has hit this from three directions and every one of them separated ent
 |---|---|---|
 | VRIK slots | `slotActivationDistance` | **x1.75** (`slotChangeDistanceMultiplier`) |
 | RE4VR mag holster | grip `0.333` | grip `0.363` |
-| SS2VR `manualReload` | grip `0.55` | grip `0.30` |
 
 Three mods, three engines, three teams, same discipline. **Treat a single threshold on a grab as a
 defect on sight.**
@@ -1628,7 +1616,6 @@ one for it used as a tool on something else. The bits are `MOVE`, `SCRIPT`, `DEL
 `FOCUS`, `TOOL`, `USE_AMMO`, `DEFAULT`, `DESELECT`. `[SOURCE]` shock2quest's `PropFrobInfo` (GPL-2.0),
 read as a naming oracle - see [11](11-re-anchoring-and-discovery.md#recreation-as-naming-oracle).
 
-**Corroborated, and it was fleet knowledge first.** SS2VR's own address registry already carries this from a *different* oracle - NewDark's `proplist.txt` - with the same three contexts and the same nine flags, recorded there as a static reference. Two independent reimplementation-adjacent sources agreeing on a structure neither of them shipped is much stronger evidence than either alone, and it is the reason to prefer a corroborated name over a confident single reading.
 
 For a VR port that separation is the useful part, because VR multiplies the contexts rather than
 sharing them. The same object held in the hand, sitting in a holster, resting on a table and pointed at
@@ -1766,75 +1753,20 @@ opinion** - a `counter` weapon cannot be given a `full` treatment without invent
 does not have, and a `recharge` weapon has nothing to physicalise at all. Filling Table C first is
 how a project ends up building a magazine animation for a weapon that has no magazine.
 
-### Two traps the fleet's first real census hit, on its first pass
+### Validate the census before implementing a reload
 
-SS2VR's census is the worked example, and both of its early corrections generalise. `[SOURCE]`
+Treat event names as hypotheses: an eject event may describe a spent casing,
+not a detachable magazine. Check the owning animation and its actual consumer.
+Key the census by engine identifiers rather than display names, and record
+which data layer owns ammunition, animation and geometry.
 
-**An `eject` event is not necessarily a magazine.** The Anniversary Edition's animation table fires
-an `eject` event, which reads like exactly the hook a physical reload wants. It is not: **every
-`eject` fires inside a `shoot` animation and no `reload` animation contains one.** It is the spent
-casing leaving on firing. Magazine removal is expressed purely as joint translation, with no event at
-all. A feature that hooks `eject` expecting a magazine fires once per shot and never on a reload.
-**Check which animation an event belongs to before believing its name.**
+### A generic gesture-native treatment
 
-**Searching by the name a human uses will lose weapons.** The census's own rule is to key every row
-on the engine's identifier, and the reason showed up immediately: SS2's Laser Sabre has the archetype
-`Electro Shock`. Searching the gamesys for *rapier*, *sabre* or *laser melee* returns nothing, and the
-tempting conclusion - that the weapon does not exist - is wrong. The display name lives in the
-remaster's script layer, the archetype in the engine. **An empty search for a display name is
-evidence about the name, not about the arsenal.**
-
-**And a remaster's script layer can add what the original engine never had.** SS2's Dark gamesys gives
-the roster, the ids and the ammo items; the AE's Squirrel adds weapon models *and animations* on top.
-Reload topology - which joint moves, how far, whether anything cycles - lives entirely in that second
-layer. **Either source alone under-describes the arsenal**, and the census needs a source column
-saying which answered what.
-
-The payoff is concrete. Read out of the AE table, SS2's arsenal is not one mechanism:
-
-| Weapon | Magazine joint | Travel | Cycles during reload? |
-|---|---|---|---|
-| Pistol | `joint2` | X 0 → **−2.00** | no - the slide has a single key |
-| Assault Rifle | **`joint3`** | X 0 → **+5.00** | **yes**, slide −0.25 |
-| Stasis Field Generator | translator + **30 deg rotation** | short | rotary, not a slide |
-| Shotgun | none - shell-by-shell | — | pump, and it is in `shoot` |
-| Fusion Cannon | none moves | — | no part moves at all |
-| Laser Pistol | — | — | **no reload animation exists** |
-
-**The magazine joint index is not constant, and the travel is not even the same sign.** A mechanism
-written against the Pistol and pointed at the Assault Rifle drives the wrong joint the wrong way.
-That is [HAND-009](pattern-catalog.md#hand-009) arriving one week early, for free, because the table
-was read before the code was written.
-
-### The tier below full physical, and it is already shipped
-
-**SS2VR's `manualReload` is the `gesture-native` treatment working today**, and it is worth reading
-before building anything larger, because it needs **no per-weapon geometry at all**. A three-state
-machine on the left hand, firing the engine's own console verbs:
-
-| State | Entry condition | Action |
-|---|---|---|
-| 0 → 1 *armed* | grip held, left hand inside `attach_radius 0.42 gu` of the weapon base and `under 0.45 gu` below it | record `startDrop`, haptic pulse |
-| 1 → 2 *pulled* | hand drops `pull_down 0.45 gu` below `startDrop` | fire `unload_gun` — **the eject** |
-| 2 → fire | hand rises `push_up 0.30 gu` from the deepest point **and** returns within `return_slack 0.18 gu` of the start | fire `reload_gun` — **the insert and slam** |
-
-Cancels on `timeout 1800 ms`, on the hand drifting past `detach_radius 0.95 gu`, on grip release, and
-on a `cooldown 900 ms`. Grip uses hysteresis exactly as RE4VR's holster does - `0.55` to arm, `0.30`
-to hold.
-
-Three things in it generalise past SS2:
-
-- **It measures the rise from the deepest point reached, not from where the gesture armed.** A
-  gesture that must go down and come back needs a running extreme, or a shallow pull followed by a
-  big rise reads as a complete motion.
-- **The eject and the insert are separate engine verbs** (`unload_gun`, `reload_gun`), fired at
-  separate moments, which is what lets the pull and the slam feel like two events rather than one.
-- **It is gated to one weapon family by a substring model filter** (default `atek`). That gate is
-  correct and it is also the ceiling: without a census there is nothing to widen it *to*, because
-  nobody has written down which of SS2's weapons reload the same way.
-
-So the census is not paperwork ahead of the fun part. **It is the thing that turns a working
-one-weapon gesture into an arsenal.**
+An intentionally simplified reload can map a tracked-hand gesture to the
+engine's existing actions. Design explicit arming, cancellation and completion
+conditions; use hysteresis and a running motion extreme where appropriate.
+Choose thresholds and weapon eligibility from measurements on your own target.
+This is design guidance, not a published implementation or accepted preset.
 
 ### The staircase from that gesture to a full physical reload
 
@@ -1843,7 +1775,6 @@ applies to. Nothing here needs the rung above it to be designed yet.
 
 | Rung | What the player does | What the mod must own | New per-weapon data |
 |---|---|---|---|
-| **1 · gesture-native** *(SS2VR today)* | pull down at the grip, push back up | a hand-space gesture and two engine verbs | which weapons the filter allows |
 | **2 · eject becomes visible** | same gesture; the spent magazine falls | one spawned or animated object, released at the pull | the mag joint, and whether a spent unit exists at all |
 | **3 · the magazine comes off the body** | left hand grabs at a holster, then inserts | a body-anchored holster zone with grab hysteresis, and a held object | holster offset; which ammo type the weapon takes |
 | **4 · guided insertion** | the magazine is driven into the well by the hand | the well axis, depth-keyed poses, a seat point, an asymmetric magnet | `wellAxis`, `insertRun`, `seatAt`, pose stages |
@@ -2361,9 +2292,7 @@ that will not look like one.
 
 Two controllers means two of everything — pose, basis, grip gate, visible mesh. It is very easy to
 let one hand's state leak into the other's, and the symptom (a hand following the wrong controller)
-looks like a tracking bug, not a code bug. (*SS2VR: a grip-gate change stamped the **left**-hand mesh
-with the **right**-hand basis when the left wasn't gripping, so the left hand followed the right
-controller; the fix was reverting to a pose-only gate that never crosses hands.*) Give each hand its
+looks like a tracking bug, not a code bug.  Give each hand its
 own basis and gate, and never compute one from the other's "current" value.
 
 ## Haptics: hook where the contact actually happens
@@ -2394,7 +2323,7 @@ traps are all about *which component* you clamp and *hysteresis*:
 - **A wall in front constrains only the forward component of the offset.** The VR hand is a
   camera-relative offset `(forward, left, up)`; scaling the *whole* offset to clamp at a wall slides the
   hand along the eye→hand ray and up toward your face. Clamp only the forward term; leave up/left at the
-  true hand position. (*SS2VR v1→v2.*)
+  true hand position.
 - **Clamp proactively with a standoff, and gate the contact state with hysteresis.** A reactive ray cast
   only *to* the hand lets it sink in and pop back across the depth plane (visibility flicker); cast the
   ray a hand-`radius` *past* the target so it stops before penetrating. Noisy raycast depth (±0.15
@@ -2403,7 +2332,7 @@ traps are all about *which component* you clamp and *hysteresis*:
 - **Long-barrel weapons: pull back by actual overshoot, never a proportional factor.** Using barrel
   length as a clamp radius *inverts* when the barrel is longer than the camera-to-wall distance (the gun
   yanks to your face). Raycast camera→muzzle along the barrel axis and pull the grip straight back by the
-  fixed overshoot `(muzzleDist − hitDist)`. (*SS2VR AR15 clip-through-then-pop bug.*)
+  fixed overshoot `(muzzleDist − hitDist)`.
 - **Reject the kinematic-physics-proxy shortcut.** Teleporting a physics body to the hand each frame is
   unstable, and a kinematic body *pushes* props without itself being *blocked*, so it doesn't even solve
   static wall pushback. Impulse-on-contact (dynamic) plus render-pose clamp (static) are the two
@@ -2430,7 +2359,7 @@ or headset acceptance is established by that source review.
 - **Use windowed-peak hand velocity, not instantaneous.** A single smoothed velocity decays at the exact
   release frame, so thrown objects drop straight down. Hold the peak ~150 ms so a thrown object inherits
   the arm's flick; the same peak drives contact-knock feel (slow hand pushes, fast swing sends it
-  flying). (*SS2VR `m_handVelPeak`.*)
+  flying).
 - **Linear velocity only slides a prop; to *tip* it, set angular velocity ∝ (contactOffset × pushDir)**
   using the tool tip as the lever arm (hit low → topples, hit centre → slides), scaled by
   `refMass/mass` so heavy props don't over-rotate and tunnel. Scripted physics services are often
@@ -2438,10 +2367,7 @@ or headset acceptance is established by that source review.
   native call.
 - **Physical melee beats a timed button, and both projects reached for it.** Detect the swing from grip
   linear/angular velocity with a hysteretic classifier (high threshold + release threshold + cooldown),
-  and synthesize the mechanic at the seam you already own. (*BioshockVR classifies a physical wrench
-  swing from OpenXR grip velocity without yet injecting an attack. SS2VR synthesizes a parry at the
-  enemy→player damage-apply seam — an interpose returns without calling the trampoline so damage is never
-  applied, gated on melee range so gunfire can't be parried.*)
+  and synthesize the mechanic at the seam you already own.
 - **A single-frame contact test tunnels; sweep a short ring buffer.** Both your blade and the enemy
   weapon move, so a fast swing slips between contact-frame samples. Push each frame's blade segment into
   a small ring buffer and test the incoming attack against every sample in a ~150 ms window, keeping the
@@ -2450,8 +2376,7 @@ or headset acceptance is established by that source review.
 - **AI reactions are usually request/poll, not interrupt — and a damage stim is the wrong lever.**
   Staggering an enemy via a damage stim just kills it on repeated hits; a queued "recoil" request waits
   behind the currently-running maneuver (AI maneuvers play to completion). A real mid-swing interrupt
-  must go through the engine's own stun/motion-abort primitive. (*SS2VR: `FUN_1403a15b0` tears down the
-  current maneuver, plays a named motion, auto-recovers, non-damaging.*)
+  must go through the engine's own stun/motion-abort primitive.
 
 ### Manipulation gain must agree with the position target {#manipulation-feedback}
 

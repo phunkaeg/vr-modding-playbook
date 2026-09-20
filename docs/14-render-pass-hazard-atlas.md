@@ -483,9 +483,6 @@ sharing those settings:
 - **eye zero reads the previous pair's eye-one set**;
 - **eye one reads eye zero's current-pair set**.
 
-That is asymmetric, cross-eye coherent-occlusion history *even though the render list itself is
-cleared per call*. It presents exactly as the SS2VR symptom — geometry missing from one eye — and no
-amount of frustum widening fixes it, because the frustum is not what is wrong.
 
 **Two coupled histories, not one.** GPU occlusion-query results and this CPU tracker are separate
 owners and either alone reproduces the symptom. The safe first native-stereo experiment must **bank

@@ -450,7 +450,6 @@ policy, a measured cost and a lower-rung fallback.
 
 | Project | What the RE route contributed | Current architectural lesson |
 |---|---|---|
-| SS2VR | KEX/D3D11 ownership, cull camera, native systems and private-eye path | A stock cubemap repeat can prove a higher rung after a lower rung ships |
 | BioShockVR | Scene-node camera, per-draw matrices/resources and screen-space owners | Correct geometry does not clear mono deferred producers |
 | SOMAVR | GL uniform/frustum owners, native mover and authored-camera states | Source oracles help naming; retail OpenGL behavior still needs live proof |
 | PreyVR | Global versus copy-by-value camera seams and callable RenderWorld primitives | Prefer the latest seam that avoids shared gameplay consumers |

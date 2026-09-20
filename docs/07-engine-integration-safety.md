@@ -8,8 +8,7 @@ user* is discipline at the integration boundary.
 
 - **Validate before you call.** Before calling a discovered native function, check its prologue
   bytes against the signature you reversed. If it doesn't match (patch, different build,
-  ASLR confusion), **fail closed** — disable the lane, log it, never call. (*SS2VR's native
-  axis/fire lanes signature-check the handler prologue and disable themselves on mismatch.*)
+  ASLR confusion), **fail closed** — disable the lane, log it, never call.
 - **Guard every raw memory read/write with SEH** (or the platform equivalent) and treat
   non-finite / null as "unavailable," not "zero." A fail-open default that returns 0 can drive
   the game with bogus input; fail *closed*.
@@ -17,7 +16,7 @@ user* is discipline at the integration boundary.
   Calling them from the render thread or a worker is a race and an eventual crash. Queue the
   call to the thread the engine expects.
 - **Don't mix SEH with C++ objects that have destructors** in the same frame — the unwinding
-  models conflict. Keep the guarded region a plain C scope. (*SS2VR registry entry.*) In practice this
+  models conflict. Keep the guarded region a plain C scope.  In practice this
   means the guarded helper is **POD-only**: it takes raw pointers and scalars, returns a status code, and
   does nothing else. Logging, config mutation, `std::string` and any STL container live *outside* the
   `__try`. This isn't a style preference — MSVC rejects `__try` in a function that requires C++ object
@@ -38,7 +37,7 @@ user* is discipline at the integration boundary.
   designing the hook, not after it corrupts the next function.
 - **Wide positional argument lists transpose silently.** A function taking many same-typed args (a
   19-pointer `EndFrame`, two adjacent quad args) lets you swap two of them with no compile error and a
-  subtle runtime bug. Convert to a named-field struct once an arg list gets wide. (*SS2VR.*)
+  subtle runtime bug. Convert to a named-field struct once an arg list gets wide.
 - **Patching one decision branch can be safer than hooking** — when the engine already contains the
   behaviour you want and merely chooses the other path. Do it with full ceremony: require a **unique**
   signature, **verify the exact original bytes** at the patch offset before writing, write under
@@ -534,7 +533,7 @@ separate claims.
 ## Hardware/debugger gotchas
 
 - Hardware breakpoints can be consumed or cleared by the game's own anti-debug or input
-  threads; don't trust them to stay set. (*SS2VR: x64dbg hardware breakpoints entry.*)
+  threads; don't trust them to stay set.
 - Some engines re-assert state every frame (overlay flags, draw flags, camera values). A
   one-shot write gets overwritten; you may need to re-apply every frame or hook the writer.
 
@@ -543,28 +542,20 @@ separate claims.
 - New behavior ships **disabled by default** and gated by a config key. You enable it
   deliberately for a test. This keeps the baseline always-playable and makes A/B trivial.
 - **Every change has a revert knob** — a single config value or console command that restores
-  the prior behavior live, ideally without a restart. (*SS2VR convention: `..._frame=camera`
-  to undo hand-frame offsets, `conv_cam 0`, `family_filter 0`, etc. — each fix was A/B-able
-  in-headset in seconds.*)
+  the prior behavior live, ideally without a restart.
 - Prefer **live console cvars** over restart-required config for anything you'll tune by feel
   (offsets, signs, thresholds). The headset round-trip is expensive; live tuning is worth the
   plumbing.
 
 **A diagnostic knob must never gate shipped behaviour.** When a probe births a fix, the fix moves out of
 the probe's code path — otherwise the diagnostic is quietly load-bearing and can never be switched off.
-(*SS2VR shipped a viewmodel-depth fix that only armed **inside** the probe branch, so the probe stayed
-enabled in the live config long after its question was answered — while issuing ~840 log writes/s from
-the render thread. Both the perf cost and the inability to turn it off traced to the same mistake.*) When
+ When
 a probe graduates, split it: the fix takes its own gate, the probe keeps its own, and you verify the fix
 still works with the probe off.
 
 **Stage a new bridge log-only until the far end proves live.** Anything with two halves — a script/native
 bridge, an IPC channel, a companion process — starts default-off or log-only and refuses to activate
-until it has seen a *fresh heartbeat* from the other side. (*SS2VR applies this across reload/holster
-physics, viewmodel probes and the FlatAim Squirrel bridge; the DLL will not publish config traffic to a
-script bridge that hasn't announced itself, precisely because the earlier version happily published to
-nothing and left high-rate traffic running with no consumer — which then coincided with a save-load
-crash.*) A bridge publishing into the void is not inert: it costs frametime and it fabricates the
+until it has seen a *fresh heartbeat* from the other side.  A bridge publishing into the void is not inert: it costs frametime and it fabricates the
 appearance of a working link.
 
 **But don't let a knob become a graveyard.** There's a real tension here worth naming: a config gate is
@@ -582,19 +573,13 @@ first level transition — clean **one independently verified path per headset b
 - If your config has a **validation/whitelist layer**, adding a key means editing *every* stage
   in lockstep (struct field, parser, template, **and** the whitelist). Miss one and the key is
   silently rejected — and that rejection often looks *identical* to running a stale build.
-  (*SS2VR lost a day to exactly this; it became hard rule #1 in the project's CLAUDE.md.*)
+
 - After adding a key, **confirm from logs** that the running build accepts it (no "unknown key"
   warning) before asking anyone to test it. An unverifiable test precondition wastes a whole
   session.
 - **Log the config's identity, not just its values.** A cloud-synced or redirected config file can
-  silently override you, and the symptom looks identical to a stale build. (*SS2VR: a cloud-synced
-  `joystick_enable 0` disabled analog sticks on a fresh install. BioshockVR: a stale OneDrive-redirected
-  INI invalidated tests until a mandatory `config_identity` log line — path, mtime, key hash — made the
-  wrong file obvious.*) Emit which file you actually read and when it was last written.
-- **An `AUTO`/sentinel value must be resolved by *every* consumer, not just the setter.** (*SS2VR:
-  `cursor_injection_width=0` meant "auto → live backbuffer"; the setter resolved it but the getter
-  clamped against the raw `0`, zeroing every injected pixel — the inventory pointer went dead and looked
-  like an unrelated feature had broken it.*) If a value has a sentinel resolved to a live dimension,
+  silently override you, and the symptom looks identical to a stale build.  Emit which file you actually read and when it was last written.
+- **An `AUTO`/sentinel value must be resolved by *every* consumer, not just the setter.**  If a value has a sentinel resolved to a live dimension,
   resolve it at every read site or store the resolved value once.
 
 ## Initialization timing
@@ -602,7 +587,7 @@ first level transition — clean **one independently verified path per headset b
 - **Don't initialize the VR runtime too early.** Starting OpenXR before the engine's graphics
   device/swapchain is ready races device creation and crashes or hangs. Wait for a stable
   signal (first present, device registered), and prefer explicit/manual start during bring-up.
-  (*SS2VR registry: auto-starting OpenXR too early.*)
+
 - Assume your hooks can be invoked before your own state is ready; null-check your own
   singletons on every hook entry.
 
@@ -700,8 +685,6 @@ A mod's fault policy is usually one policy: something went wrong, so stop. That 
 directions at once - it retires the mod on a fault that would have cleared by itself, and it keeps
 retrying one that never will.
 
-**There are at least three classes, and they want different answers.** `[AUTHOR]` SS2VR's harness,
-v3.71:
 
 | Class | Example | Right response |
 |---|---|---|
@@ -714,10 +697,6 @@ becomes a hot loop that competes with the very initialisation it is waiting for.
 
 ### The catch that cost the session
 
-The sharper half of the same work. `[AUTHOR]` SS2VR sent a `set` command before the Dark Engine's
-configuration table had initialised, which called through a **null function pointer**. The exception
-*was* caught - and the catch **disabled automation for the whole session**. The crash was prevented
-and the session was still lost.
 
 **A caught exception is not a handled one.** Ask what the recovery policy costs, because that cost is
 paid every time the guard fires, and a guard that quietly retires a subsystem is indistinguishable
@@ -797,10 +776,7 @@ shim check. FarCry2-VR's eventual fix was to hook the engine's own render-device
 
 `xrEndFrame` accepts a bounded number of composition layers — the spec only guarantees **16**. Every
 always/often-on layer you add (world projection, HUD quad, reticle, vignette, debug overlays) counts
-against it, and blowing the cap is not a soft failure. (*SS2VR: a parry overlay growing 5→7 layers
-pushed the total past 16 with combat HUD/beams present; `xrEndFrame` returned `-24`
-`XR_ERROR_LAYER_LIMIT_EXCEEDED` **every frame**, freezing the HMD while the flat game kept running — not
-a crash, so easy to misread.*) Hard-cap the submitted count, push **most-important-first** so the cap
+against it, and blowing the cap is not a soft failure.  Hard-cap the submitted count, push **most-important-first** so the cap
 drops debug layers rather than projection/HUD, and size the layer array with headroom (a too-small array
 is a stack overflow, not a clamp).
 
@@ -1020,8 +996,7 @@ scattered through a poll.
 Replacing a script/asset at the path the engine *used* to load doesn't guarantee yours is the
 one loaded — load order, package precedence, and save-embedded references can override you.
 Prove your code is live with a **load banner** from the script/asset itself, not by assuming.
-(*SS2VR/FlatAim: multiple entries on "assumed loaded but wasn't" — mod table order, KPF
-presence, save-embedded order.*) The script's own "I loaded, version X" print is the only
+ The script's own "I loaded, version X" print is the only
 proof.
 
 ## Execution readiness includes the called subsystem {#subsystem-readiness}
@@ -1036,12 +1011,6 @@ before and after initialization. Gate on the confirmed dependency, behind instru
 guarded reads. Defer without consuming the command's sequence; distinguish pending from completed
 acknowledgments. Do not replace the native call contract or add a fixed startup sleep without evidence.
 
-**SS2VR v3.72, 2026-09-05 (phase 5.6.1):** `ReadConfigFile` was valid while Dark's config hash table
-was still zero. Early `set` reached hash lookup `0x8E0890`, loaded `[table+0x18]`, and called null;
-return site `0x8E08BA`, table RVA `0x127A150`. It reproduced with XR disabled. A read-only readiness
-gate fixed the reproducer in XR-off and xr-sim-on startups, with exact config-value readback and once-only
-dispatch. This does not establish readiness for unrelated commands such as save loading.
-Evidence: `D:/Dev Debug/ss2vr-work/docs/AGENT_EXECUTOR_RE.md` and `docs/AGENT_HARNESS.md`.
 
 Instrumentation caveat: Frida's exception observer localized the call, but that instrumented early run
 exited before the application's normal SEH completion. Validate containment/fixes again without observer

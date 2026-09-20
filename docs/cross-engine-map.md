@@ -14,27 +14,23 @@ proof clears it?”, use the generated [fleet bottleneck map](bottleneck-map.md)
 
 ## Part 1 — Overlaps: problems every engine forced
 
-Every row here appeared independently on Dark/KEX (D3D11), Unreal 2.5 (D3D11), *and* HPL3 (OpenGL) —
-with a fourth, externally-built project (Blam/Saber) corroborating much of it in the section that
-follows. That independence is the evidence the lesson is engine-agnostic.
 
-| Recurring problem | SS2VR (Dark/KEX) | BioshockVR (UE2.5) | SOMAVR (HPL3/GL) | Chapter |
-| --- | --- | --- | --- | --- |
-| **Which camera does this consumer use?** | weapon wobble = wrong camera; residual probe → native-same-tick | viewmodel post-multiplies a matrix already holding the HMD → double-applied head motion | authored/scripted cameras vs player camera; frustum hook returns native for every non-player camera | [01](01-camera-and-tracking.md) |
-| **Projection is a contract, not a matrix** | reconstruction/clip companions per eye | 8 coupled constants (`worldViewProj`+`screenDataToCamera`+`screenToWorld`+…) | GLSL UBO reconstruction (`a_mtxInvViewProjection`) in deferred lighting | [09](09-d3d11-openxr-injection.md) |
-| **Engine owns culling, not your frustum** | 3 mechanisms; drive KEX cull camera, not the RenderView | peripheral coverage needs engine camera/FOV/near/culling | `cViewport`/`cCamera` ownership so aux cameras can't inherit HMD pose | [01](01-camera-and-tracking.md) |
-| **Mono screen-space buffers break per-eye** | (forward — mostly N/A) | dominant artifact class: mono `s_shadowMask` → black sides; needs per-eye producers | deferred shadow/reflection reconstruct from mono-centered projection | [09](09-d3d11-openxr-injection.md) |
-| **Render-view provenance / secondary views** | reflection/portal/vista must not merge into one eye pair | "cyan Rapture shell" = bounded secondary view scissored to full-eye | reflection/terminal/water/shadow cameras must not consume F10 | [09](09-d3d11-openxr-injection.md) |
-| **Drive the engine's own system** | KEX cull camera + Squirrel verbs | native `AimIKTargetTracker` + `GetPerfectFireStart` rotator | native analog mover, `SOMA_GetClosestEntity` picker, camera-add channels | [07](07-engine-integration-safety.md) |
-| **One input path per control** | keyboard-WASD + virtual pad = "ubermensch speed" | synthetic slot presence steals KB/M; sum vs arbitrate | synthetic keys demoted to fallback once native mover confirmed | [03](03-input-and-locomotion.md) |
-| **Comfort is a subsystem** | snap blackout; vignette 0.30 m/1 m contract; roomscale crouch double-drop | (in progress) | *reused SS2's exact vignette contract*; head-bob/shake/sway channel suppression | [01](01-camera-and-tracking.md) |
-| **Yield to authored/scripted cameras** | scripted cameras, cutscenes | scene-node camera constructor owns view; mutate only transient args | 20 player states classified; compose HMD on the authored base, reseed histories | [01](01-camera-and-tracking.md) |
-| **Puppeteer native locomotion, don't reimplement** | reuse `TeleportObject`; latch native climb + feed stick | native XInput mover | native analog mover at `playerRoot+0x110` | [03](03-input-and-locomotion.md) |
-| **Build/config must self-identify** | config-key bug looked identical to a stale DLL | stale OneDrive INI invalidated tests → `config_identity` log | version banner + fresh log per session | [06](06-debugging-methodology.md), [07](07-engine-integration-safety.md) |
-| **Measure, don't theorize** | multi-candidate residual probe ended a multi-day wobble hunt | ~15 falsified hypotheses before the scissor fix; extract `P_center` don't guess | F-key A/B probes redirect the shadow-owner search | [06](06-debugging-methodology.md) |
-| **Tonemapping at the eye blit** | HDR→LDR/sRGB mismatch | HDR scene target copied into UNORM swapchain → washed out; prefer sRGB | GL format prefs `GL_SRGB8_ALPHA8` first | [09](09-d3d11-openxr-injection.md), [10](10-graphics-apis.md) |
-| **Full-eye FOV, not a stretched image** | aspect-fit vs crop as diagnostics only | 16:9 cropped into 2688×2880 eye → "very zoomed in"; allocate at eye extent | private targets at runtime eye extent | [09](09-d3d11-openxr-injection.md) |
-| **Three tracked points do not define a torso** | hand bases stay controller-owned; future arms need a separate shoulder frame | native AimIK supplies arm articulation but still needs a stable body-relative target | HMD position drives shoulder translation; native capsule yaw drives heading; bilateral wrists and downward-biased elbow IK remain separate lanes | [12](12-torso-calculations-and-ergonomics.md) |
+| Recurring problem | BioshockVR (UE2.5) | SOMAVR (HPL3/GL) | Chapter |
+| --- | --- | --- | --- |
+| **Which camera does this consumer use?** | viewmodel post-multiplies a matrix already holding the HMD → double-applied head motion | authored/scripted cameras vs player camera; frustum hook returns native for every non-player camera | [01](01-camera-and-tracking.md) |
+| **Projection is a contract, not a matrix** | 8 coupled constants (`worldViewProj`+`screenDataToCamera`+`screenToWorld`+…) | GLSL UBO reconstruction (`a_mtxInvViewProjection`) in deferred lighting | [09](09-d3d11-openxr-injection.md) |
+| **Engine owns culling, not your frustum** | peripheral coverage needs engine camera/FOV/near/culling | `cViewport`/`cCamera` ownership so aux cameras can't inherit HMD pose | [01](01-camera-and-tracking.md) |
+| **Mono screen-space buffers break per-eye** | dominant artifact class: mono `s_shadowMask` → black sides; needs per-eye producers | deferred shadow/reflection reconstruct from mono-centered projection | [09](09-d3d11-openxr-injection.md) |
+| **Render-view provenance / secondary views** | "cyan Rapture shell" = bounded secondary view scissored to full-eye | reflection/terminal/water/shadow cameras must not consume F10 | [09](09-d3d11-openxr-injection.md) |
+| **Drive the engine's own system** | native `AimIKTargetTracker` + `GetPerfectFireStart` rotator | native analog mover, `SOMA_GetClosestEntity` picker, camera-add channels | [07](07-engine-integration-safety.md) |
+| **One input path per control** | synthetic slot presence steals KB/M; sum vs arbitrate | synthetic keys demoted to fallback once native mover confirmed | [03](03-input-and-locomotion.md) |
+| **Yield to authored/scripted cameras** | scene-node camera constructor owns view; mutate only transient args | 20 player states classified; compose HMD on the authored base, reseed histories | [01](01-camera-and-tracking.md) |
+| **Puppeteer native locomotion, don't reimplement** | native XInput mover | native analog mover at `playerRoot+0x110` | [03](03-input-and-locomotion.md) |
+| **Build/config must self-identify** | stale OneDrive INI invalidated tests → `config_identity` log | version banner + fresh log per session | [06](06-debugging-methodology.md), [07](07-engine-integration-safety.md) |
+| **Measure, don't theorize** | ~15 falsified hypotheses before the scissor fix; extract `P_center` don't guess | F-key A/B probes redirect the shadow-owner search | [06](06-debugging-methodology.md) |
+| **Tonemapping at the eye blit** | HDR scene target copied into UNORM swapchain → washed out; prefer sRGB | GL format prefs `GL_SRGB8_ALPHA8` first | [09](09-d3d11-openxr-injection.md), [10](10-graphics-apis.md) |
+| **Full-eye FOV, not a stretched image** | 16:9 cropped into 2688×2880 eye → "very zoomed in"; allocate at eye extent | private targets at runtime eye extent | [09](09-d3d11-openxr-injection.md) |
+| **Three tracked points do not define a torso** | native AimIK supplies arm articulation but still needs a stable body-relative target | HMD position drives shoulder translation; native capsule yaw drives heading; bilateral wrists and downward-biased elbow IK remain separate lanes | [12](12-torso-calculations-and-ergonomics.md) |
 
 The takeaway from Part 1: when you start the next engine, walk this column top to bottom as a checklist.
 You already know these are coming.
@@ -64,7 +60,7 @@ These are the decisions where copying the wrong project's solution actively cost
 gives advice, check it against this list before assuming it's universal.
 
 ### Graphics API — the plumbing genuinely differs
-D3D11 (SS2VR, BioshockVR) gives you a device/context, RTV/DSV, constant buffers, and `Present`. OpenGL
+D3D11 (an unpublished port, BioshockVR) gives you a device/context, RTV/DSV, constant buffers, and `Present`. OpenGL
 (SOMAVR) gives you a **global state machine**, FBOs, `glUniformMatrix4fv`, and `SwapBuffers` — no device
 object to bind, broader and less forgiving state to save/restore, and a compatibility profile that can
 defeat RenderDoc. Everything strategic transfers; the API calls don't. See [10](10-graphics-apis.md).
@@ -73,9 +69,9 @@ defeat RenderDoc. Everything strategic transfers; the API calls don't. See [10](
 This is a spectrum, not a binary. BioshockVR replays **private per-eye draws within one frame**. SOMAVR
 uses **alternate-frame rendering** (left eye one frame, right the next) because HPL3's pipeline has heavy
 per-frame side effects (temporal, deferred) that make same-frame dual rendering expensive and sometimes
-non-repeatable. SS2VR sits between — private per-eye targets but **half-rate alternate-eye** fills.
+non-repeatable. an unpublished port sits between — private per-eye targets but **half-rate alternate-eye** fills.
 Instrument per-eye CPU/GPU cost before assuming same-frame replay is affordable — the answer flipped
-between engines. And note the consequence: **any alternate-eye scheme (SS2VR, SOMAVR) bakes a non-IPD
+between engines. And note the consequence: **any alternate-eye scheme (an unpublished port, SOMAVR) bakes a non-IPD
 temporal disparity into every pair** that same-frame replay doesn't have, which then needs rotation-only
 latching + timewarp to hide ([10](10-graphics-apis.md)).
 
@@ -144,14 +140,14 @@ concluding that a pre-2000 target is simply not moddable: *no camera object* is 
 technique, not a reason to stop.
 
 ### Forward vs deferred lighting — "own the camera and stop" is only true on forward
-On a forward-ish renderer (SS2/KEX), correct per-eye projection gets you most of the way. On a
+On a forward renderer, correct per-eye projection addresses much of the geometry path. On a
 **deferred** renderer (BioShock, SOMA), correct camera *and* correct per-eye WVP still leave shadows,
 volumetrics, reflections, and material lighting broken, because they reconstruct from a mono
 center-camera buffer. On those engines, **per-eye screen-space producers are a second workstream larger
 than the projection contract itself.** Don't budget a deferred engine like a forward one.
 
 ### Which input rung actually works differs per engine
-SS2VR has a real, supported **Squirrel command/verb** surface, so most controls live at rung 2 with no
+an unpublished port has a real, supported **Squirrel command/verb** surface, so most controls live at rung 2 with no
 native calls. BioShock ignores `SendInput` mouse-turn entirely and only responds to its native
 **XInput** bridge (rung 3). SOMA needed the **exact native analog owner** — a player-helper sub-object
 at `playerRoot+0x110`, not the root — before movement worked (rung 4). The [input ladder](03-input-and-locomotion.md)
@@ -166,13 +162,9 @@ tells you which situation you're in.
 ### Bitness changes the entire tooling-failure class
 The **32-bit** targets — BioshockVR, DishonoredVR, FarCry2-VR, Swat4-VR — make address-space exhaustion
 real: RenderDoc crashes on big captures, DXGI truncates VRAM (identify GPUs by LUID), and you cannot
-stack 3DMigoto + RenderDoc + the mod. The **64-bit** ones — SS2VR, SOMAVR, PreyVR — simply do not have
+stack 3DMigoto + RenderDoc + the mod. The **64-bit** ones — an unpublished port, SOMAVR, PreyVR — simply do not have
 that trap class. Don't debug a 64-bit target expecting 32-bit failure modes, or vice-versa.
 
-> **Corrected 2026-08-25.** This paragraph previously listed SS2VR as 32-bit. It is **x64** — KEX is a
-> 64-bit remaster. That was the third page carrying the same wrong fact, and the reason it survived is
-> the subject of [the note in ch00](00-engine-profiles.md#why-this-page-now-defers): the roster was
-> duplicated across three pages, and the copies nobody was looking at are the ones that drifted.
 
 ### Asset/package pipeline is per-engine and non-transferable
 Dark packs Squirrel + models in `.kpf`; BioShock uses non-stock Unreal `.bsm`/`.blk` indexed by
@@ -183,7 +175,7 @@ is never proof the asset is unusable ([05](05-assets-and-materials.md)).
 ### Injection timing — attach is sometimes fatal, sometimes fine
 All three iterate happily on attach-to-running. But BioShock's native AimIK is built at a **one-time
 construction seam** that attach can never re-trigger, and even `--launch` was too late until a
-**hook-ready handshake** armed the hook before construction. SOMA and SS2 haven't needed that ceremony.
+**hook-ready handshake** armed the hook before construction. This is target-dependent, not a universal startup requirement.
 Match the injection mode to whether you're hooking a *recurring* call or a *one-time* construction
 ([07](07-engine-integration-safety.md)).
 
@@ -194,7 +186,7 @@ a late 2D overlay, the reference-frame fix is different. Identify which kind you
 fix ([02](02-viewmodels-and-hands.md)).
 
 ### One game or a collection?
-SS2VR, BioshockVR and SOMAVR each target **one** game in **one** process. HaloVR targets **Halo 3 inside
+an unpublished port, BioshockVR and SOMAVR each target **one** game in **one** process. HaloVR targets **Halo 3 inside
 MCC**, where a single shipping executable hosts Halo 1–4, ODST and Reach as separate engine DLLs — so it
 needs a **title registry and per-title adapters**, and every signature is scoped to a title *and* a build.
 If your target is a collection, remaster bundle, or anthology, budget that indirection from day one
@@ -208,7 +200,7 @@ not be used in matchmaking. That constraint rules out whole techniques (file pat
 routes) before design starts, and it's a compliance question as much as a technical one.
 
 ### Is the HUD capturable, or better left native?
-Chapter [04](04-ui-and-hud.md) recommends tee-ing UI into a layer, and that's right for SS2VR and
+Chapter [04](04-ui-and-hud.md) recommends tee-ing UI into a layer, and that's right for an unpublished port and
 BioshockVR. HaloVR tried capture/diff, got only objective text for real GPU cost, and formally accepted
 the **native HUD** as the rendering path — then solved sizing and placement through authored tag data and
 an anchor-basis hook instead. Measure what a capture actually yields on *your* engine before committing

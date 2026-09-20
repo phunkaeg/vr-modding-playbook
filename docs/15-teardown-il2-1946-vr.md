@@ -93,12 +93,6 @@ Three full scene renders per frame. Both eyes are drawn from **one HMD pose samp
 prepass**, so this is same-frame stereo — the [13](13-teardown-bioshock-vr.md) `SequentialReentry`
 shape, not [10](10-graphics-apis.md)'s AFR.
 
-**The whole "AFR stereo coherence" section of [10](10-graphics-apis.md) is inapplicable here, and that
-is a finding, not an omission.** SS2VR and SOMAVR took alternate-eye because re-entering a native
-pipeline twice was expensive or non-repeatable. IL-2's Java scene graph replays cleanly and cheaply, so
-the mod pays CPU for a third pass and buys immunity to the entire pair-slip bug class: no inter-eye yaw,
-no eye-phase desync, no comfort blackout masking broken pairs. The author's cost note is honest — *"two
-rendering passes per frame plus the old Java/OpenGL stack cannot fully use multi-core CPUs"* *(author)*.
 
 > **When the engine's render orchestration is replayable, same-frame stereo is strictly better than
 > alternate-eye, and the decision is about replay cost alone.** Price the replay before you accept AFR's
@@ -180,13 +174,6 @@ menu mirror**, and up to **32 gaze-interactive button widgets** per seat *(verif
 
 Three things here are better than what the playbook currently documents:
 
-**The menu mirror is a mirror, not a re-render.** `copyWindowToMenuFBO()` blits the desktop window into
-an overlay and blacks out both eyes. The physical mouse then works with zero extra code, because the
-pointer is *in the mirrored image* and the click paths are identical by construction *(author)*. This
-sidesteps [04](04-ui-and-hud.md)'s "never re-invoke an immediate-mode GUI's render path just to capture
-its output" (the SOMAVR terminal-overlay failure) by never invoking anything twice — and it sidesteps the
-SS2VR Game-Pig input problem, where cursor injection overrode the OS mouse and the physical path was
-never reached.
 
 > **A desktop-window mirror on a quad layer is the cheapest correct menu solution, and it makes input
 > free.** Reach for it before building a laser pointer.
@@ -215,10 +202,6 @@ permanently configured without cluttering peripheral vision.
 and en/zh/ru UI. It writes a plain INI; `VRHUD_RELOAD` hot-reloads it in-game with no restart *(verified
 — the files ship; behaviour per author)*.
 
-This is the mature form of SS2VR's "expose grid/font-cell metrics as live config keys." The playbook's
-version is *make the constants configurable*; this is *ship the tool that writes the config, and a hotkey
-that applies it live*. For anything spatially placed — panels, anchors, offsets — the edit loop dominates
-the maths.
 
 > **For spatial configuration, build the editor.** Guessing coordinates in an INI and relaunching is the
 > single most wasteful loop in VR modding.
@@ -347,10 +330,6 @@ Both of the author's open T0 issues fall out of it:
 are in the over-cull case; if it tracks the symmetric average you are in the pop case. The `vr_debug`
 channel already exists.
 
-**The fix:** keep the exact per-eye asymmetric matrix for rendering (already correct), and feed the culler
-the **union frustum of both eyes plus a lean margin** — two deliberately different numbers, with the
-margin exposed as a config key. This is SS2VR's "drive the engine's culling inputs, never the render view"
-applied to a far friendlier engine.
 
 ### 3. Root-cause the near-plane factor of two instead of shipping a magic constant
 
@@ -438,9 +417,6 @@ paste. **Enumerate what actually resolved, not what you shipped.**
 separation and 6DOF translation are both systematically wrong — the classic that survives casual testing
 because everything looks *fine*, just subtly wrong-sized.
 
-[09](09-d3d11-openxr-injection.md)'s world-scale derivation settles it against a known object: a
-Bf-109E-4 wingspan is 9.925 m. Measure it in-headset; if it reads short or long, every translation in the
-mod is off by that ratio. (Compare the fleet's spread: SS2VR `3.28`, BioShock `~65 units/m`.)
 
 ### 8. Consider depth submission — this is the target where it actually pays
 

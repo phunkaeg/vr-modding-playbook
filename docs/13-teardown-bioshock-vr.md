@@ -208,9 +208,6 @@ Their pass 2 does **not** re-sample the head pose. Pass 1 caches the final un-ey
 
 > A Present lands between the two passes, so re-sampling would skew the pair (vertical disparity).
 
-This is the third independent arrival at the same rule ([10](10-graphics-apis.md)): SS2VR latches
-rotation across an alternate-eye pair, the BioVRDev mod pair-locks its camera, and this project replays
-a cached base. **Any two-pass or two-frame stereo scheme must derive both eyes from one camera sample.**
 
 They also stamp the projection layer with the pose the image was actually rendered from — not the
 newest pose available at submit.
@@ -226,9 +223,6 @@ untouched.
 Explicitly rejected: **inferring the eye from present parity** ("breaks on any dropped present") and a
 cross-thread mutex handoff ("a lock in the present path").
 
-That rejection is the fix for the failure mode in [10](10-graphics-apis.md) where SS2VR's self-toggling
-eye phase desynced permanently after a single skipped fill. A counter that *infers* phase can silently
-invert forever; an explicit tag attached at the source cannot.
 
 ## Pacing: poll, never wait on a racy engine event — and never wait unbounded
 

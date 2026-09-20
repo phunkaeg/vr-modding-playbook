@@ -1,51 +1,37 @@
 # Engine Profiles — the deep-comparison set
 
-> **⚠ The authoritative fleet table is
-> [cross-project-index.md](cross-project-index.md#the-fleet-at-a-glance)**, not this page. This chapter
-> is a *deep four-way comparison* kept for its per-engine detail; it predates the fleet growing to
-> additional first-hand projects and it does not list them all.
->
-> **Corrected 2026-08-25.** This page previously opened "Four Games, One Playbook", described the
-> playbook as distilled from four conversions, and stated **SS2VR as 32-bit — which is wrong; it is
-> x64** (KEX is a 64-bit remaster; SS2VR's own analysis works at image base `0x140000000`). The error
-> survived here for weeks because two pages carried the same fact independently. **One canonical
-> table, everything else links to it** — see [the note on drift](#why-this-page-now-defers) below.
 
-This chapter holds four flat-to-VR conversions side by side in detail. The value of that comparison is
+> The authoritative published-project roster is the
+> [cross-project index](cross-project-index.md#the-fleet-at-a-glance).
+> This chapter is a selected technical comparison, not a complete fleet inventory.
+
+This chapter holds three flat-to-VR conversions side by side in detail. The value of that comparison is
 the thesis of the whole document: **the engines are wildly different in age, API, and architecture, yet
 the VR conversion hits the same patterns, the same roadblocks, and the same solutions.** Where a lesson
 only holds on one engine, this doc says so; the rest is cross-engine by construction.
 
-Three of these (SS2VR, BioshockVR, SOMAVR) are first-hand. The fourth,
-[Halo MCC VR](https://github.com/pancreations/Halo-MCC-VR), is an external MIT-licensed project folded
-in as independent corroboration — built by a different person on a different engine, and it still landed
-on the same core lessons.
 
 **The other four first-hand projects** — PreyVR, DishonoredVR, FarCry2-VR, Swat4-VR — are covered in
 [cross-project-index.md](cross-project-index.md), [17](17-teardown-fc2vr-native-stereo.md) and their own
 `docs/` trees.
 
-## The four-way comparison
+## Selected engine comparison
 
-| | **SS2VR** (System Shock 2) | **BioshockVR** (BioShock) | **SOMAVR** (SOMA) | **HaloVR** (Halo 3 / MCC) |
-| --- | --- | --- | --- | --- |
-| Original engine | LGS **Dark Engine** (1998) | **Unreal Engine 2.5** fork "Vengeance" (2007) | Frictional **HPL3** (2015) | **Blam/Saber** lineage (2007) |
-| Shipping binary | Nightdive **KEX** remaster | **BioShockHD.exe** remaster | **Soma_NoSteam.exe** | **`halo3.dll`** hosted by `MCC-Win64-Shipping.exe` |
-| Graphics API | **D3D11** | **D3D11** | **OpenGL 4.6** (SDL2 + GLEW) | **D3D11** |
-| Bitness | **64-bit** | 32-bit x86 | **64-bit** | **64-bit** |
-| Scripting | **Squirrel** (`sq_scripts`, `.kpf` mods) | native **UObject/UnrealScript** (`AShockPlayer`, `AHands`, `AWeapon`) | **HPL script** `.hps` (`LuxPlayer`, `PlayerState_*.hps`) | **HaloScript + tag data** (H3EK editing kit) |
-| World scale (to metres) | `world_scale=3.28` | `~65 units/m` | HPL world units, near `0.03` / far `1000` | — |
-| Native camera FOV | (KEX projection) | H≈`100°` / V≈`67.7°` (from `screenDataToCamera`) | vertical `70°` | **user-set `120`** (required; default culls) |
-| Frame boundary hook | `Present` | `Present` | **`gdi32!SwapBuffers`** (via `SDL_GL_SwapBuffers`) | `Present` (but pose sampled for the *next* predicted display) |
-| Stereo approach | private per-eye D3D11 targets + RenderView, **half-rate alternate-eye** | private per-eye HDR/depth targets, cloned cbuffers, same-frame replay | **AFR** (alternate-frame) into GL swapchains | **engine's own prepared-view renderer** driven per eye, stereo-array swapchain |
-| Prior art leaned on | old Dark/Shock source, `openDarkEngine` | 3DMigoto/3D-Vision fixes, UEVR, UnrealPort | **HPL2 source** (Amnesia), UEVR patterns | HaloCEVR, ReclaimerVR, **ManagedDonkey** + H3EK |
+| | **BioshockVR** (BioShock) | **SOMAVR** (SOMA) | **HaloVR** (Halo 3 / MCC) |
+| --- | --- | --- | --- |
+| Original engine | **Unreal Engine 2.5** fork "Vengeance" (2007) | Frictional **HPL3** (2015) | **Blam/Saber** lineage (2007) |
+| Shipping binary | **BioShockHD.exe** remaster | **Soma_NoSteam.exe** | **`halo3.dll`** hosted by `MCC-Win64-Shipping.exe` |
+| Graphics API | **D3D11** | **OpenGL 4.6** (SDL2 + GLEW) | **D3D11** |
+| Bitness | 32-bit x86 | **64-bit** | **64-bit** |
+| Scripting | native **UObject/UnrealScript** (`AShockPlayer`, `AHands`, `AWeapon`) | **HPL script** `.hps` (`LuxPlayer`, `PlayerState_*.hps`) | **HaloScript + tag data** (H3EK editing kit) |
+| World scale (to metres) | `~65 units/m` | HPL world units, near `0.03` / far `1000` | — |
+| Native camera FOV | H≈`100°` / V≈`67.7°` (from `screenDataToCamera`) | vertical `70°` | **user-set `120`** (required; default culls) |
+| Frame boundary hook | `Present` | **`gdi32!SwapBuffers`** (via `SDL_GL_SwapBuffers`) | `Present` (but pose sampled for the *next* predicted display) |
+| Stereo approach | private per-eye HDR/depth targets, cloned cbuffers, same-frame replay | **AFR** (alternate-frame) into GL swapchains | **engine's own prepared-view renderer** driven per eye, stereo-array swapchain |
+| Prior art leaned on | 3DMigoto/3D-Vision fixes, UEVR, UnrealPort | **HPL2 source** (Amnesia), UEVR patterns | HaloCEVR, ReclaimerVR, **ManagedDonkey** + H3EK |
 
 ### Why this page now defers
 
-This chapter carried a fleet roster *and* so did the cross-project index. When the fleet grew, one was
-updated and the other was not — and the stale copy sat on the orientation page, where it is most likely
-to be believed. An agent reading only this page would have taken SS2VR for a 32-bit target and reached
-for `x32dbg`.
 
 **The rule that follows: a fact belongs in exactly one place, and every other page links to it.**
 Duplicating a table is duplicating a maintenance obligation, and the copy that drifts is always the one
@@ -65,7 +51,6 @@ consult it, and three separate projects in this fleet have re-derived something 
 | `UnrealEngine3` (build **10897**) | **DishonoredVR** | UE3 32-bit D3D9 - the exact stack. `Development/Src/` carries `Core`, `Engine`, `D3D9Drv` and `GFxUI` (Scaleform, which is how UE3 games build their HUD). Its README indexes `GNames`, `GObjects` and `GMalloc` by file and line |
 | **Four CryEngine trees** (below) | **PreyVR**, and **FarCry2-vr** | Prey 2017 is a CryEngine/Arkane fork; **Dunia is a heavily forked CryEngine**. Pick by generation - see the table under [Choosing a CryEngine tree](#choosing-a-cryengine-tree) |
 | `AmnesiaTheDarkDescent`, `AmnesiaAMachineForPigs` (**HPL2**) | **SOMAVR** | HPL3's direct predecessor - same lineage, same authors, much of the structure survives |
-| `DarkEngine`, `SystemShock2`, `SystemShock2GD`, `thief_2_service_release`, `openDarkEngine`, `darkengine-main` | **ss2vr-work** | Dark Engine, plus a clean-room reimplementation |
 | `geo-11-0.6.56` | any | a stereo driver in the 3D-Vision lineage; general reference for per-eye shader fixes |
 
 Swat4-VR (UE2.5) and BioshockVR (a UE2.5 derivative) inherit partial lineage from the UE3 tree, but the
@@ -264,12 +249,13 @@ project. See [state the interoperability basis](08-project-process.md).
 
 ## NewDark, and the transform path that moved to the GPU {#newdark-hwtl}
 
+This section describes the independently public classic-game patch line, not a
+modern remaster's renderer or an unpublished mod. Its console commands and binary
+layouts must not be assumed to exist in a different shipping target.
+
 Classic System Shock 2 and Thief in 2026 are not the 1999 binaries: they are **NewDark**, the
 community engine patch.
 
-> **Read the scope before the content.** NewDark 1.29 patches the **classic** build to v2.50 - 32-bit, Dark Engine, D3D9. It is **not** the Nightdive 25th Anniversary Remaster, which is a separate x64 KEX/D3D11 product, and the 1.29 notes never mention it. **SS2VR targets the KEX remaster**, so none of the console commands or config variables below exist in its binary and `toggle_hwtl_enable` cannot be run against it. What follows is therefore an *engine-profile* fact about the classic line and a *technique* observation that transfers - not a description of SS2VR's target. A feature wanted on the remaster has to be built into the injected DLL. shock2quest sits in a third place again: it reimplements the Dark Engine, reads NewDark-era file-format extensions (its worldrep reader skips two u32 fields NewDark added) and cites NewDark behaviour as a design reference, but incorporates none of its renderer. The table above lists the Dark source trees; this is the
-layer on top of them that every current install actually runs. `[SOURCE]` NewDark 1.29 release notes
-and the HWTL variant documentation, read as shipped text.
 
 **1.29 introduces an HWTL variant, and it moves vertex transforms from the CPU to the GPU.** For a VR
 mod that is the whole story, because an interception on the software transform path does not see a
@@ -311,14 +297,6 @@ shipping `.nut` scripts.
 
 ## What each engine makes easy, and what it makes painful
 
-**SS2VR (Dark/KEX, D3D11, 64-bit).** A portal/cell engine with a CPU visibility pass that runs
-*before* any render-view rewrite. Culling is decided in 2D screen space against a fixed-point
-viewport, from a cull camera anchored to the body. That architecture makes "peek around a corner"
-the hardest problem on this engine (see [01](01-camera-and-tracking.md)) and means you drive KEX's
-*culling inputs*, never the RenderView, to change what's visible. Squirrel gives you a real,
-supported command/verb surface for input and gameplay actions, which is why SS2VR lives high on the
-[input ladder](03-input-and-locomotion.md) without native calls for most controls. The old
-open-source Dark lineage is gold for *vocabulary*, but only the KEX binary is authoritative.
 
 **BioshockVR (UE2.5 "Vengeance", D3D11, 32-bit).** A UObject engine: real named native classes
 (`AShockPlayer`, `AHands`, `AimIKTargetTracker`, `AWeapon::GetPerfectFireStart`) you can hook by
@@ -436,20 +414,9 @@ you internalize nothing else, internalize that these are engine-independent:
    your way out of missing geometry — you drive the engine's cull camera/FOV. Halo is the cheap case
    that proves the rule: it exposes an FOV *setting*, and raising it to `120` pushes culling past the
    headset's field of view with no hook at all ([01](01-camera-and-tracking.md)).
-4. **Prefer driving the engine's own native systems over reimplementing them.** SS2 drives KEX's cull
-   camera and Squirrel verbs; BioShock drives native AimIK and the fire-start seam; SOMA drives the
-   native analog mover, picker, and camera-add channels; Halo drives the engine's own prepared-view
-   renderer per eye and converts controller aim into Halo's *normal aim steering*, so projectiles,
-   target logic, vehicles and turrets stay game-owned. Reimplementation is the fallback, not the
-   default ([03](03-input-and-locomotion.md), [07](07-engine-integration-safety.md)).
 5. **The graphics API changes the plumbing, not the play.** D3D11 vs OpenGL changes *how* you own
    targets, state, and submission — but the proof ladder, private-eye targets, source-freshness
    tracking, and lane separation are identical ([10](10-graphics-apis.md)).
-6. **Comfort and game-feel are their own engineering surface.** Snap-turn blackout, peripheral
-   vignette, head-bob/shake suppression, and contact haptics recur; SOMA even reused SS2VR's exact
-   0.30 m / 1 m vignette contract on a different engine and API, and Halo independently arrived at the
-   same "suppress the engine's authored camera-effect stage while head tracking is active" solution
-   ([01](01-camera-and-tracking.md), [02](02-viewmodels-and-hands.md)).
 7. **The method dominates the engine.** Build self-ID, readback/residual probes, one-variable A/Bs,
    fail-closed hooks, and test-validity discipline saved more time than any engine trick on every
    project ([06](06-debugging-methodology.md), [08](08-project-process.md)).

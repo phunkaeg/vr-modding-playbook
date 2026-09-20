@@ -25,11 +25,27 @@ site-public/
 cross-engine-graph/graphify-out/.graphify_learning.json
 cross-engine-graph/graphify-out/reflections/
 # Verbatim proprietary game/engine files extracted from a shipping build.
-# The retail System Shock Remake evidence pack holds .uproject/.uplugin/.ini
-# read straight out of the pak and exe. NOTICE.md excludes game assets and
+# Retail evidence packs can hold configuration files extracted directly
+# from shipping archives. NOTICE.md excludes game assets and
 # engine SDKs from version control, and this repository is public, so the
 # extraction stays local. Findings may be described; the files may not ship.
-briefs/evidence/ssr-retail-*/
+briefs/evidence/*-retail-*/
+
+# Internal working corpus. Ignoring does not remove already tracked files or
+# historical commits. Publication requires the separate privacy gate.
+/.publication-private/
+/cross-engine-graph/
+/briefs/
+/CLAUDE_CHAT_HANDOFF.md
+/HANDOFF_TO_CODEX.md
+/AGENT_GUIDANCE_AUDIT_*.md
+/tools/Repowise-*.ps1
+/tools/repowise-*.md
+/tools/repowise_workflow.py
+/tools/test_repowise_workflow.py
+/tools/analyse-doc-split.py
+/tools/reconcile_fleet.py
+/tools/reconcile_graphs.py
 
 # Per-developer assistant tooling, not project configuration. `graphify install
 # --platform opencode` writes a tool.execute.before hook here; the claude and

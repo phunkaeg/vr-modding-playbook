@@ -1,5 +1,19 @@
 # Using this playbook
 
+## Publication boundary
+
+This checkout mixes public methods with ignored, local-only research material.
+Before preparing a publication, run `python tools/publication_check.py` and
+read `PUBLICATION.md`. Missing private policy or missing snapshot approval is
+a blocker, not a reason to bypass the gate. Do not publish raw graphs, research
+briefs, handoffs, private-project ledger rows, or private implementation evidence.
+The published roster excludes private projects; absence is not proof they do not
+exist. Never re-harvest private details from local graphs into public chapters.
+Do not upload the local privacy policy or audit reports. A normal Git commit
+does not remove disclosures from history. The user controls pushing and any
+history rewrite; do not perform either without their authorization. The owner
+accepts existing public history; current-tree cleanup does not require a rewrite.
+
 Read `CLAUDE.md` once as the paired entry point. For RE work, read
 [the shared agent workflow](AGENT_RE_WORKFLOW.md) once, then route below.
 Use `vr-re-workflow` and `re-mcp-toolkit` for selected procedures; session tool
@@ -43,10 +57,9 @@ Cross-project edges are graded `INFERRED` and carry the concept and the reason, 
 bad link on sight.
 
 **What it will not announce.** It indexes **documentation, not code**, and it is a **snapshot**:
-absence means nobody wrote it down, or wrote it after the build. Coverage is uneven — MoH-VR (39
-nodes) and SoF-VR (46) joined on 2026-09-07 and have far smaller corpora than SS2VR (659), so a
-thin result for a young project is a statement about its documentation. Rebuild and extension
-instructions are in [`cross-engine-graph/README.md`](cross-engine-graph/README.md).
+absence means nobody wrote it down, or wrote it after the build. Coverage is uneven, so a
+thin result for a young project is a statement about its documentation. This graph is
+an optional internal resource, not part of the public distribution.
 
 **If the first stereo image will not fuse**, skip all of the above and go straight to the
 [five-minute alignment diagnosis](docs/09-d3d11-openxr-injection.md). Every project in the

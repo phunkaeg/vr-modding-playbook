@@ -412,4 +412,3 @@ For an experiment whose result needs to reach other projects, use
 
 | What you're seeing | Go to |
 |---|---|
-| Verified executor calls address zero during loading, same command succeeds later | [07: subsystem readiness](07-engine-integration-safety.md#subsystem-readiness) — capture the return site and observe the downstream callback/table initialization; executor availability is not subsystem readiness (SS2VR v3.72) |

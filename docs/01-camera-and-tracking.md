@@ -20,10 +20,6 @@ projection, projectile origin — silently binds to *one* of these. **The centra
 knowing which one, per subsystem, and making your math use the matching camera.** Most VR
 artifacts are a camera/frame mismatch, not engine corruption.
 
-- *SS2VR:* the weapon wobble survived five "fixes" because each guessed a camera. A probe that
-  reconstructed the object's position under four candidate cameras (native-now, native-prev,
-  display-now, display-prev) showed the engine uses **native-same-tick** to ~0.01 units — the
-  remaining error was elsewhere entirely (see below). Stop guessing; let the engine tell you.
 
 ## Authoritative vs. follower rendering
 
@@ -125,15 +121,6 @@ make the engine submit geometry it already culled. The symptoms are objects popp
 view and corridors that don't render when you peek or lean around a corner, precisely because in VR
 your eye moves (head 6DoF + per-eye IPD) while the engine's cull camera stays on the body.
 
-- *SS2VR:* three distinct mechanisms hide behind one "frustum" complaint, and conflating them stalled
-  the fix for weeks. Edge pop-out is **2D screen-space portal clipping** against the fixed-point
-  viewport (`PortalGetClipInfo`); peek/lean failure is **cell/portal visibility computed from the
-  body-anchored cull camera** (`SceneTraversalBegin_SetCullCamera` is the sole writer); and the
-  suspected "grazing-angle portal drop" was **not a defect** — the front-face test is exact geometry
-  and is what terminates the visibility BFS. The rule that governs all of it: *drive KEX's cull
-  camera/aim before visibility/picking; keep the RenderView override for stereo/projection, never for
-  CPU culling.* (Disabling the front-face test doesn't widen the view — it floods a fixed 20480-entry
-  clip pool that then hard-fails for the rest of the frame.)
 - *SOMAVR:* the same principle, defensively — hooking `cViewport`/`cCamera` frustum ownership so that
   when the exact player camera is known, *every other* camera (reflection, terminal, water, shadow)
   returns its native frustum and cannot inherit the headset pose or consume a VR hotkey.
@@ -141,13 +128,6 @@ your eye moves (head 6DoF + per-eye IPD) while the engine's cull camera stays on
   near-plane, and culling ownership; expanding the private projection alone never made the engine draw
   culled objects.
 
-**Check for an FOV setting before you write a single hook.** If the game exposes a field-of-view option,
-raising it widens the *engine's own* culling frustum — the entire problem above, solved from the options
-menu. (*HaloVR: Halo 3's default FOV culls geometry outside the flat-screen frustum, so scenery pops in
-and out at the edges of the headset view; the mod simply requires the user to set FOV to `120`, which
-pushes culling past the headset's field of view. It is documented as the one setting that visibly breaks
-the game if it's wrong.*) SS2VR had to drive KEX's cull camera precisely because Dark exposes no such
-lever — but it costs nothing to look first.
 
 The general move: find the engine's single cull-camera writer, drive *that* from the HMD (bounded,
 fail-closed), and keep your render-view rewrite for projection/stereo only.
@@ -476,10 +456,7 @@ timing concerns as the camera itself, and they port across engines.
 - **Peripheral vignette** — a VIEW-space alpha quad (transparent center, dark edges) whose radius
   tracks locomotion/turn magnitude, driven through a display-period attack/release envelope. Keep it a
   compositor layer independent of world, HUD, reticle, and projection transforms, on its own swapchain,
-  and expire the motion samples on the same bounded age as input so it can't stick on. (*The same
-  0.30 m distance / ~1 m square contract was authored on SS2VR and then reused verbatim on SOMAVR —
-  a different engine and a different graphics API — which is the clearest proof comfort math is
-  engine-independent.*)
+  and expire the motion samples on the same bounded age as input so it can't stick on.
 - **Suppress engine head motion at its source, don't cancel it downstream.** Head-bob, weapon-sway,
   camera-shake, and view-roll are the engine writing motion into the camera you're now driving. Fight
   them where the engine *writes* them, by zeroing the specific channel, not by post-correcting the
@@ -606,15 +583,13 @@ the engine's posture enum.
 - **Let the engine do its full, correct crouch (driven by the posture enum — never skip it), then add
   the camera drop back in your VR pipeline so the net view movement is HMD-only.** Compensate only the
   *physically*-triggered crouch; a stick-crouch while standing physically upright *should* still lower
-  the camera, because there's no physical motion to double against. (*SS2VR measured the engine crouch as
-  four lockstep player floats moving ~0.62 m.*)
+  the camera, because there's no physical motion to double against.
 - **Compensate at the tracking-space head height, not the projection eye pose.** A correction applied to
   the OpenXR projection eye pose has no effect on where positional tracking places you — it only shifts
   the projection view (the same reason a raw `height_offset` does nothing). Apply it to the tracking-space
   origin both positional paths derive from. And the engine usually **animates** the eye-drop over ~0.3 s,
   so a fixed compensation steps instantly and pops — read the live engine eye field each frame and
-  compensate by its *actual* animated delta. (*SS2VR: exactly this two-bug sequence — wrong space, then
-  un-ramped step.*)
+  compensate by its *actual* animated delta.
 
 ## Delay synthetic motion, late-latch head motion, never swap them {#delay-synthetic-latch-head}
 
@@ -648,7 +623,7 @@ These recur in every VR mod. When something "wobbles," "jitters," or "lags," che
 - **Stale-anchor subtraction:** you convert a world pose to camera-relative by subtracting a
   camera origin — but the world pose embedded *last frame's* origin while you subtracted
   *this frame's*. The difference rides on the result: invisible when still, oscillating at
-  walking speed. Fix: subtract the *same* origin that was embedded. (*SS2VR walk-jitter.*)
+  walking speed. Fix: subtract the *same* origin that was embedded.
 - **One-frame consumer lag:** you write a transform this tick; the engine consumes it next
   tick against a newer camera. Cancels only if you predict or if the consumer's frame matches
   your source frame.
@@ -657,4 +632,4 @@ These recur in every VR mod. When something "wobbles," "jitters," or "lags," che
   as the head moves. Reconstruct through one consistent sample.
 - **Eye-alternation:** a value computed per-eye but consumed once will alternate by ±(half
   IPD) every frame — a fast shimmer that scales with IPD×world_scale. Anchor per-eye-invariant
-  values at the eye *center*. (*SS2VR doubled-gun / cross-eye strain.*)
+  values at the eye *center*.

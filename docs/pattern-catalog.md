@@ -1749,17 +1749,13 @@ loot-versus-grab, or a pull-and-slam reload.
    `yankRequiredHandSpeedRoomspace`.
 3. **World-space motion**, only when the other end of the measurement genuinely is the world.
 
-SS2VR's `manualReload` is the reference for (1): its whole gesture is `rightHand.z - leftHand.z` and
-the horizontal distance between the two hands, so the player can walk, run and turn through the
-entire gesture without touching it.
 
 **Proof:** perform the gesture standing still and it fires; then walk while holding the hand still
 relative to the body, and it must not.
 
-**Trip hazard:** **displacement thresholds have the same exposure and hide it better** - a pull that
-is unambiguous over 200 ms is meaningless over two seconds of walking downhill, so a world-space
-displacement gesture needs either a bounded duration or one of the formulations above. `[SOURCE]`
-PLANCK; SS2VR; the same axis underlies HIGGS's loot-versus-grab speed split.
+**Trip hazard:** displacement thresholds can be contaminated by locomotion just
+like velocity thresholds. Test both, using a consistent coordinate frame.
+
 
 ## INPUT-011 — Bind by hand and position, resolve by context {#input-011}
 
@@ -2787,12 +2783,10 @@ column contains no value that Table A does not support. A `full` treatment on a 
 a promise to invent state the engine does not have; say so in the row rather than discovering it in
 a headset.
 
-**Trip hazard:** a weapon that needs nothing still needs a row, or "no work required" and "nobody
-looked" become the same blank. Record how the enumeration was obtained and what it may have missed -
-a census with no stated lower bound reads as complete. And fill Table C last: a treatment chosen
-before the topology is known is how a magazine animation gets built for a weapon with no magazine.
-`[LIVE]` SS2VR's `manualReload` is the `gesture-native` tier working today, gated by a substring
-model filter to a single weapon family - which is exactly what a census exists to widen.
+**Trip hazard:** record weapons that need no reload treatment as well as those
+that do. An absent row cannot distinguish an intentional exclusion from an
+unexamined weapon. An animation-event name alone does not prove its meaning.
+
 
 ## HAND-012 — Choose how an object is held before you tune how it feels {#hand-012}
 
@@ -3423,16 +3417,11 @@ other side has never heard of.
 
 **Proof:** run one side with the other deliberately absent and require the check to fail.
 
-**Trip hazard:** SS2VR's agent bridge had the driver and the DLL using **different agent
-directories**, so no command could ever arrive - and every static check passed, because each side
-inspected its own files. **A self-test that only talks to itself cannot detect a disagreement about
-the address.**
+**Trip hazard:** both sides can pass their own checks while using different
+paths or protocol versions. Verify an end-to-end exchange and reject replayed
+commands with a session identity and consumed sequence.
 
-The same bridge carried a second one worth naming: a **stale command file re-executed on every
-launch**, because the sequence counter resets when the DLL loads and the file does not. The stale
-command was `quit`, which is why the game "mysteriously exited under xr-sim" - a fault whose symptom
-names the wrong subsystem entirely. Refuse any command older than the bridge's own start.
-`[LIVE]` ss2vr-work, `04518f0`.
+
 
 ## TEST-017 — Give a harness a fault taxonomy, not a kill switch {#test-017}
 
@@ -3457,12 +3446,10 @@ apart from "gone".
 **Proof:** force each class and confirm the response differs - a transient fault recovers on its own,
 a structural one stays off and says why, and the read-only path answers throughout.
 
-**Trip hazard:** **a caught exception is not a handled one.** SS2VR caught a null-pointer call from a
-`set` issued before the engine's config table existed - and the catch disabled automation for the
-entire session. The crash was prevented and the session was still lost. Ask what the recovery policy
-*costs*, because a guard that quietly retires a subsystem is indistinguishable from that subsystem
-never having worked. And do not let the control plane depend on a diagnostic being enabled: theirs
-polled only while frametime logging and the flight recorder were on. `[AUTHOR]` SS2VR v3.71/v3.72.
+**Trip hazard:** catching an exception does not establish safe recovery. Do not
+retry a structural fault, and do not let diagnostics being disabled stop the
+independent control-plane heartbeat.
+
 
 **A second instance, one week later, from SOMAVR - and it is the *expected-transient* case.** A 125 ms
 first-eye transition into a Read object correctly rejected the cached pair base, and continuous

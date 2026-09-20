@@ -17,10 +17,6 @@ The single highest-ROI habit. The first line your injected code logs should be:
   folders, or a launcher-cached copy exist, you *will* run the wrong one eventually.
 - Bump the version string on every behavior-relevant build, mechanically.
 
-*SS2VR lost the better part of a day to a config-key bug that produced a symptom **identical**
-to running a stale DLL; the self-ID banner is what finally proved the binary was current and
-redirected the search to the real cause. It then immediately paid off again catching a
-Debug-vs-Release mismatch.*
 
 **Then extend the banner past your own build, to the environment.** Identifying your binary answers "did
 *my* code change?" It cannot answer "did the *world* change?" — and on a VR target a startling amount of
@@ -43,8 +39,6 @@ changed is frequently not the thing you edited.
 
 ## Measure, don't theorize: the readback probe
 
-When a value the engine computes is wrong, don't reason about what it *should* be — **log what
-it actually is.** The pattern that repeatedly cracked SS2VR:
 
 - **Readback probe:** write your value X, then read back where the engine *actually put it*
   (`Object.Position`, the final matrix, the picked id) and log the delta. The delta moving when
@@ -53,63 +47,30 @@ it actually is.** The pattern that repeatedly cracked SS2VR:
 - **Multi-candidate residual probe:** when you don't know which reference frame/timing the
   engine uses, reconstruct the result under *every* candidate (frame A now, frame A prev,
   frame B now, frame B prev…) and log the residual of each. The candidate that stays ~0 **is**
-  the engine's convention — no guessing, no theory. (*SS2VR's `frameId=(N,Np,D,Dp)` probe ended
-  a multi-day wobble investigation in one condump: native-same-tick won at 0.01 units.*)
+  the engine's convention — no guessing, no theory.
 
 Five theories cost a week each; one probe costs an afternoon and *ends* the question.
 
-The multi-candidate residual probe is the highest-value twenty lines in this chapter, so here it is
-concretely. The shape: enumerate every convention the engine *might* be using, score them all every
-frame, and let the winner declare itself.
+The multi-candidate residual probe compares plausible conventions against the
+same observed output. The following pseudocode is engine-independent; bind its
+reconstruction functions to measurements on the actual target.
 
-```cpp
-/* Which frame and which tick does the engine actually use? Do not guess -- score
-   all of them. SS2VR ended a multi-day wobble hunt with one condump of this. */
-enum Cand { FRAME_A_NOW, FRAME_A_PREV, FRAME_B_NOW, FRAME_B_PREV, CAND_N };
-static const char *kCandName[CAND_N] =
-    { "native-same-tick", "native-prev-tick", "derived-same-tick", "derived-prev-tick" };
+```text
+for each informative sample:
+    for each candidate convention:
+        residual = distance(reconstruct(candidate, sample), observed_output)
+        record(candidate, residual, sample_id)
 
-struct Residual {
-    double sum = 0, worst = 0;
-    uint32_t n = 0;
-    void add(double r) { sum += r; if (r > worst) worst = r; ++n; }
-    double mean() const { return n ? sum / n : 0.0; }
-};
-static Residual g_res[CAND_N];
-
-void ProbeTick(const Frames& f, const Vec3& engineActual)
-{
-    /* Reconstruct the engine's result under every candidate convention. */
-    const Vec3 pred[CAND_N] = {
-        Reconstruct(f.aNow),  Reconstruct(f.aPrev),
-        Reconstruct(f.bNow),  Reconstruct(f.bPrev),
-    };
-
-    for (int c = 0; c < CAND_N; ++c)
-        g_res[c].add(Length(pred[c] - engineActual));
-}
-
-void ProbeReport()
-{
-    int best = 0;
-    for (int c = 1; c < CAND_N; ++c)
-        if (g_res[c].mean() < g_res[best].mean()) best = c;
-
-    for (int c = 0; c < CAND_N; ++c)
-        Log("residual %-18s mean %9.4f  worst %9.4f  n=%u%s",
-            kCandName[c], g_res[c].mean(), g_res[c].worst, g_res[c].n,
-            c == best ? "   <== WINNER" : "");
-
-    /* Two candidates within noise of each other is NOT an answer: the probe has
-       not separated them, and picking one is a coin flip you will pay for later. */
-    double second = 1e30;
-    for (int c = 0; c < CAND_N; ++c)
-        if (c != best && g_res[c].mean() < second) second = g_res[c].mean();
-    if (second < g_res[best].mean() * 3.0)
-        Log("INCONCLUSIVE: best and runner-up are within 3x -- add a motion case "
-            "that separates them (fast yaw, or a frame with translation only)");
-}
+if no informative samples:
+    return NO_DATA
+report each candidate's sample count, mean residual and worst residual
+if the best candidate exceeds the predeclared error tolerance:
+    return INCONCLUSIVE
+if best and runner-up differ by less than the measured noise margin:
+    return INCONCLUSIVE
+return best candidate, bounded to the motions and samples actually tested
 ```
+
 
 Three things make it work, and all three are easy to leave out:
 
@@ -120,9 +81,6 @@ Three things make it work, and all three are easy to leave out:
   without its `total_matches` ([11](11-re-anchoring-and-discovery.md)).
 - **Exercising the discriminating motion.** Standing still, every candidate scores ~0. Yaw fast.
 
-The result to aim for is unambiguous: *SS2VR's `frameId=(N,Np,D,Dp)` probe returned native-same-tick at
-0.01 units against runners-up an order of magnitude worse* — a number that ends the discussion rather
-than informing it.
 
 **Dump every stage of the pipeline at the same instant, paired.** A defect visible only in the final
 composited image is ambiguous about which of N stages introduced it — and you will burn builds guessing.
@@ -410,10 +368,6 @@ The fleet built a three-project documentation corpus so that community detection
 three engines hit the *same* problem. **The merge step does not do that, and the reason is worth knowing
 before you build on one.** `[LIVE]`
 
-`graphify merge-graphs` over per-project graphs of SS2VR, BioshockVR and SOMAVR produced **exactly the
-sum of its inputs** - 1328 nodes, 616 links, and not one edge between projects. A query seeded in one
-project's nodes could never reach another's. Asked *"which projects hit problems with the cull camera or
-culling?"* it returned 22 nodes, all SS2VR.
 
 **A merge combines node sets. It does not discover that two projects describe the same concept.** That
 is entity resolution, and nothing in the pipeline performs it.
@@ -442,9 +396,6 @@ cheap because the expensive reading is already banked in the per-project graphs.
 | Largest component | 52 (3%) | **149 (11%)** |
 | Cross-project query | impossible | **works** |
 
-Cost: **$0.013**. Fifteen concepts linked, including frustum/culling, stereo strategy, depth submission,
-HUD layering, viewmodel posing, interaction raycasting, haptics, recentre and roomscale. The same culling
-query afterwards reaches SS2VR *and* BioshockVR documents by traversing `same_concept_as` edges.
 
 **Validate every returned label against the real node set.** On one run the model invented five labels
 that exist in no graph; all five were rejected before an edge was emitted. A false bridge is worse than a
@@ -487,10 +438,6 @@ answers "what did we learn about X", which is the row the table says a graph los
 Graphify derives a node ID from source path plus entity name. Across a multi-project corpus those
 collide, and **the loser is silently dropped**:
 
-```text
-node 'ss2vr_interact_nut' is minted by two different files - keeping ... from BUILD_HISTORY.md,
-dropping ... from VR_FINDINGS_INDEX.md ... the dropped node is lost
-```
 
 Its own advice is to extract per subfolder and combine with `graphify merge-graphs`. That fixes three
 things at once: IDs are scoped per project so collisions cannot happen, each project's graph is
@@ -558,11 +505,6 @@ A usable graph has most of its mass in one component. If the largest component i
 
 **Check yield per source, against input.** The aggregate looked survivable; the per-project split did not:
 
-```text
-ss2vr        180 nodes / 360,723 words = 5.0 per 10k
-bioshockvr    72 nodes / 234,367 words = 3.1 per 10k
-somavr         7 nodes / 111,226 words = 0.6 per 10k
-```
 
 An 8x yield gap on comparable prose is not proportionality, it is near-total loss for that project — and
 a cross-project graph missing one of three projects will answer "where do these engines disagree" with
@@ -814,10 +756,6 @@ Two details worth copying from those two projects:
   build it came from. That is [META-001](pattern-catalog.md#meta-001) applied to evidence rather than to
   binaries, and it is what lets an agent read its own output without a human present.
 
-**And name what the harness cannot judge.** ss2vr-work's harness doc is explicit that comfort, depth,
-*"does the parry feel right"*, and whether an unlit hand reads in a dark corridor are irreducibly human
-and still need the headset - *"do not let a green harness run stand in for a verdict it cannot make."*
-A harness that does not state its own boundary will be asked to cross it.
 
 ## An instrument must prove it can see the fault before you trust its clean verdict {#self-proving-instrument}
 
@@ -1380,8 +1318,6 @@ three answers and they disagree, which is the finding:
   read DirectInput and ignore `PostMessage` entirely.
 - **Swat4-VR:** a focus precondition, missed three separate times (`F-0028`), voided everything
   measured in the window where an ad-hoc command sequence skipped the launcher's focus step.
-- **SS2VR:** `[AUTHOR]` keyboard focus is **not** required while the game keeps producing frames -
-  the main menu works without it.
 
 So "does this need focus?" belongs in the project's own notes with a receipt, and a harness ported
 between projects must re-answer it rather than inherit it. It is also worth asking **per screen**
@@ -1768,17 +1704,11 @@ Evidence: `PreyVR/docs/RE-UI-CAPTURE-PIXELS-2026-09-10.md` and its
 
 ## Falsify your own hypothesis before shipping a fix
 
-Several SS2VR "fixes" shipped on a plausible theory and were later falsified by their own
-diagnostic output (the value the fix was supposed to change didn't change). Before believing a
-fix:
 
 - Add the diagnostic that would **disprove** it, and check the disproof didn't fire.
 - A fix with no proof line is a guess wearing a confidence costume.
 - **Don't read a diagnostic's *precondition* as its *result*.** Read the value back *after* the
-  mutation, in its own column. (*SS2VR: `cull_from_eye` was reported "no effect" because the probe showed
-  `darkCam==renderCam` — but that near-equality was the space-*validity gate*, and the probe never read
-  the cull global back after the `+=`. A working feature and a dead one printed identically until a
-  `cullCamPost` column was added.*) A probe that only shows your clean inputs, or the gate you passed
+  mutation, in its own column.  A probe that only shows your clean inputs, or the gate you passed
   through, can't show whether the write landed.
 - **A "validity" flag your own probe emits encodes an assumption, and the assumption can be the thing
   that's wrong.** The natural reading of `identityValid=0` is "the hook target is wrong" — but the
@@ -1789,14 +1719,10 @@ fix:
   confirmed by a ~60-unit eye-height offset between the two positions.*) Before treating a validity
   failure as proof the address is wrong, **audit what your own classifier assumes.**
 - **A success return proves the call didn't throw — not that it had the intended effect.** `ok=1`,
-  `override=1`, "flag accepted" are all statements about the API, not about the world. (*SS2VR spent a
-  session on `weapon_probe_launch override=1` on the assumption that an accepted override meant visible
-  aim must have changed; the override was accepted by a path that wasn't the one drawing the weapon.*)
+  `override=1`, "flag accepted" are all statements about the API, not about the world.
   Pair every success return with an observation of the thing you wanted to move.
 - **When a gated feature still fires, look for a second implementation before you re-poke the gate.**
-  (*SS2VR "fixed the deny" on two-handed pistols three times, with a condump each time **proving** the
-  Squirrel deny worked — because a separate DLL-side two-hand aim blend existed that the Squirrel switch
-  could not reach.*) Same shape when a function has several branches doing one job: fix all of them, or
+   Same shape when a function has several branches doing one job: fix all of them, or
   you ship a fix that works everywhere except the case the user meant.
 - **When a signal-driven visual doesn't respond, instrument the consumer, not the signal.** (*Same
   project chased a beam-brightness signal twice; the signal was correct throughout, and the bug was a
@@ -1956,7 +1882,7 @@ project at least three separate ways:
 
 - **Installed but not in the load path.** A correct fix was written, packaged and shipped into a mod that
   simply wasn't listed in the engine's `mod_path`. The stock file won every frame; the symptom was
-  identical to "the fix doesn't work." (*SS2VR, weapon-mesh strobe.*)
+  identical to "the fix doesn't work."
 - **Loaded but shadowed.** Two packages ship the same relative path; first-in-chain wins. Load order and
   override order are different questions, and the answer is engine-specific.
 - **Package present, script never executed.** The archive appeared in the save's mod list and in package
@@ -1971,9 +1897,7 @@ work" and "the fix never loaded" are indistinguishable, and you will debug the w
 
 Host-machine state is a silent input to every measurement, and it is free to check.
 
-(*SS2VR chased a framerate regression through code across multiple sessions. Root cause: the **Windows
-desktop refresh rate had silently reset to 50 Hz**. The desktop Present vsyncs to it, capping the entire
-VR pipeline. Setting it back to 144 Hz fixed it instantly.*)
+
 
 - A **round-number fps cap is almost always a refresh/vsync cap, not reprojection.** `frameMs ≈ 1000 /
   desktop_Hz` is the tell — and note 45 is half of 90 (reprojection) while 50 is just 50 Hz.
@@ -1991,12 +1915,6 @@ ground truth:
 - Capture a frame with the broken thing *and* a known-good reference object both visible.
 - Compare the two draws: shader pair, bound textures (size/format), render target, blend/depth
   state, and **constant buffer contents**.
-- Watch for tooling gaps: read constants by fetching the cbuffer **resource** and dumping raw
-  bytes if the reflection path returns zeros (a real MCP limitation hit on SS2VR — the
-  "everything is zero" reading was the tool, not the data). **Confirmed a second time on Sims4VR,
-  2026-08-25**, which makes it a standing defect rather than a one-off: `get_cbuffer_contents` returned
-  `cb0_v0`..`cb0_v10` all `[0,0,0,0]` on every event in two different scene passes, while the raw bytes
-  held correct matrices the whole time. Skip the reflection path entirely:
 
   ```python
   get_shader_bindings(stage="vertex", event_id=E)   # -> cbuffer0 resource_id + byte_size
@@ -2229,8 +2147,7 @@ modes that masquerade as game bugs. Learn each one's tell:
   reflected `$Globals` as 544/752/560 bytes while the live `GetDesc().ByteWidth` was 576/832/1088.*)
   Classify draws by the *live* byte width; a layout keyed to the reflected size mis-keys every draw.
 - **A cbuffer helper that returns all-zeros is usually the tool, not the data.** Fetch the cbuffer
-  *resource* and decode raw bytes as floats instead. (*Hit on SS2VR and independently re-confirmed on
-  BioshockVR — a documented MCP limitation, not "the constants are zero."*)
+  *resource* and decode raw bytes as floats instead.
 - **An automated matrix/camera finder will confidently name a matrix that is not a camera.** (*DishonoredVR
   recorded this as the false positive that cost its analysis a whole first pass: apitrace's
   `find_matrices` reports the **BT.601 YUV-to-RGB colour-conversion matrix** as a `viewproj` at
@@ -2340,10 +2257,7 @@ Every breakpoint-driven workflow you have — pause, inspect registers, single-s
 is unavailable the moment the target is presenting to a headset. Pausing freezes the XR submit loop, and
 the runtime's watchdog takes the app down with it.
 
-(*SS2VR tried to pause-and-sample a running VR build in x64dbg to profile a stutter. The first register
-read after the pause returned "Resource temporarily unavailable," every subsequent call errored, the
-automation bridge desynced, and both the debugger and the game crashed. Zero samples captured. It is
-logged twice in that project's registry — it was repeated.*)
+
 
 - A pausing debugger is for **flatscreen or already-broken** targets. Run the flat harness
   ([08](08-project-process.md)) when you need one.
@@ -2362,11 +2276,7 @@ the helper's `+0xc8` — a "close pointer, wrong object" bug that produced no er
 a dynamic-trace option (Frida, a debugger script, or an instrumented hook) alongside the static map.
 
 **Static RE is fine for control flow; any claim about a runtime *value or existence* needs a live
-check before you ship it "verified."** (*SS2VR burned four headset sessions on four enemy-weapon-read
-recipes that each decompiled correctly but failed live — wrong handler table, unresolved joint, empty
-prop for that object class — until three Frida memory-read probes found the real read. And even a live
-probe misleads if you trust a data label over the user's eyes: the `eCreatureJoint` "R/L" enum did not
-indicate which arm a baked-in weapon was rigged to; only the visual calibration overlay resolved it.*)
+check before you ship it "verified."**
 
 When a visual problem is direction-dependent, correlate it with source/private draw counts and
 render-target/depth-resource identity. A sudden jump in replay work can reveal that a mirror,
@@ -2405,8 +2315,7 @@ see [11](11-re-anchoring-and-discovery.md). The short version follows.
   call whenever they exist; they're stable across patches, an RVA isn't.
 - An old open-source ancestor of the engine (if one exists) is gold for *vocabulary and
   architecture* — but confirm every name/offset against the actual shipping binary before
-  calling it. (*SS2VR: old Dark/Shock source named the systems; the AE binary confirmed which
-  survived.*)
+  calling it.
 
 ## On a 32-bit target, unrelated crashes may be address-space exhaustion {#laa-address-space}
 
@@ -2612,15 +2521,13 @@ the output later will not know.
 ## Logging discipline (or your evidence destroys itself)
 
 - The in-game console is usually a **small ring buffer**. A per-frame log wipes it in seconds,
-  destroying the exact lines a test was run to capture. (*SS2VR: a per-frame publish flooded
-  the buffer and ate the proof of every other test.*) Publish on-change or ≤1 Hz; throttle or
+  destroying the exact lines a test was run to capture.  Publish on-change or ≤1 Hz; throttle or
   transition-gate logs.
 - Any proof needed for **test validity** (versions, mode flags, which path ran) must also reach
   a persistent log file, never only the volatile console.
 - Build a **self-service explain probe**: a command that dumps the full classification/decision
   for one object/event on demand (`explain <id>`). It turns "why was this rejected?" from a
-  code-reading exercise into one log line. (*SS2VR's `interact_explain` immediately revealed a
-  suspected target was actually a different object — a decal — saving a wrong investigation.*)
+  code-reading exercise into one log line.
 - Capture logs that are time-boxed bursts (hotkey → N seconds) are *snippets*, not session
   boundaries — don't read session-level conclusions from one burst.
 - Per-draw file logging is also a performance mutation. Prefer transition logs, bounded hotkey
@@ -2629,11 +2536,7 @@ the output later will not know.
 - **Instrumentation volume is not neutral, and it will be attributed to your feature.** The cost is in
   the *emitted* line, not the filtered one: open-append-close per line, plus a second write if a capture
   file is armed, plus `OutputDebugStringA` — which **balloons to milliseconds per call while a debugger
-  is attached**, making debugger attachment itself a timing contaminant. (*SS2VR: left-hand tracking
-  diagnostics made the left hand look like the source of gameplay chug when it was really acting as a
-  log-volume multiplier. Separately, a probe issuing ~840 writes/s from the render thread took the global
-  logger mutex **before** the level filter, so every dropped line still serialized the render thread
-  against game-thread logging.*) Three rules fall out: take the level filter before the lock, never
+  is attached**, making debugger attachment itself a timing contaminant.  Three rules fall out: take the level filter before the lock, never
   emit from the render thread at per-draw rates, and when you measure performance, measure with the
   instrumentation off — or record emitted-line count alongside frametime and treat it as a covariate.
   Capture windows that force lines through at a lower level are partly measuring themselves.

@@ -26,8 +26,6 @@ of walking downhill.
 | velocity in **room** space | locomotion | nothing much - but needs the play-space origin |
 | **difference between two tracked points** | locomotion, orientation, *and* the origin | nothing |
 
-SS2VR reached the third independently, and it is worth reading as the reference form. Its
-`manualReload` never asks where a hand *is*:
 
 ```squirrel
 local dx = leftPose.wox - rightPose.wox;
@@ -411,33 +409,13 @@ VR locomotion (teleport, blink, physical climbing) is where the [drive-the-engin
 rule pays off most, because the engine already knows how to move the player *correctly* — cell
 relocation, gravity, AI awareness, mantle rules — and reimplementing that fights the engine forever.
 
-- **Teleport: reuse the engine's atomic player-move primitive, and find it via the debug console.** Most
-  engines expose one "relocate the object properly" call. (*SS2VR: `IGameTools::TeleportObject`, exposed
-  to script as `Object.Teleport` and driven by the remaster's own debug `teleport` console command — so
-  typing `teleport $10,0,0` validates the entire feature end-to-end before you write a line of code.*)
-  The primitive typically does **no destination validation** (SS2's literally carries a `// TODO: figure
-  out if this fits in the world`), so a cheap caller-side validator — floor ray down, two headroom rays
-  for crouch/stand clearance, reject steep normals, arc clamped — is your job, plus an origin-`(0,0,0)`
-  guard so a bad read can't warp the player into the void. For ladders, snap the landing to the far
-  platform and let residual stick-walk into the ladder trigger native auto-climb for free.
-- **Physical climbing: latch the native climb *state* and feed it stick input.** Native climb is usually
-  a **constraint regime, not an animation** — while it's active, ordinary movement input already slides
-  you along the constrained surface. (*SS2VR (`phclimb.cpp`): hand-over-hand = convert each frame's hand
-  world-delta into virtual-stick input while the native climb is latched; no position writes, no physics
-  fights, and native exit/mantle keep working.*) This "puppeteer the native state" pattern beats
-  UEVR-style direct position drive, which fights gravity/capsule/fall-state and loses the free mantle.
-  Mantling is often a first-class engine state you can drive too (SS2's `CheckMantle`: headroom +
-  forward-clearance + standable-surface raycasts); locate these functions by their warning strings
-  (`"BreakClimb: %s has no active physics models"`). Some capabilities are compiled out — SS2's wall
-  climbing is dead code behind `if(FALSE) // don't climb on walls, spidey`.
 
 ## The double-driving trap (read this twice)
 
 If two paths drive the same control, the symptoms **never** look like "two inputs." They look
 like:
 
-- Movement that's mysteriously too fast (two lanes summing). (*SS2VR: keyboard-WASD fallback +
-  virtual gamepad both driving = "ubermensch speed" that wasn't all the cheat.*)
+- Movement that's mysteriously too fast (two lanes summing).
 - Jitter or stutter (two lanes fighting at different rates).
 - "Broken thresholds" or "deadzone doesn't work" (one lane ignores the gate the other respects).
 
@@ -549,9 +527,7 @@ equivalent, so the gesture layer is an addition rather than a requirement.
 ## Don't share a gate between movement and buttons
 
 A tempting shortcut is "disable the keyboard fallback to stop double-driven movement." If
-movement and buttons share that one flag, you also kill jump/crouch/use. (*SS2VR: exactly this
-— the fix was splitting the gate so movement-key synthesis suppresses under an analog lane
-while button emulation stays alive.*) Keep movement suppression and button suppression
+movement and buttons share that one flag, you also kill jump/crouch/use.  Keep movement suppression and button suppression
 independent.
 
 ## A release must go to whoever owned the press
@@ -652,9 +628,6 @@ Three properties make this work, and each fixes a real annoyance:
   instead of forty untuned seats.
 - **It saves itself on exit**, and the reset appears only when there is something to reset.
 
-**Tell the user calibration is expected.** Framing per-seat tuning as *"normal, and a one-time job per
-seat"* converts what reads as a bug report into a setup step — the same honesty that makes
-[SS2VR's world-scale-by-feel](05-assets-and-materials.md) work, applied to ergonomics.
 
 ## Physical lean moves the viewpoint; the engine's own lean usually does not
 
@@ -698,8 +671,7 @@ Finding `+jump` in the binary's command table proves the verb *exists*; it does 
 you a callable function pointer. The table may be built at runtime (no static string→handler
 references to scrape). Don't treat a discovered bind string as a confirmed dispatch address —
 confirm the actual callable path, or fall back to the console/command system which *is* the
-supported entry point. (*SS2VR: the jump/crouch handler RVA hunt dead-ended for exactly this
-reason; the console-verb path via the existing action bridge worked immediately.*)
+supported entry point.
 
 ## A synthetic controller's *presence* is a lane too (rung 3 gotcha)
 
@@ -1135,8 +1107,7 @@ physical calibration, or the stereo route's once-per-frame side-effect safety.
   before blaming your code.
 - **Cloud-synced config can override you silently.** A stale setting synced from an old install
   can disable the very thing you're testing, and no console command overrides it because it's
-  reloaded from the synced file. (*SS2VR: a cloud-synced `joystick_enable 0` in `user.bnd`
-  killed analog sticks even on a fresh install — burned real time before it was found.*) When
+  reloaded from the synced file.  When
   vanilla behavior is inexplicably broken, suspect synced/profile state, not your mod.
 - **Verify the game even supports the input class** before building a bridge for it. Test a
   real device first — if a physical gamepad doesn't move the player, no virtual one will.

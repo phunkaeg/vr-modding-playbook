@@ -18,7 +18,7 @@ $skillBlock = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'agent-guidance/sk
 $newSkill = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'agent-guidance/vr-research-receipts/SKILL.md'))
 $fleetSection = ([IO.File]::ReadAllText((Join-Path $playbookRoot 'sources.yml')) -split '(?m)^external:')[0]
 $fleetRoots = @([regex]::Matches($fleetSection, '(?m)^    root: "([^"]+)"') | ForEach-Object { [IO.Path]::GetFullPath($_.Groups[1].Value) })
-if ($fleetRoots.Count -ne 10) { throw 'Fleet changed: review installer scope before extending it' }
+if ($fleetRoots.Count -ne 9) { throw 'Published fleet changed: review installer scope before extending it' }
 $targets = @()
 foreach ($projectRoot in $fleetRoots) {
     foreach ($name in @('AGENTS.md','CLAUDE.md')) {
@@ -29,7 +29,8 @@ foreach ($projectRoot in $fleetRoots) {
     $codexGuide = Join-Path $projectRoot 'CODEX.md'
     if (Test-Path -LiteralPath $codexGuide -PathType Leaf) { $targets += @{ Path=$codexGuide; Block=$entry; Replace=$false } }
 }
-foreach ($profile in @(@{Dir='C:\Users\meise\.codex'; Guide='AGENTS.md'}, @{Dir='C:\Users\meise\.claude'; Guide='CLAUDE.md'})) {
+$profileRoot = [Environment]::GetFolderPath('UserProfile')
+foreach ($profile in @(@{Dir=(Join-Path $profileRoot '.codex'); Guide='AGENTS.md'}, @{Dir=(Join-Path $profileRoot '.claude'); Guide='CLAUDE.md'})) {
     $targets += @{ Path=(Join-Path $profile.Dir $profile.Guide); Block=$entry; Replace=$false }
     $targets += @{ Path=(Join-Path $profile.Dir 'skills/vr-re-workflow/SKILL.md'); Block=$skillBlock; Replace=$false }
     $targets += @{ Path=(Join-Path $profile.Dir 'skills/vr-research-receipts/SKILL.md'); Block=$newSkill; Replace=$true }

@@ -66,9 +66,12 @@ convention throughout is a parenthetical naming the project, for example
 `ID3D12Resource*`)*. Chapter 11 additionally records that much of its anchoring
 technique is distilled from praydog's published write-ups.
 
-The in-house fleet projects (SS2VR, BioshockVR, SOMAVR, PreyVR, DishonoredVR,
-FarCry2-VR, Swat4-VR, Sims4VR, SoF-VR, Medal-of-Honor-VR) are unreleased and
-internal; findings from them are published here with permission.
+Internal research is not a blanket grant to disclose project identities,
+roadmaps, builds, captures, or development history. Public contributions require
+separate disclosure review, including indirect identifying details. See
+[the publication boundary](PUBLICATION.md). External prior-art attribution
+must be preserved; it must not be confused with permission to disclose an
+unannounced project studying that prior art.
 
 ## Not part of this repository
 

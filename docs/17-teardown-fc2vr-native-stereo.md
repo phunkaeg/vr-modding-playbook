@@ -1,7 +1,5 @@
 # Native stereo: two engines, two routes to rendering the world twice
 
-For the x64 D3D11 KEX/Dark route and its per-eye traversal ownership traps, see the
-[SS2VR worked case](kex-dark-native-stereo.md).
 
 Two independent mods that reached the top rung of the stereo ladder, on two engines, from opposite
 starting positions:
@@ -21,15 +19,8 @@ discipline. The FC2VR bridge exports are prefixed `FearVr_`, so the transport la
 shared between them — which is itself the architectural lesson in
 [§ The three layers](#the-three-layers).
 
-**Why this earns a chapter.** Every stereo strategy elsewhere in this playbook works *downstream* of the
-engine's camera: patch the matrices per draw, replay the draw stream, or alternate eyes across frames.
-Both of these do something else. They call **the engine's own world-render a second time per frame**,
-with the camera moved to the other eye, and capture what comes out. The engine renders the scene twice
-because it is asked to render two views. That gives culling, LOD, sky and fog a native per-view
-path, but each consumer and retained product still needs an ownership proof. The
-[KEX/Dark case](kex-dark-native-stereo.md) demonstrates why a second call alone does not supply it.
 
-That is the top rung of the stereo ladder, and these are the playbook's first worked examples of it —
+Rendering the world separately for each eye is the top rung of the stereo ladder. These worked examples were
 both achieved on 2005–2008 D3D9 titles with no OpenXR binding of their own. Age is not the barrier.
 
 > **What this chapter is based on.** For FEAR VR: source and its design docs. For FC2VR: shipped
@@ -342,19 +333,16 @@ Every hard problem below comes from that one fact.
 
 ### …and that cost is not universal. Check how the camera reaches the renderer first {#camera-delivery}
 
-SS2VR made the correction that reframes this whole chapter: **rung 1 is a spectrum, not a yes/no.** What
-decides where a target sits is not only *can you call the world render twice*, but **how the camera gets
-in**:
+Camera delivery determines the ownership problem. A global camera requires a
+borrow-and-restore contract; a by-value camera argument can avoid that shared-state
+hazard. Verify the actual consumer before choosing either design.
 
 | Camera reaches the renderer as… | What you must do | Which bugs below apply |
 |---|---|---|
 | **A global you overwrite** (FEAR, Far Cry 2) | Borrow it, restore it exactly, and freeze everything that observes it | **All of them** — R1 restore, R2 contamination, R4 validator |
-| **A parameter / by-value argument** (KEX, CryEngine) | Build a second camera and pass it | **None of that family** — there is no shared state to corrupt |
+| **A parameter / by-value argument** (CryEngine) | Build a second camera and pass it | The camera-global borrow/restore family can be avoided; other shared render state still needs proof |
 | **A parameter across a documented module boundary** (id Tech 2 / Quake 2) | Build a second `refdef_t` and call `RenderFrame` twice | **None of that family**, and the contract is GPL - see [the id Tech family](00-engine-profiles.md#id-tech-family) |
 
-*(SS2VR: KEX's camera is a parameter, not a global — `Kex_RenderFrame` builds it on its own stack and
-passes it by pointer. PreyVR: `CreateGeneralPassRenderingInfo(const CCamera&, …)` takes an arbitrary
-camera, and `CRenderView::SetCamera` copies **by value**.)*
 
 **Every one of FC2VR's four shipped revisions exists only because they mutate shared state.** Where the
 camera is already a parameter, that entire bug family is designed out rather than defended against —
@@ -470,12 +458,6 @@ bounded-state overflow — observation only, altering neither results nor owners
 > where the second eye genuinely damages the first. Do not carry "mostly clean" forward from an audit
 > that only looked for exhaustion.
 
-**A worked example of getting this wrong, in both directions.** SS2VR originally flagged a per-frame
-clip-node arena (`ClipAlloc`) as a potential blocker for KEX, and this chapter recorded it. On
-investigation **they withdrew it**: the flag they had read as a per-frame latch has two xrefs, both
-inside the allocator, and nothing ever clears it — it is a **process-lifetime one-shot**, i.e. lazy
-init on first call. The pool is balanced by paired alloc/free, so peak usage is **per-pass, not
-cumulative**, and two sequential eye passes are fine.
 
 Their own registry entry was wrong, and the correction is recorded here because the *shape* of the
 mistake is instructive: **a one-shot init flag and a per-frame reset latch look identical at the call
@@ -550,47 +532,30 @@ already doing it.** Cubemap and reflection probes, portal and mirror views, secu
 views from a second camera, render-to-texture — all of these re-enter the world render within one frame,
 in shipping code, on the developer's own terms.
 
-Find that path and you get two things at once: **proof of re-entrancy that needs no experiment**, and
-**a reference implementation of exactly what must be saved and restored around a repeat pass.**
+Find that path and you get two leads: evidence about existing repeat-pass support,
+and an example of state saved and restored around it. Neither alone establishes
+that an arbitrary full-quality stereo pass is safe.
 
-(*SS2VR, investigating something else entirely, found `Kex_RenderCubemapSixFaces` calling
-`Kex_RenderWorldFromCamera_Probe` **six times with six camera orientations**, reaching the same core
-world-render as the main view. KEX therefore re-enters its world render **six-plus times per frame in
-stock gameplay** — the central question was never speculative.*)
+Existing secondary views are discovery leads, not automatic stereo proof.
+Trace them to actual GPU scene draws, identify reduced pass sets, and measure
+which simulation, visibility and scratch state they share with the main view.
+Repeated visibility work alone does not prove repeated world rendering.
 
-The reference-implementation half is the more valuable of the two. Read what the engine changes *around*
-its own repeat passes:
-
-> Around its six passes the engine resets the touched-cell list and sets two flags, clearing them after.
-> Both flags are read **only** by portal-expansion code. So for a repeat pass the engine changes
-> **portal expansion behaviour and nothing else** — no simulation suppression, no audio gate, no
-> particle freeze.
-
-That is a **strong negative result on the "what advances twice" half of the gate**, obtained statically,
-for free, and with the engine authors' own answer rather than your inference. If the developers only had
-to suppress one subsystem to render the world again, your second eye probably only needs the same.
-
-**This is now a three-engine pattern, and it should be your first move.** KEX, UE2.5 and UE3 have all
-been shown to re-enter their world render in stock gameplay, and in each case the developers answered
-the question before the modder asked it:
-
-| Engine | The engine's own repeat render | How it was found |
-|---|---|---|
-| **KEX** | `Kex_RenderCubemapSixFaces` → `Kex_RenderWorldFromCamera_Probe` ×6 | Found while chasing something unrelated |
-| **UE2.5** | `SwatGamePlayerController.RenderTexture` → `PlayerCalcView` → `DrawPortal` — the flashbang retina effect | Script-side search |
-| **UE3** | The whole `USceneCapture*` family — see below | Class-name search in the shipped build |
+Public engine families provide concrete places to search: UE2.5 portal drawing
+and UE3's scene-capture components. Inspect the wrappers and their state restoration
+before choosing a repeat-render entry point.
 
 **UE3's is the most enumerable**, because the engine names its capture family explicitly. DishonoredVR
 found the complete set in the recorded build:
 
 ```text
-USceneCaptureCubeMapComponent      <- six faces, six orientations: the exact KEX shape
+USceneCaptureCubeMapComponent
 USceneCaptureReflectComponent
 USceneCapturePortalComponent
 USceneCapture2DComponent
 USceneCapture2DHitMaskComponent
-USceneCaptureComponent             <- shared base
-ASceneCaptureActor / ASceneCapture2DActor  + their render targets
+USceneCaptureComponent
+ASceneCaptureActor / ASceneCapture2DActor
 ```
 
 **Prove it is live, not vestigial engine code.** Class presence alone proves the engine *supports* the
@@ -612,10 +577,6 @@ of **59 callees** under `FUN_006c59a0`. That function has only two references, s
 cannot route through it — capture must reach a *lower, shared* scene-render entry, which is the thing
 actually worth doubling. The 59-callee walk was abandoned in favour of a cheaper target.
 
-> **Keep the halves separate.** That the classes exist and are live is **demonstrated**. That the
-> engine's save/restore around its capture pass is a usable model for what a second eye must suppress is
-> **argued** — DishonoredVR flagged this explicitly, not having read that implementation yet. The KEX
-> and UE2.5 results support the argument; they do not establish it on UE3.
 
 **Second engine family, same answer.** Swat4-VR found UE2.5 doing it too, in ordinary shipping play:
 `SwatGamePlayerController.RenderTexture` calls `PlayerCalcView(...)` then `DrawPortal(...)` — **the
@@ -631,11 +592,6 @@ And the reference implementation read straight from the predicate bodies:
 | `ShouldRenderMirrors` | `return 1` | field | inherits |
 | `ShouldRenderPlayer` | field | field | `return 1` |
 
-**FrameBufferFX is the one thing both secondary paths force off** — and, exactly as in KEX, **nothing
-suppresses simulation, gates audio, or freezes particles.** Two unrelated engine families, and in both
-the developers' own recipe for re-rendering the world is *which things get drawn*, not *what stops
-advancing*. That is a strong prior for any new target, and it is a prior about the **first** gate
-question specifically.
 
 #### Proof is not a vehicle: the engine's repeat render is usually a *reduced* one
 
@@ -1317,7 +1273,6 @@ Three projects have now answered this from their own binaries rather than from m
 | Project | Engine | Camera reaches renderer as | Status |
 |---|---|---|---|
 | **PreyVR** | CryEngine, x64 | **Parameter** — `CreateGeneralPassRenderingInfo(const CCamera&,…)` @ `0x1E5B30`, 3 direct callers; `CRenderView::SetCamera` copies by value | **Preconditions met, viability not established** (H-009). `C3DEngine::RenderWorld` @ `0x21F520` has *zero* direct xrefs — all virtual dispatch, `IProcess` index 3, vtable `+0x18`. Nothing called yet; pooled `CRenderView` contention and cost unknown |
-| **SS2VR** | Dark/KEX, x64 | **Parameter** — `Kex_RenderFrame` builds it on its own stack, passes by pointer to `0x45C470` | **Best case in the fleet.** The borrow-and-restore bug family does not apply |
 | **DishonoredVR** | UE3 / D3D9, x86 | *unresolved* | **Re-entrancy: strong static evidence.** The full `USceneCapture*` family ships and is live (config key at 4 addresses, script-settable capture params, in-fiction mirrors). The 59-callee walk under `FUN_006c59a0` was retired — only 2 refs, so capture routes lower. Camera delivery still open |
 | **Swat4-VR** | UE2.5 / D3D9, x86 | **Parameter** — `FPlayerSceneNode` ctor takes `FVector`, `FRotator`, `float FOV`; Location matched the D3D9 view matrix to 4 dp | **Re-entrancy PROVEN in shipping play** — `SwatGamePlayerController.RenderTexture` → `PlayerCalcView` → `DrawPortal` (the flashbang retina effect). Hazard classes 2 and 3 measured **absent** |
 | **BioshockVR** | UE2.5 / D3D11, x86 | *unresolved* | On rung 2 with private eye targets and pair latching. The native-function table is the obvious probe |

@@ -47,7 +47,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **HIGGS 1.10.10-43930-1-10-10-1768263289** | REGISTERED NOT REVIEWED 2026-09-05. HIGGS - Hand Interaction and Gravity Gloves. The reference implementation of physical grabbing in a shipped VR title: grab, throw, two-handed hold, weapon interaction. Carries a Source/ tree. Read 2026-09-05: higgs_vr.ini (593 settings) and the Papyrus API. The C++ core is binary. |
 | `stereo` | **IRON-NEST-VR** | BINARY ONLY: managed code driving OpenXR and D3D11 directly via Silk.NET rather than through Unity XR. No source. |
 | `stereo` | **MetaXRInteraction-1.205.0** | Out of scope by design: an interaction SDK; the engine owns stereo. |
-| `stereo` | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the most transferable finding here. Checked against SS2VR manualReload rather than assumed: that code is already immune, because every quantity in it is a difference between two tracked hands, which cancels locomotion, turning and the play-space origin at once. INPUT-010 now ranks that formulation above room space; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary. |
+| `stereo` | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the most transferable finding here. A relative displacement between two tracked hands can cancel common locomotion and origin translation; verify coordinate frames before transferring the technique. INPUT-010 now ranks that formulation above room space; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary. |
 | `stereo` | **PureDark-UEVR** | REGISTERED NOT REVIEWED 2026-09-07. A FORK of praydog/UEVR, and its master is BYTE-IDENTICAL to the already-tracked upstream at D:/Dev Debug/Other VR mods/UEVR - same HEAD 74b76bc, same tree 20e90587ef58d605. Nothing on master is new, so the harvested UEVR notes on that entry stand unchanged. The fork's own work is on two BRANCHES that are not checked out: origin/AFW and origin/Joey-Merged. Checking `git branch -a` before assuming a fork has diverged is the cheap discriminator, and it is what stops a duplicate tree being re-read as new material. The delta on those branches has NOT been read. |
 | `stereo` | **REFramework** | REGISTERED NOT REVIEWED 2026-09-04. praydog REFramework, full source (139 MB, upstream github.com/praydog/REFramework). This is THE framework that supplies VR to RE Engine titles and the direct upstream of Talemann-RE4 - which is why it arrived. Nothing in it has been read yet; it is registered so an empty search result cannot read as absence. |
 | `stereo` | **RazeXR-PCVR** | Unexamined, and the interesting question: a source port owns the render path, so how it produces the second eye is a free choice rather than a constraint. Compare against the R1-R4 rungs. |
@@ -90,19 +90,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 5 | 5 | 0 | 0 | 0 |
-| `xr_lifecycle` | 3 | 4 | 0 | 1 | 2 |
-| `xr_input` ⚠ | 0 | 3 | 1 | 2 | 4 |
-| `camera_tracking` | 6 | 4 | 0 | 0 | 0 |
-| `render_hazards` | 6 | 3 | 0 | 0 | 1 |
-| `ui_hud` | 3 | 2 | 0 | 1 | 4 |
-| `hands_interaction` | 3 | 2 | 0 | 2 | 3 |
-| `input_locomotion` | 4 | 1 | 1 | 2 | 2 |
-| `performance` ⚠ | 0 | 6 | 0 | 2 | 2 |
-| `audio` ⚠ | 0 | 3 | 0 | 2 | 5 |
-| `packaging_deploy` | 5 | 3 | 0 | 1 | 1 |
-| `re_discovery` | 8 | 2 | 0 | 0 | 0 |
-| `source_integration` | 1 | 3 | 0 | 0 | 6 |
+| `stereo` | 4 | 5 | 0 | 0 | 0 |
+| `xr_lifecycle` | 2 | 4 | 0 | 1 | 2 |
+| `xr_input` ⚠ | 0 | 2 | 1 | 2 | 4 |
+| `camera_tracking` | 5 | 4 | 0 | 0 | 0 |
+| `render_hazards` | 5 | 3 | 0 | 0 | 1 |
+| `ui_hud` | 2 | 2 | 0 | 1 | 4 |
+| `hands_interaction` | 2 | 2 | 0 | 2 | 3 |
+| `input_locomotion` | 3 | 1 | 1 | 2 | 2 |
+| `performance` ⚠ | 0 | 5 | 0 | 2 | 2 |
+| `audio` ⚠ | 0 | 2 | 0 | 2 | 5 |
+| `packaging_deploy` | 4 | 3 | 0 | 1 | 1 |
+| `re_discovery` | 7 | 2 | 0 | 0 | 0 |
+| `source_integration` | 1 | 3 | 0 | 0 | 5 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -173,7 +173,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 119 | 19 | 71 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
-| **NewDark-1.29** | external reference | Dark Engine (System Shock 2 v2.50, Thief 2 v1.29) - the patch layer every current install runs | documentation | — | — | 0 | 24 | 0 | 6 | 2026-09-19 | 🟩 current | 0F / 2P / 2S / 8NR / 1— |
+| **NewDark-1.29** | external reference | Dark Engine (System Shock 2 v2.50, Thief 2 v1.29) - the patch layer every current install runs | documentation | — | — | 0 | 131 | 4 | 42 | 2026-09-19 | 🟥 source changed | 0F / 2P / 2S / 8NR / 1— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
 | **OFXR-Bridge** | external reference | engine-agnostic (implicit OpenXR API layer) | openxr-api-layer | — | — | 9 | 86 | 57 | 14 | 2026-09-19 | 🟥 source changed | 0F / 2P / 1S / 9NR / 1— |
 | **openmw-vr** | external reference | OpenMW (OSG / OpenGL) | source-port | — | — | — | 3825 | 3023 | 208 | 2026-08-26 | 🟩 current | 0F / 2P / 1S / 1NR / 9— |
@@ -256,7 +256,6 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:ae8da0a17b1970c3` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:70d8139029ca120b` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:72423b452aeeec8e` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **ss2vr-work** | 2026-08-28 | `tree:4d9e7c06edd1a483` | `tree:cca791280cc1e395` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:c362bdb2124a9a9d` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | GPL-3.0 |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | MIT |
@@ -321,7 +320,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:885ad189f33d5a23` | `—` | 🟥 source changed | unknown | unknown |
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | MIT |
-| **NewDark-1.29** | 2026-09-19 | `tree:2d267b23b563fb8b` | `tree:2d267b23b563fb8b` | `—` | 🟩 current | https://www.ttlg.com/forums/ (community patch; no canonical repository) | LicenseRef-NewDark (closed-source community engine patch, freely distributed). The binaries are not readable and not usable; the shipped documentation is what was read and what may be described |
+| **NewDark-1.29** | 2026-09-19 | `tree:2d267b23b563fb8b` | `tree:a7cac1c9370c209a` | `—` | 🟥 source changed | https://www.ttlg.com/forums/ (community patch; no canonical repository) | LicenseRef-NewDark (closed-source community engine patch, freely distributed). The binaries are not readable and not usable; the shipped documentation is what was read and what may be described |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | GPL-3.0 |
 | **OFXR-Bridge** | 2026-09-19 | `tree:084bd8beab66b041` | `tree:59f7e01df46fc74b` | `93039ffeeb73678eac0fcd555f7599314be2c26d` | 🟥 source changed | https://github.com/tig3rmast3r/OFXR-Bridge | LGPL-3.0-or-later |
 | **openmw-vr** | 2026-08-26 | `tree:7155f265d832b125` | `tree:7155f265d832b125` | `0f520f65c3e085369e66d6a90ce871e817d4533f` | 🟩 current | https://gitlab.com/madsbuvi/openmw/-/tree/openmw-vr | GPL-3.0 (OpenMW) |
@@ -407,7 +406,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 - `DishonoredVR-alpha` — binary alpha distribution (Binaries/, INSTALL.txt, a resolution .bat) - no source
 - `Immersive HUD-5-1-4-1751974538` — texture pack, not a mod
 - `SS2 AE 1.3 nointro and scp beta8-3-1-3-1774982605` — installer
-- `SS2 OG` — game assets + tweak packs; reference material for SS2VR
+- `SS2 OG` — game assets + tweak packs; not publishable source material
 - `UEVR-UEVR_AFW_v1.0-beta.5` — UEVR release binaries; superseded by the UEVR source checkout
 - `Elden Ring - Luke Ross` — empty directory - no files present
 - `Farcry VrMod` — a single installer .exe; nothing readable without running it
@@ -422,7 +421,6 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
-| **ss2vr-work** | active mod | Dark / KEX | hybrid-re+script | D3D11 | x64 | T3 | — | R2 · per-draw replay | 3440 | 347 | 2026-09-16 | 🟥 source changed | 9F / 3P / 0S / 0NR / 1— |
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 3325 | 2433 | 2026-09-09 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
 | **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 301 | 60 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
 | **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142861 | 5041 | 2026-09-18 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
@@ -580,24 +578,6 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | 🟩 full | `SOURCE` | — |
 | `re_discovery` | 🟩 full | `LIVE` | — |
 | `source_integration` | 🟨 partial | `SOURCE` | HPL2 source is used as an architectural oracle; SOMA retail remains an injected target. |
-
-#### ss2vr-work
-
-| Area | Review | Evidence | Note |
-|---|---|---|---|
-| `stereo` | 🟩 full | `HEADSET` | Shipping route grade retained. 2026-09-08 isolated native R1 investigation v3.93 checkpoint0b9c159 has LIVE own-eye products, zero/displaced doorway controls,600 centered frames and recovery; no HMD claim. The v3.95 follow-up proves bounded native XR head motion and moved-frame cancellation in xr-sim. v3.97 validates the human-test policy in xr-sim with 1800 pairs and explicit-stop recovery; actual VirtualDesktopXR reports no connected headset. See kex-dark-native-stereo.md and its current motion/headset-policy receipts. This note does not re-fingerprint the protected main tree. |
-| `xr_lifecycle` | 🟩 full | `HEADSET` | — |
-| `xr_input` | 🟨 partial | `SOURCE` | — |
-| `camera_tracking` | 🟩 full | `HEADSET` | — |
-| `render_hazards` | 🟩 full | `LIVE` | — |
-| `ui_hud` | 🟩 full | `HEADSET` | — |
-| `hands_interaction` | 🟩 full | `SOURCE` | 2026-08-28 re-review. Same provenance caveat as BioshockVR: the change is UNCOMMITTED working-tree work (42 modified files, last commit 2026-07-30), so the reviewed revision fingerprints the working copy. Two new design documents, both instances of META-006 applied to GAMEPLAY rather than to a render interface, which is why neither became a new pattern. MELEE_VR_REPORT: SS2 melee is charge-based and the whole lifecycle is already exposed - attack down/up input, native WeaponCharge/WeaponSwing events, Squirrel OnChargeSwing/OnReleaseSwing/OnHitSwing stubs, and a SwingExpose property carrying the hit arc - so the work is to TRIGGER the engine's existing two attack tiers from controller motion rather than to rebuild animation, hit detection and damage. WEAPON_MODEL_REPORT: the viewmodel is an ordinary Dark object and Dark objects carry a settable Scale vector property, so the ~2-3x viewmodel oversize is a Squirrel property write in the handler that already forces CameraObj - no hook needed. |
-| `input_locomotion` | 🟩 full | `HEADSET` | — |
-| `performance` | 🟨 partial | `LIVE` | — |
-| `audio` | 🟨 partial | `SOURCE` | — |
-| `packaging_deploy` | 🟩 full | `SOURCE` | — |
-| `re_discovery` | 🟩 full | `LIVE` | — |
-| `source_integration` | — no entry — | — | — |
 
 #### Swat4-VR
 
@@ -1757,7 +1737,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟨 partial | `SPEC` | REGISTERED AND READ 2026-09-19 (release notes + 'Newdark HWTL Variant.txt'). Distilled to ch00 #newdark-hwtl. THE FINDING FOR SS2VR: 1.29 introduces an HWTL variant that moves VERTEX TRANSFORMS FROM THE CPU TO THE GPU. An interception on the software transform path does not see a frame transformed in a vertex shader - the camera moves into shader constants, which is SOMAVR's hypothesis S2 restated and makes ch09 route B (capture and rewrite the shaders) the applicable route rather than an exotic one. THREE SOFTENERS: both paths remain in the engine and SWTL is still used for newsky and inventory models even in HWTL mode; toggle_hwtl_enable switches them AT RUNTIME, which is a one-command discriminator for whether a hook survives; and light_fade_sharpness crossfades hardware and software lighting, so the boundary is a blend rather than a hard switch. ONE SHARPENER: hwtl_enable DEFAULTS TO 1, so new installs get the new path. Graded SPEC because this is the engine's own shipped documentation, not a reading of its code. |
+| `stereo` | 🟨 partial | `SPEC` | REGISTERED AND READ 2026-09-19 (release notes + 'Newdark HWTL Variant.txt'). Distilled to ch00 #newdark-hwtl. THE GENERAL TECHNIQUE: 1.29 introduces an HWTL variant that moves VERTEX TRANSFORMS FROM THE CPU TO THE GPU. An interception on the software transform path does not see a frame transformed in a vertex shader - the camera moves into shader constants, which is SOMAVR's hypothesis S2 restated and makes ch09 route B (capture and rewrite the shaders) the applicable route rather than an exotic one. THREE SOFTENERS: both paths remain in the engine and SWTL is still used for newsky and inventory models even in HWTL mode; toggle_hwtl_enable switches them AT RUNTIME, which is a one-command discriminator for whether a hook survives; and light_fade_sharpness crossfades hardware and software lighting, so the boundary is a blend rather than a hard switch. ONE SHARPENER: hwtl_enable DEFAULTS TO 1, so new installs get the new path. Graded SPEC because this is the engine's own shipped documentation, not a reading of its code. |
 | `xr_lifecycle` | — no entry — | — | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
@@ -1883,7 +1863,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the most transferable finding here. Checked against SS2VR manualReload rather than assumed: that code is already immune, because every quantity in it is a difference between two tracked hands, which cancels locomotion, turning and the play-space origin at once. INPUT-010 now ranks that formulation above room space; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary. |
+| `stereo` | 🟥 not reviewed | `—` | REGISTERED NOT REVIEWED 2026-09-05. PLANCK - Physical Animation and Character Kinetics. Read 2026-09-05 (activeragdoll.ini, 758 settings, plus the Papyrus API) -> ch02 #physics-bodies, ch03 #roomspace-velocity, HAND-015, INPUT-010. Taken: yankRequiredHandSpeedRoomspace, which names the axis that stops player locomotion from satisfying a hand-speed gate - the most transferable finding here. A relative displacement between two tracked hands can cancel common locomotion and origin translation; verify coordinate frames before transferring the technique. INPUT-010 now ranks that formulation above room space; blend rather than swap between animation and physics, with separate blends for entering, leaving, getting up and recomputing world-from-model, and constraint parameters per PHASE; clamped bone velocities plus two chosen degradation paths for when physics cannot win (warp back beyond a distance, phase through with an alpha fade beyond an intersection depth, larger in combat); active ragdoll as a distance-gated LOD; cooldowns on every physical event because contact is continuous; THREE separate ignore lists (general, aggression, ragdoll collision) rather than one; and a consequence model - accumulated aggression with three thresholds and dialogue, stamina cost, speed reduction by race size, and intent inferred from aggressionRequiredHandWithinHmdConeHalfAngle so brushing past someone while looking away is not an assault. The C++ core is binary. |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
@@ -2243,7 +2223,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 
 | Area | Review | Evidence | Note |
 |---|---|---|---|
-| `stereo` | 🟧 skimmed | `AUTHOR` | NOT READ. runtimes/oculus_runtime/src/lib.rs (1,892 lines) is a straightforward OpenXR + OpenGL ES Android bring-up against xr::FormFactor::HEAD_MOUNTED_DISPLAY and a STAGE reference space; the corpus already covers that ground, so it was surveyed and skipped rather than read. Worth returning to only for vr_crouch::VrCrouchDetector, which is directly comparable to SS2VR's ROOMSCALE_CROUCH_RESEARCH.md and SOMAVR's physical-crouch work. |
+| `stereo` | 🟧 skimmed | `AUTHOR` | NOT READ. runtimes/oculus_runtime/src/lib.rs (1,892 lines) is a straightforward OpenXR + OpenGL ES Android bring-up against xr::FormFactor::HEAD_MOUNTED_DISPLAY and a STAGE reference space; the corpus already covers that ground, so it was surveyed and skipped rather than read. Worth returning to only for vr_crouch::VrCrouchDetector, which may inform physical-crouch research; validate independently on the receiving target. |
 | `xr_lifecycle` | 🟥 not reviewed | `—` | — |
 | `xr_input` | 🟨 partial | `SOURCE` | harvested 2026-09-07 into ch03 #context-by-hand and INPUT-011: four face buttons bound raw by hand and physical position, meaning resolved per hand against what that hand holds, symmetric across hands, every action targeting the hand that pressed. LOCOMOTION harvested 2026-09-07 into ch03 #physical-locomotion-verb, INPUT-012 and TEST-023: a nine-PR hand-climbing campaign whose first change was the BENCH (debug_ladder, one station per climbing shape including a non-climbable wall, built from shipped ladder templates) and whose second was the physics grip query ALONE, query-only with no body motion. Grip qualifies on the AUTHORED per-face climbable mask rather than the collider bounding box, permuted from the tool Z-up frame into the engine Y-up one. Release throws the body by the anchor hand travel RELATIVE TO THE PAWN over four frames, capped in magnitude and - the transferable cap - capped upward at the ordinary jump launch speed so a haul can never rise higher nor fall further than a jump, because the game scores falls. Velocity is expressed in PHYSICS STEPS so the throw matches the pull at 72/90/120 Hz. The vault predicate carries a state-at-acquisition term (the eye was BELOW the lip when the hold was taken) which is what stops leaning on a crate being a mantle, and a failed top-out plan changes nothing rather than breaking. Grip forgiveness is two mechanisms, spatial (0.3 wu lip search) and temporal (squeeze eligible 150 ms). Capsule resize is anchored on the body CENTRE while hanging because the feet-planted shift exceeds the grip stretch tolerance, and on the feet when grounded. Crouch applies one head-resolved translation to eyes, hands and gameplay head. Same week, melee billing moved from raw centre-of-mass speed to CLOSING speed at the contact point along the contact normal. They mark headless coverage as proving mechanism and NOT comfort, explicitly. |
 | `camera_tracking` | — no entry — | — | — |
@@ -2255,7 +2235,7 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `audio` | 🟩 full | `SOURCE` | Harvested 2026-08-25 into ch20 from engine/src/audio/mod.rs: moving emitters, two-ear listener updates, listener-relative lanes, channel preemption and unit scaling. |
 | `packaging_deploy` | — no entry — | — | — |
 | `re_discovery` | 🟨 partial | `SOURCE` | READ 2026-09-19, dark/src/ scoped. Distilled to ch11 #recreation-as-naming-oracle, RE-011 and FAIL-RE-035. THE FINDING: this is a NAMING oracle for the Dark Engine, and naming is the expensive part of RE. dark/src/properties/ registers 165 property decoders keyed by on-disk chunk name - define_prop("P$AI_Team", PropAITeam::read, identity, accumulator::latest) - across ~50 modules, each a named struct with its fields in file order. THREE GOTCHAS: (1) chunk names are FIXED-WIDTH and truncated, so the table holds P$AmbientHa, P$BitmapAni, P$AI_Alertn - grep a data file for the real name and you get zero hits, which reads as the feature being absent. (2) Property inheritance from archetype ancestors is resolved PER PROPERTY - the fourth argument to define_prop - and the module comment says override is not universal ("some - like Scripts - need to potentially incorporate ancestor values"), though only the overwrite rule is implemented so far, so the signature is the finding rather than the implementation. An absent property is not an empty one. (3) Authored Config and runtime State are SEPARATE properties throughout, e.g. the tweq system pairs TweqRotateConfig with TweqRotateState. Serialised layout is not memory layout, so this settles meaning, never location. |
-| `source_integration` | 🟨 partial | `SOURCE` | READ 2026-09-19, structure. A game-engine recreation of the Dark Engine in Rust, built against System Shock 2: 25th Anniversary Remaster - the same game SS2VR mods, which makes it the fleet's only ch18 Mode 5 example aimed at a top-priority target. 224,801 lines of Rust across dark/ (the engine layer, 26,175), shock2vr/ (the game and VR layer), engine/ (engine-agnostic, dual MIT), runtimes/ (oculus, desktop, debug) and tools/dark_explorer. The author flags it pre-alpha and a first Rust project, so claims are AUTHOR unless read. LICENCE CORRECTED 2026-09-19: the first registration said none found. There is no LICENSE file, but the README states GPL-2.0 because code is ported from openDarkEngine, with engine/ additionally dual-licensed MIT. |
+| `source_integration` | 🟨 partial | `SOURCE` | READ 2026-09-19, structure. A game-engine recreation of the Dark Engine in Rust, built against System Shock 2: 25th Anniversary Remaster - an independently public ch18 Mode 5 example. 224,801 lines of Rust across dark/ (the engine layer, 26,175), shock2vr/ (the game and VR layer), engine/ (engine-agnostic, dual MIT), runtimes/ (oculus, desktop, debug) and tools/dark_explorer. The author flags it pre-alpha and a first Rust project, so claims are AUTHOR unless read. LICENCE CORRECTED 2026-09-19: the first registration said none found. There is no LICENSE file, but the README states GPL-2.0 because code is ported from openDarkEngine, with engine/ additionally dual-licensed MIT. |
 
 #### Silent-Hill-3-VR-Mod
 

@@ -57,11 +57,12 @@ If you are beginning or routing active work, start with the
 artifacts, live confirmations and stereo-architecture exit. This chapter is the
 deeper reference for discovery and anchoring once a gate points here.
 
-Much of the technique here is distilled from Praydog's write-ups on
+The discovery methods draw on praydog's published write-ups on
 [UEVR](https://praydog.com/reverse-engineering/2023/07/03/uevr.html) and
-[Source 2](https://praydog.com/reverse-engineering/2015/06/24/source2.html), cross-checked against what
-SS2VR, BioshockVR, and SOMAVR actually needed. UEVR is the most battle-tested example of the problem in
-its hardest form — one injector that must work across a decade of Unreal versions it has never seen.
+[Source 2](https://praydog.com/reverse-engineering/2015/06/24/source2.html).
+Public prior-art attribution remains important even when private transfer cases
+are omitted.
+
 
 ### Solving those six degrees of freedom from corresponding points {#rigid-alignment-from-points}
 
@@ -132,9 +133,6 @@ that writes the same value. Evidence: `PreyVR/docs/RE-BUILD-TAKEOVER-2026-09-09.
 
 ## A reimplementation is a naming oracle, and naming is the expensive part {#recreation-as-naming-oracle}
 
-[00](00-engine-profiles.md) notes in passing that ManagedDonkey gives HaloVR *"real names for tags and
-HUD structures"*, and lists openDarkEngine as prior art for SS2VR. This is the method behind those
-asides, because the pattern generalises and the gotchas are not obvious.
 
 An open reimplementation of your target's engine will not tell you the shipping binary's memory layout
 - that remains something you confirm against the bytes. What it will tell you is **what every field
@@ -142,9 +140,8 @@ means**, and on a real RE effort that is where the time goes. You can find a str
 afternoon; learning that offset `0x1C` is a three-context permission bitfield takes weeks of watching
 it change.
 
-**The usable form is a decode table.** shock2quest, a Dark Engine recreation in Rust targeting the same
-game SS2VR mods, carries **165 registered property decoders** keyed by their on-disk chunk name, each
-with a typed reader:
+For an independently public example, shock2quest registers named property readers
+and their inheritance rules in a decode table:
 
 ```
 define_prop("P$AI_Team", PropAITeam::read, identity, accumulator::latest)
@@ -243,8 +240,8 @@ unavailable.
    need to reverse them. This is the jackpot.
 2. **A symbol-bearing sibling build.** A Mac/Linux port, a dedicated server, or a debug build of the
    *same* engine may ship full symbols.
-3. **An open-source ancestor or sibling engine.** Names and architecture for free (already the SS2VR and
-   SOMAVR pattern — see below).
+3. **An open-source ancestor or sibling engine.** Use its vocabulary and architecture as leads,
+   then prove the layout and ABI against the shipping target.
 4. **String references.** The workhorse. Human-readable, maintainable, and likely to survive updates.
 5. **Vtable / RTTI structure.** Stable-ish shape, but indices drift between versions.
 6. **Byte-pattern (AOB) scanning.** Last resort. Use it *only* when necessary and *only* localized —
@@ -426,9 +423,9 @@ servers, SDK/editor builds, and older demo releases before assuming you're worki
 
 ### Rung 3 — the open-source ancestor, editing kit, or reimplementation
 
-Already proven repeatedly: *SS2VR* used the released Dark/Shock source for system vocabulary and
-architecture, and *SOMAVR* uses **HPL2 (Amnesia) source** to seed string and control-flow searches for
-the closed HPL3 binary. Two more sources belong on this rung:
+For example, SOMAVR uses HPL2 source to seed searches in its closed HPL3 target.
+Two further independently useful sources are editing kits and reimplementations:
+
 
 - **An official editing/modding kit.** If the developer shipped one, it names the game's own data
   structures and lets you *experiment offline*. (*HaloVR used H3EK both as a naming source and as a
@@ -458,9 +455,6 @@ uintptr_t calculate_absolute(uintptr_t address, uint8_t instruction_length) {
 }
 ```
 
-SOMAVR's semantic anchors are exactly this pattern applied to HPL3 — shader uniform names
-(`a_mtxModelViewProjection`), config values (`FOV=70`, `NearClipPlane=0.03`) — and SS2VR located native
-climb functions from their warning strings (`"BreakClimb: %s has no active physics models"`).
 
 The operational form is a five-call loop. The concept is obvious; the sequence is the part worth having
 written down, because each call's output is the next call's input and it is easy to stall halfway:
@@ -1665,10 +1659,6 @@ technique from Cheat Engine, formalised into a repeatable script.
   to a handful of repeated candidates; a 2 ms timing trace then identified the one that changed **before**
   the host's generic suspension flags on both entry and exit — i.e. the *owner*, not a downstream copy.
   Ordering in time is what separates cause from effect when several bytes all change.
-- **Beware the named decoy.** The editing kit exposed a boolean literally called `game_paused`, and live
-  testing proved it stays zero — it's a developer override, not the shipping pause state. A helpful name
-  is a hypothesis, not evidence (the same trap as SS2VR's `eCreatureJoint` "R/L" enum in
-  [06](06-debugging-methodology.md)).
 
 **The state that most often settles a "two of the same thing" question is standing perfectly still.** When
 a candidate structure holds a *pair* — two cameras, two views, two buffers — the tempting read is "that's
@@ -1866,9 +1856,6 @@ code against it — and they're the cheapest test you will ever run.
 
 - *Source 2:* `schema_list_bindings`, `schema_dump_binding`, and `schema_detailed_class_layout` validated
   the reconstructed schema live.
-- *SS2VR:* the remaster's own debug `teleport` command exercises the exact native relocation primitive the
-  VR teleport feature needs — so `teleport $10,0,0` validated the whole feature end-to-end before a line
-  of mod code existed ([03](03-input-and-locomotion.md)).
 
 Hunt the command table early. A verb that already does the thing you want is both a proof and a
 supported entry point ([03](03-input-and-locomotion.md)).
@@ -1881,11 +1868,6 @@ it drives Unreal's **built-in** stereo rendering — the `-emulatestereo` mechan
 view matrices. Using the engine's native stereo pipeline is both more correct and inherently faster than
 an external double-render.
 
-This is [lesson 8](README.md) in its strongest form. Before committing to private per-eye replay
-([09](09-d3d11-openxr-injection.md)), check whether the engine has a latent stereo/multi-view path
-(split-screen, mirror/portal cameras, a cvar-gated second view) you can drive instead. None of SS2VR,
-BioshockVR, or SOMAVR had a usable one — which is *why* all three ended up replaying draws — but the check
-is cheap and the payoff is large.
 
 Two attached warnings from UEVR's experience:
 

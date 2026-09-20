@@ -1,4 +1,22 @@
+<div align="center">
+
 # VR Modding Playbook
+
+### From a flat game to a proven VR integration.
+
+**Reverse engineering · Stereo rendering · OpenXR · Input & interaction**
+
+[Start a port](docs/start-new-port.md) ·
+[Diagnose a failure](docs/failure-atlas.md) ·
+[Find a recipe](docs/pattern-catalog.md) ·
+[Test the maths](reference/)
+
+</div>
+
+---
+
+> **Contributing?** Share the transferable method, not private implementation
+> records. See [the publication boundary](PUBLICATION.md) before uploading research.
 
 Build and debug flat-to-VR conversions using evidence-graded recipes, cheap
 diagnostic tests, and lessons from multiple game engines. For human developers
@@ -16,7 +34,7 @@ Read the section that answers your question, not the whole playbook.
 | Something looks or behaves wrong | [Failure atlas](docs/failure-atlas.md): symptom → cheap discriminator → likely cause → technical method |
 | You need an implementation recipe | [Pattern catalog](docs/pattern-catalog.md): reusable recipes with stable IDs |
 | Several problems compete for attention | [Bottleneck map](docs/bottleneck-map.md): find the earliest uncleared dependency |
-| You want to know who already solved it | [Cross-project index](docs/cross-project-index.md) and [coverage dashboard](docs/coverage.md) |
+| You want to find prior art | [Cross-project index](docs/cross-project-index.md): follow the attribution, then inspect the original evidence |
 | You need tested transform or stereo maths | [Reference code](reference/) and [rotation/frames appendix](docs/a1-rotation-and-frames.md) |
 
 **AI agents:** read [AGENTS.md](AGENTS.md) and the target project's instructions
@@ -25,15 +43,11 @@ is needed to read the Markdown files.
 
 ## Two integration routes, one shared engineering core
 
-- **[Reverse-engineered — primary route](docs/reverse-engineered-route.md):**
-  the shipping camera/render code is closed. Identify the target, prove its
-  owners and ABI, find a reversible integration seam, and anchor it safely.
-- **[Source-owned](docs/source-owned-route.md):** you can build, modify and
-  ship the code owning the camera and world-render loop. Establish a matching
-  baseline and integrate through that source.
-- **[Shared VR engineering](docs/shared-vr-spine.md):** both routes still need
-  coherent poses, stereo, culling, OpenXR lifecycle, input, hands, UI,
-  performance and release proofs.
+| Reverse-engineered — primary route | Source-owned | Shared VR engineering |
+|---|---|---|
+| Find and prove a seam in the shipping binary. | Integrate through code you can build and ship. | Make the whole experience coherent. |
+| Target identity, camera ownership, ABI, hooks and stable anchors. | Matching baseline, explicit ownership and render-loop integration. | Poses, stereo, culling, OpenXR, input, hands, UI and performance. |
+| [Follow the RE route →](docs/reverse-engineered-route.md) | [Follow the source route →](docs/source-owned-route.md) | [Follow the shared spine →](docs/shared-vr-spine.md) |
 
 An SDK or open-source engine ancestor may be an oracle without being the code
 you can ship. [Classify that boundary first](docs/start-new-port.md).
@@ -54,9 +68,9 @@ That is the intended workflow: **symptom → discriminating test → scoped reci
 
 ## What the evidence does — and does not — establish
 
-The [coverage dashboard](docs/coverage.md) records the in-house fleet, external
-prior art, review depth and stale snapshots. A solve on one engine is a lead
-for another, not proof that its offsets, ABI or behavior transfer.
+A solve on one engine is a lead for another, not proof that its offsets, ABI
+or behavior transfer. Review depth and snapshot age matter as much as a promising
+implementation name.
 
 Claims distinguish source inspection (`SOURCE`), binary analysis (`STATIC`),
 runtime observation (`LIVE`) and headset acceptance (`HEADSET`), alongside
@@ -65,11 +79,10 @@ specification facts, author claims and inference.
 defines the full set. A harness or substitute-runtime result is not headset
 acceptance; preserve its environment and any ambiguous or failed baseline.
 
-The optional [cross-engine documentation graph](cross-engine-graph/README.md)
-helps locate project documents. It is a snapshot of in-house documentation,
-not an exhaustive index of external mods. Graph hits are leads, not evidence.
-Some underlying receipts and raw captures remain in project-local trees and
-are not included in this repository.
+Internal documentation graphs, raw captures and project-local receipts are not
+public release material. The public reference should carry reviewed methods and
+clear evidence limits—not private development histories. See
+[publication review](PUBLICATION.md).
 
 ## Contribute a finding or a failed approach
 
@@ -79,9 +92,12 @@ canonical recipe.** Record what the result does not prove, baseline health,
 dead ends and the next useful test. Submission alone never promotes a claim
 or clears a bottleneck.
 
-For a worked harvest, see the [September 10 fleet digest](briefs/fleet-harvest-2026-09-10.md).
+Publish the reviewed finding, not the agent handoff or raw research dump.
 
 ## Preview and validate changes
+
+These are **engineering checks**, not publication approval. Before sharing a
+release, also follow [the privacy gate](PUBLICATION.md#local-gate).
 
 The tested validation setup is **Windows, Python 3.12, and Visual Studio 2022
 Build Tools with the C++ toolchain**. Run these commands from the repository

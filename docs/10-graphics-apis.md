@@ -1,16 +1,9 @@
 # Graphics APIs — The Same Spine on D3D11, OpenGL, and Older D3D
 
-Chapter [09](09-d3d11-openxr-injection.md) is written in D3D11 terms because two of the three projects
-(SS2VR, BioshockVR) are D3D11. SOMAVR is **OpenGL** (HPL3, GL 4.6). Everything strategic in chapter 09
-still holds — the proof ladder, private per-eye targets, source-freshness tracking, projection
-companions, render-view provenance, lane separation. What changes is the *plumbing*: how you find the
-frame boundary, own render targets and state, read the projection, and submit to OpenXR. This chapter
-is the translation layer. Read [09](09-d3d11-openxr-injection.md) for the concepts; read this for the
-OpenGL dialect.
 
 ## The concept map
 
-| Concept | D3D11 (SS2VR, BioshockVR) | OpenGL (SOMAVR / HPL3) |
+| Concept | D3D11 (BioshockVR) | OpenGL (SOMAVR / HPL3) |
 | --- | --- | --- |
 | Frame boundary hook | `IDXGISwapChain::Present` | **`gdi32!SwapBuffers`** (reached via `SDL_GL_SwapBuffers`) |
 | Device/context handle | `ID3D11Device` + `ID3D11DeviceContext` | **none** — a thread-current `HGLRC` context and a global state machine |
@@ -247,8 +240,6 @@ non-blocking GPU timestamp queries to prove whether same-frame dual render is ev
 committing to it. (*SOMAVR uses `GL_TIMESTAMP` query rings, never blocking for results, attributed to
 the active AFR eye.*)
 
-AFR is not SOMA-specific — **SS2VR renders half-rate alternate-eye too**, so the coherence rules below
-apply to any scheme where the two eyes of a pair are rendered at different sim times (not just OpenGL).
 
 **The counter-case is worth knowing before you commit.** The external
 [IL-2 1946 VR mod](15-teardown-il2-1946-vr.md) is also OpenGL, also on a legacy engine — and takes the
@@ -266,9 +257,7 @@ them, every stereo pair carries a **non-IPD disparity**: a world yaw plus one fr
 reads as strain/ghosting *while moving* and is invisible at rest — which is exactly why it survives
 casual testing. Measure it before theorizing (a per-pair audit), and treat these as the working rules:
 
-- **Quantify it.** (*SS2VR: inter-eye world yaw was ~`0.025°` standing — the numerical noise floor — but
-  `0.77°` mean / `44.98°` worst while moving, and inter-eye camera *translation* reached ~`6 cm` moving,
-  rivaling the `6.4 cm` IPD itself. A pair that disagrees by more than an IPD is not a stereo pair.*)
+- **Quantify it.**
 - **Use one XR frame — one `xrWaitFrame`, one `xrLocateViews`, one predicted display time — per
   *pair*, not per present.** If each eye of a pair runs its own `xrWaitFrame`, the two images get
   *different* predicted display times while both were rendered from *one* head sample. The compositor
@@ -305,9 +294,7 @@ casual testing. Measure it before theorizing (a per-pair audit), and treat these
   corrupt; a TAA-era engine may rule the whole approach out. See the
   [render-pass hazard atlas](14-render-pass-hazard-atlas.md).
 - **A residual flicker on a near viewmodel held still at an angle is usually this pair-slip, not a bug in
-  whatever feature you're testing.** (*SS2VR chased it as a hand-collision bug until parking the hand
-  far from any wall still flickered, orientation-dependent. It's invisible to RenderDoc because it's a
-  compositor-level inter-frame artifact.*)
+  whatever feature you're testing.**
 
 The D3D11 equivalent is a different problem: the matrix is already in a constant buffer, so you are
 looking for *which* buffer and *where in it* — and the read-back path has a known trap.

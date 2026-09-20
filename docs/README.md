@@ -106,10 +106,3 @@ says who solved what and where the raw working is.
    textures prove transport. Native stereo still requires per-eye world rendering, coherent
    projection companions, depth, culling, and separate UI/viewmodel/screen-space lanes — and
    the engine's own camera must own culling before head translation reveals new geometry.
-9. **Drive the engine's own systems before you reimplement them.** The engine already owns a
-   cull camera, an analog mover, an IK solver, an interaction picker, a fire-direction seam.
-   Hooking and *steering* those (fail-closed, signature-guarded) beats fighting them from
-   outside — and it survives patches better than a raw RVA call. Reimplementation is the
-   fallback, not the default. *(SS2VR drives KEX's cull camera + Squirrel verbs; BioshockVR
-   drives native AimIK + the fire-start rotator; SOMAVR drives the native analog mover, picker,
-   and camera-add channels.)*

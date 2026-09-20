@@ -10,11 +10,6 @@ Custom model exporters frequently **copy header fields from a donor model withou
 them** for the new layout. The result is a structurally-valid file with one stale pointer/
 offset that aims into the wrong data — and the engine reads garbage from it.
 
-- *SS2VR (the canonical example):* every exported model carried a stale "material extras"
-  offset copied from the donor. The engine read garbage floats (e.g. illumination = 5×10⁸)
-  from it. Unshaded materials never read that field, so they looked fine; **shaded** materials
-  multiplied by the garbage and rendered fullbright white. The fix was a 12-byte patch zeroing
-  three header fields; it became a mandatory post-export step.
 - *General lesson:* after any custom export, **diff the header fields against a known-good
   donor** and confirm every offset points where the new layout actually placed that section.
   Don't trust "the file loads" — loading and being correct are different gates.
@@ -24,9 +19,7 @@ offset that aims into the wrong data — and the engine reads garbage from it.
 If you rewrite or compact a model's internal tables (vertices, BSP nodes, material slots), you
 must **remap every cross-reference** (child offsets, slot indices). Forgetting one produces an
 AV in the engine's loader/converter at a garbage index — a crash that looks like corruption
-but is actually your un-remapped pointer. (*SS2VR: compacting BSP node records without
-remapping child offsets; and a five-slot×multi-pass material combination that crashed the
-converter until the stale extras were zeroed.*)
+but is actually your un-remapped pointer.
 
 ## Your validator checks structure; the engine checks meaning
 
@@ -35,9 +28,9 @@ proves the *structure* survived. It says nothing about the invariants the engine
 where the crashes are:
 
 - A **header count** that no longer matches the section it describes parses fine and kills the loader.
-  (*SS2VR: a stale LGMD header vhot count.*)
+
 - A rebuild that is **parser-clean but changes animated subobject identity or index ranges** loads and
-  then breaks the thing that indexes into it. (*SS2VR: a shotgun vhot rebuild.*)
+  then breaks the thing that indexes into it.
 - **Metadata that is valid in general but illegal in this shape** — joint metadata preserved on a
   one-subobject standalone hand crashed the engine outright.
 
@@ -56,9 +49,7 @@ When a custom asset misbehaves, change **exactly one thing** between the working
 the broken candidate, and keep a byte-level diff to prove it:
 
 - Make the broken variant byte-identical to a known-good one except the single field under
-  test (model name, one material flag, one offset). (*SS2VR: the crashing model was byte-
-  identical to a visible one except two name bytes; that's how the crash was isolated to the
-  material stack, not the geometry.*)
+  test (model name, one material flag, one offset).
 - This turns "it doesn't work" into "this specific byte does it."
 
 **A revert has the same blast radius as a forward experiment, and deserves the same discipline.** When
@@ -74,10 +65,7 @@ not a generalisation** — has bitten hard enough to earn its own treatment in
 
 ## Pick the right control group
 
-A test only proves something if the control actually exercises the variable. (*SS2VR: the
-stale-material-extras garbage was dismissed as a red herring for a day because the "it works"
-control was an **unshaded** material — which never reads the extras table. An unshaded material
-is not a control for a lighting bug.*) Before trusting "X also has this and X is fine," confirm
+A test only proves something if the control actually exercises the variable.  Before trusting "X also has this and X is fine," confirm
 X consumes the suspect value through the same path.
 
 ## Material/include resolution
@@ -85,8 +73,7 @@ X consumes the suspect value through the same path.
 Custom material include chains resolve relative to *something* — the package root, the engine
 root, a search path. If your package doesn't ship the includes (or ships them at the wrong
 relative path), the engine hits a null resource and may crash or render nothing. Package the
-full include chain, or inline it. (*SS2VR: a custom material referencing an unpackaged include
-crashed with a null in the loader.*)
+full include chain, or inline it.
 
 ## Know the engine's real package format — a parse failure isn't proof of absence
 
@@ -112,8 +99,7 @@ importer errored" and "the game can't use this asset" are different claims.
 actually has your texture bound, your shader, sane constants. A model can load, report
 `renderedThisFrame=1`, and still contribute zero visible pixels (wrong blend, degenerate
 verts, null SRV, garbage constants). The GPU capture is the only ground truth for "rendered but
-invisible." (*SS2VR spent days on "renders but invisible" before a capture showed the bound
-constants were garbage.*)
+invisible."
 
 The distinction between the three validation layers, as three checks that fail differently:
 
@@ -161,8 +147,7 @@ bug. Encode the engine's unwritten rules as assertions the moment you learn them
 
 - **Package format matters:** ship the archive format the engine expects (e.g. ZIP/PK with the
   right internal structure), with forward-slash paths, and **no extra root folder**. A mod that
-  "doesn't load" is often a packaging-shape bug, not a content bug. (*SS2VR/FlatAim: tar-instead-
-  of-zip, Windows backslashes, and an extra `mod/` root each cost a session.*)
+  "doesn't load" is often a packaging-shape bug, not a content bug.
 - **Verify the package's contents after building**, programmatically — open the archive, check
   the version string and that the changed files are actually inside. Don't assume your build
   script did what you think.
