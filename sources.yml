@@ -3362,6 +3362,33 @@ external:
       source_integration:
         review: not_reviewed
 
+  - id: "penumbra_vr_framework"
+    root: "D:/Dev Debug/Other VR Mods/penumbra_vr_framework"
+    status: external_reference
+    upstream_url: https://github.com/rubocopter/penumbra_vr_framework
+    license: "GPL-3.0"  # COPYING is GPLv3; README says v3 or later; read 2026-10-08
+    reviewed_at: 2026-10-08
+    reviewed_revision: tree:dd47191bffb0f0cc
+    reviewed_git_commit: da62c78d72c03b8c0e489e498e186f6dd20a72db
+    engine: HPL1 (Frictional) - Penumbra Overture, Black Plague, Requiem
+    api: OpenGL (SDL) + OpenVR
+    vehicle: framework
+    chapter: 18
+    areas:
+      source_integration: {review: partial, evidence: SOURCE, note: "DISTILLED 2026-10-08 -> 18 #demonstrated-reuse + META-020 + FAIL-META-018, and 00 #hpl1-two-modes. One product, asymmetric integrations: Overture rebuilt from Frictional's GPLv3 HPL1/Overture source in a framework-owned host; Black Plague and Requiem exact-build binary backends. Lineage veryjos/penumbra_vr -> rubocopter/penumbra_vr_rework (23c890f, the pinned behavioural reference) -> this framework. Six-step porting rule; promotion needs a real second consumer; the baseline is a floor, not a ceiling. Read in full: DESIGN_DECISIONS, ARCHITECTURE, REWORK_PORTING_PLAN; TRILOGY_PARITY_PLAN in part. The Overture product host source (products/overture) was not read."}
+      re_discovery:      {review: partial, evidence: SOURCE, note: "-> 07 #one-callsite-one-owner + HOOK-007 + FAIL-HOOK-011: owner-published movement-boundary status plus player pointer with generation (native_input_bridge.hpp); rel32 call-hook primitive refuses an already-hooked site, requires exact E8 bytes, suspends peers and records fixed-size failure state without allocating until they resume, and restores the original bytes on protection failure. BINARY_RESEARCH: all three Steam executables enter through .bind and BP/Requiem .text is >99.6% different after initialisation, corroborating 11 #dump-the-running-image; the new caveat that a hooked initialised capture is not a pristine image -> 11. Exact-build RVAs deliberately not harvested."}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "-> 02 #interaction-contracts + HAND-023 + FAIL-HAND-059: free body, native move/push and jointed mechanism are three ownership families; generic picking is not mechanism support; unknown mechanism families fail closed; native held-body lifecycle reproduced before publishing the tracked transform; palm contact and grab placement promoted as separate contracts; tool sockets are profile data (DD 13); rich articulation kept rather than downgraded for symmetry (DD 12). Headset statements (chair surface grab, drawer/crank acceptance on the exact installer, Index crate-push report and follow-up, unreproduced small-crate reach report) are AUTHOR. Code read: hand_contact_probe headers only."}
+      input_locomotion:  {review: partial, evidence: SOURCE, note: "-> 03 #same-tick-reconciliation: plan before the one native body update, consume one bounded horizontal request inside the existing owner, update exactly once, reconcile after with a tick/body/generation/epoch match; next-tick planning against stale pre-update state was the replaced defect. Crouch as persistent desired stance with a distinct, retried blocked stand and one-frame-late refusal handling is new. Horizontal-does-not-own-vertical CORROBORATES 03 'puppeteer the engine's native movement'. DD 3 world scale is not the default explanation -> short paragraph in 12 #one-scale-three-users. No headset verification by us."}
+      packaging_deploy:  {review: partial, evidence: SOURCE, note: "INSTALLER_DESIGN read. Journaled transaction (plan every write first, revalidate identity before writing, hash-verified backups, durable journal, restore refuses unexpected third-party changes) and one installer for three games CORROBORATE 08's installer/uninstaller rules and the PACK patterns; not re-added. NEW -> 06 #laa-address-space: in-place LAA as a transaction with the transformed hash recorded beside the canonical one; transformed variants host-tested only. BP/Requiem share one redist directory and one proxy that hashes the process image before dispatching to the matching probe."}
+      camera_tracking:   {review: skimmed, evidence: SOURCE, note: "DD 8: one owned presentation sample per compositor frame with sequence freshness; nested visibility callbacks had re-acquired poses and a submitted sequence had been reused. CORROBORATES 01's late-latch and pose-packet rules; not re-added. Per-frame logs with synchronous flushes on the presentation thread coincided with 280-470 ms presentation gaps (AUTHOR) -> TEST-024 trip hazard."}
+      xr_lifecycle:      {review: skimmed, evidence: AUTHOR, note: "OpenVR compositor ownership; later error-108 regressions had a demonstrated compositor-ownership cause while an older SDL APPCRASH stays unattributed (DD 16), consistent with 06's rule that proximity in time is not cause. DD 15 partial lifecycle states corroborate 07. Validation ladder (DD 9) -> 08 #status-per-contract."}
+      xr_input:          {review: skimmed, evidence: SOURCE, note: "42 logical actions, 6 action sets and 8 binding graphs consumed by all three games, with mirrored dominant-hand layouts. Not harvested."}
+      stereo:            {review: skimmed, evidence: SOURCE, note: "OpenGL per-eye targets and eye scissor with an SDL frame hook; camera matrix override for Overture's HPL1 host. Not read in depth."}
+      audio:             {review: skimmed, evidence: SOURCE, note: "Shared HRTF/reverb policy; distance/occlusion low-pass target-owned; OpenAL Soft configuration. Not harvested."}
+      ui_hud:            {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      performance:       {review: not_reviewed}
+
 not_a_source:
   - id: OBVR 0.1.3 56559 3 2026-09-07T09-29Z gWxLrl3z
     reason: 'Nexus Mods download of an Oblivion VR mod: three files, 0.5 MB, no source, no git history. The directory name is the Nexus download slug. Nothing to read without running it; re-classify if a source repository appears.'

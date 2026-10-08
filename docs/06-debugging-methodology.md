@@ -2343,6 +2343,14 @@ mapped PE characteristics to the original's before validation runs, then restore
 bytes. **It verifies the restoration succeeded before letting execution continue** - which is the part to
 copy whatever your mechanism is, because a half-applied identity fix is worse than none.
 
+The in-place alternative is a transaction, not a patch. Penumbra VR Framework's
+[installer](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/INSTALLER_DESIGN.md) sets the bit on the shipped file only when the canonical build is
+allowlisted, a hash-verified backup exists, nothing but `IMAGE_FILE_LARGE_ADDRESS_AWARE` changes, and
+the result matches a **transformed hash recorded beside the canonical one**, so its own edit never
+turns a known build into an unknown one. `[SOURCE]` Its build table marks those transformed variants
+host-tested only, and its design says outright that a recognised transformed executable is not
+runtime evidence. Whether a given DRM wrapper accepts the change is a separate, live question.
+
 ## Never derive a version from the same word as the identity it versions {#identity-and-generation}
 
 A third witness for the same failure class as the pose-history index below, from a completely different

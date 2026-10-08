@@ -465,6 +465,13 @@ centimetre, one unit per metre - engine families usually have an exact answer, a
 that matches a documented one is evidence you got it right rather than a number that happened to look
 acceptable.
 
+**And do not reach for scale first.** One of Penumbra VR Framework's
+[design decisions](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/DESIGN_DECISIONS.md) is titled *world scale is not the default explanation*:
+comparing its port against the reference found no single scale error behind the reported symptoms. It
+forbids retuning world scale, its vertical calibration factor, hand distance or tool offsets to mask
+timing, collision, pose-epoch or contact defects. `[SOURCE]` A scale knob moves every hand-relative
+distance at once, so it can make any one wrong distance look right.
+
 ### And check what the hands are anchored to
 
 Same run, reported in passing: *"when I recentred, the gun came closer to me."* The weapon was anchored

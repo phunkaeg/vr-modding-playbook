@@ -141,6 +141,31 @@ is to strengthen the response. Measured here: a warm-up hitch widened the report
 period promoted the presenter, the promotion hitched harder, and the GPU hung four milliseconds later.
 `[SOURCE]` OFXR-Bridge, against SteamVR.
 
+## META-020 - Extract a shared layer only after a second consumer demonstrates it {#meta-020}
+
+**Problem:** a project porting one proven VR mod to sibling games generalises early, and one game's
+engine-specific behaviour becomes a shared contract that the next game has to special-case.
+
+**Use when:** extending a single-game VR mod to sibling games, or cutting a framework out of one working
+port.
+
+**Recipe:**
+
+- **Pin the proven mod as a behavioural reference** and port one capability at a time: locate its
+  implementation and evidence, separate engine, game and model dependencies, extract only game-neutral
+  policy, expose the narrowest backend or profile boundary, keep proven constants, and validate each
+  target independently.
+- **Keep the shared runtime free of addresses, signatures, layouts and rig values.**
+- **Promote to shared only when a real second consumer has demonstrated it**, then let the original
+  consume the improvement.
+
+**Proof:** for every shared contract, the ledger names the consumers that demonstrated it. A contract
+with one consumer is still backend-owned.
+
+**Trip hazard:** treating the reference as a ceiling - refusing a sibling's better game-neutral behaviour
+because the original never had it - is the opposite failure. The reference is a floor. `[SOURCE]`
+penumbra_vr_framework ([18](18-beyond-the-native-injector.md#demonstrated-reuse)).
+
 ## META-001 — Self-identifying build {#meta-001}
 
 **Problem:** a correct change appears ineffective because different bytes ran.
@@ -560,6 +585,32 @@ PlayerController ([the worked comparison](17-teardown-fc2vr-native-stereo.md#dis
 [return-address gating](#cam-014). That is a smaller problem than a hook that is never called. It also
 has a **named cost**: with the view offset, the first-person mesh anchors to the *unmodified* view and
 sits at the wrong angle, so budget for decoupling it per draw.
+
+## HOOK-007 — One callsite, one owner; everyone else reads its status {#hook-007}
+
+**Problem:** several features want the same native moment - the movement update, the body tick, an input
+call. Each hooking it independently works alone; together they double-apply the update, run in install
+order, and unhook into each other's redirects.
+
+**Use when:** a second feature needs a callsite or native update that a hook already owns - and whenever
+a feature misbehaves only while another feature is enabled.
+
+**Recipe:**
+
+- **Give each exact-build callsite one owner.** The owner publishes status - what it observed, with a
+  generation - and every other consumer binds to that instead of patching again.
+- **Make the install primitive enforce it:** refuse an already-hooked site; require the exact original
+  bytes; suspend peers for the write and do not allocate until they resume; restore the original bytes if
+  any step fails.
+- **Never add a second call to a native update** to imitate an ordering you could have had in source.
+  Plan before the one call and reconcile after it.
+
+**Proof:** a census of patches keyed by target instruction has no duplicates, and enabling the features
+in every order yields exactly one native update per tick.
+
+**Trip hazard:** a pointer published with the status is valid for comparison only. Calling game methods
+through it from a non-game thread reintroduces the race that ownership was meant to remove. `[SOURCE]`
+penumbra_vr_framework ([07](07-engine-integration-safety.md#one-callsite-one-owner)).
 
 ## STR-008 — Borrow the engine's own off switch for the second eye {#str-008}
 
@@ -2607,6 +2658,11 @@ happened. If it does not, you are not flushing.
 **Trip hazard:** per-line flushing has a real cost, so it is tempting to defer it until "the logging is
 finalised" — which is after the runs that most needed it. Add it first and make it conditional later, on
 a measurement rather than an intuition. `[SOURCE]` prey-vr.
+Penumbra VR Framework supplies such a measurement. Per-frame matrix and body logs with synchronous
+durability flushes **on the presentation thread** coincided with 280-470 ms presentation gaps, stale
+palm samples and guarded grab releases. After it moved to periodic samples and flush-at-close, a later
+maintainer run of the tutorial logged none of those gaps. That closes the symptom on that route only;
+the project does not claim the logging was the whole cause. `[AUTHOR]`
 
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
@@ -3054,6 +3110,32 @@ thrown.
 
 **Trip hazard:** both symptoms appear *after* the contact ends, so they are attributed to the release
 or to the step, not to the frames that were quietly refused. `[SOURCE]` shock2quest.
+
+## HAND-023 - Free body, native interaction and jointed mechanism are separate contracts {#hand-023}
+
+**Problem:** once hands can grab, everything the picker can select looks grabbable. Doors, drawers and
+levers get treated as free bodies, and contact defects get fixed with offsets that move every other
+hand-relative thing.
+
+**Use when:** adding grabs to a game that already has physical interaction - props, pushable objects and
+jointed mechanisms.
+
+**Recipe:**
+
+- **Classify each interactable into an ownership family before writing grab code.** Free body: the VR
+  layer may own placement after the game's own selection, once it reproduces the native held-body
+  lifecycle. Native interaction: drive the game's own move or push from the tracked palm. Jointed
+  mechanism: stays native until deliberately adapted, and unknown families fail closed.
+- **Treat palm contact and grab placement as separate contracts**, each with its own evidence and its
+  own promotion.
+
+**Proof:** per family, a scripted acquire-hold-release on one representative object. For a mechanism,
+the game's own state after release matches what its native interaction would have produced.
+
+**Trip hazard:** springs, longer rays, global hand offsets and tool-socket offsets each make one contact
+defect disappear by moving every other hand-relative distance. Validate the contact contract first, and
+keep sockets as per-tool profile data. `[SOURCE]` penumbra_vr_framework
+([02](02-viewmodels-and-hands.md#interaction-contracts)).
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 

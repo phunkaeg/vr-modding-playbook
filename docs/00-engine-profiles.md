@@ -384,6 +384,7 @@ Beyond the projects here, a wider independent set of mods was read for
 | **Unreal 4/5** | Satisfactory | D3D11/12 | UEVR + companion mod | Stereo, tracking and input, generically |
 | **id Tech 3 / IW / GoldSrc** | Jedi Academy, CoD4, Counter-Strike | GL / D3D9 | Source port | The entire engine |
 | **Frostbite** | Star Wars Battlefront II (2017) | D3D11 | Native (safetyhook) | A settings-class type system enumerable from a string-table naming convention |
+| **HPL1** (Frictional) | Penumbra: Overture, Black Plague, Requiem | OpenGL + SDL, x86 | **Source port *and* native injector**, in one product | Overture's GPL source release; for the sequels, only SteamStub-wrapped executables ([below](#hpl1-two-modes)) |
 
 The practical use of this table is the **mode** column. Before starting, establish which one your target
 falls into — an afternoon's work, and it changes the discovery route even though both routes later rejoin
@@ -397,6 +398,40 @@ the shared VR spine:
    [11](11-re-anchoring-and-discovery.md).
 
 Record the answer as an [integration authority map](start-new-port.md#port-01), not a binary “source: yes/no.”
+
+### HPL1: one engine, one studio, two modes {#hpl1-two-modes}
+
+The table's claim that mode follows what the developer released has a controlled experiment inside it.
+**Penumbra VR Framework** (rubocopter, GPL-3.0) brings the three HPL1 Penumbra games to OpenVR as one
+product, continuing a lineage that began with veryjos's Overture VR mod and rubocopter's own
+*Rework*. The three games do not share an integration route. `[SOURCE]`
+
+| Game | What the developer released | Integration |
+|---|---|---|
+| Overture | the HPL1 engine and Overture game code, under GPLv3 | rebuilt from source inside a framework-owned product host |
+| Black Plague | its Steam executable only | exact-build native backend, hash-allowlisted |
+| Requiem | its Steam executable only | exact-build research and target-owned hooks |
+
+Same engine generation, same studio, and the route splits exactly where the source release stops. The
+project's first [design decision](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/DESIGN_DECISIONS.md) states it as policy: one product, asymmetric
+integrations, and *do not force a universal DLL/backend flow where the games demonstrably differ.*
+
+Facts that shape any HPL1 port: `[SOURCE]`
+
+- **x86 PE32 throughout**, OpenGL presented through SDL, OpenAL audio and Newton physics. The sequels'
+  retail executables are not large-address-aware, which the project's installer addresses
+  ([06](06-debugging-methodology.md#laa-address-space)).
+- **All three Steam executables enter through a `.bind` section.** For the Black Plague and Requiem
+  builds more than 99.6% of `.text` differs once Steam has initialised the process, so signatures come
+  only from a hash-matched running image — the procedure in
+  [11](11-re-anchoring-and-discovery.md#dump-the-running-image).
+- **The released source is an oracle for its sequels, not their ABI.** The project records that
+  Overture's source symbols do not prove Black Plague's layout, and Black Plague's do not prove
+  Requiem's. Unknown executable hashes fail closed.
+- **OpenVR, not OpenXR.** Most of this playbook's runtime material is OpenXR. What transfers from here is
+  ownership, interaction and porting discipline: [02](02-viewmodels-and-hands.md#interaction-contracts),
+  [07](07-engine-integration-safety.md#one-callsite-one-owner) and
+  [18](18-beyond-the-native-injector.md#demonstrated-reuse).
 
 ## The cross-engine spine (why one playbook covers all four)
 

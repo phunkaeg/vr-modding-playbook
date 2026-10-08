@@ -2362,6 +2362,14 @@ dump are the same finding seen twice, and only the second one tells you your dum
 
 **Cost: about a minute of game time**, after which every static question is offline work.
 
+**Capture before anything patches it.** Penumbra VR Framework's [binary workflow](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/BINARY_RESEARCH.md)
+adds the caveat a dump inherits from its timing: *a hooked initialised capture is not automatically a
+pristine executable image.* Anything already detoured — your own probe, an overlay — is in the bytes you
+are about to turn into signatures. Their tool compares in-memory `.text` with the file without writing
+to the process. The reconstructed image stays local and is never run or published, and only the
+signatures, RVAs and layouts the backend needs are recorded. Imported APIs are resolved from PE
+metadata, which the wrapper leaves readable. `[SOURCE]`
+
 ### The same measurement, the opposite answer - and that is what makes it a procedure
 
 Singularity's `.text` came back at exactly **8.000** and cost a second purchase. Mirror's Edge VR ran the

@@ -70,19 +70,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 32 | 19 | 45 | 16 |
-| `xr_lifecycle` | 6 | 11 | 1 | 50 | 63 |
-| `xr_input` | 4 | 1 | 7 | 70 | 49 |
-| `camera_tracking` | 12 | 19 | 4 | 56 | 40 |
-| `render_hazards` | 5 | 15 | 4 | 30 | 77 |
-| `ui_hud` | 5 | 15 | 13 | 58 | 40 |
-| `hands_interaction` | 6 | 20 | 8 | 51 | 46 |
-| `input_locomotion` | 2 | 8 | 4 | 34 | 83 |
-| `performance` | 8 | 11 | 9 | 59 | 44 |
-| `audio` | 1 | 1 | 1 | 76 | 52 |
-| `packaging_deploy` | 6 | 25 | 23 | 46 | 31 |
-| `re_discovery` | 14 | 20 | 8 | 52 | 37 |
-| `source_integration` | 2 | 13 | 14 | 48 | 54 |
+| `stereo` | 19 | 32 | 20 | 45 | 16 |
+| `xr_lifecycle` | 6 | 11 | 2 | 50 | 63 |
+| `xr_input` | 4 | 1 | 8 | 70 | 49 |
+| `camera_tracking` | 12 | 19 | 5 | 56 | 40 |
+| `render_hazards` | 5 | 15 | 4 | 31 | 77 |
+| `ui_hud` | 5 | 15 | 13 | 59 | 40 |
+| `hands_interaction` | 6 | 21 | 8 | 51 | 46 |
+| `input_locomotion` | 2 | 9 | 4 | 34 | 83 |
+| `performance` | 8 | 11 | 9 | 60 | 44 |
+| `audio` | 1 | 1 | 2 | 76 | 52 |
+| `packaging_deploy` | 6 | 26 | 23 | 46 | 31 |
+| `re_discovery` | 14 | 21 | 8 | 52 | 37 |
+| `source_integration` | 2 | 14 | 14 | 48 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -117,12 +117,12 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **bfbc2-vr** | external reference | Frostbite 1.5 | native-injector | T2 | R3 · alternate-eye | 14 | 60 | 37 | 14 | 2026-08-28 | 🟥 source changed | 2F / 4P / 0S / 5NR / 2— |
 | **BFVR-Battlefield-1942** | external reference | Refractor | native-injector | — | — | — | 492 | 363 | 31 | 2026-08-26 | 🟩 current | 4F / 2P / 0S / 0NR / 7— |
 | **Bioshock-Remastered-VR** | external reference | Unreal 2.5 fork (BioShock Remastered, 32-bit) | native-injector | T3 | R3 · alternate-eye | 13 | 111 | 59 | 36 | 2026-08-28 | ⚪ unpinned | 2F / 6P / 0S / 3NR / 2— |
-| **bioshock-trilogy-vr** | external reference | UE2.5 Vengeance / UE3 (Infinite) | native-injector | — | — | 13 | 243 | 164 | 26 | 2026-09-16 | 🟩 current | 2F / 3P / 2S / 0NR / 6— |
+| **bioshock-trilogy-vr** | external reference | UE2.5 Vengeance / UE3 (Infinite) | native-injector | — | — | 13 | 243 | 164 | 26 | 2026-10-05 | 🟥 source changed | 2F / 3P / 2S / 0NR / 6— |
 | **BL1GOTYVR** | external reference | Unreal Engine 3 (Borderlands GOTY Enhanced, 2019) | native-injector | T2 | — | 9 | 74 | 66 | 4 | 2026-08-30 | ⚪ unpinned | 0F / 0P / 4S / 7NR / 2— |
 | **black-mesa-l4d2vr** | external reference | Source (Black Mesa) | native-injector | — | — | 9 | 1780 | 1370 | 89 | 2026-08-28 | ⚪ unpinned | 1F / 5P / 0S / 5NR / 2— |
 | **bo1-vr** | external reference | Treyarch T5 (Black Ops) | native-injector | — | — | — | 177 | 72 | 49 | 2026-08-27 | 🟩 current | 2F / 2P / 0S / 0NR / 9— |
 | **Buffout4 NG-64880-1-38-3-1785297452** | external reference | Creation Engine (Fallout 4 / Fallout 4 VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 7 | 0 | 1 | 2026-07-29 | ⚪ unpinned | 0F / 2P / 0S / 10NR / 1— |
-| **CallOfDuty4_VR** | external reference | IW (CoD4) | source-port | — | — | 18 | 1125 | 1030 | 27 | 2026-08-22 | 🟩 current | 2F / 3P / 1S / 1NR / 6— |
+| **CallOfDuty4_VR** | external reference | IW (CoD4) | source-port | — | — | 18 | 1142 | 1047 | 27 | 2026-09-28 | 🟥 source changed | 2F / 3P / 1S / 1NR / 6— |
 | **carnage** | external reference | Dethrace reimplementation (Carmageddon) | source-port | — | — | 18 | 78 | 52 | 3 | 2026-09-19 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
 | **CheekyFoveatedDLSS** | external reference | engine-agnostic (proxy DLLs beside the game) | native-injector | — | — | 9 | 196 | 141 | 26 | 2026-09-19 | 🟥 source changed | 0F / 0P / 2S / 10NR / 1— |
 | **condemned-vr** | external reference | LithTech Jupiter EX (Condemned: Criminal Origins) | native-injector | T2 | R1 · native re-entry | 17 | 213 | 132 | 32 | 2026-08-30 | ⚪ unpinned | 1F / 0P / 4S / 6NR / 2— |
@@ -173,12 +173,13 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **MonsterDeadWood-FC2VR** | external reference | Dunia (Far Cry 2) | native-injector | T1 | R1 · native re-entry | 17 | 119 | 19 | 71 | 2026-09-09 | 🟥 source changed | 0F / 6P / 0S / 1NR / 6— |
 | **MonsterDeadWood-TimeShiftVR** | external reference | Saber3D (TimeShift) | native-injector | T1 | R1 · native re-entry | 14 | 27 | 4 | 19 | 2026-09-03 | 🟩 current | 3F / 2P / 0S / 1NR / 7— |
 | **MyFriendlyNeighborhoodVR** | external reference | Unity | managed-plugin | — | — | 18 | 35 | 15 | 6 | 2026-08-22 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
-| **NewDark-1.29** | external reference | Dark Engine (System Shock 2 v2.50, Thief 2 v1.29) - the patch layer every current install runs | documentation | — | — | 0 | 131 | 4 | 42 | 2026-09-19 | 🟥 source changed | 0F / 2P / 2S / 8NR / 1— |
+| **NewDark-1.29** | external reference | Dark Engine (System Shock 2 v2.50, Thief 2 v1.29) - the patch layer every current install runs | documentation | — | — | 0 | 257 | 8 | 81 | 2026-09-19 | 🟥 source changed | 0F / 2P / 2S / 8NR / 1— |
 | **novr** | external reference | Unity | managed-plugin | — | — | — | 387 | 303 | 2 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 1NR / 11— |
 | **OFXR-Bridge** | external reference | engine-agnostic (implicit OpenXR API layer) | openxr-api-layer | — | — | 9 | 86 | 57 | 14 | 2026-09-19 | 🟥 source changed | 0F / 2P / 1S / 9NR / 1— |
 | **openmw-vr** | external reference | OpenMW (OSG / OpenGL) | source-port | — | — | — | 3825 | 3023 | 208 | 2026-08-26 | 🟩 current | 0F / 2P / 1S / 1NR / 9— |
 | **Outlast-Vr-Mod** | external reference | Unreal Engine 3 (Outlast) | native-injector | T1 | — | 18 | 49 | 16 | 8 | 2026-08-30 | ⚪ unpinned | 0F / 0P / 2S / 9NR / 2— |
 | **payday2-vr-improvements** | external reference | Diesel (PAYDAY 2) | script-native-hybrid | — | — | — | 55 | 34 | 3 | 2026-08-27 | 🟩 current | 0F / 1P / 1S / 0NR / 11— |
+| **penumbra_vr_framework** | external reference | HPL1 (Frictional) - Penumbra Overture, Black Plague, Requiem | framework | — | — | 18 | 1638 | 1104 | 57 | 2026-10-08 | 🟩 current | 0F / 5P / 5S / 3NR / 0— |
 | **perfect_dark_VR** | external reference | Perfect Dark decompilation (N64) | source-port | — | — | — | 2422 | 1095 | 12 | 2026-08-26 | 🟩 current | 1F / 3P / 0S / 1NR / 8— |
 | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 5 | 0 | 0 | 2026-07-29 | ⚪ unpinned | 0F / 0P / 0S / 12NR / 1— |
 | **portal2vr** | external reference | Source (Portal 2) | native-injector | — | — | — | 49 | 30 | 3 | 2026-08-27 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
@@ -200,7 +201,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **satisfactory-uevr-enhancements** | external reference | Unreal 5 | framework-companion | — | — | 18 | 433 | 18 | 5 | 2026-08-22 | 🟩 current | 0F / 2P / 0S / 0NR / 11— |
 | **Scrap-Mechanic-Native-VR** | external reference | Scrap Mechanic (proprietary) | script-native-hybrid | — | — | — | 74 | 38 | 11 | 2026-08-27 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
 | **Shipwright-VR** | external reference | libultraship / Ship of Harkinian | source-port | — | — | — | 11943 | 3243 | 22 | 2026-08-26 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
-| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1229 | 708 | 80 | 2026-09-19 | 🟥 source changed | 3F / 4P / 1S / 1NR / 4— |
+| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1387 | 769 | 89 | 2026-09-27 | 🟥 source changed | 3F / 4P / 1S / 1NR / 4— |
 | **Silent-Hill-3-VR-Mod** | external reference | Silent Hill 3 (2003) | native-injector | T2 | ? | 18 | 478 | 133 | 56 | 2026-08-29 | ⚪ unpinned | 0F / 2P / 0S / 9NR / 2— |
 | **sims4-vr** | archived reference | EA custom (Sims 4) | script-native-hybrid | — | — | 18 | 131 | 81 | 26 | 2026-08-23 | 🟩 current | 3F / 0P / 0S / 0NR / 10— |
 | **singularity-vr-mod** | external reference | Unreal Engine 3.584 (Singularity 2010) | native-injector | T1 | R2 · per-draw replay | 9 | 84 | 39 | 16 | 2026-08-29 | ⚪ unpinned | 6F / 2P / 0S / 3NR / 2— |
@@ -250,13 +251,13 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 |---|---|---|---|---|---|---|---|
 | **BioshockVR** | 2026-08-28 | `tree:ca2163ed64a3a5d7` | `tree:347dcbbb8f06dee4` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **DishonoredVR** | 2026-08-28 | `tree:f79696e6df81c47e` | `tree:1b97883db8e3cb72` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:126a03354716eacc` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:6a4b4fd1960c7545` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:6993771916d25874` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:a530756b6da985bf` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:ae8da0a17b1970c3` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:a9bc69932d235186` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:16443193f230b37a` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:70d8139029ca120b` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:72423b452aeeec8e` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:c362bdb2124a9a9d` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:8646a059225dcc80` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:343c9fd8c9e41a89` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | GPL-3.0 |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | MIT |
 | **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | MIT |
@@ -264,12 +265,12 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **bfbc2-vr** | 2026-08-28 | `tree:2577103b3f59826b` | `tree:e1bd02050dcf90fa` | `—` | 🟥 source changed | unknown | MIT |
 | **BFVR-Battlefield-1942** | 2026-08-26 | `tree:2776363bdd1bbbf9` | `tree:2776363bdd1bbbf9` | `cb01120313f56c85c68413a04066f898e2bdd49d` | 🟩 current | https://github.com/JayBiggsGMG/BFVR-Battlefield-1942-VR-Mod | MIT |
 | **Bioshock-Remastered-VR** | 2026-08-28 | `unknown` | `tree:7050764150576da7` | `—` | ⚪ unpinned | unknown | unknown |
-| **bioshock-trilogy-vr** | 2026-09-16 | `tree:0f2a8390d5d5d5aa` | `tree:0f2a8390d5d5d5aa` | `41f004bc6a1e4fa8be0d0e0749f9ac5a0453e75e` | 🟩 current | https://github.com/VR-Stereo-Hub/bioshock-trilogy-vr | MIT |
+| **bioshock-trilogy-vr** | 2026-09-16 | `tree:0f2a8390d5d5d5aa` | `tree:78d0204b1a7988fb` | `41f004bc6a1e4fa8be0d0e0749f9ac5a0453e75e` | 🟥 source changed | https://github.com/VR-Stereo-Hub/bioshock-trilogy-vr | MIT |
 | **BL1GOTYVR** | 2026-08-29 | `unknown` | `tree:3e8e104d25c19bb5` | `—` | ⚪ unpinned | unknown | unknown |
 | **black-mesa-l4d2vr** | 2026-08-28 | `unknown` | `tree:58c62c9565e8c260` | `—` | ⚪ unpinned | unknown | unknown |
 | **bo1-vr** | 2026-08-27 | `tree:f5a5f9cf94ed8e4f` | `tree:f5a5f9cf94ed8e4f` | `—` | 🟩 current | unknown | MIT |
 | **Buffout4 NG-64880-1-38-3-1785297452** | 2026-09-05 | `unknown` | `tree:c5822dd551ad3a17` | `—` | ⚪ unpinned | unknown | unknown |
-| **CallOfDuty4_VR** | 2026-08-25 | `tree:146efc09f95cba26` | `tree:146efc09f95cba26` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **CallOfDuty4_VR** | 2026-08-25 | `tree:146efc09f95cba26` | `tree:57ea983f47adf4b2` | `—` | 🟥 source changed | unknown | GPL-3.0 |
 | **carnage** | 2026-09-19 | `tree:c04961c7bbf2b0a9` | `tree:c04961c7bbf2b0a9` | `71df6f213c2368e42100846916b42c7cabdd75b2` | 🟩 current | https://github.com/maranone/carnage | unknown - no LICENSE file found |
 | **CheekyFoveatedDLSS** | 2026-09-18 | `tree:6c8e37528a2f2b3f` | `tree:97bb7e0bddae8acf` | `a830c74d7ef7c150168328b9fd657caee9e1655d` | 🟥 source changed | https://github.com/ClarkCheekyKent/CheekyFoveatedDLSS | GPL-3.0 |
 | **condemned-vr** | 2026-08-29 | `unknown` | `tree:375521a55d72feca` | `—` | ⚪ unpinned | unknown | MIT |
@@ -320,12 +321,13 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **MonsterDeadWood-FC2VR** | 2026-09-09 | `tree:a8349d3eba75bc6d` | `tree:885ad189f33d5a23` | `—` | 🟥 source changed | unknown | unknown |
 | **MonsterDeadWood-TimeShiftVR** | 2026-09-03 | `tree:f90d5188debf073d` | `tree:f90d5188debf073d` | `—` | 🟩 current | unknown | unknown |
 | **MyFriendlyNeighborhoodVR** | 2026-08-25 | `tree:2bd54d6d8674a6a7` | `tree:2bd54d6d8674a6a7` | `—` | 🟩 current | unknown | MIT |
-| **NewDark-1.29** | 2026-09-19 | `tree:2d267b23b563fb8b` | `tree:a7cac1c9370c209a` | `—` | 🟥 source changed | https://www.ttlg.com/forums/ (community patch; no canonical repository) | LicenseRef-NewDark (closed-source community engine patch, freely distributed). The binaries are not readable and not usable; the shipped documentation is what was read and what may be described |
+| **NewDark-1.29** | 2026-09-19 | `tree:2d267b23b563fb8b` | `tree:ae7224a37e1503a4` | `—` | 🟥 source changed | https://www.ttlg.com/forums/ (community patch; no canonical repository) | LicenseRef-NewDark (closed-source community engine patch, freely distributed). The binaries are not readable and not usable; the shipped documentation is what was read and what may be described |
 | **novr** | 2026-08-26 | `tree:6823115a691200c6` | `tree:6823115a691200c6` | `7cf34b3e480671cfbd34bc7b89f5f1692ddfe9fb` | 🟩 current | https://github.com/InfernoSuperNova/novr | GPL-3.0 |
 | **OFXR-Bridge** | 2026-09-19 | `tree:084bd8beab66b041` | `tree:59f7e01df46fc74b` | `93039ffeeb73678eac0fcd555f7599314be2c26d` | 🟥 source changed | https://github.com/tig3rmast3r/OFXR-Bridge | LGPL-3.0-or-later |
 | **openmw-vr** | 2026-08-26 | `tree:7155f265d832b125` | `tree:7155f265d832b125` | `0f520f65c3e085369e66d6a90ce871e817d4533f` | 🟩 current | https://gitlab.com/madsbuvi/openmw/-/tree/openmw-vr | GPL-3.0 (OpenMW) |
 | **Outlast-Vr-Mod** | 2026-08-29 | `unknown` | `tree:bfa0db61dfab071e` | `—` | ⚪ unpinned | unknown | MIT |
 | **payday2-vr-improvements** | 2026-08-27 | `tree:ceff8eb529473d2e` | `tree:ceff8eb529473d2e` | `—` | 🟩 current | unknown | GPL-3.0 |
+| **penumbra_vr_framework** | 2026-10-08 | `tree:dd47191bffb0f0cc` | `tree:dd47191bffb0f0cc` | `da62c78d72c03b8c0e489e498e186f6dd20a72db` | 🟩 current | https://github.com/rubocopter/penumbra_vr_framework | GPL-3.0 |
 | **perfect_dark_VR** | 2026-08-26 | `tree:7b24c19fafd8b3f7` | `tree:7b24c19fafd8b3f7` | `67ea20c86986c6bc85687f26a27418b266af309c` | 🟩 current | https://github.com/Alex-LeTux/perfect_dark_VR | MIT |
 | **PLANCK 0.8.1 66025 0.8.1 2026-07-30T03-35Z 4t2yDcbYt** | 2026-09-05 | `unknown` | `tree:cd5be93c7cedb47d` | `—` | ⚪ unpinned | unknown | unknown |
 | **portal2vr** | 2026-08-27 | `tree:6fccc2a8dab60ec6` | `tree:6fccc2a8dab60ec6` | `—` | 🟩 current | unknown | unknown |
@@ -347,7 +349,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **satisfactory-uevr-enhancements** | 2026-08-25 | `tree:33a7aa8069455a16` | `tree:33a7aa8069455a16` | `—` | 🟩 current | unknown | unknown |
 | **Scrap-Mechanic-Native-VR** | 2026-08-27 | `tree:b34922f3c587f2ce` | `tree:b34922f3c587f2ce` | `8aabe24ec62c5c4d8ef9852250a358e1296f9bf2` | 🟩 current | https://github.com/21Suspect/Scrap-Mechanic-Native-VR | MIT |
 | **Shipwright-VR** | 2026-08-26 | `tree:6847d39fbf2e86de` | `tree:6847d39fbf2e86de` | `7afef6987c7f0fb51e09bfb2f7a8f902428a38f2` | 🟩 current | https://github.com/ShinyWindow/Shipwright-VR | unknown |
-| **shock2quest** | 2026-09-19 | `tree:80a30f1bdad91aa8` | `tree:e975003c94fac98e` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | GPL-2.0 (README: code ported from openDarkEngine, so the whole is GPL-2.0); the engine/ folder is additionally dual-licensed MIT. No LICENSE file at the root - the terms are stated in README.md and THIRD_PARTY_LICENSES.md |
+| **shock2quest** | 2026-09-19 | `tree:80a30f1bdad91aa8` | `tree:75066d7b9e06b686` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | GPL-2.0 (README: code ported from openDarkEngine, so the whole is GPL-2.0); the engine/ folder is additionally dual-licensed MIT. No LICENSE file at the root - the terms are stated in README.md and THIRD_PARTY_LICENSES.md |
 | **Silent-Hill-3-VR-Mod** | 2026-08-29 | `unknown` | `tree:f1f0674d9d679091` | `—` | ⚪ unpinned | unknown | unknown |
 | **sims4-vr** | 2026-08-25 | `tree:1dec2736beb2f5e5` | `tree:1dec2736beb2f5e5` | `—` | 🟩 current | unknown | unknown |
 | **singularity-vr-mod** | 2026-08-29 | `unknown` | `tree:50b0c75b563c385d` | `—` | ⚪ unpinned | unknown | MIT |
@@ -391,7 +393,13 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 
 ## Untracked directories
 
-None. Every directory under `Other VR mods/` is tracked or explicitly classified as not-a-source.
+**Present under `Other VR mods/`, absent from the ledger. `--check` fails until classified.**
+
+- `CircuitLord-Titanfall2VR-RE` — 376 files, 74 code files
+- `CircuitLordVRModInstaller` — 42 files, 21 code files
+- `diablo2-vr-port` — 113 files, 50 code files
+- `shock2quest-android-build` — 13 files, 1 code files
+- `SOMA-VR` — 295 files, 41 code files
 
 ### Deliberately not sources
 
@@ -422,12 +430,12 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | Project | Status | Engine | Integration authority | API | Arch | Tier achieved | Tier target | Stereo route | Files | Docs | Last change | Freshness | Area completeness |
 |---|---|---|---|---|---|---|---|---|--:|--:|---|---|---|
 | **BioshockVR** | active mod | UE2.5 Vengeance | re-owned | D3D11 | x86 | T3 | — | R2 · per-draw replay | 3325 | 2433 | 2026-09-09 | 🟥 source changed | 7F / 4P / 0S / 1NR / 1— |
-| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 301 | 60 | 2026-09-10 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
-| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 142861 | 5041 | 2026-09-18 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
+| **SOMAVR** | active mod | HPL3 | hybrid-re+source-oracle | OpenGL 4.6 | x64 | T3 | — | R3 · alternate-eye | 304 | 61 | 2026-10-05 | 🟥 source changed | 7F / 6P / 0S / 0NR / 0— |
+| **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 143484 | 5439 | 2026-10-04 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 212 | 75 | 2026-09-09 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
-| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5472 | 134 | 2026-09-18 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
-| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 184 | 50 | 2026-09-10 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
-| **Sims4VR** | research target | EA custom (Sims 4) | hybrid-re+script | D3D11 | x64 | pre-T1 | T2 | unproven | 449 | 69 | 2026-09-14 | 🟥 source changed | 0F / 4P / 0S / 0NR / 9— |
+| **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5544 | 149 | 2026-10-06 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
+| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 474 | 98 | 2026-10-01 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
+| **Sims4VR** | research target | EA custom (Sims 4) | hybrid-re+script | D3D11 | x64 | pre-T1 | T2 | unproven | 7606 | 737 | 2026-10-03 | 🟥 source changed | 0F / 4P / 0S / 0NR / 9— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 70 | 30 | 2026-09-09 | 🟥 source changed | 2F / 4P / 0S / 7NR / 0— |
 | **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3964 | 406 | 2026-09-10 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 
@@ -1840,6 +1848,24 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | `packaging_deploy` | 🟧 skimmed | `AUTHOR` | CAVEATS: only an original Vive is actually tested, so every other mapping is AUTHOR-grade. menus/defaults.lua uses dest[name] = override or val, so a per-HMD default can never override a truthy default with false. |
 | `re_discovery` | — no entry — | — | — |
 | `source_integration` | — no entry — | — | — |
+
+#### penumbra_vr_framework
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟧 skimmed | `SOURCE` | OpenGL per-eye targets and eye scissor with an SDL frame hook; camera matrix override for Overture's HPL1 host. Not read in depth. |
+| `xr_lifecycle` | 🟧 skimmed | `AUTHOR` | OpenVR compositor ownership; later error-108 regressions had a demonstrated compositor-ownership cause while an older SDL APPCRASH stays unattributed (DD 16), consistent with 06's rule that proximity in time is not cause. DD 15 partial lifecycle states corroborate 07. Validation ladder (DD 9) -> 08 #status-per-contract. |
+| `xr_input` | 🟧 skimmed | `SOURCE` | 42 logical actions, 6 action sets and 8 binding graphs consumed by all three games, with mirrored dominant-hand layouts. Not harvested. |
+| `camera_tracking` | 🟧 skimmed | `SOURCE` | DD 8: one owned presentation sample per compositor frame with sequence freshness; nested visibility callbacks had re-acquired poses and a submitted sequence had been reused. CORROBORATES 01's late-latch and pose-packet rules; not re-added. Per-frame logs with synchronous flushes on the presentation thread coincided with 280-470 ms presentation gaps (AUTHOR) -> TEST-024 trip hazard. |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟨 partial | `SOURCE` | -> 02 #interaction-contracts + HAND-023 + FAIL-HAND-059: free body, native move/push and jointed mechanism are three ownership families; generic picking is not mechanism support; unknown mechanism families fail closed; native held-body lifecycle reproduced before publishing the tracked transform; palm contact and grab placement promoted as separate contracts; tool sockets are profile data (DD 13); rich articulation kept rather than downgraded for symmetry (DD 12). Headset statements (chair surface grab, drawer/crank acceptance on the exact installer, Index crate-push report and follow-up, unreproduced small-crate reach report) are AUTHOR. Code read: hand_contact_probe headers only. |
+| `input_locomotion` | 🟨 partial | `SOURCE` | -> 03 #same-tick-reconciliation: plan before the one native body update, consume one bounded horizontal request inside the existing owner, update exactly once, reconcile after with a tick/body/generation/epoch match; next-tick planning against stale pre-update state was the replaced defect. Crouch as persistent desired stance with a distinct, retried blocked stand and one-frame-late refusal handling is new. Horizontal-does-not-own-vertical CORROBORATES 03 'puppeteer the engine's native movement'. DD 3 world scale is not the default explanation -> short paragraph in 12 #one-scale-three-users. No headset verification by us. |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟧 skimmed | `SOURCE` | Shared HRTF/reverb policy; distance/occlusion low-pass target-owned; OpenAL Soft configuration. Not harvested. |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | INSTALLER_DESIGN read. Journaled transaction (plan every write first, revalidate identity before writing, hash-verified backups, durable journal, restore refuses unexpected third-party changes) and one installer for three games CORROBORATE 08's installer/uninstaller rules and the PACK patterns; not re-added. NEW -> 06 #laa-address-space: in-place LAA as a transaction with the transformed hash recorded beside the canonical one; transformed variants host-tested only. BP/Requiem share one redist directory and one proxy that hashes the process image before dispatching to the matching probe. |
+| `re_discovery` | 🟨 partial | `SOURCE` | -> 07 #one-callsite-one-owner + HOOK-007 + FAIL-HOOK-011: owner-published movement-boundary status plus player pointer with generation (native_input_bridge.hpp); rel32 call-hook primitive refuses an already-hooked site, requires exact E8 bytes, suspends peers and records fixed-size failure state without allocating until they resume, and restores the original bytes on protection failure. BINARY_RESEARCH: all three Steam executables enter through .bind and BP/Requiem .text is >99.6% different after initialisation, corroborating 11 #dump-the-running-image; the new caveat that a hooked initialised capture is not a pristine image -> 11. Exact-build RVAs deliberately not harvested. |
+| `source_integration` | 🟨 partial | `SOURCE` | DISTILLED 2026-10-08 -> 18 #demonstrated-reuse + META-020 + FAIL-META-018, and 00 #hpl1-two-modes. One product, asymmetric integrations: Overture rebuilt from Frictional's GPLv3 HPL1/Overture source in a framework-owned host; Black Plague and Requiem exact-build binary backends. Lineage veryjos/penumbra_vr -> rubocopter/penumbra_vr_rework (23c890f, the pinned behavioural reference) -> this framework. Six-step porting rule; promotion needs a real second consumer; the baseline is a floor, not a ceiling. Read in full: DESIGN_DECISIONS, ARCHITECTURE, REWORK_PORTING_PLAN; TRILOGY_PARITY_PLAN in part. The Overture product host source (products/overture) was not read. |
 
 #### perfect_dark_VR
 

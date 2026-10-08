@@ -1624,6 +1624,51 @@ distinguish them. If the target engine already separates them, **inherit its con
 inventing your own** - the game's designers already decided that a thing you may pick up is not
 necessarily a thing you may use, and the content is authored against that.
 
+## Free body, native interaction and jointed mechanism are separate contracts {#interaction-contracts}
+
+The grip taxonomy above says what can happen to a held object. A port that adds hands to a game that
+already has physical interaction faces an earlier question: **who owns the object while the hand is on
+it?** Penumbra VR Framework answers it with three ownership families and refuses to merge them.
+`[SOURCE]` ([architecture](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/ARCHITECTURE.md), [design decisions](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/DESIGN_DECISIONS.md))
+
+| Family | Owner while held | What the VR layer may do |
+|---|---|---|
+| **Free body** — a crate, a chair | the framework, after the game's own selection | place it kinematically relative to a resolved grab pose, once it has reproduced the native held-body lifecycle |
+| **Native move/push interaction** | the game | drive the game's own interaction from the tracked palm |
+| **Jointed mechanism** — door, drawer, lever, crank, slider | the game | consume only shared servo/contact behaviour already proven compatible; keep native lifecycle and joints |
+
+Three rules come with it:
+
+- **Generic picking is not mechanism support.** A ray that can select a door has proved selection and
+  nothing else. Doors, levers and sliders stay on the native path until their state and constraint
+  boundaries are mapped, and an **unknown mechanism family fails closed**. The manipulation grips in
+  [the design space](#grip-design-space) already treat a dial, lever or drawer as something manipulated
+  in place rather than carried; in a game that ships those mechanisms, the next step is to leave them
+  native until each one is adapted.
+- **Taking a body over means taking its lifecycle.** While a framework-owned body is held, the backend
+  reproduces the native active, enabled and no-auto-disable state *before* publishing the tracked
+  transform, and release hands ownership back. A kinematically placed body that the engine still
+  believes may sleep is only half owned.
+- **Palm contact and grab placement are different contracts.** Placing a grabbed body relative to the
+  hand is not collision-resolved palm contact. The project splits the evidence the same way: its native
+  shape query, a no-write query and the backend-owned palm shape are live-validated, while palm
+  publication, contact quality, acquisition and held-body behaviour are separate contracts, promoted
+  one at a time. The visible hand follows palm collision; raw controller aim stays available for
+  pointing and bounded acquisition help.
+
+**Do not fix a contact defect with springs, global offsets, longer rays or tool-socket offsets.** Each one
+makes a single symptom go away by moving every other hand-relative distance. Validate the contact
+contract first; measured tool sockets are per-tool profile data, not hand calibration. See
+[HAND-023](pattern-catalog.md#hand-023).
+
+The headset record is the author's and is scoped with care. `[AUTHOR]` A surface-contact grab acquired a
+chair at different points. The maintainer accepted drawer and crank interactions on the exact released
+installer, stating that this does not certify every mechanism. An external tester reported Black
+Plague's heavy tutorial crate push as unreliable. A follow-up realigned the push dispatch, and the crate
+then received local headset acceptance, with broader push coverage kept separate. A different report
+about reaching a small crate is recorded as *unreproduced*, not refuted: a later PSVR2 retest grabbed
+the crate repeatedly.
+
 ## Driving a body with physics: blend, clamp, and give up gracefully {#physics-bodies}
 
 PLANCK drives NPC bodies with active ragdoll so the player can shove, grab, drag and yank them. Its

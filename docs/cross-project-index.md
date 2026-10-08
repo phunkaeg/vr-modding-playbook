@@ -38,6 +38,7 @@ the chapters carry the distilled rule, these carry the working. Distilled in
 | **cyberpunk-vr-port** | REDengine 4 / D3D12 | 80+ RE docs. Second view via engine registration, the four shared structures, off-axis lens coverage, and the best negative-result discipline anywhere |
 | **witcher3-vr** | REDengine 3 / D3D12 | Canted displays, optical-centre offset for asymmetric frusta, shadow-cascade authority, per-eye temporal history, script-mod-as-state-bridge |
 | **Halo-MCC-VR** | Blam/Saber, 3 games in one mod | Multi-title runtime ownership, the success-and-failure-in-one-log method, antivirus/release checklist, per-context calibration |
+| **penumbra_vr_framework** | HPL1 / OpenGL + OpenVR, 3 games in one framework | [Two modes in one product](00-engine-profiles.md#hpl1-two-modes), [one callsite, one owner](07-engine-integration-safety.md#one-callsite-one-owner), [interaction ownership contracts](02-viewmodels-and-hands.md#interaction-contracts), [porting by demonstrated reuse](18-beyond-the-native-injector.md#demonstrated-reuse) |
 | **anvilengine2vr** | AnvilNext 2.0 / DXGI | `worldMatrixOverride` — an override the engine already honours. Sibling-port guide with published pseudocode |
 | **CallOfDuty4_VR** | IW source port | Deployment engineering: 32-bit OpenXR registration, preflight vs live receipt, refuse-don't-guess installers |
 | **JKXR** | id Tech 3 source port | Command-buffer stereo replay **with validate-before-replay**; grip-to-button hysteresis; latched action ownership |

@@ -39,6 +39,7 @@ that the observation and the cause are usually in different chapters.
 | A "recovery" revert made things worse | [05](05-assets-and-materials.md) — revert has the same blast radius as a forward experiment; isolate to the one flag |
 | A working narrow fix regressed things when widened | [14](14-render-pass-hazard-atlas.md) — widening is a *new experiment*, not a generalisation |
 | A value drifts or grows every frame | [07](07-engine-integration-safety.md) — you're reading your own output back as fresh input |
+| A feature works alone and breaks only while another feature is enabled - or unloading in a different order changes the crash | [07](07-engine-integration-safety.md#one-callsite-one-owner) - two features hooked one callsite; give it one owner that publishes status ([FAIL-HOOK-011](failure-atlas.md)) |
 
 ## "It looks wrong in the headset"
 
@@ -192,6 +193,7 @@ that the observation and the cause are usually in different chapters.
 | Stretched, zoomed or wrong-scale view | [09](09-d3d11-openxr-injection.md) — FoV/aspect/full-eye presentation |
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
+| A door, drawer or lever can be grabbed, then tears free, jitters or fights the hand | [02](02-viewmodels-and-hands.md#interaction-contracts) - a jointed mechanism was handled as a free body; keep it native until deliberately adapted ([FAIL-HAND-059](failure-atlas.md)) |
 
 ## "I can't find it"
 
@@ -385,6 +387,7 @@ diagnose them, which the rest of this index did not reach.
 | I don't know whether to reconstruct or to hook the camera | [16](16-teardown-virtua-cop-2-vr.md#when-to-reach-for-this-and-when-not-to) — four preconditions with a fast test each, and the frustum-culling ceiling that decides it |
 | My reconstructed scene is empty where I turn my head | [16](16-teardown-virtua-cop-2-vr.md#the-hard-ceiling-you-get-what-was-submitted-and-nothing-else) — not a bug. Everything outside the original frustum was culled and never submitted |
 | I want to see a whole project end to end | [13](13-teardown-bioshock-vr.md) |
+| Porting a working VR mod to its sibling games | [18](18-beyond-the-native-injector.md#demonstrated-reuse) - extract only what a second game has demonstrated, and keep status per contract ([08](08-project-process.md#status-per-contract)) |
 
 ## Research evidence and matrix layout
 

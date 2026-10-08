@@ -462,6 +462,34 @@ into a number, and the number is zero or it is not.
 **Movement and buttons need separate gates.** A single `g_vrInputActive` flag that suppresses both means
 disabling locomotion also kills your action buttons, and re-enabling one silently re-enables the other.
 
+### Driving it once is not enough: plan, update once, reconcile in the same tick {#same-tick-reconciliation}
+
+Suppressing the second lane leaves the native update as the only driver. A binary port that cannot edit
+the movement function still has to choose where in the tick its own planning and reconciliation run
+around that one update. Penumbra VR Framework replaced a *plan-for-next-tick* structure after an audit, and its
+[design decisions](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/DESIGN_DECISIONS.md) state the supported contract as one sequence around the
+single native body update: `[SOURCE]`
+
+1. before the update: resolve the body and its generation, consume identified tracking and logical
+   locomotion intent, and plan **this** tick;
+2. inside the existing request boundary: consume the bounded horizontal request once;
+3. run the native body update **exactly once**;
+4. after it: observe the result, match tick, body, generation and epoch, reconcile once, carry accepted
+   locomotion once, then publish.
+
+**Planning against the previous tick's pre-update body is the defect this replaced.** Every quantity is
+one tick stale and is then reconciled against a body that has since moved.
+
+Two neighbours come from the same contract. **Horizontal VR movement does not own native vertical:** Y,
+gravity and jump stay native, so horizontal comfort work cannot retune jumping as a side effect. And
+**crouch is a persistent desired stance applied through the game's own move-state change** on the
+existing game-thread owner, bound to the session and player generation, with a *blocked stand* kept
+distinct from a desired crouch and retried when clearance returns. That replaced compensating
+press/release toggles. The game reports a refused stand only after the policy has run for that frame,
+so the next update re-derives the hold from the observed native state rather than from its own last
+request, and the renderer takes posture from the observed crouch shape for that frame. Which code may
+make each native call is [07](07-engine-integration-safety.md#one-callsite-one-owner).
+
 ## Turn the character through the engine's own heading channel
 
 Physical body rotation — the character turning to follow the headset — has an obvious wrong

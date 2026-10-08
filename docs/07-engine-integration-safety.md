@@ -340,6 +340,45 @@ happens to be, which is why it survives testing and appears on someone else's ma
 `MH_ApplyQueued` exist for this; other libraries have equivalents, and where none exists, suspend the
 other threads for the duration. The same reasoning applies to *disabling* a set.
 
+## One callsite, one owner: fan out, never stack {#one-callsite-one-owner}
+
+Once a port has several features that want the same native moment — movement, crouch, haptics and
+interaction all want the player update — the cheap move is for each one to hook it. Penumbra VR
+Framework forbids that as architecture. Its rule is that *one callsite has one owner*: every other
+system binds through an explicit fan-out or status boundary instead of stacking its own hook over the
+same instruction. `[SOURCE]` ([agent guide](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/AGENTS.md), [design decisions](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/DESIGN_DECISIONS.md))
+
+**Stacking fails in ways that look like something else.** The second patch records the first one's
+redirect as "the original", so removal order decides which bytes come back. Two features that each
+call the native update apply it twice. Their relative order is whatever the install order happened to
+be. None of that is visible while only one feature is enabled. `[INFERENCE]` — the mechanism, not a
+reported incident.
+
+What the owner gives everyone else instead:
+
+- **A status read, not a re-patch.** Their input bridge is the sole owner of the native movement
+  callsites and publishes a movement-boundary status that consumers bind to. It also exports the last
+  player pointer it observed, *with a generation*, under an explicit contract: consumers may compare it,
+  but must not call game methods through it from a non-game thread.
+- **One injection boundary per request.** Horizontal VR movement enters through one bounded request,
+  consumed once inside the existing owner.
+- **No imitation of source-level sequencing.** A source-built sibling can reorder steps inside one
+  function. A binary port cannot, and the rule written down is *never add a second call to the native
+  body update* to fake that order. Plan before the one call and reconcile after it
+  ([03](03-input-and-locomotion.md#same-tick-reconciliation)).
+
+The install primitive is where the rule is enforced, and it is short enough to copy as a checklist:
+
+1. refuse if the callsite is already hooked;
+2. require a direct `E8` call whose five bytes match exactly;
+3. suspend peer threads for the write;
+4. **while peers are suspended, do not allocate or format diagnostics** — record a fixed-size failure
+   code and report it after resuming, because a suspended peer may be holding the heap lock;
+5. if restoring page protection fails, put the original bytes back.
+
+[Atomic enable](#atomic-hook-enable) covers a set of hooks; this covers who owns each one. See
+[HOOK-007](pattern-catalog.md#hook-007).
+
 ## Some engine defects get worse *because* you added VR {#vr-amplified-defect}
 
 Condemned VR found a frame-rate defect in LithTech Jupiter EX that a VR mod amplifies by

@@ -571,6 +571,21 @@ Pair it with a de-risking battery that tracks explicit states — `ANSWERED` / `
 the evidence and the named fallback. A battery table where most rows say `PARTLY` is telling you
 something true about the project that a prose status update will hide.
 
+### Status belongs to a contract, not a feature {#status-per-contract}
+
+Penumbra VR Framework records the axis that `VERIFIED`/`UNVERIFIED` leaves implicit — *how far* a claim
+has travelled — as a six-state ladder: `[SOURCE]` ([supported builds](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/SUPPORTED_BUILDS.md))
+
+`planned` → `implemented` → `host-tested` → `live-tested` → `headset-validated` → `supported`
+
+Two of its rules are the point. **Different contracts inside one subsystem hold different states.**
+Their palm shape query was live-validated while palm contact quality was not, so a single "hands: works"
+erases the distinction a reader needs. And **recognition, validation and support are separate**: a known
+executable hash is valid research input without being a supported release, and an installer that
+recognises its own transformed executable has produced no runtime evidence at all. The
+[evidence grades](glossary.md#architecture-and-evidence) say what kind of observation backs a claim;
+the ladder says which stage the contract has reached.
+
 ## Build shared tooling at a standardised interface, never at the game {#observe-at-the-interface}
 
 This fleet ran the experiment twice, with opposite results, and the discriminator is clean enough to

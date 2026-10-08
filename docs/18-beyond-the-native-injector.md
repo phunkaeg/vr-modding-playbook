@@ -565,6 +565,52 @@ And the game layer is unusually complete for a VR port: a **virtual keyboard**, 
 adaptation, a meta menu and motion-driven "realistic combat". Text entry in particular is a
 [completeness-tier](08-project-process.md) item most conversions skip and then discover they needed.
 
+## From one game to several: extraction follows demonstrated reuse {#demonstrated-reuse}
+
+[Upstream factoring](#upstream-factoring) asks which half of a fork is general. A project extending one
+proven VR conversion to its sibling games meets the same question from the other side, and Penumbra VR
+Framework has written its answer down as a [porting contract](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/REWORK_PORTING_PLAN.md). `[SOURCE]`
+
+Its starting point is a proven single-game mod, the Overture *Rework*, pinned to one revision as the
+**behavioural reference**. For each demonstrated capability the rule is:
+
+1. locate the exact implementation and its evidence;
+2. identify what is engine-, game- or model-specific;
+3. extract only genuinely game-neutral policy;
+4. expose the narrowest backend or profile boundary the target needs;
+5. keep proven behaviour and constants unless target evidence shows a necessary difference;
+6. validate the target independently.
+
+A replacement algorithm needs a recorded reason: no equivalent exists, the interface is incompatible,
+or direct adaptation is shown to be unsafe.
+
+**Three ownership layers keep the extraction honest.** The shared runtime owns units, transforms, policy
+and algorithms whose semantics are demonstrated, and contains no RVAs, signatures, native layouts or
+model-specific grip values. Backends own native execution: renderer entry points, body and collision,
+entity and mechanism lifecycle, exact-build hooks. Profiles own values that are measured but not
+universal: bindings, rig mappings, tool sockets, build manifests.
+
+These rules are the ones a multi-game project is most tempted to skip:
+
+- **Promotion needs a real second consumer.** One backend's engine-specific implementation is not proof
+  of a shared abstraction. In their words, *no abstraction is preferable to a false cross-game contract.*
+- **The baseline is a floor, not a ceiling.** When a sibling demonstrates better game-neutral behaviour,
+  it moves `proven behaviour → framework validation → shared runtime → all compatible consumers`, and the
+  original game consumes the improvement too. Game mechanics, exact-build data and rig values stay where
+  they were.
+- **Exact-build evidence does not generalise.** One sibling's source symbols do not prove another's ABI.
+  Record hashes and fail closed on unknown builds ([00](00-engine-profiles.md#hpl1-two-modes)).
+- **Status is per contract.** A subsystem can be headset-validated for one contract and host-tested for
+  the next ([08](08-project-process.md#status-per-contract)).
+
+Their extraction ledger shows what the rule produces. Tracking, settings, logical actions, locomotion
+policy, hand conditioning, haptics, render-target policy and audio parameters are recorded as
+demonstrated and shared. Mechanism coverage, some audio consumption, UI behaviour and controller-family
+validation are still recorded as incomplete. Exact material response, weapon statistics, rig data and
+source-game UI are declared product-specific *until evidence says otherwise*. Compare
+[the family seam](#family-seam), where a shared renderer made the seam shared; here only demonstrated
+behaviour is shared. See [META-020](pattern-catalog.md#meta-020).
+
 ## Mode 5 — Engine recreation: rebuild the engine, keep the data
 
 There is one more mode, and it sits past the end of the table: **reimplement the engine from scratch and
