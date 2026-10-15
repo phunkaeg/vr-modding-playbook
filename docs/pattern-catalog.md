@@ -955,6 +955,57 @@ genuinely VR-specific.
 that assumes an HMD, two eyes or a runtime is a VR component with a misleading name, and will be
 rejected or will rot.
 
+## SRC-003 — Add a physics engine beside the old movement code; entities stay the state of record {#src-003}
+
+**Problem:** an old engine with no rigid bodies gets one added, and the two fight over the same objects,
+or the physics state becomes a second truth that saving, loading and networking do not know about.
+
+**Use when:** adding a modern physics library to an engine that predates it.
+
+**Recipe:**
+
+- **Split ownership by kind.** The engine keeps its actors, which appear to physics as one-way kinematic
+  bodies; moving brushes are kinematic, driven with the velocity to their next pose; only props are
+  dynamic and physics-authoritative.
+- **Keep the entities the state of record.** Write physics results back every tick, detect game-code
+  changes against the last write-back and feed them in, save nothing of the physics world, and rebuild it
+  from the entities.
+- **Step once per game tick** with a capped number of catch-up pieces, and build the static world from
+  the faces as drawn, with T-junctions welded.
+- **Give kinematic hands a mass for pushes**, and sweep fast moves in small pieces.
+
+**Proof:** saving, loading and changing level reproduce the same props; a scripted scene hashes
+identically with one and with several worker threads; a flick moves a light prop and barely moves a
+heavy one.
+
+**Trip hazard:** a kinematic body has infinite mass to the solver, so a hand passes its full speed to
+anything it touches until a mass share is engineered back in. `[SOURCE]` quakevr
+([18](18-beyond-the-native-injector.md#added-physics-engine)).
+
+## SRC-004 — Extend the game-code interface by name, and recognise your own code positively {#src-004}
+
+**Problem:** adding VR state to a game's scripting interface breaks the layout, checksum or numbering that
+existing mods and content rely on.
+
+**Use when:** a source port whose game logic is a separate module with a fixed interface (QuakeC,
+scripts, plugins) and an ecosystem of third-party game code.
+
+**Recipe:**
+
+- **Append new fields where the stock layout does not look** and resolve them by name at load, leaving
+  the stock checksum intact.
+- **Recognise your own game code by a sentinel**, and warn explicitly when only part of your interface
+  is present.
+- **Bind new built-ins by name from a private number range**, and extend the network protocol with
+  flags rather than a new, incompatible number.
+- **Run other game code in a compatibility mode** that disables features by capability, not by mod.
+
+**Proof:** the unmodified game code and at least one third-party mod load and play, and a build with a
+stale copy of your own game code warns instead of misbehaving.
+
+**Trip hazard:** guessing which content is running from map or file names. Select it with an explicit,
+read-only setting. `[SOURCE]` quakevr ([18](18-beyond-the-native-injector.md#game-code-abi)).
+
 ## CAM-019 - Weight competing pose sources by geometry, and make a new one earn trust {#cam-019}
 
 **Problem:** more than one thing reports where the hand, head or object is, each correct in a different
@@ -2664,6 +2715,67 @@ palm samples and guarded grab releases. After it moved to periodic samples and f
 maintainer run of the tutorial logged none of those gaps. That closes the symptom on that route only;
 the project does not claim the logging was the whole cause. `[AUTHOR]`
 
+## TEST-025 — A mock behind your own backend, a fake runtime in front of it {#test-025}
+
+**Problem:** VR code can only be exercised with a headset on, so every change waits for a person, and a
+mock that bypasses the runtime cannot catch runtime-integration bugs.
+
+**Use when:** you own the source, and therefore the seam between the game and the XR runtime.
+
+**Recipe:**
+
+- **Put everything runtime-specific behind one small backend interface**, with a mock implementation that
+  reports scripted head and hand poses and renders real stereo into its own textures.
+- **Make runs repeatable:** fixed frame times, seeded random numbers, and a fast mode that skips drawing
+  but still sets up each eye.
+- **Cover the real backend with a fake runtime** the loader can find, told to fail, lose focus, lose the
+  session or crash on cue.
+
+**Proof:** the same scripted run produces the same eye images twice, and each of the fake runtime's
+failure modes ends in the behaviour it was designed for.
+
+**Trip hazard:** a test runner that fixes the frame rate can override the very timing under test; see
+FAIL-PERF-025. `[SOURCE]` quakevr ([09](09-d3d11-openxr-injection.md#mock-backend)).
+
+## TEST-026 — Spend the headset session on what only a headset can show {#test-026}
+
+**Problem:** headset time is the scarcest resource in a VR project. It gets spent re-checking what a flat
+screen could have shown, or lost when findings are not captured in the moment.
+
+**Use when:** one person holds the headset while others, people or agents, implement and test without
+one.
+
+**Recipe:**
+
+- **Keep the session's checklist in a text file the game reads live.** Tick rows from a VR menu, keep the
+  ticks local and keyed by row text, and allow undo.
+- **Record notes in the headset** with a screenshot and the game state attached, and transcribe them into
+  one file.
+- **Before the session, remove or trim rows already verified flat; after it, retire what was confirmed.**
+  End every change with what to check in the headset.
+
+**Proof:** each headset session leaves a dated set of retired rows and transcribed notes that commits
+cite by name.
+
+**Trip hazard:** a row reworded between sessions loses its tick, by design, so reword deliberately.
+`[SOURCE]` quakevr ([08](08-project-process.md#headset-session)).
+
+## TEST-027 — Labelled headset motions are the classifier's regression suite {#test-027}
+
+**Problem:** a gesture or melee classifier tuned on one tester's swings breaks on the next tweak, and
+nobody notices until the next headset session.
+
+**Use when:** any classifier over tracked motion: melee, throws, gestures, climbing grabs.
+
+**Recipe:** record takes in the headset against a fixed target, each labelled with the expected outcome,
+including takes that must register nothing. Replay them headless against the same target after every
+change, and treat a missing set of takes as an unrun test, not a pass.
+
+**Proof:** every take registers its label, and every no-hit take registers nothing.
+
+**Trip hazard:** the takes are personal data outside version control, so a test that cannot find them
+must say so rather than pass. `[SOURCE]` quakevr ([02](02-viewmodels-and-hands.md#motion-takes)).
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared
@@ -3136,6 +3248,28 @@ the game's own state after release matches what its native interaction would hav
 defect disappear by moving every other hand-relative distance. Validate the contact contract first, and
 keep sockets as per-tool profile data. `[SOURCE]` penumbra_vr_framework
 ([02](02-viewmodels-and-hands.md#interaction-contracts)).
+
+## HAND-024 - Recover a skeleton from vertex animation {#hand-024}
+
+**Problem:** ragdolls, IK or hit zones need bones, and the model is vertex-animated with none.
+
+**Use when:** characters ship as per-frame vertex positions, as Quake's models do.
+
+**Recipe:**
+
+- **Cluster vertices by how they move rigidly together across all frames** (K-means over per-pose rigid
+  transforms), splitting off pieces that leave the body.
+- **Map the clusters onto a small hand-written seed table** per character type that supplies joints,
+  limits and capsules, and guard the table by the model's vertex count.
+- **Draw the result through the skeletal path** with the physics bodies as bone matrices, and cap convex
+  hulls at a small number of corners.
+
+**Proof:** the fitted rig reproduces the source animation within a fraction of a unit, and every bone has
+non-zero mass after building.
+
+**Trip hazard:** a hull that fails to build leaves a massless part, and the ragdoll explodes on creation.
+Cap the hull's points and check the masses. `[SOURCE]` quakevr
+([02](02-viewmodels-and-hands.md#skeleton-from-vertex-animation)).
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
@@ -4087,6 +4221,23 @@ be disabled without editing code.
 **Trip hazard:** binding profile hotkeys onto keys the game already uses. MELE-VR chose F1-F4
 deliberately because 1-4 are Mass Effect's weapon keys and "a profile swap mid-combat is not what you
 want" - check the *game's* bindings, not just your own.
+
+## CFG-004 - Migrate a changed default only where the old default still stands {#cfg-004}
+
+**Problem:** configs that save every setting freeze the defaults they were saved with. Improved defaults
+never reach existing players, or a blunt reset wipes the settings they chose.
+
+**Use when:** after [CFG-002](#cfg-002)'s first full save, and whenever a default changes after release.
+
+**Recipe:** keep a versioned list of default changes, each naming the setting and its old default. When a
+config's version is older, move a setting to the new default only if it still holds exactly the old
+value, then record the version reached. A first start records the latest version.
+
+**Proof:** a config at the old default moves, a config with a value the player chose keeps it, and
+running the migration twice changes nothing.
+
+**Trip hazard:** parallel branches claiming the same version number. Renumber when merging, and keep one
+scripted check per promotion. `[SOURCE]` quakevr ([07](07-engine-integration-safety.md#default-migrations)).
 
 ## CAM-006 — Re-trigger initialisation through a benign engine event {#cam-006}
 

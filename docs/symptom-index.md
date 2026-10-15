@@ -40,6 +40,8 @@ that the observation and the cause are usually in different chapters.
 | A working narrow fix regressed things when widened | [14](14-render-pass-hazard-atlas.md) — widening is a *new experiment*, not a generalisation |
 | A value drifts or grows every frame | [07](07-engine-integration-safety.md) — you're reading your own output back as fresh input |
 | A feature works alone and breaks only while another feature is enabled - or unloading in a different order changes the crash | [07](07-engine-integration-safety.md#one-callsite-one-owner) - two features hooked one callsite; give it one owner that publishes status ([FAIL-HOOK-011](failure-atlas.md)) |
+| A melee or gesture tweak fixes one swing and breaks another | [02](02-viewmodels-and-hands.md#motion-takes) - replay labelled headset takes ([FAIL-TEST-041](failure-atlas.md)) |
+| Improved defaults never reach existing players | [07](07-engine-integration-safety.md#default-migrations) - migrate only where the old default still stands ([FAIL-CFG-009](failure-atlas.md)) |
 
 ## "It looks wrong in the headset"
 
@@ -194,6 +196,9 @@ that the observation and the cause are usually in different chapters.
 | Camera through the roof / world scale absurd after startup | [01](01-camera-and-tracking.md) — a fresh reference space can report a valid-but-wrong first pose |
 | Hands and camera at different "zero" | [01](01-camera-and-tracking.md) — one recenter event, consumed by every lane |
 | A door, drawer or lever can be grabbed, then tears free, jitters or fights the hand | [02](02-viewmodels-and-hands.md#interaction-contracts) - a jointed mechanism was handled as a free body; keep it native until deliberately adapted ([FAIL-HAND-059](failure-atlas.md)) |
+| Blood or decals show in one eye a frame before the other | [13](13-teardown-bioshock-vr.md#per-eye-writer-race) - frame content built during the first eye's pass; build it once per frame ([FAIL-STR-067](failure-atlas.md)) |
+| A ragdoll explodes the moment it spawns | [02](02-viewmodels-and-hands.md#skeleton-from-vertex-animation) - a massless part from a hull that failed to build ([FAIL-HAND-061](failure-atlas.md)) |
+| A flick of the wrist launches a heavy box | [18](18-beyond-the-native-injector.md#added-physics-engine) - kinematic hands pass on their full speed; push by mass share ([FAIL-HAND-060](failure-atlas.md)) |
 
 ## "I can't find it"
 
@@ -254,6 +259,7 @@ that the observation and the cause are usually in different chapters.
 | Benchmark numbers look too good | [06](06-debugging-methodology.md) — stop the clock on *completion*, not submission |
 | CPU spikes when particular scenery comes into view | [15](15-teardown-il2-1946-vr.md), [01](01-camera-and-tracking.md) — an inflated symmetric cull cone submits actors neither eye can see. Log the cull FOV against the eye tangents |
 | The desktop mirror costs real frame time | [15](15-teardown-il2-1946-vr.md) — check whether it is a full scene render rather than a blit, and make it optional |
+| The simulation runs at half rate on some headsets (36 Hz at 72 Hz) | [09](09-d3d11-openxr-injection.md#tick-follows-refresh) - a float tick interval; check with any harness frame override off ([FAIL-PERF-025](failure-atlas.md)) |
 
 ## "It makes people sick"
 
@@ -388,6 +394,9 @@ diagnose them, which the rest of this index did not reach.
 | My reconstructed scene is empty where I turn my head | [16](16-teardown-virtua-cop-2-vr.md#the-hard-ceiling-you-get-what-was-submitted-and-nothing-else) — not a bug. Everything outside the original frustum was culled and never submitted |
 | I want to see a whole project end to end | [13](13-teardown-bioshock-vr.md) |
 | Porting a working VR mod to its sibling games | [18](18-beyond-the-native-injector.md#demonstrated-reuse) - extract only what a second game has demonstrated, and keep status per contract ([08](08-project-process.md#status-per-contract)) |
+| Adding a physics engine to an engine that has none | [18](18-beyond-the-native-injector.md#added-physics-engine) |
+| Testing VR code without a headset, when you own the source | [09](09-d3d11-openxr-injection.md#mock-backend) |
+| Making one person's headset time count | [08](08-project-process.md#headset-session) |
 
 ## Research evidence and matrix layout
 

@@ -1734,6 +1734,33 @@ an NPC only takes offence if your hand is within a cone of where you are looking
 someone while looking elsewhere is not an assault* - which is exactly the false positive a naive
 implementation ships.
 
+### A skeleton recovered from vertex animation {#skeleton-from-vertex-animation}
+
+A ragdoll needs bones, and a Quake model has none: each animation frame is just vertex positions. Quake
+VR: UNLEASHED derives a rig from the animation itself the first time a monster type needs one, and writes
+nothing to disk. `[SOURCE]` ([ragdoll notes](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/Quake/vr/vr_ragdoll.hpp))
+
+1. Vertices welded in every pose (the copies at UV seams) give the mesh's pieces, and a piece that
+   leaves the body during an animation, such as a dropped weapon, becomes a loose bone.
+2. The body's vertices are clustered by how they move rigidly together across all frames: K-means over
+   per-pose rigid transforms, after James and Twigg's *Skinning Mesh Animations* (2005), with Horn's
+   quaternion fit.
+3. The clusters are mapped onto a small hand-written seed table per monster type (pelvis, chest, head,
+   limbs), which also supplies the joints, their limits and the bones' capsules.
+
+The mesh is then drawn through the renderer's skeletal path, with the ragdoll's bodies as the bone
+matrices. A grunt's rig fits to about half a Quake unit and takes about 20 ms to build, by the
+project's measurement. `[LIVE]` Two
+costs were found the hard way. A convex hull with too many points failed to build and left the chest
+massless, and the first ragdolls blew apart, so hulls are now capped at 20 corners. And a whole map's
+deaths at once is the worst case: with 218 deaths in one frame, a cap of 8 ragdolls kept the worst
+falling frame at 14.3 ms, against 24.5 ms with 32. Past the cap, the oldest ragdoll becomes a plain
+corpse. `[LIVE]` Standing back up reverses the process: the get-up animation's first frame is fitted
+to the lying pose, a ring search finds room to stand, and the body blends back over about 0.4 s.
+
+The same recovery should work for any vertex-animated format, though it was established only on Quake's.
+`[INFERENCE]` See [HAND-024](pattern-catalog.md#hand-024).
+
 ## The weapon census: fill this before you build a reload {#weapon-census}
 
 [Physical reload](#physical-reload) is a mechanism, and a mechanism built against one weapon will be
@@ -2405,6 +2432,13 @@ or headset acceptance is established by that source review.
   release frame, so thrown objects drop straight down. Hold the peak ~150 ms so a thrown object inherits
   the arm's flick; the same peak drives contact-knock feel (slow hand pushes, fast swing sends it
   flying).
+- **Detect the release from the analog grip, then backdate the throw.** Quake VR: UNLEASHED's throwing
+  review found eight reasons throws felt off; four transfer. The runtime's boolean squeeze fires late,
+  near full release, so release when the analog grip falls 30% from its peak. Velocity samples held
+  *predicted* poses but were timestamped as real time, so the newest few were extrapolations past now.
+  The estimate must be computed once, at the release edge, and frozen, because the game code may consume
+  a move one or more network frames later. And the object must spawn where the hand was at release, not
+  where the follow-through has carried it 40-100 ms later. `[SOURCE]` ([throwing](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/THROWING.md))
 - **Linear velocity only slides a prop; to *tip* it, set angular velocity ∝ (contactOffset × pushDir)**
   using the tool tip as the lever arm (hit low → topples, hit centre → slides), scaled by
   `refMass/mass` so heavy props don't over-rotate and tunnel. Scripted physics services are often
@@ -2437,6 +2471,16 @@ releasing Interact first can let PostUpdate drop before Throw arrives. Tracking
 loss, timeout and owner change must cancel it. Fixes pass offline controls; feel
 and player-contact outcomes remain unaccepted. Evidence:
 `SOMAVR/docs/INTERACTION_FOLLOW_REVIEW_2026-09-09.md`.
+
+### Test the melee classifier with motions recorded in the headset {#motion-takes}
+
+A melee classifier is tuned by feel and broken by the next tweak, because no two swings are the same.
+Quake VR: UNLEASHED records **labelled takes**: in the headset, in front of the firing range's training
+dummy, the player records motions labelled with what they should do, such as an expected slash or no hit
+at all. Replayed in the mock headset against the same dummy, each take must register what its label says,
+and the no-hit takes nothing. The takes are the player's own data and stay out of version control, so the
+regression cannot run while they are missing, and the project records that rather than counting it as a
+pass. `[SOURCE]` ([motion takes](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/MOTIONS.md)) See [TEST-027](pattern-catalog.md#test-027).
 
 ## Point the engine's own interaction at your hand, by borrowing the camera
 

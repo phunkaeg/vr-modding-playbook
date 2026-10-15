@@ -3389,7 +3389,36 @@ external:
       render_hazards:    {review: not_reviewed}
       performance:       {review: not_reviewed}
 
+  - id: "quakevr"
+    root: "D:/Dev Debug/Other VR Mods/quakevr"
+    status: external_reference
+    upstream_url: https://github.com/vittorioromeo/quakevr
+    license: "GPL-2.0"  # LICENSE.txt; vendored Box3D is MIT; read 2026-10-15
+    reviewed_at: 2026-10-15
+    reviewed_revision: tree:7f85916aecfa2850
+    reviewed_git_commit: 76e28be1ea6976ec3209136bdb9468fc434102c9
+    engine: id Tech 1 (Quake) via Ironwail - FitzQuake/QuakeSpasm lineage
+    api: OpenGL 4.3 + OpenXR
+    vehicle: source-port
+    chapter: 18
+    areas:
+      source_integration: {review: partial, evidence: SOURCE, note: "DISTILLED 2026-10-15 at tag v1.0.1 (master). -> 18 #added-physics-engine + SRC-003 + FAIL-HAND-060: Erin Catto's Box3D (MIT, alpha, vendored with one marked mesh pre-solve change for teleporter copies) added beside Quake's hull movement. Actors stay Quake's and appear as one-way kinematic bodies; brushes are kinematic leaf hulls; props are dynamic and written back to entities each tick; no physics state is saved. Chosen by two parallel agents and a live switch against the project's own solver, then an author headset test. -> 18 #game-code-abi + SRC-004: QuakeC fields after end_sys_fields by name with CRC 5927 kept, sentinel field, builtins from #900, PROTOCOL_RMQ flags, compatibility mode with the muzzle move, official packs ported and selected by read-only vr_campaign. vr-ironwail was 50 commits ahead (44 of them checklist rows) and was not reviewed. 402 VR files (237k lines) were not read exhaustively."}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "-> 02 #skeleton-from-vertex-animation + HAND-024 + FAIL-HAND-061 (a rig derived from MDL vertex animation, after James and Twigg 2005; ragdoll cap measured). -> 02 throwing bullet (analog release, frozen estimate, backdated spawn, predicted-pose time base). -> 02 #motion-takes + TEST-027 + FAIL-TEST-041. Not harvested: two-handed carry as the quaternion mean of the single-hand solutions; triangle-precise hit zones with the box as broad phase; body IK and calibration by pose sequence and least squares; climbing on a ledge map from the BSP; swimming strokes. Headset feel is AUTHOR."}
+      stereo:            {review: partial, evidence: SOURCE, note: "Two full passes, XrFovf tangents with reversed-Z, hidden-area mesh drawn at the near plane, one projection layer without depth. CORROBORATES existing material; not re-added. A decal grid built inside the first eye's pass made the eyes differ in 39 of 90 frames -> 13 #per-eye-writer-race + FAIL-STR-067. TEMPORAL.md is a design only and was not harvested."}
+      xr_lifecycle:      {review: partial, evidence: SOURCE, note: "Backend interface with distinct Lost and Exit session ends; Misc/quakevr/fakexr fake runtime (fail on demand, unfocus, session loss, swapchain crash) -> 09 #mock-backend + TEST-025. Loading notice submitted twice before a blocking load -> 09 loading paragraph. Float host_netinterval made a 36 Hz server at 72 Hz, hidden by the harness's forced server frames -> 09 #tick-follows-refresh + FAIL-PERF-025."}
+      performance:       {review: partial, evidence: LIVE, note: "Mock-measured on the author's machine; LIVE here means the target ran without a headset. SteamVR vs VDXR at 120 Hz (89.2 vs 119.4 fps; xrEndFrame 6.9 vs 0.9 ms) -> 10, which is author-headset data. Ragdoll cap 8 vs 32 -> 02. Box3D threading table and determinism hash -> 18. GPU fence polling was dropped because it added 1.3-2.1 ms pose-to-submit when GPU-bound; not harvested."}
+      ui_hud:            {review: skimmed, evidence: SOURCE, note: "A premultiplied offscreen 2D canvas drawn as a quad in each eye, sized by eye pixels per tangent and mipmapped; the flat HUD is replaced by a wrist gadget; an OpenXR quad layer before a map. CORROBORATES ch04 material; not re-added."}
+      camera_tracking:   {review: skimmed, evidence: SOURCE, note: "STAGE space with a LOCAL fallback lowered by calibrated height; 1 Quake unit = 0.0381 m times vr_world_scale 1.2, with runtime eye positions and so the IPD on the same factor. CORROBORATES 12 #one-scale-three-users."}
+      packaging_deploy:  {review: partial, evidence: SOURCE, note: "Relit maps generated on the player's machine because id maps cannot be redistributed -> 18 deployment bullet. Config default migrations -> 07 #default-migrations + CFG-004 + FAIL-CFG-009. Not harvested: the release script order (suite, offline install, mock-headset launch, tag, publish, live-feed install); assets on a never-Latest release pinned by hash; installer detection of Steam, GOG and Epic installs. The installer also requires two acknowledgements about AI-assisted work, which it does not store."}
+      xr_input:          {review: skimmed, evidence: SOURCE, note: "OpenXR actions call game commands directly instead of faking key presses; CORROBORATES the 03 input ladder."}
+      input_locomotion:  {review: skimmed, evidence: SOURCE, note: "Climbing holds come from a ledge map computed from the BSP and ride moving brushes; a teleporter carries the player when the collision box's middle plane crosses it, and an eye that leans through first is drawn on the far side; the comfort fade reuses Quake's screen tint. Not harvested."}
+      render_hazards:    {review: skimmed, evidence: SOURCE, note: "Relighting with ericw-tools to correct flat 1996 lightmaps up close in VR; decal per-eye mismatch -> 13."}
+      audio:             {review: not_reviewed, note: "Steam Audio vendored."}
+      re_discovery:      {review: not_reviewed, note: "Source port; no binary RE."}
+
 not_a_source:
+  - id: "box3d"
+    reason: "Erin Catto's Box3D physics library (upstream erincatto/box3d, HEAD 8128d74 of 2026-10-13), cloned for reference beside quakevr, which vendors it at 5643cd8. A rigid-body library, not a VR mod: the playbook harvests QuakeVR's integration of it (18 #added-physics-engine), not the library itself. Re-classify if its own determinism or threading design is harvested."
   - id: OBVR 0.1.3 56559 3 2026-09-07T09-29Z gWxLrl3z
     reason: 'Nexus Mods download of an Oblivion VR mod: three files, 0.5 MB, no source, no git history. The directory name is the Nexus download slug. Nothing to read without running it; re-classify if a source repository appears.'
   - id: Detroit-Become-Human-VR-Mod

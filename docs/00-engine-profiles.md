@@ -385,6 +385,7 @@ Beyond the projects here, a wider independent set of mods was read for
 | **id Tech 3 / IW / GoldSrc** | Jedi Academy, CoD4, Counter-Strike | GL / D3D9 | Source port | The entire engine |
 | **Frostbite** | Star Wars Battlefront II (2017) | D3D11 | Native (safetyhook) | A settings-class type system enumerable from a string-table naming convention |
 | **HPL1** (Frictional) | Penumbra: Overture, Black Plague, Requiem | OpenGL + SDL, x86 | **Source port *and* native injector**, in one product | Overture's GPL source release; for the sequels, only SteamStub-wrapped executables ([below](#hpl1-two-modes)) |
+| **id Tech 1** (Quake) via Ironwail | Quake and its mission packs | OpenGL 4.3, x64 | Source port | The whole engine and its QuakeC game code, with room to add a physics engine it never had ([18](18-beyond-the-native-injector.md#added-physics-engine)) |
 
 The practical use of this table is the **mode** column. Before starting, establish which one your target
 falls into — an afternoon's work, and it changes the discovery route even though both routes later rejoin

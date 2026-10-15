@@ -432,6 +432,13 @@ with the pressure; the middle state is what proves the driver alone is innocent.
 in-headset F10 A/B checkbox, found in the flat simulator with per-eye captures and confirmed on hardware.
 See [STR-017](pattern-catalog.md#str-017).
 
+**A second witness, from a source port.** Quake VR: UNLEASHED draws a frame's two eyes as two passes.
+Blood and decals created during the left eye's pass were built into the right eye's decal grid but not
+the left's, and the eyes disagreed in 39 of 90 measured frames. The fix builds the grid once, in the
+frame's first view, and every view draws from it, so a mark made during a frame appears in both eyes on
+the next. The author's ruling is the transferable rule: both eyes must agree, even at the cost of a
+frame's delay. `[LIVE]` ([performance decisions](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/PERF_DECISIONS.md))
+
 ## Write script properties by name through the console seam
 
 The highest-leverage single hook they found: the engine's own console `SET <class> <property> <value>`

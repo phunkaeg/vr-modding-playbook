@@ -382,6 +382,10 @@ One fallback path serving five situations is the design worth taking. Note the *
 inheriting HMD pitch and roll into a world-locked panel is the recenter trap from
 [01](01-camera-and-tracking.md).
 
+**And show the notice before you block.** Quake VR: UNLEASHED delays a map load until its loading
+notice has been submitted to the headset twice. One frame is enough when the runtime shows it; the second
+covers a frame the runtime dropped. `[SOURCE]` ([loading](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/Quake/vr/vr_loading.cpp))
+
 ## The recovery matrix — write one, and make every row a decision
 
 Everything that can be unplugged, restarted, resized or crashed will be, on somebody's machine. FEAR VR
@@ -1592,6 +1596,30 @@ pointer is non-null. **Validation you add is validation the application never ag
 every parameter the API marks optional, and make sure each path where you answer instead of forwarding
 accepts what the real implementation would - including the calls you personally consider sloppy.
 
+### When you own the source: a mock behind your backend, a fake runtime in front of it {#mock-backend}
+
+A substitute runtime is the only seam a binary mod has. A source port has a second one: its own backend
+interface. Quake VR: UNLEASHED puts everything runtime-specific behind one small interface: beginning
+and ending a frame, eye sizes, the lens's hidden-area mesh, eye images, haptics, and two distinct ways a
+session can end (*lost* keeps playing on the monitor, *exit* quits). It has two implementations, OpenXR
+and a mock. `[SOURCE]` ([testing](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/TESTING.md))
+
+The **mock backend** reports a standing head and two hands, and renders both eyes into its own textures,
+so stereo rendering runs without a headset. Console commands, keyframed motion files and autopilots (walk
+to a point, aim at the nearest monster) drive it. Fixed frame times plus seeded random numbers make runs
+repeatable, and a fast mode skips drawing while still setting up each eye's view, so several agents can
+test at once.
+
+The mock cannot test OpenXR, so a **fake runtime** covers that path. It is a DLL the loader finds through
+a manifest like any runtime, and environment variables tell it to fail instance creation, go unfocused
+as a dashboard would, lose the session, or crash while filling swapchain images the way a real runtime
+once did. The runtime-selection and binding tests ran 98 checks against it. `[SOURCE]` `[LIVE]`
+
+The two seams catch different defects, so a source port wants both; a shared substitute runtime such as
+[xr-sim](#headless-instrument-operation) can play the second role. One caveat from the same project: its
+harness hid a timing bug by fixing the frame rate ([below](#tick-follows-refresh)). See
+[TEST-025](pattern-catalog.md#test-025).
+
 ## Three shipped routes to same-frame stereo that are not re-entry {#native-stereo-routes}
 
 The rungs in chapter 08 treat native same-frame stereo as `R1` - re-enter the engine's render
@@ -2041,6 +2069,21 @@ fix is silently keyed to the wrong eye. The history fix is only correct *because
 lockstep, one apart, with stable parity. A counter that jumps by two, or a parity that flips without a
 logged skip, is the bug - visible in a log long before a wearer feels it, and the same proof shape as
 STR-012's push-minus-pop depth. See [STR-014](pattern-catalog.md#str-014).
+
+### The game's tick must not follow the headset's refresh {#tick-follows-refresh}
+
+Quake VR: UNLEASHED found its server ticking at **36 Hz on a 72 Hz headset**. The host ran a server frame
+once the accumulated time reached the tick interval, but the interval was stored as a 32-bit float, and
+1/72 as a float is slightly longer than a 72 Hz frame measured in double precision. One frame never
+quite reached it, so every second frame ran a tick carrying two frames' time. A 90 Hz headset gave
+45 ticks a second, 144 Hz gave 48, and a dedicated server ran at 16-20. A double-precision accumulator
+of fixed 72 Hz ticks fixed it: every rate measured then ticked at 72. `[LIVE]` (mock headset)
+([server tick](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/ROUND21.md))
+
+**The tests never saw it, because the test runner fixed the frame rate by forcing one server frame per
+host frame.** It overrode exactly the timing it should have observed. When a harness controls a clock,
+make sure it is not the clock under test, and count ticks per second at each refresh rate headsets
+actually use (72, 80, 90, 120, 144) with any override off. See [FAIL-PERF-025](failure-atlas.md).
 
 ## What UE3 gives you for stereo, and the one thing it cannot express {#ue3-stereo-shape}
 

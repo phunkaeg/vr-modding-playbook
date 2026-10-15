@@ -585,6 +585,13 @@ texture, shares it via `WGL_NV_DX_interop2`, and does one small D3D11 flip-blit 
 swapchain — GL renderer untouched — because SteamVR's OpenXR GL path is slow.* One blit can beat a
 supported path.
 
+Quake VR: UNLEASHED measured the gap on one machine (Quest 3, RTX 4090, 120 Hz): 119.4 fps with
+`xrEndFrame` taking 0.9 ms through Virtual Desktop's OpenXR runtime, against 89.2 fps and 6.9 ms through
+SteamVR, whose OpenGL path copies every released image into its own textures. Two mitigations helped
+without leaving GL: acquire each eye's image only after that eye is drawn, and stop drawing the eyes
+while the session is visible but not focused (a dashboard is open), re-showing the last image instead.
+`[LIVE]` `[AUTHOR]` ([runtime comparison](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/ROUND21.md))
+
 ## Vulkan: the submit lifecycle is atomic, and partial skips destroy the device {#vulkan-submit-lifecycle}
 
 KSA-XR is the first Vulkan target in this survey - an OpenXR mod for a pre-alpha game on the BRUTAL

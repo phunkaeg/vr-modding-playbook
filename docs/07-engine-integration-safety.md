@@ -621,6 +621,17 @@ first level transition — clean **one independently verified path per headset b
 - **An `AUTO`/sentinel value must be resolved by *every* consumer, not just the setter.**  If a value has a sentinel resolved to a live dimension,
   resolve it at every read site or store the resolved value once.
 
+### A changed default must not overwrite the player's choice {#default-migrations}
+
+A config that saves every setting, as [CFG-002](pattern-catalog.md#cfg-002) recommends after the first
+save, freezes the defaults it was saved with: change a default in code and existing players never see
+it. Quake VR: UNLEASHED keeps a versioned list of default changes, each naming a setting and its old
+default. A saved config still holding exactly the old value takes the new one, once, and the config
+records the version it has reached. A value the player changed is left alone, and a first start simply
+records the latest version. Each promotion has a scripted check, and agents working in parallel that
+claimed the same version number renumber their entries when the branches merge. `[SOURCE]`
+([config migrations](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/Quake/vr/vr_cvars.cpp)) See [CFG-004](pattern-catalog.md#cfg-004).
+
 ## Initialization timing
 
 - **Don't initialize the VR runtime too early.** Starting OpenXR before the engine's graphics

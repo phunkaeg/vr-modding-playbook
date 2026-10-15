@@ -348,8 +348,107 @@ The playbook has been light here, and CoD4 VR is the corrective. Its `KNOWN-ISSU
 - **A whole level can be unshippable.** *"Death From Above is not playable in VR and must be skipped"* —
   the AC-130 mission, whose entire premise is a top-down sensor view. **Content-level incompatibility is
   a real category**, and documenting the skip is a better outcome than an unbounded fix attempt.
+- **Derive what you may not ship on the player's machine.** id Software's maps cannot be
+  redistributed, so Quake VR: UNLEASHED ships no relit maps. It ships the means instead: the installer
+  bundles the ericw-tools lighting compiler, the game can fetch the same hash-pinned release itself,
+  and each of the player's own maps is relit at low priority and written to a temporary file before
+  being renamed into place. About a second a map; 73 maps came to 209 MB. `[SOURCE]`
+  ([relighting](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/RELIGHTING.md))
 
 ---
+
+## Add a rigid-body engine the original never had {#added-physics-engine}
+
+Quake moves everything with hull traces and has no rigid bodies at all. **Quake VR: UNLEASHED**
+(Vittorio Romeo, GPL-2.0, on the Ironwail source port) adds Erin Catto's **Box3D**, the new 3D successor
+to Box2D (MIT, vendored at an alpha revision), so that props, debris, gibs, thrown weapons and ragdolls
+can be pushed, stacked and caught. How it shares the world with a 1996 engine is the reusable part.
+The numbers below are the project's own, mostly from runs on its mock headset.
+`[SOURCE]` ([integration notes](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/Quake/vr/vr_box3d.cpp), [vendoring notes](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/Quake/vr/external/box3d/README.md))
+
+**Ownership is split by kind, and the old engine keeps the actors.** Players and monsters keep Quake's
+own movement and appear to Box3D only as one-way kinematic bodies that push props. Doors, plats and
+other moving brushes are kinematic bodies built from their solid BSP leaves, driven with the velocity
+that takes them to their next pose, so whatever rests on them rides along. Only props are dynamic and
+Box3D-authoritative: each is the convex hull of its drawn model, with mass from its volume and a density
+for its kind.
+
+**The entities stay the state of record.** Box3D's results are written back to each prop's entity every
+server tick. Anything the game code changed since the last write-back (a throw, a knock, a teleport) is
+detected by comparison and fed back in, waking the body. Nothing of Box3D is saved: loading a game or
+changing level rebuilds the physics world from the entities. That is also what let the project switch
+physics engines live while evaluating them.
+
+**The world is one static mesh of the faces as drawn.** Sky, liquid and clip brushes are left out, and
+T-junctions are welded first so that every seam is an edge both triangles share and nothing catches on
+it. The test map went from 8,608 to 14,454 triangles and from 6 ms to 37 ms to build, once per map,
+cached across loads. `[LIVE]` A prop spawned inside a wall falls through the hollow mesh, so props
+below the map are stopped, and Quake's own door-pushing code is kept from moving props.
+
+**Timing is the server's.** Box3D steps once per server tick, at the end of the game's physics pass,
+with four substeps. A slow frame is caught up in at most three pieces of 1/45 s, never more. The server
+ticks at a fixed 72 Hz whatever the headset's rate ([09](09-d3d11-openxr-injection.md#tick-follows-refresh)),
+props are drawn with Quake's ordinary interpolation, and in multiplayer physics runs on the server only.
+
+**Determinism is a build setting, then a measurement.** Box3D is compiled as C17 with precise floating
+point and FMA contraction off, the settings its cross-platform determinism relies on. The step moves
+onto up to four pool threads once 150 bodies are awake and back to one below three quarters of that,
+because one thread is as fast or faster below it. A bench hashes every body bit for bit after a few
+hundred steps: the hash is identical from 1 to 32 workers and up to 2,000 bodies. `[LIVE]` Whole
+game runs still never match, because the game code's random draws differ. The vendored README still
+calls the integration single-threaded; the code is the authority.
+
+**Hands are kinematic, and need a mass anyway.** A hand body jointed to the controller would lag and be
+stopped by what it presses, so the hands follow the tracked controllers exactly. Two consequences had to
+be engineered back in. A kinematic body has infinite mass to the solver, so a wrist flick launched a
+40 kg box: pushes now keep only M/(M+m) of the velocity they add, with a 3 kg hand and a 200 N cap on a
+sustained shove. And Box3D collides once per step, so a fast swing jumped over thin things: the hand's
+move is swept in pieces of at most 1.5 cm. `[LIVE]`
+
+**The one change to the vendored library is marked and documented.** A prop crossing a teleporter gets
+a copy body on the far side, whose contacts behind the gate's plane must be dropped. Box3D asked the
+pre-solve callback only for convex contacts, and the level is a single mesh, so the wall behind the gate
+still stopped a sliding crate. The local patch asks for each mesh contact point, and its README says
+how to keep the change when updating. `[SOURCE]`
+
+**How the engine was chosen.** The author had two agents work in parallel: one extending the project's
+own box solver to stack, one moving every rigid body onto Box3D behind a live switch. Both ran the same
+scripted mock-headset scenes and a melee regression replaying 474 recorded takes, and then the author
+tried both in the headset. The old solver let stacks fall through each other. Box3D cost 0.12-0.15 ms a
+server frame for 52 props settling into a pile, against 0.056 ms, and was kept. When the old solver was
+deleted, the scripted scenes hashed identically before and after, and the old code went to an archive
+branch. `[LIVE]` `[AUTHOR]` See [SRC-003](pattern-catalog.md#src-003). Ragdolls for models with no
+skeleton are in [02](02-viewmodels-and-hands.md#skeleton-from-vertex-animation).
+
+## Extend the game code's interface by name, so other game code still runs {#game-code-abi}
+
+Quake's game logic is QuakeC (`progs.dat`), and decades of mods and mission packs ship their own. Quake
+VR: UNLEASHED extends the interface between engine and game code without breaking any of it. `[SOURCE]`
+([port plan](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/PLAN.md), [mods](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/MODS.md))
+
+- **New fields go after the engine's system fields and are found by name** when the game code loads. The
+  stock layout and its checksum stay intact, so unmodified game code still loads.
+- **The engine recognises its own game code by one sentinel field.** When only some of the VR fields are
+  present, it warns that the game code comes from another build rather than misbehaving quietly.
+- **New built-in functions are bound by name** and numbered from a private range above the base
+  engine's highest, which removed the numbering collisions of the previous version.
+- **Protocol extensions are flags on an existing protocol**, so a dedicated server keeps the plain
+  protocol for other mods.
+
+Third-party game code (Arcane Dimensions, Copper, Alkaline, Quoth) runs in a **compatibility mode**.
+Tracking, the body, locomotion and aiming by the hand work, because they need nothing from the game code.
+Shots come from the gun by a borrowed trick: while the mod's own weapon code runs, the player is moved
+so that the mod's fixed shot point sits on the muzzle, refused beyond 96 units, then moved back.
+Features that need the VR game code (off-hand weapons, holsters, throwing, melee, hand pickups) are off
+rather than half working. The official mission packs are not run as foreign code at all: their released
+game code is ported into the VR game code and selected by a read-only campaign setting, which the game
+code must never infer from map names.
+
+The re-port onto a newer engine kept old settings meaningful, too. Hand anchors stored against the
+previous renderer's vertex order are resolved by rebuilding that order from the model's triangle list,
+and the port plan lists the previous version's bugs that were deliberately not carried over. **Put new
+state where the old layout does not look, find it by name, recognise your own code positively, and
+degrade by feature rather than by mod.** See [SRC-004](pattern-catalog.md#src-004).
 
 ## Let the engine load your code: patch the command line, not the engine {#engine-sanctioned-loading}
 

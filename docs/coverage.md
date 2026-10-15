@@ -23,6 +23,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | Source | What is sitting there |
 |---|---|---|
+| `audio` | **quakevr** | Steam Audio vendored. |
 | `hands_interaction` | **Buffout4 NG-64880-1-38-3-1785297452** | Not an interaction mod - it is the FIELD OPERATIONS layer, and included in the interaction-coverage comparison for contrast. |
 | `hands_interaction` | **FRIK 78.2 53464 v0.78.2 2026-08-17T16-42Z 86DAb33jN** | REGISTERED NOT REVIEWED 2026-09-05. FRIK - the Fallout 4 VR body and holster mod, VRIK's counterpart. Distribution is binary (F4SE plugin plus meshes/materials, 73 MB); the SOURCE is upstream on GitHub and the runtime config lives in Documents\My Games\Fallout4VR\FRIK_Config, so neither is in this tree. Only README.txt has been read. |
 | `hands_interaction` | **Fallout 4 Script Extender VR (F4SEVR)-42159-0-6-21-1719284892** | F4SEVR 0.6.21. src/ read selectively 2026-09-05 (150 .h / 144 .cpp; f4se_loader_common) -> ch08 #loader-preflight and PACK-004. The transferable part is the LOADER, not the game layer: IdentifyEXE maps the target read-only and classifies it by PE section (a UPX0 section means packed, a Steam section means wrapped; four outcomes, and the packed case is refused BY NAME), then compares versions three ways - older, NEWER than supported, and right version but wrong build branch - each with its own actionable message. The newer-than-supported case is the one that happens to every user the day the game updates. Version comes from the version resource rather than a file hash. The game-structure layer (BS*/Game*) was not read. |
@@ -40,6 +41,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `re_discovery` | **VRExpansionPlugin-4.27** | Not applicable: full MIT source, nothing to reverse. |
 | `re_discovery` | **VR_Template_UE5.1_SB** | Not applicable. |
 | `re_discovery` | **quake2vr** | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
+| `re_discovery` | **quakevr** | Source port; no binary RE. |
 | `stereo` | **Dishonored-VR-fork** | REGISTERED NOT REVIEWED 2026-09-04. In-house fork of the shipped external mod, carrying local commits (Meta Link OpenXR backend selection; build.sh portability). The 52-patch upstream series is already distilled in ch17 #dishonored-splice; this tree adds the fork's own changes, which are not yet read. |
 | `stereo` | **FUS** | REGISTERED NOT REVIEWED 2026-09-05. A Wabbajack modlist/preset rather than a mod: README, images, a bundled openvr_api.dll and a Mantella folder. Kept as a source only because it names a working VR mod stack. |
 | `stereo` | **Fallout-New-Vegas-FNVR** | NOT HARVESTABLE AS SHIPPED: 'Fallout New Virtual Reality' is a 12 KB FNVR.esp plus a 3 KB .7z - a plugin, not a native VR conversion, and no source. What IS readable in this directory is xNVSE, the New Vegas Script Extender, which is general modding tooling rather than a VR implementation. Extract the archive and re-assess only if the script-extender route to VR becomes relevant to a project. |
@@ -70,19 +72,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 32 | 20 | 45 | 16 |
-| `xr_lifecycle` | 6 | 11 | 2 | 50 | 63 |
-| `xr_input` | 4 | 1 | 8 | 70 | 49 |
-| `camera_tracking` | 12 | 19 | 5 | 56 | 40 |
-| `render_hazards` | 5 | 15 | 4 | 31 | 77 |
-| `ui_hud` | 5 | 15 | 13 | 59 | 40 |
-| `hands_interaction` | 6 | 21 | 8 | 51 | 46 |
-| `input_locomotion` | 2 | 9 | 4 | 34 | 83 |
-| `performance` | 8 | 11 | 9 | 60 | 44 |
-| `audio` | 1 | 1 | 2 | 76 | 52 |
-| `packaging_deploy` | 6 | 26 | 23 | 46 | 31 |
-| `re_discovery` | 14 | 21 | 8 | 52 | 37 |
-| `source_integration` | 2 | 14 | 14 | 48 | 54 |
+| `stereo` | 19 | 33 | 20 | 45 | 16 |
+| `xr_lifecycle` | 6 | 12 | 2 | 50 | 63 |
+| `xr_input` | 4 | 1 | 9 | 70 | 49 |
+| `camera_tracking` | 12 | 19 | 6 | 56 | 40 |
+| `render_hazards` | 5 | 15 | 5 | 31 | 77 |
+| `ui_hud` | 5 | 15 | 14 | 59 | 40 |
+| `hands_interaction` | 6 | 22 | 8 | 51 | 46 |
+| `input_locomotion` | 2 | 9 | 5 | 34 | 83 |
+| `performance` | 8 | 12 | 9 | 60 | 44 |
+| `audio` | 1 | 1 | 2 | 77 | 52 |
+| `packaging_deploy` | 6 | 27 | 23 | 46 | 31 |
+| `re_discovery` | 14 | 21 | 8 | 53 | 37 |
+| `source_integration` | 2 | 15 | 14 | 48 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -190,6 +192,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **PureDark-UEVR** | external reference | Unreal Engine (multi-title) | framework | — | — | — | 267 | 223 | 14 | 2026-09-07 | 🟥 source changed | 0F / 0P / 0S / 12NR / 1— |
 | **Quake2Quest** | external reference | id Tech 2 (Quake II, via Yamagi) | source-port | ? | ? | 9 | 1057 | 707 | 28 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
 | **quake2vr** | external reference | id Tech 2 (Quake II, via KMQuake II) | source-port | ? | ? | 9 | 1090 | 338 | 24 | 2026-09-02 | 🟥 source changed | 0F / 0P / 0S / 11NR / 2— |
+| **quakevr** | external reference | id Tech 1 (Quake) via Ironwail - FitzQuake/QuakeSpasm lineage | source-port | — | — | 18 | 4323 | 1722 | 113 | 2026-10-15 | 🟩 current | 0F / 6P / 5S / 2NR / 0— |
 | **QuestSam** | external reference | Serious Engine (Serious Sam Classic TFE and TSE) | source-port | — | — | 18 | 1038 | 758 | 15 | 2026-09-19 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
 | **ravenfield-vr-mod** | external reference | Unity | managed-plugin | — | — | — | 37 | 9 | 1 | 2026-08-26 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **RazeXR-PCVR** | external reference | Build engine family (Raze: Duke Nukem 3D, Blood, Shadow Warrior) | source-port | — | — | 18 | 5547 | 1632 | 105 | 2026-09-15 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
@@ -338,6 +341,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **PureDark-UEVR** | 2026-09-07 | `tree:20e90587ef58d605` | `tree:1ffc10d5d5c5782b` | `—` | 🟥 source changed | https://github.com/PureDark/UEVR | see LICENSE in tree |
 | **Quake2Quest** | 2026-09-02 | `tree:6762626f4c1aed86` | `tree:af131bfd6663683b` | `—` | 🟥 source changed | unknown | GPL-2.0 |
 | **quake2vr** | 2026-09-02 | `tree:461b476dadb7b80e` | `tree:a203a1a1bb26e4e1` | `—` | 🟥 source changed | unknown | unknown |
+| **quakevr** | 2026-10-15 | `tree:7f85916aecfa2850` | `tree:7f85916aecfa2850` | `76e28be1ea6976ec3209136bdb9468fc434102c9` | 🟩 current | https://github.com/vittorioromeo/quakevr | GPL-2.0 |
 | **QuestSam** | 2026-09-19 | `tree:4889e5b786b3e8e0` | `tree:4889e5b786b3e8e0` | `42c97b0e83d6cca18430d3f3b72a350acb37aed4` | 🟩 current | https://github.com/maranone/QuestSam | unknown - no LICENSE file found |
 | **ravenfield-vr-mod** | 2026-08-26 | `tree:fdaf974b1d43efcc` | `tree:fdaf974b1d43efcc` | `4ed67514aa3302ba255b6ddb870854f9c992737e` | 🟩 current | https://github.com/GDani31/ravenfield-vr-mod | unknown |
 | **RazeXR-PCVR** | 2026-09-18 | `tree:0ecc568558345876` | `tree:0ecc568558345876` | `b3032e7440c84b56ad3a37a015f7a9172bf7b972` | 🟩 current | https://github.com/GameOrDie007/RazeXR-PCVR | GPL-2.0 |
@@ -403,6 +407,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 
 ### Deliberately not sources
 
+- `box3d` — Erin Catto's Box3D physics library (upstream erincatto/box3d, HEAD 8128d74 of 2026-10-13), cloned for reference beside quakevr, which vendors it at 5643cd8. A rigid-body library, not a VR mod: the playbook harvests QuakeVR's integration of it (18 #added-physics-engine), not the library itself. Re-classify if its own determinism or threading design is harvested.
 - `OBVR 0.1.3 56559 3 2026-09-07T09-29Z gWxLrl3z` — Nexus Mods download of an Oblivion VR mod: three files, 0.5 MB, no source, no git history. The directory name is the Nexus download slug. Nothing to read without running it; re-classify if a source repository appears.
 - `Detroit-Become-Human-VR-Mod` — Eleven files, 2.5 MB, MIT-licensed but ZERO source files - binaries and configuration only. Same class as the other release-artifact directories here; the source it was built from is not in this checkout.
 - `Head Mounted VR - Demo` — a packaged Win64 staged build of a FAB Store demo - 32 files, 715 MB, and not one line of source. The tree is Engine/Binaries/ThirdParty plus the product's own Binaries/Win64 (boost, openxr_loader, onnxruntime). Same class as Ship-9.2.3-win64-ship: build output, nothing to read.
@@ -2046,6 +2051,24 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
 | `re_discovery` | 🟥 not reviewed | `—` | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
 | `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### quakevr
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟨 partial | `SOURCE` | Two full passes, XrFovf tangents with reversed-Z, hidden-area mesh drawn at the near plane, one projection layer without depth. CORROBORATES existing material; not re-added. A decal grid built inside the first eye's pass made the eyes differ in 39 of 90 frames -> 13 #per-eye-writer-race + FAIL-STR-067. TEMPORAL.md is a design only and was not harvested. |
+| `xr_lifecycle` | 🟨 partial | `SOURCE` | Backend interface with distinct Lost and Exit session ends; Misc/quakevr/fakexr fake runtime (fail on demand, unfocus, session loss, swapchain crash) -> 09 #mock-backend + TEST-025. Loading notice submitted twice before a blocking load -> 09 loading paragraph. Float host_netinterval made a 36 Hz server at 72 Hz, hidden by the harness's forced server frames -> 09 #tick-follows-refresh + FAIL-PERF-025. |
+| `xr_input` | 🟧 skimmed | `SOURCE` | OpenXR actions call game commands directly instead of faking key presses; CORROBORATES the 03 input ladder. |
+| `camera_tracking` | 🟧 skimmed | `SOURCE` | STAGE space with a LOCAL fallback lowered by calibrated height; 1 Quake unit = 0.0381 m times vr_world_scale 1.2, with runtime eye positions and so the IPD on the same factor. CORROBORATES 12 #one-scale-three-users. |
+| `render_hazards` | 🟧 skimmed | `SOURCE` | Relighting with ericw-tools to correct flat 1996 lightmaps up close in VR; decal per-eye mismatch -> 13. |
+| `ui_hud` | 🟧 skimmed | `SOURCE` | A premultiplied offscreen 2D canvas drawn as a quad in each eye, sized by eye pixels per tangent and mipmapped; the flat HUD is replaced by a wrist gadget; an OpenXR quad layer before a map. CORROBORATES ch04 material; not re-added. |
+| `hands_interaction` | 🟨 partial | `SOURCE` | -> 02 #skeleton-from-vertex-animation + HAND-024 + FAIL-HAND-061 (a rig derived from MDL vertex animation, after James and Twigg 2005; ragdoll cap measured). -> 02 throwing bullet (analog release, frozen estimate, backdated spawn, predicted-pose time base). -> 02 #motion-takes + TEST-027 + FAIL-TEST-041. Not harvested: two-handed carry as the quaternion mean of the single-hand solutions; triangle-precise hit zones with the box as broad phase; body IK and calibration by pose sequence and least squares; climbing on a ledge map from the BSP; swimming strokes. Headset feel is AUTHOR. |
+| `input_locomotion` | 🟧 skimmed | `SOURCE` | Climbing holds come from a ledge map computed from the BSP and ride moving brushes; a teleporter carries the player when the collision box's middle plane crosses it, and an eye that leans through first is drawn on the far side; the comfort fade reuses Quake's screen tint. Not harvested. |
+| `performance` | 🟨 partial | `LIVE` | Mock-measured on the author's machine; LIVE here means the target ran without a headset. SteamVR vs VDXR at 120 Hz (89.2 vs 119.4 fps; xrEndFrame 6.9 vs 0.9 ms) -> 10, which is author-headset data. Ragdoll cap 8 vs 32 -> 02. Box3D threading table and determinism hash -> 18. GPU fence polling was dropped because it added 1.3-2.1 ms pose-to-submit when GPU-bound; not harvested. |
+| `audio` | 🟥 not reviewed | `—` | Steam Audio vendored. |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | Relit maps generated on the player's machine because id maps cannot be redistributed -> 18 deployment bullet. Config default migrations -> 07 #default-migrations + CFG-004 + FAIL-CFG-009. Not harvested: the release script order (suite, offline install, mock-headset launch, tag, publish, live-feed install); assets on a never-Latest release pinned by hash; installer detection of Steam, GOG and Epic installs. The installer also requires two acknowledgements about AI-assisted work, which it does not store. |
+| `re_discovery` | 🟥 not reviewed | `—` | Source port; no binary RE. |
+| `source_integration` | 🟨 partial | `SOURCE` | DISTILLED 2026-10-15 at tag v1.0.1 (master). -> 18 #added-physics-engine + SRC-003 + FAIL-HAND-060: Erin Catto's Box3D (MIT, alpha, vendored with one marked mesh pre-solve change for teleporter copies) added beside Quake's hull movement. Actors stay Quake's and appear as one-way kinematic bodies; brushes are kinematic leaf hulls; props are dynamic and written back to entities each tick; no physics state is saved. Chosen by two parallel agents and a live switch against the project's own solver, then an author headset test. -> 18 #game-code-abi + SRC-004: QuakeC fields after end_sys_fields by name with CRC 5927 kept, sentinel field, builtins from #900, PROTOCOL_RMQ flags, compatibility mode with the muzzle move, official packs ported and selected by read-only vr_campaign. vr-ironwail was 50 commits ahead (44 of them checklist rows) and was not reviewed. 402 VR files (237k lines) were not read exhaustively. |
 
 #### QuestSam
 

@@ -586,6 +586,35 @@ recognises its own transformed executable has produced no runtime evidence at al
 [evidence grades](glossary.md#architecture-and-evidence) say what kind of observation backs a claim;
 the ladder says which stage the contract has reached.
 
+## Spend the headset session on what only a headset can show {#headset-session}
+
+Quake VR: UNLEASHED is built by one author with AI coding agents; more than 2,200 of its 6,031 commits
+carry an AI co-author line. The division of labour is explicit: agents implement and test without a
+headset, and the author plays, records and decides. Its machinery for making the author's headset time
+count is the transferable part. `[SOURCE]` ([playtesting](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/PLAYTEST.md))
+
+- **A checklist the game reads while it runs.** The coordinating agent commits a plain text file of what
+  to test. The game re-reads it within a second, with no rebuild, and the author ticks rows from a VR
+  menu. Ticks stay local and are keyed by each row's text, so adding or moving rows leaves the other
+  ticks alone, and there is an undo, because ticking in a headset is error-prone.
+- **Notes recorded in the headset, with their context.** Raising the off hand to the mouth like a radio
+  records a voice note, saved with a screenshot and the game state: map, position, view, health and
+  what each hand held. The notes are transcribed locally into one file an agent can read, and commits
+  cite them by name.
+- **Rows retired in two passes.** Before a session, rows an agent has already verified on a flat screen
+  are removed, or cut down to their headset-only part. After it, the rows the author confirmed are
+  retired.
+- **Every change ends with what to check in the headset**, and audits leave removals for the author's
+  yes.
+- **The author's values become defaults by diff, not by copy.** For a release, his config is compared
+  with a fresh one from the same build. Personal settings such as arm calibration, hardware and video
+  settings, developer tools and slider rounding artefacts are excluded (72 settings differed for 1.0.1),
+  and what remains is promoted through [default migrations](07-engine-integration-safety.md#default-migrations).
+
+This is how a contract moves from live-tested to headset-validated
+([status per contract](#status-per-contract)) without the headset session becoming the bottleneck. See
+[TEST-026](pattern-catalog.md#test-026).
+
 ## Build shared tooling at a standardised interface, never at the game {#observe-at-the-interface}
 
 This fleet ran the experiment twice, with opposite results, and the discriminator is clean enough to
