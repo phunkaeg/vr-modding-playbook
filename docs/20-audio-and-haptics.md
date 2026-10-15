@@ -27,6 +27,26 @@ Replacing playback also means inheriting streaming, channel limits,
 preemption, looping, sample formats, environmental zones, save/load behavior
 and device recovery. “Play a WAV at a position” is not the whole system.
 
+### Binaural sound is the part you add, not the mixer you replace {#hrtf-in-the-mixer}
+
+Steering the listener gets panning and distance right, but panning is not binaural. The cues that put a
+sound above, behind or close to the head come from a head-related transfer function (HRTF), which most
+older games never applied. Two external projects add one without replacing the game's audio engine.
+`[SOURCE]`
+
+- **Turn on the HRTF the library already has.** Penumbra VR Framework writes OpenAL Soft's HRTF
+  configuration before the game creates its audio device. ([architecture](https://github.com/rubocopter/penumbra_vr_framework/blob/da62c78d72c03b8c0e489e498e186f6dd20a72db/docs/ARCHITECTURE.md))
+- **Insert it after the native panner.** SOMA-VR's adapter for the game's FMOD Ex mixer gives each
+  positional mono voice a private child channel group: a stereo processing point *after* the voice's
+  native panner, so the voice keeps its original parent bus and all of its authored automation. Steam
+  Audio supplies the binaural filter and nothing else; attenuation, occlusion, reverb, event automation
+  and non-positional audio stay with FMOD. A failure to initialise for a given mixer format is cached
+  rather than retried for every voice. ([adapter](https://github.com/Bateau01/SOMA-VR/blob/cf2c9291594ff5b29f1fbbbfb7c5baefa74c45ac/source/audio_s.c))
+
+Both follow the rule above: keep the game's mix and add only what it lacks. SOMA-VR's README is explicit
+that it does not simulate each room's acoustics from geometry; that would be a replacement, with
+everything a replacement inherits. See [AUDIO-003](pattern-catalog.md#audio-003).
+
 ## Treat the listener as a pose consumer
 
 The correct dependency is:

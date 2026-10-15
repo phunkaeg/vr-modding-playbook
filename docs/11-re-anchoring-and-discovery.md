@@ -2283,6 +2283,22 @@ They still scan by byte signature rather than fixed offset, and say why: robustn
 ASLR and ini-driven build variance - **not** because the parity is in doubt. A stated reason keeps a
 later reader from "simplifying" it away.
 
+**Ship the comparison as a three-state launch gate.** SOMA-VR runs the same kind of test on each
+player's own executable before it injects anything. `[SOURCE]` ([compatibility](https://github.com/Bateau01/SOMA-VR/blob/cf2c9291594ff5b29f1fbbbfb7c5baefa74c45ac/docs/COMPATIBILITY.md))
+
+- A whole-file SHA-256 match is **verified**.
+- Otherwise the section count, every section header and every section's bytes are compared with a
+  reference profile. Only the checksum and the certificate table's location are ignored, because
+  neither moves a mapped address. If everything matches, the result is **equivalent engine,
+  unverified**, which a player can opt into as an experiment.
+- Anything else is **incompatible**, and the launcher refuses it even with the experimental switch.
+
+The report it writes contains hashes and the PE layout, never the executable's contents, so a tester
+can share it, and its tests never launch the byte-mutated executables they classify. Renaming a file does
+not get past the gate, because contents are checked, not names. A separate build for another
+storefront's executable maps addresses through a profile, verifies signatures and patches operands for
+that exact layout. See [PACK-006](pattern-catalog.md#pack-006).
+
 ### Find an offset by SIGNATURE, and make the signature need two things {#two-part-signature}
 
 An SDK header gives you **declaration order, which is vocabulary, not truth** - offsets must come from
@@ -2436,6 +2452,28 @@ versus COL on identical bytes:
 **A second test that discriminates on a different physical quantity is worth more than a tighter
 threshold on the first one** - and where it also resolves an ambiguity you were going to have to settle
 separately, it costs nothing. See [RE-007](pattern-catalog.md#re-007).
+
+## When your own base binary has lost its source, extend it like a target {#extend-inherited-binary}
+
+Mods lose their source more often than games do. SOMA-VR builds on a base DLL whose matching source no
+longer exists: C++ snapshots recovered from old archives are kept as reference but are not a
+byte-identical rebuild, and the injector's source has not been located. Instead of a rewrite, the build
+treats the inherited DLL the way this chapter treats a game. `[SOURCE]` ([build](https://github.com/Bateau01/SOMA-VR/blob/cf2c9291594ff5b29f1fbbbfb7c5baefa74c45ac/docs/BUILD.md),
+[provenance](https://github.com/Bateau01/SOMA-VR/blob/cf2c9291594ff5b29f1fbbbfb7c5baefa74c45ac/docs/PROVENANCE.json))
+
+- **Pin the bytes.** The patcher refuses any base whose SHA-256 differs from the recorded one.
+- **Add code; do not edit it in place.** New C code is compiled into a section appended at a fixed RVA.
+  Every function or variable it needs from the base (the original functions it chains to, the hook
+  library's create and enable calls, the renderer's GL imports, camera globals) is linked to a fixed
+  address inside that pinned image.
+- **Keep the logic testable through the same seam.** The new code reaches the base only through that
+  table of external symbols, so tests compile the production source files into a standalone DLL, with
+  stubs or with the game's own physics library, and call them directly.
+- **Write provenance down field by field:** what was rebuilt, what was supplied as a binary, which
+  source exists, and that no personal settings or saves are in the package.
+
+The cost is that every change still depends on a binary nobody can rebuild, and stating that openly is
+part of the method. See [RE-012](pattern-catalog.md#re-012).
 
 ## Tooling worth adopting
 

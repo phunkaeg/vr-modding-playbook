@@ -42,6 +42,7 @@ that the observation and the cause are usually in different chapters.
 | A feature works alone and breaks only while another feature is enabled - or unloading in a different order changes the crash | [07](07-engine-integration-safety.md#one-callsite-one-owner) - two features hooked one callsite; give it one owner that publishes status ([FAIL-HOOK-011](failure-atlas.md)) |
 | A melee or gesture tweak fixes one swing and breaks another | [02](02-viewmodels-and-hands.md#motion-takes) - replay labelled headset takes ([FAIL-TEST-041](failure-atlas.md)) |
 | Improved defaults never reach existing players | [07](07-engine-integration-safety.md#default-migrations) - migrate only where the old default still stands ([FAIL-CFG-009](failure-atlas.md)) |
+| Adding binaural audio lost the game's reverb or occlusion | [20](20-audio-and-haptics.md#hrtf-in-the-mixer) - insert the HRTF after the native panner ([FAIL-AUDIO-004](failure-atlas.md)) |
 
 ## "It looks wrong in the headset"
 
@@ -230,6 +231,7 @@ that the observation and the cause are usually in different chapters.
 | Crash under a streaming/compositor runtime | [07](07-engine-integration-safety.md) — third-party implicit API layers in your call chain |
 | Game dies when you pause it in a debugger | [06](06-debugging-methodology.md) — **you cannot pause a VR process.** Use non-pausing instrumentation |
 | Process won't exit / hangs on shutdown | [07](07-engine-integration-safety.md) — an injected worker thread waiting on a signal that will never come |
+| Works with the Steam executable, crashes with the GOG or Epic one of the same version | [11](11-re-anchoring-and-discovery.md#drm-free-twin) - compare section bytes before injecting ([FAIL-PACK-020](failure-atlas.md)) |
 
 ## "I can't tell whether it worked"
 
@@ -397,6 +399,7 @@ diagnose them, which the rest of this index did not reach.
 | Adding a physics engine to an engine that has none | [18](18-beyond-the-native-injector.md#added-physics-engine) |
 | Testing VR code without a headset, when you own the source | [09](09-d3d11-openxr-injection.md#mock-backend) |
 | Making one person's headset time count | [08](08-project-process.md#headset-session) |
+| Taking over a mod whose binary has lost its source | [11](11-re-anchoring-and-discovery.md#extend-inherited-binary) |
 
 ## Research evidence and matrix layout
 

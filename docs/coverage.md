@@ -72,19 +72,19 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 33 | 20 | 45 | 16 |
-| `xr_lifecycle` | 6 | 12 | 2 | 50 | 63 |
-| `xr_input` | 4 | 1 | 9 | 70 | 49 |
-| `camera_tracking` | 12 | 19 | 6 | 56 | 40 |
-| `render_hazards` | 5 | 15 | 5 | 31 | 77 |
-| `ui_hud` | 5 | 15 | 14 | 59 | 40 |
-| `hands_interaction` | 6 | 22 | 8 | 51 | 46 |
-| `input_locomotion` | 2 | 9 | 5 | 34 | 83 |
-| `performance` | 8 | 12 | 9 | 60 | 44 |
-| `audio` | 1 | 1 | 2 | 77 | 52 |
-| `packaging_deploy` | 6 | 27 | 23 | 46 | 31 |
-| `re_discovery` | 14 | 21 | 8 | 53 | 37 |
-| `source_integration` | 2 | 15 | 14 | 48 | 54 |
+| `stereo` | 19 | 33 | 21 | 45 | 16 |
+| `xr_lifecycle` | 6 | 12 | 2 | 51 | 63 |
+| `xr_input` | 4 | 1 | 10 | 70 | 49 |
+| `camera_tracking` | 12 | 19 | 7 | 56 | 40 |
+| `render_hazards` | 5 | 15 | 5 | 32 | 77 |
+| `ui_hud` | 5 | 15 | 15 | 59 | 40 |
+| `hands_interaction` | 6 | 22 | 9 | 51 | 46 |
+| `input_locomotion` | 2 | 9 | 6 | 34 | 83 |
+| `performance` | 8 | 12 | 10 | 60 | 44 |
+| `audio` | 1 | 2 | 2 | 77 | 52 |
+| `packaging_deploy` | 6 | 28 | 23 | 46 | 31 |
+| `re_discovery` | 14 | 22 | 8 | 53 | 37 |
+| `source_integration` | 2 | 15 | 15 | 48 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -114,6 +114,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 |---|---|---|---|:--:|:--:|--:|--:|--:|--:|---|---|---|
 | **Aliens-Versus-Predator-VR** | external reference | AvP Classic (1999) via the NakedAvP source port | source-port | T2 | ? | 18 | 1019 | 790 | 4 | 2026-08-29 | ⚪ unpinned | 0F / 0P / 3S / 8NR / 2— |
 | **anvilengine2vr** | external reference | AnvilNext 2.0 | native-injector | — | — | 18 | 51 | 40 | 3 | 2026-08-22 | 🟩 current | 1F / 1P / 2S / 0NR / 9— |
+| **Bateau01-SOMA-VR** | external reference | HPL3 (Frictional) - SOMA | native-injector | — | — | 11 | 371 | 81 | 20 | 2026-10-15 | 🟩 current | 0F / 3P / 8S / 2NR / 0— |
 | **BendyVR** | external reference | Unity | managed-plugin | — | — | 18 | 94 | 56 | 1 | 2025-06-26 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **BF2VR** | external reference | Frostbite | native-injector | — | — | 18 | 28 | 16 | 2 | 2026-08-25 | 🟩 current | 3F / 2P / 1S / 2NR / 5— |
 | **bfbc2-vr** | external reference | Frostbite 1.5 | native-injector | T2 | R3 · alternate-eye | 14 | 60 | 37 | 14 | 2026-08-28 | 🟥 source changed | 2F / 4P / 0S / 5NR / 2— |
@@ -263,6 +264,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:343c9fd8c9e41a89` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | GPL-3.0 |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | MIT |
+| **Bateau01-SOMA-VR** | 2026-10-15 | `tree:f47f88b098d50e60` | `tree:f47f88b098d50e60` | `cf2c9291594ff5b29f1fbbbfb7c5baefa74c45ac` | 🟩 current | https://github.com/Bateau01/SOMA-VR | GPL-3.0 |
 | **BendyVR** | 2026-08-25 | `tree:d87f8cff726a8460` | `tree:d87f8cff726a8460` | `—` | 🟩 current | unknown | MIT |
 | **BF2VR** | 2026-08-25 | `tree:b5d85b406c734579` | `tree:b5d85b406c734579` | `—` | 🟩 current | unknown | GPL-3.0 |
 | **bfbc2-vr** | 2026-08-28 | `tree:2577103b3f59826b` | `tree:e1bd02050dcf90fa` | `—` | 🟥 source changed | unknown | MIT |
@@ -403,7 +405,6 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 - `CircuitLordVRModInstaller` — 42 files, 21 code files
 - `diablo2-vr-port` — 113 files, 50 code files
 - `shock2quest-android-build` — 13 files, 1 code files
-- `SOMA-VR` — 295 files, 41 code files
 
 ### Deliberately not sources
 
@@ -647,6 +648,24 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | `packaging_deploy` | — no entry — | — | — |
 | `re_discovery` | 🟩 full | `SOURCE` | — |
 | `source_integration` | — no entry — | — | — |
+
+#### Bateau01-SOMA-VR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟧 skimmed | `AUTHOR` | Per-eye FOV and recommended image sizes from the runtime, asymmetric eye crops, and a left-eye desktop mirror. Not harvested. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟧 skimmed | `AUTHOR` | Analog grip and trigger finger animation, tracked fingers where the hardware provides them, and optional eye gaze and trackers. Not harvested. |
+| `camera_tracking` | 🟧 skimmed | `AUTHOR` | World-scale compensation for apparent hand size, and a later revert of extra world-scale height compensation (docs/S26CC_HEIGHT_REVERT.patch). Not harvested. |
+| `render_hazards` | 🟥 not reviewed | `—` | — |
+| `ui_hud` | 🟧 skimmed | `AUTHOR` | Native-styled VR settings menus, spatial subtitles and hints, and flat-panel routes for menus, loading, pause and death. Not harvested. |
+| `hands_interaction` | 🟧 skimmed | `AUTHOR` | README feature inventory: physical hands using native collision queries, doors, drawers, valves, levers, keypads, readables and key items through story script bridges, two-hand ownership, and authored grip poses captured as data (reference/authored_grips). The release notes record compiled before/after transaction tests for interaction fixes. Not harvested; the README says presence is not proof of every map and save state. |
+| `input_locomotion` | 🟧 skimmed | `AUTHOR` | Smooth and snap turning, movement relative to the HMD, body or controller, physical crouch, and holster tracking. Not harvested. |
+| `performance` | 🟧 skimmed | `SOURCE` | Dynamic foveated rendering presets reduce shading rate on the main opaque pass only, using an angular cone about gaze that stays conservative for asymmetric projections, measured with sparse asynchronous GPU timestamps. The user-reported 10-15 FPS gain is AUTHOR and is explicitly not generalised by the release notes. CORROBORATES 19 #source-side-foveation; not re-added. |
+| `audio` | 🟨 partial | `SOURCE` | -> 20 #hrtf-in-the-mixer + AUDIO-003 + FAIL-AUDIO-004: source/audio_s.c, an FMOD Ex adapter in which Steam Audio 4.8.1 supplies HRTF only, after each positional mono voice's native panner on a private child channel group; authored attenuation, occlusion, reverb and automation stay with FMOD. |
+| `packaging_deploy` | 🟨 partial | `SOURCE` | C# installer: every affected file is backed up before any write, an interrupted transaction must be recovered before continuing, and the receipt is bound to the install root (installer/source/Installer.cs). This CORROBORATES the 08 installer rules and the PACK patterns; not re-added. docs/PROVENANCE.json records provenance field by field -> 11 section. Updates preserve personal settings and hand calibration; a reference calibration is seeded only when none exists. |
+| `re_discovery` | 🟨 partial | `SOURCE` | REVIEWED 2026-10-15 at main cf2c929 (tags v1.0.7, v1.06.3 and v1.07.1, release line 1.06-S26FM), after a fast-forward from c5f903e. -> 11 #extend-inherited-binary + RE-012: scripts/apply_payload.py pins the frozen base DLL by SHA-256 and appends a section at a fixed RVA, with every ext_ symbol linked to a fixed address in the base; tests compile the same source fragments into standalone DLLs. -> 11 #drm-free-twin paragraph + PACK-006 + FAIL-PACK-020: runtime/SOMA-VR-Compatibility.ps1 sorts executables into three states (verified, equivalent engine unverified, incompatible), and the store build maps addresses through reference/store-profile.json. The 1.9 MB source/s26n.c was read for structure only. |
+| `source_integration` | 🟧 skimmed | `SOURCE` | runtime/ overlays modified game scripts that keep their non-VR paths, with script bridges that detect an active VR runtime; the README calls dual mode unfinished. The release notes record changed scripts compiled and tested with the game's own script engine. Not harvested. |
 
 #### BendyVR
 

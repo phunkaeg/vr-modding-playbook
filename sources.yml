@@ -3416,6 +3416,33 @@ external:
       audio:             {review: not_reviewed, note: "Steam Audio vendored."}
       re_discovery:      {review: not_reviewed, note: "Source port; no binary RE."}
 
+  - id: "Bateau01-SOMA-VR"
+    root: "D:/Dev Debug/Other VR Mods/SOMA-VR"
+    status: external_reference
+    upstream_url: https://github.com/Bateau01/SOMA-VR
+    license: "GPL-3.0"  # LICENSE, read 2026-10-15; bundles Steam Audio, the OpenXR loader and MinHook under their own notices
+    reviewed_at: 2026-10-15
+    reviewed_revision: tree:f47f88b098d50e60
+    reviewed_git_commit: cf2c9291594ff5b29f1fbbbfb7c5baefa74c45ac
+    engine: HPL3 (Frictional) - SOMA
+    api: OpenGL + OpenXR
+    vehicle: native-injector
+    chapter: 11
+    areas:
+      re_discovery:      {review: partial, evidence: SOURCE, note: "REVIEWED 2026-10-15 at main cf2c929 (tags v1.0.7, v1.06.3 and v1.07.1, release line 1.06-S26FM), after a fast-forward from c5f903e. -> 11 #extend-inherited-binary + RE-012: scripts/apply_payload.py pins the frozen base DLL by SHA-256 and appends a section at a fixed RVA, with every ext_ symbol linked to a fixed address in the base; tests compile the same source fragments into standalone DLLs. -> 11 #drm-free-twin paragraph + PACK-006 + FAIL-PACK-020: runtime/SOMA-VR-Compatibility.ps1 sorts executables into three states (verified, equivalent engine unverified, incompatible), and the store build maps addresses through reference/store-profile.json. The 1.9 MB source/s26n.c was read for structure only."}
+      audio:             {review: partial, evidence: SOURCE, note: "-> 20 #hrtf-in-the-mixer + AUDIO-003 + FAIL-AUDIO-004: source/audio_s.c, an FMOD Ex adapter in which Steam Audio 4.8.1 supplies HRTF only, after each positional mono voice's native panner on a private child channel group; authored attenuation, occlusion, reverb and automation stay with FMOD."}
+      packaging_deploy:  {review: partial, evidence: SOURCE, note: "C# installer: every affected file is backed up before any write, an interrupted transaction must be recovered before continuing, and the receipt is bound to the install root (installer/source/Installer.cs). This CORROBORATES the 08 installer rules and the PACK patterns; not re-added. docs/PROVENANCE.json records provenance field by field -> 11 section. Updates preserve personal settings and hand calibration; a reference calibration is seeded only when none exists."}
+      performance:       {review: skimmed, evidence: SOURCE, note: "Dynamic foveated rendering presets reduce shading rate on the main opaque pass only, using an angular cone about gaze that stays conservative for asymmetric projections, measured with sparse asynchronous GPU timestamps. The user-reported 10-15 FPS gain is AUTHOR and is explicitly not generalised by the release notes. CORROBORATES 19 #source-side-foveation; not re-added."}
+      hands_interaction: {review: skimmed, evidence: AUTHOR, note: "README feature inventory: physical hands using native collision queries, doors, drawers, valves, levers, keypads, readables and key items through story script bridges, two-hand ownership, and authored grip poses captured as data (reference/authored_grips). The release notes record compiled before/after transaction tests for interaction fixes. Not harvested; the README says presence is not proof of every map and save state."}
+      source_integration: {review: skimmed, evidence: SOURCE, note: "runtime/ overlays modified game scripts that keep their non-VR paths, with script bridges that detect an active VR runtime; the README calls dual mode unfinished. The release notes record changed scripts compiled and tested with the game's own script engine. Not harvested."}
+      camera_tracking:   {review: skimmed, evidence: AUTHOR, note: "World-scale compensation for apparent hand size, and a later revert of extra world-scale height compensation (docs/S26CC_HEIGHT_REVERT.patch). Not harvested."}
+      stereo:            {review: skimmed, evidence: AUTHOR, note: "Per-eye FOV and recommended image sizes from the runtime, asymmetric eye crops, and a left-eye desktop mirror. Not harvested."}
+      ui_hud:            {review: skimmed, evidence: AUTHOR, note: "Native-styled VR settings menus, spatial subtitles and hints, and flat-panel routes for menus, loading, pause and death. Not harvested."}
+      input_locomotion:  {review: skimmed, evidence: AUTHOR, note: "Smooth and snap turning, movement relative to the HMD, body or controller, physical crouch, and holster tracking. Not harvested."}
+      xr_input:          {review: skimmed, evidence: AUTHOR, note: "Analog grip and trigger finger animation, tracked fingers where the hardware provides them, and optional eye gaze and trackers. Not harvested."}
+      xr_lifecycle:      {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+
 not_a_source:
   - id: "box3d"
     reason: "Erin Catto's Box3D physics library (upstream erincatto/box3d, HEAD 8128d74 of 2026-10-13), cloned for reference beside quakevr, which vendors it at 5643cd8. A rigid-body library, not a VR mod: the playbook harvests QuakeVR's integration of it (18 #added-physics-engine), not the library itself. Re-classify if its own determinism or threading design is harvested."

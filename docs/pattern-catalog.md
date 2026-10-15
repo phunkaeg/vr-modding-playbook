@@ -711,6 +711,25 @@ implementation that does only the simple case is a documented gap, not a descrip
 `[SOURCE]` shock2quest for the Dark Engine; [00](00-engine-profiles.md) records ManagedDonkey doing the
 same job for Halo.
 
+## RE-012 - Extend an inherited binary whose source is lost the way you would a target {#re-012}
+
+**Problem:** a working mod's own base DLL has lost its source. A rewrite risks everything that works, and
+editing the binary by hand is untestable.
+
+**Use when:** inheriting or maintaining a mod whose shipped binary cannot be rebuilt.
+
+**Recipe:** pin the base's hash and refuse any other. Compile new code into an appended section linked
+against fixed addresses in the pinned image, and route every call into the base through one table of
+external symbols. Compile the same sources into test DLLs with stubs, and record provenance field by
+field.
+
+**Proof:** the patcher rejects a base that differs by one byte, and the production source files run in a
+host test without the game.
+
+**Trip hazard:** treating recovered source snapshots as the source of truth. They are reference material
+until a byte-identical rebuild proves otherwise. `[SOURCE]` Bateau01-SOMA-VR
+([11](11-re-anchoring-and-discovery.md#extend-inherited-binary)).
+
 ## RE-001 — GPU value to owning CPU structure {#re-001}
 
 **Problem:** the scene camera is hidden in an unknown binary.
@@ -4070,6 +4089,26 @@ and voice, ambience beds and music; preserve channel/preemption semantics.
 **Trip hazard:** playing everything through a midpoint spatial sink and treating
 its gain as neutral.
 
+## AUDIO-003 - Add HRTF inside the mixer the game already has {#audio-003}
+
+**Problem:** positional audio in an older game is panned in stereo but not binaural, and replacing the
+audio engine to get an HRTF throws away the authored mix.
+
+**Use when:** the game's own audio engine is kept, as [20](20-audio-and-haptics.md)'s steer choice
+recommends, and it has no HRTF.
+
+**Recipe:** first look for an HRTF the audio library already has, and configure it before the device is
+created (OpenAL Soft). Otherwise insert a binaural filter per positional voice, after the native panner,
+on a private child bus. Leave attenuation, occlusion, reverb, automation and non-positional audio to the
+game's mixer, and cache an initialisation failure per mixer format.
+
+**Proof:** with the binaural stage toggled, each voice's authored attenuation and reverb sends are
+unchanged, and only its left and right signals differ.
+
+**Trip hazard:** putting the HRTF on a shared bus or in place of the panner. It then processes
+non-positional audio or discards authored automation. `[SOURCE]` penumbra_vr_framework, Bateau01-SOMA-VR
+([20](20-audio-and-haptics.md#hrtf-in-the-mixer)).
+
 ## NET-001 — Mod side-channel over the game's own transport {#net-001}
 
 **Problem:** a VR mod in a multiplayer game needs to send data vanilla clients know nothing about - hand
@@ -4182,6 +4221,25 @@ because there the hash *is* the identity and a mismatch means you are about to h
 For **authored content** the hash is incidental — it changes for reasons that have nothing to do with
 whether the pose is still correct. Gate binaries on hashes; never gate content on them.
 `[SOURCE]` shock2quest.
+
+## PACK-006 - Gate injection on a three-state executable comparison {#pack-006}
+
+**Problem:** a native mod built against one executable is run on another, from another storefront or a
+patch, and the failure looks like a mod bug.
+
+**Use when:** any mod that uses native addresses taken from a specific executable.
+
+**Recipe:** accept an exact whole-file hash. Otherwise compare the section count, section headers and
+section bytes with a reference profile, ignoring only fields that do not move a mapped address (the
+checksum, the certificate table's location). Offer an equal engine as an opt-in experiment, and refuse
+everything else, whatever the file is called. Let players produce a report of hashes and layout, never
+the executable itself.
+
+**Proof:** a byte-mutated copy of the executable is classified incompatible and never launched, and a
+renamed incompatible executable is still refused.
+
+**Trip hazard:** matching on the file name or the storefront. The storefront does not determine the
+bytes. `[SOURCE]` Bateau01-SOMA-VR ([11](11-re-anchoring-and-discovery.md#drm-free-twin)).
 
 ## CFG-001 — One owner per setting, or write both together {#cfg-001}
 
