@@ -26,7 +26,7 @@
 #   AUTHOR    the author's claim only — not independently checked
 #   INFERENCE transferable hypothesis; not established on this target
 
-ledger_updated_at: 2026-09-14
+ledger_updated_at: 2026-10-07
 
 areas:
   - stereo
@@ -281,6 +281,32 @@ fleet:
       re_discovery:      {review: partial, evidence: SOURCE, note: "RE is not the route: retail binaries are a behaviour reference, and the shipping binary is the fork build."}
       source_integration: {review: full, evidence: SOURCE, note: "Every layer is source-owned through the OpenMoHAA fork. Frame loop, stereo loop, camera construction, projection, culling, renderer and UI all buildable and shippable under GPL-2.0. Fork maintenance contract written; the fork remote is not yet created on GitHub."}
 external:
+  - id: diablo2-vr-port
+    root: D:/Dev Debug/Other VR Mods/diablo2-vr-port
+    status: external_reference
+    upstream_url: https://github.com/natpoh/diablo2-vr-port
+    license: 'MIT for mod-owned code/shaders/pictures; excludes BodyWalk/FlatVR products and name-as-mark; third-party licences separate'
+    reviewed_at: '2026-10-07'
+    reviewed_revision: tree:6f87198bb20ce258
+    engine: Diablo II Resurrected proprietary engine
+    api: ReShade API / FlatVR bridge (runtime backend not independently traced)
+    arch: x64
+    vehicle: native-injector
+    chapter: 1
+    areas:
+      camera_tracking: {review: partial, evidence: SOURCE, note: 'Commit 4cb11b9ee35627bb58c3a13fb19b57b7b807aa44, version 0.141.0. Camera handback before native follow, lazy rebuild repair, caller-specific shadow rays, tabletop anchor and screen calibration. See docs/diablo2-resurrected-reference.md. No build or runtime acceptance.'}
+      stereo: {review: partial, evidence: SOURCE, note: 'PairWanted/HookDrawGameScreen inspected. INI enables pair_per_tick with 0.01 ms second-pass delta; alternation fallback remains. Not proof of simulation-once stereo or temporal-history correctness.'}
+      render_hazards: {review: partial, evidence: SOURCE, note: 'Bounded room activation/tiling separate from per-view culling; count budget is not measured frame-time safety.'}
+      ui_hud: {review: partial, evidence: SOURCE, note: 'Scissor-owned map draw redirection, publish before selective clear, transmittance-alpha convention and heuristic target identity.'}
+      input_locomotion: {review: partial, evidence: SOURCE, note: 'View-to-ground-to-native-screen stick basis, magnitude preservation, menu passthrough and degraded interaction fallback.'}
+      re_discovery: {review: partial, evidence: SOURCE, note: 'Coverage-aware address states, unique-hit search, reference derivation and feature diagnostics. Shift-test exists but was not executed. Signature success does not prove layout/ABI.'}
+      hands_interaction: {review: skimmed, evidence: SOURCE, note: 'Post-native skeleton hook and disabled weapon-skeleton experiment inspected; IK internals not fully reviewed. First-person calibration is AUTHOR preview status.'}
+      packaging_deploy: {review: skimmed, evidence: SOURCE, note: 'CMake and licence inspected; D2RLoader SDK commit pinned. Separate BodyWalk/FlatVR runtime not audited. README restricts usage to offline single-player.'}
+      xr_lifecycle: {review: not_reviewed, note: 'Presentation runtime implementation is outside this donor checkout.'}
+      xr_input: {review: not_reviewed}
+      performance: {review: not_reviewed, note: 'No target timings measured.'}
+      audio: {review: not_reviewed}
+      source_integration: {review: not_reviewed, note: 'Open mod code is not source ownership of the shipping game.'}
   - id: MonsterDeadWood-Analyzer-Bible
     root: "D:/Dev Debug/VR Modding/External/VR_ANALYZER_BIBLE_SOURCE_BRAIN_MERGED_20260907/01_BIBLE/SPLIT"
     status: archived_reference
@@ -2567,6 +2593,33 @@ external:
       re_discovery: {review: partial, evidence: SOURCE, note: "VirtualTextureGuard exact-byte/RVA gates inspected as implementation, not independently validated DOOM binary layout. Donor fail-fast process termination is not a universal recovery recommendation."}
       source_integration: {review: not_reviewed}
 
+  - id: "CircuitLord-Titanfall2VR"
+    root: "D:/Dev Debug/Other VR Mods/CircuitLord-Titanfall2VR-RE/release-1.0.8"
+    status: external_reference
+    upstream_url: https://github.com/CircuitLord/CircuitLordVRModInstaller
+    license: "Native payload licence not established; installer MIT does not establish payload rights"
+    reviewed_at: 2026-10-01
+    reviewed_revision: "tree:2ca60fd0766d3342"
+    reviewed_git_commit: unknown
+    engine: Respawn Source-derived (Titanfall 2)
+    api: D3D11 / OpenXR
+    vehicle: script-native-hybrid
+    chapter: 17
+    areas:
+      stereo: {review: partial, evidence: STATIC, note: "Release 1.0.8 binary, not TinyBlkDog's project. Hash/tool provenance in ch17 #circuitlord-evidence. Outer-frame particle latch complements unchanged client counters; harvest #mutation-ownership-tests. No runtime/endurance acceptance."}
+      xr_lifecycle: {review: not_reviewed}
+      xr_input: {review: not_reviewed}
+      camera_tracking: {review: partial, evidence: STATIC, note: "Sequence policy and timed events decoded; ch01 #sequence-policy-events. Later overrides apply; no comfort claim."}
+      render_hazards: {review: partial, evidence: STATIC, note: "Two-eye shadow fit, sequence/light/cascade checks, paired clear/draw suppression. Some special-view gates and canted/asymmetric numerical equivalence remain unproved."}
+      ui_hud: {review: not_reviewed}
+      hands_interaction: {review: partial, evidence: STATIC, note: "ch02 #weapon-snapshot-ownership: locked snapshot, model/cache/part checks, ordinary-return TLS restoration. Separately SOURCE packaged pickup script supports #two-segment-reach."}
+      input_locomotion: {review: partial, evidence: STATIC, note: "Native ticket consumer/weapon identity readback inspected alongside SOURCE script accept/reject/cancel producer. ch03 #action-acknowledgement. General retry exactly-once and reset/overflow behavior unproved."}
+      performance: {review: partial, evidence: STATIC, note: "ch19 #shared-shadow-profile. Guarded producer reuse and separate CPU/GPU clock paths. Speedup NOT_MEASURED: no installed game. Failure tests and A/B protocol are proposed, not runtime findings."}
+      audio: {review: partial, evidence: STATIC, note: "Separate native listener wrapper and tracked-pose publication; full producer set and transition/quality acceptance remain open."}
+      packaging_deploy: {review: skimmed, evidence: SOURCE, note: "Installer manifest and extracted archive inspected; no installation or payload execution. Readable .gnut scripts are not released native DLL source."}
+      re_discovery: {review: partial, evidence: STATIC, note: "Read-only isolated Ghidra, Capstone checks and independent PE decoder. Assembly resolves misleading float types for integer policy indices/tickets. No direct xref does not exclude indirect writers."}
+      source_integration: {review: not_reviewed}
+
   - id: "titanfall2vr"
     root: "D:/Dev Debug/Other VR Mods/titanfall2vr"
     status: external_reference
@@ -2652,7 +2705,7 @@ external:
     status: external_reference
     upstream_url: https://github.com/mordentral/VRExpansionPlugin
     license: "MIT (Copyright Joshua Statzer)"
-    reviewed_at: 2026-09-17
+    reviewed_at: 2026-09-28
     reviewed_revision: "tree:b317d39a5c2f15b3"
     reviewed_git_commit: 4e52c69393271f3abce11d22c5265aa14373cb6e
     engine: Unreal Engine 4.27 (engine plugin, not a mod)
@@ -2660,18 +2713,45 @@ external:
     vehicle: engine-plugin
     chapter: 18
     areas:
-      source_integration: {review: partial, evidence: SOURCE, note: "REGISTERED 2026-09-17, STRUCTURE REVIEWED - no code read. NOT A MOD: mordentral's engine plugin, compiled INTO a UE project, MIT licensed. On the frozen 4.27 branch (HEAD 2024-10-10), which is the CORRECT version for a UE 4.27.2 target rather than a stale one. 142 source files across three modules - VRExpansionPlugin (122), OpenXRExpansionPlugin (13), OpenVRExpansionPlugin (7). This is the reference answer to how VR is actually BUILT in UE, and therefore the most valuable source here for any UE port that has or will have engine source - the exact inverse of the UEVR route, where you own none of it."}
-      hands_interaction: {review: skimmed, evidence: SOURCE, note: "GripMotionControllerComponent.cpp is 8,204 lines - by far the largest file in the plugin, which is itself the finding about where the difficulty lives. Grip behaviour is factored into separate grip scripts (GS_Melee.cpp, 968 lines) and interactables are componentised (VRLeverComponent.cpp, 1,002 lines). Read the grip component before designing any hold system on UE. Not read here."}
-      input_locomotion: {review: skimmed, evidence: SOURCE, note: "THREE roomscale movement components, which is the finding: VRCharacterMovementComponent (4,151 lines), VRBaseCharacterMovementComponent (2,003) and VRSimpleCharacterMovementComponent (1,597), over a VRRootComponent (1,676) owning the capsule and roomscale root. Roomscale locomotion in UE is a replacement for CharacterMovement, not a tweak to it."}
-      ui_hud: {review: skimmed, evidence: SOURCE, note: "VRStereoWidgetComponent.cpp (1,155 lines) - a stereo-correct UMG widget component. Directly relevant to UEVR-003, which is about fighting a widget's 2D layout when reparenting it into 3D; this is what solving the same problem looks like when you own the engine."}
-      render_hazards: {review: skimmed, evidence: SOURCE, note: "VRRenderTargetManager.cpp (1,782 lines). Also VRAIPerceptionOverrides.cpp (983 lines), which is HAND-018 corroborated from the other side: a roomscale player breaks AI perception assumptions badly enough to need a dedicated override layer. Neither read."}
+      source_integration: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: targeted function bodies and callers at pinned 4.27-Locked commit; no compile/runtime/headset validation. docs/unreal-vrexpansion-reference.md maps the harvested methods and limits. Build-time gameplay plugin, distinct from UEVR; engine compatibility must be built and tested, not inferred from source possession. AVRCharacter substitutes root/movement components; navigation feet and sight targets use VR-aware locations. UE5 is tracked separately as another version of the same upstream, not independent corroboration."}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: grip entry points, GetGripWorldTransform/TickGrip, GS_Default secondary transform, late-update collector, physics-handle COM setup, Socket_Implementation and grip teleport path. Distilled to ch02 grip-transform-pipeline, physics-to-socket and grip-design-space. Corrected three enum-only overclaims: detection remains caller-owned, late-update collision veto exempts two grip types, and controller-location constraint does not imply a COM write. Melee scripts, full drop lifecycle and throw sampling remain unread."}
+      input_locomotion: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: VRBaseCharacter turn/teleport pivot compensation, movement rewind/additive/restore helpers and selected callers, MoveAction construction and saved-move combine rejection. Distilled to ch03 vr-turn-pivot, roomscale-movement-accounting and vr-move-actions. No runtime movement, networking or headset result claimed."}
+      ui_hud: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: VRStereoWidgetComponent tick, texture/layer descriptor, create/update/destroy, world-proxy fallback and intentional-both mode. ch04 stereo-widget-lifecycle. World-lock workaround and depth flag are version/runtime-sensitive, not verified occlusion or pointer correctness. UE5 widget implementation not harvested."}
+      render_hazards: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: grip late-update collection exclusions and widget layer/proxy lifecycle only. VRRenderTargetManager internals remain unread; AI perception is gameplay-consumer evidence under source_integration, not a rendering proof."}
       stereo: {review: not_reviewed, note: "Out of scope by design - the plugin does not implement stereo, the engine does. Registered for interaction, locomotion and widget architecture."}
       re_discovery: {review: not_reviewed, note: "Not applicable: full MIT source, nothing to reverse."}
       xr_input: {review: not_reviewed}
-      camera_tracking: {review: not_reviewed}
+      camera_tracking: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: occupied VR pivot compensation in actor rotation/location helpers only. Not a full tracking or camera-lifecycle audit; see ch03 vr-turn-pivot."}
       performance: {review: not_reviewed}
       audio: {review: not_reviewed}
       packaging_deploy: {review: not_reviewed}
+
+  - id: VRExpansionPlugin-UE5
+    root: D:/Dev Debug/VR Modding/External/VRExpansionPlugin-UE5
+    status: external_reference
+    upstream_url: https://github.com/mordentral/VRExpansionPlugin
+    license: "MIT (Copyright Joshua Statzer); preserve applicable engine-origin notices"
+    reviewed_at: 2026-09-28
+    reviewed_revision: tree:f67b2f27606005ce
+    reviewed_git_commit: c19f6e27440bc599c3b132cb38c2ffec3996008b
+    engine: Unreal Engine 5 (Master snapshot; plugin VersionName 5.8)
+    api: engine-level
+    vehicle: engine-plugin
+    chapter: 18
+    areas:
+      source_integration: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: version-pinned comparison with 4.27, not a second independent framework. See docs/unreal-vrexpansion-reference.md. Descriptor version and selected source paths inspected; no compatibility build or runtime acceptance. Public upstream source stays in ignored External storage."}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: late-update collector, socket handoff with next-tick correction, COM setup including geometry-collection fallback. Same broad contracts as 4.27, not ABI parity. ch02 grip-design-space and physics-to-socket."}
+      input_locomotion: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: pivot-selection parameters in VRBaseCharacter, CanCombineWith and FVRMoveActionArray::CanCombine. Capsule height is separately represented; action arrays still prevent move combination. No multiplayer or runtime tests."}
+      camera_tracking: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: character pivot selection/compensation and VR-aware sight-target locations only. Not a tracking-lifecycle audit."}
+      render_hazards: {review: partial, evidence: SOURCE, note: "READ 2026-09-28: late-update primitive collection only. No renderer, widget or compositor testing."}
+      stereo: {review: not_reviewed, note: "Engine-owned stereo; not harvested as an injected stereo implementation."}
+      xr_lifecycle: {review: not_reviewed}
+      xr_input: {review: not_reviewed}
+      ui_hud: {review: not_reviewed}
+      performance: {review: not_reviewed}
+      audio: {review: not_reviewed}
+      packaging_deploy: {review: not_reviewed}
+      re_discovery: {review: not_reviewed, note: "Public source reference, not retail binary evidence."}
 
   - id: MetaXRInteraction-1.205.0
     root: D:/Dev Debug/VR Modding/External/MetaXRInteractionPackage.205.0.0/MetaXRInteraction/Source
@@ -2688,7 +2768,7 @@ external:
       hands_interaction:
         review: partial
         evidence: SOURCE
-        note: 'REGISTERED 2026-09-18. Public headers read for architecture only - the licence is proprietary, so no code is reproduced. THE FINDING: detection and response are separate layers, orthogonal to VRExpansionPlugin''s fused grip enum. A detector''s whole contract is (input method) -> candidate grabbable, and three ship against it (hand, distance, ray). A transformer''s whole contract is (identified grab poses, target transform) -> new transform. Grab poses carry a REQUIRED unique identifier and represent the modification point (pinch/palm/snap), not the hand; each transformer declares its own max grab-point count. Distilled to #grab-detection-layer, #grab-transform-traps, HAND-020 and the #two-handed-support extension.'
+        note: 'REGISTERED 2026-09-18. Public headers read for architecture only - the licence is proprietary, so no code is reproduced. Detection and response are separate layers. Correction 2026-09-28: VRE also leaves detection to callers; its grip enum describes response, not a fused detector. A detector''s whole contract is (input method) -> candidate grabbable, and three ship against it (hand, distance, ray). A transformer''s whole contract is (identified grab poses, target transform) -> new transform. Grab poses carry a REQUIRED unique identifier and represent the modification point (pinch/palm/snap), not the hand; each transformer declares its own max grab-point count. Distilled to #grab-detection-layer, #grab-transform-traps, HAND-020 and the #two-handed-support extension.'
       source_integration:
         review: partial
         evidence: SOURCE
@@ -3453,7 +3533,9 @@ not_a_source:
   - id: Head Mounted VR - Demo
     reason: 'a packaged Win64 staged build of a FAB Store demo - 32 files, 715 MB, and not one line of source. The tree is Engine/Binaries/ThirdParty plus the product''s own Binaries/Win64 (boost, openxr_loader, onnxruntime). Same class as Ship-9.2.3-win64-ship: build output, nothing to read.'
   - id: VRExpansionPlugin
-    reason: 'a SECOND checkout of mordentral''s plugin, on the Master branch (HEAD 2026-09-11 era, UE5-generation APIs), beside the tracked VRExpansionPlugin-4.27 which is the frozen 4.27 branch. Not registered as its own source because it is the same upstream, and kept out of the ledger deliberately: for a UE 4.27.2 target the newer branch is a liability, since its signatures do not exist in 4.27. Read the 4.27 checkout. If the duplicate is not wanted, delete it rather than registering it.'
+    reason: 'Legacy duplicate-folder exclusion. The version-pinned UE5 review is now tracked as VRExpansionPlugin-UE5 under External; 4.27 remains a separate compatible-generation reference. Same upstream, not independent corroboration. Do not substitute Master signatures for a 4.27 target.'
+  - id: shock2quest-android-build
+    reason: 'Local build workspace for the already tracked public shock2quest source, not a separate mod or independent reference. Directory inventory and README inspected 2026-09-28. Build outputs, caches and local receipts remain outside the public playbook; no build or runtime claim harvested here.'
   - id: "UEVR-joeyhodge_AFW_v1.0-beta.6"
     reason: "UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source."
   - id: "UEVR-nightly_AFW_v1.0-beta.6"
@@ -3484,6 +3566,10 @@ not_a_source:
     reason: "headset/runtime management utility - not a VR conversion or a mod of a game"
   - id: "skyrim-vr-automation"
     reason: "install/automation scripting around Skyrim VR - no VR implementation of its own"
+  - id: "CircuitLord-Titanfall2VR-RE"
+    reason: "Local research wrapper, not an additional reference. Its pinned release-1.0.8 payload is tracked separately as CircuitLord-Titanfall2VR. Raw decompilation, working notes and private transfer assessments stay outside the public corpus."
+  - id: "CircuitLordVRModInstaller"
+    reason: "Installer and package manifest for CircuitLord-Titanfall2VR, whose pinned payload has its own external row. Installer code is not native mod source and not independent corroboration."
   - id: "BigWalkVRInstaller"
     reason: "installer for a third-party VR mod - packaging only, no VR implementation"
   - id: "Ship-9.2.3-win64-ship-1.3.1"

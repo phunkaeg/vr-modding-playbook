@@ -35,6 +35,15 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| A startup signature scan fails before all code pages are readable | [11: coverage-aware resolver and positive controls](11-re-anchoring-and-discovery.md#coverage-aware-resolver) |
+| Camera follow chases the pose injected on the previous frame | [01: camera loan and consumer-specific restoration](01-camera-and-tracking.md#camera-loan-consumers) |
+| A zero-time second eye loses particles; a tiny delta makes them appear | [17: render elision versus simulation mutation](17-teardown-fc2vr-native-stereo.md#zero-delta-render-elision) |
+| A late equip/use success revives a cancelled action or selects the wrong object | [03: transaction identity and stale-ACK tests](03-input-and-locomotion.md#action-acknowledgement) |
+| Skipping/restarting a cutscene leaves hands hidden or the wrong camera owner | [01: sequence-instance policy and interruption tests](01-camera-and-tracking.md#sequence-policy-events) |
+| Model swap or nested animation consumes the wrong weapon pose | [02: bounded snapshot and scoped-context tests](02-viewmodels-and-hands.md#weapon-snapshot-ownership) |
+| Shared shadows vanish in one eye, or right-eye timing improves without pair savings | [19: shared-producer invariants and matched pair profiling](19-d3d12-and-performance.md#shared-shadow-profile) |
+| Frame/tick counters stay fixed but particles still age twice | [17: count the native mutation](17-teardown-fc2vr-native-stereo.md#mutation-ownership-tests) |
+| A tracked hand through a wall can use an object on the far side | [02: two-segment reach admission](02-viewmodels-and-hands.md#two-segment-reach) |
 | Worked before, broken now, code looks fine | [06](06-debugging-methodology.md) — check cheap environmental causes (desktop refresh rate, runtime reprojection) **before** bisecting |
 | A "recovery" revert made things worse | [05](05-assets-and-materials.md) — revert has the same blast radius as a forward experiment; isolate to the one flag |
 | A working narrow fix regressed things when widened | [14](14-render-pass-hazard-atlas.md) — widening is a *new experiment*, not a generalisation |
@@ -48,6 +57,10 @@ that the observation and the cause are usually in different chapters.
 
 | What you're seeing | Go to |
 |---|---|
+| A freed camera sees missing rooms even with culling widened | [14: residency, activation and visibility are separate gates](14-render-pass-hazard-atlas.md#activation-before-culling) |
+| Removing the minimap also removes overlapping labels | [04: extract the owning draw interval](04-ui-and-hud.md#hud-draw-interval) |
+| Tabletop world shifts after recenter, or shrinks when seated | [01: tabletop anchor and screen calibration contract](01-camera-and-tracking.md#tabletop-screen-contract) |
+| World movement is skewed after leaving the isometric camera, or menus rotate with the head | [03: native screen-space input basis and menu ownership](03-input-and-locomotion.md#isometric-input-basis) |
 | The HUD will not fuse although the world does | [06](06-debugging-methodology.md#the-report-is-an-instrument) - a per-eye fix gated on perspective projection never reaches an orthographic HUD |
 | The aim is off, and it is off further with a longer weapon | [06](06-debugging-methodology.md#the-report-is-an-instrument) - error that scales with the offset's length is a rotation fault, not a wrong constant |
 | A band of artefacts along one edge of each eye, worst near the nose or the top and bottom | [14](14-render-pass-hazard-atlas.md#packed-stereo-seam) - both eyes share a surface and something sampled across the seam |
@@ -57,7 +70,14 @@ that the observation and the cause are usually in different chapters.
 | Artifact appears in stereo but never appeared flat | [14](14-render-pass-hazard-atlas.md) — **infrastructure until proven content.** Check whether the suspect buffer is per-eye or a singleton before touching shader logic |
 | Tiny patch magnified over the whole eye during a video/menu | [Rectangle provenance](09-d3d11-openxr-injection.md#world-rect-provenance) |
 | Wrist panel centre is visible but a corner disappears in one eye | [Binocular panel fit](04-ui-and-hud.md#binocular-panel-fit) |
-| A held object judders or fights the world when it touches something | [FAIL-HAND-053](failure-atlas.md) — late update overwrites the solver after contact ([HAND-019](pattern-catalog.md#hand-019)) |
+| A held object judders or fights the world when it touches something | [FAIL-HAND-053](failure-atlas.md) — test whether late update contradicts the solver; policies have grip-type exceptions ([HAND-019](pattern-catalog.md#hand-019)) |
+| Holstered object attaches correctly, then jumps on the following frame | [Physics-to-socket handoff](02-viewmodels-and-hands.md#physics-to-socket) — a late physics result can outlive attachment |
+| Recoil and support-hand aim work separately but fight together | [Grip transform pipeline](02-viewmodels-and-hands.md#grip-transform-pipeline) — one base owner, ordered modifiers, one commit |
+| Snap turn shifts the player sideways after physical walking | [VR turn pivot](03-input-and-locomotion.md#vr-turn-pivot) — preserve the occupied point, not actor origin |
+| Room-scale steps count twice or keep moving after the wearer stops | [Movement accounting](03-input-and-locomotion.md#roomscale-movement-accounting) — separate transient tracking displacement from persistent velocity |
+| Snap turn or teleport is undone by network correction | [VR move actions](03-input-and-locomotion.md#vr-move-actions) — preserve the action through prediction/replay |
+| AI sees the old player position after a physical lean or step | [Location consumers](07-engine-integration-safety.md#vr-location-consumers) — sight, feet and camera need different points |
+| A compositor panel has a ghost copy or survives widget teardown | [Stereo-widget lifecycle](04-ui-and-hud.md#stereo-widget-lifecycle) — distinguish layer and world-proxy ownership |
 | A held tool swings like it is longer than it looks | [FAIL-HAND-054](failure-atlas.md) — centre-of-mass policy, not mesh centre |
 | Throws feel weak however hard the player flicks | [FAIL-HAND-055](failure-atlas.md) — which velocity the release samples |
 | Choosing how to hold something, for a new object class | [02](02-viewmodels-and-hands.md#grip-design-space) — pick from world-interaction; twelve grip types, not three |

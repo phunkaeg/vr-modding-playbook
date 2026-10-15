@@ -1,6 +1,6 @@
 # Coverage dashboard
 
-**Generated deterministically by `tools/coverage.py` from `sources.yml` (ledger updated 2026-09-14) plus a filesystem scan. Do not edit by hand.**
+**Generated deterministically by `tools/coverage.py` from `sources.yml` (ledger updated 2026-10-07) plus a filesystem scan. Do not edit by hand.**
 
 This page makes both knowledge gaps and stale reviews visible. `Last change` and `current revision` are measured; review depth, evidence and `reviewed revision` are human/agent judgements.
 
@@ -33,15 +33,18 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `input_locomotion` | **MetaXRInteraction-1.205.0** | Not covered: the SDK is hands and interaction, not locomotion. |
 | `packaging_deploy` | **StalkerVR-code** | JSGME-managed mod stack; fsgame.ltx, commandline.txt and the launcher config were copied because they describe how the build is wired. |
 | `packaging_deploy` | **Talemann-RE4** | Inno Setup installer that refuses to run without RE4 present; the user installed it against a renamed stand-in. Ships REFramework Lua/JSON plus upscaler and plugin DLLs beside the game. |
+| `performance` | **diablo2-vr-port** | No target timings measured. |
 | `re_discovery` | **Dishonored-VR** | REGISTERED NOT REVIEWED 2026-09-02. ALREADY MINED by the in-house DishonoredVR project (2026-09-02), which took the render path instead and avoided its blockers - read for method and negative results, not as an open task. GingasVRFO/Dishonored-VR is a SEPARATE VR conversion of the SAME GAME as the in-house DishonoredVR project. A d3d9.dll proxy built on a FORKED DXVK, with true stereo, 6DoF, motion controls, roomscale and a hand-aimed Blink. DISCONTINUED and explicitly offered for pickup (author burned out on unreproducible reports). Its 13 numbered fork-patches read as a complete rung-2 development history: M2 frame-map instrumentation, M3 stereo splice per-eye draw replay, mirrored-VP skip, world-quad splice via a c6 identity test, depth-test state REPLACING that c6 heuristic, an explicit revert to proven M3.1, measured gates, live projection scales, live writable separation and convergence, per-draw splice verdicts, world-space UP effects (the fire fix), and the Blink marker. The real payload is dllmain.cpp (~23k lines of in-game research log); its negative results are worth more than its code. |
 | `re_discovery` | **MetaXRInteraction-1.205.0** | Not applicable: source-available under a proprietary licence. |
 | `re_discovery` | **Quake2Quest** | REVIEWED 2026-09-02. Team Beef (drbeef), built on Yamagi Quake II, uses OpenXR, active (2026-06-16). VR code is ISOLATED at Projects/Android/jni/Quake2VR - no diff needed. Same author as JKXR, so likely shares its house style. Yamagi keeps the renderer split (refresh/gl1,gl3,soft + ref_shared.h), so id's ref_gl/ref_soft seam survives to 2026. Android/Quest, so the platform layer does not transfer to a Win32 injection; the engine integration does. |
 | `re_discovery` | **RazeXR-PCVR** | Not applicable: full GPL source. |
 | `re_discovery` | **StalkerVR-code** | bin/AnomalyDX11.pdb ships SYMBOLS for the VR engine build, so TEST-018 crash symbolisation applies to this target directly. Not copied - it lives in the install. |
 | `re_discovery` | **VRExpansionPlugin-4.27** | Not applicable: full MIT source, nothing to reverse. |
+| `re_discovery` | **VRExpansionPlugin-UE5** | Public source reference, not retail binary evidence. |
 | `re_discovery` | **VR_Template_UE5.1_SB** | Not applicable. |
 | `re_discovery` | **quake2vr** | REVIEWED 2026-09-02. dghost/quake2vr, archived 2021. Full Q2 VR source port on KMQuake II + RiftQuake, libOVR 0.2.5 (pre-OpenXR). Stated features map onto playbook lanes: projected HUD/2D UI, decoupled view and aiming. Diff baseline is KMQuake II, NOT id's tree - diffing against id-Software/Quake-2 mixes decades of non-VR modernisation. |
 | `re_discovery` | **quakevr** | Source port; no binary RE. |
+| `source_integration` | **diablo2-vr-port** | Open mod code is not source ownership of the shipping game. |
 | `stereo` | **Dishonored-VR-fork** | REGISTERED NOT REVIEWED 2026-09-04. In-house fork of the shipped external mod, carrying local commits (Meta Link OpenXR backend selection; build.sh portability). The 52-patch upstream series is already distilled in ch17 #dishonored-splice; this tree adds the fork's own changes, which are not yet read. |
 | `stereo` | **FUS** | REGISTERED NOT REVIEWED 2026-09-05. A Wabbajack modlist/preset rather than a mod: README, images, a bundled openvr_api.dll and a Mantella folder. Kept as a source only because it names a working VR mod stack. |
 | `stereo` | **Fallout-New-Vegas-FNVR** | NOT HARVESTABLE AS SHIPPED: 'Fallout New Virtual Reality' is a 12 KB FNVR.esp plus a 3 KB .7z - a plugin, not a native VR conversion, and no source. What IS readable in this directory is xNVSE, the New Vegas Script Extender, which is general modding tooling rather than a VR implementation. Extract the archive and re-assess only if the script-extender route to VR becomes relevant to a project. |
@@ -61,30 +64,32 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | `stereo` | **Talemann-RE4** | Not a stereo mod. REFramework supplies VR; this supplies the HANDS. Installed build is RE4VR_2.0_Setup.exe; the mod is ~31k lines of Lua under reframework/autorun plus JSON data under reframework/data/re4_vr. |
 | `stereo` | **Ultraleap-UnrealPlugin** | Out of scope: a hand-tracking input plugin. |
 | `stereo` | **VRExpansionPlugin-4.27** | Out of scope by design - the plugin does not implement stereo, the engine does. Registered for interaction, locomotion and widget architecture. |
+| `stereo` | **VRExpansionPlugin-UE5** | Engine-owned stereo; not harvested as an injected stereo implementation. |
 | `stereo` | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | REGISTERED NOT REVIEWED 2026-09-05. VRIK Player Avatar. Full-body IK avatar and, more importantly here, the mod that established the BODY-ANCHORED HOLSTER paradigm most VR mods now copy - which ch02's holster guidance and RE4VR's Spine_1 anchoring both descend from. Ships Scripts/, meshes/, an .esp. |
 | `stereo` | **VR_Template_UE5.1_SB** | Out of scope: the engine owns stereo. |
 | `stereo` | **XIII2003-vr-mod** | BINARY ONLY: ships D3DDrv.dll plus CONTRIBUTING/CREDITS/README and no source - an Unreal render-device replacement. This is the MOD repo of the six-repository family whose research repo (XIII2003-vr-external-research) is already harvested into ch18 #stock-cheat-commands, so the structure is documented even though the implementation is not. |
 | `ui_hud` | **MELE-VR** | HDR must be off or the headset image is blue/doubled (FAIL-STR-012). Binary only - no source. |
 | `ui_hud` | **StalkerVR-code** | Three vr_ui_* script overrides for the main menu and the load/save dialogs - a flat menu adapted for VR rather than replaced. |
 | `xr_input` | **StalkerVR-code** | vr_input_callbacks.script (5 KB) and vr_radial_quickslots.script (5 KB) plus the Radial_Quickslots JSGME mod - the quick-access equivalent of INPUT-009's stroke grammar. |
+| `xr_lifecycle` | **diablo2-vr-port** | Presentation runtime implementation is outside this donor checkout. |
 
 ## External coverage by area
 
 | Area | full | partial | skimmed | not reviewed | no entry |
 |---|--:|--:|--:|--:|--:|
-| `stereo` | 19 | 33 | 21 | 45 | 16 |
-| `xr_lifecycle` | 6 | 12 | 2 | 51 | 63 |
-| `xr_input` | 4 | 1 | 10 | 70 | 49 |
-| `camera_tracking` | 12 | 19 | 7 | 56 | 40 |
-| `render_hazards` | 5 | 15 | 5 | 32 | 77 |
-| `ui_hud` | 5 | 15 | 15 | 59 | 40 |
-| `hands_interaction` | 6 | 22 | 9 | 51 | 46 |
-| `input_locomotion` | 2 | 9 | 6 | 34 | 83 |
-| `performance` | 8 | 12 | 10 | 60 | 44 |
-| `audio` | 1 | 2 | 2 | 77 | 52 |
-| `packaging_deploy` | 6 | 28 | 23 | 46 | 31 |
-| `re_discovery` | 14 | 22 | 8 | 53 | 37 |
-| `source_integration` | 2 | 15 | 15 | 48 | 54 |
+| `stereo` | 19 | 35 | 21 | 46 | 16 |
+| `xr_lifecycle` | 6 | 12 | 2 | 54 | 63 |
+| `xr_input` | 4 | 1 | 10 | 73 | 49 |
+| `camera_tracking` | 12 | 23 | 7 | 55 | 40 |
+| `render_hazards` | 5 | 19 | 4 | 32 | 77 |
+| `ui_hud` | 5 | 17 | 14 | 61 | 40 |
+| `hands_interaction` | 6 | 25 | 9 | 51 | 46 |
+| `input_locomotion` | 2 | 13 | 5 | 34 | 83 |
+| `performance` | 8 | 13 | 10 | 62 | 44 |
+| `audio` | 1 | 3 | 2 | 79 | 52 |
+| `packaging_deploy` | 6 | 28 | 25 | 47 | 31 |
+| `re_discovery` | 14 | 24 | 8 | 54 | 37 |
+| `source_integration` | 2 | 16 | 15 | 50 | 54 |
 
 ⚠ = **no source in this group has been reviewed in full for this area.**
 
@@ -128,11 +133,13 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **CallOfDuty4_VR** | external reference | IW (CoD4) | source-port | — | — | 18 | 1142 | 1047 | 27 | 2026-09-28 | 🟥 source changed | 2F / 3P / 1S / 1NR / 6— |
 | **carnage** | external reference | Dethrace reimplementation (Carmageddon) | source-port | — | — | 18 | 78 | 52 | 3 | 2026-09-19 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
 | **CheekyFoveatedDLSS** | external reference | engine-agnostic (proxy DLLs beside the game) | native-injector | — | — | 9 | 196 | 141 | 26 | 2026-09-19 | 🟥 source changed | 0F / 0P / 2S / 10NR / 1— |
+| **CircuitLord-Titanfall2VR** | external reference | Respawn Source-derived (Titanfall 2) | script-native-hybrid | — | — | 17 | 190 | 15 | 11 | 2026-09-30 | 🟩 current | 0F / 8P / 1S / 4NR / 0— |
 | **condemned-vr** | external reference | LithTech Jupiter EX (Condemned: Criminal Origins) | native-injector | T2 | R1 · native re-entry | 17 | 213 | 132 | 32 | 2026-08-30 | ⚪ unpinned | 1F / 0P / 4S / 6NR / 2— |
 | **crysis_vrmod** | external reference | CryEngine 2 | native-injector | T3 | R1 · native re-entry | 17 | 813 | 695 | 18 | 2026-08-28 | ⚪ unpinned | 2F / 1P / 1S / 7NR / 2— |
 | **CSVR** | archived reference | GoldSrc / Xash3D | source-port | — | — | — | 1001 | 307 | 5 | 2026-03-09 | 🟩 current | 0F / 0P / 1S / 0NR / 12— |
 | **cyberpunk-vr-port** | external reference | REDengine 4 | native-injector | — | — | 17 | 572 | 301 | 91 | 2026-09-05 | 🟥 source changed | 1F / 4P / 0S / 3NR / 5— |
 | **DeusExHRVR** | external reference | Custom Eidos Montreal (Deus Ex Human Revolution Director's Cut) | native-injector | — | — | 9 | 37 | 26 | 6 | 2026-09-14 | 🟩 current | 0F / 5P / 4S / 4NR / 0— |
+| **diablo2-vr-port** | external reference | Diablo II Resurrected proprietary engine | native-injector | — | — | 1 | 113 | 50 | 7 | 2026-10-07 | 🟩 current | 0F / 6P / 2S / 5NR / 0— |
 | **Dishonored-VR** | external reference | Unreal Engine 3 (Dishonored) | native-injector | ? | ? | 18 | 58 | 1 | 2 | 2026-09-04 | ⚪ unpinned | 0F / 0P / 0S / 11NR / 2— |
 | **Dishonored-VR-fork** | external reference | Unreal Engine 3 (Dishonored, 32-bit) | native-injector | T1 | R2 · per-draw replay | — | 57 | 1 | 1 | 2026-09-04 | 🟥 source changed | 0F / 0P / 0S / 13NR / 0— |
 | **DOOM-3-BFG-VR** | external reference | idTech 4 (Doom 3 BFG) | source-port | — | — | — | 2155 | 1348 | 83 | 2026-08-27 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
@@ -237,7 +244,8 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **Vostok-VR-Mod** | external reference | Godot 4 | native-injector | — | — | — | 78 | 14 | 10 | 2026-08-26 | 🟩 current | 1F / 1P / 0S / 0NR / 11— |
 | **vr-analyzer-bible** | external reference | engine-agnostic (methodology) | documentation | — | — | 6 | 199 | 16 | 141 | 2026-09-08 | 🟩 current | 0F / 1P / 1S / 11NR / 0— |
 | **VR_Template_UE5.1_SB** | external reference | Unreal Engine 5.1 (source-built variant) | project-template | — | — | 18 | 242 | 10 | 1 | 2026-09-18 | 🟩 current | 0F / 0P / 1S / 11NR / 1— |
-| **VRExpansionPlugin-4.27** | external reference | Unreal Engine 4.27 (engine plugin, not a mod) | engine-plugin | — | — | 18 | 158 | 147 | 2 | 2026-09-16 | 🟩 current | 0F / 1P / 4S / 7NR / 1— |
+| **VRExpansionPlugin-4.27** | external reference | Unreal Engine 4.27 (engine plugin, not a mod) | engine-plugin | — | — | 18 | 158 | 147 | 2 | 2026-09-16 | 🟩 current | 0F / 6P / 0S / 6NR / 1— |
+| **VRExpansionPlugin-UE5** | external reference | Unreal Engine 5 (Master snapshot; plugin VersionName 5.8) | engine-plugin | — | — | 18 | 164 | 154 | 2 | 2026-09-28 | 🟩 current | 0F / 5P / 0S / 8NR / 0— |
 | **vrframework** | external reference | RE Engine / Creation Engine 2 / AnvilNext 2.0 (a guide that READS three ports; ships no port) | documentation | — | — | 9 | 79 | 46 | 27 | 2026-09-10 | 🟩 current | 0F / 2P / 6S / 5NR / 0— |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | external reference | Creation Engine (Skyrim VR) - a NATIVE VR title, not a conversion | framework-companion | T4 | ? | — | 20 | 0 | 0 | 2026-07-12 | ⚪ unpinned | 0F / 1P / 0S / 11NR / 1— |
 | **WeWereInVR** | external reference | Unity (We Were Here) | managed-plugin | — | — | 18 | 33 | 17 | 3 | 2026-08-28 | ⚪ unpinned | 1F / 2P / 0S / 8NR / 2— |
@@ -278,11 +286,13 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **CallOfDuty4_VR** | 2026-08-25 | `tree:146efc09f95cba26` | `tree:57ea983f47adf4b2` | `—` | 🟥 source changed | unknown | GPL-3.0 |
 | **carnage** | 2026-09-19 | `tree:c04961c7bbf2b0a9` | `tree:c04961c7bbf2b0a9` | `71df6f213c2368e42100846916b42c7cabdd75b2` | 🟩 current | https://github.com/maranone/carnage | unknown - no LICENSE file found |
 | **CheekyFoveatedDLSS** | 2026-09-18 | `tree:6c8e37528a2f2b3f` | `tree:97bb7e0bddae8acf` | `a830c74d7ef7c150168328b9fd657caee9e1655d` | 🟥 source changed | https://github.com/ClarkCheekyKent/CheekyFoveatedDLSS | GPL-3.0 |
+| **CircuitLord-Titanfall2VR** | 2026-10-01 | `tree:2ca60fd0766d3342` | `tree:2ca60fd0766d3342` | `unknown` | 🟩 current | https://github.com/CircuitLord/CircuitLordVRModInstaller | Native payload licence not established; installer MIT does not establish payload rights |
 | **condemned-vr** | 2026-08-29 | `unknown` | `tree:375521a55d72feca` | `—` | ⚪ unpinned | unknown | MIT |
 | **crysis_vrmod** | 2026-08-28 | `unknown` | `tree:72edce18458cccd3` | `—` | ⚪ unpinned | unknown | LicenseRef-Crytek-CryENGINE2-MOD-SDK EULA - proprietary; redistribution restricted |
 | **CSVR** | 2026-08-25 | `tree:b317ecb80018cb2d` | `tree:b317ecb80018cb2d` | `—` | 🟩 current | unknown | GPL-2.0 |
 | **cyberpunk-vr-port** | 2026-08-25 | `tree:22383c11593f8750` | `tree:e4fe5418281f1c41` | `—` | 🟥 source changed | unknown | MIT |
 | **DeusExHRVR** | 2026-09-17 | `tree:3713eceb96f39eed` | `tree:3713eceb96f39eed` | `945a2cf0b761fbec0a0bcb736cb0ead3aa8b8f64` | 🟩 current | https://github.com/farmerarmor/DeusExHRVR | unknown |
+| **diablo2-vr-port** | 2026-10-07 | `tree:6f87198bb20ce258` | `tree:6f87198bb20ce258` | `—` | 🟩 current | https://github.com/natpoh/diablo2-vr-port | MIT for mod-owned code/shaders/pictures; excludes BodyWalk/FlatVR products and name-as-mark; third-party licences separate |
 | **Dishonored-VR** | 2026-09-02 | `unknown` | `tree:9df41ffc43c99865` | `—` | ⚪ unpinned | unknown | zlib (DXVK) - covers fork-patches ONLY; dllmain.cpp is unlicensed |
 | **Dishonored-VR-fork** | 2026-09-04 | `tree:0d7e87ff7f68876e` | `tree:46f0337f8db33acd` | `—` | 🟥 source changed | https://github.com/phunkaeg/Dishonored-VR | see LICENSE in tree |
 | **DOOM-3-BFG-VR** | 2026-08-27 | `tree:b68fb6734c12a28c` | `tree:b68fb6734c12a28c` | `—` | 🟩 current | unknown | GPL-3.0 |
@@ -387,7 +397,8 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **Vostok-VR-Mod** | 2026-08-26 | `tree:12bd87bb2b93482c` | `tree:12bd87bb2b93482c` | `74f73105d1e7326d60dedd525a3e6cd68bf30839` | 🟩 current | https://github.com/Blah64/Vostok-VR-Mod | MIT |
 | **vr-analyzer-bible** | 2026-09-09 | `tree:a22a31975814991e` | `tree:a22a31975814991e` | `—` | 🟩 current | unknown | unknown |
 | **VR_Template_UE5.1_SB** | 2026-09-18 | `tree:e9f80a40959dc71e` | `tree:e9f80a40959dc71e` | `3f0dd536aea644db7d458c13bc2104dff4a3cb04` | 🟩 current | https://github.com/Incurian/VR_Template_UE5.1_SB | LicenseRef-UnrealContentEULA (Incurian; custom terms plus the Unreal Engine and Unreal Content EULAs) - may not be redistributed stand-alone; technique may be described |
-| **VRExpansionPlugin-4.27** | 2026-09-17 | `tree:b317d39a5c2f15b3` | `tree:b317d39a5c2f15b3` | `4e52c69393271f3abce11d22c5265aa14373cb6e` | 🟩 current | https://github.com/mordentral/VRExpansionPlugin | MIT (Copyright Joshua Statzer) |
+| **VRExpansionPlugin-4.27** | 2026-09-28 | `tree:b317d39a5c2f15b3` | `tree:b317d39a5c2f15b3` | `4e52c69393271f3abce11d22c5265aa14373cb6e` | 🟩 current | https://github.com/mordentral/VRExpansionPlugin | MIT (Copyright Joshua Statzer) |
+| **VRExpansionPlugin-UE5** | 2026-09-28 | `tree:f67b2f27606005ce` | `tree:f67b2f27606005ce` | `c19f6e27440bc599c3b132cb38c2ffec3996008b` | 🟩 current | https://github.com/mordentral/VRExpansionPlugin | MIT (Copyright Joshua Statzer); preserve applicable engine-origin notices |
 | **vrframework** | 2026-09-10 | `tree:ad1763c6062c42d2` | `tree:ad1763c6062c42d2` | `—` | 🟩 current | https://github.com/elliotttate/vrframework | MIT (derivative of praydog/REFramework, copyright preserved; CREDITS.md names mutars' starfield2vr and anvilengine2vr as the studied ports, both public MIT) |
 | **VRIK Player Avatar 23416 0.8.6 2026-07-12T13-00Z Yj6wQRIkO** | 2026-09-05 | `unknown` | `tree:a9678ae3c00b1813` | `—` | ⚪ unpinned | unknown | unknown |
 | **WeWereInVR** | 2026-08-28 | `unknown` | `tree:73ae278c47bffb04` | `—` | ⚪ unpinned | unknown | MIT |
@@ -399,12 +410,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 
 ## Untracked directories
 
-**Present under `Other VR mods/`, absent from the ledger. `--check` fails until classified.**
-
-- `CircuitLord-Titanfall2VR-RE` — 376 files, 74 code files
-- `CircuitLordVRModInstaller` — 42 files, 21 code files
-- `diablo2-vr-port` — 113 files, 50 code files
-- `shock2quest-android-build` — 13 files, 1 code files
+None. Every directory under `Other VR mods/` is tracked or explicitly classified as not-a-source.
 
 ### Deliberately not sources
 
@@ -412,7 +418,8 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 - `OBVR 0.1.3 56559 3 2026-09-07T09-29Z gWxLrl3z` — Nexus Mods download of an Oblivion VR mod: three files, 0.5 MB, no source, no git history. The directory name is the Nexus download slug. Nothing to read without running it; re-classify if a source repository appears.
 - `Detroit-Become-Human-VR-Mod` — Eleven files, 2.5 MB, MIT-licensed but ZERO source files - binaries and configuration only. Same class as the other release-artifact directories here; the source it was built from is not in this checkout.
 - `Head Mounted VR - Demo` — a packaged Win64 staged build of a FAB Store demo - 32 files, 715 MB, and not one line of source. The tree is Engine/Binaries/ThirdParty plus the product's own Binaries/Win64 (boost, openxr_loader, onnxruntime). Same class as Ship-9.2.3-win64-ship: build output, nothing to read.
-- `VRExpansionPlugin` — a SECOND checkout of mordentral's plugin, on the Master branch (HEAD 2026-09-11 era, UE5-generation APIs), beside the tracked VRExpansionPlugin-4.27 which is the frozen 4.27 branch. Not registered as its own source because it is the same upstream, and kept out of the ledger deliberately: for a UE 4.27.2 target the newer branch is a liability, since its signatures do not exist in 4.27. Read the 4.27 checkout. If the duplicate is not wanted, delete it rather than registering it.
+- `VRExpansionPlugin` — Legacy duplicate-folder exclusion. The version-pinned UE5 review is now tracked as VRExpansionPlugin-UE5 under External; 4.27 remains a separate compatible-generation reference. Same upstream, not independent corroboration. Do not substitute Master signatures for a 4.27 target.
+- `shock2quest-android-build` — Local build workspace for the already tracked public shock2quest source, not a separate mod or independent reference. Directory inventory and README inspected 2026-09-28. Build outputs, caches and local receipts remain outside the public playbook; no build or runtime claim harvested here.
 - `UEVR-joeyhodge_AFW_v1.0-beta.6` — UEVR AFW release binaries (9 files, no source): UEVRBackend/Injector, LuaVR, PDAFWPlugin, PluginNullifier, openvr_api. Supersedes the beta.5 set already classified here. The source these were built from is the PureDark/UEVR fork's AFW branch, registered as a source.
 - `UEVR-nightly_AFW_v1.0-beta.6` — the nightly variant of the same 9-file AFW binary set; identical file list, no source.
 - `StalkerVR` — the 32 GB S.T.A.L.K.E.R. Anthology VR INSTALL, plus a 32 GB .7z of itself. Fingerprinting 64 GB of game assets on every coverage.py run buys nothing, so the install is classified like 'SS2 OG' and its VR code/design was separated into the StalkerVR-code source instead - 43 files, 339 KB, see PROVENANCE.md there. Left in place here and NOT copied: the assets, ~40 unrelated content mods (quests, furniture, balance, shaders, translations), and three files worth knowing about - bin/AnomalyDX11.exe (the VR engine build, original preserved beside it), bin/AnomalyDX11.pdb (shipped symbols) and bin/openxr_loader.dll.
@@ -428,6 +435,8 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 - `X-Wing Alliance` — TIE Fighter Total Conversion installer and readme - a total conversion, not a VR mod
 - `VR_HEADSET_MANAGER` — headset/runtime management utility - not a VR conversion or a mod of a game
 - `skyrim-vr-automation` — install/automation scripting around Skyrim VR - no VR implementation of its own
+- `CircuitLord-Titanfall2VR-RE` — Local research wrapper, not an additional reference. Its pinned release-1.0.8 payload is tracked separately as CircuitLord-Titanfall2VR. Raw decompilation, working notes and private transfer assessments stay outside the public corpus.
+- `CircuitLordVRModInstaller` — Installer and package manifest for CircuitLord-Titanfall2VR, whose pinned payload has its own external row. Installer code is not native mod source and not independent corroboration.
 - `BigWalkVRInstaller` — installer for a third-party VR mod - packaging only, no VR implementation
 - `Ship-9.2.3-win64-ship-1.3.1` — build output of Shipwright-VR (assets + binaries, no source)
 
@@ -901,6 +910,24 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | `re_discovery` | 🟥 not reviewed | `—` | — |
 | `source_integration` | 🟥 not reviewed | `—` | — |
 
+#### CircuitLord-Titanfall2VR
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟨 partial | `STATIC` | Release 1.0.8 binary, not TinyBlkDog's project. Hash/tool provenance in ch17 #circuitlord-evidence. Outer-frame particle latch complements unchanged client counters; harvest #mutation-ownership-tests. No runtime/endurance acceptance. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟨 partial | `STATIC` | Sequence policy and timed events decoded; ch01 #sequence-policy-events. Later overrides apply; no comfort claim. |
+| `render_hazards` | 🟨 partial | `STATIC` | Two-eye shadow fit, sequence/light/cascade checks, paired clear/draw suppression. Some special-view gates and canted/asymmetric numerical equivalence remain unproved. |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟨 partial | `STATIC` | ch02 #weapon-snapshot-ownership: locked snapshot, model/cache/part checks, ordinary-return TLS restoration. Separately SOURCE packaged pickup script supports #two-segment-reach. |
+| `input_locomotion` | 🟨 partial | `STATIC` | Native ticket consumer/weapon identity readback inspected alongside SOURCE script accept/reject/cancel producer. ch03 #action-acknowledgement. General retry exactly-once and reset/overflow behavior unproved. |
+| `performance` | 🟨 partial | `STATIC` | ch19 #shared-shadow-profile. Guarded producer reuse and separate CPU/GPU clock paths. Speedup NOT_MEASURED: no installed game. Failure tests and A/B protocol are proposed, not runtime findings. |
+| `audio` | 🟨 partial | `STATIC` | Separate native listener wrapper and tracked-pose publication; full producer set and transition/quality acceptance remain open. |
+| `packaging_deploy` | 🟧 skimmed | `SOURCE` | Installer manifest and extracted archive inspected; no installation or payload execution. Readable .gnut scripts are not released native DLL source. |
+| `re_discovery` | 🟨 partial | `STATIC` | Read-only isolated Ghidra, Capstone checks and independent PE decoder. Assembly resolves misleading float types for integer policy indices/tickets. No direct xref does not exclude indirect writers. |
+| `source_integration` | 🟥 not reviewed | `—` | — |
+
 #### condemned-vr
 
 | Area | Review | Evidence | Note |
@@ -990,6 +1017,24 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | `packaging_deploy` | 🟨 partial | `AUTHOR` | Pins an exact executable SHA256 (8266B6B4..A510A1) for Steam Director's Cut 2.0.66.0 and states other versions and the non-DC release are unsupported. The installer backs up replaced files and the original graphics settings. Note the bitness trick worth harvesting beside 09 #substitute-runtime-bitness: the 64-bit companion host is deliberately kept in a game SUBFOLDER (DeusExHRVR/DeusExHRVRHost.exe) so it cannot load the game's 32-bit proxy DLLs. |
 | `re_discovery` | 🟥 not reviewed | `—` | — |
 | `source_integration` | 🟥 not reviewed | `—` | — |
+
+#### diablo2-vr-port
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟨 partial | `SOURCE` | PairWanted/HookDrawGameScreen inspected. INI enables pair_per_tick with 0.01 ms second-pass delta; alternation fallback remains. Not proof of simulation-once stereo or temporal-history correctness. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | Presentation runtime implementation is outside this donor checkout. |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟨 partial | `SOURCE` | Commit 4cb11b9ee35627bb58c3a13fb19b57b7b807aa44, version 0.141.0. Camera handback before native follow, lazy rebuild repair, caller-specific shadow rays, tabletop anchor and screen calibration. See docs/diablo2-resurrected-reference.md. No build or runtime acceptance. |
+| `render_hazards` | 🟨 partial | `SOURCE` | Bounded room activation/tiling separate from per-view culling; count budget is not measured frame-time safety. |
+| `ui_hud` | 🟨 partial | `SOURCE` | Scissor-owned map draw redirection, publish before selective clear, transmittance-alpha convention and heuristic target identity. |
+| `hands_interaction` | 🟧 skimmed | `SOURCE` | Post-native skeleton hook and disabled weapon-skeleton experiment inspected; IK internals not fully reviewed. First-person calibration is AUTHOR preview status. |
+| `input_locomotion` | 🟨 partial | `SOURCE` | View-to-ground-to-native-screen stick basis, magnitude preservation, menu passthrough and degraded interaction fallback. |
+| `performance` | 🟥 not reviewed | `—` | No target timings measured. |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟧 skimmed | `SOURCE` | CMake and licence inspected; D2RLoader SDK commit pinned. Separate BodyWalk/FlatVR runtime not audited. README restricts usage to offline single-player. |
+| `re_discovery` | 🟨 partial | `SOURCE` | Coverage-aware address states, unique-hit search, reference derivation and feature diagnostics. Shift-test exists but was not executed. Signature success does not prove layout/ABI. |
+| `source_integration` | 🟥 not reviewed | `—` | Open mod code is not source ownership of the shipping game. |
 
 #### Dishonored-VR
 
@@ -1595,7 +1640,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | `camera_tracking` | 🟥 not reviewed | `—` | — |
 | `render_hazards` | 🟥 not reviewed | `—` | — |
 | `ui_hud` | 🟧 skimmed | `SOURCE` | Poke interaction is a whole subsystem: PokeInteractor, PokeInteractable, PokeButtonVisual, PokeLimiterVisual, ClippedPlaneSurface, PointableBox/Plane. PokeLimiterVisual is specifically the 'the finger went through the button but the visual must not' problem. Candidate for the next pass; relevant to any diegetic UI. |
-| `hands_interaction` | 🟨 partial | `SOURCE` | REGISTERED 2026-09-18. Public headers read for architecture only - the licence is proprietary, so no code is reproduced. THE FINDING: detection and response are separate layers, orthogonal to VRExpansionPlugin's fused grip enum. A detector's whole contract is (input method) -> candidate grabbable, and three ship against it (hand, distance, ray). A transformer's whole contract is (identified grab poses, target transform) -> new transform. Grab poses carry a REQUIRED unique identifier and represent the modification point (pinch/palm/snap), not the hand; each transformer declares its own max grab-point count. Distilled to #grab-detection-layer, #grab-transform-traps, HAND-020 and the #two-handed-support extension. |
+| `hands_interaction` | 🟨 partial | `SOURCE` | REGISTERED 2026-09-18. Public headers read for architecture only - the licence is proprietary, so no code is reproduced. Detection and response are separate layers. Correction 2026-09-28: VRE also leaves detection to callers; its grip enum describes response, not a fused detector. A detector's whole contract is (input method) -> candidate grabbable, and three ship against it (hand, distance, ray). A transformer's whole contract is (identified grab poses, target transform) -> new transform. Grab poses carry a REQUIRED unique identifier and represent the modification point (pinch/palm/snap), not the hand; each transformer declares its own max grab-point count. Distilled to #grab-detection-layer, #grab-transform-traps, HAND-020 and the #two-handed-support extension. |
 | `input_locomotion` | 🟥 not reviewed | `—` | Not covered: the SDK is hands and interaction, not locomotion. |
 | `performance` | 🟥 not reviewed | `—` | — |
 | `audio` | 🟧 skimmed | `SOURCE` | IsdkGrabbableAudio exists - grab/release audio is a first-class component rather than gameplay's problem. Not read. |
@@ -2870,16 +2915,34 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | `stereo` | 🟥 not reviewed | `—` | Out of scope by design - the plugin does not implement stereo, the engine does. Registered for interaction, locomotion and widget architecture. |
 | `xr_lifecycle` | — no entry — | — | — |
 | `xr_input` | 🟥 not reviewed | `—` | — |
-| `camera_tracking` | 🟥 not reviewed | `—` | — |
-| `render_hazards` | 🟧 skimmed | `SOURCE` | VRRenderTargetManager.cpp (1,782 lines). Also VRAIPerceptionOverrides.cpp (983 lines), which is HAND-018 corroborated from the other side: a roomscale player breaks AI perception assumptions badly enough to need a dedicated override layer. Neither read. |
-| `ui_hud` | 🟧 skimmed | `SOURCE` | VRStereoWidgetComponent.cpp (1,155 lines) - a stereo-correct UMG widget component. Directly relevant to UEVR-003, which is about fighting a widget's 2D layout when reparenting it into 3D; this is what solving the same problem looks like when you own the engine. |
-| `hands_interaction` | 🟧 skimmed | `SOURCE` | GripMotionControllerComponent.cpp is 8,204 lines - by far the largest file in the plugin, which is itself the finding about where the difficulty lives. Grip behaviour is factored into separate grip scripts (GS_Melee.cpp, 968 lines) and interactables are componentised (VRLeverComponent.cpp, 1,002 lines). Read the grip component before designing any hold system on UE. Not read here. |
-| `input_locomotion` | 🟧 skimmed | `SOURCE` | THREE roomscale movement components, which is the finding: VRCharacterMovementComponent (4,151 lines), VRBaseCharacterMovementComponent (2,003) and VRSimpleCharacterMovementComponent (1,597), over a VRRootComponent (1,676) owning the capsule and roomscale root. Roomscale locomotion in UE is a replacement for CharacterMovement, not a tweak to it. |
+| `camera_tracking` | 🟨 partial | `SOURCE` | READ 2026-09-28: occupied VR pivot compensation in actor rotation/location helpers only. Not a full tracking or camera-lifecycle audit; see ch03 vr-turn-pivot. |
+| `render_hazards` | 🟨 partial | `SOURCE` | READ 2026-09-28: grip late-update collection exclusions and widget layer/proxy lifecycle only. VRRenderTargetManager internals remain unread; AI perception is gameplay-consumer evidence under source_integration, not a rendering proof. |
+| `ui_hud` | 🟨 partial | `SOURCE` | READ 2026-09-28: VRStereoWidgetComponent tick, texture/layer descriptor, create/update/destroy, world-proxy fallback and intentional-both mode. ch04 stereo-widget-lifecycle. World-lock workaround and depth flag are version/runtime-sensitive, not verified occlusion or pointer correctness. UE5 widget implementation not harvested. |
+| `hands_interaction` | 🟨 partial | `SOURCE` | READ 2026-09-28: grip entry points, GetGripWorldTransform/TickGrip, GS_Default secondary transform, late-update collector, physics-handle COM setup, Socket_Implementation and grip teleport path. Distilled to ch02 grip-transform-pipeline, physics-to-socket and grip-design-space. Corrected three enum-only overclaims: detection remains caller-owned, late-update collision veto exempts two grip types, and controller-location constraint does not imply a COM write. Melee scripts, full drop lifecycle and throw sampling remain unread. |
+| `input_locomotion` | 🟨 partial | `SOURCE` | READ 2026-09-28: VRBaseCharacter turn/teleport pivot compensation, movement rewind/additive/restore helpers and selected callers, MoveAction construction and saved-move combine rejection. Distilled to ch03 vr-turn-pivot, roomscale-movement-accounting and vr-move-actions. No runtime movement, networking or headset result claimed. |
 | `performance` | 🟥 not reviewed | `—` | — |
 | `audio` | 🟥 not reviewed | `—` | — |
 | `packaging_deploy` | 🟥 not reviewed | `—` | — |
 | `re_discovery` | 🟥 not reviewed | `—` | Not applicable: full MIT source, nothing to reverse. |
-| `source_integration` | 🟨 partial | `SOURCE` | REGISTERED 2026-09-17, STRUCTURE REVIEWED - no code read. NOT A MOD: mordentral's engine plugin, compiled INTO a UE project, MIT licensed. On the frozen 4.27 branch (HEAD 2024-10-10), which is the CORRECT version for a UE 4.27.2 target rather than a stale one. 142 source files across three modules - VRExpansionPlugin (122), OpenXRExpansionPlugin (13), OpenVRExpansionPlugin (7). This is the reference answer to how VR is actually BUILT in UE, and therefore the most valuable source here for any UE port that has or will have engine source - the exact inverse of the UEVR route, where you own none of it. |
+| `source_integration` | 🟨 partial | `SOURCE` | READ 2026-09-28: targeted function bodies and callers at pinned 4.27-Locked commit; no compile/runtime/headset validation. docs/unreal-vrexpansion-reference.md maps the harvested methods and limits. Build-time gameplay plugin, distinct from UEVR; engine compatibility must be built and tested, not inferred from source possession. AVRCharacter substitutes root/movement components; navigation feet and sight targets use VR-aware locations. UE5 is tracked separately as another version of the same upstream, not independent corroboration. |
+
+#### VRExpansionPlugin-UE5
+
+| Area | Review | Evidence | Note |
+|---|---|---|---|
+| `stereo` | 🟥 not reviewed | `—` | Engine-owned stereo; not harvested as an injected stereo implementation. |
+| `xr_lifecycle` | 🟥 not reviewed | `—` | — |
+| `xr_input` | 🟥 not reviewed | `—` | — |
+| `camera_tracking` | 🟨 partial | `SOURCE` | READ 2026-09-28: character pivot selection/compensation and VR-aware sight-target locations only. Not a tracking-lifecycle audit. |
+| `render_hazards` | 🟨 partial | `SOURCE` | READ 2026-09-28: late-update primitive collection only. No renderer, widget or compositor testing. |
+| `ui_hud` | 🟥 not reviewed | `—` | — |
+| `hands_interaction` | 🟨 partial | `SOURCE` | READ 2026-09-28: late-update collector, socket handoff with next-tick correction, COM setup including geometry-collection fallback. Same broad contracts as 4.27, not ABI parity. ch02 grip-design-space and physics-to-socket. |
+| `input_locomotion` | 🟨 partial | `SOURCE` | READ 2026-09-28: pivot-selection parameters in VRBaseCharacter, CanCombineWith and FVRMoveActionArray::CanCombine. Capsule height is separately represented; action arrays still prevent move combination. No multiplayer or runtime tests. |
+| `performance` | 🟥 not reviewed | `—` | — |
+| `audio` | 🟥 not reviewed | `—` | — |
+| `packaging_deploy` | 🟥 not reviewed | `—` | — |
+| `re_discovery` | 🟥 not reviewed | `—` | Public source reference, not retail binary evidence. |
+| `source_integration` | 🟨 partial | `SOURCE` | READ 2026-09-28: version-pinned comparison with 4.27, not a second independent framework. See docs/unreal-vrexpansion-reference.md. Descriptor version and selected source paths inspected; no compatibility build or runtime acceptance. Public upstream source stays in ignored External storage. |
 
 #### vrframework
 

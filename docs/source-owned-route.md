@@ -24,6 +24,11 @@ the wrong function.
 
 ## What counts as source-owned
 
+For buildable Unreal projects, start with the
+[VR Expansion Plugin reference map](unreal-vrexpansion-reference.md): pinned UE4.27/UE5 implementations
+of grip ownership, room-scale movement, predicted actions and stereo-widget lifecycle, with explicit
+transfer limits. It complements renderer integration; it is not a stereo injector.
+
 The decisive test is not possession of source files. All of these are
 different:
 

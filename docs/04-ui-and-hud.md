@@ -4,6 +4,55 @@ Flat UI is drawn in screen space; in VR it has to live somewhere in 3D. And the 
 elements you want to suppress or relocate are owned by systems that don't expect a second
 opinion.
 
+## Extract a UI draw interval, not a rectangle of the final picture {#hud-draw-interval}
+
+D2R VR's `hud.cpp` identifies a candidate UI target by clear colour/format/size,
+tracks drawing per command list, and redirects the map-scissored draw interval to
+a same-format offscreen target. When the scissor changes it restores the UI target.
+When the list leaves the UI layer, it publishes extracted pieces before clearing
+selected native regions. Later full-screen-scissored labels remain in the original
+layer, including labels whose pixels overlap the minimap. **SOURCE:**
+[donor map](diablo2-resurrected-reference.md).
+
+**Transfer rule:** establish pass order, render-target identity, blend semantics
+and draw ownership before removing pixels. This donor documents `world * alpha + ui`
+and uses `(0,0,0,1)` as the empty UI clear; alpha is transmittance here, not ordinary
+foreground opacity. Confirm the blend equation on your target before conversion.
+Its format/clear/scissor tests are heuristics, not universally unique identifiers.
+
+**Exit tests:** place labels across the map, open shops/dialogues, switch map corners,
+change aspect/safe-area scale, resize targets, reset command lists and disable the
+replacement compositor. Verify the right draws alone move and essential UI remains
+available if extraction or presentation fails. The donor guards its in-picture
+replacement with readiness flags; do not infer a complete cross-process handoff or
+GPU-fence proof without inspecting the receiving renderer.
+
+## A stereo widget needs a resource lifecycle, not just a quad {#stereo-widget-lifecycle}
+
+VRE 4.27's `UVRStereoWidgetComponent` is a useful source-owned reference: the UMG widget renders into
+a texture, then an engine stereo-layer descriptor supplies its geometry, transform, flags and texture.
+It creates or updates a layer ID and destroys that layer on unregister/destruction. A non-stereo/device-
+unavailable path falls back to the world-widget proxy; an explicit mode permits both representations.
+`[SOURCE]`
+[lifecycle and fallback](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/VRStereoWidgetComponent.cpp#L397),
+[descriptor and submission](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/VRStereoWidgetComponent.cpp#L637).
+
+**Transfer recipe:** track widget lifetime, texture readiness, layer lifetime, visibility, pose space
+and world-proxy visibility separately. Make world-only, layer-only and intentional-both explicit;
+otherwise enabling the sharp compositor panel leaves its old mesh behind as a ghost. On transition
+or device loss, invalidate stale handles and prove that the fallback really draws.
+
+Two settings are not guarantees: a depth-support flag requests behavior but does not prove runtime
+occlusion; a world-locked name does not establish the submitted coordinate space. This 4.27 code
+contains a tracker-locked workaround and an optional prior-transform delay. Do not export either as
+a universal OpenXR or UE5 rule. Likewise, a rendered quad does not automatically provide hit testing:
+retain the [pointer coordinate/receiver contract](#pointer-coordinate-spaces).
+
+**Proof to run:** toggle VR/flat and visibility; unload/reload the widget; move the tracking origin;
+inspect both eyes, a wall crossing the panel and the pointer at all four corners. Confirm one intended
+representation and no surviving layer after teardown. Mirror-window appearance alone cannot certify
+compositor depth, stereo comfort or pointer alignment.
+
 ## A screen-space HUD is CROPPED, not mis-scaled, when declared FOV exceeds headset FOV {#hud-cropped-not-scaled}
 
 `[LIVE, and the fix is UNVERIFIED IN A HEADSET - flagged by the reporting project.]`

@@ -812,6 +812,51 @@ A fast flat harness can validate logic and submission counts. It cannot prove
 Quest GPU parity, compositor behavior, tracking lifecycle or thermal
 performance.
 
+## Share the shadow producer, not the eye-dependent result {#shared-shadow-profile}
+
+[CircuitLord 1.0.8 static RE](17-teardown-fc2vr-native-stereo.md#circuitlord-evidence)
+finds a combined two-eye shadow-frustum fit, same-sequence/light/cascade checks, and
+second-eye suppression of both cascade draws **and their clear**. The native outer
+wrapper still runs. Additional special-view gates exist; not every gate's producer
+has been resolved. This is evidence of a guarded optimisation path, **not a measured
+speedup or complete numerical proof for canted views**.
+
+The reusable contract: a shadow-map producer may be shared only when its coverage
+contains both views, light/caster/cascade state agrees, and the resource survives for
+the whole pair. Keep screen-space shadow evaluation per eye. This does not authorize
+sharing SSAO, reflections, temporal history or a depth-derived mask.
+
+**Failure tests (proposed, not donor bugs):**
+
+| Perturbation | Required discriminator |
+|---|---|
+| First-eye production, then second eye | Same live resource/version; expected producer draw reduction; no destructive second clear |
+| Change light/cascade/caster state or resource generation | Reject reuse or rebuild coherently; never sample stale output |
+| Second eye arrives first, or auxiliary view interrupts | Reject unsupported order or use a separately owned path |
+| Asymmetric/canted FOV, rapid yaw and cascade boundary | Both-eye coverage, no edge holes or wrong-eye swimming; matrix equality alone is insufficient |
+| Disable optimisation | Native production resumes in both eyes: the positive control for suppression counters |
+
+### Measure the whole pair, including the enlarged first-eye work
+
+Run matched warmed **OFF / ON / ON / OFF** windows, repeated in a shadow-heavy outdoor
+scene and a low-shadow control. Match camera path, settings, runtime, resolution and
+instrumentation. Record target hashes, actual eligibility, producer/clear counts, eye
+identity, resource generation, CPU submission cost, GPU timestamps, pair cadence and
+missed-frame rate. Stop on assertions, missing geometry or invalid timing.
+
+Predeclare GPU cost for the complete measured stereo pair as the primary timing
+comparison—not right-eye savings alone. The combined frustum can increase first-eye
+casters and raster work. Report that cost, fit/validation CPU overhead and both-eye
+quality alongside any reduced second-eye work. Use matched GPU pass scopes to attribute
+the change to shadows; scene-level timing alone cannot isolate a shadow pass.
+
+Inspect the clock, not the label: the donor's `material.gpu_frame` stage is timed by
+CPU `QueryPerformanceCounter`; a separate `gpu_timing.csv` path creates timestamp,
+disjoint and pipeline-statistics queries (`STATIC`). Reject disjoint measurements;
+inspect actual query boundaries before calling their sum total frame time. Keep XR
+wait/submit time and panel cadence separate. No installed target or no valid timing
+rows means **NOT_MEASURED**, not zero cost or successful optimisation.
+
 ## Two reprojections that cover each other's failure mode {#composed-reprojection}
 
 SnowRunner-VR ships alternate-eye rendering with two smoothing options, and the interesting part is that

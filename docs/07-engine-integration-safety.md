@@ -4,6 +4,26 @@ You're injecting code into a process you don't own and calling functions the dev
 exposed. The difference between a mod that's *debuggable* and one that *random-crashes the
 user* is discipline at the integration boundary.
 
+## Moving the view does not move every gameplay consumer {#vr-location-consumers}
+
+VRE supplies concrete evidence of the hidden follow-on work. In 4.27, `AVRCharacter::GetNavAgentLocation`
+uses VR-aware feet/capsule position; `VRAIPerceptionOverrides` selects `GetVRLocation_Inline()` for VR
+targets in sight queries instead of blindly using actor origin. The inspected UE5 sight code retains
+this distinction. `[SOURCE]`
+[4.27 navigation](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/VRCharacter.cpp#L51),
+[4.27 sight](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/Misc/VRAIPerceptionOverrides.cpp#L321),
+[UE5 sight](https://github.com/mordentral/VRExpansionPlugin/blob/c19f6e27440bc599c3b132cb38c2ffec3996008b/VRExpansionPlugin/Source/VRExpansionPlugin/Private/Misc/VRAIPerceptionOverrides.cpp#L442).
+
+**Transfer recipe:** inventory consumers of “player position”: collision, navigation feet, AI sight,
+damage/hit boxes, interaction and audio. Assign each its intended point; do not globally replace actor
+location with HMD location. Feet and eyes are different contracts. These inspected paths establish
+navigation and sight handling, not that the plugin fixes every consumer in this list.
+
+**Proof to run:** lean/step around cover without stick movement, compare actor origin, collision body,
+sight target and actual detection; repeat with a non-VR actor as a control. For an RE-owned target,
+find the individual consumer and preserve its native rules. An SDK or this plugin can suggest where
+to look, but cannot prove the retail ABI or authorize replacing its character class.
+
 ## Hooking & native-call discipline
 
 - **Validate before you call.** Before calling a discovered native function, check its prologue

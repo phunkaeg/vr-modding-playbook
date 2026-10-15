@@ -64,6 +64,10 @@ game semantics the declarative layer cannot express.
 
 ## What is still yours, and where it lives
 
+For implementation ideas, see the [VR Expansion Plugin reference map](unreal-vrexpansion-reference.md).
+VRE is a source-owned Unreal gameplay plugin, **not UEVR**. Borrow its contracts and tests; do not
+assume its classes exist in the target or replace UEVR's stereo/pose owners.
+
 Everything downstream of "there is a correct stereo image" — which is most of the actual work:
 
 | The problem | Route |

@@ -625,10 +625,15 @@ particle system, clearing `VF_CHEAT` first so the value is settable. **Restore t
 the eye** - an asymmetric suppression leaves the subsystem off for the next frame's first eye.
 
 **Proof:** the counter for that subsystem's per-frame work reads the same with stereo on as with it off.
+Exercise the [mutation ownership tests](17-teardown-fc2vr-native-stereo.md#mutation-ownership-tests)
+for generation reset, auxiliary views and nested calls; unchanged global frame counters are insufficient.
 
 **Trip hazard:** a debug variable may do more than its name suggests, so verify what it actually
 suppressed rather than trusting the label; and clearing a cheat flag is a blunt instrument - do it for the
 narrowest possible window.
+
+See also the [zero-delta render-elision counterexample](17-teardown-fc2vr-native-stereo.md#zero-delta-render-elision):
+suppressing time can suppress drawing, while a small nonzero delta does not prove simulation-once.
 
 ## PERF-006 — Separate the compositor's floor from your own cost {#perf-006}
 
@@ -1086,6 +1091,9 @@ cover both eyes and roomscale motion.
 
 **Trip hazard:** widening the render projection cannot resurrect objects the
 CPU never submitted.
+
+Check [residency and activation before culling](14-render-pass-hazard-atlas.md#activation-before-culling)
+when a newly freed camera exposes missing rooms rather than just clipped objects.
 
 ## CAM-003 — One recenter event, all lanes {#cam-003}
 
@@ -1704,6 +1712,9 @@ population.
 **Trip hazard:** one blend function for both channels squares the alpha of
 translucent UI. It reads as "the HUD is too faint" and invites a brightness fix
 that hides the real fault. See [04](04-ui-and-hud.md#hud-as-world-geometry).
+
+For a pre-existing layer with **transmittance alpha**, establish its blend contract
+before applying this coverage-alpha recipe. See [draw-interval extraction](04-ui-and-hud.md#hud-draw-interval).
 
 ## INPUT-004 — Invert the game's input conditioning instead of editing it {#input-004}
 
@@ -2658,21 +2669,21 @@ dial and a corpse are four different answers.
 - **Passes through the world** → an attachment or rigid grip. Cheapest, no solver, no correction.
 - **Must slide along surfaces but never be pushed off course** → a sweep.
 - **Must collide properly and be blocked** → full physics, and now you owe it constraint tuning.
-- **Manipulated in place, not carried** (dial, lever, drawer) → a *manipulation* grip, not a constrained
-  carry. Its output is a scalar; modelling it as a held object is how knobs come off in your hand.
+- **Manipulated in place, not carried** (dial, lever, drawer) → preserve the native joint or feed its
+  scalar interaction. VRE's manipulation grip itself is a physics constraint, not a scalar-only API.
 - **Only needs to raise gameplay events** → a grip that moves nothing at all.
 
-Then set the three policies the mechanism does not imply: **centre of mass** (the mesh's own is usually
-wrong for a tool), **late update** (off while colliding or double-gripped), and **teleport behaviour**
+Then set the three policies the mechanism does not imply: **centre of mass / constraint anchor**
+(distinct choices), **late update** (conditional on solver ownership; see chapter for exceptions), and **teleport behaviour**
 (dropping it is allowed).
 
 **Proof:** for each object class, name its world-interaction and show the grip type follows. If two
-classes with different world-interaction share a grip type, one of them is wrong.
+classes share a grip type, verify their settings actually satisfy both contracts; a shared enum alone
+neither proves nor disproves that.
 
 **Trip hazard:** the rule that costs headset time is late update. Applying the freshest pose right before
-render is correct for a free-floating object and **actively wrong for a constrained one** — it overwrites
-the solver after contact is resolved. Two shipped frameworks reach that conclusion by different routes:
-HIGGS softens the constraint on contact, VRExpansionPlugin suppresses the late update. `[SOURCE]` See
+render can contradict a constraint already resolved by the solver. HIGGS softens its constraint on
+contact; VRE supplies selective late-update vetoes, including grip-type exceptions. `[SOURCE]` See
 [02](02-viewmodels-and-hands.md#grip-design-space).
 
 ## META-015 — A mature framework's enums are its design space; read those first {#meta-015}
@@ -3176,7 +3187,8 @@ are still fused.
 **Trip hazard:** the split tempts you to let the detector also resolve *where* the object should sit - a
 snap pose - and return that alongside the candidate. That is the same coupling reintroduced. Snapping is
 a property of the object and the grab point, so it belongs in the pose the transformer receives, not in
-the detector's answer. `[SOURCE]` Meta Interaction SDK; contrast VRExpansionPlugin's fused grip enum at
+the detector's answer. `[SOURCE]` Meta Interaction SDK; VRE also leaves candidate selection outside its
+grip-response enum, as clarified by the implementation review at
 [#grip-design-space](02-viewmodels-and-hands.md#grip-design-space).
 
 ## HAND-021 - Retarget with the rig's measurements, not just its bone names {#hand-021}

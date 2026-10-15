@@ -4,6 +4,54 @@ Getting the weapon/tool/hand to sit correctly in VR is where the camera problem 
 meets reference-frame and Euler-math problems. This is usually the single largest time sink
 in a flat-to-VR conversion.
 
+## Grip transforms are a pipeline, not competing tick writers {#grip-transform-pipeline}
+
+**Use when:** recoil, a support hand, sockets and collision each work alone but fight when enabled
+together. VRExpansionPlugin 4.27's `GetGripWorldTransform` distinguishes a base-transform override
+from modifiers, evaluates active scripts in array order, propagates invalid/force-drop results, then
+checks the final transform for validity. `TickGrip` skips invalid output and handles forced release
+through grip authority before choosing its movement mechanism. `[SOURCE]`
+[implementation](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripMotionControllerComponent.cpp#L4739).
+
+**Transfer recipe:** select one base-pose owner; define a documented modifier order; give each stage
+an explicit coordinate space and a result of valid / unavailable / release. Commit once through the
+chosen kinematic or physics path. Reject non-finite transforms before they reach physics. This is a
+recommended contract: the plugin's script list does not itself enforce exactly one overriding script.
+
+Use a **custom interaction pivot** consistently. The 4.27 grip entry points make the held transform
+relative to `GetPivotTransform`; `UGS_Default::CalculateSecondaryLocation` also uses the other
+controller's custom pivot. A palm-relative primary and device-origin-relative support hand create an
+aim error that looks like bad two-hand maths. The default secondary solve rotates around the primary
+pivot; scaling is requested only by the scaling modes, and acquisition/release have lerp states.
+[default script](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripScripts/GS_Default.cpp#L97).
+
+**Proof to run:** label the transform after each stage; test off-centre pivots, non-unit object scale,
+support-hand acquire/release, coincident hands, recoil during contact and invalid tracking. A valid
+quaternion alone does not prove the selected pivot or modifier order. For RE-owned integration, feed
+the result through the game's proven pose/interaction owner; these UE classes are not injectable APIs.
+
+## Holstering is a physics-to-attachment handoff {#physics-to-socket}
+
+An object can be correctly attached now and jump on the next physics result. In 4.27
+`Socket_Implementation` stops simulation, attaches with the requested relative transform, and, when
+the object had a physics handle or was simulating, schedules `SetSocketTransform` on the next tick.
+It also removes its mass-recalculation callback. The delayed correction remains in the inspected UE5
+implementation. `[SOURCE]`
+[4.27 socket path](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripMotionControllerComponent.cpp#L2289),
+[UE5 socket path](https://github.com/mordentral/VRExpansionPlugin/blob/c19f6e27440bc599c3b132cb38c2ffec3996008b/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripMotionControllerComponent.cpp#L2517).
+
+**Transfer recipe:** make release, constraint teardown, simulation ownership, attachment, and final
+relative placement one state transition. If the engine can publish an older physics result after
+attachment, reconcile at its known safe boundary. Do not copy a one-tick delay as a universal fence.
+For a deferred callback, additionally check object lifetime, expected parent and a handoff generation:
+a rapid re-grab must invalidate an old holster correction. Those guards are a recommended transfer
+contract, not a claim that the inspected plugin checks all three.
+
+**Proof to run:** holster a moving simulated object, then immediately re-grab, destroy the parent,
+teleport, and repeat under a long frame. Inspect the frame after attachment as well as the attachment
+frame. In networked play, repeat from both roles and a remote observer. An attachment API returning
+success proves neither stable placement nor replicated ownership.
+
 ## The viewmodel is probably drawn twice
 
 Flat games commonly render the held weapon in a **separate pass with its own FoV** (a wide,
@@ -1480,10 +1528,11 @@ believes the full amount happened.** See [HAND-022](pattern-catalog.md#hand-022)
 
 The table above lists the *mechanisms* this fleet has used. A mature framework's enums list the whole
 *space*, and reading them is the cheapest way to discover axes you did not know existed.
-VRExpansionPlugin — mordentral's MIT engine plugin, the de-facto way VR is built in Unreal — enumerates
+VRExpansionPlugin — mordentral's MIT engine plugin — enumerates
 **twelve** grip types where this playbook had three, and the extra nine are not variants. They are a
-second axis. `[SOURCE]` the enums in `VRBPDatatypes.h`; the 8,204-line implementation behind them was
-not read, so treat each mechanism's behaviour as named-but-unverified.
+second axis. The first harvest read only `VRBPDatatypes.h`. The 2026-09-28 follow-up traced selected
+implementation paths; the [version and evidence map](unreal-vrexpansion-reference.md) records exactly
+which ones. This is source inspection, not a build or headset acceptance result.
 
 **The fleet's three are mechanisms. The twelve are mechanism × how the held object meets the world:**
 
@@ -1497,8 +1546,10 @@ And four that are not points on that grid at all, which are the ones worth knowi
 
 - **`ManipulationGrip`** and **`ManipulationGripWithWristTwist`** — for something *manipulated in place*
   rather than carried: a dial, a lever, a drawer. The insight in having a separate type is that a knob is
-  **not** a held object with restricted movement; it is a different interaction whose entire output is
-  one or two scalars, and modelling it as a constrained grip is how you get a knob that can be ripped off.
+  not necessarily a carried object. In this plugin these are physics-constraint grip modes, not a
+  guarantee of scalar-only output. For a game's existing lever/door, a scalar adapter to its native
+  interaction may be safer than replacing its physics. That adapter is a transfer recommendation,
+  not the implementation of these enum values.
 - **`EventsOnly`** — a grip that moves nothing and only raises events. The cheapest way to make something
   grabbable for *gameplay* without taking responsibility for its transform.
 - **`CustomGrip`** — the escape hatch, which every such taxonomy needs and which tells you the author
@@ -1507,10 +1558,15 @@ And four that are not points on that grid at all, which are the ones worth knowi
 Four rules fall out of the other enums, and the first is the one to take away.
 
 **Late update must be conditional on what the object is doing.** `EGripLateUpdateSettings` is not a
-boolean — it is `LateUpdatesAlwaysOn`, `AlwaysOff`, **`NotWhenColliding`**, **`NotWhenDoubleGripping`**
+boolean — it is `LateUpdatesAlwaysOn`, `LateUpdatesAlwaysOff`, **`NotWhenColliding`**, **`NotWhenDoubleGripping`**
 and `NotWhenCollidingOrDoubleGripping`. Late update applies the freshest pose just before render, which
-is right for a free-floating object and **wrong for a constrained one**, because it overwrites the
-solver's answer after the solver has already resolved the contact.
+can reduce free-motion latency but can contradict an already resolved constraint. The implementation
+is more selective than the enum names: `ProcessGripArrayLateUpdatePrimitives` exempts `SweepWithPhysics`
+and `PhysicsOnly` from the collision-based veto. It also skips paused grips and server-driven grips on
+non-server peers; an active grip script can independently deny late update. `AttachmentGrip` is skipped
+by this explicit collector, which is **not proof that attached children can never be late-updated**.
+Disable the pose correction for the relevant solver-owned object, not globally for every hand.
+`[SOURCE]` [4.27 collector](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripMotionControllerComponent.cpp#L7933).
 
 > **This converges with HIGGS from the opposite direction.** [#grab-depth](#grab-depth) records HIGGS
 > *softening the constraint* while the held object is in contact (`grabConstraintCollidingAngularTau`);
@@ -1523,8 +1579,13 @@ solver's answer after the solver has already resolved the contact.
 sits decides how the thing swings, and the mesh's own centre is usually wrong for a held tool — this is
 [13](13-teardown-bioshock-vr.md)'s lever-arm problem turned into a setting ("*the actor's pivot is the
 eye anchor, with the gun about 1.2 m out, so any rotation swings the weapon on a long lever arm*").
-Gripping *at the controller location* removes the lever entirely. `[INFERENCE]` on the mechanism, from
-the names.
+The implementation distinguishes **changing physical COM** from **placing a constraint anchor**:
+`COM_SetAndGripAt` calls `SetComLocalPose_AssumesLocked`; `COM_GripAtControllerLoc` positions the handle
+without that COM write. The latter does not eliminate all physical torque arms. UE5 additionally falls
+back to controller-location gripping when its geometry-collection path cannot set COM. Inspect the
+actual body/constraint pair before changing either.
+`[SOURCE]` [4.27 setup](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripMotionControllerComponent.cpp#L6122),
+[UE5 fallback](https://github.com/mordentral/VRExpansionPlugin/blob/c19f6e27440bc599c3b132cb38c2ffec3996008b/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripMotionControllerComponent.cpp#L6434).
 
 **Throw feel is a velocity-sampling choice.** `EVRVelocityType` is `Default`, `RunningAverage` or
 `SamplePeak`. Which one you read at the moment of release decides how a throw lands, and the fleet does
@@ -1552,10 +1613,14 @@ See [HAND-019](pattern-catalog.md#hand-019) for choosing between these, and
 ## Detection and response are different layers {#grab-detection-layer}
 
 The twelve grip types above answer *what happens to the object once it is held*. They say nothing about
-*how you decided a grab happened* - and in VRExpansionPlugin the two are fused, because one enum value
-names both. Meta's Interaction SDK factors the same problem the other way, and having both in one
-corpus is what makes the axis visible at all. `[SOURCE]` Meta Interaction SDK 1.205.0 public headers.
-Its licence is the Oculus SDK License Agreement, all rights reserved, so **describe the architecture
+*how you decided a grab happened*. **Correction after implementation review:** VRExpansionPlugin does
+not fuse candidate detection with grip response. The caller selects the candidate and invokes
+`GripObject` or `GripObjectByInterface`; the interface supplies response settings. Its
+[author's tutorial](https://vreue4.com/basic-gripping) explicitly leaves tracing/overlap and selection
+to the application. Meta's Interaction SDK exposes a named detector abstraction; that is an API
+factoring difference, not evidence that the other framework lacks the separation.
+`[SOURCE]` Meta Interaction SDK 1.205.0 public headers and VRE 4.27 grip entry points.
+Meta's licence is the Oculus SDK License Agreement, all rights reserved, so **describe the architecture
 and never copy the code** - the handling this playbook already gives
 [UEVR](18-beyond-the-native-injector.md).
 
@@ -1961,6 +2026,26 @@ burden that grows with the game's content and hides the fact that the generic ro
 death, spectator, map/menu, scope, stale input, and lost tracking. Each keeps the original view model
 **until its own generic policy is proven.** An enumerated fallback list is what stops "it works" from
 quietly meaning "it works while walking forward on foot."
+
+### Publish a bounded snapshot, then release the lock {#weapon-snapshot-ownership}
+
+[CircuitLord's native weapon path](17-teardown-fc2vr-native-stereo.md#circuitlord-evidence)
+copies a published snapshot under a mutex, releases it before native bone building,
+and checks model/cache identity and part counts (`STATIC`). A related animation wrapper
+restores its prior thread-local weapon context on ordinary return; exception-safe
+restoration is not established. These are ownership mechanisms, not transferable rig layouts.
+
+Publish coherent pose data qualified by entity, model, rig/count and frame/lifecycle
+generation. Consume a local immutable copy; never hold a publication lock across an
+unknown engine callback without a proved lock-order/re-entry contract. Keep gameplay
+reload commits separate from per-eye presentation. A coherent snapshot is still useless
+if it feeds a palette that the final draw does not consume.
+
+**Failure tests:** swap models between publish/consume, recycle the entity, alter part
+count, render twice, and nest a blend callback. Reject mismatched data without a partial
+palette write; restore the previous scoped context; count gameplay commits once; inspect
+the consumed palette in both eyes. Include a correct matching snapshot that visibly
+changes the expected model as the positive control. These tests remain target obligations.
 
 ### Valid and tracked are different, and only pose-dependent features may fail
 
@@ -2425,6 +2510,20 @@ pose after IK/contact clamping. Do not alter tracked input to disguise collision
 Free offhand coupling needs an explicit two-hand grip, not proximity alone.
 Evidence: `PreyVR/docs/RE-VEE-WEAPON-COLLISION-2026-09-09.md`; no collision port
 or headset acceptance is established by that source review.
+
+### Reach admission needs both sides of the hand {#two-segment-reach}
+
+CircuitLord's packaged pickup script checks **eye-to-hand and hand-to-target** traces,
+rejecting starts in solid as well as blocked endpoints, and rechecks eligibility when
+the action executes (`SOURCE`; [identity](17-teardown-fc2vr-native-stereo.md#circuitlord-evidence)).
+This supplements reach-distance/cone tests; a clear hand-to-object ray alone permits a
+tracked hand pushed through a wall to use objects beyond it.
+
+**Failure tests:** unobstructed reach succeeds; head outside a wall with hand/object on
+its far side fails; either trace starting solid fails; a target removed between hover
+and use fails. Inspect native permission checks first—do not replace protections already
+owned by the engine. This admission rule is not swept hand collision, an oriented-box
+solver, or multiplayer authority; donor reach distances are not universal constants.
 
 ## Throwing, knocking, and physical melee
 

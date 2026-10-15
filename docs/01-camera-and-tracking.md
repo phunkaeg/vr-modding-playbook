@@ -4,6 +4,52 @@ The root discipline of flat-to-VR conversion. A flatscreen game has one camera; 
 head-tracked stereo pair. The engine wasn't built for that, so the moment you inject a second
 camera you've created an ambiguity that every other system inherits.
 
+## Loan the render pose; retain the native camera's input {#camera-loan-consumers}
+
+**SOURCE example:** D2R VR's `HandBackPoseForTick` restores the last native
+position/quaternion before camera follow, then `SyncFrame` captures the new native
+pose and `Apply` loans the VR pose to rendering. Restoration compares each field
+against the mod's last write, so a newer native write is not blindly overwritten.
+Lazy rebuild hooks reapply the chosen matrices. Projection parameters remain native
+because a separate game layer uses them for zoom. See the [pinned donor map](diablo2-resurrected-reference.md).
+
+The transferable rule is **consumer-specific authority**, not “replace every camera
+field.” Census field readers as well as matrix readers. In this donor, picking uses
+the replacement matrices/hand ray, while an identified shadow-fit caller receives
+a copied camera containing the native pose. A recipient's shadows may instead
+need a both-eye envelope: preserving the original shadow footprint is not universal.
+
+**Exit tests:** hold the avatar still and rotate the HMD repeatedly; native follow
+must not integrate the injected pose. Then exercise lazy rebuild, disable, camera
+release/reuse, a native camera change and both edges of the shadow footprint.
+Byte equality alone cannot distinguish every concurrent writer or object generation;
+source-owned implementations should use explicit ownership/generation and scoped views.
+
+## Tabletop VR and stereo-screen calibration are one transform contract {#tabletop-screen-contract}
+
+D2R VR's `TableCamera` keeps a room anchor separate from the hero's game-space
+look-at. Conceptually, `eye_game = hero_game + scale * R_room_to_game *
+(head_room - anchor_room)`, with floor/table-height handling on the vertical axis.
+The hero remains at the anchor while the game world moves beneath it; moving around
+the room changes the viewpoint. `TopCamera` also preserves the original view's
+ground coverage when converting it to perspective. **SOURCE**, not headset acceptance.
+
+For its **flat virtual-screen** path, `TrueScale` couples eye separation and
+zero-parallax distance to the same units-per-metre scale: `ipd_game = ipd_m * scale`,
+`convergence_game = screen_distance_m * scale`. Screen dimensions determine the
+camera's angular extent. Do not transplant that convergence rule into a direct
+OpenXR projection layer, whose per-eye FOV/poses come from the runtime.
+
+**Tests before transfer:** standing versus seated must not silently resize the world;
+recenter should deliberately relocate the anchor, not apply yaw twice; known room
+translations must produce scaled game translations; change screen size/distance
+and verify geometry, hands and parallax together. The donor estimates floor from
+standing eye height and reanchors on a >0.5 m sample jump. That is a heuristic, not
+an XR reference-space-change event: test tracking recovery and recenter while seated.
+Curved-screen presentation needs its own optical mapping, not the flat-screen formula.
+
+Source and limitations: [D2R VR reference](diablo2-resurrected-reference.md).
+
 ## The multiple-cameras problem (the #1 source of "VR jank")
 
 After you start overriding the view, several cameras exist at once and they do **not** agree:
@@ -347,9 +393,9 @@ Yielding is a state machine, and the transitions are where it goes wrong. Write 
 ```cpp
 enum CamOwner { OWNER_VR, OWNER_ENGINE, OWNER_BLENDING };
 
-/* The rule: the ENGINE wins whenever it has an authored camera, and the handover
-   is blended, never instant. A hard cut to an authored camera is a guaranteed
-   comfort failure -- the user's head says one thing and the view says another. */
+/* Illustrative blended handover, not a complete transition implementation.
+   The engine owns the authored base. Select blend, fade or virtual-screen
+   treatment per mode; interruption handling is required in production. */
 void UpdateOwnership(CamState& s, const EngineCamFlags& f, float dt)
 {
     const bool engineWants = f.inCutscene || f.onLadder || f.inConversation
@@ -376,9 +422,37 @@ void UpdateOwnership(CamState& s, const EngineCamFlags& f, float dt)
 }
 ```
 
-Two properties are non-negotiable. **Blend, never cut** — `kBlendSeconds` around 0.2–0.3 is usually
-enough. And **never take rotation away**; translation can be the engine's, but a head that turns and a
-view that does not is nausea by construction.
+Keep the authored base separate from tracked head freedom. A blend is one transition
+treatment, not a universal comfort guarantee: a fade or virtual screen can be more
+appropriate for a particular sequence. In a screen treatment the scene camera may
+remain authored while head tracking stays live in the surrounding presentation.
+Validate the selected policy in a headset; do not infer comfort from a blend duration.
+
+### A sequence policy can change before the sequence ends {#sequence-policy-events}
+
+The state machine above is a sketch, not an exhaustive transition implementation.
+It needs interruption handling, and a comfort policy may choose a fade or virtual
+screen rather than blending involuntary camera motion. Do not treat its fixed blend
+duration as a universal acceptance criterion.
+
+[CircuitLord's reviewed binary](17-teardown-fc2vr-native-stereo.md#circuitlord-evidence)
+contains sequence-specific policy records and timed changes within a sequence
+`[STATIC]`. The transferable design is **separate ownership channels**, not one
+`inCutscene` switch: authored base, head freedom, hands/body visibility, gameplay input,
+comfort treatment, and restoration. Table selection is not the final policy if later
+overrides can replace it; observe the effective consumer state.
+
+In a source-owned port, prefer semantic animation/state events. In an RE-owned port,
+verify sequence identity and its time producer; qualify elapsed-time rules by a new
+sequence instance/generation, not name alone. A replay of the same named clip is a
+new instance. Never transplant the donor's names or timings.
+
+**Failure tests:** normal completion is the control. Then pause/resume, skip before
+and after a policy event, restart the same clip, die/load during it, and transition
+directly into another authored mode. Each must restore only the departing owner's
+state; stale events must not hide the next mode's hands or reclaim its camera. Check
+head-look, input releases, temporal-history generation and audio-listener ownership
+separately. These are proposed target tests, not donor runtime findings.
 
 ## Triage the game's mechanics before you commit to a camera architecture
 

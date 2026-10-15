@@ -1,5 +1,25 @@
 # Native stereo: two engines, two routes to rendering the world twice
 
+## Zero delta may suppress drawing as well as simulation {#zero-delta-render-elision}
+
+D2R VR supplies a useful counterexample to “set right-eye delta to zero and stop.”
+`HookDrawGameScreen` holds head/turn inputs for a pair, draws left, refreshes the
+camera for right, overrides both native delta values for the second call, then
+restores them. `PairWanted` requires the timing seams to resolve; otherwise it
+falls back to alternating eyes. The checked-in configuration gives the right pass
+**0.01 ms**, not zero. A source comment attributes this to butterflies disappearing
+when delta is zero. The implementation is **SOURCE**; that visual observation is
+**AUTHOR**. See [the pinned reference](diablo2-resurrected-reference.md).
+
+Do not copy the epsilon as proof of simulation-once stereo. It allows some time to
+advance and says nothing about frame-indexed mutation. Compare zero versus epsilon
+with effect draw counts, particle age/position, RNG and simulation counters across
+both eyes; include prolonged play and the existing
+[native mutation tests](#mutation-ownership-tests). Prefer separating draw admission
+from update admission where the engine permits it. Record per-eye and per-pair cadence:
+two draw calls do not establish a particular headset refresh or game update rate.
+
+## The original two case studies
 
 Two independent mods that reached the top rung of the stereo ladder, on two engines, from opposite
 starting positions:
@@ -418,6 +438,53 @@ There is a second, quieter class:
 
 It does not present as anything doubling. It presents as **geometry quietly missing in one eye** — which
 reads like a culling bug and sends you looking in entirely the wrong place.
+
+### Count the mutation, not just the frame counter {#mutation-ownership-tests}
+
+CircuitLord's Titanfall2VR 1.0.8 supplies a concrete `[STATIC]` example: an outer-frame
+reset and a guarded native particle-update call form a separate latch, alongside
+checks that client frame/tick counters did not change. Those counters alone cannot
+prove that particles, animation, RNG or audio advanced only once. The latch commits
+after the call returns; that is not proof of protection against nested re-entry.
+
+For a new port, inventory each render-triggered mutation and give it a frame/lifecycle
+generation. Preserve eye-dependent **drawing**, while allowing each owned update once.
+Source-owned engines should split update from render at the interface; RE-owned ports
+must identify the actual mutation callee and every applicable caller before suppressing it.
+
+These are proposed fault-injection tests, **not observed donor defects**:
+
+| Test | Required observation / failure discriminator |
+|---|---|
+| One render, then two renders with identical cameras | Native mutation count and state delta agree; hook-entry count alone is insufficient |
+| Two different eyes, then a third auxiliary view | Each required draw survives; no second simulation update in that generation |
+| Next frame, reset/load, or counter restart | New generation advances normally; no persistent latch freezes the subsystem |
+| Nested call before update returns | Explicit in-progress policy prevents duplicate mutation or rejects unsupported recursion |
+| Deliberately bypass the guard in a synthetic test | Counter/state witness detects duplication; otherwise the checker is unproven |
+
+Record update counts for each subsystem, not a blanket “no double tick” from two globals.
+Keep this gate separate from resource-capacity and producer/consumer overwrite tests below.
+
+### Donor identity and evidence boundary {#circuitlord-evidence}
+
+This harvest refers to **CircuitLord**, not the separately surveyed TinyBlkDog
+`titanfall2vr` experiment. Reviewed 2026-10-01:
+[public installer/release host](https://github.com/CircuitLord/CircuitLordVRModInstaller),
+package `Titanfall2VR-1.0.8.zip`, SHA-256
+`84419435468462e12816d7b8a02ff3873c1a18760831bcccf11a7bb6bc07f13a`;
+`Titanfall2VR.dll`, SHA-256
+`ee3de60b38410f4be56a129eb0752ca5caef41a753aacd07083872b3ecaad66f`.
+Ghidra 12.1.2 read-only exports, Capstone instruction checks and independent PE decoding
+support the native claims (`STATIC`); readable packaged Squirrel supports script claims
+(`SOURCE`). No target execution, speedup or headset acceptance is established.
+The installer licence does not establish a licence for the native payload. This harvest
+publishes reviewed methods, not decompiled donor code or its binary layouts.
+
+Owning methods: [sequence policy](01-camera-and-tracking.md#sequence-policy-events),
+[action acknowledgements](03-input-and-locomotion.md#action-acknowledgement),
+[weapon snapshots](02-viewmodels-and-hands.md#weapon-snapshot-ownership),
+[reach admission](02-viewmodels-and-hands.md#two-segment-reach), and
+[shared-shadow profiling](19-d3d12-and-performance.md#shared-shadow-profile).
 
 ### And a third class: what gets overwritten between write and read
 

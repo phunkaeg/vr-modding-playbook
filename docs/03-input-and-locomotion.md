@@ -4,6 +4,100 @@ Getting controller input into a game that only understands mouse + keyboard. The
 of techniques from crude to clean; know where each rung lands you and that **exactly one rung
 drives any given control**.
 
+## Remap an isometric game's input basis, not just its yaw {#isometric-input-basis}
+
+D2R VR's `ViewStickToGame` maps view-relative stick input onto the ground using
+the replacement camera's right/forward basis, then projects that direction onto
+the **original game's screen basis**. It normalizes the result back to the input
+magnitude and applies the original projection's axis signs. This preserves analogue strength
+through the isometric projection instead of assuming one yaw rotation suffices.
+`TurnStick` bypasses world remapping when menus own the pad. **SOURCE:**
+[version-pinned implementation](diablo2-resurrected-reference.md).
+
+For transfer, identify the space the native input consumer expects. Test eight
+directions at several camera headings and half/full stick magnitude, then open
+inventory/trade/chat and verify unrotated cursor navigation. Degenerate projections
+must have a defined fallback; sign/scale calibration is not transferable across games.
+
+Its action bridge also keeps inventory/weapon swap on pad/native-widget routes
+instead of synthesizing keyboard input that may switch the game's input mode.
+Attack versus interaction is gated by a recent native target observation; **however,
+the donor falls back to plain A if that target hook is unavailable**. Do not describe
+that degraded path as fail-closed. A recipient requiring “interact never attacks”
+must disable interaction when the target proof is missing/stale and test that state.
+
+
+## Turn around the occupied VR pivot, not the spawn origin {#vr-turn-pivot}
+
+**Symptom:** snap turning moves the player sideways after they physically step away from centre;
+teleport lands beside the marker. VRE 4.27's `AddActorWorldRotationVR` and `SetActorRotationVR` obtain
+the VR location in actor-local space, remove its vertical component, and compensate actor translation
+for the rotation. `SetActorLocationAndRotationVR` subtracts the rotated pivot offset from the desired
+VR destination. `[SOURCE]`
+[4.27 character methods](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/VRBaseCharacter.cpp#L777).
+
+For a unit-scale root, with local horizontal pivot `p`, root position `t`, old rotation `R0` and new
+rotation `R1`, preserve the occupied world point with:
+
+```text
+t_new = t + R0*p - R1*p
+check: t_new + R1*p == t + R0*p
+```
+
+Keep actor/control yaw ownership consistent; do not add the same turn again in the camera. If setting
+an absolute facing, declare whether it means body facing or HMD-facing: the plugin exposes an option
+to account for relative HMD yaw. UE5 adds a capsule-versus-projected-pivot choice; do not silently
+assume that option exists in 4.27.
+[UE5 character methods](https://github.com/mordentral/VRExpansionPlugin/blob/c19f6e27440bc599c3b132cb38c2ffec3996008b/VRExpansionPlugin/Source/VRExpansionPlugin/Private/VRBaseCharacter.cpp#L921).
+
+**Proof to run:** test at centre and several physical offsets, turn both ways, and log the chosen
+pivot's world position before/after. Then check a teleport marker against that pivot, not merely the
+actor root. This algebra does not establish collision safety; use the target's accepted movement path.
+
+## Room-scale displacement must not become permanent locomotion velocity {#roomscale-movement-accounting}
+
+In VRE 4.27, `AVRCharacter` substitutes both root and movement components. The movement helpers expose
+three separate operations: rewind previously applied relative VR displacement, temporarily add VR
+motion to movement velocity, and remove that additive contribution afterward. `AdditionalVRInputVector`
+and `CustomVRInputVector` are distinct, and tracking-jump rejection is applied before adding custom
+movement. `[SOURCE]`
+[helpers](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Public/VRBaseCharacterMovementComponent.h#L157).
+
+The transferable invariant is **one collision-resolved application of each physical displacement**,
+not “replace CharacterMovement in every mod.” Account separately for room-scale delta, stick velocity,
+scripted/climb displacement and tracking discontinuities. Feeding the HMD delta into movement after
+already moving the root applies it twice; leaving `delta / dt` in persistent velocity makes a physical
+step continue after the wearer stops. Reconcile accepted versus requested movement through
+[CAM-011](pattern-catalog.md#cam-011), rather than copying an engine-specific rewind blindly.
+
+**Proof to run:** physical step and stop, opposite-direction stick plus room-scale motion, wall contact,
+stair/ledge transitions, recenter and a tracking jump. Log requested/accepted displacement and velocity
+before/additive/after. A correct stationary scene cannot discriminate these ownership errors.
+
+## Predicted movement must carry the VR action, not just its visual result {#vr-move-actions}
+
+VRE 4.27 queues snap turns and teleports in `MoveActionArray`; the action carries velocity-retention
+and teleport-related policy. `FSavedMove_VRBaseCharacter::CanCombineWith` refuses to combine moves
+containing actions or custom input, differing movement modes, or differing capsule-height data.
+`[SOURCE]`
+[action construction](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/VRBaseCharacterMovementComponent.cpp#L598),
+[saved moves](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/CharacterMovementCompTypes.cpp#L47).
+UE5 factors the action check into `CanCombine()`, whose inspected body still rejects nonempty action
+arrays; it also separates capsule height from the earlier packed field. Same invariant, different layout.
+
+**Transfer recipe:** where prediction/replay exists, serialize the action at the movement boundary and
+preserve its ordering and discontinuity policy. A local transform write can look perfect until server
+correction replays a move without it. Do not transplant the plugin's saved-move struct or trust a
+client-authority grip mode as proof of server-side validation.
+
+Teleport also has **per-object grip policy**. `TeleportMoveGrip_Impl` checks movement authority and
+the interface's move/drop/stay policy before obtaining a valid target transform; post-teleport handling
+is distinct from an ordinary grip update.
+[grip teleport path](https://github.com/mordentral/VRExpansionPlugin/blob/4e52c69393271f3abce11d22c5265aa14373cb6e/VRExpansionPlugin/Source/VRExpansionPlugin/Private/GripMotionControllerComponent.cpp#L4153).
+
+**Proof to run:** snap turn and teleport under delayed correction, holding both a movable prop and a
+world-fixed control. Check all peers, release velocity, constraint error and exactly-once action
+application. Single-player RE mods can borrow the discontinuity policy without importing a network stack.
 
 ## Measure gesture velocity in ROOM space, or walking becomes a gesture {#roomspace-velocity}
 
@@ -603,6 +697,29 @@ Two related habits from the same file:
   calculate all those we might need (including adjustments) for the client to then take its pick."*
   Same shape as the multi-candidate residual probe in [06](06-debugging-methodology.md): cheap to
   produce all of them, expensive to guess wrong once.
+
+### A request is not an accepted action {#action-acknowledgement}
+
+[CircuitLord's scripts and native consumer](17-teardown-fc2vr-native-stereo.md#circuitlord-evidence)
+provide a paired example (`SOURCE` + `STATIC`): request tickets receive explicit
+rejection/acceptance, the native consumer matches the outstanding ticket, and an
+accepted equip is checked against reported and currently resolved weapon identity.
+A matching cancellation applies to the held transaction, not whichever item is now
+selected. This does **not** prove arbitrary command retries mutate the game exactly once.
+
+Use `(lifecycle generation, request ID, intended object)` as the transaction identity.
+The game owns permission, inventory and equip/use commits; VR proposes the action and
+reacts to its result. Revalidate at consumption, invalidate pending requests on lifecycle
+change, and route release/cancel to the original owner. Separate requested, accepted,
+committed and visibly presented milestones. An ACK is not animation completion.
+Source-owned code can use typed results; an RE/script bridge needs a verified transport
+and reset/overflow contract, not necessarily the donor's signed-console-variable encoding.
+
+**Failure tests:** delay an old success until after weapon swap; replay a reply; deliver
+rejection; cancel after selection changes; reuse a ticket after load/VM restart; and retry
+the command itself. Require no cross-object acceptance, no stale revival and at most one
+gameplay commit per accepted transaction. A valid current request must still succeed as
+the positive control. Test presentation separately from inventory/resource changes.
 
 ## Stick-as-buttons (jump/crouch on the right stick)
 

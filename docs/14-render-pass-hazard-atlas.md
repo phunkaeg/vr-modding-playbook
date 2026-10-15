@@ -4,6 +4,27 @@ When you frame-capture an unknown engine you meet a list of passes, and the only
 for VR is: **what does this pass read, and does that make it hostile to stereo?** This chapter is the
 lookup table.
 
+## A wider frustum cannot draw a room that is not active {#activation-before-culling}
+
+Distinguish **resident data → activated world set → per-view visibility** before
+widening a culling test. D2R VR's `HookFindRooms` expands only the simulation tick's
+first room-list pass, not subsequent prefetch/debug calls. A second native pass
+adds already-loaded neighbours; larger radii use a bounded graph walk and the
+engine's own tiling/list-append functions. It limits tiling to one room per tick,
+visits at most 512 graph nodes and restricts additions to levels already admitted
+by the native list. See [pinned source](diablo2-resurrected-reference.md). **SOURCE.**
+
+**Discriminator:** instrument resident, active and submitted room/object counts
+separately while turning a stationary camera. If the missing room is not active,
+a wider render frustum is the wrong intervention. Reuse native activation semantics
+and bound work; do not just append arbitrary pointers to a draw list.
+
+**Exit tests:** transitions, standing still after radius changes, graph cycles,
+radius reduction, unloaded neighbours and a saturated work budget. Measure worst-case
+tiling latency, memory, collision and lifecycle effects. One operation per tick is
+a count budget, **not proof of a millisecond budget or absence of stutter**. Source-owned
+ports can expose a view-driven activation request rather than duplicating hook logic.
+
 It is distilled from published frame teardowns of shipped AAA renderers — Adrian Courrèges' studies of
 [GTA V](https://www.adriancourreges.com/blog/2015/11/02/gta-v-graphics-study/) and
 [DOOM 2016](https://www.adriancourreges.com/blog/2016/09/09/doom-2016-graphics-study/), Alain Galvan's

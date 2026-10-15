@@ -1,5 +1,29 @@
 # Finding Things in the Binary: Anchors, Discovery, and Version Robustness
 
+## Address resolution needs a coverage state, not just a zero {#coverage-aware-resolver}
+
+D2R VR's resolver distinguishes `Unknown`, `Found`, `Waiting` and `Missing`.
+It checks the known site, searches readable code for a unique masked signature,
+derives referenced addresses, checks selected callee prologues and bounds results
+to the image. Zero matches with unreadable code pages means **Waiting**; duplicate
+matches are rejected rather than taking the first. A report names the feature lost
+with each unresolved address. See [pinned source](diablo2-resurrected-reference.md).
+These are **SOURCE** properties; the donor's explanation that pages decrypt on
+execution is not independently verified here.
+
+Resolve before installing hooks that rewrite signature bytes. Revisit pending
+entries as coverage changes, with bounded scans and a manual retry route. A positive
+control that deliberately shifts the expected site (`SetShiftTest` in the donor)
+can exercise fallback search, but the presence of that control is not a test result.
+
+**Required controls before adoption:** known hit at old site; relocated unique hit;
+duplicate hit; missing hit with complete versus partial readable coverage; malformed
+image; and a feature whose dependency never resolves. Exclude unreadable spans from
+candidate matching (the donor zero-fills them before searching, so do not treat that
+buffer alone as proof of readable match bytes). Resolve success is neither ABI proof
+nor permission to reuse old object layouts. Unregistered RVAs pass through in this
+implementation: its protection covers registered seams, not every native access.
+
 ## Measure a camera mapping instead of guessing storage order {#numerical-camera-mapping}
 
 Use when you have a bounded candidate block and an observable downstream payload,
