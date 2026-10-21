@@ -615,6 +615,42 @@ This is how a contract moves from live-tested to headset-validated
 ([status per contract](#status-per-contract)) without the headset session becoming the bottleneck. See
 [TEST-026](pattern-catalog.md#test-026).
 
+**A second witness.** An unpublished port, developed the same way, adds three habits. Every build note
+says either *installed* or *staged, not installed*, and its list for the next headset session gives each
+item what to look at, how to tune or disable it, which headless proof backs it and what is still
+unproven. The test log quotes the wearer verbatim and states each entry's scope, down to "observation
+environment unspecified; do not classify as headset acceptance". And each headset runbook splits steps
+between wearer and agent behind an explicit wearer-ready gate. `[SOURCE]`
+
+## Several agents, one machine, one game install {#agents-share-a-machine}
+
+When two AI coding agents work on one project on one PC, the game install and the XR runtime are shared,
+and most coordination failures look like flaky tests. An unpublished port's working rules: `[SOURCE]`
+
+- **Runs are numbered and never reused.** Trial scripts take a mandatory run number, refuse one that
+  already exists, and write one record per run.
+- **Look before launching.** A script waits while any game process is running. Before launching it pauses
+  a random 3-12 s and checks again, to narrow the race where both agents see a free runtime at once, and it
+  never touches saves under someone else's game.
+- **Talk to the game through a mailbox.** A command is written to a temporary file and renamed, and the
+  game echoes its sequence number back. Duplicates and commands from an earlier session are refused, and
+  repeat triggers carry a nonce rather than a flag. Each capture saves three images (backbuffer, scene and
+  UI), because the difference between them is often the finding.
+- **Hand off by patch, never by writing into the other agent's checkout.** When one agent's base was
+  uncommitted, the other shipped cumulative patches against a named baseline and checked each before
+  applying it. A build was made from a plain copy plus a per-file three-way merge. A failing test was run
+  on an untouched copy as well, which showed it predated the merge. An inconclusive headless check was
+  staged, not installed, and handed over explicitly.
+- **Gate integration on no new failures.** A dry merge preflight counted conflicting paths and chose a
+  targeted port over a merge. The gate was "no new failures against the clean baseline", not all green,
+  and every check not run was named. Runtime checks covered each feature alone and both together, each with
+  its own off switch.
+
+The harness writes its own limits down too. It takes over the desktop mouse, so it cannot run while the
+wearer uses the PC. A green runtime self-test is an environment gate, not a regression gate. And a
+readiness check keyed to a log line that default settings filter out could never pass. See
+[META-021](pattern-catalog.md#meta-021).
+
 ## Build shared tooling at a standardised interface, never at the game {#observe-at-the-interface}
 
 This fleet ran the experiment twice, with opposite results, and the discriminator is clean enough to

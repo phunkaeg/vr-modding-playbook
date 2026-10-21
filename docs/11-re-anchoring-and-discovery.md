@@ -2344,6 +2344,12 @@ toward a corner.
 and its own report said *"see the errors above"* with no errors above. Once it was made to speak, **the
 very next run printed the answer.**
 
+**Mask relocations when you port signatures to a second build.** In an unpublished port, two builds of one
+executable, linked fifteen minutes apart, had code shifted region by region. Exact 24-byte searches found
+15 of 31 known functions, while signatures with relocation-dependent bytes masked found 30 of 31 uniquely.
+Never port offsets by a fixed delta, map globals through the code that references them, and require a
+wrong-build control to be rejected. `[STATIC]`
+
 ### A shared callee tells you what a function NEEDS, not what it does {#shared-callee-inference}
 
 DishonoredVR concluded a function was "a second render path" because it shared two callees with the main

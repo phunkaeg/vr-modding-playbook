@@ -186,6 +186,12 @@ follower bridge, but it couples head and aim and cannot supply roll or independe
 tracking. Keep that path explicitly temporary and prevent mouse/gamepad/native camera lanes
 from driving the same rotation simultaneously.
 
+**And the game's heading becomes an output of that bridge.** In an unpublished port, HMD yaw fed in as
+mouse movement made a holster frame built on the game's heading turn with the head, and the headless
+simulator never turned its head, so nothing caught it. Read the live turn settings and the code that
+writes a value before naming it. Take the view direction from the averaged eye cameras, and derive body
+yaw from the head with a dead zone. `[SOURCE]` `[LIVE]`
+
 ## Latency, prediction, and smoothing
 
 - Use the runtime's **predicted pose** for the photons you're about to show; use **raw/fresh**

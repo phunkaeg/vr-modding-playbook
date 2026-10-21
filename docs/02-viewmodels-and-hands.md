@@ -2581,6 +2581,30 @@ and the no-hit takes nothing. The takes are the player's own data and stay out o
 regression cannot run while they are missing, and the project records that rather than counting it as a
 pass. `[SOURCE]` ([motion takes](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/MOTIONS.md)) See [TEST-027](pattern-catalog.md#test-027).
 
+## Touch with the rendered fingertip, not the aim pose {#rendered-fingertip-touch}
+
+An unpublished port's first touch implementation cast a short ray from the controller's aim pose. The
+visible fingertip sat about 4 cm behind that origin, so buttons were pressed while the finger was still
+about 16 cm away. Another switch never pressed at all, with no evidence why. `[SOURCE]` `[HEADSET]` The
+replacement takes the contact point from the rendered hand itself: `[LIVE]`
+
+- **An authored vertex at the index tip.** It is weighted to the index finger and skinned with the same
+  palette as the drawn mesh, released only for an exact frame, session, space and display-time stamp, and
+  consumed in that frame.
+- **A swept segment** between consecutive tip positions, so a fast poke cannot pass through, with
+  continuity limits that reject tracking jumps.
+- **A line-of-sight check** from the head to the tip.
+- **One latch per contact**, which needs about 25 mm of clear withdrawal before it can fire again. A
+  keypad freezes its UV at entry, and a held contact never repeats.
+- **The press is the engine's own use action**, fired on entry with a minimum approach speed and cooldowns
+  rather than on dwell. Haptics fire only on presses the game accepted.
+
+Headless, it gave four presses and four releases with no repeats. Losing tracking released the press,
+recovering tracking inside the target did not press, and a negative control against a wall rejected every
+contact. Two traps: a filter on exact names was defeated by an invisible trigger volume in front of a
+button (filter by family instead), and in some scripting languages an empty string is truthy. See
+[HAND-025](pattern-catalog.md#hand-025).
+
 ## Point the engine's own interaction at your hand, by borrowing the camera
 
 Most flat games run *use*, *activate* and *pick up* from the camera, not from the player body. That is

@@ -1391,6 +1391,49 @@ The fix is one line and the rule is general: **when a lookup fails, record the r
 up.** A name you cannot resolve is a gap in your table; a value you did not keep is a gap in your
 evidence, and only one of those is recoverable after the run.
 
+## Climb a ladder of cheaper checks before the headset {#feature-verification-ladder}
+
+An unpublished port added a dozen rendering features under one rule: nothing reaches the headset until it
+has passed every rung below. `[SOURCE]` `[LIVE]`
+
+1. **A frozen stage.** Each build has a unique version string and a manifest of the source head, the
+   dirty flag, and the binary and source hashes. The stager refuses a stale binary or a reused version.
+2. **Unit tests on a software rasterizer**, so GPU logic runs without a GPU or a headset.
+3. **A mutation census**: every rule has a mutant that the tests must catch.
+4. **A numeric replica** that predicts the software rasterizer's output.
+5. **Numbered headless runs**, with a live A/B switch per feature and counters that must grow. A feature
+   whose counter stays flat was never exercised.
+6. **The headset.**
+
+Three A/B traps cost real time. Debugging dumps left on by default wrote 25 GB and skewed every timing.
+Turning all lights off removes every consumer at once, so it cannot isolate a stage. And a run labelled
+with one feature off had two features off, which only the run's own counters revealed. When the scene
+itself varies frame to frame, interleave repeated samples.
+
+### Bring a replacement in as a shadow first
+
+Run a replacement beside the thing it replaces, logging only, before it owns anything. A new physics sweep
+replayed the existing solver's requests and logged its verdicts. Over 1,388 frames they agreed on 796
+blocked and 590 clear. The new sweep never disagreed; the old solver disagreed twice, right after instant
+hand jumps that its static check could not see. The same comparison showed the old solver's retraction cap
+leaving the held object embedded on deep pushes. The first run had no positive control: the object never
+reached the floor, so every frame was "clear" and the run proved nothing. `[LIVE]` See
+[TEST-028](pattern-catalog.md#test-028).
+
+### Fakes encode your assumptions
+
+- An effect written for a camera looking down +z passed its tests and drew every particle point-mirrored,
+  because the engine's view looks down -z. One in-game capture caught it.
+- A script check for a field passed in tests that used plain dictionaries and failed on the engine's
+  native vector objects, so every object's scale read as 1.0.
+- Tests exercised a helper whose production call had been dropped. A wiring test that inspects the
+  production seam failed on the old source, and packaging now runs it.
+- A fog insertion passed because the test scene had only walls behind the effect
+  ([14](14-render-pass-hazard-atlas.md#stereo-effects-retrofit)).
+
+Build fakes from values captured in the engine, and test the wiring as well as the logic. See
+[TEST-029](pattern-catalog.md#test-029).
+
 ## Expose the running game over HTTP, then drive it from a test {#http-control-plane}
 
 A [substitute runtime](09-d3d11-openxr-injection.md#substitute-runtime) fakes the *runtime* so the game

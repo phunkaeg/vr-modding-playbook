@@ -166,6 +166,23 @@ with one consumer is still backend-owned.
 because the original never had it - is the opposite failure. The reference is a floor. `[SOURCE]`
 penumbra_vr_framework ([18](18-beyond-the-native-injector.md#demonstrated-reuse)).
 
+## META-021 - Agents sharing one machine: unique runs, a look before launch, handoff by patch {#meta-021}
+
+**Problem:** two AI coding agents on one PC share the game install and the XR runtime. Their runs
+collide, their checkouts get overwritten, and their failures look like flaky tests.
+
+**Use when:** more than one agent builds, launches or tests the same game on the same machine.
+
+**Recipe:** number runs and refuse reuse, wait while a game process is running and re-check after a
+random pause, talk to the game through a rename-and-acknowledge mailbox, hand off by patch against a named
+baseline, and gate integration on no new failures with the skipped checks named.
+
+**Proof:** two agents starting runs in the same minute never share a game process or a save.
+
+**Trip hazard:** an integration gate of "all green" against a baseline that was never green. Use "no new
+failures" and name the old ones. `[SOURCE]` an unpublished port
+([08](08-project-process.md#agents-share-a-machine)).
+
 ## META-001 — Self-identifying build {#meta-001}
 
 **Problem:** a correct change appears ineffective because different bytes ran.
@@ -611,6 +628,41 @@ in every order yields exactly one native update per tick.
 **Trip hazard:** a pointer published with the status is valid for comparison only. Calling game methods
 through it from a non-game thread reintroduces the race that ownership was meant to remove. `[SOURCE]`
 penumbra_vr_framework ([07](07-engine-integration-safety.md#one-callsite-one-owner)).
+
+## HOOK-008 — Restore the engine's cached state, not just the device's {#hook-008}
+
+**Problem:** an engine that binds state only when it differs from its own cache never re-binds what your
+pass changed. A raw device restore leaves the engine and the device disagreeing.
+
+**Use when:** injecting any pass, such as shadows, fog or overlays, into an engine with a state-caching
+render layer.
+
+**Recipe:** restore the engine's logical state words and re-sync the device to the engine's cache, then
+compare at device precision.
+
+**Proof:** a leak-and-guard matrix: the leak with the guard off fails, the leak with the guard on passes,
+and no leak with the guard on passes.
+
+**Trip hazard:** testing only the injected leak, which proves the leak breaks things and nothing about the
+repair. `[STATIC]` `[LIVE]` an unpublished port ([07](07-engine-integration-safety.md#engine-state-cache)).
+
+## HOOK-009 — Lease a spawned helper actor, and acknowledge before you destroy it {#hook-009}
+
+**Problem:** an actor the mod spawns into the engine outlives assumptions about who owns it. Saves,
+reloads and reused IDs leave it orphaned, duplicated or refused.
+
+**Use when:** spawning bodies, props or proxies into a running game.
+
+**Recipe:** use one owner, a bounded mailbox and one outstanding request, with nonce, action and actor
+checks on both sides. Acknowledge "off" before destroying, never move or destroy a possibly reused ID,
+renew a heartbeat lease, and recheck ownership after any engine call that can run scripts.
+
+**Proof:** a save load, a lapsed lease and a dead owner each end with the actor released and re-acquired
+cleanly.
+
+**Trip hazard:** a lifecycle with no load case. The reloaded game spawns a new actor that the stale owner
+refuses for the rest of the session. `[HEADSET]` an unpublished port
+([07](07-engine-integration-safety.md#actor-owner-lease)).
 
 ## STR-008 — Borrow the engine's own off switch for the second eye {#str-008}
 
@@ -1061,6 +1113,24 @@ It is not the same thing - [06](06-debugging-methodology.md) records a high conf
 to a false camera. Prefer three terms you can name over one you cannot.
 `[SOURCE]` Ultraleap UnrealPlugin.
 
+## CAM-020 - Move the visible body on the camera's clock {#cam-020}
+
+**Problem:** a body skinned from simulation joints steps on simulation ticks while the camera is
+interpolated, so it judders against a smooth world.
+
+**Use when:** drawing a player body or attached props in a game whose simulation ticks slower than the
+headset.
+
+**Recipe:** add a draw-time rigid offset from the same interpolated transform the camera uses, on the same
+clock. Never parent the torso to the eye camera, and never low-pass it.
+
+**Proof:** the fraction of adjacent samples where the body root repeats falls to zero while the camera
+moves.
+
+**Trip hazard:** gameplay that measures movement between rendered frames reads zero on frames without a
+tick. Measure over a short window instead. `[LIVE]` an unpublished port
+([12](12-torso-calculations-and-ergonomics.md#body-on-camera-clock)).
+
 ## CAM-001 — Split head pose from body yaw {#cam-001}
 
 **Problem:** head turning also rotates locomotion/body, or yaw is applied twice.
@@ -1300,6 +1370,48 @@ count against the compositor's displayed count - a gap between them is frames dr
 The discrepancy only appears in the compositor's own statistics, and the two obvious knobs - pipeline
 depth and readiness - do not move it, because nothing is wrong with the frames.
 `[SOURCE]` OFXR-Bridge, measured on VDXR and on SteamVR with a Pimax driver.
+
+## STR-022 - Give each eye what it consumes; build per-frame state before the first eye {#str-022}
+
+**Problem:** a renderer that assumed one traversal per frame is drawn twice. Lists drained by the first
+eye, quads drawn once after the loop, caches keyed on the wrong thing and state built as a side effect
+of drawing all make the eyes disagree, or crash the second pass.
+
+**Use when:** any native or re-entry stereo route that runs the engine's scene traversal once per eye.
+
+**Recipe:**
+
+- **Inventory what is shared per frame and what is owned per eye.** The clock, noise and simulation
+  snapshots are shared; camera, depth copy, scene snapshot and screen-space constants are per eye.
+- **Give each eye its own slice of any consumed list,** reset cursors per eye, and refuse a frame whose
+  per-eye counts do not sum.
+- **Replay once-per-frame full-screen draws into both eyes,** and anchor media in world space.
+- **Prepare skeletons and other per-frame state before the first eye,** never as a side effect of a draw.
+
+**Proof:** with zero eye separation both eyes issue identical draw lists, and swapping the eye order
+changes nothing.
+
+**Trip hazard:** an invariance guard on the pair that does not know every legitimate writer. It refuses
+valid frames and ends sessions. `[LIVE]` an unpublished port
+([14](14-render-pass-hazard-atlas.md#two-pass-ownership)).
+
+## STR-023 - Insert a pass at the engine's own list boundary, never at a render-state pattern {#str-023}
+
+**Problem:** a new pass meant to run "before translucents" is triggered by a state pattern (depth writes
+off, blending on) that the engine also uses for decals in the middle of the world. Everything drawn later
+skips the pass.
+
+**Use when:** adding fog, particles, post effects or any pass that must sit at a point in the engine's
+frame.
+
+**Recipe:** hook the scene-list dispatcher and insert at the first entry of the right list kind. Count
+what each list actually holds at runtime before writing a type filter.
+
+**Proof:** the pass runs at the end of the world draws in a scene that has decals, doors and creatures
+behind the effect, not just walls.
+
+**Trip hazard:** a test scene that only has walls behind the effect passes either way. `[HEADSET]` an
+unpublished port ([14](14-render-pass-hazard-atlas.md#stereo-effects-retrofit)).
 
 ## STR-001 — Private per-eye targets {#str-001}
 
@@ -1947,6 +2059,23 @@ clock.** One sample of travel per update becomes one physics step of flight, or 
 refresh-rate dependent and tuned for whoever's headset the author owns. And distinguish a *break* from
 a *release*: a hold that vanished, or a body that failed to follow, must launch nothing.
 `[SOURCE]` shock2quest.
+
+## INPUT-013 — Map roles to hands; never swap the physical hands {#input-013}
+
+**Problem:** left-handed play implemented feature by feature leaves some features on physical hands,
+which puts actions on the same trigger and leaves authored data with no mirror.
+
+**Use when:** supporting left-handed or ambidextrous play without mirroring the whole input state.
+
+**Recipe:** keep physical indices, tracking and skeletons fixed. Publish a role packet (weapon, support,
+interaction) that every consumer resolves centrally, and change roles as a transaction that waits for
+neutral input and an acknowledgement.
+
+**Proof:** an audit marks every area as following roles, partial or physical, and no area is left
+physical.
+
+**Trip hazard:** shipped defaults and authored per-hand data that name physical hands. `[SOURCE]` an
+unpublished port ([03](03-input-and-locomotion.md#hand-roles)).
 
 ## CFG-003 — Write the config before the process starts {#cfg-003}
 
@@ -2806,6 +2935,45 @@ change, and treat a missing set of takes as an unrun test, not a pass.
 **Trip hazard:** the takes are personal data outside version control, so a test that cannot find them
 must say so rather than pass. `[SOURCE]` quakevr ([02](02-viewmodels-and-hands.md#motion-takes)).
 
+## TEST-028 — Climb a ladder of cheaper checks, and bring replacements in as shadows {#test-028}
+
+**Problem:** rendering features reach the headset untested, and every headset session is spent finding
+defects that a cheaper instrument could have found.
+
+**Use when:** adding rendering or physics features to a VR port.
+
+**Recipe:**
+
+- **Freeze each stage** with a manifest of hashes, and refuse stale binaries.
+- **Climb in order:** unit tests on a software rasterizer, a mutation census, a numeric replica, numbered
+  headless runs with live A/B switches and counters that must grow, then the headset.
+- **Measure drift** by repeating the baseline at the end of a batch.
+- **Introduce a replacement as a log-only shadow** that compares verdicts before it owns anything.
+
+**Proof:** each feature's counters grow on its own switch, and the shadow's disagreement count is known,
+with a positive control that exercises it.
+
+**Trip hazard:** a shadow run without a positive control, which agrees perfectly because nothing reached
+the case that differs. `[LIVE]` an unpublished port
+([06](06-debugging-methodology.md#feature-verification-ladder)).
+
+## TEST-029 — Build fakes from the engine's conventions, and test the wiring {#test-029}
+
+**Problem:** test doubles encode the author's assumptions, so the tests pass on the same mistake the code
+makes, or exercise a helper that production no longer calls.
+
+**Use when:** any unit test of engine-facing logic.
+
+**Recipe:** take fake inputs from values captured in the engine (axis conventions, native object types),
+add a wiring test that inspects the production call site, and run it in packaging.
+
+**Proof:** the wiring test fails on the source from before the fix, and one in-game capture agrees with
+the unit tests.
+
+**Trip hazard:** a fake that uses plain containers where the engine supplies native objects, so a field
+check passes in the test and fails in the game. `[LIVE]` an unpublished port
+([06](06-debugging-methodology.md#feature-verification-ladder)).
+
 ## TEST-005 — Keep a bit-exact reference build {#test-005}
 
 **Problem:** a port shares code with an original target, and an accidental semantic change to that shared
@@ -3301,6 +3469,23 @@ non-zero mass after building.
 **Trip hazard:** a hull that fails to build leaves a massless part, and the ragdoll explodes on creation.
 Cap the hull's points and check the masses. `[SOURCE]` quakevr
 ([02](02-viewmodels-and-hands.md#skeleton-from-vertex-animation)).
+
+## HAND-025 - Touch with the rendered fingertip, not the aim pose {#hand-025}
+
+**Problem:** a ray cast from the controller's aim pose presses buttons where the hand is not. The visible
+fingertip can sit centimetres away from the aim origin.
+
+**Use when:** pressing buttons, keypads or switches with the hand.
+
+**Recipe:** take an authored fingertip vertex skinned with the drawn mesh's palette. Sweep it between
+frames, check line of sight from the head, latch per contact with a withdrawal distance, and fire the
+engine's own use action on entry with a minimum approach speed.
+
+**Proof:** presses and releases pair up with no repeats, tracking loss releases the press, and a negative
+control against a wall rejects every contact.
+
+**Trip hazard:** filtering targets by exact name, which an invisible trigger volume in front of a button
+defeats. `[LIVE]` an unpublished port ([02](02-viewmodels-and-hands.md#rendered-fingertip-touch)).
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 

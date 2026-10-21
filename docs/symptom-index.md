@@ -52,6 +52,9 @@ that the observation and the cause are usually in different chapters.
 | A melee or gesture tweak fixes one swing and breaks another | [02](02-viewmodels-and-hands.md#motion-takes) - replay labelled headset takes ([FAIL-TEST-041](failure-atlas.md)) |
 | Improved defaults never reach existing players | [07](07-engine-integration-safety.md#default-migrations) - migrate only where the old default still stands ([FAIL-CFG-009](failure-atlas.md)) |
 | Adding binaural audio lost the game's reverb or occlusion | [20](20-audio-and-haptics.md#hrtf-in-the-mixer) - insert the HRTF after the native panner ([FAIL-AUDIO-004](failure-atlas.md)) |
+| A spawned body or the arms never come back after a save load | [07](07-engine-integration-safety.md#actor-owner-lease) ([FAIL-HOOK-013](failure-atlas.md)) |
+| Tests pass but the effect is mirrored or the fix is missing in the game | [06](06-debugging-methodology.md#feature-verification-ladder) ([FAIL-TEST-042](failure-atlas.md)) |
+| Left-handed mode puts two actions on one trigger | [03](03-input-and-locomotion.md#hand-roles) ([FAIL-INPUT-027](failure-atlas.md)) |
 
 ## "It looks wrong in the headset"
 
@@ -220,6 +223,11 @@ that the observation and the cause are usually in different chapters.
 | Blood or decals show in one eye a frame before the other | [13](13-teardown-bioshock-vr.md#per-eye-writer-race) - frame content built during the first eye's pass; build it once per frame ([FAIL-STR-067](failure-atlas.md)) |
 | A ragdoll explodes the moment it spawns | [02](02-viewmodels-and-hands.md#skeleton-from-vertex-animation) - a massless part from a hull that failed to build ([FAIL-HAND-061](failure-atlas.md)) |
 | A flick of the wrist launches a heavy box | [18](18-beyond-the-native-injector.md#added-physics-engine) - kinematic hands pass on their full speed; push by mass share ([FAIL-HAND-060](failure-atlas.md)) |
+| The eyes are tinted or flashed differently, for example underwater | [14](14-render-pass-hazard-atlas.md#two-pass-ownership) - a quad drawn once after the eye loop; swap the eye order ([FAIL-STR-068](failure-atlas.md)) |
+| One eye sees geometry through walls after an injected pass | [07](07-engine-integration-safety.md#engine-state-cache) - restore the engine's cached state ([FAIL-HOOK-012](failure-atlas.md)) |
+| Doors, creatures or decals draw on top of an added fog | [14](14-render-pass-hazard-atlas.md#stereo-effects-retrofit) - insert at the engine's list boundary ([FAIL-STR-070](failure-atlas.md)) |
+| The body judders against a smooth world while moving | [12](12-torso-calculations-and-ergonomics.md#body-on-camera-clock) ([FAIL-CAM-034](failure-atlas.md)) |
+| Touch presses buttons before the finger reaches them | [02](02-viewmodels-and-hands.md#rendered-fingertip-touch) ([FAIL-HAND-062](failure-atlas.md)) |
 
 ## "I can't find it"
 
@@ -252,6 +260,7 @@ that the observation and the cause are usually in different chapters.
 | Game dies when you pause it in a debugger | [06](06-debugging-methodology.md) — **you cannot pause a VR process.** Use non-pausing instrumentation |
 | Process won't exit / hangs on shutdown | [07](07-engine-integration-safety.md) — an injected worker thread waiting on a signal that will never come |
 | Works with the Steam executable, crashes with the GOG or Epic one of the same version | [11](11-re-anchoring-and-discovery.md#drm-free-twin) - compare section bytes before injecting ([FAIL-PACK-020](failure-atlas.md)) |
+| With stereo on, the game dies with no crash dump in scenes with water or sorted translucents | [14](14-render-pass-hazard-atlas.md#two-pass-ownership) - a draw consumes shared state ([FAIL-STR-069](failure-atlas.md)) |
 
 ## "I can't tell whether it worked"
 
@@ -330,6 +339,7 @@ diagnose them, which the rest of this index did not reach.
 | Context fills fast; the agent is burning tokens | [06](06-debugging-methodology.md#agent-token-costs) — most tokens go to reading habits (re-paging, whole-file reads, wide greps), not game tooling |
 | A green harness or a self-consistent instrument you don't quite trust | [06](06-debugging-methodology.md#self-proving-instrument) — make it detect the known-bad state before you trust its clean verdict |
 | An agent needs its operating rules before touching the fleet | [bottleneck-map](bottleneck-map.md#agent-operating-protocol) — state hypothesis, control, variable and decision rule before code; keep ambiguous outcomes ambiguous |
+| Two agents' runs collide on one machine | [08](08-project-process.md#agents-share-a-machine) ([FAIL-META-019](failure-atlas.md)) |
 
 ## "I'm working on a UEVR title"
 

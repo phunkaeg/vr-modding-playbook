@@ -326,6 +326,27 @@ Before you borrow a field, **enumerate what reads it** and freeze those for the 
 transaction. This failure is silent and it does not look like a state bug — it looks like your second
 eye is computing the wrong answer.
 
+### A helper actor you spawn needs an owner and a lease {#actor-owner-lease}
+
+A body or prop the mod spawns into the engine is borrowed state with a lifetime of its own. An unpublished
+port's rules for one: `[SOURCE]`
+
+- one owner per actor, with requests going through a bounded mailbox that the owner thread consumes, one
+  outstanding at a time;
+- both sides check a nonce, the action and the actor, and an uncertain change is never retried;
+- "off" is acknowledged before the actor is destroyed; without the acknowledgement the actor is kept and
+  a fault is reported;
+- an object ID that may have been reused is never moved or destroyed;
+- the owner holds a lease renewed by a real-time heartbeat, and ownership is rechecked after any engine
+  call that can run scripts.
+
+The headset found the case the list did not name. After a save load, the reloaded script spawned a new
+actor, but the native side still held the old owner, refused the new one and never acknowledged the stop,
+so the arms stayed detached for the rest of the session. Release ownership on a detected load, a lapsed
+lease or a dead owner. `[HEADSET]` Fault injection found three more defects: failures after a spawn
+stuck in "off", a visual write after a fault acknowledgement, and a diagnostics buffer that filled up
+over the actor's lifetime. See [HOOK-009](pattern-catalog.md#hook-009).
+
 ## Never read your own output back as fresh input
 
 Any hook that both **writes** a value and later **reads** "the current value" to compute the next update
@@ -679,6 +700,27 @@ For an **OpenGL** target the same discipline applies to a different, broader sur
 machine and FBOs rather than a context's bound list. See [10](10-graphics-apis.md) for what to
 save/restore and why it's less forgiving.
 
+### Restore the engine's cached state, not just the device's {#engine-state-cache}
+
+Many engines bind a render state only when it differs from their own cached copy. Anything your pass
+binds directly therefore survives into the engine's later draws, and restoring the raw device state
+afterwards is not enough: the engine still believes its old state is bound and never re-binds it. In an
+unpublished port, shadow passes injected into one eye left a depth state that showed geometry through
+walls in that eye only, and a guard that restored device state alone failed 684 checks even with the leak
+removed. The fix restores the engine's logical state and re-syncs the device to the engine's cache.
+`[STATIC]` `[LIVE]`
+
+| Leak injected | Guard | Passes OK / failed |
+|---|---|---|
+| yes | off | 298 / 671 |
+| yes | on | 952 / 0 |
+| no | on | 966 / 0 |
+
+The table holds two lessons. A guard needs runs with the leak and without it, because injecting the leak
+only proves that the leak breaks things. And compare at device precision: the engine cached a stencil
+reference as 0xFFFFFFFF, the device keeps 8 bits and reads back 255, and the mismatch was not real. See
+[HOOK-008](pattern-catalog.md#hook-008).
+
 ## When a feature crashes the runtime, quarantine it — don't paper over it
 
 A feature whose resource lifetime is tangled with the OpenXR/compositor's own resources can hard-crash
@@ -764,6 +806,13 @@ retrying one that never will.
 
 A rate limit is what makes the transient case safe to retry at all: without one, "not ready yet"
 becomes a hot loop that competes with the very initialisation it is waiting for.
+
+**Match the response to the size of the fault.** In an unpublished port, one light's failed shadow pass
+cancelled the whole stereo frame, which the wearer saw as VR refusing to start. Dropping that light for
+the frame, and cancelling only when the engine's state could not be restored, kept the frame. A one-frame
+gap at a camera cut had also been fatal. Treated as retryable, within a bound (three tries a second apart,
+reset after thirty good frames), it resumed within a second. A heuristic for at-risk lights failed its
+own positive control, ranking the actual culprit 109th of 158, so it was not used. `[HEADSET]` `[LIVE]`
 
 ### The catch that cost the session
 

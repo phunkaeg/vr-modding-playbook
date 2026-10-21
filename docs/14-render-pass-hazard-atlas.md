@@ -4,6 +4,115 @@ When you frame-capture an unknown engine you meet a list of passes, and the only
 for VR is: **what does this pass read, and does that make it hostile to stereo?** This chapter is the
 lookup table.
 
+## Two passes, one frame: what each eye must own {#two-pass-ownership}
+
+Drawing the scene twice per frame is the cheapest route to native stereo, and it breaks every assumption
+an engine made about one traversal per frame. An unpublished port catalogued the breakages in headless runs
+with a simulated runtime; each one has a cheap discriminator. `[LIVE]` `[STATIC]`
+
+### Draws issued once after the eye loop reach only the last eye
+
+Full-screen quads the engine draws once per frame after its view loop (tints, damage flashes, fades)
+land in whichever eye's target is bound last. The symptom: the eyes are tinted differently underwater
+while dry views match. List every draw between the last eye pass and the end of the frame, or **swap the
+eye order**: a difference that follows the order is per-frame state, and one that follows the eye is
+camera state. The fix replays the quad into the other eye. A zero-separation control catches the whole
+class: with no eye separation, both eyes must issue the same draws.
+
+### A draw that consumes shared state breaks the second pass
+
+A routine that advances a shared cursor or drains an append-only list is drained by the first eye, and
+the second eye reads from before the start of its array. Here the process died with no crash dump, and
+only in scenes with sorted translucent geometry. Search everything the eye loop calls for writes to
+shared counters and log each one at the start of each eye. Then give each eye its own slice: install that
+eye's count, reset the cursor before its pass, and refuse the frame unless each eye's records sum to what
+it pushed.
+
+### Caches and targets keyed on anything but the eye
+
+- A redundancy cache keyed on a depth-bias level, not on the eye, would reuse eye 1's projection for
+  eye 2. `[STATIC]`
+- A route that follows the latest world render target jumps to a side target the engine draws into in the
+  middle of an eye for a special effect, taking the fog and the held weapon's depth with it: the arms
+  appeared twice in each eye. Choose the eye's target as the colour/depth pair with the most world draws,
+  about 140 against a handful. `[HEADSET]` `[LIVE]`
+
+### Per-frame state must not be a side effect of drawing
+
+A skeleton prepared only when the body was drawn vanished when a 35 cm lean stopped the body being
+drawn, and both arms lost their attachment. Prepare per-frame state once, before the first eye, freeze the
+validated pose, and have both eyes read it. Integrate an animation's phase once per frame rather than
+computing speed times time in each eye. A medium anchored to the eye is the same mistake in another form:
+with a height-fog density measured from each eye's own origin, a synthetic eye-height difference gave the
+same world point 0.817 in one eye and 0.85 in the other. Anchor media in world space. `[SOURCE]`
+
+| Shared once per frame | Owned per eye |
+|---|---|
+| the clock | camera and projection |
+| noise and jitter (different jitter per eye is binocular rivalry) | depth copy |
+| simulation snapshots: skeletons, water ripples | scene snapshot for refraction |
+| | reflections marched in that eye's own matrices |
+| | screen-space ambient-occlusion constants, which carry their own field-of-view terms |
+
+Leaving those occlusion constants on the old projection crashed the GPU.
+
+### A guard on the pair needs a census of writers
+
+A check that nothing changes between the eye passes ended the stereo session nine times in twenty minutes
+of combat, because an engine classifier legitimately rewrites the guarded bytes at the end of every
+traversal. List every writer of what you guard and when it runs. Make each refusal name its failing
+sub-check and the record, and when you relax one comparison, find its twins. And **publication is not
+presentation**: a HUD path published both panels while a depth gate, keyed on bookkeeping that a native
+fast path skipped, refused every sampled draw. Accept a panel only on per-eye draw and pixel evidence.
+An eye asymmetry that is identical on the previous build is the view, not a regression. See
+[STR-022](pattern-catalog.md#str-022).
+
+## Retrofitting effects into an old renderer, in stereo {#stereo-effects-retrofit}
+
+An unpublished port added fog, volumetric light, parallax mapping, light LOD and water to a renderer that
+predates all of them. The transferable part is where each effect sits in a stereo frame and what it costs.
+The numbers are headless GPU timings at 2560x1440 per eye, both eyes. `[LIVE]`
+
+### Find the insertion point by structure, and count before you filter
+
+"Before translucents" was first keyed on a render-state pattern: the first draw with depth writes off
+and blending on. The engine draws decals that way in the middle of the world, so every later door,
+creature and decal drew over the fog. The test scene had only walls behind the effect, so it passed.
+`[HEADSET]` Hooking the scene-list dispatcher and inserting at the first translucent-kind entry moved
+the fog to the end of the world draws. Count what a list really holds before you write a filter: a type
+filter guessed from the dispatch table changed nothing, because the list held six models and no bitmaps.
+`[STATIC]` See [STR-023](pattern-catalog.md#str-023).
+
+### Fog is one pass, per eye
+
+- Use one full-screen pass after opaque geometry and ambient occlusion, and before the held weapon, with
+  that eye's exact projection times view. Fog applied per shader breaks once later passes add light.
+- Fog drawn after translucents that write no depth fogs them at the depth of the wall behind them.
+- March at half resolution, with a checkerboard of nearest and farthest depth per 2x2 block and a
+  bilateral upsample. Noise fixed to the screen swims with the head, so it needs a depth-aware blur.
+
+Analytic fog cost about 0.05 ms. Lit fog with in-scattering cost 0.93 ms at half resolution against
+3.86 ms at full. The volumetric look as one pass cost 5.1 ms, against 21.4 ms when marched inside the
+surface shaders. Measure noise first: repeating the baseline at the end of a batch drifted by 0.26 ms,
+so smaller differences were treated as noise.
+
+### Parallax and lights must be world-fixed
+
+Parallax mapping with a tangent frame from screen-space derivatives and each eye's own view origin gives
+real stereo depth. A light attached to the viewer makes shading follow the head, so fix lights in the
+world. Texture matching can be asynchronous: a late map beats a dropped frame. Light-LOD pops come from
+transitions, not quality. Every tier needs a cross-fade and hysteresis, visibility should be judged by
+the cells a light illuminates rather than the cell of its fixture, and shadow-map refreshes should be
+spread across frames; a shadow-map cache cut GPU time from 12.72 ms to 11.11 ms. `[LIVE]` `[HEADSET]`
+
+### Soft particles and refraction are designs here
+
+Soft particles shared their shader with decals lying flush on walls, which a depth fade would erase.
+The design gates per draw by list-entry type, binds a depth copy rather than the bound depth target, and
+fades over about 15 cm; additive blending scales colour and alpha blending scales alpha. Refraction
+copies each eye's scene immediately before the refracting draw. Neither is a measured result.
+`[INFERENCE]`
+
 ## A wider frustum cannot draw a room that is not active {#activation-before-culling}
 
 Distinguish **resident data → activated world set → per-view visibility** before

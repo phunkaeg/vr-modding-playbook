@@ -746,6 +746,21 @@ The failure mode of the alternative is not subtle but it is slow: each `if (left
 call site is individually correct, and the bug appears only in the combination nobody tested — usually
 two-handed grip plus left-handed plus a weapon that has its own authored grip side.
 
+### Or map roles to hands, and never swap the hands {#hand-roles}
+
+An unpublished port takes the other route to left-handed play: the physical hands never swap. Controller
+indices, tracking and skeletons stay left and right. A role packet names the weapon hand, the support hand
+and the interaction hand, and every consumer resolves roles centrally; a missing packet means the legacy
+layout, and a malformed one is refused. Changing roles is a transaction. It commits only after a quarter
+second of neutral input with no ammunition, held object or gesture in flight, and actions stay blocked
+until the game scripts acknowledge it. `[SOURCE]`
+
+Its left-handed audit is the reusable method: a verdict per area (follows roles, partial or physical) and
+fixes ordered by what a left-handed player hits first. It found the interaction hand uncoupled from the
+weapon hand, which put fire and use on the same trigger, helpers with no callers, shipped defaults that
+name physical hands, and authored per-hand data with no mirror fallback. Mirroring input and mapping roles
+both work; mixing them feature by feature is what breaks. See [INPUT-013](pattern-catalog.md#input-013).
+
 ## Calibration is per-context, with inheritance — not one global number
 
 A single global height or scale value is the right *starting* place and the wrong *finishing* place, as

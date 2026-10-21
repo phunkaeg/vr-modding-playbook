@@ -212,7 +212,7 @@ A full `source_integration` review counts as source-owned coverage only for a `s
 | **satisfactory-uevr-enhancements** | external reference | Unreal 5 | framework-companion | — | — | 18 | 433 | 18 | 5 | 2026-08-22 | 🟩 current | 0F / 2P / 0S / 0NR / 11— |
 | **Scrap-Mechanic-Native-VR** | external reference | Scrap Mechanic (proprietary) | script-native-hybrid | — | — | — | 74 | 38 | 11 | 2026-08-27 | 🟩 current | 0F / 3P / 1S / 0NR / 9— |
 | **Shipwright-VR** | external reference | libultraship / Ship of Harkinian | source-port | — | — | — | 11943 | 3243 | 22 | 2026-08-26 | 🟩 current | 1F / 3P / 0S / 0NR / 9— |
-| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 1387 | 769 | 89 | 2026-09-27 | 🟥 source changed | 3F / 4P / 1S / 1NR / 4— |
+| **shock2quest** | external reference | Dark engine recreation (Rust) | engine-recreation | — | — | 18 | 2044 | 927 | 207 | 2026-10-19 | 🟥 source changed | 3F / 4P / 1S / 1NR / 4— |
 | **Silent-Hill-3-VR-Mod** | external reference | Silent Hill 3 (2003) | native-injector | T2 | ? | 18 | 478 | 133 | 56 | 2026-08-29 | ⚪ unpinned | 0F / 2P / 0S / 9NR / 2— |
 | **sims4-vr** | archived reference | EA custom (Sims 4) | script-native-hybrid | — | — | 18 | 131 | 81 | 26 | 2026-08-23 | 🟩 current | 3F / 0P / 0S / 0NR / 10— |
 | **singularity-vr-mod** | external reference | Unreal Engine 3.584 (Singularity 2010) | native-injector | T1 | R2 · per-draw replay | 9 | 84 | 39 | 16 | 2026-08-29 | ⚪ unpinned | 6F / 2P / 0S / 3NR / 2— |
@@ -266,10 +266,10 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **FarCry2-vr** | 2026-09-03 | `tree:f8a7972fa42c8fde` | `tree:6a4b4fd1960c7545` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Medal-of-Honor-vr** | 2026-09-04 | `tree:86e9768fb217f5cc` | `tree:6993771916d25874` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **PreyVR** | 2026-08-28 | `tree:ea9020b75685cf9d` | `tree:a9bc69932d235186` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:16443193f230b37a` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Sims4VR** | 2026-08-28 | `tree:ca949b5a4fc0d490` | `tree:69567255f20bfc20` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SoF-VR** | 2026-09-04 | `tree:381555bafe5d9010` | `tree:70d8139029ca120b` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **SOMAVR** | 2026-08-28 | `tree:ef4d52fb846535b5` | `tree:8646a059225dcc80` | `—` | 🟥 source changed | internal | internal-unreleased |
-| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:343c9fd8c9e41a89` | `—` | 🟥 source changed | internal | internal-unreleased |
+| **Swat4-VR** | 2026-08-28 | `tree:39a751f1ad836d40` | `tree:35589002644f00e2` | `—` | 🟥 source changed | internal | internal-unreleased |
 | **Aliens-Versus-Predator-VR** | 2026-08-29 | `unknown` | `tree:bf8bb2bf9d6c7c4a` | `—` | ⚪ unpinned | unknown | GPL-3.0 |
 | **anvilengine2vr** | 2026-08-25 | `tree:64c6afb808b9af48` | `tree:64c6afb808b9af48` | `—` | 🟩 current | unknown | MIT |
 | **Bateau01-SOMA-VR** | 2026-10-15 | `tree:f47f88b098d50e60` | `tree:f47f88b098d50e60` | `cf2c9291594ff5b29f1fbbbfb7c5baefa74c45ac` | 🟩 current | https://github.com/Bateau01/SOMA-VR | GPL-3.0 |
@@ -365,7 +365,7 @@ A red row means the source tree no longer matches the snapshot that was reviewed
 | **satisfactory-uevr-enhancements** | 2026-08-25 | `tree:33a7aa8069455a16` | `tree:33a7aa8069455a16` | `—` | 🟩 current | unknown | unknown |
 | **Scrap-Mechanic-Native-VR** | 2026-08-27 | `tree:b34922f3c587f2ce` | `tree:b34922f3c587f2ce` | `8aabe24ec62c5c4d8ef9852250a358e1296f9bf2` | 🟩 current | https://github.com/21Suspect/Scrap-Mechanic-Native-VR | MIT |
 | **Shipwright-VR** | 2026-08-26 | `tree:6847d39fbf2e86de` | `tree:6847d39fbf2e86de` | `7afef6987c7f0fb51e09bfb2f7a8f902428a38f2` | 🟩 current | https://github.com/ShinyWindow/Shipwright-VR | unknown |
-| **shock2quest** | 2026-09-19 | `tree:80a30f1bdad91aa8` | `tree:75066d7b9e06b686` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | GPL-2.0 (README: code ported from openDarkEngine, so the whole is GPL-2.0); the engine/ folder is additionally dual-licensed MIT. No LICENSE file at the root - the terms are stated in README.md and THIRD_PARTY_LICENSES.md |
+| **shock2quest** | 2026-09-19 | `tree:80a30f1bdad91aa8` | `tree:37d8b1e593469e24` | `—` | 🟥 source changed | https://github.com/tommy-xr/shock2quest | GPL-2.0 (README: code ported from openDarkEngine, so the whole is GPL-2.0); the engine/ folder is additionally dual-licensed MIT. No LICENSE file at the root - the terms are stated in README.md and THIRD_PARTY_LICENSES.md |
 | **Silent-Hill-3-VR-Mod** | 2026-08-29 | `unknown` | `tree:f1f0674d9d679091` | `—` | ⚪ unpinned | unknown | unknown |
 | **sims4-vr** | 2026-08-25 | `tree:1dec2736beb2f5e5` | `tree:1dec2736beb2f5e5` | `—` | 🟩 current | unknown | unknown |
 | **singularity-vr-mod** | 2026-08-29 | `unknown` | `tree:50b0c75b563c385d` | `—` | ⚪ unpinned | unknown | MIT |
@@ -449,8 +449,8 @@ None. Every directory under `Other VR mods/` is tracked or explicitly classified
 | **PreyVR** | active mod | CryEngine (Arkane) | re-owned | D3D11 | x64 | pre-T1 | — | unproven | 143484 | 5439 | 2026-10-04 | 🟥 source changed | 2F / 6P / 1S / 0NR / 4— |
 | **DishonoredVR** | active mod | UE3 | re-owned | D3D9 | x86 | pre-T1 | — | unproven | 212 | 75 | 2026-09-09 | 🟥 source changed | 2F / 3P / 0S / 0NR / 8— |
 | **FarCry2-vr** | active mod | Dunia | re-owned | D3D10 (D3D9 selectable) | x86 | T1 | — | R2 · per-draw replay | 5544 | 149 | 2026-10-06 | 🟥 source changed | 7F / 2P / 0S / 0NR / 4— |
-| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 474 | 98 | 2026-10-01 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
-| **Sims4VR** | research target | EA custom (Sims 4) | hybrid-re+script | D3D11 | x64 | pre-T1 | T2 | unproven | 7606 | 737 | 2026-10-03 | 🟥 source changed | 0F / 4P / 0S / 0NR / 9— |
+| **Swat4-VR** | active mod | UE2.5 Vengeance | hybrid-re+sdk-oracle | D3D9 | x86 | pre-T1 | — | unproven | 488 | 99 | 2026-10-21 | 🟥 source changed | 4F / 5P / 1S / 0NR / 3— |
+| **Sims4VR** | research target | EA custom (Sims 4) | hybrid-re+script | D3D11 | x64 | pre-T1 | T2 | unproven | 7634 | 740 | 2026-10-21 | 🟥 source changed | 0F / 4P / 0S / 0NR / 9— |
 | **SoF-VR** | active mod | id Tech 2 / Raven fork | hybrid-re+sdk-oracle | OpenGL 1.x | x86 | pre-T1 | T2 | unproven | 70 | 30 | 2026-09-09 | 🟥 source changed | 2F / 4P / 0S / 7NR / 0— |
 | **Medal-of-Honor-vr** | active mod | id Tech 3 / FAKK2 via OpenMoHAA | source-owned | OpenGL | x64 | T1 | T3 | R1 · native re-entry | 3964 | 406 | 2026-09-10 | 🟥 source changed | 4F / 4P / 0S / 5NR / 0— |
 

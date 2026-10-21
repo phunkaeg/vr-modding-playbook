@@ -45,6 +45,20 @@ it *must* drive the eye baseline. Same input, two consumers, opposite answers.
 
 
 
+### A third: the visible body moves on the camera's clock {#body-on-camera-clock}
+
+A body skinned from the simulation's joints moves on simulation ticks, while the camera is interpolated
+every rendered frame. In an unpublished port the camera moved on every sample, but the body's root repeated
+on 57.6-58.7% of adjacent samples, with steps of up to 2.13 cm. That is a judder against a smooth world
+that no single screenshot shows. `[LIVE]` A draw-time rigid offset, taken from the same interpolated
+transform the camera uses and on the same clock, removed the relative stepping, and the wearer then reported
+the movement as smooth. `[HEADSET]` Never parent the torso to the eye camera, and never low-pass it to hide
+the steps.
+
+A related trap: movement measured between rendered frames reads as zero on frames without a simulation
+tick, and an animation driven by it never completed (669 requests, 0 completions). Measured over a short
+window, the same movement gave 15 requests and 6 completions. See [CAM-020](pattern-catalog.md#cam-020).
+
 ## Reaching the wrist target does not prove the arm is solved {#endpoint-is-not-the-mesh}
 
 A numerically successful endpoint solve and a visually broken arm are entirely compatible, and the IK
