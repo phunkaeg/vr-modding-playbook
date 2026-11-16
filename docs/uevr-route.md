@@ -8,6 +8,11 @@ parts of this playbook apply to you.
 Distilled from a feature-rich production companion (SystemReShock-UEVR-Plugin for System Shock Remake,
 UE 4.27.2) plus the tracked UEVR corpus. `[SOURCE]`
 
+If your target is on **UE 4.27**, read the
+[UE 4.27 engine reference](unreal-427-reference.md) alongside this route. It carries the
+engine-version facts — reflection, physics sweeps, skinning, pause and ticking, UI hosting, haptics —
+that no current Unreal VR material covers, because everything published targets UE5.
+
 ---
 
 ## What UEVR already owns — do not rebuild any of it

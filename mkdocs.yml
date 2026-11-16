@@ -73,6 +73,7 @@ nav:
     - 19 · D3D12 & performance: 19-d3d12-and-performance.md
   - Case studies:
     - "Diablo II: Resurrected · camera, tabletop & UI": diablo2-resurrected-reference.md
+    - "Unreal Engine 4.27 · engine reference for VR work": unreal-427-reference.md
     - "VR Expansion Plugin · UE4/UE5 source reference": unreal-vrexpansion-reference.md
     - "13 · Independent BioShock VR mod": 13-teardown-bioshock-vr.md
     - "15 · IL-2 1946 VR mod": 15-teardown-il2-1946-vr.md

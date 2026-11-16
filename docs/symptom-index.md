@@ -81,6 +81,8 @@ that the observation and the cause are usually in different chapters.
 | Snap turn or teleport is undone by network correction | [VR move actions](03-input-and-locomotion.md#vr-move-actions) — preserve the action through prediction/replay |
 | AI sees the old player position after a physical lean or step | [Location consumers](07-engine-integration-safety.md#vr-location-consumers) — sight, feet and camera need different points |
 | A compositor panel has a ghost copy or survives widget teardown | [Stereo-widget lifecycle](04-ui-and-hud.md#stereo-widget-lifecycle) — distinguish layer and world-proxy ownership |
+| A hidden body part, or anything suppressed by a flag, is still visible although the check passes | [META-022](pattern-catalog.md#meta-022) — the deciding subsystem never reads that flag; assert the result, not the flag |
+| A world-space menu never appears, stops redrawing, or ignores input once the game pauses | [Re-hosting a live UI](04-ui-and-hud.md#ui-in-world-space) — owner, tick and focus each break on their own |
 | A held tool swings like it is longer than it looks | [FAIL-HAND-054](failure-atlas.md) — centre-of-mass policy, not mesh centre |
 | Throws feel weak however hard the player flicks | [FAIL-HAND-055](failure-atlas.md) — which velocity the release samples |
 | Choosing how to hold something, for a new object class | [02](02-viewmodels-and-hands.md#grip-design-space) — pick from world-interaction; twelve grip types, not three |
@@ -269,6 +271,7 @@ that the observation and the cause are usually in different chapters.
 | The frame rate jumped by a clean ratio and I cannot corroborate it | [06](06-debugging-methodology.md#instrument-shares-the-fault) - time a fixed route with a wall clock; every in-process instrument shares the clock that may be the fault |
 | Clean logs, no errors, but is it running? | [06](06-debugging-methodology.md) — **absence of errors is not evidence.** Count applied *and* attempted |
 | Both deferred eye copies are logged; are their pixels ready? | [Deferred execution](09-d3d11-openxr-injection.md#deferred-eye-execution) |
+| A suite passes in the editor and fails in the packaged build | [TEST-030](pattern-catalog.md#test-030) — suspect the fixture before the cooked build; make it assert its own preconditions |
 | Diagnostic output vanished mid-session | [06](06-debugging-methodology.md) — a shared sample budget spent by the boring case |
 | An isolation test came back blank | [06](06-debugging-methodology.md) — the gate may have disabled the fallback the scene needs |
 | An isolation test came back *positive* | [06](06-debugging-methodology.md) — can your mechanism itself move the measurement? Run the control — [A5.4](a5-flat-harness-stats.md) has the veto pattern |

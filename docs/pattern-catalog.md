@@ -4575,3 +4575,108 @@ handed to it. `[LIVE]` FarCry2-vr, `verify_dunia_port_map.py`.
 14,622 Epic RVAs — enormously useful as *names and leads*, and unusable as addresses. The failure is
 seductive because copying one across often works by luck, and the resulting corruption appears
 somewhere unrelated. Related: [FAIL-RE-027](failure-atlas.md).
+
+## META-022 - Assert the result, not the flag {#meta-022}
+
+**Problem:** you call a setter that expresses an intention — hide this, disable that, prefer the other —
+and then assert it by reading the matching getter. The getter returns what the setter stored, so the
+check passes. But a *different* subsystem decides the outcome, it never consults that stored value, and
+nothing anywhere reports a disagreement. The check and the bug now agree with each other permanently.
+
+**Use when:** any API where the thing you set and the thing you want are owned by different code —
+visibility flags consumed by a renderer, collision channels consumed by a physics scene, quality or
+feature requests consumed by a driver, a mode flag consumed by a thread you do not run. The tell is
+that the setter is cheap and synchronous while the result is produced somewhere else, later.
+
+**Recipe:**
+
+- **Name the result in the units the player or the frame gets**, not in the API's vocabulary. "The
+  head is hidden" is a flag. "No head vertices are within 6 cm of the eye" is a result.
+- **Assert it downstream of the deciding subsystem.** If the renderer decides, read something the
+  renderer produced: skinned positions, a pixel, a capture, a count of what was submitted.
+- **Keep the flag assertion as well, as a separate line**, because it distinguishes "we never asked"
+  from "we asked and were ignored" — two different bugs with one symptom.
+- **Restore the bug and watch the new check fail.** A flag check that passed with the bug present will
+  pass with the bug restored; that is the whole point of running the control.
+
+**Proof:** with the intention expressed and the result wrong, the flag assertion passes and the result
+assertion fails. One measured instance: hiding a body's head set a visibility flag that the poseable
+skinning path never reads, the getter agreed, and the wearer saw the inside of the head twice; the
+replacement check counted vertices in front of the eye and moved from 1261 to 0.
+
+**Trip hazard:** the flag assertion is usually the *cheaper* one, so it survives review and gets
+copied. Look for a suite where every check reads back something the same code wrote — that suite is a
+mirror, and a mirror cannot fail. `[SOURCE]` `[HEADSET]` an unpublished source-owned project
+([UE 4.27 reference](unreal-427-reference.md#skinning-and-bones), and the same shape at
+[06](06-debugging-methodology.md#dont-measure-their-opinion-of-you)).
+
+## HUD-005 - Re-host a live UI with its owner, its tick and its focus {#hud-005}
+
+**Problem:** moving the game's own running UI out of the viewport and onto a world-space surface is
+usually the cheapest route to readable VR UI — the layout, localisation, input handling and art already
+exist and already agree. But a viewport and a world-space surface differ in three ways at once: who
+holds the last reference to the live widget tree, whether it ticks while the game is paused, and where
+keyboard focus lives. Each breaks on its own, silently, and a suite can be green through all three.
+
+**Use when:** re-parenting an existing initialised UI into the world — a stereo layer, a world-space
+widget surface, a quad you draw yourself. Not when building a VR panel from scratch, which has none of
+these problems because nothing was running before.
+
+**Recipe:**
+
+- **Carry the owner across the move.** Hold a strong reference to the live widget tree for the whole
+  transition, so the toolkit does not tear it down and rebuild it. A rebuilt tree re-runs construction
+  on an already-initialised UI: delegates bind twice, initialisation repeats, and derived resources get
+  built from already-derived ones.
+- **Carry the tick.** A component that hosts UI the player must use *while the game is paused* has to
+  be told to tick when paused. In the viewport this was free; it is not free on a component.
+- **Carry the focus.** The widget now lives in its own window, so the toolkit can receive a press while
+  the game's input layer receives nothing. Return focus to the game viewport whenever a hosted screen
+  is open and focus has left it.
+- **Assert the three separately.** They have one symptom family and three causes.
+
+**Proof:** open the game's own pause menu with the UI hosted in world space, then move the head, sweep
+the pointer to all four corners, and activate one control that changes state. Construction must not
+have re-run, the panel must still redraw while paused, and the activated control must change the game
+rather than merely highlight.
+
+**Trip hazard:** every one of these passes a test written in a scene that is not paused, with a widget
+that was freshly created rather than re-hosted, and with focus never having moved. The fresh-widget
+case is the dangerous one, because it is the natural way to write the first test and it removes the
+only condition that triggers the bug. `[SOURCE]` `[LIVE]` an unpublished source-owned project
+([04](04-ui-and-hud.md#ui-in-world-space),
+[UE 4.27 mechanics](unreal-427-reference.md#ui-in-world-space)).
+
+## TEST-030 - Run the fixture against the packaged build, not only the editor {#test-030}
+
+**Problem:** a suite passes in the editor and fails in the shipped artifact with **nothing about the
+rule under test having changed** — only the fixture. Editor and cooked builds differ in frame pacing,
+load timing, tick order and asset availability, and any fixture whose *setup* depends on timing
+inherits that difference. The result is the worst shape of failure: a green number that is true of a
+configuration you do not ship.
+
+**Use when:** the fixture places, teleports, spawns or waits before the behaviour under test begins —
+which is nearly every interaction, physics and UI test. Especially when the setup involves a simulating
+body, a loaded level, or a delay expressed in frames rather than distance.
+
+**Recipe:**
+
+- **Run the same suite against the packaged artifact** as a separate gate, and treat the editor run as
+  a fast pre-check rather than the verdict.
+- **Make the fixture assert its own preconditions**, not just the behaviour. The object is where it was
+  placed, the hand is where it was commanded, the level is the one named. A fixture assertion is the
+  only thing that separates "the rule failed" from "the test never set up".
+- **Express setup in state, not in time.** Wait for an observed condition with a deadline; do not wait
+  a number of frames and assume.
+- **Re-assert placement on every retry.** A retry that inherits a drifted fixture measures the drift.
+
+**Proof:** the same suite, same revision, run in both configurations, with the packaged run's fixture
+assertions included in its report. One measured instance: a rearm probe passed 29/29 in the editor and
+failed packaged, with the object 46 cm from the hand by the time the grip was offered — visible only
+because the fixture asserted its own placement instead of reporting "no object held".
+
+**Trip hazard:** the editor run is faster, so it becomes the one people actually run, and the packaged
+gate decays into a release-day formality. The second trip hazard is subtler: when the packaged run
+fails, the reflex is to suspect the cooked build. Check the fixture first — it is far more often the
+fixture that could not survive the pacing change. `[LIVE]` an unpublished source-owned project
+([UE 4.27 reference](unreal-427-reference.md#build-and-package)).

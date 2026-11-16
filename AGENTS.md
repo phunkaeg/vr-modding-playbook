@@ -37,6 +37,7 @@ wrong move, and reading several is a sign you skipped the routing below.
 | **A symptom, but you want the chapter** | [`docs/symptom-index.md`](docs/symptom-index.md) | Short rows mapping what you see to the chapter that covers it |
 | **A solved problem you need the recipe for** | [`docs/pattern-catalog.md`](docs/pattern-catalog.md) | 192 atomic patterns, stable IDs, five fixed fields each |
 | **A UE target that already has UEVR injection** | [`docs/uevr-route.md`](docs/uevr-route.md) | Mode 3. Says what UEVR already owns, what is still yours, and **which chapters do not apply** — a recipe that assumes you own the render path will mislead you here |
+| **A UE 4.27 target, on any route** | [`docs/unreal-427-reference.md`](docs/unreal-427-reference.md) | Engine-version facts for the one UE version with almost no agent-facing material. Everything published targets UE5, and a UE5 answer is often wrong *in a way that compiles* |
 | **A new or inherited target** | [`docs/start-new-port.md`](docs/start-new-port.md) | The router. Classifies integration authority first, then sends you down the RE-owned or source-owned route |
 | **Several plausible next steps** | [`docs/bottleneck-map.md`](docs/bottleneck-map.md) | The earliest uncleared dependency, in order. Its *Agent operating protocol* section is worth reading once. |
 | **A question of "has anyone solved this?"** | [`docs/cross-project-index.md`](docs/cross-project-index.md) | Who solved what, and where the raw working lives |

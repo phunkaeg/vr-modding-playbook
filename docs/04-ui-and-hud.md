@@ -53,6 +53,44 @@ inspect both eyes, a wall crossing the panel and the pointer at all four corners
 representation and no surviving layer after teardown. Mirror-window appearance alone cannot certify
 compositor depth, stereo comfort or pointer alignment.
 
+## Re-hosting the game's own live UI in world space breaks three things at once {#ui-in-world-space}
+
+The section above is a widget component built *for* stereo. This one is the far more common move:
+taking the **game's existing, already-running** UI out of the viewport and putting it on a world-space
+surface, so the player reads it in the world instead of on glass.
+
+It looks like one change of parent. It is three, and each fails independently and silently, because a
+viewport and a world-space surface differ in **who owns the widget, when it ticks, and where keyboard
+focus lives.** All three were green in a suite before each one was found.
+
+| What the move changes | What breaks | What it looks like |
+|---|---|---|
+| **Ownership** — the viewport held the last reference to the live widget tree | The tree is rebuilt, so construction runs a second time on an initialised widget | Re-bound delegates, repeated initialisation, a material instance parented to a material instance |
+| **Ticking** — a world-space surface is a component, and components can opt out of ticking while paused | The UI stops drawing *and* stops ticking the moment the game pauses | The pause menu — the thing that pauses the game — never appears on the panel, and a list that never finishes opening ignores Back |
+| **Focus** — the widget now lives in its own window, not the viewport's | Nothing holds key focus, so input reaches the UI toolkit and stops | The pointer and the press are visibly received, and no action fires |
+
+**The recipe is [HUD-005](pattern-catalog.md#hud-005):** carry the owner, the tick and the focus across
+the move, and assert each one separately. The 4.27 mechanics — which call keeps the widget tree alive,
+which flag keeps it ticking while paused, and which call returns focus to the game — are in
+[the UE 4.27 reference](unreal-427-reference.md#ui-in-world-space).
+
+**Why this is worth a section rather than a line.** Re-hosting the game's own UI is usually the
+*cheapest* route to readable VR UI, because the layout, the localisation, the input handling and the
+art already exist and already agree with each other. The alternative — reimplementing the HUD — is a
+much larger job that also diverges every time the game's UI changes. So this move is the right one
+often enough that its three failure modes are worth knowing in advance rather than rediscovering.
+
+**And pause is not a still frame in VR.** Flat, a paused UI that stops ticking is invisible as a bug;
+the picture is frozen and so is the player. In a headset the wearer's head keeps moving, so anything
+that stops sampling while paused becomes a comfort problem as well as a dead menu. Treat pause as a
+per-view lifecycle event, the same way
+[XR-003](pattern-catalog.md#xr-003) treats loading.
+
+**Proof to run:** open the game's own pause menu with the UI hosted in world space, and from inside it
+move the head, move the pointer to all four corners, and activate one control that changes state.
+Construction must not have re-run (count initialisation, do not look for errors), the panel must still
+redraw, and the activated control must change the game — not merely highlight.
+
 ## A screen-space HUD is CROPPED, not mis-scaled, when declared FOV exceeds headset FOV {#hud-cropped-not-scaled}
 
 `[LIVE, and the fix is UNVERIFIED IN A HEADSET - flagged by the reporting project.]`
