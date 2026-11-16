@@ -1488,6 +1488,80 @@ place for them:
 
 **A debug camera is a second view, and every per-view hazard in this playbook applies to it.**
 
+## Event-driven playtests with visual evidence {#event-driven-playtests}
+
+**Use when:** a build and unit tests pass, but nobody has checked the resulting
+menu, HUD, interaction or view transition. Extend the existing
+[control plane](#http-control-plane); do not create a second input stack just for
+tests. This is an extension of [TEST-003](pattern-catalog.md#test-003).
+
+**Public prior art, AUTHOR:** Jordan Rejaud's
+[AI playtesting article](https://strangenewworld.net/have-your-ai-agent-playtest-your-game/)
+(2026-10-23) describes scripted input, state-change logs, before/after screenshots
+and video, and timestamped spoken playtest reports. The companion
+[MIT skills](https://github.com/jrejaud/agent-playtest-skills) provide Quest control,
+playtest recording and UI comparison workflows. These are reported examples, not
+independent validation on another game. The following is the playbook's adapted
+test contract, not a claim that the donor scripts support every host.
+
+### Choose the interface you own
+
+| Authority | Input and state observation |
+|---|---|
+| RE-owned mod | Use the injected mod's existing action/pose seam plus a verified game consumer readback. Keep test hooks out of release defaults; never infer gameplay acceptance from injection counts. |
+| Source-owned game | Add debug-only actions, named states and bounded scenario checkpoints using ordinary game interfaces. Check production wiring separately from the debug fixture. |
+| Shared rule | Name the exact path exercised: synthetic actions, physical controller input, graphics capture and headset acceptance are different proofs. A runtime replacement does not observe the game consumer by itself. |
+
+### One bounded scenario, three independent verdicts
+
+1. **Pin the starting conditions:** executable/mod/runtime identities, save or scene,
+   resolution/UI scale, configuration, input route and pose. Use a disposable save
+   for actions that advance simulation. Never borrow an occupied headset/process.
+2. **Create a unique run:** new output directory, run ID, ordered events and a
+   monotonic clock. Write intended action, acknowledgement and consumer observation
+   separately. Timestamp screenshots/eye metadata against the relevant frames.
+3. **Wait for a fresh state, not a guessed load delay.** Prefer structured events
+   with run/session IDs and sequence numbers. For legacy logs, take a pre-action byte
+   cursor and detect truncation/replacement; old matches cannot satisfy the wait.
+   Give every wait a deadline and preserve the last observation on timeout.
+4. **Assert the downstream effect:** a button changes the game clock, opens the
+   requested dialog or changes the submitted panel pose. A command-file acknowledgement
+   or accepted input counter is only transport evidence. Neutral release is part of
+   every press; bound input sampling in frames when supported.
+5. **Capture comparable visuals.** Save both eyes and pose/frame/layer metadata where
+   available. Keep a short video for temporal defects; screenshots cannot establish
+   absence of flicker or judder. Use the same scenario on base and candidate builds
+   for code A/B. A within-run before/after action is not a base/candidate comparison.
+6. **Review, don't rubber-stamp.** Check clipping, overlap, pointer alignment, wrong-eye
+   content and unintended motion. Calibrate automatic image thresholds against an
+   unchanged repeat and a deliberately broken control; an animation diff isn't a bug
+   verdict. Record mechanical result, visual review and headset acceptance separately.
+7. **Observe cleanup:** release held inputs, stop only the session owned by this run,
+   restore temporary settings and read them back. Failed cleanup invalidates the run's
+   acceptance even if the target action succeeded. Restoring speed does not reverse
+   elapsed simulation, and stopping an injected DLL need not unload it.
+
+Minimum packet: scenario/version, identities/configuration, ordered action and
+consumer events, captures with hashes/frame correlation, measured checks, cleanup
+results, and explicit unmeasured items. Store raw packets in the project; use
+[research receipts](research-receipts.md) to contribute reviewed methods, not raw
+private captures, to the public playbook.
+
+### Controls that stop false passes
+
+- Empty capture/log, absent consumer, wrong run, stale frame, wrong eye, timeout and
+  log rotation must fail or return NO_DATA, never pass via an empty denominator.
+- Prove the commanded perturbation occurred. A recenter test with no observed head
+  movement cannot test how the panel responds to movement.
+- Separate mod HUD reset, gameplay view reset and an OpenXR reference-space change.
+  Test a nonidentity event's transform/time contract independently before treating a
+  simulator as the oracle for physical continuity. An event count alone is insufficient.
+- A submitted pose is not proof that the raster used it. Pair metadata checks with
+  visual/graphics evidence; neither can certify comfort without headset evaluation.
+- A desk-mounted Quest is hardware evidence, not worn-headset acceptance. Device
+  wake/profile/capture mechanisms are platform-specific; do not assume they drive
+  Windows PCVR or tracked-controller actions. Never log account PINs or credentials.
+
 ## Where agent tokens actually go, measured over 30 days {#agent-token-costs}
 
 shock2quest ships a `audit-our-commands` skill that joins `tool_use` to `tool_result` across session

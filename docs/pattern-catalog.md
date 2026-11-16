@@ -4229,6 +4229,11 @@ queries and **a detachable debug camera**. Put a typed SDK over it so a regressi
 file. Gate the camera behind a developer option, because a placement that the next step silently undoes
 reads as a broken API.
 
+For repeatable UI/interaction checks, extend this with
+[fresh-event gates and visual evidence](06-debugging-methodology.md#event-driven-playtests):
+assert consumer effects, preserve comparable captures, and keep mechanical,
+visual-review and headset verdicts separate.
+
 **Proof:** a test launches the game, drives input, steps, screenshots and asserts - with no headset and
 no human.
 

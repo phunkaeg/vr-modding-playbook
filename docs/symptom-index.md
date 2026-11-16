@@ -270,8 +270,9 @@ that the observation and the cause are usually in different chapters.
 |---|---|
 | The frame rate jumped by a clean ratio and I cannot corroborate it | [06](06-debugging-methodology.md#instrument-shares-the-fault) - time a fixed route with a wall clock; every in-process instrument shares the clock that may be the fault |
 | Clean logs, no errors, but is it running? | [06](06-debugging-methodology.md) — **absence of errors is not evidence.** Count applied *and* attempted |
-| Both deferred eye copies are logged; are their pixels ready? | [Deferred execution](09-d3d11-openxr-injection.md#deferred-eye-execution) |
+| Build/tests pass, but the agent never checked the changed UI or interaction | [Event-driven playtests](06-debugging-methodology.md#event-driven-playtests) — fresh consumer events, comparable captures and separate review verdicts |
 | A suite passes in the editor and fails in the packaged build | [TEST-030](pattern-catalog.md#test-030) — suspect the fixture before the cooked build; make it assert its own preconditions |
+| Both deferred eye copies are logged; are their pixels ready? | [Deferred execution](09-d3d11-openxr-injection.md#deferred-eye-execution) |
 | Diagnostic output vanished mid-session | [06](06-debugging-methodology.md) — a shared sample budget spent by the boring case |
 | An isolation test came back blank | [06](06-debugging-methodology.md) — the gate may have disabled the fallback the scene needs |
 | An isolation test came back *positive* | [06](06-debugging-methodology.md) — can your mechanism itself move the measurement? Run the control — [A5.4](a5-flat-harness-stats.md) has the veto pattern |
