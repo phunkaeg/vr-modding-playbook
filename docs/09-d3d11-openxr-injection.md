@@ -386,6 +386,28 @@ inheriting HMD pitch and roll into a world-locked panel is the recenter trap fro
 notice has been submitted to the headset twice. One frame is enough when the runtime shows it; the second
 covers a frame the runtime dropped. `[SOURCE]` ([loading](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/Quake/vr/vr_loading.cpp))
 
+## Admit a pair once; present it until its context changes {#admit-versus-present}
+
+MGS5VR (nikamigaming-create, MIT) separates two questions that a single frame-age test answers badly.
+`[SOURCE]` ([flicker investigation](https://github.com/nikamigaming-create/MGS5VR/blob/95f9becd1395ca11e6a29f9d2dc31454bec9b10c/docs/FLICKER_INVESTIGATION_2026-09-27.md))
+
+- **Admission:** a new eye pair is accepted only when both eyes come from the same source sequence and
+  are fresh.
+- **Presentation:** once accepted, that pair can be reprojected with its original poses and fields of
+  view for as long as its epoch, reference space and activation still match. Age alone never turns it
+  into a missing image. After a camera handoff, the previous pair may stay up for at most 250 ms.
+
+The old rule expired an accepted image after 500 ms, which turned every delayed producer or submission
+into a black flash. With the split, the project measured 17,035 frame cycles through the game's intro with
+no missing layer, and kept the scene through an 800 ms producer delay. `[LIVE]` (simulator) The same
+reasoning applies to tracking loss: removing head validity for seven seconds used to reproduce black
+frames. The mod also accepts the runtime's valid inferred controller poses when optical tracking flags
+drop, instead of releasing the controls.
+
+**Never mix clocks in a freshness check.** A guard compared `GetTickCount64` against the steady clock that
+stamped the camera samples. The tick clock ran 31 ms behind, so fresh frames were rejected. Stamp and test
+with one clock. See [XR-009](pattern-catalog.md#xr-009).
+
 ## The recovery matrix — write one, and make every row a decision
 
 Everything that can be unplugged, restarted, resized or crashed will be, on somebody's machine. FEAR VR
@@ -2084,6 +2106,31 @@ of fixed 72 Hz ticks fixed it: every rate measured then ticked at 72. `[LIVE]` (
 host frame.** It overrode exactly the timing it should have observed. When a harness controls a clock,
 make sure it is not the clock under test, and count ticks per second at each refresh rate headsets
 actually use (72, 80, 90, 120, 144) with any override off. See [FAIL-PERF-025](failure-atlas.md).
+
+### Four more ways the game's clock fights the headset {#headset-frame-timing}
+
+The same failure family keeps returning in other ports. `[SOURCE]` `[AUTHOR]`
+
+- **A fixed refresh rate.** GEVR's early betas defaulted to a fixed 90 fps, with 72 and 80 Hz expected to
+  work and anything higher left to beta testers. It now follows the headset's rate by default and keeps
+  fixed 90 as an option. Follow the runtime's display rate; never assume one.
+- **Motion smoothing halves the app.** GEVR found that SteamVR Motion Smoothing and Virtual Desktop's
+  Space Warp, which run the app at half rate, can make the game feel half-speed. Half speed under those
+  modes suggests that the simulation is being stepped per rendered frame. FarCry2VR 1.0.3 moves the game
+  on by exactly one headset frame per frame, and catches the difference up gradually so game time stays on
+  real time. Before that, the game measured each frame on the wall clock, and the world juddered past the
+  view while moving ([release notes](https://github.com/Braxusx/FarCry2VR/blob/7c0d92e50f8a113e56d6d1b42551ea319748cf87/docs/RELEASE_NOTES_1.0.3.md)).
+- **A background window loses its timer.** On some Windows 11 PCs, a game whose window is in the
+  background, as it usually is in VR, has its 1 ms timer dropped to 15.6 ms. That capped FarCry2VR near
+  64 fps. Its fix opts the process out of power throttling for timer resolution and execution speed, then
+  requests 1 ms again. MGS5VR adds that a minimised game mirror stops native rendering altogether, so keep
+  it out of A/B runs.
+- **The desktop mirror paces the headset.** GEVR's boot script notes that desktop vsync before the XR
+  blit beats the headset's own pacing, so its boot scripts ship with desktop vsync off.
+
+MGS5VR derives its producer cap from the runtime's display period: 96, 120 and 160 fps at 72, 90 and
+120 Hz. It also recorded a negative result worth keeping: moving D3D calls to another CPU thread does not
+remove the GPU cost they submit. See [PERF-008](pattern-catalog.md#perf-008).
 
 ## What UE3 gives you for stereo, and the one thing it cannot express {#ue3-stereo-shape}
 

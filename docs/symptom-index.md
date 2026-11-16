@@ -55,6 +55,9 @@ that the observation and the cause are usually in different chapters.
 | A spawned body or the arms never come back after a save load | [07](07-engine-integration-safety.md#actor-owner-lease) ([FAIL-HOOK-013](failure-atlas.md)) |
 | Tests pass but the effect is mirrored or the fix is missing in the game | [06](06-debugging-methodology.md#feature-verification-ladder) ([FAIL-TEST-042](failure-atlas.md)) |
 | Left-handed mode puts two actions on one trigger | [03](03-input-and-locomotion.md#hand-roles) ([FAIL-INPUT-027](failure-atlas.md)) |
+| A tested feature is missing in the release, with the same binary | [08](08-project-process.md#ship-what-you-tested) ([FAIL-PACK-021](failure-atlas.md)) |
+| Fresh frames are rejected as stale | [09](09-d3d11-openxr-injection.md#admit-versus-present) - one clock ([FAIL-XR-033](failure-atlas.md)) |
+| Physical melee reacts but the game's outcome is missing | [02](02-viewmodels-and-hands.md#game-owned-melee-window) ([FAIL-HAND-063](failure-atlas.md)) |
 
 ## "It looks wrong in the headset"
 
@@ -230,6 +233,11 @@ that the observation and the cause are usually in different chapters.
 | Doors, creatures or decals draw on top of an added fog | [14](14-render-pass-hazard-atlas.md#stereo-effects-retrofit) - insert at the engine's list boundary ([FAIL-STR-070](failure-atlas.md)) |
 | The body judders against a smooth world while moving | [12](12-torso-calculations-and-ergonomics.md#body-on-camera-clock) ([FAIL-CAM-034](failure-atlas.md)) |
 | Touch presses buttons before the finger reaches them | [02](02-viewmodels-and-hands.md#rendered-fingertip-touch) ([FAIL-HAND-062](failure-atlas.md)) |
+| HUD text appears doubled with single-pass multiview stereo | [10](10-graphics-apis.md#vulkan-single-frame-stereo) ([FAIL-STR-071](failure-atlas.md)) |
+| An object flips lit and shadowed as you approach it | [10](10-graphics-apis.md#vulkan-single-frame-stereo) - keep shadow generation shared ([FAIL-STR-072](failure-atlas.md)) |
+| Black flashes when the producer stalls or tracking drops | [09](09-d3d11-openxr-injection.md#admit-versus-present) ([FAIL-XR-032](failure-atlas.md)) |
+| The eye goes through walls or sits too high in cover, crouch or mounted-weapon transitions | [01](01-camera-and-tracking.md#game-driven-eye) ([FAIL-CAM-035](failure-atlas.md)) |
+| Water or sky yaws with the head in VR but looks right on the monitor | [07](07-engine-integration-safety.md#vr-location-consumers) ([FAIL-CAM-036](failure-atlas.md)) |
 
 ## "I can't find it"
 
@@ -295,6 +303,8 @@ that the observation and the cause are usually in different chapters.
 | CPU spikes when particular scenery comes into view | [15](15-teardown-il2-1946-vr.md), [01](01-camera-and-tracking.md) — an inflated symmetric cull cone submits actors neither eye can see. Log the cull FOV against the eye tangents |
 | The desktop mirror costs real frame time | [15](15-teardown-il2-1946-vr.md) — check whether it is a full scene render rather than a blit, and make it optional |
 | The simulation runs at half rate on some headsets (36 Hz at 72 Hz) | [09](09-d3d11-openxr-injection.md#tick-follows-refresh) - a float tick interval; check with any harness frame override off ([FAIL-PERF-025](failure-atlas.md)) |
+| The game feels half-speed under motion smoothing or space warp | [09](09-d3d11-openxr-injection.md#headset-frame-timing) ([FAIL-PERF-026](failure-atlas.md)) |
+| The frame rate caps near 64 fps while the game window is in the background | [09](09-d3d11-openxr-injection.md#headset-frame-timing) ([FAIL-PERF-027](failure-atlas.md)) |
 
 ## "It makes people sick"
 
@@ -355,6 +365,9 @@ diagnose them, which the rest of this index did not reach.
 | A game widget put on your wrist has a broken layout | [UEVR-003](pattern-catalog.md#uevr-003) — save and rebuild the panel slot; zero the HUD curve |
 | The interaction laser hits your own arm before the widget | [UEVR-003](pattern-catalog.md#uevr-003) — give the trace its own channel and have body meshes ignore it |
 | Players can grab through containers or shoot through doors | [HAND-018](pattern-catalog.md#hand-018) — physicalising removed the gate the discrete version enforced |
+| A UI element is invisible in the headset | [18](18-beyond-the-native-injector.md#uevr-plugin-traps) - additive blend writes no alpha ([FAIL-HUD-019](failure-atlas.md)) |
+| A plugin stutters every few seconds | [18](18-beyond-the-native-injector.md#uevr-plugin-traps) - lookups that miss ([FAIL-PERF-028](failure-atlas.md)) |
+| A plugin throws from its first mutex lock | [18](18-beyond-the-native-injector.md#uevr-plugin-traps) - the game's MSVCP140 is older ([FAIL-HOOK-014](failure-atlas.md)) |
 
 ## "I'm about to start something new"
 

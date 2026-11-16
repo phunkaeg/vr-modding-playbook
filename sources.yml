@@ -1440,9 +1440,9 @@ external:
     status: external_reference
     upstream_url: https://github.com/gwizdek/SystemReShock-UEVR-Plugin
     license: unknown
-    reviewed_at: 2026-09-17
-    reviewed_revision: tree:8e5dc79ae4dab1bc
-    reviewed_git_commit: 3c69f183872f2838b0c38cca38bc9816c00f1f2d
+    reviewed_at: 2026-11-16
+    reviewed_revision: tree:0abf2181aa39517c
+    reviewed_git_commit: e195c0a892af99a6d7d4c95397247ba6c6e14b0c
     engine: Unreal Engine 4.27.2 (System Shock Remake)
     api: D3D11/D3D12 via UEVR
     vehicle: framework-companion
@@ -1457,7 +1457,7 @@ external:
       packaging_deploy:  {review: partial, evidence: SOURCE, note: "HARVESTED -> FAIL-PACK-019 + uevr-route.md. TWO coupled artifacts with nothing enforcing the coupling: the plugin DLL and PAK asset packages must be the same version, and the README has to instruct users in bold to re-copy PAKs after every update. The PAKs are also load-bearing for code (see hands_interaction). Build-specific: no Steam demo, no GOG. Defender removes the DLL on profile import. Profile sites carry differing versions. Inject at MAIN MENU so the mod can write host game options."}
       re_discovery:      {review: skimmed, evidence: SOURCE, note: "No pattern scanning: works through UE reflection and a GENERATED UObject SDK. Notes that the SDK's StaticClass() returns the live UClass - the same UObject the UEVR API uses. Has a pre-native hook able to SKIP the original call, and a self-guarding lazy init that returns once the class is loaded and hooked (UE loads classes on demand). Generated SDK internals not read."}
       camera_tracking:   {review: partial, evidence: SOURCE, note: "HARVESTED -> UEVR-002. VR policy is a state machine over pawn class x game context (CINEMATIC, PAUSE_MENU, MFD, BOOTING_UP, CRASHING, INTERACTABLE, MAIN_MENU, INTRO_DRONE, INTRO_LAPTOP, PSEUDOSPACE, cyberspace), not a global VR mode. Camera ownership is per ANIMATION MONTAGE: montages are classified in a table (starting/ending/single) and the saved camera rotation is restored on montage end. Declarative camera binding lives in uobjecthook/camera_state.json - bound by object path to an existing ArrowComponent AnimCameraPosition plus a Z offset."}
-      source_integration: {review: partial, evidence: SOURCE, note: "HARVESTED -> UEVR-001. A UEVR profile has a DECLARATIVE layer that most people write code for: uobjecthook/<hash>_mc_state.json attaches any component to a motion controller by object path with offsets and a permanent flag (the headlamp SpotLightComponent is attached to hand 1 at 0,-10,40 with no code); <hash>_props.json overrides properties by path (an idle animation silenced with RateScale 0); camera_state.json binds the camera. MEASURED: of ~6,050 first-party lines the UEVR API surface actually used is tiny - a few param() calls, uevr::Plugin, uevr::API::UStruct - everything else is written against the game's own UObject graph. A UEVR companion is UE game-code modding that runs inside UEVR, not framework extension."}
+      source_integration: {review: partial, evidence: SOURCE, note: "HARVESTED -> UEVR-001. A UEVR profile has a DECLARATIVE layer that most people write code for: uobjecthook/<hash>_mc_state.json attaches any component to a motion controller by object path with offsets and a permanent flag (the headlamp SpotLightComponent is attached to hand 1 at 0,-10,40 with no code); <hash>_props.json overrides properties by path (an idle animation silenced with RateScale 0); camera_state.json binds the camera. MEASURED: of ~6,050 first-party lines the UEVR API surface actually used is tiny - a few param() calls, uevr::Plugin, uevr::API::UStruct - everything else is written against the game's own UObject graph. A UEVR companion is UE game-code modding that runs inside UEVR, not framework extension. RE-REVIEWED 2026-11-16 at upstream e195c0a (v2 line). Production traps -> 18 #uevr-plugin-traps + UEVR-004 + FAIL-HUD-019, FAIL-HOOK-014, FAIL-PERF-028: MSVCP140 14.24 against std::mutex, a re-entrant ImGui lock, rooted UObjects, lookup misses of about 105 ms among 176,000 objects, UEVR's yaw-only hand placement on a pawn that pitches and rolls, Blueprint bytecode patching, lowest-slot XInput, additive UI with no alpha, one DLL for Steam and GOG through UEVR's resolved object array, and hot-loader state kept in files. No LICENSE file at e195c0a. The installer was not harvested. A second checkout of the same upstream is classified not_a_source (SystemReShock-UEVR-Plugin-upstream)."}
 
   - id: CSVR
     root: "D:/Dev Debug/Other VR mods/CSVR-main"
@@ -2544,15 +2544,15 @@ external:
     status: external_reference
     upstream_url: https://github.com/nikamigaming-create/MGS5VR
     license: "MIT; bundled dependencies retain their own notices"
-    reviewed_at: 2026-09-14
-    reviewed_revision: "tree:95e3921c54d08c9b"
-    reviewed_git_commit: a51c4b9660f18addc71f06208fcd357d5ad58b15
+    reviewed_at: 2026-11-16
+    reviewed_revision: tree:e489ae892137f63e
+    reviewed_git_commit: 95f9becd1395ca11e6a29f9d2dc31454bec9b10c
     engine: FOX (Metal Gear Solid V)
     api: D3D11 / OpenXR
     vehicle: native-injector
     chapter: 9
     areas:
-      stereo: {review: partial, evidence: SOURCE, note: "scene_capture.cpp tracks eye-copy packets through deferred recording, FinishCommandList and actual ExecuteCommandList before pair eligibility. Recorded and executed masks differ; execution is queue insertion, NOT GPU completion. Harvest ch09 #deferred-eye-execution. stereo.cpp eyeImageRegion supplies tested corroboration of existing #subimage-fov-pair. September 14 standalone audit includes rounded pixel/ray agreement at even and odd extents and invalid-input controls; no game/GPU/headset test. Full audit and fleet relevance: briefs/2026-09-14-new-mods-harvest.md."}
+      stereo: {review: partial, evidence: SOURCE, note: "scene_capture.cpp tracks eye-copy packets through deferred recording, FinishCommandList and actual ExecuteCommandList before pair eligibility. Recorded and executed masks differ; execution is queue insertion, NOT GPU completion. Harvest ch09 #deferred-eye-execution. stereo.cpp eyeImageRegion supplies tested corroboration of existing #subimage-fov-pair. September 14 standalone audit includes rounded pixel/ray agreement at even and odd extents and invalid-input controls; no game/GPU/headset test. Full audit and fleet relevance: briefs/2026-09-14-new-mods-harvest.md. RE-REVIEWED 2026-11-16 at 95f9bec: admitting versus presenting eye pairs (a 250 ms handoff hold; a 500 ms age expiry had turned stalls into black flashes; 17,035 frame cycles with no missing layer and an 800 ms producer delay survived) -> 09 #admit-versus-present + XR-009 + FAIL-XR-032/033. Posture flags against the game's own eye, cover eye offsets in actor-root space, and heading through game-driven alignment -> 01 #game-driven-eye + CAM-021 + FAIL-CAM-035. Parked-rifle setter override -> 02. Producer cap from the display period -> 09 #headset-frame-timing. Nearly all evidence is simulator runs; physical Quest acceptance is largely open."}
       xr_lifecycle: {review: partial, evidence: SOURCE, note: "Read capture/mailbox transaction and epoch ownership, plus architecture documentation. Not a full runtime lifecycle review; headset compatibility remains the author's claim."}
       xr_input: {review: not_reviewed}
       camera_tracking: {review: partial, evidence: SOURCE, note: "Rendered versus requested FOV, exact integer crop/FOV pairing and same-source eye metadata; no shipping-target RE or canting acceptance here."}
@@ -2571,15 +2571,15 @@ external:
     status: external_reference
     upstream_url: https://github.com/CactusVRStudios/KHARVOX
     license: "MIT; upstream and bundled dependencies retain their own notices"
-    reviewed_at: 2026-09-14
-    reviewed_revision: "tree:5704ee580c726593"
-    reviewed_git_commit: e2e15d603ae7bfa45b05424b88207179e903670e
+    reviewed_at: 2026-11-16
+    reviewed_revision: tree:9cd64af52d548719
+    reviewed_git_commit: 3f88472862be79c9d1a41924061b4e0f8800ceca
     engine: id Tech 6 (DOOM 2016)
     api: Vulkan / OpenXR
     vehicle: native-injector
     chapter: 10
     areas:
-      stereo: {review: partial, evidence: SOURCE, note: "AerWeaponPoseCache and AerCameraPairCache key first/second phase state by entity or stage and pair serial, not worker TLS. SnapTurnStereoPolicy plus OpenXRBootstrap consumers track per-cached-eye turn generation. ch14 #pair-cache-identity. README recommends alternate-eye; native replay remains experimental, not a demonstrated upgrade."}
+      stereo: {review: partial, evidence: SOURCE, note: "AerWeaponPoseCache and AerCameraPairCache key first/second phase state by entity or stage and pair serial, not worker TLS. SnapTurnStereoPolicy plus OpenXRBootstrap consumers track per-cached-eye turn generation. ch14 #pair-cache-identity. README recommends alternate-eye; native replay remains experimental, not a demonstrated upgrade. RE-REVIEWED 2026-11-16 at 3f88472 (release 1.4 adds the GOG build): Single Frame Stereo is the default renderer, with AER as the fallback -> 10 #vulkan-single-frame-stereo + STR-024 + FAIL-STR-071/072 and FAIL-XR-031. The 274-pair Steam/GOG address adapter, and an unknown identity for unmapped GOG addresses -> 11 fold. Release 1.11 reverted all seven imported external audit PRs and their follow-ups, so do not cite those changes as current."}
       xr_lifecycle: {review: partial, evidence: SOURCE, note: "Native input preservation, pair-completion guards and typed retirement ownership inspected. DeferredMemoryFreeQueue.complete trusts caller CPU/GPU completion; standalone queue tests cannot establish GPU safety. PresentWaitOwnership is a policy helper with no production consumer found, not evidence that every submit path is balanced. ch10 #replay-input-retirement."}
       xr_input: {review: not_reviewed}
       camera_tracking: {review: partial, evidence: SOURCE, note: "Pair-cache identity and camera history validators inspected. No universal matrix-layout or live target camera proof inferred from plausible values."}
@@ -3124,9 +3124,9 @@ external:
     status: external_reference
     upstream_url: https://github.com/no6969el/GEVR
     license: MIT
-    reviewed_at: '2026-09-19'
-    reviewed_revision: tree:34023fff9cb9b47f
-    reviewed_git_commit: b87b808c4d391dddeeb28d3feb525cec43185b78
+    reviewed_at: 2026-11-16
+    reviewed_revision: tree:810a7c072335aef7
+    reviewed_git_commit: a4315530ad535c67a4df65071929d02a7a581aae
     engine: N64 (GoldenEye 007; 'native, bring your own ROM')
     api: OpenXR
     vehicle: source-port
@@ -3135,7 +3135,7 @@ external:
       source_integration:
         review: partial
         evidence: SOURCE
-        note: 'HARVESTED BY TITLE 2026-09-19 (413 files, 768,104 words - routed, not read linearly). Distilled to ch06 #instrument-shares-the-fault + META-017 + FAIL-TEST-040, and ch09 #native-stereo-routes route D. THE INSTRUMENT CLUSTER is the reason this source matters: four measured instrument failures in one project. (1) doc 134/137: the frame counter rose from a 59.2 mean to 87.1 then 89.5 and the author argued it could not be an artefact - correct, but the loop was iterating once per retrace at 90 Hz while each iteration still advanced the world one sixtieth, so the WORLD RAN AT 1.5x. A rate instrument cannot see how much work a unit contains. (2) doc 145: a STOPWATCH on a fixed route settled it in three runs - 29.48 / 27.04 / 18.18 s, and 27.04/18.18 = 1.487 = 90/60 - after three purpose-built instruments failed. When the time base is the suspect, every in-process instrument shares the clock. (3) doc 267: a frame-budget instrument reported 16.397 ms under a 60 cap and 10.931 ms under a 90 cap - work does not get cheaper because you asked for more frames; the tell is a mean just BELOW budget with a tight spread, the signature of a limiter holding a period. (4) doc 136/137: every diagnostic print had gone nowhere because the toolchain silently dropped static helpers in patched code, so silence has three causes - not reached, not emitted, not flushed. ALSO doc 258: lvlRender already loops over players with per-iteration viewport, FOV, aspect and projection, because the game shipped split-screen - that is route D and a fourth triage question covering a large class of targets. NOT YET HARVESTED, and worth it: the aim/frame cluster (214 ''the larger gun went further right'', 217 ''181 degrees of gun gave 14 degrees of bullet'', 193 ''the projection is innocent, 55 shots say so''), the HUD-in-stereo cluster (166, 170, 173, 174) and the comfort gate (146, 147).'
+        note: 'HARVESTED BY TITLE 2026-09-19 (413 files, 768,104 words - routed, not read linearly). Distilled to ch06 #instrument-shares-the-fault + META-017 + FAIL-TEST-040, and ch09 #native-stereo-routes route D. THE INSTRUMENT CLUSTER is the reason this source matters: four measured instrument failures in one project. (1) doc 134/137: the frame counter rose from a 59.2 mean to 87.1 then 89.5 and the author argued it could not be an artefact - correct, but the loop was iterating once per retrace at 90 Hz while each iteration still advanced the world one sixtieth, so the WORLD RAN AT 1.5x. A rate instrument cannot see how much work a unit contains. (2) doc 145: a STOPWATCH on a fixed route settled it in three runs - 29.48 / 27.04 / 18.18 s, and 27.04/18.18 = 1.487 = 90/60 - after three purpose-built instruments failed. When the time base is the suspect, every in-process instrument shares the clock. (3) doc 267: a frame-budget instrument reported 16.397 ms under a 60 cap and 10.931 ms under a 90 cap - work does not get cheaper because you asked for more frames; the tell is a mean just BELOW budget with a tight spread, the signature of a limiter holding a period. (4) doc 136/137: every diagnostic print had gone nowhere because the toolchain silently dropped static helpers in patched code, so silence has three causes - not reached, not emitted, not flushed. ALSO doc 258: lvlRender already loops over players with per-iteration viewport, FOV, aspect and projection, because the game shipped split-screen - that is route D and a fourth triage question covering a large class of targets. NOT YET HARVESTED, and worth it: the aim/frame cluster (214 ''the larger gun went further right'', 217 ''181 degrees of gun gave 14 degrees of bullet'', 193 ''the projection is innocent, 55 shots say so''), the HUD-in-stereo cluster (166, 170, 173, 174) and the comfort gate (146, 147). RE-REVIEWED 2026-11-16 at a431553, a public cleanup: product code has been private since the 2026-09-25 freeze; docs 270-272 and 301 are now stubs and 258 is deleted, so earlier receipts hold at b87b808 only. New: water that yaws with the head because only the game''s own yaw orients it (69c29e2 handover) -> 07 #vr-location-consumers + FAIL-CAM-036; tested versus shipped launcher configuration (vr440 boot script, vr443 pulled) -> 08 #ship-what-you-tested + PACK-007 + FAIL-PACK-021; a fixed 90 fps default replaced by following the headset, half speed under motion smoothing, and desktop vsync off in the shipped boot scripts -> 09 #headset-frame-timing. Evidence is author notes, release notes and shipped boot scripts (AUTHOR).'
       stereo:
         review: not_reviewed
       camera_tracking:
@@ -3523,7 +3523,94 @@ external:
       xr_lifecycle:      {review: not_reviewed}
       render_hazards:    {review: not_reviewed}
 
+  - id: "Braxus-FarCry2VR"
+    root: "D:/Dev Debug/Other VR Mods/FarCry2VR"
+    status: external_reference
+    upstream_url: https://github.com/Braxusx/FarCry2VR
+    license: "GPL-3.0"  # LICENSE, read 2026-11-16; THIRD_PARTY_NOTICES.md covers the bundled components
+    reviewed_at: 2026-11-16
+    reviewed_revision: tree:493c9fa2cf519770
+    reviewed_git_commit: 7c0d92e50f8a113e56d6d1b42551ea319748cf87
+    engine: Dunia (Far Cry 2)
+    api: D3D10 + OpenXR
+    vehicle: native-injector
+    chapter: 9
+    areas:
+      performance:       {review: partial, evidence: SOURCE, note: "Harvested from the published release line only: v1.0.1 (92a29c5) through v1.0.3.1 (7c0d92e) on main. Windows 11 background timer throttling (a 64 fps cap; the fix opts out of power throttling for timer resolution and execution speed, then requests 1 ms) and one-headset-frame simulation stepping with gradual catch-up -> 09 #headset-frame-timing + PERF-008 + FAIL-PERF-027. A pacing line in the log every 10 s."}
+      hands_interaction: {review: partial, evidence: SOURCE, note: "Physical machete hits through the weapon's own melee strategy with an explicit target, as its network replay does, so the stock hit (ray, damage, blood) runs; the swing sound uses blade speed relative to the body -> 02 #game-owned-melee-window + HAND-026. Body holsters and a grenade arc preview (README). The 1.0.3 notes move arm maths near the player after world-space float rounding made the hands shiver 1-2 mm per frame, and add a One Euro hand filter."}
+      xr_input:          {review: partial, evidence: SOURCE, note: "The game reads the pad through XInputGetState and rumbles it through XInputSetState; both imports are redirected, so while VR controllers are active pad 0 is synthesised from them and the game's own gamepad controls keep working. The right grip draws a weapon at a holster spot or raises the sights with the gun at the eye. CORROBORATES the 03 input ladder."}
+      packaging_deploy:  {review: partial, evidence: SOURCE, note: "A 32-bit dinput8.dll proxy, with a 64-bit helper process for DLSS. The optional launcher starts the game suspended and limits it to the first 16 logical processors, which the engine needs. Builds are identified by PE timestamp, then image size, and GOG addresses are mapped from Steam ones through a sorted table. 1.0.3.1 builds without debug symbols after 4 of 69 VirusTotal engines flagged the 1.0.3 launcher's ~430 KB debug overlay -> 08 antivirus note."}
+      stereo:            {review: skimmed, evidence: AUTHOR, note: "README: every eye is a real engine render with the headset's off-axis projection, one wide culling camera is shared by both eyes, and sun shadows are shared between them. CORROBORATES existing native-stereo material; not re-added."}
+      xr_lifecycle:      {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+      source_integration: {review: not_reviewed}
+
+  - id: "jbusfield-AH_UEVR"
+    root: "D:/Dev Debug/Other VR Mods/AtomicHeart-UEVR-jbusfield"
+    status: external_reference
+    upstream_url: https://github.com/jbusfield/AH_UEVR
+    license: "MIT"  # LICENSE, read 2026-11-16
+    reviewed_at: 2026-11-16
+    reviewed_revision: tree:70cf444839242041
+    reviewed_git_commit: 906d0feefc4bb1efd1c42b35b214b82aeaefa2d8
+    engine: Unreal Engine 4 (Atomic Heart)
+    api: via UEVR
+    vehicle: framework-companion
+    chapter: 2
+    areas:
+      hands_interaction: {review: partial, evidence: SOURCE, note: "MELEE_WINDOW_RESEARCH.md read in full -> 02 #game-owned-melee-window + HAND-026 + FAIL-HAND-063. One normal attack on the first swing with each weapon exposes the hit notify, then the game's own collision window opens and closes at physical swing begin and end. The failed alternatives are recorded: an 8x animated attack per swipe, direct notify callbacks, collision calls alone, notifier actions, custom traces, and private-pointer priming that lost dismemberment on corpses. The author's user reported it working for one weapon (AUTHOR). Lua sources not traced."}
+      stereo:            {review: not_reviewed}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+      source_integration: {review: not_reviewed}
+
+  - id: "Ashok0-AtomicHeart-UEVR"
+    root: "D:/Dev Debug/Other VR Mods/AtomicHeart-UEVR-Ashok0"
+    status: external_reference
+    upstream_url: https://github.com/Ashok0/AtomicHeart-UEVR
+    license: "none found"  # no LICENSE file in the checkout, read 2026-11-16
+    reviewed_at: 2026-11-16
+    reviewed_revision: tree:a7e0453edee53cee
+    reviewed_git_commit: 33f749f1c8fb13bea26cf6384aeece5ee099ffa3
+    engine: Unreal Engine 4 (Atomic Heart)
+    api: via UEVR
+    vehicle: framework-companion
+    chapter: 18
+    areas:
+      source_integration: {review: skimmed, evidence: AUTHOR, note: "README only: a hybrid Lua/PAK UEVR mod whose Lua script is documented for teaching. Features: 6DOF motion controls, ADS with projectiles aligned to the sights, the Polymer glove temporarily switching motion controls to the left hand, enemy knockback disabled, climbing fixes, roomscale movement and a volumetric cloud fix. Not read beyond the README; a second Atomic Heart profile (jbusfield-AH_UEVR) is registered separately."}
+      stereo:            {review: not_reviewed}
+      xr_lifecycle:      {review: not_reviewed}
+      xr_input:          {review: not_reviewed}
+      camera_tracking:   {review: not_reviewed}
+      render_hazards:    {review: not_reviewed}
+      ui_hud:            {review: not_reviewed}
+      hands_interaction: {review: not_reviewed}
+      input_locomotion:  {review: not_reviewed}
+      performance:       {review: not_reviewed}
+      audio:             {review: not_reviewed}
+      packaging_deploy:  {review: not_reviewed}
+      re_discovery:      {review: not_reviewed}
+
 not_a_source:
+  - id: "SystemReShock-UEVR-Plugin-upstream"
+    reason: "A second, partial clone of gwizdek/SystemReShock-UEVR-Plugin at e195c0a (2026-10-24), the same upstream commit the registered SystemReShock-UEVR-Plugin source was reviewed at. Two snapshots of one upstream, not two independent sources: read the registered checkout."
+  - id: "VoidBastardsVR"
+    reason: "umm-software's VoidBastardsVR repository holds a release folder (v1.0.1), a changelog, licence notices and documentation images, but no mod source. A binary distribution; re-classify it if source appears."
+  - id: "AC1VR_DX10_META_20261020_F1"
+    reason: "An experimental snapshot package (manifest admission EXPERIMENTAL_SNAPSHOT) dated 2026-10-20 for Assassin's Creed's DX10 executable, with a Russian README: helper DLLs, a few C, JavaScript and Python sources, and notices for bundled CPython, Frida, OpenXR and XR Tape, but no repository, upstream, history or licence for the mod itself. Re-classify it if a source repository appears."
   - id: "box3d"
     reason: "Erin Catto's Box3D physics library (upstream erincatto/box3d, HEAD 8128d74 of 2026-10-13), cloned for reference beside quakevr, which vendors it at 5643cd8. A rigid-body library, not a VR mod: the playbook harvests QuakeVR's integration of it (18 #added-physics-engine), not the library itself. Re-classify if its own determinism or threading design is harvested."
   - id: OBVR 0.1.3 56559 3 2026-09-07T09-29Z gWxLrl3z

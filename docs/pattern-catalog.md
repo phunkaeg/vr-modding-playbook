@@ -732,6 +732,23 @@ symptom under deliberate fast head motion - the condition that exposes it.
 (Condemned VR uses 20 ms). And pacing from process start rather than from the first stereo pair creates
 bring-up stalls unrelated to the steady state.
 
+## PERF-008 - Follow the headset's rate, and keep the game's clock off the frame {#perf-008}
+
+**Problem:** the game's timing assumes a desktop: a fixed refresh rate, a simulation step per rendered
+frame, a foreground window and a monitor that paces presentation.
+
+**Use when:** any port, from the first headset session on a refresh rate other than the one developed on.
+
+**Recipe:** follow the runtime's display rate. Advance the simulation by headset frames, with gradual
+catch-up to real time. Opt a background game window out of Windows timer throttling before requesting a
+1 ms timer. Turn desktop-mirror vsync off.
+
+**Proof:** the same scene runs at 72, 90 and 120 Hz without slow motion, and halving the app rate under
+motion smoothing does not slow the game.
+
+**Trip hazard:** a minimised mirror that stops rendering, or a timer cap near 64 fps, contaminating A/B
+runs. `[SOURCE]` GEVR, FarCry2VR, MGS5VR ([09](09-d3d11-openxr-injection.md#headset-frame-timing)).
+
 ## RE-011 - Use an open reimplementation for names, then prove the layout yourself {#re-011}
 
 **Problem:** reverse engineering a data format or entity model is mostly not about finding structure
@@ -1131,6 +1148,23 @@ moves.
 tick. Measure over a short window instead. `[LIVE]` an unpublished port
 ([12](12-torso-calculations-and-ergonomics.md#body-on-camera-clock)).
 
+## CAM-021 - When the game moves the body, the game owns the eye's position {#cam-021}
+
+**Problem:** cover, crouch, mounted weapons, vehicles and ledges move the player through authored
+animations, and a VR eye driven by posture flags ends up too high, through walls, or swung round.
+
+**Use when:** any game with stances, cover, vehicles or scripted traversal.
+
+**Recipe:** compare the camera anchor with the game's own eye during transitions, and let entries and exits
+settle there. Keep stance eye offsets in the body's frame. Capture heading on the last normal-action frame,
+and during game-driven alignment follow the actual vehicle heading rather than the animated root.
+
+**Proof:** a cover entry and exit, a crouch, a mounted weapon and a ledge catch keep the eye on the game's
+own eye, and the view never swings beyond deliberate look.
+
+**Trip hazard:** trusting posture flags, which change before or after the animated eye moves. `[LIVE]`
+MGS5VR (simulator) ([01](01-camera-and-tracking.md#game-driven-eye)).
+
 ## CAM-001 — Split head pose from body yaw {#cam-001}
 
 **Problem:** head turning also rotates locomotion/body, or yaw is applied twice.
@@ -1412,6 +1446,24 @@ behind the effect, not just walls.
 
 **Trip hazard:** a test scene that only has walls behind the effect passes either way. `[HEADSET]` an
 unpublished port ([14](14-render-pass-hazard-atlas.md#stereo-effects-retrofit)).
+
+## STR-024 - Single-frame stereo: render once through multiview, correct each view in clip space {#str-024}
+
+**Problem:** two full passes double the CPU and draw cost of a modern renderer.
+
+**Use when:** a Vulkan (or other multiview-capable) target whose eyes are parallel to a centre view.
+
+**Recipe:** render once from a centred camera wide enough for both eyes, through multiview, and correct
+each view in clip space with a scale and shear for its field of view and a constant offset for separation.
+Convert resources by rule: two-layer attachments and storage images, sampled-only textures left single,
+and no blind promotion of framebuffers that mix mono and stereo attachments. Keep shadow generation
+shared, and correct every effect that rebuilds position from depth.
+
+**Proof:** the HUD is single in both eyes, objects keep their shadows as you approach them, and nothing
+renders in one eye only.
+
+**Trip hazard:** canted eyes, or eyes offset forward or back. The correction is not exact for them, so
+refuse them rather than approximate. `[SOURCE]` KHARVOX ([10](10-graphics-apis.md#vulkan-single-frame-stereo)).
 
 ## STR-001 — Private per-eye targets {#str-001}
 
@@ -1709,6 +1761,23 @@ accepting 1.1, one refusing it - with the attempt sequence in the log.
 for a whole session ([the permissive-substitute problem](09-d3d11-openxr-injection.md#permissive-substitute)).
 Before blaming an implicit API layer, read `XR_LOADER_DEBUG=all`: **`Completed loader terminator` printed
 before the failure means the runtime refused**, and the loader and layers are exonerated in one line.
+
+## XR-009 - Admit a pair once; present it until its context changes {#xr-009}
+
+**Problem:** a stereo pair that expires by age turns every producer stall or tracking dropout into a
+black flash.
+
+**Use when:** any mod that hands the runtime eye images produced on a different schedule from submission.
+
+**Recipe:** admit a pair only when both eyes come from one source sequence and are fresh. Reproject the
+accepted pair with its original poses for as long as its epoch, reference space and activation match, and
+allow only a bounded hold across a camera handoff. Stamp and test freshness with one clock.
+
+**Proof:** a deliberate producer delay longer than the old expiry shows no missing layer, and a tracking
+dropout keeps the last accepted image.
+
+**Trip hazard:** comparing a system tick count against steady-clock stamps, which rejects fresh frames.
+`[LIVE]` MGS5VR (simulator) ([09](09-d3d11-openxr-injection.md#admit-versus-present)).
 
 ## INPUT-001 — Physical transport, semantic mapping {#input-001}
 
@@ -2753,6 +2822,23 @@ reaches it from a pose where your own arm is between hand and widget.
 `WidgetComponent`-driven minimap setup **causing massive UObject creation whenever the minimap was
 looked at**, and left it disabled rather than shipped. `[SOURCE]`
 
+## UEVR-004 - Ship a UEVR plugin past its production traps {#uevr-004}
+
+**Problem:** a UEVR companion plugin that works in development throws, stutters or loses state in
+players' installs.
+
+**Use when:** writing or maintaining any UEVR plugin.
+
+**Recipe:** check the game's bundled C++ runtime against your toolset, make the ImGui lock re-entrant,
+root the UObjects you keep, give lookups that can miss a cheap path, correct UEVR's yaw-only hand
+placement on pawns that pitch or roll, and handle only the controller slot UEVR injects into.
+
+**Proof:** the plugin runs a full session on the shipping game with no callback exceptions and no
+periodic stutter.
+
+**Trip hazard:** additive UI materials, which write no alpha and vanish from the headset. `[SOURCE]`
+SystemReShock-UEVR-Plugin ([18](18-beyond-the-native-injector.md#uevr-plugin-traps)).
+
 ## HAND-018 — Physicalising an interaction removes the rule the designer relied on {#hand-018}
 
 **Problem:** replacing a button press with a hand does not just change the input — it deletes the
@@ -3486,6 +3572,23 @@ control against a wall rejects every contact.
 
 **Trip hazard:** filtering targets by exact name, which an invisible trigger volume in front of a button
 defeats. `[LIVE]` an unpublished port ([02](02-viewmodels-and-hands.md#rendered-fingertip-touch)).
+
+## HAND-026 - Open the game's own melee window instead of rebuilding hit detection {#hand-026}
+
+**Problem:** physical melee built on custom traces or direct notify calls produces hit reactions without
+the game's full outcome, such as damage on some contacts or dismemberment.
+
+**Use when:** adding physical swings to a game that already has melee.
+
+**Recipe:** let one normal attack per equipped weapon initialise the game's state and expose its hit
+notify, then open and close the game's own contact window at the start and end of each physical swing.
+Where the weapon's melee code accepts an explicit target, give it one instead. Measure swing speed
+relative to the body.
+
+**Proof:** a corpse and a live enemy react to a physical swing exactly as they do to a normal attack.
+
+**Trip hazard:** a hit reaction mistaken for the full outcome. Test on a corpse. `[SOURCE]` `[AUTHOR]`
+AH_UEVR, FarCry2VR ([02](02-viewmodels-and-hands.md#game-owned-melee-window)).
 
 ## HAND-001 — Grip pose and aim pose are different contracts {#hand-001}
 
@@ -4442,6 +4545,21 @@ renamed incompatible executable is still refused.
 
 **Trip hazard:** matching on the file name or the storefront. The storefront does not determine the
 bytes. `[SOURCE]` Bateau01-SOMA-VR ([11](11-re-anchoring-and-discovery.md#drm-free-twin)).
+
+## PACK-007 - Ship the configuration you tested {#pack-007}
+
+**Problem:** a feature that passed testing is missing in the release because the tested configuration
+lived in a launcher, script or environment that did not ship.
+
+**Use when:** any release driven by launch scripts, environment variables or feature switches.
+
+**Recipe:** clear inherited environment variables at launch, bake passing features into the binary so a
+clean launch has them, and test every launcher you ship, since each is its own configuration.
+
+**Proof:** the release package, started by every shipped launcher, reproduces the tested feature set.
+
+**Trip hazard:** a byte-identical binary. It proves the code matched, not the configuration. `[AUTHOR]`
+GEVR ([08](08-project-process.md#ship-what-you-tested)).
 
 ## CFG-001 — One owner per setting, or write both together {#cfg-001}
 

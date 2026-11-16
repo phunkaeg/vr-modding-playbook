@@ -1315,6 +1315,19 @@ and the position is stated rather than assumed.
 *(Not legal advice, and jurisdiction-specific. The point is that the projects which state it have
 thought about it, and stating it costs a paragraph.)*
 
+## Ship the configuration you tested {#ship-what-you-tested}
+
+GEVR twice shipped a build whose tested features were missing while the code was unchanged. vr440's
+features were compiled into the executable, but its boot script never turned them on. The fix changed only
+that script, and the binary stayed byte-identical. vr443's room-scale features were on only in the
+development launch lines, which do not carry over to a normal download, so a physical step or strafe could
+slide the world, and the release was pulled. `[AUTHOR]` A byte-identical binary is the discriminator: it
+proves the code matched, not the configuration. GEVR's countermeasures: the boot script starts by wiping
+every variable the shell already exported, and later releases hard-code the kept features in the binary,
+so they stay on with a clean launch and no special boot flags. Its monitor launcher sets its own release
+tag and never runs that boot script, so it is a separate configuration to test. See
+[PACK-007](pattern-catalog.md#pack-007).
+
 ## Antivirus is part of your release process
 
 An unsigned DLL that injects into a game is, structurally, indistinguishable from malware. Scanners will
@@ -1352,6 +1365,10 @@ something explicitly promotes it, so an untested DLL cannot quietly become the r
 status line their docs use throughout — *"desk-tested, headset-untested, unaccepted"* — and a rule that
 a candidate **must not be installed or launched without explicit approval for its exact packaged DLL
 hash.**
+
+FarCry2VR 1.0.3.1 builds its launcher, mod DLL and DLSS helper without debug symbols. The 1.0.3 launcher
+carried about 430 KB of debug data after the program, an overlay that some antivirus heuristics treat as
+suspicious, and 4 of 69 VirusTotal engines flagged it. `[AUTHOR]`
 
 ## "Vacuous" is a distinct category from "absent"
 

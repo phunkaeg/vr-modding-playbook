@@ -1434,6 +1434,25 @@ reached the floor, so every frame was "clear" and the run proved nothing. `[LIVE
 Build fakes from values captured in the engine, and test the wiring as well as the logic. See
 [TEST-029](pattern-catalog.md#test-029).
 
+### Assert what the player would see, around every capture {#assert-around-capture}
+
+PreyVR's headless regression runner adds three rules to the ladder above. `[LIVE]` (headless, simulated
+runtime)
+
+- **Read the consumer, not the input.** A pause-menu test steps QuickSave, QuickLoad, QuickSave and checks
+  the menu's own highlighted row in both eyes' captures. A tabbed screen must report the selected clip,
+  the selected index and the page that actually opened; any other missing or mismatched field fails.
+- **Bracket every capture with state reads.** Capture times must fall between the game's own state
+  publications, and a change of the native modal owner during a capture fails the run. That check caught
+  an image that was supposed to show a selected menu.
+- **Passing checks are not visual acceptance.** Automated runs passed while a red mesh near the camera
+  filled much of the lower view, so those images could not certify the result. The runner cannot approve
+  a black or header-only image, and it saves hashes beside each capture so that a review is tied to the
+  exact images.
+
+Faking window focus did not stop concurrent desktop input from affecting a run, so the runner now reserves
+desktop input briefly before the measured phases.
+
 ## Expose the running game over HTTP, then drive it from a test {#http-control-plane}
 
 A [substitute runtime](09-d3d11-openxr-injection.md#substitute-runtime) fakes the *runtime* so the game
@@ -2509,6 +2528,13 @@ evidence item carries a `[verified: file:line]` tag, the reviewer is explicitly 
 *"verify the cited implementation before critiquing the framing"*, and the brief names the scale of fix it
 will accept up front - *"prefer a small defensible correction over a new general-purpose entity
 framework."* That is [META-002](pattern-catalog.md#meta-002) applied to a review rather than a finding.
+
+**Tag game-wide state with what it belongs to.** A PreyVR review drove the production adapters with
+synthetic fixtures. It found a 0.20 m eye lift kept across a replacement player object, a torso estimator
+reading 20 degrees where the reset control reads 90, and a 0.388 m gap between shin and foot on the first
+step after the body's anchor moved 0.9 m. Each is state that outlived what it described. Key such state to
+its player, tracking epoch and reference space, and reset it when any of them changes. `[SOURCE]`
+(synthetic fixtures; not observed in the game)
 
 ## Two ways an agent goes wrong on a VR mod, and what recovers it {#agent-failure-modes}
 

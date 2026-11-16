@@ -2350,6 +2350,13 @@ executable, linked fifteen minutes apart, had code shifted region by region. Exa
 Never port offsets by a fixed delta, map globals through the code that references them, and require a
 wrong-build control to be rejected. `[STATIC]`
 
+**And an unmapped address must resolve to unknown.** KHARVOX supports DOOM's Steam and GOG executables
+through an adapter of 274 address pairs, because data records and vtables move by different amounts and
+no single offset maps one build onto the other. A GOG setting address missing from the table once equalled
+the Steam address of a different, protected setting, and the fallback treated it as valid, so the game
+exited after creating its OpenXR session. Unmapped GOG addresses now get an unknown identity that can
+match no Steam rule. `[SOURCE]` `[AUTHOR]`
+
 ### A shared callee tells you what a function NEEDS, not what it does {#shared-callee-inference}
 
 DishonoredVR concluded a function was "a second render path" because it shared two callees with the main

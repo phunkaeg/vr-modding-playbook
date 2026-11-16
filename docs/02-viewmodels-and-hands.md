@@ -1734,6 +1734,13 @@ then received local headset acceptance, with broader push coverage kept separate
 about reaching a small crate is recorded as *unreproduced*, not refuted: a later PSVR2 retest grabbed
 the crate repeatedly.
 
+**When the game rewrites a held object every frame, intercept the write.** In MGS5VR, a grabbed rifle went
+back to its parked pose because the game's native equipment update restored it. Hooking that setter fixed
+it under narrow conditions. The held pose is substituted only when the incoming matrix matches the known
+parked pose (within 5 mm and a near-identical rotation) and the held snapshot is no more than 150 ms old;
+any other incoming pose, such as a different mount, loadout or scene, wins immediately. The callback takes
+no player lock and runs no animation work. `[SOURCE]` `[LIVE]` (simulator)
+
 ## Driving a body with physics: blend, clamp, and give up gracefully {#physics-bodies}
 
 PLANCK drives NPC bodies with active ragdoll so the player can shove, grab, drag and yank them. Its
@@ -2538,6 +2545,11 @@ solver, or multiplayer authority; donor reach distances are not universal consta
   The estimate must be computed once, at the release edge, and frozen, because the game code may consume
   a move one or more network frames later. And the object must spawn where the hand was at release, not
   where the follow-through has carried it 40-100 ms later. `[SOURCE]` ([throwing](https://github.com/vittorioromeo/quakevr/blob/76e28be1ea6976ec3209136bdb9468fc434102c9/docs/vr-port/THROWING.md))
+- **Only a deliberate release can throw.** PreyVR tells a physical trigger release apart from cleanup
+  releases for menus, tracking loss, disabling and recentring. Cleanup still delivers the releases of
+  buttons the engine holds, but it can never authorise a throw or apply cached hand velocity. Release
+  velocity uses only fresh, valid hand samples from the same session and reference space, and absolute
+  system-clock and OpenXR timestamps are never compared. `[SOURCE]`
 - **Linear velocity only slides a prop; to *tip* it, set angular velocity ∝ (contactOffset × pushDir)**
   using the tool tip as the lever arm (hit low → topples, hit centre → slides), scaled by
   `refMass/mass` so heavy props don't over-rotate and tunnel. Scripted physics services are often
@@ -2570,6 +2582,34 @@ releasing Interact first can let PostUpdate drop before Throw arrives. Tracking
 loss, timeout and owner change must cancel it. Fixes pass offline controls; feel
 and player-contact outcomes remain unaccepted. Evidence:
 `SOMAVR/docs/INTERACTION_FOLLOW_REVIEW_2026-09-09.md`.
+
+### Let the game decide what a swing hit {#game-owned-melee-window}
+
+Physical melee needs two things the flat game already has: a contact window, and the code that turns a
+contact into an outcome. jbusfield's Atomic Heart UEVR mod (MIT) documents the search, and its negative
+results are the useful part. `[SOURCE]` `[AUTHOR]` ([melee research](https://github.com/jbusfield/AH_UEVR/blob/906d0feefc4bb1efd1c42b35b214b82aeaefa2d8/MELEE_WINDOW_RESEARCH.md))
+
+- Starting the normal attack at eight times speed on every swipe let the animation decide the timing: a
+  physical swing could cross a target while the window was closed.
+- Calling the melee notify's callbacks directly returned false and dealt no damage. Enabling weapon
+  collision alone, and running the attack's notifier actions, also dealt no damage. Custom traces missed
+  at close range in several runs, and picking targets by hand would bypass the game's different responses
+  to corpses, enemies and walls.
+- A native helper that initialised the weapon's private cached pointers made contact reactions appear,
+  but repeated hits on a corpse no longer severed limbs as normal melee does.
+
+What works is one normal attack on the first swing with each equipped weapon, which initialises the
+game's state and exposes that weapon's hit notify. After that, the mod opens and closes the game's own
+collision window at the start and end of each physical swing, and the game's code processes whatever the
+weapon touches. If initialisation or a native call fails, later swings fall back to the animated attack
+with a logged warning. The author's user reported it working for one weapon. **The corpse test is the
+discriminator**: a visible hit reaction does not prove the full outcome.
+
+FarCry2VR (Braxus, GPL-3.0) takes the same route in a native injector. A physical machete swing into an
+NPC lands the game's own machete hit by giving the weapon's melee strategy an explicit target, the way its
+network replay does, so the stock hit with its ray, damage and blood runs unchanged. Measure swing speed
+relative to the body: FarCry2VR plays its swing sound by blade speed relative to the body, so walking
+does not count as a swing. `[SOURCE]` See [HAND-026](pattern-catalog.md#hand-026).
 
 ### Test the melee classifier with motions recorded in the headset {#motion-takes}
 
@@ -2604,6 +2644,11 @@ recovering tracking inside the target did not press, and a negative control agai
 contact. Two traps: a filter on exact names was defeated by an invisible trigger volume in front of a
 button (filter by family instead), and in some scripting languages an empty string is truthy. See
 [HAND-025](pattern-catalog.md#hand-025).
+
+PreyVR's panel touch adds a dead zone. A press needs the fingertip to cross about 2 mm into the panel from
+the front, and it re-arms only after the finger withdraws at least 15 mm. A panel moving over a still
+fingertip cannot press. A new tracking reference, panel, settings change or modal content invalidates a
+pending touch. `[SOURCE]`
 
 ## Point the engine's own interaction at your hand, by borrowing the camera
 

@@ -24,6 +24,12 @@ sight target and actual detection; repeat with a non-VR actor as a control. For 
 find the individual consumer and preserve its native rules. An SDK or this plugin can suggest where
 to look, but cannot prove the retail ABI or authorize replacing its character class.
 
+**Rendering consumers too.** In GEVR, flat water looked right on a monitor, but in VR the sea looked right
+and then yawed with the head. On a monitor the only yaw is the player character's, so the water stays fixed
+to the deck; the headset adds a yaw the level does not use. The same class of bug had already been fixed
+for the cloudy sky, which left the sea. The discriminator is clean: correct on a monitor but head-locked in
+VR means an orientation source is missing the headset's yaw, so texture fixes cannot help. `[AUTHOR]`
+
 ## Hooking & native-call discipline
 
 - **Validate before you call.** Before calling a discovered native function, check its prologue

@@ -166,6 +166,39 @@ The project also records its lineage explicitly, crediting an earlier SystemShoc
 fixes and ideas it borrows. **Mod lineage is worth stating for the same reason a source oracle is:** it
 tells a later reader which findings were inherited rather than independently derived.
 
+### What production taught the same plugin {#uevr-plugin-traps}
+
+The System Shock remake's companion plugin (gwizdek) kept documenting its traps through its 2.0 line,
+and they apply to any UEVR plugin. `[SOURCE]` ([documentation](https://github.com/gwizdek/SystemReShock-UEVR-Plugin/tree/e195c0a892af99a6d7d4c95397247ba6c6e14b0c/documentation))
+
+- **Toolchain.** The game loads its own MSVCP140 14.24, but a `std::mutex` built with a current Visual
+  Studio needs 14.40, so its first lock throws inside the plugin. Link the C runtime statically or define
+  `_DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR`; `std::shared_mutex` is unaffected. The lock taken by every ImGui
+  entry point must be re-entrant, because the window thread re-enters it. A UObject the plugin keeps must
+  be rooted, or the garbage collector frees it.
+- **Lookups.** An object lookup that misses walks the whole object array, about 105 ms among 176,000
+  objects, and a periodic check made of such misses caused a stutter every 6.8 seconds. A class that is
+  not loaded, as happens in some areas, misses on every call. Give every lookup that can miss during play
+  a cheap path, and invalidate cached objects when a level changes.
+- **Pitch and roll.** UEVR places the hands with the view's yaw only, while the stereo hook renders the
+  head with the full view rotation. On a level pawn the two agree, but on a pawn that pitches and rolls,
+  such as the game's cyberspace flight, the controllers are off by that pitch and roll. Only yaw is moved
+  into the pawn itself.
+- **Blueprint calls hooks cannot see.** A function called only from other Blueprint code never reaches
+  UEVR's UFunction hook, so the plugin patches its bytecode: the first instruction becomes a jump to the
+  final return, and the plugin does the work itself.
+- **Input.** UEVR injects the VR controllers only into the lowest polled XInput slot. Other slots, such as
+  Steam Input pads, carry no VR input, so handle only that slot.
+- **HUD materials.** Additive UI writes colour but no alpha and vanishes from the headset, so the plugin's
+  content replaces such materials with translucent ones. A reticle drawn with the depth test off smears
+  and shimmers under DLSS.
+- **Builds and reloads.** The generated SDK is pointed at the object array and name function that UEVR
+  resolved for the running game, instead of the dump's build-specific addresses, so one DLL runs on the
+  Steam and GOG builds, which share every class layout. A hot loader swaps in new plugin builds while the
+  game runs, so a value that must survive a swap or a crash is kept in a file, not a variable.
+
+See [UEVR-004](pattern-catalog.md#uevr-004).
+
 ## UEVR: impersonate the engine's own stereo device {#uevr-fake-stereo}
 
 The framework that most Unreal VR mods are built on is named after what it does. `FFakeStereoRendering`

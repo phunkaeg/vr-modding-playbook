@@ -192,6 +192,26 @@ simulator never turned its head, so nothing caught it. Read the live turn settin
 writes a value before naming it. Take the view direction from the averaged eye cameras, and derive body
 yaw from the head with a dead zone. `[SOURCE]` `[LIVE]`
 
+## When the game moves the body, it owns where the eye goes {#game-driven-eye}
+
+Cover, crouch, mounted weapons, vehicles and ledges move the player through animations the game authors.
+MGS5VR (nikamigaming-create, MIT) found three ways a VR eye fights them. `[SOURCE]` `[LIVE]` (simulator)
+([current state](https://github.com/nikamigaming-create/MGS5VR/blob/95f9becd1395ca11e6a29f9d2dc31454bec9b10c/docs/CURRENT.md))
+
+- **Posture flags lag the animated eye.** On a mortar the old camera stayed 62.8 cm above the operator's
+  native eye. The cover flag clears before a crouched cover exit has settled, which put the camera through
+  a wall. Compare the camera anchor with the game's own eye during transitions, and let entries and exits
+  settle there rather than trusting the flag.
+- **Stance eye offsets belong to the body.** MGS5VR keeps the cover eye offset in the actor root's space
+  and settles cover entry and exit even when the crouch flag does not change. Fixed exits now settle at
+  about 0.78 m above the native root instead of 1.18 to 1.37 m.
+- **Heading during game-driven alignment.** An automatic ledge catch used to turn the fixed headset view
+  about 180 degrees. Capturing the heading on the last normal-action frame keeps the VR view through the
+  catch and the climb back. In vehicles, the view follows the vehicle's actual heading, not the animated
+  actor root.
+
+See [CAM-021](pattern-catalog.md#cam-021).
+
 ## Latency, prediction, and smoothing
 
 - Use the runtime's **predicted pose** for the photons you're about to show; use **raw/fresh**

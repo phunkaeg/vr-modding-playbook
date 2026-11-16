@@ -672,6 +672,43 @@ Note also what having no engine abstraction costs. With Vulkan and no renderer t
 whatever the game's own frame function is - which is why their guidance is "prefer small, well-targeted
 patches and explicit operations over broad attempts to replace the game's renderer."
 
+## One render, both eyes: single-frame stereo through multiview {#vulkan-single-frame-stereo}
+
+KHARVOX (CactusVRStudios, MIT) made what it calls Single Frame Stereo (SFS) the default renderer for its
+DOOM (2016) port, and kept its AER renderer as the fallback. The game renders once, through Vulkan
+multiview, from a centred camera wide enough for both eyes, and each view gets a small correction in clip
+space. `[SOURCE]` ([projection](https://github.com/CactusVRStudios/KHARVOX/blob/3f88472862be79c9d1a41924061b4e0f8800ceca/src/sfs/FrameProjection.h))
+
+**The correction is exact only for parallel eyes.** For eyes parallel to the centre view, an uneven
+per-eye field of view is a scale and shear, and the eye separation is a constant offset in clip space, so
+the result is right at every depth. Eyes that are canted, or offset forward or back, are refused rather
+than approximated.
+
+**Turning a mono frame into a stereo one is a set of resource rules.** Single-layer colour and depth
+attachments and storage images become two-layer arrays. Ordinary sampled-only textures and 3D images stay
+as they are, and shader conversion clamps reads of mono arrays. A framebuffer that mixes mono and stereo
+attachments is not promoted blindly, because a shared attachment can make that wrong. One early build used
+a single stereo-adjusted shader stage set for both the mono and the multiview passes, so a one-layer
+auxiliary pass received stereo code. Compute that only updates shared buffers stays a single dispatch, and
+a stereo compute path with no verified per-eye rewrite stops explicitly instead of silently rendering one
+eye.
+
+**What stays mono, and what needs the per-eye correction.** Shadow generation stays shared between the
+eyes. A tester's object changed from lit to shadowed and back as the player approached it, and the fix
+went into shared shadow generation. Effects that rebuild positions from depth need the per-eye correction
+too: light-cluster lookup was corrected per eye, and screen-space reflections stay off and are not
+headset-validated. The screen HUD needs the per-eye asymmetric projection as well; without it, the
+low-ammo text appeared doubled. `[SOURCE]` `[AUTHOR]`
+
+**Two runtime interactions.** The OpenXR runtime's own Vulkan calls could re-enter the game's stereo hooks
+through the loader. Runtime device commands are now isolated below the game's transforms and classified
+by their first handle argument, from a list generated from the Vulkan headers. A non-null result from the
+device-level lookup was not enough, because a driver in an early simulator test returned physical-device
+functions there. The project calls this contamination a plausible cause of missing compositor output, not
+a proven one. Separately, 43 of the AMD lighting shaders failed to compile on a legacy group-vote
+instruction (OpGroupAll) until the compiler emitted subgroup votes instead. `[SOURCE]` `[AUTHOR]` See
+[STR-024](pattern-catalog.md#str-024).
+
 ## One register carries several matrices - validate content, not just location {#validate-every-upload}
 
 Filtering uploads by uniform location or constant register proves **where** a value arrived. It proves
